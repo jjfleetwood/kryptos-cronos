@@ -23,8 +23,8 @@ export const sysimplFunctionalStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Project management\" control for System Implementation — Functional is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each System Implementation — Functional source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Project management\" control for System Implementation — Functional is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Project management\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the System Implementation — Functional systems of record (Requirements / design records; Test management; Deployment pipeline) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the project management control (from Requirements / design records)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -61,18 +61,18 @@ export const sysimplFunctionalStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Project management\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the System Implementation — Functional control.",
+      "tagline": "Auditing \"Project management\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the project management control (from Requirements / design records)) with read-only agents, run the test against policy, and issue a defensible opinion on the System Implementation — Functional control.",
       "year": 2025,
       "overview": [
-        "The \"Project management\" sub-process is one of the controls an auditor must verify for System Implementation — Functional. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that project management is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Requirements / design records, Test management, Deployment pipeline — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Project management\" sub-process is one of the controls an auditor must verify for System Implementation — Functional. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the project management control (from Requirements / design records), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Requirements / design records, Test management, Deployment pipeline — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Project management\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `01_project_management_mcp.py` exposes read-only tools that turn each System Implementation — Functional source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `01_project_management_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Requirements / design records and Test management (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 01_project_management_mcp.py` to expose it to your agent — or `python 01_project_management_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -130,12 +130,13 @@ export const sysimplFunctionalStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Project management\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the project management control (from Requirements / design records).",
+        "The test: Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Project management\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Requirements / design records, Test management, Deployment pipeline) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the project management control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -159,20 +160,20 @@ export const sysimplFunctionalStages: StageConfig[] = [
         {
           "name": "01_project_management_mcp.py",
           "url": "/audit-code/sysimpl-functional/01_project_management_mcp.py",
-          "description": "Runnable read-only MCP server: gathers System Implementation — Functional evidence for \"Project management\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the System Implementation — Functional evidence for \"Project management\" (in-scope inventory for the project management control (from requirements / design records)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Project management\" control for System Implementation — Functional at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Project management\" control for System Implementation — Functional at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Project management\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the project management control (from Requirements / design records) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Requirements / design records APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Requirements / design records gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Requirements / design records is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Requirements / design records; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — System Implementation — Functional: \"Project management\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-functional_inventory.json   (in-scope items from Requirements / design records)\n- sysimpl-functional_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Project management\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — System Implementation — Functional: \"Project management\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Project management\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-functional_inventory.json   (in-scope items — In-scope inventory for the project management control (from Requirements / design records))\n- sysimpl-functional_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Project management\",\n  \"domain\": \"System Implementation — Functional\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{sif_",
         "/evidence/sysimpl-functional_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Project management\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Project management\" control must cover\n# fragment: project_management_",
         "/evidence/sysimpl-functional_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -268,7 +269,7 @@ export const sysimplFunctionalStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Project management\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Project management evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the project management control (from Requirements / design records) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -334,16 +335,16 @@ export const sysimplFunctionalStages: StageConfig[] = [
         {
           "id": "sif-01-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Project management\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Project management\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the project management control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the project management control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "sif-01-q9",
@@ -388,8 +389,8 @@ export const sysimplFunctionalStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Design and requirements\" control for System Implementation — Functional is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each System Implementation — Functional source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Design and requirements\" control for System Implementation — Functional is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Design and requirements\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the System Implementation — Functional systems of record (Requirements / design records; Test management; Deployment pipeline) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the design and requirements control (from Requirements / design records)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -426,18 +427,18 @@ export const sysimplFunctionalStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Design and requirements\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the System Implementation — Functional control.",
+      "tagline": "Auditing \"Design and requirements\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the design and requirements control (from Requirements / design records)) with read-only agents, run the test against policy, and issue a defensible opinion on the System Implementation — Functional control.",
       "year": 2025,
       "overview": [
-        "The \"Design and requirements\" sub-process is one of the controls an auditor must verify for System Implementation — Functional. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that design and requirements is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Requirements / design records, Test management, Deployment pipeline — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Design and requirements\" sub-process is one of the controls an auditor must verify for System Implementation — Functional. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the design and requirements control (from Requirements / design records), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Requirements / design records, Test management, Deployment pipeline — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Design and requirements\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `02_design_and_requirements_mcp.py` exposes read-only tools that turn each System Implementation — Functional source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `02_design_and_requirements_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Requirements / design records and Test management (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 02_design_and_requirements_mcp.py` to expose it to your agent — or `python 02_design_and_requirements_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -495,12 +496,13 @@ export const sysimplFunctionalStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Design and requirements\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the design and requirements control (from Requirements / design records).",
+        "The test: Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Design and requirements\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Requirements / design records, Test management, Deployment pipeline) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the design and requirements control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -524,20 +526,20 @@ export const sysimplFunctionalStages: StageConfig[] = [
         {
           "name": "02_design_and_requirements_mcp.py",
           "url": "/audit-code/sysimpl-functional/02_design_and_requirements_mcp.py",
-          "description": "Runnable read-only MCP server: gathers System Implementation — Functional evidence for \"Design and requirements\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the System Implementation — Functional evidence for \"Design and requirements\" (in-scope inventory for the design and requirements control (from requirements / design records)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Design and requirements\" control for System Implementation — Functional at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Design and requirements\" control for System Implementation — Functional at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Design and requirements\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the design and requirements control (from Requirements / design records) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Requirements / design records APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Requirements / design records gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Requirements / design records is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Requirements / design records; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — System Implementation — Functional: \"Design and requirements\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-functional_inventory.json   (in-scope items from Requirements / design records)\n- sysimpl-functional_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Design and requirements\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — System Implementation — Functional: \"Design and requirements\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Design and requirements\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-functional_inventory.json   (in-scope items — In-scope inventory for the design and requirements control (from Requirements / design records))\n- sysimpl-functional_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Design and requirements\",\n  \"domain\": \"System Implementation — Functional\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{sif_",
         "/evidence/sysimpl-functional_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Project management\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Design and requirements\" control must cover\n# fragment: design_requirements_",
         "/evidence/sysimpl-functional_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -633,7 +635,7 @@ export const sysimplFunctionalStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Design and requirements\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Design and requirements evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the design and requirements control (from Requirements / design records) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -699,16 +701,16 @@ export const sysimplFunctionalStages: StageConfig[] = [
         {
           "id": "sif-02-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Design and requirements\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Design and requirements\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the design and requirements control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the design and requirements control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "sif-02-q9",
@@ -753,8 +755,8 @@ export const sysimplFunctionalStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Development\" control for System Implementation — Functional is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each System Implementation — Functional source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Development\" control for System Implementation — Functional is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Development\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the System Implementation — Functional systems of record (Requirements / design records; Test management; Deployment pipeline) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the development control (from Requirements / design records)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -791,18 +793,18 @@ export const sysimplFunctionalStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Development\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the System Implementation — Functional control.",
+      "tagline": "Auditing \"Development\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the development control (from Requirements / design records)) with read-only agents, run the test against policy, and issue a defensible opinion on the System Implementation — Functional control.",
       "year": 2025,
       "overview": [
-        "The \"Development\" sub-process is one of the controls an auditor must verify for System Implementation — Functional. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that development is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Requirements / design records, Test management, Deployment pipeline — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Development\" sub-process is one of the controls an auditor must verify for System Implementation — Functional. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the development control (from Requirements / design records), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Requirements / design records, Test management, Deployment pipeline — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Development\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `03_development_mcp.py` exposes read-only tools that turn each System Implementation — Functional source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `03_development_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Requirements / design records and Test management (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 03_development_mcp.py` to expose it to your agent — or `python 03_development_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -860,12 +862,13 @@ export const sysimplFunctionalStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Development\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the development control (from Requirements / design records).",
+        "The test: Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Development\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Requirements / design records, Test management, Deployment pipeline) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the development control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -889,20 +892,20 @@ export const sysimplFunctionalStages: StageConfig[] = [
         {
           "name": "03_development_mcp.py",
           "url": "/audit-code/sysimpl-functional/03_development_mcp.py",
-          "description": "Runnable read-only MCP server: gathers System Implementation — Functional evidence for \"Development\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the System Implementation — Functional evidence for \"Development\" (in-scope inventory for the development control (from requirements / design records)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Development\" control for System Implementation — Functional at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Development\" control for System Implementation — Functional at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Development\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the development control (from Requirements / design records) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Requirements / design records APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Requirements / design records gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Requirements / design records is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Requirements / design records; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — System Implementation — Functional: \"Development\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-functional_inventory.json   (in-scope items from Requirements / design records)\n- sysimpl-functional_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Development\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — System Implementation — Functional: \"Development\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Development\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-functional_inventory.json   (in-scope items — In-scope inventory for the development control (from Requirements / design records))\n- sysimpl-functional_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Development\",\n  \"domain\": \"System Implementation — Functional\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{sif_",
         "/evidence/sysimpl-functional_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Project management\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Development\" control must cover\n# fragment: development_",
         "/evidence/sysimpl-functional_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -998,7 +1001,7 @@ export const sysimplFunctionalStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Development\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Development evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the development control (from Requirements / design records) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -1064,16 +1067,16 @@ export const sysimplFunctionalStages: StageConfig[] = [
         {
           "id": "sif-03-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Development\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Development\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the development control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the development control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "sif-03-q9",
@@ -1118,8 +1121,8 @@ export const sysimplFunctionalStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Testing\" control for System Implementation — Functional is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each System Implementation — Functional source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Testing\" control for System Implementation — Functional is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Testing\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the System Implementation — Functional systems of record (Requirements / design records; Test management; Deployment pipeline) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the testing control (from Requirements / design records)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -1156,18 +1159,18 @@ export const sysimplFunctionalStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Testing\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the System Implementation — Functional control.",
+      "tagline": "Auditing \"Testing\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the testing control (from Requirements / design records)) with read-only agents, run the test against policy, and issue a defensible opinion on the System Implementation — Functional control.",
       "year": 2025,
       "overview": [
-        "The \"Testing\" sub-process is one of the controls an auditor must verify for System Implementation — Functional. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that testing is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Requirements / design records, Test management, Deployment pipeline — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Testing\" sub-process is one of the controls an auditor must verify for System Implementation — Functional. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the testing control (from Requirements / design records), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Requirements / design records, Test management, Deployment pipeline — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Testing\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `04_testing_mcp.py` exposes read-only tools that turn each System Implementation — Functional source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `04_testing_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Requirements / design records and Test management (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 04_testing_mcp.py` to expose it to your agent — or `python 04_testing_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -1225,12 +1228,13 @@ export const sysimplFunctionalStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Testing\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the testing control (from Requirements / design records).",
+        "The test: Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Testing\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Requirements / design records, Test management, Deployment pipeline) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the testing control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -1254,20 +1258,20 @@ export const sysimplFunctionalStages: StageConfig[] = [
         {
           "name": "04_testing_mcp.py",
           "url": "/audit-code/sysimpl-functional/04_testing_mcp.py",
-          "description": "Runnable read-only MCP server: gathers System Implementation — Functional evidence for \"Testing\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the System Implementation — Functional evidence for \"Testing\" (in-scope inventory for the testing control (from requirements / design records)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Testing\" control for System Implementation — Functional at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Testing\" control for System Implementation — Functional at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Testing\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the testing control (from Requirements / design records) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Requirements / design records APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Requirements / design records gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Requirements / design records is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Requirements / design records; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — System Implementation — Functional: \"Testing\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-functional_inventory.json   (in-scope items from Requirements / design records)\n- sysimpl-functional_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Testing\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — System Implementation — Functional: \"Testing\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Testing\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-functional_inventory.json   (in-scope items — In-scope inventory for the testing control (from Requirements / design records))\n- sysimpl-functional_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Testing\",\n  \"domain\": \"System Implementation — Functional\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{sif_",
         "/evidence/sysimpl-functional_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Project management\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Testing\" control must cover\n# fragment: testing_",
         "/evidence/sysimpl-functional_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -1363,7 +1367,7 @@ export const sysimplFunctionalStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Testing\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Testing evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the testing control (from Requirements / design records) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -1429,16 +1433,16 @@ export const sysimplFunctionalStages: StageConfig[] = [
         {
           "id": "sif-04-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Testing\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Testing\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the testing control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the testing control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "sif-04-q9",
@@ -1483,8 +1487,8 @@ export const sysimplFunctionalStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Implement (go-live)\" control for System Implementation — Functional is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each System Implementation — Functional source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Implement (go-live)\" control for System Implementation — Functional is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Implement (go-live)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the System Implementation — Functional systems of record (Requirements / design records; Test management; Deployment pipeline) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the implement (go-live) control (from Requirements / design records)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -1521,18 +1525,18 @@ export const sysimplFunctionalStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Implement (go-live)\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the System Implementation — Functional control.",
+      "tagline": "Auditing \"Implement (go-live)\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the implement (go-live) control (from Requirements / design records)) with read-only agents, run the test against policy, and issue a defensible opinion on the System Implementation — Functional control.",
       "year": 2025,
       "overview": [
-        "The \"Implement (go-live)\" sub-process is one of the controls an auditor must verify for System Implementation — Functional. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that implement (go-live) is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Requirements / design records, Test management, Deployment pipeline — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Implement (go-live)\" sub-process is one of the controls an auditor must verify for System Implementation — Functional. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the implement (go-live) control (from Requirements / design records), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Requirements / design records, Test management, Deployment pipeline — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Implement (go-live)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `05_implement_go_live_mcp.py` exposes read-only tools that turn each System Implementation — Functional source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `05_implement_go_live_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Requirements / design records and Test management (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 05_implement_go_live_mcp.py` to expose it to your agent — or `python 05_implement_go_live_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -1590,12 +1594,13 @@ export const sysimplFunctionalStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Implement (go-live)\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the implement (go-live) control (from Requirements / design records).",
+        "The test: Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Implement (go-live)\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Requirements / design records, Test management, Deployment pipeline) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the implement (go-live) control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -1619,20 +1624,20 @@ export const sysimplFunctionalStages: StageConfig[] = [
         {
           "name": "05_implement_go_live_mcp.py",
           "url": "/audit-code/sysimpl-functional/05_implement_go_live_mcp.py",
-          "description": "Runnable read-only MCP server: gathers System Implementation — Functional evidence for \"Implement (go-live)\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the System Implementation — Functional evidence for \"Implement (go-live)\" (in-scope inventory for the implement (go-live) control (from requirements / design records)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Implement (go-live)\" control for System Implementation — Functional at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Implement (go-live)\" control for System Implementation — Functional at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Implement (go-live)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the implement (go-live) control (from Requirements / design records) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Requirements / design records APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Requirements / design records gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Requirements / design records is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Requirements / design records; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — System Implementation — Functional: \"Implement (go-live)\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-functional_inventory.json   (in-scope items from Requirements / design records)\n- sysimpl-functional_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Implement (go-live)\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — System Implementation — Functional: \"Implement (go-live)\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Implement (go-live)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-functional_inventory.json   (in-scope items — In-scope inventory for the implement (go-live) control (from Requirements / design records))\n- sysimpl-functional_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Implement (go-live)\",\n  \"domain\": \"System Implementation — Functional\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{sif_",
         "/evidence/sysimpl-functional_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Project management\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Implement (go-live)\" control must cover\n# fragment: implement_golive_",
         "/evidence/sysimpl-functional_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -1728,7 +1733,7 @@ export const sysimplFunctionalStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Implement (go-live)\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Implement (go-live) evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the implement (go-live) control (from Requirements / design records) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -1794,16 +1799,16 @@ export const sysimplFunctionalStages: StageConfig[] = [
         {
           "id": "sif-05-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Implement (go-live)\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Implement (go-live)\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the implement (go-live) control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the implement (go-live) control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "sif-05-q9",
@@ -1848,8 +1853,8 @@ export const sysimplFunctionalStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Cutover\" control for System Implementation — Functional is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each System Implementation — Functional source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Cutover\" control for System Implementation — Functional is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Cutover\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the System Implementation — Functional systems of record (Requirements / design records; Test management; Deployment pipeline) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the cutover control (from Requirements / design records)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -1886,18 +1891,18 @@ export const sysimplFunctionalStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Cutover\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the System Implementation — Functional control.",
+      "tagline": "Auditing \"Cutover\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the cutover control (from Requirements / design records)) with read-only agents, run the test against policy, and issue a defensible opinion on the System Implementation — Functional control.",
       "year": 2025,
       "overview": [
-        "The \"Cutover\" sub-process is one of the controls an auditor must verify for System Implementation — Functional. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that cutover is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Requirements / design records, Test management, Deployment pipeline — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Cutover\" sub-process is one of the controls an auditor must verify for System Implementation — Functional. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the cutover control (from Requirements / design records), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Requirements / design records, Test management, Deployment pipeline — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Cutover\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `06_cutover_mcp.py` exposes read-only tools that turn each System Implementation — Functional source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `06_cutover_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Requirements / design records and Test management (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 06_cutover_mcp.py` to expose it to your agent — or `python 06_cutover_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -1955,12 +1960,13 @@ export const sysimplFunctionalStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Cutover\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the cutover control (from Requirements / design records).",
+        "The test: Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Cutover\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Requirements / design records, Test management, Deployment pipeline) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the cutover control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -1984,20 +1990,20 @@ export const sysimplFunctionalStages: StageConfig[] = [
         {
           "name": "06_cutover_mcp.py",
           "url": "/audit-code/sysimpl-functional/06_cutover_mcp.py",
-          "description": "Runnable read-only MCP server: gathers System Implementation — Functional evidence for \"Cutover\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the System Implementation — Functional evidence for \"Cutover\" (in-scope inventory for the cutover control (from requirements / design records)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Cutover\" control for System Implementation — Functional at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Cutover\" control for System Implementation — Functional at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Cutover\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the cutover control (from Requirements / design records) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Requirements / design records APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Requirements / design records gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Requirements / design records is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Requirements / design records; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — System Implementation — Functional: \"Cutover\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-functional_inventory.json   (in-scope items from Requirements / design records)\n- sysimpl-functional_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Cutover\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — System Implementation — Functional: \"Cutover\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Cutover\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-functional_inventory.json   (in-scope items — In-scope inventory for the cutover control (from Requirements / design records))\n- sysimpl-functional_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Cutover\",\n  \"domain\": \"System Implementation — Functional\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{sif_",
         "/evidence/sysimpl-functional_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Project management\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Cutover\" control must cover\n# fragment: cutover_",
         "/evidence/sysimpl-functional_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -2093,7 +2099,7 @@ export const sysimplFunctionalStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Cutover\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Cutover evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the cutover control (from Requirements / design records) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -2159,16 +2165,16 @@ export const sysimplFunctionalStages: StageConfig[] = [
         {
           "id": "sif-06-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Cutover\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Cutover\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the cutover control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the cutover control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "sif-06-q9",
@@ -2213,8 +2219,8 @@ export const sysimplFunctionalStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Data conversion and migration\" control for System Implementation — Functional is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each System Implementation — Functional source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Data conversion and migration\" control for System Implementation — Functional is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Data conversion and migration\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the System Implementation — Functional systems of record (Requirements / design records; Test management; Deployment pipeline) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the data conversion and migration control (from Requirements / design records)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -2251,18 +2257,18 @@ export const sysimplFunctionalStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Data conversion and migration\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the System Implementation — Functional control.",
+      "tagline": "Auditing \"Data conversion and migration\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the data conversion and migration control (from Requirements / design records)) with read-only agents, run the test against policy, and issue a defensible opinion on the System Implementation — Functional control.",
       "year": 2025,
       "overview": [
-        "The \"Data conversion and migration\" sub-process is one of the controls an auditor must verify for System Implementation — Functional. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that data conversion and migration is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Requirements / design records, Test management, Deployment pipeline — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Data conversion and migration\" sub-process is one of the controls an auditor must verify for System Implementation — Functional. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the data conversion and migration control (from Requirements / design records), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Requirements / design records, Test management, Deployment pipeline — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Data conversion and migration\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `07_data_conversion_and_migration_mcp.py` exposes read-only tools that turn each System Implementation — Functional source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `07_data_conversion_and_migration_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Requirements / design records and Test management (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 07_data_conversion_and_migration_mcp.py` to expose it to your agent — or `python 07_data_conversion_and_migration_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -2320,12 +2326,13 @@ export const sysimplFunctionalStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Data conversion and migration\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the data conversion and migration control (from Requirements / design records).",
+        "The test: Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Data conversion and migration\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Requirements / design records, Test management, Deployment pipeline) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the data conversion and migration control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -2349,20 +2356,20 @@ export const sysimplFunctionalStages: StageConfig[] = [
         {
           "name": "07_data_conversion_and_migration_mcp.py",
           "url": "/audit-code/sysimpl-functional/07_data_conversion_and_migration_mcp.py",
-          "description": "Runnable read-only MCP server: gathers System Implementation — Functional evidence for \"Data conversion and migration\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the System Implementation — Functional evidence for \"Data conversion and migration\" (in-scope inventory for the data conversion and migration control (from requirements / design records)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Data conversion and migration\" control for System Implementation — Functional at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Data conversion and migration\" control for System Implementation — Functional at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Data conversion and migration\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the data conversion and migration control (from Requirements / design records) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Requirements / design records APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Requirements / design records gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Requirements / design records is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Requirements / design records; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — System Implementation — Functional: \"Data conversion and migration\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-functional_inventory.json   (in-scope items from Requirements / design records)\n- sysimpl-functional_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Data conversion and migration\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — System Implementation — Functional: \"Data conversion and migration\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Data conversion and migration\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-functional_inventory.json   (in-scope items — In-scope inventory for the data conversion and migration control (from Requirements / design records))\n- sysimpl-functional_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Data conversion and migration\",\n  \"domain\": \"System Implementation — Functional\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{sif_",
         "/evidence/sysimpl-functional_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Project management\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Data conversion and migration\" control must cover\n# fragment: data_conversion_migration_",
         "/evidence/sysimpl-functional_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -2458,7 +2465,7 @@ export const sysimplFunctionalStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Data conversion and migration\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Data conversion and migration evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the data conversion and migration control (from Requirements / design records) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -2524,16 +2531,16 @@ export const sysimplFunctionalStages: StageConfig[] = [
         {
           "id": "sif-07-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Data conversion and migration\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Data conversion and migration\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the data conversion and migration control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the data conversion and migration control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "sif-07-q9",
@@ -2578,8 +2585,8 @@ export const sysimplFunctionalStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Support and maintenance\" control for System Implementation — Functional is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each System Implementation — Functional source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Support and maintenance\" control for System Implementation — Functional is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Support and maintenance\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the System Implementation — Functional systems of record (Requirements / design records; Test management; Deployment pipeline) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the support and maintenance control (from Requirements / design records)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -2616,18 +2623,18 @@ export const sysimplFunctionalStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Support and maintenance\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the System Implementation — Functional control.",
+      "tagline": "Auditing \"Support and maintenance\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the support and maintenance control (from Requirements / design records)) with read-only agents, run the test against policy, and issue a defensible opinion on the System Implementation — Functional control.",
       "year": 2025,
       "overview": [
-        "The \"Support and maintenance\" sub-process is one of the controls an auditor must verify for System Implementation — Functional. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that support and maintenance is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Requirements / design records, Test management, Deployment pipeline — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Support and maintenance\" sub-process is one of the controls an auditor must verify for System Implementation — Functional. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the support and maintenance control (from Requirements / design records), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Requirements / design records, Test management, Deployment pipeline — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Support and maintenance\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `08_support_and_maintenance_mcp.py` exposes read-only tools that turn each System Implementation — Functional source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `08_support_and_maintenance_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Requirements / design records and Test management (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 08_support_and_maintenance_mcp.py` to expose it to your agent — or `python 08_support_and_maintenance_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -2685,12 +2692,13 @@ export const sysimplFunctionalStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Support and maintenance\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the support and maintenance control (from Requirements / design records).",
+        "The test: Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Support and maintenance\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Requirements / design records, Test management, Deployment pipeline) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the support and maintenance control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -2714,20 +2722,20 @@ export const sysimplFunctionalStages: StageConfig[] = [
         {
           "name": "08_support_and_maintenance_mcp.py",
           "url": "/audit-code/sysimpl-functional/08_support_and_maintenance_mcp.py",
-          "description": "Runnable read-only MCP server: gathers System Implementation — Functional evidence for \"Support and maintenance\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the System Implementation — Functional evidence for \"Support and maintenance\" (in-scope inventory for the support and maintenance control (from requirements / design records)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Support and maintenance\" control for System Implementation — Functional at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Support and maintenance\" control for System Implementation — Functional at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Support and maintenance\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the support and maintenance control (from Requirements / design records) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Requirements / design records APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Requirements / design records gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Requirements / design records is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Requirements / design records; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — System Implementation — Functional: \"Support and maintenance\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-functional_inventory.json   (in-scope items from Requirements / design records)\n- sysimpl-functional_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Support and maintenance\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — System Implementation — Functional: \"Support and maintenance\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Support and maintenance\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-functional_inventory.json   (in-scope items — In-scope inventory for the support and maintenance control (from Requirements / design records))\n- sysimpl-functional_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Support and maintenance\",\n  \"domain\": \"System Implementation — Functional\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{sif_",
         "/evidence/sysimpl-functional_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Project management\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Support and maintenance\" control must cover\n# fragment: support_maintenance_",
         "/evidence/sysimpl-functional_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -2823,7 +2831,7 @@ export const sysimplFunctionalStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Support and maintenance\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Support and maintenance evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the support and maintenance control (from Requirements / design records) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -2889,16 +2897,16 @@ export const sysimplFunctionalStages: StageConfig[] = [
         {
           "id": "sif-08-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Support and maintenance\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Support and maintenance\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the support and maintenance control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the support and maintenance control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "sif-08-q9",
@@ -2943,8 +2951,8 @@ export const sysimplFunctionalStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Steering committee\" control for System Implementation — Functional is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each System Implementation — Functional source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Steering committee\" control for System Implementation — Functional is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Steering committee\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the System Implementation — Functional systems of record (Requirements / design records; Test management; Deployment pipeline) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the steering committee control (from Requirements / design records)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -2981,18 +2989,18 @@ export const sysimplFunctionalStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Steering committee\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the System Implementation — Functional control.",
+      "tagline": "Auditing \"Steering committee\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the steering committee control (from Requirements / design records)) with read-only agents, run the test against policy, and issue a defensible opinion on the System Implementation — Functional control.",
       "year": 2025,
       "overview": [
-        "The \"Steering committee\" sub-process is one of the controls an auditor must verify for System Implementation — Functional. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that steering committee is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Requirements / design records, Test management, Deployment pipeline — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Steering committee\" sub-process is one of the controls an auditor must verify for System Implementation — Functional. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the steering committee control (from Requirements / design records), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Requirements / design records, Test management, Deployment pipeline — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Steering committee\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `09_steering_committee_mcp.py` exposes read-only tools that turn each System Implementation — Functional source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `09_steering_committee_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Requirements / design records and Test management (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 09_steering_committee_mcp.py` to expose it to your agent — or `python 09_steering_committee_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -3050,12 +3058,13 @@ export const sysimplFunctionalStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Steering committee\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the steering committee control (from Requirements / design records).",
+        "The test: Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Steering committee\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Requirements / design records, Test management, Deployment pipeline) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the steering committee control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -3079,20 +3088,20 @@ export const sysimplFunctionalStages: StageConfig[] = [
         {
           "name": "09_steering_committee_mcp.py",
           "url": "/audit-code/sysimpl-functional/09_steering_committee_mcp.py",
-          "description": "Runnable read-only MCP server: gathers System Implementation — Functional evidence for \"Steering committee\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the System Implementation — Functional evidence for \"Steering committee\" (in-scope inventory for the steering committee control (from requirements / design records)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Steering committee\" control for System Implementation — Functional at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Steering committee\" control for System Implementation — Functional at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Steering committee\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the steering committee control (from Requirements / design records) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Requirements / design records APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Requirements / design records gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Requirements / design records is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Requirements / design records; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — System Implementation — Functional: \"Steering committee\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-functional_inventory.json   (in-scope items from Requirements / design records)\n- sysimpl-functional_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Steering committee\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — System Implementation — Functional: \"Steering committee\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Steering committee\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-functional_inventory.json   (in-scope items — In-scope inventory for the steering committee control (from Requirements / design records))\n- sysimpl-functional_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Steering committee\",\n  \"domain\": \"System Implementation — Functional\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{sif_",
         "/evidence/sysimpl-functional_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Project management\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Steering committee\" control must cover\n# fragment: steering_committee_",
         "/evidence/sysimpl-functional_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -3188,7 +3197,7 @@ export const sysimplFunctionalStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Steering committee\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Steering committee evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the steering committee control (from Requirements / design records) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -3254,16 +3263,16 @@ export const sysimplFunctionalStages: StageConfig[] = [
         {
           "id": "sif-09-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Steering committee\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Steering committee\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the steering committee control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the steering committee control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "sif-09-q9",
@@ -3308,8 +3317,8 @@ export const sysimplFunctionalStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Audit and compliance involvement\" control for System Implementation — Functional is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each System Implementation — Functional source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Audit and compliance involvement\" control for System Implementation — Functional is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Audit and compliance involvement\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the System Implementation — Functional systems of record (Requirements / design records; Test management; Deployment pipeline) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the audit and compliance involvement control (from Requirements / design records)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -3346,18 +3355,18 @@ export const sysimplFunctionalStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Audit and compliance involvement\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the System Implementation — Functional control.",
+      "tagline": "Auditing \"Audit and compliance involvement\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the audit and compliance involvement control (from Requirements / design records)) with read-only agents, run the test against policy, and issue a defensible opinion on the System Implementation — Functional control.",
       "year": 2025,
       "overview": [
-        "The \"Audit and compliance involvement\" sub-process is one of the controls an auditor must verify for System Implementation — Functional. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that audit and compliance involvement is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Requirements / design records, Test management, Deployment pipeline — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Audit and compliance involvement\" sub-process is one of the controls an auditor must verify for System Implementation — Functional. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the audit and compliance involvement control (from Requirements / design records), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Requirements / design records, Test management, Deployment pipeline — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Audit and compliance involvement\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `10_audit_and_compliance_involvement_mcp.py` exposes read-only tools that turn each System Implementation — Functional source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `10_audit_and_compliance_involvement_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Requirements / design records and Test management (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 10_audit_and_compliance_involvement_mcp.py` to expose it to your agent — or `python 10_audit_and_compliance_involvement_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -3415,12 +3424,13 @@ export const sysimplFunctionalStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Audit and compliance involvement\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the audit and compliance involvement control (from Requirements / design records).",
+        "The test: Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Audit and compliance involvement\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Requirements / design records, Test management, Deployment pipeline) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the audit and compliance involvement control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -3444,20 +3454,20 @@ export const sysimplFunctionalStages: StageConfig[] = [
         {
           "name": "10_audit_and_compliance_involvement_mcp.py",
           "url": "/audit-code/sysimpl-functional/10_audit_and_compliance_involvement_mcp.py",
-          "description": "Runnable read-only MCP server: gathers System Implementation — Functional evidence for \"Audit and compliance involvement\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the System Implementation — Functional evidence for \"Audit and compliance involvement\" (in-scope inventory for the audit and compliance involvement control (from requirements / design records)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Audit and compliance involvement\" control for System Implementation — Functional at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Audit and compliance involvement\" control for System Implementation — Functional at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Audit and compliance involvement\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the audit and compliance involvement control (from Requirements / design records) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Requirements / design records APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Requirements / design records gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Requirements / design records is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Requirements / design records; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — System Implementation — Functional: \"Audit and compliance involvement\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-functional_inventory.json   (in-scope items from Requirements / design records)\n- sysimpl-functional_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Audit and compliance involvement\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — System Implementation — Functional: \"Audit and compliance involvement\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Audit and compliance involvement\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-functional_inventory.json   (in-scope items — In-scope inventory for the audit and compliance involvement control (from Requirements / design records))\n- sysimpl-functional_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Audit and compliance involvement\",\n  \"domain\": \"System Implementation — Functional\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{sif_",
         "/evidence/sysimpl-functional_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Project management\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Audit and compliance involvement\" control must cover\n# fragment: audit_compliance_involvement_",
         "/evidence/sysimpl-functional_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -3553,7 +3563,7 @@ export const sysimplFunctionalStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Audit and compliance involvement\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Audit and compliance involvement evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the audit and compliance involvement control (from Requirements / design records) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -3619,16 +3629,16 @@ export const sysimplFunctionalStages: StageConfig[] = [
         {
           "id": "sif-10-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Audit and compliance involvement\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Audit and compliance involvement\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the audit and compliance involvement control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the audit and compliance involvement control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "sif-10-q9",
@@ -3673,8 +3683,8 @@ export const sysimplFunctionalStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Vendor due diligence\" control for System Implementation — Functional is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each System Implementation — Functional source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Vendor due diligence\" control for System Implementation — Functional is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Vendor due diligence\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the System Implementation — Functional systems of record (Requirements / design records; Test management; Deployment pipeline) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the vendor due diligence control (from Requirements / design records)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -3711,18 +3721,18 @@ export const sysimplFunctionalStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Vendor due diligence\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the System Implementation — Functional control.",
+      "tagline": "Auditing \"Vendor due diligence\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the vendor due diligence control (from Requirements / design records)) with read-only agents, run the test against policy, and issue a defensible opinion on the System Implementation — Functional control.",
       "year": 2025,
       "overview": [
-        "The \"Vendor due diligence\" sub-process is one of the controls an auditor must verify for System Implementation — Functional. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that vendor due diligence is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Requirements / design records, Test management, Deployment pipeline — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Vendor due diligence\" sub-process is one of the controls an auditor must verify for System Implementation — Functional. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the vendor due diligence control (from Requirements / design records), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Requirements / design records, Test management, Deployment pipeline — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Vendor due diligence\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `11_vendor_due_diligence_mcp.py` exposes read-only tools that turn each System Implementation — Functional source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `11_vendor_due_diligence_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Requirements / design records and Test management (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 11_vendor_due_diligence_mcp.py` to expose it to your agent — or `python 11_vendor_due_diligence_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -3780,12 +3790,13 @@ export const sysimplFunctionalStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Vendor due diligence\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the vendor due diligence control (from Requirements / design records).",
+        "The test: Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Vendor due diligence\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Requirements / design records, Test management, Deployment pipeline) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the vendor due diligence control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -3809,20 +3820,20 @@ export const sysimplFunctionalStages: StageConfig[] = [
         {
           "name": "11_vendor_due_diligence_mcp.py",
           "url": "/audit-code/sysimpl-functional/11_vendor_due_diligence_mcp.py",
-          "description": "Runnable read-only MCP server: gathers System Implementation — Functional evidence for \"Vendor due diligence\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the System Implementation — Functional evidence for \"Vendor due diligence\" (in-scope inventory for the vendor due diligence control (from requirements / design records)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Vendor due diligence\" control for System Implementation — Functional at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Vendor due diligence\" control for System Implementation — Functional at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Vendor due diligence\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the vendor due diligence control (from Requirements / design records) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Requirements / design records APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Requirements / design records gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Requirements / design records is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Requirements / design records; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — System Implementation — Functional: \"Vendor due diligence\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-functional_inventory.json   (in-scope items from Requirements / design records)\n- sysimpl-functional_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Vendor due diligence\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — System Implementation — Functional: \"Vendor due diligence\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Vendor due diligence\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-functional_inventory.json   (in-scope items — In-scope inventory for the vendor due diligence control (from Requirements / design records))\n- sysimpl-functional_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Vendor due diligence\",\n  \"domain\": \"System Implementation — Functional\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{sif_",
         "/evidence/sysimpl-functional_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Project management\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Vendor due diligence\" control must cover\n# fragment: vendor_due_diligence_",
         "/evidence/sysimpl-functional_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -3918,7 +3929,7 @@ export const sysimplFunctionalStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Vendor due diligence\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Vendor due diligence evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the vendor due diligence control (from Requirements / design records) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -3984,16 +3995,16 @@ export const sysimplFunctionalStages: StageConfig[] = [
         {
           "id": "sif-11-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Vendor due diligence\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Vendor due diligence\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the vendor due diligence control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the vendor due diligence control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "sif-11-q9",
@@ -4038,8 +4049,8 @@ export const sysimplFunctionalStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Contract and SLA review\" control for System Implementation — Functional is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each System Implementation — Functional source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Contract and SLA review\" control for System Implementation — Functional is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Contract and SLA review\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the System Implementation — Functional systems of record (Requirements / design records; Test management; Deployment pipeline) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the contract and sla review control (from Requirements / design records)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -4076,18 +4087,18 @@ export const sysimplFunctionalStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Contract and SLA review\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the System Implementation — Functional control.",
+      "tagline": "Auditing \"Contract and SLA review\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the contract and sla review control (from Requirements / design records)) with read-only agents, run the test against policy, and issue a defensible opinion on the System Implementation — Functional control.",
       "year": 2025,
       "overview": [
-        "The \"Contract and SLA review\" sub-process is one of the controls an auditor must verify for System Implementation — Functional. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that contract and sla review is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Requirements / design records, Test management, Deployment pipeline — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Contract and SLA review\" sub-process is one of the controls an auditor must verify for System Implementation — Functional. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the contract and sla review control (from Requirements / design records), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Requirements / design records, Test management, Deployment pipeline — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Contract and SLA review\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `12_contract_and_sla_review_mcp.py` exposes read-only tools that turn each System Implementation — Functional source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `12_contract_and_sla_review_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Requirements / design records and Test management (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 12_contract_and_sla_review_mcp.py` to expose it to your agent — or `python 12_contract_and_sla_review_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -4145,12 +4156,13 @@ export const sysimplFunctionalStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Contract and SLA review\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the contract and sla review control (from Requirements / design records).",
+        "The test: Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Contract and SLA review\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Requirements / design records, Test management, Deployment pipeline) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the contract and sla review control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -4174,20 +4186,20 @@ export const sysimplFunctionalStages: StageConfig[] = [
         {
           "name": "12_contract_and_sla_review_mcp.py",
           "url": "/audit-code/sysimpl-functional/12_contract_and_sla_review_mcp.py",
-          "description": "Runnable read-only MCP server: gathers System Implementation — Functional evidence for \"Contract and SLA review\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the System Implementation — Functional evidence for \"Contract and SLA review\" (in-scope inventory for the contract and sla review control (from requirements / design records)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Contract and SLA review\" control for System Implementation — Functional at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Contract and SLA review\" control for System Implementation — Functional at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Contract and SLA review\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the contract and sla review control (from Requirements / design records) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Requirements / design records APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Requirements / design records gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Requirements / design records is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Requirements / design records; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — System Implementation — Functional: \"Contract and SLA review\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-functional_inventory.json   (in-scope items from Requirements / design records)\n- sysimpl-functional_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Contract and SLA review\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — System Implementation — Functional: \"Contract and SLA review\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Contract and SLA review\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-functional_inventory.json   (in-scope items — In-scope inventory for the contract and sla review control (from Requirements / design records))\n- sysimpl-functional_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Contract and SLA review\",\n  \"domain\": \"System Implementation — Functional\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{sif_",
         "/evidence/sysimpl-functional_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Project management\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Contract and SLA review\" control must cover\n# fragment: contract_sla_review_",
         "/evidence/sysimpl-functional_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -4283,7 +4295,7 @@ export const sysimplFunctionalStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Contract and SLA review\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Contract and SLA review evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the contract and sla review control (from Requirements / design records) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -4349,16 +4361,16 @@ export const sysimplFunctionalStages: StageConfig[] = [
         {
           "id": "sif-12-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Contract and SLA review\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Contract and SLA review\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the contract and sla review control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the contract and sla review control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "sif-12-q9",
@@ -4403,8 +4415,8 @@ export const sysimplFunctionalStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Escrow agreement\" control for System Implementation — Functional is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each System Implementation — Functional source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Escrow agreement\" control for System Implementation — Functional is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Escrow agreement\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the System Implementation — Functional systems of record (Requirements / design records; Test management; Deployment pipeline) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the escrow agreement control (from Requirements / design records)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -4441,18 +4453,18 @@ export const sysimplFunctionalStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Escrow agreement\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the System Implementation — Functional control.",
+      "tagline": "Auditing \"Escrow agreement\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the escrow agreement control (from Requirements / design records)) with read-only agents, run the test against policy, and issue a defensible opinion on the System Implementation — Functional control.",
       "year": 2025,
       "overview": [
-        "The \"Escrow agreement\" sub-process is one of the controls an auditor must verify for System Implementation — Functional. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that escrow agreement is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Requirements / design records, Test management, Deployment pipeline — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Escrow agreement\" sub-process is one of the controls an auditor must verify for System Implementation — Functional. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the escrow agreement control (from Requirements / design records), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Requirements / design records, Test management, Deployment pipeline — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Escrow agreement\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `13_escrow_agreement_mcp.py` exposes read-only tools that turn each System Implementation — Functional source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `13_escrow_agreement_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Requirements / design records and Test management (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 13_escrow_agreement_mcp.py` to expose it to your agent — or `python 13_escrow_agreement_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -4510,12 +4522,13 @@ export const sysimplFunctionalStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Escrow agreement\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the escrow agreement control (from Requirements / design records).",
+        "The test: Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Escrow agreement\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Requirements / design records, Test management, Deployment pipeline) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the escrow agreement control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -4539,20 +4552,20 @@ export const sysimplFunctionalStages: StageConfig[] = [
         {
           "name": "13_escrow_agreement_mcp.py",
           "url": "/audit-code/sysimpl-functional/13_escrow_agreement_mcp.py",
-          "description": "Runnable read-only MCP server: gathers System Implementation — Functional evidence for \"Escrow agreement\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the System Implementation — Functional evidence for \"Escrow agreement\" (in-scope inventory for the escrow agreement control (from requirements / design records)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Escrow agreement\" control for System Implementation — Functional at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Escrow agreement\" control for System Implementation — Functional at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Escrow agreement\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the escrow agreement control (from Requirements / design records) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Requirements / design records APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Requirements / design records gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Requirements / design records is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Requirements / design records; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — System Implementation — Functional: \"Escrow agreement\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-functional_inventory.json   (in-scope items from Requirements / design records)\n- sysimpl-functional_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Escrow agreement\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — System Implementation — Functional: \"Escrow agreement\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Escrow agreement\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-functional_inventory.json   (in-scope items — In-scope inventory for the escrow agreement control (from Requirements / design records))\n- sysimpl-functional_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Escrow agreement\",\n  \"domain\": \"System Implementation — Functional\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{sif_",
         "/evidence/sysimpl-functional_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Project management\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Escrow agreement\" control must cover\n# fragment: escrow_agreement_",
         "/evidence/sysimpl-functional_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -4648,7 +4661,7 @@ export const sysimplFunctionalStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Escrow agreement\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Escrow agreement evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the escrow agreement control (from Requirements / design records) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -4714,16 +4727,16 @@ export const sysimplFunctionalStages: StageConfig[] = [
         {
           "id": "sif-13-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Escrow agreement\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Escrow agreement\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the escrow agreement control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the escrow agreement control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "sif-13-q9",
@@ -4768,8 +4781,8 @@ export const sysimplFunctionalStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Return on investment\" control for System Implementation — Functional is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each System Implementation — Functional source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Return on investment\" control for System Implementation — Functional is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Return on investment\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the System Implementation — Functional systems of record (Requirements / design records; Test management; Deployment pipeline) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the return on investment control (from Requirements / design records)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -4806,18 +4819,18 @@ export const sysimplFunctionalStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Return on investment\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the System Implementation — Functional control.",
+      "tagline": "Auditing \"Return on investment\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the return on investment control (from Requirements / design records)) with read-only agents, run the test against policy, and issue a defensible opinion on the System Implementation — Functional control.",
       "year": 2025,
       "overview": [
-        "The \"Return on investment\" sub-process is one of the controls an auditor must verify for System Implementation — Functional. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that return on investment is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Requirements / design records, Test management, Deployment pipeline — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Return on investment\" sub-process is one of the controls an auditor must verify for System Implementation — Functional. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the return on investment control (from Requirements / design records), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Requirements / design records, Test management, Deployment pipeline — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Return on investment\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `14_return_on_investment_mcp.py` exposes read-only tools that turn each System Implementation — Functional source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `14_return_on_investment_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Requirements / design records and Test management (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 14_return_on_investment_mcp.py` to expose it to your agent — or `python 14_return_on_investment_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -4875,12 +4888,13 @@ export const sysimplFunctionalStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Return on investment\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the return on investment control (from Requirements / design records).",
+        "The test: Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Return on investment\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Requirements / design records, Test management, Deployment pipeline) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the return on investment control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -4904,20 +4918,20 @@ export const sysimplFunctionalStages: StageConfig[] = [
         {
           "name": "14_return_on_investment_mcp.py",
           "url": "/audit-code/sysimpl-functional/14_return_on_investment_mcp.py",
-          "description": "Runnable read-only MCP server: gathers System Implementation — Functional evidence for \"Return on investment\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the System Implementation — Functional evidence for \"Return on investment\" (in-scope inventory for the return on investment control (from requirements / design records)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Return on investment\" control for System Implementation — Functional at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Return on investment\" control for System Implementation — Functional at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Return on investment\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the return on investment control (from Requirements / design records) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Requirements / design records APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Requirements / design records gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Requirements / design records is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Requirements / design records; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — System Implementation — Functional: \"Return on investment\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-functional_inventory.json   (in-scope items from Requirements / design records)\n- sysimpl-functional_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Return on investment\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — System Implementation — Functional: \"Return on investment\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Return on investment\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-functional_inventory.json   (in-scope items — In-scope inventory for the return on investment control (from Requirements / design records))\n- sysimpl-functional_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Return on investment\",\n  \"domain\": \"System Implementation — Functional\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{sif_",
         "/evidence/sysimpl-functional_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Project management\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Return on investment\" control must cover\n# fragment: return_on_investment_",
         "/evidence/sysimpl-functional_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -5013,7 +5027,7 @@ export const sysimplFunctionalStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Return on investment\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Return on investment evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the return on investment control (from Requirements / design records) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -5079,16 +5093,16 @@ export const sysimplFunctionalStages: StageConfig[] = [
         {
           "id": "sif-14-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Return on investment\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Return on investment\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the return on investment control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the return on investment control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "sif-14-q9",
@@ -5133,8 +5147,8 @@ export const sysimplFunctionalStages: StageConfig[] = [
     "valueScore": 6,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Training and knowledge transfer\" control for System Implementation — Functional is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each System Implementation — Functional source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Training and knowledge transfer\" control for System Implementation — Functional is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Training and knowledge transfer\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the System Implementation — Functional systems of record (Requirements / design records; Test management; Deployment pipeline) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the training and knowledge transfer control (from Requirements / design records)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -5171,18 +5185,18 @@ export const sysimplFunctionalStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Training and knowledge transfer\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the System Implementation — Functional control.",
+      "tagline": "Auditing \"Training and knowledge transfer\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the training and knowledge transfer control (from Requirements / design records)) with read-only agents, run the test against policy, and issue a defensible opinion on the System Implementation — Functional control.",
       "year": 2025,
       "overview": [
-        "The \"Training and knowledge transfer\" sub-process is one of the controls an auditor must verify for System Implementation — Functional. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that training and knowledge transfer is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Requirements / design records, Test management, Deployment pipeline — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Training and knowledge transfer\" sub-process is one of the controls an auditor must verify for System Implementation — Functional. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the training and knowledge transfer control (from Requirements / design records), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Requirements / design records, Test management, Deployment pipeline — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Training and knowledge transfer\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `15_training_and_knowledge_transfer_mcp.py` exposes read-only tools that turn each System Implementation — Functional source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `15_training_and_knowledge_transfer_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Requirements / design records and Test management (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 15_training_and_knowledge_transfer_mcp.py` to expose it to your agent — or `python 15_training_and_knowledge_transfer_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -5240,12 +5254,13 @@ export const sysimplFunctionalStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Training and knowledge transfer\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the training and knowledge transfer control (from Requirements / design records).",
+        "The test: Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Training and knowledge transfer\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Requirements / design records, Test management, Deployment pipeline) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the training and knowledge transfer control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -5269,20 +5284,20 @@ export const sysimplFunctionalStages: StageConfig[] = [
         {
           "name": "15_training_and_knowledge_transfer_mcp.py",
           "url": "/audit-code/sysimpl-functional/15_training_and_knowledge_transfer_mcp.py",
-          "description": "Runnable read-only MCP server: gathers System Implementation — Functional evidence for \"Training and knowledge transfer\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the System Implementation — Functional evidence for \"Training and knowledge transfer\" (in-scope inventory for the training and knowledge transfer control (from requirements / design records)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Training and knowledge transfer\" control for System Implementation — Functional at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Training and knowledge transfer\" control for System Implementation — Functional at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Training and knowledge transfer\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the training and knowledge transfer control (from Requirements / design records) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Requirements / design records APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Requirements / design records gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Requirements / design records is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Requirements / design records; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — System Implementation — Functional: \"Training and knowledge transfer\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-functional_inventory.json   (in-scope items from Requirements / design records)\n- sysimpl-functional_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Training and knowledge transfer\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — System Implementation — Functional: \"Training and knowledge transfer\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the \"Training and knowledge transfer\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-functional_inventory.json   (in-scope items — In-scope inventory for the training and knowledge transfer control (from Requirements / design records))\n- sysimpl-functional_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Training and knowledge transfer\",\n  \"domain\": \"System Implementation — Functional\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{sif_",
         "/evidence/sysimpl-functional_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Project management\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Training and knowledge transfer\" control must cover\n# fragment: training_knowledge_transfer_",
         "/evidence/sysimpl-functional_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -5378,7 +5393,7 @@ export const sysimplFunctionalStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Training and knowledge transfer\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Training and knowledge transfer evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the training and knowledge transfer control (from Requirements / design records) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -5444,16 +5459,16 @@ export const sysimplFunctionalStages: StageConfig[] = [
         {
           "id": "sif-15-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Training and knowledge transfer\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Training and knowledge transfer\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the training and knowledge transfer control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the training and knowledge transfer control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "sif-15-q9",

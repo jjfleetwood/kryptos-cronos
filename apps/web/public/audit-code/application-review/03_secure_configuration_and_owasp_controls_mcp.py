@@ -1,17 +1,23 @@
 #!/usr/bin/env python3
 """Read-only MCP server — Application Review: "Secure configuration and OWASP controls" audit evidence.
 
-Gathers the in-scope inventory and the observed control state from this domain's
-systems of record, evaluates each item against policy, and reports the exceptions
-with a PASS / EXCEPTIONS / MATERIAL-GAP opinion. READ-ONLY: it lists and reports,
-never changes state — the hard requirement for audit tooling.
+THE TEST
+Reconcile the in-scope inventory against the Application Review policy/standard and flag every item where the "Secure configuration and OWASP controls" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+
+ARTIFACT (what _gather() pulls)
+    In-scope inventory for the secure configuration and owasp controls control (from ServiceNow CMDB)
+
+REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
+    (wire read-only API calls to: ServiceNow CMDB, Okta / Entra SSO, AWS / Azure cloud plane, App configuration stores)
+
+This server gathers the in-scope inventory and the observed control state, evaluates
+each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /
+MATERIAL-GAP opinion. READ-ONLY: it lists and reports, never changes state — the hard
+requirement for audit tooling.
 
   pip install "mcp[cli]"
   mcp run 03_secure_configuration_and_owasp_controls_mcp.py                 # expose to an agent
   python 03_secure_configuration_and_owasp_controls_mcp.py --selftest       # reproduce findings against fixtures, offline
-
-Wire real sources by replacing the _gather() fixtures with read-only API calls to
-ServiceNow CMDB, Okta / Entra SSO, AWS / Azure cloud plane, App configuration stores.
 """
 from __future__ import annotations
 import json, sys

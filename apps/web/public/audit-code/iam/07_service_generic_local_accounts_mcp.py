@@ -1,17 +1,26 @@
 #!/usr/bin/env python3
-"""Read-only MCP server — Identity & Access Mgmt: "Service / generic / local accounts" audit evidence.
+"""Read-only MCP server — Identity & Access Management (IAM): "Service / generic / local accounts" audit evidence.
 
-Gathers the in-scope inventory and the observed control state from this domain's
-systems of record, evaluates each item against policy, and reports the exceptions
-with a PASS / EXCEPTIONS / MATERIAL-GAP opinion. READ-ONLY: it lists and reports,
-never changes state — the hard requirement for audit tooling.
+THE TEST
+Inventory every service, generic, and local account. PASS: each has a named human owner and documented purpose; service accounts are non-interactive, least-privileged, and vaulted + rotated (or gMSA); local-admin passwords are unique per host (Windows LAPS); no shared interactive generic accounts exist. Exceptions: ownerless service accounts, service accounts in privileged groups, shared interactive logins, identical local-admin passwords reused across hosts, and passwords years old.
+
+ARTIFACT (what _gather() pulls)
+    The non-human / service-account inventory — each account with a named human owner and documented purpose
+
+REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
+    AD:   Get-ADUser -Filter {ServicePrincipalName -like '*'} -Properties PasswordLastSet,adminCount,MemberOf
+    AD:   find service accounts where PasswordLastSet is years old, or with adminCount=1 (privileged)
+    LAPS: report ms-Mcs-AdmPwd / Windows-LAPS attribute coverage across the host estate
+    Risk: list Kerberoastable SPNs (service accounts with weak/old passwords exposed to offline cracking)
+
+This server gathers the in-scope inventory and the observed control state, evaluates
+each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /
+MATERIAL-GAP opinion. READ-ONLY: it lists and reports, never changes state — the hard
+requirement for audit tooling.
 
   pip install "mcp[cli]"
   mcp run 07_service_generic_local_accounts_mcp.py                 # expose to an agent
   python 07_service_generic_local_accounts_mcp.py --selftest       # reproduce findings against fixtures, offline
-
-Wire real sources by replacing the _gather() fixtures with read-only API calls to
-IdP (Okta / Entra ID / Ping), PAM (CyberArk / Delinea), IGA / access-review platform, Directory (AD / LDAP).
 """
 from __future__ import annotations
 import json, sys
@@ -68,7 +77,7 @@ def coverage_report() -> dict:
                else "EXCEPTIONS" if len(exceptions) <= EXCEPTION_THRESHOLD
                else "MATERIAL GAP")
     return {
-        "domain": "Identity & Access Mgmt",
+        "domain": "Identity & Access Management (IAM)",
         "control": "Service / generic / local accounts",
         "in_scope": len(rows),
         "compliant": len(rows) - len(exceptions),

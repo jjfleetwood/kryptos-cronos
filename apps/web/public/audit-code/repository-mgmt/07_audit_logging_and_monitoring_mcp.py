@@ -1,17 +1,23 @@
 #!/usr/bin/env python3
-"""Read-only MCP server — Repository Mgmt: "Audit logging and monitoring" audit evidence.
+"""Read-only MCP server — Repository Management: "Audit logging and monitoring" audit evidence.
 
-Gathers the in-scope inventory and the observed control state from this domain's
-systems of record, evaluates each item against policy, and reports the exceptions
-with a PASS / EXCEPTIONS / MATERIAL-GAP opinion. READ-ONLY: it lists and reports,
-never changes state — the hard requirement for audit tooling.
+THE TEST
+Reconcile the in-scope inventory against the Repository Management policy/standard and flag every item where the "Audit logging and monitoring" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+
+ARTIFACT (what _gather() pulls)
+    In-scope inventory for the audit logging and monitoring control (from GitHub / GitLab / Bitbucket)
+
+REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
+    (wire read-only API calls to: GitHub / GitLab / Bitbucket, Branch protection + CODEOWNERS, SCM audit log, Secret scanning service)
+
+This server gathers the in-scope inventory and the observed control state, evaluates
+each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /
+MATERIAL-GAP opinion. READ-ONLY: it lists and reports, never changes state — the hard
+requirement for audit tooling.
 
   pip install "mcp[cli]"
   mcp run 07_audit_logging_and_monitoring_mcp.py                 # expose to an agent
   python 07_audit_logging_and_monitoring_mcp.py --selftest       # reproduce findings against fixtures, offline
-
-Wire real sources by replacing the _gather() fixtures with read-only API calls to
-GitHub / GitLab / Bitbucket, Branch protection + CODEOWNERS, SCM audit log, Secret scanning service.
 """
 from __future__ import annotations
 import json, sys
@@ -68,7 +74,7 @@ def coverage_report() -> dict:
                else "EXCEPTIONS" if len(exceptions) <= EXCEPTION_THRESHOLD
                else "MATERIAL GAP")
     return {
-        "domain": "Repository Mgmt",
+        "domain": "Repository Management",
         "control": "Audit logging and monitoring",
         "in_scope": len(rows),
         "compliant": len(rows) - len(exceptions),

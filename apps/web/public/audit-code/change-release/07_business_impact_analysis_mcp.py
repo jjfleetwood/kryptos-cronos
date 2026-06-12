@@ -1,17 +1,23 @@
 #!/usr/bin/env python3
-"""Read-only MCP server — Change, Release & Config Mgmt: "Business impact analysis" audit evidence.
+"""Read-only MCP server — Change, Release & Configuration Management: "Business impact analysis" audit evidence.
 
-Gathers the in-scope inventory and the observed control state from this domain's
-systems of record, evaluates each item against policy, and reports the exceptions
-with a PASS / EXCEPTIONS / MATERIAL-GAP opinion. READ-ONLY: it lists and reports,
-never changes state — the hard requirement for audit tooling.
+THE TEST
+Reconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the "Business impact analysis" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+
+ARTIFACT (what _gather() pulls)
+    In-scope inventory for the business impact analysis control (from ITSM change tooling (ServiceNow))
+
+REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
+    (wire read-only API calls to: ITSM change tooling (ServiceNow), Release/deploy pipeline, Configuration baseline (CMDB), Change audit log)
+
+This server gathers the in-scope inventory and the observed control state, evaluates
+each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /
+MATERIAL-GAP opinion. READ-ONLY: it lists and reports, never changes state — the hard
+requirement for audit tooling.
 
   pip install "mcp[cli]"
   mcp run 07_business_impact_analysis_mcp.py                 # expose to an agent
   python 07_business_impact_analysis_mcp.py --selftest       # reproduce findings against fixtures, offline
-
-Wire real sources by replacing the _gather() fixtures with read-only API calls to
-ITSM change tooling (ServiceNow), Release/deploy pipeline, Configuration baseline (CMDB), Change audit log.
 """
 from __future__ import annotations
 import json, sys
@@ -68,7 +74,7 @@ def coverage_report() -> dict:
                else "EXCEPTIONS" if len(exceptions) <= EXCEPTION_THRESHOLD
                else "MATERIAL GAP")
     return {
-        "domain": "Change, Release & Config Mgmt",
+        "domain": "Change, Release & Configuration Management",
         "control": "Business impact analysis",
         "in_scope": len(rows),
         "compliant": len(rows) - len(exceptions),

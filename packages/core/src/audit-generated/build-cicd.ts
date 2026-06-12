@@ -2,9 +2,9 @@ import type { EpochConfig, StageConfig } from "../types";
 
 export const buildCicdEpoch: EpochConfig = {
   "id": "build-cicd",
-  "name": "Build Env / CI/CD",
-  "subtitle": "Agentic technical & privacy audit — Build Env / CI/CD",
-  "description": "Audit Build Env / CI/CD end to end with a read-only agent fleet: each sub-process is a module that teaches the control as a repeatable agentic workflow with downloadable MCP tooling, a CTF, and a 10-question quiz.",
+  "name": "Build Environment & CI/CD (Continuous Integration / Continuous Delivery)",
+  "subtitle": "Agentic technical & privacy audit — Build Environment & CI/CD (Continuous Integration / Continuous Delivery)",
+  "description": "Audit Build Environment & CI/CD (Continuous Integration / Continuous Delivery) end to end with a read-only agent fleet: each sub-process is a module that teaches the control as a repeatable agentic workflow with downloadable MCP tooling, a CTF, and a 10-question quiz.",
   "emoji": "🏗️",
   "color": "Indigo",
   "unlocked": true
@@ -23,8 +23,8 @@ export const buildCicdStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Build environment security\" control for Build Env / CI/CD is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Build Env / CI/CD source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Build environment security\" control for Build Environment & CI/CD (Continuous Integration / Continuous Delivery) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Build environment security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) systems of record (GitHub Actions / GitLab CI / Jenkins; Container registry (ECR/GHCR); Kubernetes / orchestration) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the build environment security control (from GitHub Actions / GitLab CI / Jenkins)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -45,34 +45,34 @@ export const buildCicdStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 5/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Build Env / CI/CD controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls."
       }
     },
     "badge": {
       "id": "bcd-01-badge",
-      "name": "Build Env / CI/CD Auditor",
+      "name": "Build Environment & CI/CD (Continuous Integration / Continuous Delivery) Auditor",
       "emoji": "🏗️"
     },
     "wonder": {
       "name": "Build environment security",
-      "location": "Build Env / CI/CD",
+      "location": "Build Environment & CI/CD (Continuous Integration / Continuous Delivery)",
       "era": "Present Day",
       "emoji": "🏗️"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Build environment security\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Build Env / CI/CD control.",
+      "tagline": "Auditing \"Build environment security\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the build environment security control (from GitHub Actions / GitLab CI / Jenkins)) with read-only agents, run the test against policy, and issue a defensible opinion on the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) control.",
       "year": 2025,
       "overview": [
-        "The \"Build environment security\" sub-process is one of the controls an auditor must verify for Build Env / CI/CD. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that build environment security is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Build environment security\" sub-process is one of the controls an auditor must verify for Build Environment & CI/CD (Continuous Integration / Continuous Delivery). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the build environment security control (from GitHub Actions / GitLab CI / Jenkins), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Build environment security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `01_build_environment_security_mcp.py` exposes read-only tools that turn each Build Env / CI/CD source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `01_build_environment_security_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from GitHub Actions / GitLab CI / Jenkins and Container registry (ECR/GHCR) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 01_build_environment_security_mcp.py` to expose it to your agent — or `python 01_build_environment_security_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -94,7 +94,7 @@ export const buildCicdStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Build Env / CI/CD scope + policy",
+            "sub": "define Build Environment & CI/CD (Continuous Integration / Continuous Delivery) scope + policy",
             "type": "attacker"
           },
           {
@@ -130,12 +130,13 @@ export const buildCicdStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Build environment security\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the build environment security control (from GitHub Actions / GitLab CI / Jenkins).",
+        "The test: Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Build environment security\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the build environment security control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -159,21 +160,21 @@ export const buildCicdStages: StageConfig[] = [
         {
           "name": "01_build_environment_security_mcp.py",
           "url": "/audit-code/build-cicd/01_build_environment_security_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Build Env / CI/CD evidence for \"Build environment security\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) evidence for \"Build environment security\" (in-scope inventory for the build environment security control (from github actions / gitlab ci / jenkins)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Build environment security\" control for Build Env / CI/CD at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Build environment security\" control for Build Environment & CI/CD (Continuous Integration / Continuous Delivery) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Build environment security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the build environment security control (from GitHub Actions / GitLab CI / Jenkins) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live GitHub Actions / GitLab CI / Jenkins APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. GitHub Actions / GitLab CI / Jenkins gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. GitHub Actions / GitLab CI / Jenkins is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from GitHub Actions / GitLab CI / Jenkins; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Build Env / CI/CD: \"Build environment security\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- build-cicd_inventory.json   (in-scope items from GitHub Actions / GitLab CI / Jenkins)\n- build-cicd_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Build environment security\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Build environment security\",\n  \"domain\": \"Build Env / CI/CD\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{bcd_",
+        "/evidence/README.md": "# AcmeCorp — Build Environment & CI/CD (Continuous Integration / Continuous Delivery): \"Build environment security\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Build environment security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- build-cicd_inventory.json   (in-scope items — In-scope inventory for the build environment security control (from GitHub Actions / GitLab CI / Jenkins))\n- build-cicd_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Build environment security\",\n  \"domain\": \"Build Environment & CI/CD (Continuous Integration / Continuous Delivery)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{bcd_",
         "/evidence/build-cicd_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Platform / DevOps engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Build environment security\" control must cover\n# fragment: build_environment_security_",
         "/evidence/build-cicd_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -237,7 +238,7 @@ export const buildCicdStages: StageConfig[] = [
           "id": "bcd-01-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Build environment security\" sub-process of Build Env / CI/CD?",
+          "text": "What is the primary audit objective for the \"Build environment security\" sub-process of Build Environment & CI/CD (Continuous Integration / Continuous Delivery)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -251,11 +252,11 @@ export const buildCicdStages: StageConfig[] = [
           "id": "bcd-01-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Build environment security\" matter to the broader Build Env / CI/CD posture?",
+          "text": "Why does a weakness in \"Build environment security\" matter to the broader Build Environment & CI/CD (Continuous Integration / Continuous Delivery) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Build Env / CI/CD controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -268,7 +269,7 @@ export const buildCicdStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Build environment security\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Build environment security evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the build environment security control (from GitHub Actions / GitLab CI / Jenkins) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -334,16 +335,16 @@ export const buildCicdStages: StageConfig[] = [
         {
           "id": "bcd-01-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Build environment security\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Build environment security\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the build environment security control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the build environment security control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "bcd-01-q9",
@@ -388,8 +389,8 @@ export const buildCicdStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"CI/CD pipeline security\" control for Build Env / CI/CD is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Build Env / CI/CD source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"CI/CD pipeline security\" control for Build Environment & CI/CD (Continuous Integration / Continuous Delivery) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"CI/CD pipeline security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) systems of record (GitHub Actions / GitLab CI / Jenkins; Container registry (ECR/GHCR); Kubernetes / orchestration) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the ci/cd pipeline security control (from GitHub Actions / GitLab CI / Jenkins)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -410,34 +411,34 @@ export const buildCicdStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 6/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Build Env / CI/CD controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls."
       }
     },
     "badge": {
       "id": "bcd-02-badge",
-      "name": "Build Env / CI/CD Auditor",
+      "name": "Build Environment & CI/CD (Continuous Integration / Continuous Delivery) Auditor",
       "emoji": "🏗️"
     },
     "wonder": {
       "name": "CI/CD pipeline security",
-      "location": "Build Env / CI/CD",
+      "location": "Build Environment & CI/CD (Continuous Integration / Continuous Delivery)",
       "era": "Present Day",
       "emoji": "🏗️"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"CI/CD pipeline security\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Build Env / CI/CD control.",
+      "tagline": "Auditing \"CI/CD pipeline security\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the ci/cd pipeline security control (from GitHub Actions / GitLab CI / Jenkins)) with read-only agents, run the test against policy, and issue a defensible opinion on the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) control.",
       "year": 2025,
       "overview": [
-        "The \"CI/CD pipeline security\" sub-process is one of the controls an auditor must verify for Build Env / CI/CD. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that ci/cd pipeline security is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"CI/CD pipeline security\" sub-process is one of the controls an auditor must verify for Build Environment & CI/CD (Continuous Integration / Continuous Delivery). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the ci/cd pipeline security control (from GitHub Actions / GitLab CI / Jenkins), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"CI/CD pipeline security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `02_ci_cd_pipeline_security_mcp.py` exposes read-only tools that turn each Build Env / CI/CD source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `02_ci_cd_pipeline_security_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from GitHub Actions / GitLab CI / Jenkins and Container registry (ECR/GHCR) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 02_ci_cd_pipeline_security_mcp.py` to expose it to your agent — or `python 02_ci_cd_pipeline_security_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -459,7 +460,7 @@ export const buildCicdStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Build Env / CI/CD scope + policy",
+            "sub": "define Build Environment & CI/CD (Continuous Integration / Continuous Delivery) scope + policy",
             "type": "attacker"
           },
           {
@@ -495,12 +496,13 @@ export const buildCicdStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"CI/CD pipeline security\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the ci/cd pipeline security control (from GitHub Actions / GitLab CI / Jenkins).",
+        "The test: Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"CI/CD pipeline security\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the ci/cd pipeline security control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -524,21 +526,21 @@ export const buildCicdStages: StageConfig[] = [
         {
           "name": "02_ci_cd_pipeline_security_mcp.py",
           "url": "/audit-code/build-cicd/02_ci_cd_pipeline_security_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Build Env / CI/CD evidence for \"CI/CD pipeline security\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) evidence for \"CI/CD pipeline security\" (in-scope inventory for the ci/cd pipeline security control (from github actions / gitlab ci / jenkins)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"CI/CD pipeline security\" control for Build Env / CI/CD at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"CI/CD pipeline security\" control for Build Environment & CI/CD (Continuous Integration / Continuous Delivery) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"CI/CD pipeline security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the ci/cd pipeline security control (from GitHub Actions / GitLab CI / Jenkins) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live GitHub Actions / GitLab CI / Jenkins APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. GitHub Actions / GitLab CI / Jenkins gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. GitHub Actions / GitLab CI / Jenkins is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from GitHub Actions / GitLab CI / Jenkins; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Build Env / CI/CD: \"CI/CD pipeline security\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- build-cicd_inventory.json   (in-scope items from GitHub Actions / GitLab CI / Jenkins)\n- build-cicd_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"CI/CD pipeline security\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"CI/CD pipeline security\",\n  \"domain\": \"Build Env / CI/CD\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{bcd_",
+        "/evidence/README.md": "# AcmeCorp — Build Environment & CI/CD (Continuous Integration / Continuous Delivery): \"CI/CD pipeline security\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"CI/CD pipeline security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- build-cicd_inventory.json   (in-scope items — In-scope inventory for the ci/cd pipeline security control (from GitHub Actions / GitLab CI / Jenkins))\n- build-cicd_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"CI/CD pipeline security\",\n  \"domain\": \"Build Environment & CI/CD (Continuous Integration / Continuous Delivery)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{bcd_",
         "/evidence/build-cicd_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Platform / DevOps engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"CI/CD pipeline security\" control must cover\n# fragment: cicd_pipeline_security_",
         "/evidence/build-cicd_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -602,7 +604,7 @@ export const buildCicdStages: StageConfig[] = [
           "id": "bcd-02-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"CI/CD pipeline security\" sub-process of Build Env / CI/CD?",
+          "text": "What is the primary audit objective for the \"CI/CD pipeline security\" sub-process of Build Environment & CI/CD (Continuous Integration / Continuous Delivery)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -616,11 +618,11 @@ export const buildCicdStages: StageConfig[] = [
           "id": "bcd-02-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"CI/CD pipeline security\" matter to the broader Build Env / CI/CD posture?",
+          "text": "Why does a weakness in \"CI/CD pipeline security\" matter to the broader Build Environment & CI/CD (Continuous Integration / Continuous Delivery) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Build Env / CI/CD controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -633,7 +635,7 @@ export const buildCicdStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"CI/CD pipeline security\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The CI/CD pipeline security evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the ci/cd pipeline security control (from GitHub Actions / GitLab CI / Jenkins) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -699,16 +701,16 @@ export const buildCicdStages: StageConfig[] = [
         {
           "id": "bcd-02-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"CI/CD pipeline security\"?",
+          "challenge": "Typical finding",
+          "text": "For \"CI/CD pipeline security\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the ci/cd pipeline security control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the ci/cd pipeline security control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "bcd-02-q9",
@@ -753,8 +755,8 @@ export const buildCicdStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Container image security\" control for Build Env / CI/CD is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Build Env / CI/CD source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Container image security\" control for Build Environment & CI/CD (Continuous Integration / Continuous Delivery) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Container image security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) systems of record (GitHub Actions / GitLab CI / Jenkins; Container registry (ECR/GHCR); Kubernetes / orchestration) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the container image security control (from GitHub Actions / GitLab CI / Jenkins)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -775,34 +777,34 @@ export const buildCicdStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 7/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Build Env / CI/CD controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls."
       }
     },
     "badge": {
       "id": "bcd-03-badge",
-      "name": "Build Env / CI/CD Auditor",
+      "name": "Build Environment & CI/CD (Continuous Integration / Continuous Delivery) Auditor",
       "emoji": "🏗️"
     },
     "wonder": {
       "name": "Container image security",
-      "location": "Build Env / CI/CD",
+      "location": "Build Environment & CI/CD (Continuous Integration / Continuous Delivery)",
       "era": "Present Day",
       "emoji": "🏗️"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Container image security\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Build Env / CI/CD control.",
+      "tagline": "Auditing \"Container image security\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the container image security control (from GitHub Actions / GitLab CI / Jenkins)) with read-only agents, run the test against policy, and issue a defensible opinion on the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) control.",
       "year": 2025,
       "overview": [
-        "The \"Container image security\" sub-process is one of the controls an auditor must verify for Build Env / CI/CD. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that container image security is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Container image security\" sub-process is one of the controls an auditor must verify for Build Environment & CI/CD (Continuous Integration / Continuous Delivery). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the container image security control (from GitHub Actions / GitLab CI / Jenkins), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Container image security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `03_container_image_security_mcp.py` exposes read-only tools that turn each Build Env / CI/CD source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `03_container_image_security_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from GitHub Actions / GitLab CI / Jenkins and Container registry (ECR/GHCR) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 03_container_image_security_mcp.py` to expose it to your agent — or `python 03_container_image_security_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -824,7 +826,7 @@ export const buildCicdStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Build Env / CI/CD scope + policy",
+            "sub": "define Build Environment & CI/CD (Continuous Integration / Continuous Delivery) scope + policy",
             "type": "attacker"
           },
           {
@@ -860,12 +862,13 @@ export const buildCicdStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Container image security\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the container image security control (from GitHub Actions / GitLab CI / Jenkins).",
+        "The test: Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Container image security\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the container image security control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -889,21 +892,21 @@ export const buildCicdStages: StageConfig[] = [
         {
           "name": "03_container_image_security_mcp.py",
           "url": "/audit-code/build-cicd/03_container_image_security_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Build Env / CI/CD evidence for \"Container image security\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) evidence for \"Container image security\" (in-scope inventory for the container image security control (from github actions / gitlab ci / jenkins)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Container image security\" control for Build Env / CI/CD at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Container image security\" control for Build Environment & CI/CD (Continuous Integration / Continuous Delivery) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Container image security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the container image security control (from GitHub Actions / GitLab CI / Jenkins) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live GitHub Actions / GitLab CI / Jenkins APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. GitHub Actions / GitLab CI / Jenkins gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. GitHub Actions / GitLab CI / Jenkins is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from GitHub Actions / GitLab CI / Jenkins; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Build Env / CI/CD: \"Container image security\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- build-cicd_inventory.json   (in-scope items from GitHub Actions / GitLab CI / Jenkins)\n- build-cicd_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Container image security\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Container image security\",\n  \"domain\": \"Build Env / CI/CD\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{bcd_",
+        "/evidence/README.md": "# AcmeCorp — Build Environment & CI/CD (Continuous Integration / Continuous Delivery): \"Container image security\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Container image security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- build-cicd_inventory.json   (in-scope items — In-scope inventory for the container image security control (from GitHub Actions / GitLab CI / Jenkins))\n- build-cicd_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Container image security\",\n  \"domain\": \"Build Environment & CI/CD (Continuous Integration / Continuous Delivery)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{bcd_",
         "/evidence/build-cicd_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Platform / DevOps engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Container image security\" control must cover\n# fragment: container_image_security_",
         "/evidence/build-cicd_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -967,7 +970,7 @@ export const buildCicdStages: StageConfig[] = [
           "id": "bcd-03-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Container image security\" sub-process of Build Env / CI/CD?",
+          "text": "What is the primary audit objective for the \"Container image security\" sub-process of Build Environment & CI/CD (Continuous Integration / Continuous Delivery)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -981,11 +984,11 @@ export const buildCicdStages: StageConfig[] = [
           "id": "bcd-03-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Container image security\" matter to the broader Build Env / CI/CD posture?",
+          "text": "Why does a weakness in \"Container image security\" matter to the broader Build Environment & CI/CD (Continuous Integration / Continuous Delivery) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Build Env / CI/CD controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -998,7 +1001,7 @@ export const buildCicdStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Container image security\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Container image security evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the container image security control (from GitHub Actions / GitLab CI / Jenkins) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -1064,16 +1067,16 @@ export const buildCicdStages: StageConfig[] = [
         {
           "id": "bcd-03-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Container image security\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Container image security\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the container image security control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the container image security control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "bcd-03-q9",
@@ -1118,8 +1121,8 @@ export const buildCicdStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Container runtime security\" control for Build Env / CI/CD is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Build Env / CI/CD source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Container runtime security\" control for Build Environment & CI/CD (Continuous Integration / Continuous Delivery) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Container runtime security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) systems of record (GitHub Actions / GitLab CI / Jenkins; Container registry (ECR/GHCR); Kubernetes / orchestration) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the container runtime security control (from GitHub Actions / GitLab CI / Jenkins)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -1140,34 +1143,34 @@ export const buildCicdStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 5/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Build Env / CI/CD controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls."
       }
     },
     "badge": {
       "id": "bcd-04-badge",
-      "name": "Build Env / CI/CD Auditor",
+      "name": "Build Environment & CI/CD (Continuous Integration / Continuous Delivery) Auditor",
       "emoji": "🏗️"
     },
     "wonder": {
       "name": "Container runtime security",
-      "location": "Build Env / CI/CD",
+      "location": "Build Environment & CI/CD (Continuous Integration / Continuous Delivery)",
       "era": "Present Day",
       "emoji": "🏗️"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Container runtime security\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Build Env / CI/CD control.",
+      "tagline": "Auditing \"Container runtime security\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the container runtime security control (from GitHub Actions / GitLab CI / Jenkins)) with read-only agents, run the test against policy, and issue a defensible opinion on the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) control.",
       "year": 2025,
       "overview": [
-        "The \"Container runtime security\" sub-process is one of the controls an auditor must verify for Build Env / CI/CD. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that container runtime security is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Container runtime security\" sub-process is one of the controls an auditor must verify for Build Environment & CI/CD (Continuous Integration / Continuous Delivery). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the container runtime security control (from GitHub Actions / GitLab CI / Jenkins), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Container runtime security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `04_container_runtime_security_mcp.py` exposes read-only tools that turn each Build Env / CI/CD source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `04_container_runtime_security_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from GitHub Actions / GitLab CI / Jenkins and Container registry (ECR/GHCR) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 04_container_runtime_security_mcp.py` to expose it to your agent — or `python 04_container_runtime_security_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -1189,7 +1192,7 @@ export const buildCicdStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Build Env / CI/CD scope + policy",
+            "sub": "define Build Environment & CI/CD (Continuous Integration / Continuous Delivery) scope + policy",
             "type": "attacker"
           },
           {
@@ -1225,12 +1228,13 @@ export const buildCicdStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Container runtime security\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the container runtime security control (from GitHub Actions / GitLab CI / Jenkins).",
+        "The test: Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Container runtime security\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the container runtime security control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -1254,21 +1258,21 @@ export const buildCicdStages: StageConfig[] = [
         {
           "name": "04_container_runtime_security_mcp.py",
           "url": "/audit-code/build-cicd/04_container_runtime_security_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Build Env / CI/CD evidence for \"Container runtime security\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) evidence for \"Container runtime security\" (in-scope inventory for the container runtime security control (from github actions / gitlab ci / jenkins)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Container runtime security\" control for Build Env / CI/CD at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Container runtime security\" control for Build Environment & CI/CD (Continuous Integration / Continuous Delivery) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Container runtime security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the container runtime security control (from GitHub Actions / GitLab CI / Jenkins) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live GitHub Actions / GitLab CI / Jenkins APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. GitHub Actions / GitLab CI / Jenkins gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. GitHub Actions / GitLab CI / Jenkins is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from GitHub Actions / GitLab CI / Jenkins; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Build Env / CI/CD: \"Container runtime security\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- build-cicd_inventory.json   (in-scope items from GitHub Actions / GitLab CI / Jenkins)\n- build-cicd_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Container runtime security\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Container runtime security\",\n  \"domain\": \"Build Env / CI/CD\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{bcd_",
+        "/evidence/README.md": "# AcmeCorp — Build Environment & CI/CD (Continuous Integration / Continuous Delivery): \"Container runtime security\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Container runtime security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- build-cicd_inventory.json   (in-scope items — In-scope inventory for the container runtime security control (from GitHub Actions / GitLab CI / Jenkins))\n- build-cicd_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Container runtime security\",\n  \"domain\": \"Build Environment & CI/CD (Continuous Integration / Continuous Delivery)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{bcd_",
         "/evidence/build-cicd_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Platform / DevOps engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Container runtime security\" control must cover\n# fragment: container_runtime_security_",
         "/evidence/build-cicd_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -1332,7 +1336,7 @@ export const buildCicdStages: StageConfig[] = [
           "id": "bcd-04-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Container runtime security\" sub-process of Build Env / CI/CD?",
+          "text": "What is the primary audit objective for the \"Container runtime security\" sub-process of Build Environment & CI/CD (Continuous Integration / Continuous Delivery)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -1346,11 +1350,11 @@ export const buildCicdStages: StageConfig[] = [
           "id": "bcd-04-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Container runtime security\" matter to the broader Build Env / CI/CD posture?",
+          "text": "Why does a weakness in \"Container runtime security\" matter to the broader Build Environment & CI/CD (Continuous Integration / Continuous Delivery) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Build Env / CI/CD controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -1363,7 +1367,7 @@ export const buildCicdStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Container runtime security\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Container runtime security evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the container runtime security control (from GitHub Actions / GitLab CI / Jenkins) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -1429,16 +1433,16 @@ export const buildCicdStages: StageConfig[] = [
         {
           "id": "bcd-04-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Container runtime security\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Container runtime security\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the container runtime security control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the container runtime security control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "bcd-04-q9",
@@ -1483,8 +1487,8 @@ export const buildCicdStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Orchestration cluster security\" control for Build Env / CI/CD is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Build Env / CI/CD source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Orchestration cluster security\" control for Build Environment & CI/CD (Continuous Integration / Continuous Delivery) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Orchestration cluster security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) systems of record (GitHub Actions / GitLab CI / Jenkins; Container registry (ECR/GHCR); Kubernetes / orchestration) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the orchestration cluster security control (from GitHub Actions / GitLab CI / Jenkins)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -1505,34 +1509,34 @@ export const buildCicdStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 6/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Build Env / CI/CD controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls."
       }
     },
     "badge": {
       "id": "bcd-05-badge",
-      "name": "Build Env / CI/CD Auditor",
+      "name": "Build Environment & CI/CD (Continuous Integration / Continuous Delivery) Auditor",
       "emoji": "🏗️"
     },
     "wonder": {
       "name": "Orchestration cluster security",
-      "location": "Build Env / CI/CD",
+      "location": "Build Environment & CI/CD (Continuous Integration / Continuous Delivery)",
       "era": "Present Day",
       "emoji": "🏗️"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Orchestration cluster security\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Build Env / CI/CD control.",
+      "tagline": "Auditing \"Orchestration cluster security\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the orchestration cluster security control (from GitHub Actions / GitLab CI / Jenkins)) with read-only agents, run the test against policy, and issue a defensible opinion on the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) control.",
       "year": 2025,
       "overview": [
-        "The \"Orchestration cluster security\" sub-process is one of the controls an auditor must verify for Build Env / CI/CD. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that orchestration cluster security is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Orchestration cluster security\" sub-process is one of the controls an auditor must verify for Build Environment & CI/CD (Continuous Integration / Continuous Delivery). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the orchestration cluster security control (from GitHub Actions / GitLab CI / Jenkins), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Orchestration cluster security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `05_orchestration_cluster_security_mcp.py` exposes read-only tools that turn each Build Env / CI/CD source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `05_orchestration_cluster_security_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from GitHub Actions / GitLab CI / Jenkins and Container registry (ECR/GHCR) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 05_orchestration_cluster_security_mcp.py` to expose it to your agent — or `python 05_orchestration_cluster_security_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -1554,7 +1558,7 @@ export const buildCicdStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Build Env / CI/CD scope + policy",
+            "sub": "define Build Environment & CI/CD (Continuous Integration / Continuous Delivery) scope + policy",
             "type": "attacker"
           },
           {
@@ -1590,12 +1594,13 @@ export const buildCicdStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Orchestration cluster security\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the orchestration cluster security control (from GitHub Actions / GitLab CI / Jenkins).",
+        "The test: Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Orchestration cluster security\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the orchestration cluster security control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -1619,21 +1624,21 @@ export const buildCicdStages: StageConfig[] = [
         {
           "name": "05_orchestration_cluster_security_mcp.py",
           "url": "/audit-code/build-cicd/05_orchestration_cluster_security_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Build Env / CI/CD evidence for \"Orchestration cluster security\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) evidence for \"Orchestration cluster security\" (in-scope inventory for the orchestration cluster security control (from github actions / gitlab ci / jenkins)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Orchestration cluster security\" control for Build Env / CI/CD at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Orchestration cluster security\" control for Build Environment & CI/CD (Continuous Integration / Continuous Delivery) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Orchestration cluster security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the orchestration cluster security control (from GitHub Actions / GitLab CI / Jenkins) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live GitHub Actions / GitLab CI / Jenkins APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. GitHub Actions / GitLab CI / Jenkins gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. GitHub Actions / GitLab CI / Jenkins is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from GitHub Actions / GitLab CI / Jenkins; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Build Env / CI/CD: \"Orchestration cluster security\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- build-cicd_inventory.json   (in-scope items from GitHub Actions / GitLab CI / Jenkins)\n- build-cicd_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Orchestration cluster security\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Orchestration cluster security\",\n  \"domain\": \"Build Env / CI/CD\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{bcd_",
+        "/evidence/README.md": "# AcmeCorp — Build Environment & CI/CD (Continuous Integration / Continuous Delivery): \"Orchestration cluster security\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Orchestration cluster security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- build-cicd_inventory.json   (in-scope items — In-scope inventory for the orchestration cluster security control (from GitHub Actions / GitLab CI / Jenkins))\n- build-cicd_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Orchestration cluster security\",\n  \"domain\": \"Build Environment & CI/CD (Continuous Integration / Continuous Delivery)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{bcd_",
         "/evidence/build-cicd_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Platform / DevOps engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Orchestration cluster security\" control must cover\n# fragment: orchestration_cluster_security_",
         "/evidence/build-cicd_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"EXCEPTIONS\"\n}\n# fragment: exceptions}"
@@ -1697,7 +1702,7 @@ export const buildCicdStages: StageConfig[] = [
           "id": "bcd-05-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Orchestration cluster security\" sub-process of Build Env / CI/CD?",
+          "text": "What is the primary audit objective for the \"Orchestration cluster security\" sub-process of Build Environment & CI/CD (Continuous Integration / Continuous Delivery)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -1711,11 +1716,11 @@ export const buildCicdStages: StageConfig[] = [
           "id": "bcd-05-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Orchestration cluster security\" matter to the broader Build Env / CI/CD posture?",
+          "text": "Why does a weakness in \"Orchestration cluster security\" matter to the broader Build Environment & CI/CD (Continuous Integration / Continuous Delivery) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Build Env / CI/CD controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -1728,7 +1733,7 @@ export const buildCicdStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Orchestration cluster security\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Orchestration cluster security evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the orchestration cluster security control (from GitHub Actions / GitLab CI / Jenkins) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -1794,16 +1799,16 @@ export const buildCicdStages: StageConfig[] = [
         {
           "id": "bcd-05-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Orchestration cluster security\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Orchestration cluster security\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the orchestration cluster security control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the orchestration cluster security control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "bcd-05-q9",
@@ -1848,8 +1853,8 @@ export const buildCicdStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Workload security\" control for Build Env / CI/CD is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Build Env / CI/CD source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Workload security\" control for Build Environment & CI/CD (Continuous Integration / Continuous Delivery) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Workload security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) systems of record (GitHub Actions / GitLab CI / Jenkins; Container registry (ECR/GHCR); Kubernetes / orchestration) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the workload security control (from GitHub Actions / GitLab CI / Jenkins)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -1870,34 +1875,34 @@ export const buildCicdStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 7/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Build Env / CI/CD controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls."
       }
     },
     "badge": {
       "id": "bcd-06-badge",
-      "name": "Build Env / CI/CD Auditor",
+      "name": "Build Environment & CI/CD (Continuous Integration / Continuous Delivery) Auditor",
       "emoji": "🏗️"
     },
     "wonder": {
       "name": "Workload security",
-      "location": "Build Env / CI/CD",
+      "location": "Build Environment & CI/CD (Continuous Integration / Continuous Delivery)",
       "era": "Present Day",
       "emoji": "🏗️"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Workload security\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Build Env / CI/CD control.",
+      "tagline": "Auditing \"Workload security\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the workload security control (from GitHub Actions / GitLab CI / Jenkins)) with read-only agents, run the test against policy, and issue a defensible opinion on the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) control.",
       "year": 2025,
       "overview": [
-        "The \"Workload security\" sub-process is one of the controls an auditor must verify for Build Env / CI/CD. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that workload security is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Workload security\" sub-process is one of the controls an auditor must verify for Build Environment & CI/CD (Continuous Integration / Continuous Delivery). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the workload security control (from GitHub Actions / GitLab CI / Jenkins), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Workload security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `06_workload_security_mcp.py` exposes read-only tools that turn each Build Env / CI/CD source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `06_workload_security_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from GitHub Actions / GitLab CI / Jenkins and Container registry (ECR/GHCR) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 06_workload_security_mcp.py` to expose it to your agent — or `python 06_workload_security_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -1919,7 +1924,7 @@ export const buildCicdStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Build Env / CI/CD scope + policy",
+            "sub": "define Build Environment & CI/CD (Continuous Integration / Continuous Delivery) scope + policy",
             "type": "attacker"
           },
           {
@@ -1955,12 +1960,13 @@ export const buildCicdStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Workload security\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the workload security control (from GitHub Actions / GitLab CI / Jenkins).",
+        "The test: Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Workload security\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the workload security control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -1984,21 +1990,21 @@ export const buildCicdStages: StageConfig[] = [
         {
           "name": "06_workload_security_mcp.py",
           "url": "/audit-code/build-cicd/06_workload_security_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Build Env / CI/CD evidence for \"Workload security\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) evidence for \"Workload security\" (in-scope inventory for the workload security control (from github actions / gitlab ci / jenkins)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Workload security\" control for Build Env / CI/CD at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Workload security\" control for Build Environment & CI/CD (Continuous Integration / Continuous Delivery) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Workload security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the workload security control (from GitHub Actions / GitLab CI / Jenkins) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live GitHub Actions / GitLab CI / Jenkins APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. GitHub Actions / GitLab CI / Jenkins gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. GitHub Actions / GitLab CI / Jenkins is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from GitHub Actions / GitLab CI / Jenkins; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Build Env / CI/CD: \"Workload security\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- build-cicd_inventory.json   (in-scope items from GitHub Actions / GitLab CI / Jenkins)\n- build-cicd_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Workload security\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Workload security\",\n  \"domain\": \"Build Env / CI/CD\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{bcd_",
+        "/evidence/README.md": "# AcmeCorp — Build Environment & CI/CD (Continuous Integration / Continuous Delivery): \"Workload security\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Workload security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- build-cicd_inventory.json   (in-scope items — In-scope inventory for the workload security control (from GitHub Actions / GitLab CI / Jenkins))\n- build-cicd_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Workload security\",\n  \"domain\": \"Build Environment & CI/CD (Continuous Integration / Continuous Delivery)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{bcd_",
         "/evidence/build-cicd_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Platform / DevOps engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Workload security\" control must cover\n# fragment: workload_security_",
         "/evidence/build-cicd_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -2062,7 +2068,7 @@ export const buildCicdStages: StageConfig[] = [
           "id": "bcd-06-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Workload security\" sub-process of Build Env / CI/CD?",
+          "text": "What is the primary audit objective for the \"Workload security\" sub-process of Build Environment & CI/CD (Continuous Integration / Continuous Delivery)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -2076,11 +2082,11 @@ export const buildCicdStages: StageConfig[] = [
           "id": "bcd-06-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Workload security\" matter to the broader Build Env / CI/CD posture?",
+          "text": "Why does a weakness in \"Workload security\" matter to the broader Build Environment & CI/CD (Continuous Integration / Continuous Delivery) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Build Env / CI/CD controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -2093,7 +2099,7 @@ export const buildCicdStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Workload security\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Workload security evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the workload security control (from GitHub Actions / GitLab CI / Jenkins) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -2159,16 +2165,16 @@ export const buildCicdStages: StageConfig[] = [
         {
           "id": "bcd-06-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Workload security\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Workload security\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the workload security control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the workload security control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "bcd-06-q9",
@@ -2213,8 +2219,8 @@ export const buildCicdStages: StageConfig[] = [
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Supply chain in orchestration\" control for Build Env / CI/CD is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Build Env / CI/CD source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Supply chain in orchestration\" control for Build Environment & CI/CD (Continuous Integration / Continuous Delivery) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Supply chain in orchestration\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) systems of record (GitHub Actions / GitLab CI / Jenkins; Container registry (ECR/GHCR); Kubernetes / orchestration) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the supply chain in orchestration control (from GitHub Actions / GitLab CI / Jenkins)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -2235,34 +2241,34 @@ export const buildCicdStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 5/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 9/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Build Env / CI/CD controls."
+        "value": "VALUE 9/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls."
       }
     },
     "badge": {
       "id": "bcd-07-badge",
-      "name": "Build Env / CI/CD Auditor",
+      "name": "Build Environment & CI/CD (Continuous Integration / Continuous Delivery) Auditor",
       "emoji": "🏗️"
     },
     "wonder": {
       "name": "Supply chain in orchestration",
-      "location": "Build Env / CI/CD",
+      "location": "Build Environment & CI/CD (Continuous Integration / Continuous Delivery)",
       "era": "Present Day",
       "emoji": "🏗️"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Supply chain in orchestration\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Build Env / CI/CD control.",
+      "tagline": "Auditing \"Supply chain in orchestration\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the supply chain in orchestration control (from GitHub Actions / GitLab CI / Jenkins)) with read-only agents, run the test against policy, and issue a defensible opinion on the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) control.",
       "year": 2025,
       "overview": [
-        "The \"Supply chain in orchestration\" sub-process is one of the controls an auditor must verify for Build Env / CI/CD. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that supply chain in orchestration is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Supply chain in orchestration\" sub-process is one of the controls an auditor must verify for Build Environment & CI/CD (Continuous Integration / Continuous Delivery). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the supply chain in orchestration control (from GitHub Actions / GitLab CI / Jenkins), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Supply chain in orchestration\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `07_supply_chain_in_orchestration_mcp.py` exposes read-only tools that turn each Build Env / CI/CD source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `07_supply_chain_in_orchestration_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from GitHub Actions / GitLab CI / Jenkins and Container registry (ECR/GHCR) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 07_supply_chain_in_orchestration_mcp.py` to expose it to your agent — or `python 07_supply_chain_in_orchestration_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -2284,7 +2290,7 @@ export const buildCicdStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Build Env / CI/CD scope + policy",
+            "sub": "define Build Environment & CI/CD (Continuous Integration / Continuous Delivery) scope + policy",
             "type": "attacker"
           },
           {
@@ -2320,12 +2326,13 @@ export const buildCicdStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Supply chain in orchestration\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the supply chain in orchestration control (from GitHub Actions / GitLab CI / Jenkins).",
+        "The test: Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Supply chain in orchestration\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the supply chain in orchestration control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -2349,21 +2356,21 @@ export const buildCicdStages: StageConfig[] = [
         {
           "name": "07_supply_chain_in_orchestration_mcp.py",
           "url": "/audit-code/build-cicd/07_supply_chain_in_orchestration_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Build Env / CI/CD evidence for \"Supply chain in orchestration\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) evidence for \"Supply chain in orchestration\" (in-scope inventory for the supply chain in orchestration control (from github actions / gitlab ci / jenkins)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Supply chain in orchestration\" control for Build Env / CI/CD at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Supply chain in orchestration\" control for Build Environment & CI/CD (Continuous Integration / Continuous Delivery) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Supply chain in orchestration\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the supply chain in orchestration control (from GitHub Actions / GitLab CI / Jenkins) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live GitHub Actions / GitLab CI / Jenkins APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. GitHub Actions / GitLab CI / Jenkins gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. GitHub Actions / GitLab CI / Jenkins is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from GitHub Actions / GitLab CI / Jenkins; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Build Env / CI/CD: \"Supply chain in orchestration\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- build-cicd_inventory.json   (in-scope items from GitHub Actions / GitLab CI / Jenkins)\n- build-cicd_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Supply chain in orchestration\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Supply chain in orchestration\",\n  \"domain\": \"Build Env / CI/CD\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{bcd_",
+        "/evidence/README.md": "# AcmeCorp — Build Environment & CI/CD (Continuous Integration / Continuous Delivery): \"Supply chain in orchestration\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Supply chain in orchestration\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- build-cicd_inventory.json   (in-scope items — In-scope inventory for the supply chain in orchestration control (from GitHub Actions / GitLab CI / Jenkins))\n- build-cicd_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Supply chain in orchestration\",\n  \"domain\": \"Build Environment & CI/CD (Continuous Integration / Continuous Delivery)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{bcd_",
         "/evidence/build-cicd_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Platform / DevOps engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Supply chain in orchestration\" control must cover\n# fragment: supply_chain_orchestration_",
         "/evidence/build-cicd_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -2427,7 +2434,7 @@ export const buildCicdStages: StageConfig[] = [
           "id": "bcd-07-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Supply chain in orchestration\" sub-process of Build Env / CI/CD?",
+          "text": "What is the primary audit objective for the \"Supply chain in orchestration\" sub-process of Build Environment & CI/CD (Continuous Integration / Continuous Delivery)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -2441,11 +2448,11 @@ export const buildCicdStages: StageConfig[] = [
           "id": "bcd-07-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Supply chain in orchestration\" matter to the broader Build Env / CI/CD posture?",
+          "text": "Why does a weakness in \"Supply chain in orchestration\" matter to the broader Build Environment & CI/CD (Continuous Integration / Continuous Delivery) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Build Env / CI/CD controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -2458,7 +2465,7 @@ export const buildCicdStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Supply chain in orchestration\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Supply chain in orchestration evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the supply chain in orchestration control (from GitHub Actions / GitLab CI / Jenkins) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -2524,16 +2531,16 @@ export const buildCicdStages: StageConfig[] = [
         {
           "id": "bcd-07-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Supply chain in orchestration\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Supply chain in orchestration\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the supply chain in orchestration control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the supply chain in orchestration control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "bcd-07-q9",
@@ -2578,8 +2585,8 @@ export const buildCicdStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Code and repository security\" control for Build Env / CI/CD is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Build Env / CI/CD source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Code and repository security\" control for Build Environment & CI/CD (Continuous Integration / Continuous Delivery) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Code and repository security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) systems of record (GitHub Actions / GitLab CI / Jenkins; Container registry (ECR/GHCR); Kubernetes / orchestration) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the code and repository security control (from GitHub Actions / GitLab CI / Jenkins)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -2600,34 +2607,34 @@ export const buildCicdStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 6/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Build Env / CI/CD controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls."
       }
     },
     "badge": {
       "id": "bcd-08-badge",
-      "name": "Build Env / CI/CD Auditor",
+      "name": "Build Environment & CI/CD (Continuous Integration / Continuous Delivery) Auditor",
       "emoji": "🏗️"
     },
     "wonder": {
       "name": "Code and repository security",
-      "location": "Build Env / CI/CD",
+      "location": "Build Environment & CI/CD (Continuous Integration / Continuous Delivery)",
       "era": "Present Day",
       "emoji": "🏗️"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Code and repository security\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Build Env / CI/CD control.",
+      "tagline": "Auditing \"Code and repository security\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the code and repository security control (from GitHub Actions / GitLab CI / Jenkins)) with read-only agents, run the test against policy, and issue a defensible opinion on the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) control.",
       "year": 2025,
       "overview": [
-        "The \"Code and repository security\" sub-process is one of the controls an auditor must verify for Build Env / CI/CD. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that code and repository security is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Code and repository security\" sub-process is one of the controls an auditor must verify for Build Environment & CI/CD (Continuous Integration / Continuous Delivery). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the code and repository security control (from GitHub Actions / GitLab CI / Jenkins), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Code and repository security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `08_code_and_repository_security_mcp.py` exposes read-only tools that turn each Build Env / CI/CD source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `08_code_and_repository_security_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from GitHub Actions / GitLab CI / Jenkins and Container registry (ECR/GHCR) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 08_code_and_repository_security_mcp.py` to expose it to your agent — or `python 08_code_and_repository_security_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -2649,7 +2656,7 @@ export const buildCicdStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Build Env / CI/CD scope + policy",
+            "sub": "define Build Environment & CI/CD (Continuous Integration / Continuous Delivery) scope + policy",
             "type": "attacker"
           },
           {
@@ -2685,12 +2692,13 @@ export const buildCicdStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Code and repository security\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the code and repository security control (from GitHub Actions / GitLab CI / Jenkins).",
+        "The test: Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Code and repository security\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the code and repository security control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -2714,21 +2722,21 @@ export const buildCicdStages: StageConfig[] = [
         {
           "name": "08_code_and_repository_security_mcp.py",
           "url": "/audit-code/build-cicd/08_code_and_repository_security_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Build Env / CI/CD evidence for \"Code and repository security\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) evidence for \"Code and repository security\" (in-scope inventory for the code and repository security control (from github actions / gitlab ci / jenkins)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Code and repository security\" control for Build Env / CI/CD at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Code and repository security\" control for Build Environment & CI/CD (Continuous Integration / Continuous Delivery) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Code and repository security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the code and repository security control (from GitHub Actions / GitLab CI / Jenkins) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live GitHub Actions / GitLab CI / Jenkins APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. GitHub Actions / GitLab CI / Jenkins gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. GitHub Actions / GitLab CI / Jenkins is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from GitHub Actions / GitLab CI / Jenkins; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Build Env / CI/CD: \"Code and repository security\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- build-cicd_inventory.json   (in-scope items from GitHub Actions / GitLab CI / Jenkins)\n- build-cicd_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Code and repository security\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Code and repository security\",\n  \"domain\": \"Build Env / CI/CD\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{bcd_",
+        "/evidence/README.md": "# AcmeCorp — Build Environment & CI/CD (Continuous Integration / Continuous Delivery): \"Code and repository security\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Code and repository security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- build-cicd_inventory.json   (in-scope items — In-scope inventory for the code and repository security control (from GitHub Actions / GitLab CI / Jenkins))\n- build-cicd_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Code and repository security\",\n  \"domain\": \"Build Environment & CI/CD (Continuous Integration / Continuous Delivery)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{bcd_",
         "/evidence/build-cicd_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Platform / DevOps engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Code and repository security\" control must cover\n# fragment: code_repository_security_",
         "/evidence/build-cicd_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -2792,7 +2800,7 @@ export const buildCicdStages: StageConfig[] = [
           "id": "bcd-08-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Code and repository security\" sub-process of Build Env / CI/CD?",
+          "text": "What is the primary audit objective for the \"Code and repository security\" sub-process of Build Environment & CI/CD (Continuous Integration / Continuous Delivery)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -2806,11 +2814,11 @@ export const buildCicdStages: StageConfig[] = [
           "id": "bcd-08-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Code and repository security\" matter to the broader Build Env / CI/CD posture?",
+          "text": "Why does a weakness in \"Code and repository security\" matter to the broader Build Environment & CI/CD (Continuous Integration / Continuous Delivery) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Build Env / CI/CD controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -2823,7 +2831,7 @@ export const buildCicdStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Code and repository security\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Code and repository security evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the code and repository security control (from GitHub Actions / GitLab CI / Jenkins) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -2889,16 +2897,16 @@ export const buildCicdStages: StageConfig[] = [
         {
           "id": "bcd-08-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Code and repository security\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Code and repository security\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the code and repository security control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the code and repository security control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "bcd-08-q9",
@@ -2943,8 +2951,8 @@ export const buildCicdStages: StageConfig[] = [
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Secrets and credential management\" control for Build Env / CI/CD is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Build Env / CI/CD source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Secrets and credential management\" control for Build Environment & CI/CD (Continuous Integration / Continuous Delivery) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Secrets and credential management\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) systems of record (GitHub Actions / GitLab CI / Jenkins; Container registry (ECR/GHCR); Kubernetes / orchestration) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the secrets and credential management control (from GitHub Actions / GitLab CI / Jenkins)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -2965,34 +2973,34 @@ export const buildCicdStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 7/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 9/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Build Env / CI/CD controls."
+        "value": "VALUE 9/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls."
       }
     },
     "badge": {
       "id": "bcd-09-badge",
-      "name": "Build Env / CI/CD Auditor",
+      "name": "Build Environment & CI/CD (Continuous Integration / Continuous Delivery) Auditor",
       "emoji": "🏗️"
     },
     "wonder": {
       "name": "Secrets and credential management",
-      "location": "Build Env / CI/CD",
+      "location": "Build Environment & CI/CD (Continuous Integration / Continuous Delivery)",
       "era": "Present Day",
       "emoji": "🏗️"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Secrets and credential management\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Build Env / CI/CD control.",
+      "tagline": "Auditing \"Secrets and credential management\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the secrets and credential management control (from GitHub Actions / GitLab CI / Jenkins)) with read-only agents, run the test against policy, and issue a defensible opinion on the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) control.",
       "year": 2025,
       "overview": [
-        "The \"Secrets and credential management\" sub-process is one of the controls an auditor must verify for Build Env / CI/CD. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that secrets and credential management is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Secrets and credential management\" sub-process is one of the controls an auditor must verify for Build Environment & CI/CD (Continuous Integration / Continuous Delivery). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the secrets and credential management control (from GitHub Actions / GitLab CI / Jenkins), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Secrets and credential management\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `09_secrets_and_credential_management_mcp.py` exposes read-only tools that turn each Build Env / CI/CD source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `09_secrets_and_credential_management_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from GitHub Actions / GitLab CI / Jenkins and Container registry (ECR/GHCR) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 09_secrets_and_credential_management_mcp.py` to expose it to your agent — or `python 09_secrets_and_credential_management_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -3014,7 +3022,7 @@ export const buildCicdStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Build Env / CI/CD scope + policy",
+            "sub": "define Build Environment & CI/CD (Continuous Integration / Continuous Delivery) scope + policy",
             "type": "attacker"
           },
           {
@@ -3050,12 +3058,13 @@ export const buildCicdStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Secrets and credential management\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the secrets and credential management control (from GitHub Actions / GitLab CI / Jenkins).",
+        "The test: Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Secrets and credential management\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the secrets and credential management control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -3079,21 +3088,21 @@ export const buildCicdStages: StageConfig[] = [
         {
           "name": "09_secrets_and_credential_management_mcp.py",
           "url": "/audit-code/build-cicd/09_secrets_and_credential_management_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Build Env / CI/CD evidence for \"Secrets and credential management\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) evidence for \"Secrets and credential management\" (in-scope inventory for the secrets and credential management control (from github actions / gitlab ci / jenkins)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Secrets and credential management\" control for Build Env / CI/CD at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Secrets and credential management\" control for Build Environment & CI/CD (Continuous Integration / Continuous Delivery) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Secrets and credential management\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the secrets and credential management control (from GitHub Actions / GitLab CI / Jenkins) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live GitHub Actions / GitLab CI / Jenkins APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. GitHub Actions / GitLab CI / Jenkins gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. GitHub Actions / GitLab CI / Jenkins is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from GitHub Actions / GitLab CI / Jenkins; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Build Env / CI/CD: \"Secrets and credential management\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- build-cicd_inventory.json   (in-scope items from GitHub Actions / GitLab CI / Jenkins)\n- build-cicd_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Secrets and credential management\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Secrets and credential management\",\n  \"domain\": \"Build Env / CI/CD\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{bcd_",
+        "/evidence/README.md": "# AcmeCorp — Build Environment & CI/CD (Continuous Integration / Continuous Delivery): \"Secrets and credential management\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Secrets and credential management\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- build-cicd_inventory.json   (in-scope items — In-scope inventory for the secrets and credential management control (from GitHub Actions / GitLab CI / Jenkins))\n- build-cicd_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Secrets and credential management\",\n  \"domain\": \"Build Environment & CI/CD (Continuous Integration / Continuous Delivery)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{bcd_",
         "/evidence/build-cicd_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Platform / DevOps engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Secrets and credential management\" control must cover\n# fragment: secrets_credential_management_",
         "/evidence/build-cicd_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -3157,7 +3166,7 @@ export const buildCicdStages: StageConfig[] = [
           "id": "bcd-09-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Secrets and credential management\" sub-process of Build Env / CI/CD?",
+          "text": "What is the primary audit objective for the \"Secrets and credential management\" sub-process of Build Environment & CI/CD (Continuous Integration / Continuous Delivery)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -3171,11 +3180,11 @@ export const buildCicdStages: StageConfig[] = [
           "id": "bcd-09-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Secrets and credential management\" matter to the broader Build Env / CI/CD posture?",
+          "text": "Why does a weakness in \"Secrets and credential management\" matter to the broader Build Environment & CI/CD (Continuous Integration / Continuous Delivery) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Build Env / CI/CD controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -3188,7 +3197,7 @@ export const buildCicdStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Secrets and credential management\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Secrets and credential management evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the secrets and credential management control (from GitHub Actions / GitLab CI / Jenkins) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -3254,16 +3263,16 @@ export const buildCicdStages: StageConfig[] = [
         {
           "id": "bcd-09-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Secrets and credential management\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Secrets and credential management\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the secrets and credential management control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the secrets and credential management control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "bcd-09-q9",
@@ -3308,8 +3317,8 @@ export const buildCicdStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Audit logging\" control for Build Env / CI/CD is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Build Env / CI/CD source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Audit logging\" control for Build Environment & CI/CD (Continuous Integration / Continuous Delivery) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Audit logging\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) systems of record (GitHub Actions / GitLab CI / Jenkins; Container registry (ECR/GHCR); Kubernetes / orchestration) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the audit logging control (from GitHub Actions / GitLab CI / Jenkins)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -3330,34 +3339,34 @@ export const buildCicdStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 6/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Build Env / CI/CD controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls."
       }
     },
     "badge": {
       "id": "bcd-10-badge",
-      "name": "Build Env / CI/CD Auditor",
+      "name": "Build Environment & CI/CD (Continuous Integration / Continuous Delivery) Auditor",
       "emoji": "🏗️"
     },
     "wonder": {
       "name": "Audit logging",
-      "location": "Build Env / CI/CD",
+      "location": "Build Environment & CI/CD (Continuous Integration / Continuous Delivery)",
       "era": "Present Day",
       "emoji": "🏗️"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Audit logging\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Build Env / CI/CD control.",
+      "tagline": "Auditing \"Audit logging\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the audit logging control (from GitHub Actions / GitLab CI / Jenkins)) with read-only agents, run the test against policy, and issue a defensible opinion on the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) control.",
       "year": 2025,
       "overview": [
-        "The \"Audit logging\" sub-process is one of the controls an auditor must verify for Build Env / CI/CD. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that audit logging is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Audit logging\" sub-process is one of the controls an auditor must verify for Build Environment & CI/CD (Continuous Integration / Continuous Delivery). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the audit logging control (from GitHub Actions / GitLab CI / Jenkins), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Audit logging\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `10_audit_logging_mcp.py` exposes read-only tools that turn each Build Env / CI/CD source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `10_audit_logging_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from GitHub Actions / GitLab CI / Jenkins and Container registry (ECR/GHCR) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 10_audit_logging_mcp.py` to expose it to your agent — or `python 10_audit_logging_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -3379,7 +3388,7 @@ export const buildCicdStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Build Env / CI/CD scope + policy",
+            "sub": "define Build Environment & CI/CD (Continuous Integration / Continuous Delivery) scope + policy",
             "type": "attacker"
           },
           {
@@ -3415,12 +3424,13 @@ export const buildCicdStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Audit logging\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the audit logging control (from GitHub Actions / GitLab CI / Jenkins).",
+        "The test: Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Audit logging\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the audit logging control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -3444,21 +3454,21 @@ export const buildCicdStages: StageConfig[] = [
         {
           "name": "10_audit_logging_mcp.py",
           "url": "/audit-code/build-cicd/10_audit_logging_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Build Env / CI/CD evidence for \"Audit logging\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) evidence for \"Audit logging\" (in-scope inventory for the audit logging control (from github actions / gitlab ci / jenkins)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Audit logging\" control for Build Env / CI/CD at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Audit logging\" control for Build Environment & CI/CD (Continuous Integration / Continuous Delivery) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Audit logging\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the audit logging control (from GitHub Actions / GitLab CI / Jenkins) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live GitHub Actions / GitLab CI / Jenkins APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. GitHub Actions / GitLab CI / Jenkins gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. GitHub Actions / GitLab CI / Jenkins is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from GitHub Actions / GitLab CI / Jenkins; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Build Env / CI/CD: \"Audit logging\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- build-cicd_inventory.json   (in-scope items from GitHub Actions / GitLab CI / Jenkins)\n- build-cicd_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Audit logging\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Audit logging\",\n  \"domain\": \"Build Env / CI/CD\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{bcd_",
+        "/evidence/README.md": "# AcmeCorp — Build Environment & CI/CD (Continuous Integration / Continuous Delivery): \"Audit logging\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Audit logging\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- build-cicd_inventory.json   (in-scope items — In-scope inventory for the audit logging control (from GitHub Actions / GitLab CI / Jenkins))\n- build-cicd_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Audit logging\",\n  \"domain\": \"Build Environment & CI/CD (Continuous Integration / Continuous Delivery)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{bcd_",
         "/evidence/build-cicd_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Platform / DevOps engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Audit logging\" control must cover\n# fragment: audit_logging_",
         "/evidence/build-cicd_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"EXCEPTIONS\"\n}\n# fragment: exceptions}"
@@ -3522,7 +3532,7 @@ export const buildCicdStages: StageConfig[] = [
           "id": "bcd-10-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Audit logging\" sub-process of Build Env / CI/CD?",
+          "text": "What is the primary audit objective for the \"Audit logging\" sub-process of Build Environment & CI/CD (Continuous Integration / Continuous Delivery)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -3536,11 +3546,11 @@ export const buildCicdStages: StageConfig[] = [
           "id": "bcd-10-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Audit logging\" matter to the broader Build Env / CI/CD posture?",
+          "text": "Why does a weakness in \"Audit logging\" matter to the broader Build Environment & CI/CD (Continuous Integration / Continuous Delivery) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Build Env / CI/CD controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -3553,7 +3563,7 @@ export const buildCicdStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Audit logging\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Audit logging evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the audit logging control (from GitHub Actions / GitLab CI / Jenkins) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -3619,16 +3629,16 @@ export const buildCicdStages: StageConfig[] = [
         {
           "id": "bcd-10-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Audit logging\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Audit logging\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the audit logging control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the audit logging control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "bcd-10-q9",
@@ -3673,8 +3683,8 @@ export const buildCicdStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Segregation of duties\" control for Build Env / CI/CD is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Build Env / CI/CD source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Segregation of duties\" control for Build Environment & CI/CD (Continuous Integration / Continuous Delivery) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Segregation of duties\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) systems of record (GitHub Actions / GitLab CI / Jenkins; Container registry (ECR/GHCR); Kubernetes / orchestration) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the segregation of duties control (from GitHub Actions / GitLab CI / Jenkins)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -3695,34 +3705,34 @@ export const buildCicdStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 6/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Build Env / CI/CD controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls."
       }
     },
     "badge": {
       "id": "bcd-11-badge",
-      "name": "Build Env / CI/CD Auditor",
+      "name": "Build Environment & CI/CD (Continuous Integration / Continuous Delivery) Auditor",
       "emoji": "🏗️"
     },
     "wonder": {
       "name": "Segregation of duties",
-      "location": "Build Env / CI/CD",
+      "location": "Build Environment & CI/CD (Continuous Integration / Continuous Delivery)",
       "era": "Present Day",
       "emoji": "🏗️"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Segregation of duties\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Build Env / CI/CD control.",
+      "tagline": "Auditing \"Segregation of duties\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the segregation of duties control (from GitHub Actions / GitLab CI / Jenkins)) with read-only agents, run the test against policy, and issue a defensible opinion on the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) control.",
       "year": 2025,
       "overview": [
-        "The \"Segregation of duties\" sub-process is one of the controls an auditor must verify for Build Env / CI/CD. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that segregation of duties is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Segregation of duties\" sub-process is one of the controls an auditor must verify for Build Environment & CI/CD (Continuous Integration / Continuous Delivery). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the segregation of duties control (from GitHub Actions / GitLab CI / Jenkins), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Segregation of duties\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `11_segregation_of_duties_mcp.py` exposes read-only tools that turn each Build Env / CI/CD source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `11_segregation_of_duties_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from GitHub Actions / GitLab CI / Jenkins and Container registry (ECR/GHCR) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 11_segregation_of_duties_mcp.py` to expose it to your agent — or `python 11_segregation_of_duties_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -3744,7 +3754,7 @@ export const buildCicdStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Build Env / CI/CD scope + policy",
+            "sub": "define Build Environment & CI/CD (Continuous Integration / Continuous Delivery) scope + policy",
             "type": "attacker"
           },
           {
@@ -3780,12 +3790,13 @@ export const buildCicdStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Segregation of duties\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the segregation of duties control (from GitHub Actions / GitLab CI / Jenkins).",
+        "The test: Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Segregation of duties\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the segregation of duties control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -3809,21 +3820,21 @@ export const buildCicdStages: StageConfig[] = [
         {
           "name": "11_segregation_of_duties_mcp.py",
           "url": "/audit-code/build-cicd/11_segregation_of_duties_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Build Env / CI/CD evidence for \"Segregation of duties\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) evidence for \"Segregation of duties\" (in-scope inventory for the segregation of duties control (from github actions / gitlab ci / jenkins)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Segregation of duties\" control for Build Env / CI/CD at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Segregation of duties\" control for Build Environment & CI/CD (Continuous Integration / Continuous Delivery) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Segregation of duties\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the segregation of duties control (from GitHub Actions / GitLab CI / Jenkins) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live GitHub Actions / GitLab CI / Jenkins APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. GitHub Actions / GitLab CI / Jenkins gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. GitHub Actions / GitLab CI / Jenkins is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from GitHub Actions / GitLab CI / Jenkins; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Build Env / CI/CD: \"Segregation of duties\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- build-cicd_inventory.json   (in-scope items from GitHub Actions / GitLab CI / Jenkins)\n- build-cicd_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Segregation of duties\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Segregation of duties\",\n  \"domain\": \"Build Env / CI/CD\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{bcd_",
+        "/evidence/README.md": "# AcmeCorp — Build Environment & CI/CD (Continuous Integration / Continuous Delivery): \"Segregation of duties\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Segregation of duties\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- build-cicd_inventory.json   (in-scope items — In-scope inventory for the segregation of duties control (from GitHub Actions / GitLab CI / Jenkins))\n- build-cicd_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Segregation of duties\",\n  \"domain\": \"Build Environment & CI/CD (Continuous Integration / Continuous Delivery)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{bcd_",
         "/evidence/build-cicd_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Platform / DevOps engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Segregation of duties\" control must cover\n# fragment: segregation_duties_",
         "/evidence/build-cicd_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -3887,7 +3898,7 @@ export const buildCicdStages: StageConfig[] = [
           "id": "bcd-11-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Segregation of duties\" sub-process of Build Env / CI/CD?",
+          "text": "What is the primary audit objective for the \"Segregation of duties\" sub-process of Build Environment & CI/CD (Continuous Integration / Continuous Delivery)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -3901,11 +3912,11 @@ export const buildCicdStages: StageConfig[] = [
           "id": "bcd-11-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Segregation of duties\" matter to the broader Build Env / CI/CD posture?",
+          "text": "Why does a weakness in \"Segregation of duties\" matter to the broader Build Environment & CI/CD (Continuous Integration / Continuous Delivery) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Build Env / CI/CD controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -3918,7 +3929,7 @@ export const buildCicdStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Segregation of duties\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Segregation of duties evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the segregation of duties control (from GitHub Actions / GitLab CI / Jenkins) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -3984,16 +3995,16 @@ export const buildCicdStages: StageConfig[] = [
         {
           "id": "bcd-11-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Segregation of duties\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Segregation of duties\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the segregation of duties control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the segregation of duties control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "bcd-11-q9",
@@ -4038,8 +4049,8 @@ export const buildCicdStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"AI-assisted dev / agentic workloads\" control for Build Env / CI/CD is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Build Env / CI/CD source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"AI-assisted dev / agentic workloads\" control for Build Environment & CI/CD (Continuous Integration / Continuous Delivery) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"AI-assisted dev / agentic workloads\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) systems of record (GitHub Actions / GitLab CI / Jenkins; Container registry (ECR/GHCR); Kubernetes / orchestration) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the ai-assisted dev / agentic workloads control (from GitHub Actions / GitLab CI / Jenkins)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -4060,34 +4071,34 @@ export const buildCicdStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 7/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Build Env / CI/CD controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls."
       }
     },
     "badge": {
       "id": "bcd-12-badge",
-      "name": "Build Env / CI/CD Auditor",
+      "name": "Build Environment & CI/CD (Continuous Integration / Continuous Delivery) Auditor",
       "emoji": "🏗️"
     },
     "wonder": {
       "name": "AI-assisted dev / agentic workloads",
-      "location": "Build Env / CI/CD",
+      "location": "Build Environment & CI/CD (Continuous Integration / Continuous Delivery)",
       "era": "Present Day",
       "emoji": "🏗️"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"AI-assisted dev / agentic workloads\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Build Env / CI/CD control.",
+      "tagline": "Auditing \"AI-assisted dev / agentic workloads\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the ai-assisted dev / agentic workloads control (from GitHub Actions / GitLab CI / Jenkins)) with read-only agents, run the test against policy, and issue a defensible opinion on the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) control.",
       "year": 2025,
       "overview": [
-        "The \"AI-assisted dev / agentic workloads\" sub-process is one of the controls an auditor must verify for Build Env / CI/CD. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that ai-assisted dev / agentic workloads is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"AI-assisted dev / agentic workloads\" sub-process is one of the controls an auditor must verify for Build Environment & CI/CD (Continuous Integration / Continuous Delivery). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the ai-assisted dev / agentic workloads control (from GitHub Actions / GitLab CI / Jenkins), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"AI-assisted dev / agentic workloads\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `12_ai_assisted_dev_agentic_workloads_mcp.py` exposes read-only tools that turn each Build Env / CI/CD source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `12_ai_assisted_dev_agentic_workloads_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from GitHub Actions / GitLab CI / Jenkins and Container registry (ECR/GHCR) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 12_ai_assisted_dev_agentic_workloads_mcp.py` to expose it to your agent — or `python 12_ai_assisted_dev_agentic_workloads_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -4109,7 +4120,7 @@ export const buildCicdStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Build Env / CI/CD scope + policy",
+            "sub": "define Build Environment & CI/CD (Continuous Integration / Continuous Delivery) scope + policy",
             "type": "attacker"
           },
           {
@@ -4145,12 +4156,13 @@ export const buildCicdStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"AI-assisted dev / agentic workloads\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the ai-assisted dev / agentic workloads control (from GitHub Actions / GitLab CI / Jenkins).",
+        "The test: Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"AI-assisted dev / agentic workloads\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the ai-assisted dev / agentic workloads control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -4174,21 +4186,21 @@ export const buildCicdStages: StageConfig[] = [
         {
           "name": "12_ai_assisted_dev_agentic_workloads_mcp.py",
           "url": "/audit-code/build-cicd/12_ai_assisted_dev_agentic_workloads_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Build Env / CI/CD evidence for \"AI-assisted dev / agentic workloads\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) evidence for \"AI-assisted dev / agentic workloads\" (in-scope inventory for the ai-assisted dev / agentic workloads control (from github actions / gitlab ci / jenkins)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"AI-assisted dev / agentic workloads\" control for Build Env / CI/CD at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"AI-assisted dev / agentic workloads\" control for Build Environment & CI/CD (Continuous Integration / Continuous Delivery) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"AI-assisted dev / agentic workloads\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the ai-assisted dev / agentic workloads control (from GitHub Actions / GitLab CI / Jenkins) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live GitHub Actions / GitLab CI / Jenkins APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. GitHub Actions / GitLab CI / Jenkins gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. GitHub Actions / GitLab CI / Jenkins is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from GitHub Actions / GitLab CI / Jenkins; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Build Env / CI/CD: \"AI-assisted dev / agentic workloads\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- build-cicd_inventory.json   (in-scope items from GitHub Actions / GitLab CI / Jenkins)\n- build-cicd_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"AI-assisted dev / agentic workloads\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"AI-assisted dev / agentic workloads\",\n  \"domain\": \"Build Env / CI/CD\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{bcd_",
+        "/evidence/README.md": "# AcmeCorp — Build Environment & CI/CD (Continuous Integration / Continuous Delivery): \"AI-assisted dev / agentic workloads\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"AI-assisted dev / agentic workloads\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- build-cicd_inventory.json   (in-scope items — In-scope inventory for the ai-assisted dev / agentic workloads control (from GitHub Actions / GitLab CI / Jenkins))\n- build-cicd_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"AI-assisted dev / agentic workloads\",\n  \"domain\": \"Build Environment & CI/CD (Continuous Integration / Continuous Delivery)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{bcd_",
         "/evidence/build-cicd_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Platform / DevOps engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"AI-assisted dev / agentic workloads\" control must cover\n# fragment: aiassisted_dev_agentic_",
         "/evidence/build-cicd_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -4252,7 +4264,7 @@ export const buildCicdStages: StageConfig[] = [
           "id": "bcd-12-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"AI-assisted dev / agentic workloads\" sub-process of Build Env / CI/CD?",
+          "text": "What is the primary audit objective for the \"AI-assisted dev / agentic workloads\" sub-process of Build Environment & CI/CD (Continuous Integration / Continuous Delivery)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -4266,11 +4278,11 @@ export const buildCicdStages: StageConfig[] = [
           "id": "bcd-12-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"AI-assisted dev / agentic workloads\" matter to the broader Build Env / CI/CD posture?",
+          "text": "Why does a weakness in \"AI-assisted dev / agentic workloads\" matter to the broader Build Environment & CI/CD (Continuous Integration / Continuous Delivery) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Build Env / CI/CD controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -4283,7 +4295,7 @@ export const buildCicdStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"AI-assisted dev / agentic workloads\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The AI-assisted dev / agentic workloads evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the ai-assisted dev / agentic workloads control (from GitHub Actions / GitLab CI / Jenkins) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -4349,16 +4361,16 @@ export const buildCicdStages: StageConfig[] = [
         {
           "id": "bcd-12-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"AI-assisted dev / agentic workloads\"?",
+          "challenge": "Typical finding",
+          "text": "For \"AI-assisted dev / agentic workloads\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the ai-assisted dev / agentic workloads control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the ai-assisted dev / agentic workloads control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "bcd-12-q9",
@@ -4403,8 +4415,8 @@ export const buildCicdStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"SBOM image provenance\" control for Build Env / CI/CD is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Build Env / CI/CD source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"SBOM image provenance\" control for Build Environment & CI/CD (Continuous Integration / Continuous Delivery) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"SBOM image provenance\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) systems of record (GitHub Actions / GitLab CI / Jenkins; Container registry (ECR/GHCR); Kubernetes / orchestration) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the sbom image provenance control (from GitHub Actions / GitLab CI / Jenkins)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -4425,34 +4437,34 @@ export const buildCicdStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 5/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Build Env / CI/CD controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls."
       }
     },
     "badge": {
       "id": "bcd-13-badge",
-      "name": "Build Env / CI/CD Auditor",
+      "name": "Build Environment & CI/CD (Continuous Integration / Continuous Delivery) Auditor",
       "emoji": "🏗️"
     },
     "wonder": {
       "name": "SBOM image provenance",
-      "location": "Build Env / CI/CD",
+      "location": "Build Environment & CI/CD (Continuous Integration / Continuous Delivery)",
       "era": "Present Day",
       "emoji": "🏗️"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"SBOM image provenance\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Build Env / CI/CD control.",
+      "tagline": "Auditing \"SBOM image provenance\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the sbom image provenance control (from GitHub Actions / GitLab CI / Jenkins)) with read-only agents, run the test against policy, and issue a defensible opinion on the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) control.",
       "year": 2025,
       "overview": [
-        "The \"SBOM image provenance\" sub-process is one of the controls an auditor must verify for Build Env / CI/CD. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that sbom image provenance is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"SBOM image provenance\" sub-process is one of the controls an auditor must verify for Build Environment & CI/CD (Continuous Integration / Continuous Delivery). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the sbom image provenance control (from GitHub Actions / GitLab CI / Jenkins), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"SBOM image provenance\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `13_sbom_image_provenance_mcp.py` exposes read-only tools that turn each Build Env / CI/CD source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `13_sbom_image_provenance_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from GitHub Actions / GitLab CI / Jenkins and Container registry (ECR/GHCR) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 13_sbom_image_provenance_mcp.py` to expose it to your agent — or `python 13_sbom_image_provenance_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -4474,7 +4486,7 @@ export const buildCicdStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Build Env / CI/CD scope + policy",
+            "sub": "define Build Environment & CI/CD (Continuous Integration / Continuous Delivery) scope + policy",
             "type": "attacker"
           },
           {
@@ -4510,12 +4522,13 @@ export const buildCicdStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"SBOM image provenance\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the sbom image provenance control (from GitHub Actions / GitLab CI / Jenkins).",
+        "The test: Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"SBOM image provenance\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the sbom image provenance control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -4539,21 +4552,21 @@ export const buildCicdStages: StageConfig[] = [
         {
           "name": "13_sbom_image_provenance_mcp.py",
           "url": "/audit-code/build-cicd/13_sbom_image_provenance_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Build Env / CI/CD evidence for \"SBOM image provenance\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) evidence for \"SBOM image provenance\" (in-scope inventory for the sbom image provenance control (from github actions / gitlab ci / jenkins)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"SBOM image provenance\" control for Build Env / CI/CD at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"SBOM image provenance\" control for Build Environment & CI/CD (Continuous Integration / Continuous Delivery) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"SBOM image provenance\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the sbom image provenance control (from GitHub Actions / GitLab CI / Jenkins) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live GitHub Actions / GitLab CI / Jenkins APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. GitHub Actions / GitLab CI / Jenkins gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. GitHub Actions / GitLab CI / Jenkins is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from GitHub Actions / GitLab CI / Jenkins; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Build Env / CI/CD: \"SBOM image provenance\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- build-cicd_inventory.json   (in-scope items from GitHub Actions / GitLab CI / Jenkins)\n- build-cicd_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"SBOM image provenance\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"SBOM image provenance\",\n  \"domain\": \"Build Env / CI/CD\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{bcd_",
+        "/evidence/README.md": "# AcmeCorp — Build Environment & CI/CD (Continuous Integration / Continuous Delivery): \"SBOM image provenance\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"SBOM image provenance\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- build-cicd_inventory.json   (in-scope items — In-scope inventory for the sbom image provenance control (from GitHub Actions / GitLab CI / Jenkins))\n- build-cicd_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"SBOM image provenance\",\n  \"domain\": \"Build Environment & CI/CD (Continuous Integration / Continuous Delivery)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{bcd_",
         "/evidence/build-cicd_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Platform / DevOps engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"SBOM image provenance\" control must cover\n# fragment: sbom_image_provenance_",
         "/evidence/build-cicd_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -4617,7 +4630,7 @@ export const buildCicdStages: StageConfig[] = [
           "id": "bcd-13-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"SBOM image provenance\" sub-process of Build Env / CI/CD?",
+          "text": "What is the primary audit objective for the \"SBOM image provenance\" sub-process of Build Environment & CI/CD (Continuous Integration / Continuous Delivery)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -4631,11 +4644,11 @@ export const buildCicdStages: StageConfig[] = [
           "id": "bcd-13-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"SBOM image provenance\" matter to the broader Build Env / CI/CD posture?",
+          "text": "Why does a weakness in \"SBOM image provenance\" matter to the broader Build Environment & CI/CD (Continuous Integration / Continuous Delivery) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Build Env / CI/CD controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -4648,7 +4661,7 @@ export const buildCicdStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"SBOM image provenance\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The SBOM image provenance evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the sbom image provenance control (from GitHub Actions / GitLab CI / Jenkins) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -4714,16 +4727,16 @@ export const buildCicdStages: StageConfig[] = [
         {
           "id": "bcd-13-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"SBOM image provenance\"?",
+          "challenge": "Typical finding",
+          "text": "For \"SBOM image provenance\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the sbom image provenance control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the sbom image provenance control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "bcd-13-q9",
@@ -4768,8 +4781,8 @@ export const buildCicdStages: StageConfig[] = [
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Vulnerability scanning and testing\" control for Build Env / CI/CD is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Build Env / CI/CD source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Vulnerability scanning and testing\" control for Build Environment & CI/CD (Continuous Integration / Continuous Delivery) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Vulnerability scanning and testing\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) systems of record (GitHub Actions / GitLab CI / Jenkins; Container registry (ECR/GHCR); Kubernetes / orchestration) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the vulnerability scanning and testing control (from GitHub Actions / GitLab CI / Jenkins)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -4790,34 +4803,34 @@ export const buildCicdStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 7/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 9/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Build Env / CI/CD controls."
+        "value": "VALUE 9/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls."
       }
     },
     "badge": {
       "id": "bcd-14-badge",
-      "name": "Build Env / CI/CD Auditor",
+      "name": "Build Environment & CI/CD (Continuous Integration / Continuous Delivery) Auditor",
       "emoji": "🏗️"
     },
     "wonder": {
       "name": "Vulnerability scanning and testing",
-      "location": "Build Env / CI/CD",
+      "location": "Build Environment & CI/CD (Continuous Integration / Continuous Delivery)",
       "era": "Present Day",
       "emoji": "🏗️"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Vulnerability scanning and testing\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Build Env / CI/CD control.",
+      "tagline": "Auditing \"Vulnerability scanning and testing\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the vulnerability scanning and testing control (from GitHub Actions / GitLab CI / Jenkins)) with read-only agents, run the test against policy, and issue a defensible opinion on the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) control.",
       "year": 2025,
       "overview": [
-        "The \"Vulnerability scanning and testing\" sub-process is one of the controls an auditor must verify for Build Env / CI/CD. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that vulnerability scanning and testing is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Vulnerability scanning and testing\" sub-process is one of the controls an auditor must verify for Build Environment & CI/CD (Continuous Integration / Continuous Delivery). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the vulnerability scanning and testing control (from GitHub Actions / GitLab CI / Jenkins), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Vulnerability scanning and testing\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `14_vulnerability_scanning_and_testing_mcp.py` exposes read-only tools that turn each Build Env / CI/CD source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `14_vulnerability_scanning_and_testing_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from GitHub Actions / GitLab CI / Jenkins and Container registry (ECR/GHCR) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 14_vulnerability_scanning_and_testing_mcp.py` to expose it to your agent — or `python 14_vulnerability_scanning_and_testing_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -4839,7 +4852,7 @@ export const buildCicdStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Build Env / CI/CD scope + policy",
+            "sub": "define Build Environment & CI/CD (Continuous Integration / Continuous Delivery) scope + policy",
             "type": "attacker"
           },
           {
@@ -4875,12 +4888,13 @@ export const buildCicdStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Vulnerability scanning and testing\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the vulnerability scanning and testing control (from GitHub Actions / GitLab CI / Jenkins).",
+        "The test: Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Vulnerability scanning and testing\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the vulnerability scanning and testing control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -4904,21 +4918,21 @@ export const buildCicdStages: StageConfig[] = [
         {
           "name": "14_vulnerability_scanning_and_testing_mcp.py",
           "url": "/audit-code/build-cicd/14_vulnerability_scanning_and_testing_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Build Env / CI/CD evidence for \"Vulnerability scanning and testing\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) evidence for \"Vulnerability scanning and testing\" (in-scope inventory for the vulnerability scanning and testing control (from github actions / gitlab ci / jenkins)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Vulnerability scanning and testing\" control for Build Env / CI/CD at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Vulnerability scanning and testing\" control for Build Environment & CI/CD (Continuous Integration / Continuous Delivery) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Vulnerability scanning and testing\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the vulnerability scanning and testing control (from GitHub Actions / GitLab CI / Jenkins) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live GitHub Actions / GitLab CI / Jenkins APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. GitHub Actions / GitLab CI / Jenkins gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. GitHub Actions / GitLab CI / Jenkins is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from GitHub Actions / GitLab CI / Jenkins; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Build Env / CI/CD: \"Vulnerability scanning and testing\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- build-cicd_inventory.json   (in-scope items from GitHub Actions / GitLab CI / Jenkins)\n- build-cicd_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Vulnerability scanning and testing\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Vulnerability scanning and testing\",\n  \"domain\": \"Build Env / CI/CD\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{bcd_",
+        "/evidence/README.md": "# AcmeCorp — Build Environment & CI/CD (Continuous Integration / Continuous Delivery): \"Vulnerability scanning and testing\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"Vulnerability scanning and testing\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- build-cicd_inventory.json   (in-scope items — In-scope inventory for the vulnerability scanning and testing control (from GitHub Actions / GitLab CI / Jenkins))\n- build-cicd_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Vulnerability scanning and testing\",\n  \"domain\": \"Build Environment & CI/CD (Continuous Integration / Continuous Delivery)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{bcd_",
         "/evidence/build-cicd_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Platform / DevOps engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Vulnerability scanning and testing\" control must cover\n# fragment: vulnerability_scanning_testing_",
         "/evidence/build-cicd_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -4982,7 +4996,7 @@ export const buildCicdStages: StageConfig[] = [
           "id": "bcd-14-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Vulnerability scanning and testing\" sub-process of Build Env / CI/CD?",
+          "text": "What is the primary audit objective for the \"Vulnerability scanning and testing\" sub-process of Build Environment & CI/CD (Continuous Integration / Continuous Delivery)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -4996,11 +5010,11 @@ export const buildCicdStages: StageConfig[] = [
           "id": "bcd-14-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Vulnerability scanning and testing\" matter to the broader Build Env / CI/CD posture?",
+          "text": "Why does a weakness in \"Vulnerability scanning and testing\" matter to the broader Build Environment & CI/CD (Continuous Integration / Continuous Delivery) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Build Env / CI/CD controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -5013,7 +5027,7 @@ export const buildCicdStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Vulnerability scanning and testing\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Vulnerability scanning and testing evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the vulnerability scanning and testing control (from GitHub Actions / GitLab CI / Jenkins) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -5079,16 +5093,16 @@ export const buildCicdStages: StageConfig[] = [
         {
           "id": "bcd-14-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Vulnerability scanning and testing\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Vulnerability scanning and testing\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the vulnerability scanning and testing control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the vulnerability scanning and testing control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "bcd-14-q9",
@@ -5133,8 +5147,8 @@ export const buildCicdStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"License scanning\" control for Build Env / CI/CD is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Build Env / CI/CD source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"License scanning\" control for Build Environment & CI/CD (Continuous Integration / Continuous Delivery) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"License scanning\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) systems of record (GitHub Actions / GitLab CI / Jenkins; Container registry (ECR/GHCR); Kubernetes / orchestration) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the license scanning control (from GitHub Actions / GitLab CI / Jenkins)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -5155,34 +5169,34 @@ export const buildCicdStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 8/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Build Env / CI/CD controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls."
       }
     },
     "badge": {
       "id": "bcd-15-badge",
-      "name": "Build Env / CI/CD Auditor",
+      "name": "Build Environment & CI/CD (Continuous Integration / Continuous Delivery) Auditor",
       "emoji": "🏗️"
     },
     "wonder": {
       "name": "License scanning",
-      "location": "Build Env / CI/CD",
+      "location": "Build Environment & CI/CD (Continuous Integration / Continuous Delivery)",
       "era": "Present Day",
       "emoji": "🏗️"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"License scanning\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Build Env / CI/CD control.",
+      "tagline": "Auditing \"License scanning\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the license scanning control (from GitHub Actions / GitLab CI / Jenkins)) with read-only agents, run the test against policy, and issue a defensible opinion on the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) control.",
       "year": 2025,
       "overview": [
-        "The \"License scanning\" sub-process is one of the controls an auditor must verify for Build Env / CI/CD. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that license scanning is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"License scanning\" sub-process is one of the controls an auditor must verify for Build Environment & CI/CD (Continuous Integration / Continuous Delivery). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the license scanning control (from GitHub Actions / GitLab CI / Jenkins), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"License scanning\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `15_license_scanning_mcp.py` exposes read-only tools that turn each Build Env / CI/CD source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `15_license_scanning_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from GitHub Actions / GitLab CI / Jenkins and Container registry (ECR/GHCR) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 15_license_scanning_mcp.py` to expose it to your agent — or `python 15_license_scanning_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -5204,7 +5218,7 @@ export const buildCicdStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Build Env / CI/CD scope + policy",
+            "sub": "define Build Environment & CI/CD (Continuous Integration / Continuous Delivery) scope + policy",
             "type": "attacker"
           },
           {
@@ -5240,12 +5254,13 @@ export const buildCicdStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"License scanning\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the license scanning control (from GitHub Actions / GitLab CI / Jenkins).",
+        "The test: Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"License scanning\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the license scanning control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -5269,21 +5284,21 @@ export const buildCicdStages: StageConfig[] = [
         {
           "name": "15_license_scanning_mcp.py",
           "url": "/audit-code/build-cicd/15_license_scanning_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Build Env / CI/CD evidence for \"License scanning\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) evidence for \"License scanning\" (in-scope inventory for the license scanning control (from github actions / gitlab ci / jenkins)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"License scanning\" control for Build Env / CI/CD at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"License scanning\" control for Build Environment & CI/CD (Continuous Integration / Continuous Delivery) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"License scanning\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the license scanning control (from GitHub Actions / GitLab CI / Jenkins) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live GitHub Actions / GitLab CI / Jenkins APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. GitHub Actions / GitLab CI / Jenkins gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. GitHub Actions / GitLab CI / Jenkins is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from GitHub Actions / GitLab CI / Jenkins; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Build Env / CI/CD: \"License scanning\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- build-cicd_inventory.json   (in-scope items from GitHub Actions / GitLab CI / Jenkins)\n- build-cicd_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"License scanning\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"License scanning\",\n  \"domain\": \"Build Env / CI/CD\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{bcd_",
+        "/evidence/README.md": "# AcmeCorp — Build Environment & CI/CD (Continuous Integration / Continuous Delivery): \"License scanning\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the \"License scanning\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- build-cicd_inventory.json   (in-scope items — In-scope inventory for the license scanning control (from GitHub Actions / GitLab CI / Jenkins))\n- build-cicd_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"License scanning\",\n  \"domain\": \"Build Environment & CI/CD (Continuous Integration / Continuous Delivery)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{bcd_",
         "/evidence/build-cicd_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Platform / DevOps engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"License scanning\" control must cover\n# fragment: license_scanning_",
         "/evidence/build-cicd_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"EXCEPTIONS\"\n}\n# fragment: exceptions}"
@@ -5347,7 +5362,7 @@ export const buildCicdStages: StageConfig[] = [
           "id": "bcd-15-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"License scanning\" sub-process of Build Env / CI/CD?",
+          "text": "What is the primary audit objective for the \"License scanning\" sub-process of Build Environment & CI/CD (Continuous Integration / Continuous Delivery)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -5361,11 +5376,11 @@ export const buildCicdStages: StageConfig[] = [
           "id": "bcd-15-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"License scanning\" matter to the broader Build Env / CI/CD posture?",
+          "text": "Why does a weakness in \"License scanning\" matter to the broader Build Environment & CI/CD (Continuous Integration / Continuous Delivery) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Build Env / CI/CD controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -5378,7 +5393,7 @@ export const buildCicdStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"License scanning\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The License scanning evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the license scanning control (from GitHub Actions / GitLab CI / Jenkins) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -5444,16 +5459,16 @@ export const buildCicdStages: StageConfig[] = [
         {
           "id": "bcd-15-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"License scanning\"?",
+          "challenge": "Typical finding",
+          "text": "For \"License scanning\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the license scanning control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the license scanning control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "bcd-15-q9",

@@ -2,9 +2,9 @@ import type { EpochConfig, StageConfig } from "../types";
 
 export const datacenterEpoch: EpochConfig = {
   "id": "datacenter",
-  "name": "Datacenter / Lab / CoLo",
-  "subtitle": "Agentic technical & privacy audit — Datacenter / Lab / CoLo",
-  "description": "Audit Datacenter / Lab / CoLo end to end with a read-only agent fleet: each sub-process is a module that teaches the control as a repeatable agentic workflow with downloadable MCP tooling, a CTF, and a 10-question quiz.",
+  "name": "Datacenter / Lab / Colocation (CoLo)",
+  "subtitle": "Agentic technical & privacy audit — Datacenter / Lab / Colocation (CoLo)",
+  "description": "Audit Datacenter / Lab / Colocation (CoLo) end to end with a read-only agent fleet: each sub-process is a module that teaches the control as a repeatable agentic workflow with downloadable MCP tooling, a CTF, and a 10-question quiz.",
   "emoji": "🏢",
   "color": "Stone",
   "unlocked": true
@@ -23,8 +23,8 @@ export const datacenterStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Physical security controls\" control for Datacenter / Lab / CoLo is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Datacenter / Lab / CoLo source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Physical security controls\" control for Datacenter / Lab / Colocation (CoLo) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Datacenter / Lab / Colocation (CoLo) policy/standard and flag every item where the \"Physical security controls\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Datacenter / Lab / Colocation (CoLo) systems of record (Badge / PACS access system; Environmental + power monitoring (DCIM); Asset / rack inventory) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the physical security controls control (from Badge / PACS access system)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -45,34 +45,34 @@ export const datacenterStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 5/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Datacenter / Lab / CoLo controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Datacenter / Lab / Colocation (CoLo) controls."
       }
     },
     "badge": {
       "id": "dcr-01-badge",
-      "name": "Datacenter / Lab / CoLo Auditor",
+      "name": "Datacenter / Lab / Colocation (CoLo) Auditor",
       "emoji": "🏢"
     },
     "wonder": {
       "name": "Physical security controls",
-      "location": "Datacenter / Lab / CoLo",
+      "location": "Datacenter / Lab / Colocation (CoLo)",
       "era": "Present Day",
       "emoji": "🏢"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Physical security controls\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Datacenter / Lab / CoLo control.",
+      "tagline": "Auditing \"Physical security controls\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the physical security controls control (from Badge / PACS access system)) with read-only agents, run the test against policy, and issue a defensible opinion on the Datacenter / Lab / Colocation (CoLo) control.",
       "year": 2025,
       "overview": [
-        "The \"Physical security controls\" sub-process is one of the controls an auditor must verify for Datacenter / Lab / CoLo. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that physical security controls is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Badge / PACS access system, Environmental + power monitoring (DCIM), Asset / rack inventory — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Physical security controls\" sub-process is one of the controls an auditor must verify for Datacenter / Lab / Colocation (CoLo). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the physical security controls control (from Badge / PACS access system), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Badge / PACS access system, Environmental + power monitoring (DCIM), Asset / rack inventory — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Datacenter / Lab / Colocation (CoLo) policy/standard and flag every item where the \"Physical security controls\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `01_physical_security_controls_mcp.py` exposes read-only tools that turn each Datacenter / Lab / CoLo source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `01_physical_security_controls_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Badge / PACS access system and Environmental + power monitoring (DCIM) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 01_physical_security_controls_mcp.py` to expose it to your agent — or `python 01_physical_security_controls_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -94,7 +94,7 @@ export const datacenterStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Datacenter / Lab / CoLo scope + policy",
+            "sub": "define Datacenter / Lab / Colocation (CoLo) scope + policy",
             "type": "attacker"
           },
           {
@@ -130,12 +130,13 @@ export const datacenterStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Physical security controls\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the physical security controls control (from Badge / PACS access system).",
+        "The test: Reconcile the in-scope inventory against the Datacenter / Lab / Colocation (CoLo) policy/standard and flag every item where the \"Physical security controls\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Badge / PACS access system, Environmental + power monitoring (DCIM), Asset / rack inventory) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the physical security controls control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -159,21 +160,21 @@ export const datacenterStages: StageConfig[] = [
         {
           "name": "01_physical_security_controls_mcp.py",
           "url": "/audit-code/datacenter/01_physical_security_controls_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Datacenter / Lab / CoLo evidence for \"Physical security controls\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Datacenter / Lab / Colocation (CoLo) evidence for \"Physical security controls\" (in-scope inventory for the physical security controls control (from badge / pacs access system)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Physical security controls\" control for Datacenter / Lab / CoLo at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Physical security controls\" control for Datacenter / Lab / Colocation (CoLo) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Datacenter / Lab / Colocation (CoLo) policy/standard and flag every item where the \"Physical security controls\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the physical security controls control (from Badge / PACS access system) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Badge / PACS access system APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Badge / PACS access system gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Badge / PACS access system is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Badge / PACS access system; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Datacenter / Lab / CoLo: \"Physical security controls\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- datacenter_inventory.json   (in-scope items from Badge / PACS access system)\n- datacenter_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Physical security controls\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Physical security controls\",\n  \"domain\": \"Datacenter / Lab / CoLo\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{dcr_",
+        "/evidence/README.md": "# AcmeCorp — Datacenter / Lab / Colocation (CoLo): \"Physical security controls\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Datacenter / Lab / Colocation (CoLo) policy/standard and flag every item where the \"Physical security controls\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- datacenter_inventory.json   (in-scope items — In-scope inventory for the physical security controls control (from Badge / PACS access system))\n- datacenter_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Physical security controls\",\n  \"domain\": \"Datacenter / Lab / Colocation (CoLo)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{dcr_",
         "/evidence/datacenter_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Facilities / Datacenter operations\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Physical security controls\" control must cover\n# fragment: physical_security_controls_",
         "/evidence/datacenter_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -237,7 +238,7 @@ export const datacenterStages: StageConfig[] = [
           "id": "dcr-01-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Physical security controls\" sub-process of Datacenter / Lab / CoLo?",
+          "text": "What is the primary audit objective for the \"Physical security controls\" sub-process of Datacenter / Lab / Colocation (CoLo)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -251,11 +252,11 @@ export const datacenterStages: StageConfig[] = [
           "id": "dcr-01-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Physical security controls\" matter to the broader Datacenter / Lab / CoLo posture?",
+          "text": "Why does a weakness in \"Physical security controls\" matter to the broader Datacenter / Lab / Colocation (CoLo) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Datacenter / Lab / CoLo controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Datacenter / Lab / Colocation (CoLo) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -268,7 +269,7 @@ export const datacenterStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Physical security controls\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Physical security controls evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the physical security controls control (from Badge / PACS access system) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -334,16 +335,16 @@ export const datacenterStages: StageConfig[] = [
         {
           "id": "dcr-01-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Physical security controls\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Physical security controls\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the physical security controls control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the physical security controls control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "dcr-01-q9",
@@ -388,8 +389,8 @@ export const datacenterStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Environmental controls\" control for Datacenter / Lab / CoLo is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Datacenter / Lab / CoLo source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Environmental controls\" control for Datacenter / Lab / Colocation (CoLo) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Datacenter / Lab / Colocation (CoLo) policy/standard and flag every item where the \"Environmental controls\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Datacenter / Lab / Colocation (CoLo) systems of record (Badge / PACS access system; Environmental + power monitoring (DCIM); Asset / rack inventory) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the environmental controls control (from Badge / PACS access system)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -410,34 +411,34 @@ export const datacenterStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 6/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Datacenter / Lab / CoLo controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Datacenter / Lab / Colocation (CoLo) controls."
       }
     },
     "badge": {
       "id": "dcr-02-badge",
-      "name": "Datacenter / Lab / CoLo Auditor",
+      "name": "Datacenter / Lab / Colocation (CoLo) Auditor",
       "emoji": "🏢"
     },
     "wonder": {
       "name": "Environmental controls",
-      "location": "Datacenter / Lab / CoLo",
+      "location": "Datacenter / Lab / Colocation (CoLo)",
       "era": "Present Day",
       "emoji": "🏢"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Environmental controls\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Datacenter / Lab / CoLo control.",
+      "tagline": "Auditing \"Environmental controls\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the environmental controls control (from Badge / PACS access system)) with read-only agents, run the test against policy, and issue a defensible opinion on the Datacenter / Lab / Colocation (CoLo) control.",
       "year": 2025,
       "overview": [
-        "The \"Environmental controls\" sub-process is one of the controls an auditor must verify for Datacenter / Lab / CoLo. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that environmental controls is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Badge / PACS access system, Environmental + power monitoring (DCIM), Asset / rack inventory — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Environmental controls\" sub-process is one of the controls an auditor must verify for Datacenter / Lab / Colocation (CoLo). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the environmental controls control (from Badge / PACS access system), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Badge / PACS access system, Environmental + power monitoring (DCIM), Asset / rack inventory — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Datacenter / Lab / Colocation (CoLo) policy/standard and flag every item where the \"Environmental controls\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `02_environmental_controls_mcp.py` exposes read-only tools that turn each Datacenter / Lab / CoLo source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `02_environmental_controls_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Badge / PACS access system and Environmental + power monitoring (DCIM) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 02_environmental_controls_mcp.py` to expose it to your agent — or `python 02_environmental_controls_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -459,7 +460,7 @@ export const datacenterStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Datacenter / Lab / CoLo scope + policy",
+            "sub": "define Datacenter / Lab / Colocation (CoLo) scope + policy",
             "type": "attacker"
           },
           {
@@ -495,12 +496,13 @@ export const datacenterStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Environmental controls\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the environmental controls control (from Badge / PACS access system).",
+        "The test: Reconcile the in-scope inventory against the Datacenter / Lab / Colocation (CoLo) policy/standard and flag every item where the \"Environmental controls\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Badge / PACS access system, Environmental + power monitoring (DCIM), Asset / rack inventory) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the environmental controls control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -524,21 +526,21 @@ export const datacenterStages: StageConfig[] = [
         {
           "name": "02_environmental_controls_mcp.py",
           "url": "/audit-code/datacenter/02_environmental_controls_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Datacenter / Lab / CoLo evidence for \"Environmental controls\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Datacenter / Lab / Colocation (CoLo) evidence for \"Environmental controls\" (in-scope inventory for the environmental controls control (from badge / pacs access system)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Environmental controls\" control for Datacenter / Lab / CoLo at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Environmental controls\" control for Datacenter / Lab / Colocation (CoLo) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Datacenter / Lab / Colocation (CoLo) policy/standard and flag every item where the \"Environmental controls\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the environmental controls control (from Badge / PACS access system) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Badge / PACS access system APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Badge / PACS access system gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Badge / PACS access system is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Badge / PACS access system; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Datacenter / Lab / CoLo: \"Environmental controls\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- datacenter_inventory.json   (in-scope items from Badge / PACS access system)\n- datacenter_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Environmental controls\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Environmental controls\",\n  \"domain\": \"Datacenter / Lab / CoLo\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{dcr_",
+        "/evidence/README.md": "# AcmeCorp — Datacenter / Lab / Colocation (CoLo): \"Environmental controls\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Datacenter / Lab / Colocation (CoLo) policy/standard and flag every item where the \"Environmental controls\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- datacenter_inventory.json   (in-scope items — In-scope inventory for the environmental controls control (from Badge / PACS access system))\n- datacenter_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Environmental controls\",\n  \"domain\": \"Datacenter / Lab / Colocation (CoLo)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{dcr_",
         "/evidence/datacenter_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Facilities / Datacenter operations\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Environmental controls\" control must cover\n# fragment: environmental_controls_",
         "/evidence/datacenter_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -602,7 +604,7 @@ export const datacenterStages: StageConfig[] = [
           "id": "dcr-02-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Environmental controls\" sub-process of Datacenter / Lab / CoLo?",
+          "text": "What is the primary audit objective for the \"Environmental controls\" sub-process of Datacenter / Lab / Colocation (CoLo)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -616,11 +618,11 @@ export const datacenterStages: StageConfig[] = [
           "id": "dcr-02-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Environmental controls\" matter to the broader Datacenter / Lab / CoLo posture?",
+          "text": "Why does a weakness in \"Environmental controls\" matter to the broader Datacenter / Lab / Colocation (CoLo) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Datacenter / Lab / CoLo controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Datacenter / Lab / Colocation (CoLo) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -633,7 +635,7 @@ export const datacenterStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Environmental controls\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Environmental controls evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the environmental controls control (from Badge / PACS access system) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -699,16 +701,16 @@ export const datacenterStages: StageConfig[] = [
         {
           "id": "dcr-02-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Environmental controls\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Environmental controls\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the environmental controls control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the environmental controls control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "dcr-02-q9",
@@ -753,8 +755,8 @@ export const datacenterStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Safety controls\" control for Datacenter / Lab / CoLo is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Datacenter / Lab / CoLo source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Safety controls\" control for Datacenter / Lab / Colocation (CoLo) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Datacenter / Lab / Colocation (CoLo) policy/standard and flag every item where the \"Safety controls\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Datacenter / Lab / Colocation (CoLo) systems of record (Badge / PACS access system; Environmental + power monitoring (DCIM); Asset / rack inventory) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the safety controls control (from Badge / PACS access system)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -775,34 +777,34 @@ export const datacenterStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 7/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Datacenter / Lab / CoLo controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Datacenter / Lab / Colocation (CoLo) controls."
       }
     },
     "badge": {
       "id": "dcr-03-badge",
-      "name": "Datacenter / Lab / CoLo Auditor",
+      "name": "Datacenter / Lab / Colocation (CoLo) Auditor",
       "emoji": "🏢"
     },
     "wonder": {
       "name": "Safety controls",
-      "location": "Datacenter / Lab / CoLo",
+      "location": "Datacenter / Lab / Colocation (CoLo)",
       "era": "Present Day",
       "emoji": "🏢"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Safety controls\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Datacenter / Lab / CoLo control.",
+      "tagline": "Auditing \"Safety controls\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the safety controls control (from Badge / PACS access system)) with read-only agents, run the test against policy, and issue a defensible opinion on the Datacenter / Lab / Colocation (CoLo) control.",
       "year": 2025,
       "overview": [
-        "The \"Safety controls\" sub-process is one of the controls an auditor must verify for Datacenter / Lab / CoLo. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that safety controls is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Badge / PACS access system, Environmental + power monitoring (DCIM), Asset / rack inventory — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Safety controls\" sub-process is one of the controls an auditor must verify for Datacenter / Lab / Colocation (CoLo). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the safety controls control (from Badge / PACS access system), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Badge / PACS access system, Environmental + power monitoring (DCIM), Asset / rack inventory — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Datacenter / Lab / Colocation (CoLo) policy/standard and flag every item where the \"Safety controls\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `03_safety_controls_mcp.py` exposes read-only tools that turn each Datacenter / Lab / CoLo source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `03_safety_controls_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Badge / PACS access system and Environmental + power monitoring (DCIM) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 03_safety_controls_mcp.py` to expose it to your agent — or `python 03_safety_controls_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -824,7 +826,7 @@ export const datacenterStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Datacenter / Lab / CoLo scope + policy",
+            "sub": "define Datacenter / Lab / Colocation (CoLo) scope + policy",
             "type": "attacker"
           },
           {
@@ -860,12 +862,13 @@ export const datacenterStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Safety controls\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the safety controls control (from Badge / PACS access system).",
+        "The test: Reconcile the in-scope inventory against the Datacenter / Lab / Colocation (CoLo) policy/standard and flag every item where the \"Safety controls\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Badge / PACS access system, Environmental + power monitoring (DCIM), Asset / rack inventory) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the safety controls control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -889,21 +892,21 @@ export const datacenterStages: StageConfig[] = [
         {
           "name": "03_safety_controls_mcp.py",
           "url": "/audit-code/datacenter/03_safety_controls_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Datacenter / Lab / CoLo evidence for \"Safety controls\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Datacenter / Lab / Colocation (CoLo) evidence for \"Safety controls\" (in-scope inventory for the safety controls control (from badge / pacs access system)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Safety controls\" control for Datacenter / Lab / CoLo at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Safety controls\" control for Datacenter / Lab / Colocation (CoLo) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Datacenter / Lab / Colocation (CoLo) policy/standard and flag every item where the \"Safety controls\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the safety controls control (from Badge / PACS access system) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Badge / PACS access system APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Badge / PACS access system gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Badge / PACS access system is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Badge / PACS access system; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Datacenter / Lab / CoLo: \"Safety controls\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- datacenter_inventory.json   (in-scope items from Badge / PACS access system)\n- datacenter_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Safety controls\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Safety controls\",\n  \"domain\": \"Datacenter / Lab / CoLo\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{dcr_",
+        "/evidence/README.md": "# AcmeCorp — Datacenter / Lab / Colocation (CoLo): \"Safety controls\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Datacenter / Lab / Colocation (CoLo) policy/standard and flag every item where the \"Safety controls\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- datacenter_inventory.json   (in-scope items — In-scope inventory for the safety controls control (from Badge / PACS access system))\n- datacenter_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Safety controls\",\n  \"domain\": \"Datacenter / Lab / Colocation (CoLo)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{dcr_",
         "/evidence/datacenter_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Facilities / Datacenter operations\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Safety controls\" control must cover\n# fragment: safety_controls_",
         "/evidence/datacenter_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -967,7 +970,7 @@ export const datacenterStages: StageConfig[] = [
           "id": "dcr-03-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Safety controls\" sub-process of Datacenter / Lab / CoLo?",
+          "text": "What is the primary audit objective for the \"Safety controls\" sub-process of Datacenter / Lab / Colocation (CoLo)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -981,11 +984,11 @@ export const datacenterStages: StageConfig[] = [
           "id": "dcr-03-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Safety controls\" matter to the broader Datacenter / Lab / CoLo posture?",
+          "text": "Why does a weakness in \"Safety controls\" matter to the broader Datacenter / Lab / Colocation (CoLo) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Datacenter / Lab / CoLo controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Datacenter / Lab / Colocation (CoLo) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -998,7 +1001,7 @@ export const datacenterStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Safety controls\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Safety controls evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the safety controls control (from Badge / PACS access system) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -1064,16 +1067,16 @@ export const datacenterStages: StageConfig[] = [
         {
           "id": "dcr-03-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Safety controls\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Safety controls\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the safety controls control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the safety controls control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "dcr-03-q9",
@@ -1118,8 +1121,8 @@ export const datacenterStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Asset inventory mgmt\" control for Datacenter / Lab / CoLo is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Datacenter / Lab / CoLo source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Asset inventory mgmt\" control for Datacenter / Lab / Colocation (CoLo) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Datacenter / Lab / Colocation (CoLo) policy/standard and flag every item where the \"Asset inventory mgmt\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Datacenter / Lab / Colocation (CoLo) systems of record (Badge / PACS access system; Environmental + power monitoring (DCIM); Asset / rack inventory) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the asset inventory mgmt control (from Badge / PACS access system)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -1140,34 +1143,34 @@ export const datacenterStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 6/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Datacenter / Lab / CoLo controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Datacenter / Lab / Colocation (CoLo) controls."
       }
     },
     "badge": {
       "id": "dcr-04-badge",
-      "name": "Datacenter / Lab / CoLo Auditor",
+      "name": "Datacenter / Lab / Colocation (CoLo) Auditor",
       "emoji": "🏢"
     },
     "wonder": {
       "name": "Asset inventory mgmt",
-      "location": "Datacenter / Lab / CoLo",
+      "location": "Datacenter / Lab / Colocation (CoLo)",
       "era": "Present Day",
       "emoji": "🏢"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Asset inventory mgmt\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Datacenter / Lab / CoLo control.",
+      "tagline": "Auditing \"Asset inventory mgmt\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the asset inventory mgmt control (from Badge / PACS access system)) with read-only agents, run the test against policy, and issue a defensible opinion on the Datacenter / Lab / Colocation (CoLo) control.",
       "year": 2025,
       "overview": [
-        "The \"Asset inventory mgmt\" sub-process is one of the controls an auditor must verify for Datacenter / Lab / CoLo. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that asset inventory mgmt is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Badge / PACS access system, Environmental + power monitoring (DCIM), Asset / rack inventory — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Asset inventory mgmt\" sub-process is one of the controls an auditor must verify for Datacenter / Lab / Colocation (CoLo). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the asset inventory mgmt control (from Badge / PACS access system), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Badge / PACS access system, Environmental + power monitoring (DCIM), Asset / rack inventory — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Datacenter / Lab / Colocation (CoLo) policy/standard and flag every item where the \"Asset inventory mgmt\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `04_asset_inventory_mgmt_mcp.py` exposes read-only tools that turn each Datacenter / Lab / CoLo source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `04_asset_inventory_mgmt_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Badge / PACS access system and Environmental + power monitoring (DCIM) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 04_asset_inventory_mgmt_mcp.py` to expose it to your agent — or `python 04_asset_inventory_mgmt_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -1189,7 +1192,7 @@ export const datacenterStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Datacenter / Lab / CoLo scope + policy",
+            "sub": "define Datacenter / Lab / Colocation (CoLo) scope + policy",
             "type": "attacker"
           },
           {
@@ -1225,12 +1228,13 @@ export const datacenterStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Asset inventory mgmt\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the asset inventory mgmt control (from Badge / PACS access system).",
+        "The test: Reconcile the in-scope inventory against the Datacenter / Lab / Colocation (CoLo) policy/standard and flag every item where the \"Asset inventory mgmt\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Badge / PACS access system, Environmental + power monitoring (DCIM), Asset / rack inventory) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the asset inventory mgmt control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -1254,21 +1258,21 @@ export const datacenterStages: StageConfig[] = [
         {
           "name": "04_asset_inventory_mgmt_mcp.py",
           "url": "/audit-code/datacenter/04_asset_inventory_mgmt_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Datacenter / Lab / CoLo evidence for \"Asset inventory mgmt\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Datacenter / Lab / Colocation (CoLo) evidence for \"Asset inventory mgmt\" (in-scope inventory for the asset inventory mgmt control (from badge / pacs access system)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Asset inventory mgmt\" control for Datacenter / Lab / CoLo at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Asset inventory mgmt\" control for Datacenter / Lab / Colocation (CoLo) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Datacenter / Lab / Colocation (CoLo) policy/standard and flag every item where the \"Asset inventory mgmt\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the asset inventory mgmt control (from Badge / PACS access system) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Badge / PACS access system APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Badge / PACS access system gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Badge / PACS access system is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Badge / PACS access system; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Datacenter / Lab / CoLo: \"Asset inventory mgmt\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- datacenter_inventory.json   (in-scope items from Badge / PACS access system)\n- datacenter_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Asset inventory mgmt\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Asset inventory mgmt\",\n  \"domain\": \"Datacenter / Lab / CoLo\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{dcr_",
+        "/evidence/README.md": "# AcmeCorp — Datacenter / Lab / Colocation (CoLo): \"Asset inventory mgmt\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Datacenter / Lab / Colocation (CoLo) policy/standard and flag every item where the \"Asset inventory mgmt\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- datacenter_inventory.json   (in-scope items — In-scope inventory for the asset inventory mgmt control (from Badge / PACS access system))\n- datacenter_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Asset inventory mgmt\",\n  \"domain\": \"Datacenter / Lab / Colocation (CoLo)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{dcr_",
         "/evidence/datacenter_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Facilities / Datacenter operations\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Asset inventory mgmt\" control must cover\n# fragment: asset_inventory_mgmt_",
         "/evidence/datacenter_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -1332,7 +1336,7 @@ export const datacenterStages: StageConfig[] = [
           "id": "dcr-04-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Asset inventory mgmt\" sub-process of Datacenter / Lab / CoLo?",
+          "text": "What is the primary audit objective for the \"Asset inventory mgmt\" sub-process of Datacenter / Lab / Colocation (CoLo)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -1346,11 +1350,11 @@ export const datacenterStages: StageConfig[] = [
           "id": "dcr-04-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Asset inventory mgmt\" matter to the broader Datacenter / Lab / CoLo posture?",
+          "text": "Why does a weakness in \"Asset inventory mgmt\" matter to the broader Datacenter / Lab / Colocation (CoLo) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Datacenter / Lab / CoLo controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Datacenter / Lab / Colocation (CoLo) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -1363,7 +1367,7 @@ export const datacenterStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Asset inventory mgmt\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Asset inventory mgmt evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the asset inventory mgmt control (from Badge / PACS access system) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -1429,16 +1433,16 @@ export const datacenterStages: StageConfig[] = [
         {
           "id": "dcr-04-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Asset inventory mgmt\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Asset inventory mgmt\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the asset inventory mgmt control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the asset inventory mgmt control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "dcr-04-q9",
@@ -1483,8 +1487,8 @@ export const datacenterStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Maintenance and vendor mgmt\" control for Datacenter / Lab / CoLo is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Datacenter / Lab / CoLo source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Maintenance and vendor mgmt\" control for Datacenter / Lab / Colocation (CoLo) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Datacenter / Lab / Colocation (CoLo) policy/standard and flag every item where the \"Maintenance and vendor mgmt\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Datacenter / Lab / Colocation (CoLo) systems of record (Badge / PACS access system; Environmental + power monitoring (DCIM); Asset / rack inventory) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the maintenance and vendor mgmt control (from Badge / PACS access system)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -1505,34 +1509,34 @@ export const datacenterStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 6/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Datacenter / Lab / CoLo controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Datacenter / Lab / Colocation (CoLo) controls."
       }
     },
     "badge": {
       "id": "dcr-05-badge",
-      "name": "Datacenter / Lab / CoLo Auditor",
+      "name": "Datacenter / Lab / Colocation (CoLo) Auditor",
       "emoji": "🏢"
     },
     "wonder": {
       "name": "Maintenance and vendor mgmt",
-      "location": "Datacenter / Lab / CoLo",
+      "location": "Datacenter / Lab / Colocation (CoLo)",
       "era": "Present Day",
       "emoji": "🏢"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Maintenance and vendor mgmt\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Datacenter / Lab / CoLo control.",
+      "tagline": "Auditing \"Maintenance and vendor mgmt\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the maintenance and vendor mgmt control (from Badge / PACS access system)) with read-only agents, run the test against policy, and issue a defensible opinion on the Datacenter / Lab / Colocation (CoLo) control.",
       "year": 2025,
       "overview": [
-        "The \"Maintenance and vendor mgmt\" sub-process is one of the controls an auditor must verify for Datacenter / Lab / CoLo. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that maintenance and vendor mgmt is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Badge / PACS access system, Environmental + power monitoring (DCIM), Asset / rack inventory — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Maintenance and vendor mgmt\" sub-process is one of the controls an auditor must verify for Datacenter / Lab / Colocation (CoLo). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the maintenance and vendor mgmt control (from Badge / PACS access system), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Badge / PACS access system, Environmental + power monitoring (DCIM), Asset / rack inventory — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Datacenter / Lab / Colocation (CoLo) policy/standard and flag every item where the \"Maintenance and vendor mgmt\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `05_maintenance_and_vendor_mgmt_mcp.py` exposes read-only tools that turn each Datacenter / Lab / CoLo source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `05_maintenance_and_vendor_mgmt_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Badge / PACS access system and Environmental + power monitoring (DCIM) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 05_maintenance_and_vendor_mgmt_mcp.py` to expose it to your agent — or `python 05_maintenance_and_vendor_mgmt_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -1554,7 +1558,7 @@ export const datacenterStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Datacenter / Lab / CoLo scope + policy",
+            "sub": "define Datacenter / Lab / Colocation (CoLo) scope + policy",
             "type": "attacker"
           },
           {
@@ -1590,12 +1594,13 @@ export const datacenterStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Maintenance and vendor mgmt\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the maintenance and vendor mgmt control (from Badge / PACS access system).",
+        "The test: Reconcile the in-scope inventory against the Datacenter / Lab / Colocation (CoLo) policy/standard and flag every item where the \"Maintenance and vendor mgmt\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Badge / PACS access system, Environmental + power monitoring (DCIM), Asset / rack inventory) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the maintenance and vendor mgmt control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -1619,21 +1624,21 @@ export const datacenterStages: StageConfig[] = [
         {
           "name": "05_maintenance_and_vendor_mgmt_mcp.py",
           "url": "/audit-code/datacenter/05_maintenance_and_vendor_mgmt_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Datacenter / Lab / CoLo evidence for \"Maintenance and vendor mgmt\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Datacenter / Lab / Colocation (CoLo) evidence for \"Maintenance and vendor mgmt\" (in-scope inventory for the maintenance and vendor mgmt control (from badge / pacs access system)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Maintenance and vendor mgmt\" control for Datacenter / Lab / CoLo at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Maintenance and vendor mgmt\" control for Datacenter / Lab / Colocation (CoLo) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Datacenter / Lab / Colocation (CoLo) policy/standard and flag every item where the \"Maintenance and vendor mgmt\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the maintenance and vendor mgmt control (from Badge / PACS access system) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Badge / PACS access system APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Badge / PACS access system gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Badge / PACS access system is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Badge / PACS access system; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Datacenter / Lab / CoLo: \"Maintenance and vendor mgmt\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- datacenter_inventory.json   (in-scope items from Badge / PACS access system)\n- datacenter_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Maintenance and vendor mgmt\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Maintenance and vendor mgmt\",\n  \"domain\": \"Datacenter / Lab / CoLo\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{dcr_",
+        "/evidence/README.md": "# AcmeCorp — Datacenter / Lab / Colocation (CoLo): \"Maintenance and vendor mgmt\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Datacenter / Lab / Colocation (CoLo) policy/standard and flag every item where the \"Maintenance and vendor mgmt\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- datacenter_inventory.json   (in-scope items — In-scope inventory for the maintenance and vendor mgmt control (from Badge / PACS access system))\n- datacenter_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Maintenance and vendor mgmt\",\n  \"domain\": \"Datacenter / Lab / Colocation (CoLo)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{dcr_",
         "/evidence/datacenter_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Facilities / Datacenter operations\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Maintenance and vendor mgmt\" control must cover\n# fragment: maintenance_vendor_mgmt_",
         "/evidence/datacenter_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"EXCEPTIONS\"\n}\n# fragment: exceptions}"
@@ -1697,7 +1702,7 @@ export const datacenterStages: StageConfig[] = [
           "id": "dcr-05-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Maintenance and vendor mgmt\" sub-process of Datacenter / Lab / CoLo?",
+          "text": "What is the primary audit objective for the \"Maintenance and vendor mgmt\" sub-process of Datacenter / Lab / Colocation (CoLo)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -1711,11 +1716,11 @@ export const datacenterStages: StageConfig[] = [
           "id": "dcr-05-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Maintenance and vendor mgmt\" matter to the broader Datacenter / Lab / CoLo posture?",
+          "text": "Why does a weakness in \"Maintenance and vendor mgmt\" matter to the broader Datacenter / Lab / Colocation (CoLo) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Datacenter / Lab / CoLo controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Datacenter / Lab / Colocation (CoLo) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -1728,7 +1733,7 @@ export const datacenterStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Maintenance and vendor mgmt\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Maintenance and vendor mgmt evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the maintenance and vendor mgmt control (from Badge / PACS access system) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -1794,16 +1799,16 @@ export const datacenterStages: StageConfig[] = [
         {
           "id": "dcr-05-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Maintenance and vendor mgmt\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Maintenance and vendor mgmt\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the maintenance and vendor mgmt control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the maintenance and vendor mgmt control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "dcr-05-q9",
@@ -1848,8 +1853,8 @@ export const datacenterStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Business continuity planning\" control for Datacenter / Lab / CoLo is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Datacenter / Lab / CoLo source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Business continuity planning\" control for Datacenter / Lab / Colocation (CoLo) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Datacenter / Lab / Colocation (CoLo) policy/standard and flag every item where the \"Business continuity planning\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Datacenter / Lab / Colocation (CoLo) systems of record (Badge / PACS access system; Environmental + power monitoring (DCIM); Asset / rack inventory) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the business continuity planning control (from Badge / PACS access system)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -1870,34 +1875,34 @@ export const datacenterStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 7/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Datacenter / Lab / CoLo controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Datacenter / Lab / Colocation (CoLo) controls."
       }
     },
     "badge": {
       "id": "dcr-06-badge",
-      "name": "Datacenter / Lab / CoLo Auditor",
+      "name": "Datacenter / Lab / Colocation (CoLo) Auditor",
       "emoji": "🏢"
     },
     "wonder": {
       "name": "Business continuity planning",
-      "location": "Datacenter / Lab / CoLo",
+      "location": "Datacenter / Lab / Colocation (CoLo)",
       "era": "Present Day",
       "emoji": "🏢"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Business continuity planning\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Datacenter / Lab / CoLo control.",
+      "tagline": "Auditing \"Business continuity planning\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the business continuity planning control (from Badge / PACS access system)) with read-only agents, run the test against policy, and issue a defensible opinion on the Datacenter / Lab / Colocation (CoLo) control.",
       "year": 2025,
       "overview": [
-        "The \"Business continuity planning\" sub-process is one of the controls an auditor must verify for Datacenter / Lab / CoLo. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that business continuity planning is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Badge / PACS access system, Environmental + power monitoring (DCIM), Asset / rack inventory — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Business continuity planning\" sub-process is one of the controls an auditor must verify for Datacenter / Lab / Colocation (CoLo). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the business continuity planning control (from Badge / PACS access system), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Badge / PACS access system, Environmental + power monitoring (DCIM), Asset / rack inventory — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Datacenter / Lab / Colocation (CoLo) policy/standard and flag every item where the \"Business continuity planning\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `06_business_continuity_planning_mcp.py` exposes read-only tools that turn each Datacenter / Lab / CoLo source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `06_business_continuity_planning_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Badge / PACS access system and Environmental + power monitoring (DCIM) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 06_business_continuity_planning_mcp.py` to expose it to your agent — or `python 06_business_continuity_planning_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -1919,7 +1924,7 @@ export const datacenterStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Datacenter / Lab / CoLo scope + policy",
+            "sub": "define Datacenter / Lab / Colocation (CoLo) scope + policy",
             "type": "attacker"
           },
           {
@@ -1955,12 +1960,13 @@ export const datacenterStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Business continuity planning\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the business continuity planning control (from Badge / PACS access system).",
+        "The test: Reconcile the in-scope inventory against the Datacenter / Lab / Colocation (CoLo) policy/standard and flag every item where the \"Business continuity planning\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Badge / PACS access system, Environmental + power monitoring (DCIM), Asset / rack inventory) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the business continuity planning control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -1984,21 +1990,21 @@ export const datacenterStages: StageConfig[] = [
         {
           "name": "06_business_continuity_planning_mcp.py",
           "url": "/audit-code/datacenter/06_business_continuity_planning_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Datacenter / Lab / CoLo evidence for \"Business continuity planning\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Datacenter / Lab / Colocation (CoLo) evidence for \"Business continuity planning\" (in-scope inventory for the business continuity planning control (from badge / pacs access system)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Business continuity planning\" control for Datacenter / Lab / CoLo at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Business continuity planning\" control for Datacenter / Lab / Colocation (CoLo) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Datacenter / Lab / Colocation (CoLo) policy/standard and flag every item where the \"Business continuity planning\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the business continuity planning control (from Badge / PACS access system) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Badge / PACS access system APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Badge / PACS access system gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Badge / PACS access system is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Badge / PACS access system; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Datacenter / Lab / CoLo: \"Business continuity planning\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- datacenter_inventory.json   (in-scope items from Badge / PACS access system)\n- datacenter_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Business continuity planning\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Business continuity planning\",\n  \"domain\": \"Datacenter / Lab / CoLo\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{dcr_",
+        "/evidence/README.md": "# AcmeCorp — Datacenter / Lab / Colocation (CoLo): \"Business continuity planning\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Datacenter / Lab / Colocation (CoLo) policy/standard and flag every item where the \"Business continuity planning\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- datacenter_inventory.json   (in-scope items — In-scope inventory for the business continuity planning control (from Badge / PACS access system))\n- datacenter_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Business continuity planning\",\n  \"domain\": \"Datacenter / Lab / Colocation (CoLo)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{dcr_",
         "/evidence/datacenter_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Facilities / Datacenter operations\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Business continuity planning\" control must cover\n# fragment: business_continuity_planning_",
         "/evidence/datacenter_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -2062,7 +2068,7 @@ export const datacenterStages: StageConfig[] = [
           "id": "dcr-06-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Business continuity planning\" sub-process of Datacenter / Lab / CoLo?",
+          "text": "What is the primary audit objective for the \"Business continuity planning\" sub-process of Datacenter / Lab / Colocation (CoLo)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -2076,11 +2082,11 @@ export const datacenterStages: StageConfig[] = [
           "id": "dcr-06-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Business continuity planning\" matter to the broader Datacenter / Lab / CoLo posture?",
+          "text": "Why does a weakness in \"Business continuity planning\" matter to the broader Datacenter / Lab / Colocation (CoLo) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Datacenter / Lab / CoLo controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Datacenter / Lab / Colocation (CoLo) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -2093,7 +2099,7 @@ export const datacenterStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Business continuity planning\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Business continuity planning evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the business continuity planning control (from Badge / PACS access system) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -2159,16 +2165,16 @@ export const datacenterStages: StageConfig[] = [
         {
           "id": "dcr-06-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Business continuity planning\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Business continuity planning\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the business continuity planning control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the business continuity planning control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "dcr-06-q9",

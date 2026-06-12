@@ -23,8 +23,8 @@ export const incidentMgmtStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"IR plan, playbooks, tabletop\" control for Incident Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Incident Management source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"IR plan, playbooks, tabletop\" control for Incident Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"IR plan, playbooks, tabletop\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Incident Management systems of record (SIEM / SOAR (Sentinel/Splunk); IR case management; Forensics + evidence store) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the ir plan, playbooks, tabletop control (from SIEM / SOAR (Sentinel/Splunk))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -61,18 +61,18 @@ export const incidentMgmtStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"IR plan, playbooks, tabletop\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Incident Management control.",
+      "tagline": "Auditing \"IR plan, playbooks, tabletop\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the ir plan, playbooks, tabletop control (from SIEM / SOAR (Sentinel/Splunk))) with read-only agents, run the test against policy, and issue a defensible opinion on the Incident Management control.",
       "year": 2025,
       "overview": [
-        "The \"IR plan, playbooks, tabletop\" sub-process is one of the controls an auditor must verify for Incident Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that ir plan, playbooks, tabletop is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically SIEM / SOAR (Sentinel/Splunk), IR case management, Forensics + evidence store — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"IR plan, playbooks, tabletop\" sub-process is one of the controls an auditor must verify for Incident Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the ir plan, playbooks, tabletop control (from SIEM / SOAR (Sentinel/Splunk)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here SIEM / SOAR (Sentinel/Splunk), IR case management, Forensics + evidence store — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"IR plan, playbooks, tabletop\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `01_ir_plan_playbooks_tabletop_mcp.py` exposes read-only tools that turn each Incident Management source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `01_ir_plan_playbooks_tabletop_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from SIEM / SOAR (Sentinel/Splunk) and IR case management (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 01_ir_plan_playbooks_tabletop_mcp.py` to expose it to your agent — or `python 01_ir_plan_playbooks_tabletop_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -130,12 +130,13 @@ export const incidentMgmtStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"IR plan, playbooks, tabletop\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the ir plan, playbooks, tabletop control (from SIEM / SOAR (Sentinel/Splunk)).",
+        "The test: Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"IR plan, playbooks, tabletop\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (SIEM / SOAR (Sentinel/Splunk), IR case management, Forensics + evidence store) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the ir plan, playbooks, tabletop control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -159,20 +160,20 @@ export const incidentMgmtStages: StageConfig[] = [
         {
           "name": "01_ir_plan_playbooks_tabletop_mcp.py",
           "url": "/audit-code/incident-mgmt/01_ir_plan_playbooks_tabletop_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Incident Management evidence for \"IR plan, playbooks, tabletop\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Incident Management evidence for \"IR plan, playbooks, tabletop\" (in-scope inventory for the ir plan, playbooks, tabletop control (from siem / soar (sentinel/splunk))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"IR plan, playbooks, tabletop\" control for Incident Management at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"IR plan, playbooks, tabletop\" control for Incident Management at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"IR plan, playbooks, tabletop\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the ir plan, playbooks, tabletop control (from SIEM / SOAR (Sentinel/Splunk)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live SIEM / SOAR (Sentinel/Splunk) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. SIEM / SOAR (Sentinel/Splunk) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. SIEM / SOAR (Sentinel/Splunk) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from SIEM / SOAR (Sentinel/Splunk); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Incident Management: \"IR plan, playbooks, tabletop\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- incident-mgmt_inventory.json   (in-scope items from SIEM / SOAR (Sentinel/Splunk))\n- incident-mgmt_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"IR plan, playbooks, tabletop\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Incident Management: \"IR plan, playbooks, tabletop\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"IR plan, playbooks, tabletop\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- incident-mgmt_inventory.json   (in-scope items — In-scope inventory for the ir plan, playbooks, tabletop control (from SIEM / SOAR (Sentinel/Splunk)))\n- incident-mgmt_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"IR plan, playbooks, tabletop\",\n  \"domain\": \"Incident Management\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{inc_",
         "/evidence/incident-mgmt_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Security operations / CSIRT\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"IR plan, playbooks, tabletop\" control must cover\n# fragment: ir_plan_playbooks_",
         "/evidence/incident-mgmt_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -268,7 +269,7 @@ export const incidentMgmtStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"IR plan, playbooks, tabletop\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The IR plan, playbooks, tabletop evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the ir plan, playbooks, tabletop control (from SIEM / SOAR (Sentinel/Splunk)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -334,16 +335,16 @@ export const incidentMgmtStages: StageConfig[] = [
         {
           "id": "inc-01-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"IR plan, playbooks, tabletop\"?",
+          "challenge": "Typical finding",
+          "text": "For \"IR plan, playbooks, tabletop\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the ir plan, playbooks, tabletop control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the ir plan, playbooks, tabletop control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "inc-01-q9",
@@ -388,8 +389,8 @@ export const incidentMgmtStages: StageConfig[] = [
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Incident intake and triage\" control for Incident Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Incident Management source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Incident intake and triage\" control for Incident Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"Incident intake and triage\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Incident Management systems of record (SIEM / SOAR (Sentinel/Splunk); IR case management; Forensics + evidence store) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the incident intake and triage control (from SIEM / SOAR (Sentinel/Splunk))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -426,18 +427,18 @@ export const incidentMgmtStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Incident intake and triage\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Incident Management control.",
+      "tagline": "Auditing \"Incident intake and triage\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the incident intake and triage control (from SIEM / SOAR (Sentinel/Splunk))) with read-only agents, run the test against policy, and issue a defensible opinion on the Incident Management control.",
       "year": 2025,
       "overview": [
-        "The \"Incident intake and triage\" sub-process is one of the controls an auditor must verify for Incident Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that incident intake and triage is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically SIEM / SOAR (Sentinel/Splunk), IR case management, Forensics + evidence store — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Incident intake and triage\" sub-process is one of the controls an auditor must verify for Incident Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the incident intake and triage control (from SIEM / SOAR (Sentinel/Splunk)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here SIEM / SOAR (Sentinel/Splunk), IR case management, Forensics + evidence store — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"Incident intake and triage\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `02_incident_intake_and_triage_mcp.py` exposes read-only tools that turn each Incident Management source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `02_incident_intake_and_triage_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from SIEM / SOAR (Sentinel/Splunk) and IR case management (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 02_incident_intake_and_triage_mcp.py` to expose it to your agent — or `python 02_incident_intake_and_triage_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -495,12 +496,13 @@ export const incidentMgmtStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Incident intake and triage\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the incident intake and triage control (from SIEM / SOAR (Sentinel/Splunk)).",
+        "The test: Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"Incident intake and triage\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (SIEM / SOAR (Sentinel/Splunk), IR case management, Forensics + evidence store) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the incident intake and triage control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -524,20 +526,20 @@ export const incidentMgmtStages: StageConfig[] = [
         {
           "name": "02_incident_intake_and_triage_mcp.py",
           "url": "/audit-code/incident-mgmt/02_incident_intake_and_triage_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Incident Management evidence for \"Incident intake and triage\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Incident Management evidence for \"Incident intake and triage\" (in-scope inventory for the incident intake and triage control (from siem / soar (sentinel/splunk))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Incident intake and triage\" control for Incident Management at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Incident intake and triage\" control for Incident Management at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"Incident intake and triage\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the incident intake and triage control (from SIEM / SOAR (Sentinel/Splunk)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live SIEM / SOAR (Sentinel/Splunk) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. SIEM / SOAR (Sentinel/Splunk) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. SIEM / SOAR (Sentinel/Splunk) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from SIEM / SOAR (Sentinel/Splunk); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Incident Management: \"Incident intake and triage\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- incident-mgmt_inventory.json   (in-scope items from SIEM / SOAR (Sentinel/Splunk))\n- incident-mgmt_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Incident intake and triage\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Incident Management: \"Incident intake and triage\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"Incident intake and triage\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- incident-mgmt_inventory.json   (in-scope items — In-scope inventory for the incident intake and triage control (from SIEM / SOAR (Sentinel/Splunk)))\n- incident-mgmt_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Incident intake and triage\",\n  \"domain\": \"Incident Management\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{inc_",
         "/evidence/incident-mgmt_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Security operations / CSIRT\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Incident intake and triage\" control must cover\n# fragment: incident_intake_triage_",
         "/evidence/incident-mgmt_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -633,7 +635,7 @@ export const incidentMgmtStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Incident intake and triage\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Incident intake and triage evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the incident intake and triage control (from SIEM / SOAR (Sentinel/Splunk)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -699,16 +701,16 @@ export const incidentMgmtStages: StageConfig[] = [
         {
           "id": "inc-02-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Incident intake and triage\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Incident intake and triage\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the incident intake and triage control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the incident intake and triage control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "inc-02-q9",
@@ -753,8 +755,8 @@ export const incidentMgmtStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Evidence handling and forensics\" control for Incident Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Incident Management source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Evidence handling and forensics\" control for Incident Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"Evidence handling and forensics\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Incident Management systems of record (SIEM / SOAR (Sentinel/Splunk); IR case management; Forensics + evidence store) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the evidence handling and forensics control (from SIEM / SOAR (Sentinel/Splunk))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -791,18 +793,18 @@ export const incidentMgmtStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Evidence handling and forensics\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Incident Management control.",
+      "tagline": "Auditing \"Evidence handling and forensics\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the evidence handling and forensics control (from SIEM / SOAR (Sentinel/Splunk))) with read-only agents, run the test against policy, and issue a defensible opinion on the Incident Management control.",
       "year": 2025,
       "overview": [
-        "The \"Evidence handling and forensics\" sub-process is one of the controls an auditor must verify for Incident Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that evidence handling and forensics is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically SIEM / SOAR (Sentinel/Splunk), IR case management, Forensics + evidence store — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Evidence handling and forensics\" sub-process is one of the controls an auditor must verify for Incident Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the evidence handling and forensics control (from SIEM / SOAR (Sentinel/Splunk)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here SIEM / SOAR (Sentinel/Splunk), IR case management, Forensics + evidence store — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"Evidence handling and forensics\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `03_evidence_handling_and_forensics_mcp.py` exposes read-only tools that turn each Incident Management source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `03_evidence_handling_and_forensics_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from SIEM / SOAR (Sentinel/Splunk) and IR case management (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 03_evidence_handling_and_forensics_mcp.py` to expose it to your agent — or `python 03_evidence_handling_and_forensics_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -860,12 +862,13 @@ export const incidentMgmtStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Evidence handling and forensics\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the evidence handling and forensics control (from SIEM / SOAR (Sentinel/Splunk)).",
+        "The test: Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"Evidence handling and forensics\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (SIEM / SOAR (Sentinel/Splunk), IR case management, Forensics + evidence store) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the evidence handling and forensics control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -889,20 +892,20 @@ export const incidentMgmtStages: StageConfig[] = [
         {
           "name": "03_evidence_handling_and_forensics_mcp.py",
           "url": "/audit-code/incident-mgmt/03_evidence_handling_and_forensics_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Incident Management evidence for \"Evidence handling and forensics\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Incident Management evidence for \"Evidence handling and forensics\" (in-scope inventory for the evidence handling and forensics control (from siem / soar (sentinel/splunk))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Evidence handling and forensics\" control for Incident Management at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Evidence handling and forensics\" control for Incident Management at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"Evidence handling and forensics\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the evidence handling and forensics control (from SIEM / SOAR (Sentinel/Splunk)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live SIEM / SOAR (Sentinel/Splunk) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. SIEM / SOAR (Sentinel/Splunk) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. SIEM / SOAR (Sentinel/Splunk) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from SIEM / SOAR (Sentinel/Splunk); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Incident Management: \"Evidence handling and forensics\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- incident-mgmt_inventory.json   (in-scope items from SIEM / SOAR (Sentinel/Splunk))\n- incident-mgmt_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Evidence handling and forensics\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Incident Management: \"Evidence handling and forensics\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"Evidence handling and forensics\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- incident-mgmt_inventory.json   (in-scope items — In-scope inventory for the evidence handling and forensics control (from SIEM / SOAR (Sentinel/Splunk)))\n- incident-mgmt_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Evidence handling and forensics\",\n  \"domain\": \"Incident Management\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{inc_",
         "/evidence/incident-mgmt_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Security operations / CSIRT\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Evidence handling and forensics\" control must cover\n# fragment: evidence_handling_forensics_",
         "/evidence/incident-mgmt_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -998,7 +1001,7 @@ export const incidentMgmtStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Evidence handling and forensics\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Evidence handling and forensics evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the evidence handling and forensics control (from SIEM / SOAR (Sentinel/Splunk)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -1064,16 +1067,16 @@ export const incidentMgmtStages: StageConfig[] = [
         {
           "id": "inc-03-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Evidence handling and forensics\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Evidence handling and forensics\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the evidence handling and forensics control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the evidence handling and forensics control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "inc-03-q9",
@@ -1118,8 +1121,8 @@ export const incidentMgmtStages: StageConfig[] = [
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Post-incident reviews / corrective\" control for Incident Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Incident Management source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Post-incident reviews / corrective\" control for Incident Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"Post-incident reviews / corrective\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Incident Management systems of record (SIEM / SOAR (Sentinel/Splunk); IR case management; Forensics + evidence store) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the post-incident reviews / corrective control (from SIEM / SOAR (Sentinel/Splunk))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -1156,18 +1159,18 @@ export const incidentMgmtStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Post-incident reviews / corrective\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Incident Management control.",
+      "tagline": "Auditing \"Post-incident reviews / corrective\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the post-incident reviews / corrective control (from SIEM / SOAR (Sentinel/Splunk))) with read-only agents, run the test against policy, and issue a defensible opinion on the Incident Management control.",
       "year": 2025,
       "overview": [
-        "The \"Post-incident reviews / corrective\" sub-process is one of the controls an auditor must verify for Incident Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that post-incident reviews / corrective is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically SIEM / SOAR (Sentinel/Splunk), IR case management, Forensics + evidence store — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Post-incident reviews / corrective\" sub-process is one of the controls an auditor must verify for Incident Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the post-incident reviews / corrective control (from SIEM / SOAR (Sentinel/Splunk)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here SIEM / SOAR (Sentinel/Splunk), IR case management, Forensics + evidence store — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"Post-incident reviews / corrective\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `04_post_incident_reviews_corrective_mcp.py` exposes read-only tools that turn each Incident Management source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `04_post_incident_reviews_corrective_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from SIEM / SOAR (Sentinel/Splunk) and IR case management (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 04_post_incident_reviews_corrective_mcp.py` to expose it to your agent — or `python 04_post_incident_reviews_corrective_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -1225,12 +1228,13 @@ export const incidentMgmtStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Post-incident reviews / corrective\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the post-incident reviews / corrective control (from SIEM / SOAR (Sentinel/Splunk)).",
+        "The test: Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"Post-incident reviews / corrective\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (SIEM / SOAR (Sentinel/Splunk), IR case management, Forensics + evidence store) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the post-incident reviews / corrective control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -1254,20 +1258,20 @@ export const incidentMgmtStages: StageConfig[] = [
         {
           "name": "04_post_incident_reviews_corrective_mcp.py",
           "url": "/audit-code/incident-mgmt/04_post_incident_reviews_corrective_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Incident Management evidence for \"Post-incident reviews / corrective\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Incident Management evidence for \"Post-incident reviews / corrective\" (in-scope inventory for the post-incident reviews / corrective control (from siem / soar (sentinel/splunk))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Post-incident reviews / corrective\" control for Incident Management at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Post-incident reviews / corrective\" control for Incident Management at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"Post-incident reviews / corrective\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the post-incident reviews / corrective control (from SIEM / SOAR (Sentinel/Splunk)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live SIEM / SOAR (Sentinel/Splunk) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. SIEM / SOAR (Sentinel/Splunk) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. SIEM / SOAR (Sentinel/Splunk) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from SIEM / SOAR (Sentinel/Splunk); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Incident Management: \"Post-incident reviews / corrective\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- incident-mgmt_inventory.json   (in-scope items from SIEM / SOAR (Sentinel/Splunk))\n- incident-mgmt_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Post-incident reviews / corrective\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Incident Management: \"Post-incident reviews / corrective\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"Post-incident reviews / corrective\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- incident-mgmt_inventory.json   (in-scope items — In-scope inventory for the post-incident reviews / corrective control (from SIEM / SOAR (Sentinel/Splunk)))\n- incident-mgmt_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Post-incident reviews / corrective\",\n  \"domain\": \"Incident Management\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{inc_",
         "/evidence/incident-mgmt_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Security operations / CSIRT\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Post-incident reviews / corrective\" control must cover\n# fragment: postincident_reviews_corrective_",
         "/evidence/incident-mgmt_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -1363,7 +1367,7 @@ export const incidentMgmtStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Post-incident reviews / corrective\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Post-incident reviews / corrective evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the post-incident reviews / corrective control (from SIEM / SOAR (Sentinel/Splunk)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -1429,16 +1433,16 @@ export const incidentMgmtStages: StageConfig[] = [
         {
           "id": "inc-04-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Post-incident reviews / corrective\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Post-incident reviews / corrective\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the post-incident reviews / corrective control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the post-incident reviews / corrective control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "inc-04-q9",
@@ -1483,8 +1487,8 @@ export const incidentMgmtStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"External notifications / breach comms\" control for Incident Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Incident Management source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"External notifications / breach comms\" control for Incident Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"External notifications / breach comms\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Incident Management systems of record (SIEM / SOAR (Sentinel/Splunk); IR case management; Forensics + evidence store) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the external notifications / breach comms control (from SIEM / SOAR (Sentinel/Splunk))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -1521,18 +1525,18 @@ export const incidentMgmtStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"External notifications / breach comms\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Incident Management control.",
+      "tagline": "Auditing \"External notifications / breach comms\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the external notifications / breach comms control (from SIEM / SOAR (Sentinel/Splunk))) with read-only agents, run the test against policy, and issue a defensible opinion on the Incident Management control.",
       "year": 2025,
       "overview": [
-        "The \"External notifications / breach comms\" sub-process is one of the controls an auditor must verify for Incident Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that external notifications / breach comms is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically SIEM / SOAR (Sentinel/Splunk), IR case management, Forensics + evidence store — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"External notifications / breach comms\" sub-process is one of the controls an auditor must verify for Incident Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the external notifications / breach comms control (from SIEM / SOAR (Sentinel/Splunk)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here SIEM / SOAR (Sentinel/Splunk), IR case management, Forensics + evidence store — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"External notifications / breach comms\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `05_external_notifications_breach_comms_mcp.py` exposes read-only tools that turn each Incident Management source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `05_external_notifications_breach_comms_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from SIEM / SOAR (Sentinel/Splunk) and IR case management (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 05_external_notifications_breach_comms_mcp.py` to expose it to your agent — or `python 05_external_notifications_breach_comms_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -1590,12 +1594,13 @@ export const incidentMgmtStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"External notifications / breach comms\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the external notifications / breach comms control (from SIEM / SOAR (Sentinel/Splunk)).",
+        "The test: Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"External notifications / breach comms\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (SIEM / SOAR (Sentinel/Splunk), IR case management, Forensics + evidence store) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the external notifications / breach comms control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -1619,20 +1624,20 @@ export const incidentMgmtStages: StageConfig[] = [
         {
           "name": "05_external_notifications_breach_comms_mcp.py",
           "url": "/audit-code/incident-mgmt/05_external_notifications_breach_comms_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Incident Management evidence for \"External notifications / breach comms\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Incident Management evidence for \"External notifications / breach comms\" (in-scope inventory for the external notifications / breach comms control (from siem / soar (sentinel/splunk))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"External notifications / breach comms\" control for Incident Management at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"External notifications / breach comms\" control for Incident Management at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"External notifications / breach comms\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the external notifications / breach comms control (from SIEM / SOAR (Sentinel/Splunk)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live SIEM / SOAR (Sentinel/Splunk) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. SIEM / SOAR (Sentinel/Splunk) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. SIEM / SOAR (Sentinel/Splunk) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from SIEM / SOAR (Sentinel/Splunk); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Incident Management: \"External notifications / breach comms\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- incident-mgmt_inventory.json   (in-scope items from SIEM / SOAR (Sentinel/Splunk))\n- incident-mgmt_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"External notifications / breach comms\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Incident Management: \"External notifications / breach comms\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"External notifications / breach comms\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- incident-mgmt_inventory.json   (in-scope items — In-scope inventory for the external notifications / breach comms control (from SIEM / SOAR (Sentinel/Splunk)))\n- incident-mgmt_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"External notifications / breach comms\",\n  \"domain\": \"Incident Management\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{inc_",
         "/evidence/incident-mgmt_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Security operations / CSIRT\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"External notifications / breach comms\" control must cover\n# fragment: external_notifications_breach_",
         "/evidence/incident-mgmt_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -1728,7 +1733,7 @@ export const incidentMgmtStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"External notifications / breach comms\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The External notifications / breach comms evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the external notifications / breach comms control (from SIEM / SOAR (Sentinel/Splunk)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -1794,16 +1799,16 @@ export const incidentMgmtStages: StageConfig[] = [
         {
           "id": "inc-05-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"External notifications / breach comms\"?",
+          "challenge": "Typical finding",
+          "text": "For \"External notifications / breach comms\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the external notifications / breach comms control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the external notifications / breach comms control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "inc-05-q9",
@@ -1848,8 +1853,8 @@ export const incidentMgmtStages: StageConfig[] = [
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Incident logging and monitoring\" control for Incident Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Incident Management source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Incident logging and monitoring\" control for Incident Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"Incident logging and monitoring\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Incident Management systems of record (SIEM / SOAR (Sentinel/Splunk); IR case management; Forensics + evidence store) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the incident logging and monitoring control (from SIEM / SOAR (Sentinel/Splunk))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -1886,18 +1891,18 @@ export const incidentMgmtStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Incident logging and monitoring\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Incident Management control.",
+      "tagline": "Auditing \"Incident logging and monitoring\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the incident logging and monitoring control (from SIEM / SOAR (Sentinel/Splunk))) with read-only agents, run the test against policy, and issue a defensible opinion on the Incident Management control.",
       "year": 2025,
       "overview": [
-        "The \"Incident logging and monitoring\" sub-process is one of the controls an auditor must verify for Incident Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that incident logging and monitoring is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically SIEM / SOAR (Sentinel/Splunk), IR case management, Forensics + evidence store — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Incident logging and monitoring\" sub-process is one of the controls an auditor must verify for Incident Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the incident logging and monitoring control (from SIEM / SOAR (Sentinel/Splunk)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here SIEM / SOAR (Sentinel/Splunk), IR case management, Forensics + evidence store — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"Incident logging and monitoring\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `06_incident_logging_and_monitoring_mcp.py` exposes read-only tools that turn each Incident Management source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `06_incident_logging_and_monitoring_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from SIEM / SOAR (Sentinel/Splunk) and IR case management (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 06_incident_logging_and_monitoring_mcp.py` to expose it to your agent — or `python 06_incident_logging_and_monitoring_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -1955,12 +1960,13 @@ export const incidentMgmtStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Incident logging and monitoring\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the incident logging and monitoring control (from SIEM / SOAR (Sentinel/Splunk)).",
+        "The test: Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"Incident logging and monitoring\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (SIEM / SOAR (Sentinel/Splunk), IR case management, Forensics + evidence store) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the incident logging and monitoring control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -1984,20 +1990,20 @@ export const incidentMgmtStages: StageConfig[] = [
         {
           "name": "06_incident_logging_and_monitoring_mcp.py",
           "url": "/audit-code/incident-mgmt/06_incident_logging_and_monitoring_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Incident Management evidence for \"Incident logging and monitoring\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Incident Management evidence for \"Incident logging and monitoring\" (in-scope inventory for the incident logging and monitoring control (from siem / soar (sentinel/splunk))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Incident logging and monitoring\" control for Incident Management at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Incident logging and monitoring\" control for Incident Management at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"Incident logging and monitoring\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the incident logging and monitoring control (from SIEM / SOAR (Sentinel/Splunk)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live SIEM / SOAR (Sentinel/Splunk) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. SIEM / SOAR (Sentinel/Splunk) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. SIEM / SOAR (Sentinel/Splunk) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from SIEM / SOAR (Sentinel/Splunk); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Incident Management: \"Incident logging and monitoring\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- incident-mgmt_inventory.json   (in-scope items from SIEM / SOAR (Sentinel/Splunk))\n- incident-mgmt_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Incident logging and monitoring\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Incident Management: \"Incident logging and monitoring\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"Incident logging and monitoring\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- incident-mgmt_inventory.json   (in-scope items — In-scope inventory for the incident logging and monitoring control (from SIEM / SOAR (Sentinel/Splunk)))\n- incident-mgmt_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Incident logging and monitoring\",\n  \"domain\": \"Incident Management\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{inc_",
         "/evidence/incident-mgmt_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Security operations / CSIRT\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Incident logging and monitoring\" control must cover\n# fragment: incident_logging_monitoring_",
         "/evidence/incident-mgmt_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -2093,7 +2099,7 @@ export const incidentMgmtStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Incident logging and monitoring\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Incident logging and monitoring evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the incident logging and monitoring control (from SIEM / SOAR (Sentinel/Splunk)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -2159,16 +2165,16 @@ export const incidentMgmtStages: StageConfig[] = [
         {
           "id": "inc-06-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Incident logging and monitoring\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Incident logging and monitoring\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the incident logging and monitoring control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the incident logging and monitoring control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "inc-06-q9",
@@ -2213,8 +2219,8 @@ export const incidentMgmtStages: StageConfig[] = [
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Incident escalation\" control for Incident Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Incident Management source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Incident escalation\" control for Incident Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"Incident escalation\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Incident Management systems of record (SIEM / SOAR (Sentinel/Splunk); IR case management; Forensics + evidence store) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the incident escalation control (from SIEM / SOAR (Sentinel/Splunk))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -2251,18 +2257,18 @@ export const incidentMgmtStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Incident escalation\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Incident Management control.",
+      "tagline": "Auditing \"Incident escalation\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the incident escalation control (from SIEM / SOAR (Sentinel/Splunk))) with read-only agents, run the test against policy, and issue a defensible opinion on the Incident Management control.",
       "year": 2025,
       "overview": [
-        "The \"Incident escalation\" sub-process is one of the controls an auditor must verify for Incident Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that incident escalation is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically SIEM / SOAR (Sentinel/Splunk), IR case management, Forensics + evidence store — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Incident escalation\" sub-process is one of the controls an auditor must verify for Incident Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the incident escalation control (from SIEM / SOAR (Sentinel/Splunk)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here SIEM / SOAR (Sentinel/Splunk), IR case management, Forensics + evidence store — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"Incident escalation\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `07_incident_escalation_mcp.py` exposes read-only tools that turn each Incident Management source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `07_incident_escalation_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from SIEM / SOAR (Sentinel/Splunk) and IR case management (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 07_incident_escalation_mcp.py` to expose it to your agent — or `python 07_incident_escalation_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -2320,12 +2326,13 @@ export const incidentMgmtStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Incident escalation\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the incident escalation control (from SIEM / SOAR (Sentinel/Splunk)).",
+        "The test: Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"Incident escalation\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (SIEM / SOAR (Sentinel/Splunk), IR case management, Forensics + evidence store) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the incident escalation control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -2349,20 +2356,20 @@ export const incidentMgmtStages: StageConfig[] = [
         {
           "name": "07_incident_escalation_mcp.py",
           "url": "/audit-code/incident-mgmt/07_incident_escalation_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Incident Management evidence for \"Incident escalation\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Incident Management evidence for \"Incident escalation\" (in-scope inventory for the incident escalation control (from siem / soar (sentinel/splunk))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Incident escalation\" control for Incident Management at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Incident escalation\" control for Incident Management at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"Incident escalation\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the incident escalation control (from SIEM / SOAR (Sentinel/Splunk)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live SIEM / SOAR (Sentinel/Splunk) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. SIEM / SOAR (Sentinel/Splunk) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. SIEM / SOAR (Sentinel/Splunk) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from SIEM / SOAR (Sentinel/Splunk); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Incident Management: \"Incident escalation\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- incident-mgmt_inventory.json   (in-scope items from SIEM / SOAR (Sentinel/Splunk))\n- incident-mgmt_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Incident escalation\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Incident Management: \"Incident escalation\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"Incident escalation\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- incident-mgmt_inventory.json   (in-scope items — In-scope inventory for the incident escalation control (from SIEM / SOAR (Sentinel/Splunk)))\n- incident-mgmt_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Incident escalation\",\n  \"domain\": \"Incident Management\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{inc_",
         "/evidence/incident-mgmt_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Security operations / CSIRT\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Incident escalation\" control must cover\n# fragment: incident_escalation_",
         "/evidence/incident-mgmt_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -2458,7 +2465,7 @@ export const incidentMgmtStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Incident escalation\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Incident escalation evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the incident escalation control (from SIEM / SOAR (Sentinel/Splunk)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -2524,16 +2531,16 @@ export const incidentMgmtStages: StageConfig[] = [
         {
           "id": "inc-07-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Incident escalation\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Incident escalation\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the incident escalation control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the incident escalation control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "inc-07-q9",

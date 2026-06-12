@@ -23,8 +23,8 @@ export const resiliencyStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"BCP, BIA, ITDR\" control for Resiliency & Redundancy is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Resiliency & Redundancy source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"BCP, BIA, ITDR\" control for Resiliency & Redundancy is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"BCP, BIA, ITDR\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Resiliency & Redundancy systems of record (Backup + replication platform; DR orchestration / runbooks; Multi-AZ/region infrastructure) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the bcp, bia, itdr control (from Backup + replication platform)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -61,18 +61,18 @@ export const resiliencyStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"BCP, BIA, ITDR\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Resiliency & Redundancy control.",
+      "tagline": "Auditing \"BCP, BIA, ITDR\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the bcp, bia, itdr control (from Backup + replication platform)) with read-only agents, run the test against policy, and issue a defensible opinion on the Resiliency & Redundancy control.",
       "year": 2025,
       "overview": [
-        "The \"BCP, BIA, ITDR\" sub-process is one of the controls an auditor must verify for Resiliency & Redundancy. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that bcp, bia, itdr is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Backup + replication platform, DR orchestration / runbooks, Multi-AZ/region infrastructure — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"BCP, BIA, ITDR\" sub-process is one of the controls an auditor must verify for Resiliency & Redundancy. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the bcp, bia, itdr control (from Backup + replication platform), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Backup + replication platform, DR orchestration / runbooks, Multi-AZ/region infrastructure — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"BCP, BIA, ITDR\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `01_bcp_bia_itdr_mcp.py` exposes read-only tools that turn each Resiliency & Redundancy source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `01_bcp_bia_itdr_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Backup + replication platform and DR orchestration / runbooks (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 01_bcp_bia_itdr_mcp.py` to expose it to your agent — or `python 01_bcp_bia_itdr_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -130,12 +130,13 @@ export const resiliencyStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"BCP, BIA, ITDR\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the bcp, bia, itdr control (from Backup + replication platform).",
+        "The test: Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"BCP, BIA, ITDR\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Backup + replication platform, DR orchestration / runbooks, Multi-AZ/region infrastructure) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the bcp, bia, itdr control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -159,20 +160,20 @@ export const resiliencyStages: StageConfig[] = [
         {
           "name": "01_bcp_bia_itdr_mcp.py",
           "url": "/audit-code/resiliency/01_bcp_bia_itdr_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Resiliency & Redundancy evidence for \"BCP, BIA, ITDR\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Resiliency & Redundancy evidence for \"BCP, BIA, ITDR\" (in-scope inventory for the bcp, bia, itdr control (from backup + replication platform)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"BCP, BIA, ITDR\" control for Resiliency & Redundancy at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"BCP, BIA, ITDR\" control for Resiliency & Redundancy at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"BCP, BIA, ITDR\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the bcp, bia, itdr control (from Backup + replication platform) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Backup + replication platform APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Backup + replication platform gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Backup + replication platform is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Backup + replication platform; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Resiliency & Redundancy: \"BCP, BIA, ITDR\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- resiliency_inventory.json   (in-scope items from Backup + replication platform)\n- resiliency_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"BCP, BIA, ITDR\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Resiliency & Redundancy: \"BCP, BIA, ITDR\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"BCP, BIA, ITDR\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- resiliency_inventory.json   (in-scope items — In-scope inventory for the bcp, bia, itdr control (from Backup + replication platform))\n- resiliency_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"BCP, BIA, ITDR\",\n  \"domain\": \"Resiliency & Redundancy\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{res_",
         "/evidence/resiliency_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Business Continuity / DR\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"BCP, BIA, ITDR\" control must cover\n# fragment: bcp_bia_itdr_",
         "/evidence/resiliency_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -268,7 +269,7 @@ export const resiliencyStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"BCP, BIA, ITDR\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The BCP, BIA, ITDR evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the bcp, bia, itdr control (from Backup + replication platform) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -334,16 +335,16 @@ export const resiliencyStages: StageConfig[] = [
         {
           "id": "res-01-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"BCP, BIA, ITDR\"?",
+          "challenge": "Typical finding",
+          "text": "For \"BCP, BIA, ITDR\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the bcp, bia, itdr control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the bcp, bia, itdr control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "res-01-q9",
@@ -388,8 +389,8 @@ export const resiliencyStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Supplier and vendor resilience\" control for Resiliency & Redundancy is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Resiliency & Redundancy source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Supplier and vendor resilience\" control for Resiliency & Redundancy is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"Supplier and vendor resilience\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Resiliency & Redundancy systems of record (Backup + replication platform; DR orchestration / runbooks; Multi-AZ/region infrastructure) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the supplier and vendor resilience control (from Backup + replication platform)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -426,18 +427,18 @@ export const resiliencyStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Supplier and vendor resilience\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Resiliency & Redundancy control.",
+      "tagline": "Auditing \"Supplier and vendor resilience\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the supplier and vendor resilience control (from Backup + replication platform)) with read-only agents, run the test against policy, and issue a defensible opinion on the Resiliency & Redundancy control.",
       "year": 2025,
       "overview": [
-        "The \"Supplier and vendor resilience\" sub-process is one of the controls an auditor must verify for Resiliency & Redundancy. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that supplier and vendor resilience is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Backup + replication platform, DR orchestration / runbooks, Multi-AZ/region infrastructure — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Supplier and vendor resilience\" sub-process is one of the controls an auditor must verify for Resiliency & Redundancy. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the supplier and vendor resilience control (from Backup + replication platform), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Backup + replication platform, DR orchestration / runbooks, Multi-AZ/region infrastructure — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"Supplier and vendor resilience\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `02_supplier_and_vendor_resilience_mcp.py` exposes read-only tools that turn each Resiliency & Redundancy source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `02_supplier_and_vendor_resilience_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Backup + replication platform and DR orchestration / runbooks (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 02_supplier_and_vendor_resilience_mcp.py` to expose it to your agent — or `python 02_supplier_and_vendor_resilience_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -495,12 +496,13 @@ export const resiliencyStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Supplier and vendor resilience\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the supplier and vendor resilience control (from Backup + replication platform).",
+        "The test: Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"Supplier and vendor resilience\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Backup + replication platform, DR orchestration / runbooks, Multi-AZ/region infrastructure) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the supplier and vendor resilience control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -524,20 +526,20 @@ export const resiliencyStages: StageConfig[] = [
         {
           "name": "02_supplier_and_vendor_resilience_mcp.py",
           "url": "/audit-code/resiliency/02_supplier_and_vendor_resilience_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Resiliency & Redundancy evidence for \"Supplier and vendor resilience\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Resiliency & Redundancy evidence for \"Supplier and vendor resilience\" (in-scope inventory for the supplier and vendor resilience control (from backup + replication platform)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Supplier and vendor resilience\" control for Resiliency & Redundancy at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Supplier and vendor resilience\" control for Resiliency & Redundancy at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"Supplier and vendor resilience\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the supplier and vendor resilience control (from Backup + replication platform) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Backup + replication platform APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Backup + replication platform gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Backup + replication platform is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Backup + replication platform; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Resiliency & Redundancy: \"Supplier and vendor resilience\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- resiliency_inventory.json   (in-scope items from Backup + replication platform)\n- resiliency_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Supplier and vendor resilience\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Resiliency & Redundancy: \"Supplier and vendor resilience\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"Supplier and vendor resilience\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- resiliency_inventory.json   (in-scope items — In-scope inventory for the supplier and vendor resilience control (from Backup + replication platform))\n- resiliency_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Supplier and vendor resilience\",\n  \"domain\": \"Resiliency & Redundancy\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{res_",
         "/evidence/resiliency_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Business Continuity / DR\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Supplier and vendor resilience\" control must cover\n# fragment: supplier_vendor_resilience_",
         "/evidence/resiliency_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -633,7 +635,7 @@ export const resiliencyStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Supplier and vendor resilience\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Supplier and vendor resilience evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the supplier and vendor resilience control (from Backup + replication platform) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -699,16 +701,16 @@ export const resiliencyStages: StageConfig[] = [
         {
           "id": "res-02-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Supplier and vendor resilience\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Supplier and vendor resilience\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the supplier and vendor resilience control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the supplier and vendor resilience control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "res-02-q9",
@@ -753,8 +755,8 @@ export const resiliencyStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Tabletop and BCP/DR testing\" control for Resiliency & Redundancy is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Resiliency & Redundancy source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Tabletop and BCP/DR testing\" control for Resiliency & Redundancy is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"Tabletop and BCP/DR testing\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Resiliency & Redundancy systems of record (Backup + replication platform; DR orchestration / runbooks; Multi-AZ/region infrastructure) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the tabletop and bcp/dr testing control (from Backup + replication platform)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -791,18 +793,18 @@ export const resiliencyStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Tabletop and BCP/DR testing\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Resiliency & Redundancy control.",
+      "tagline": "Auditing \"Tabletop and BCP/DR testing\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the tabletop and bcp/dr testing control (from Backup + replication platform)) with read-only agents, run the test against policy, and issue a defensible opinion on the Resiliency & Redundancy control.",
       "year": 2025,
       "overview": [
-        "The \"Tabletop and BCP/DR testing\" sub-process is one of the controls an auditor must verify for Resiliency & Redundancy. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that tabletop and bcp/dr testing is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Backup + replication platform, DR orchestration / runbooks, Multi-AZ/region infrastructure — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Tabletop and BCP/DR testing\" sub-process is one of the controls an auditor must verify for Resiliency & Redundancy. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the tabletop and bcp/dr testing control (from Backup + replication platform), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Backup + replication platform, DR orchestration / runbooks, Multi-AZ/region infrastructure — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"Tabletop and BCP/DR testing\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `03_tabletop_and_bcp_dr_testing_mcp.py` exposes read-only tools that turn each Resiliency & Redundancy source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `03_tabletop_and_bcp_dr_testing_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Backup + replication platform and DR orchestration / runbooks (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 03_tabletop_and_bcp_dr_testing_mcp.py` to expose it to your agent — or `python 03_tabletop_and_bcp_dr_testing_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -860,12 +862,13 @@ export const resiliencyStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Tabletop and BCP/DR testing\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the tabletop and bcp/dr testing control (from Backup + replication platform).",
+        "The test: Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"Tabletop and BCP/DR testing\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Backup + replication platform, DR orchestration / runbooks, Multi-AZ/region infrastructure) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the tabletop and bcp/dr testing control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -889,20 +892,20 @@ export const resiliencyStages: StageConfig[] = [
         {
           "name": "03_tabletop_and_bcp_dr_testing_mcp.py",
           "url": "/audit-code/resiliency/03_tabletop_and_bcp_dr_testing_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Resiliency & Redundancy evidence for \"Tabletop and BCP/DR testing\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Resiliency & Redundancy evidence for \"Tabletop and BCP/DR testing\" (in-scope inventory for the tabletop and bcp/dr testing control (from backup + replication platform)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Tabletop and BCP/DR testing\" control for Resiliency & Redundancy at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Tabletop and BCP/DR testing\" control for Resiliency & Redundancy at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"Tabletop and BCP/DR testing\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the tabletop and bcp/dr testing control (from Backup + replication platform) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Backup + replication platform APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Backup + replication platform gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Backup + replication platform is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Backup + replication platform; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Resiliency & Redundancy: \"Tabletop and BCP/DR testing\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- resiliency_inventory.json   (in-scope items from Backup + replication platform)\n- resiliency_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Tabletop and BCP/DR testing\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Resiliency & Redundancy: \"Tabletop and BCP/DR testing\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"Tabletop and BCP/DR testing\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- resiliency_inventory.json   (in-scope items — In-scope inventory for the tabletop and bcp/dr testing control (from Backup + replication platform))\n- resiliency_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Tabletop and BCP/DR testing\",\n  \"domain\": \"Resiliency & Redundancy\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{res_",
         "/evidence/resiliency_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Business Continuity / DR\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Tabletop and BCP/DR testing\" control must cover\n# fragment: tabletop_bcpdr_testing_",
         "/evidence/resiliency_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -998,7 +1001,7 @@ export const resiliencyStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Tabletop and BCP/DR testing\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Tabletop and BCP/DR testing evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the tabletop and bcp/dr testing control (from Backup + replication platform) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -1064,16 +1067,16 @@ export const resiliencyStages: StageConfig[] = [
         {
           "id": "res-03-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Tabletop and BCP/DR testing\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Tabletop and BCP/DR testing\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the tabletop and bcp/dr testing control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the tabletop and bcp/dr testing control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "res-03-q9",
@@ -1118,8 +1121,8 @@ export const resiliencyStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"DR site strategy\" control for Resiliency & Redundancy is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Resiliency & Redundancy source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"DR site strategy\" control for Resiliency & Redundancy is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"DR site strategy\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Resiliency & Redundancy systems of record (Backup + replication platform; DR orchestration / runbooks; Multi-AZ/region infrastructure) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the dr site strategy control (from Backup + replication platform)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -1156,18 +1159,18 @@ export const resiliencyStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"DR site strategy\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Resiliency & Redundancy control.",
+      "tagline": "Auditing \"DR site strategy\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the dr site strategy control (from Backup + replication platform)) with read-only agents, run the test against policy, and issue a defensible opinion on the Resiliency & Redundancy control.",
       "year": 2025,
       "overview": [
-        "The \"DR site strategy\" sub-process is one of the controls an auditor must verify for Resiliency & Redundancy. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that dr site strategy is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Backup + replication platform, DR orchestration / runbooks, Multi-AZ/region infrastructure — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"DR site strategy\" sub-process is one of the controls an auditor must verify for Resiliency & Redundancy. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the dr site strategy control (from Backup + replication platform), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Backup + replication platform, DR orchestration / runbooks, Multi-AZ/region infrastructure — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"DR site strategy\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `04_dr_site_strategy_mcp.py` exposes read-only tools that turn each Resiliency & Redundancy source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `04_dr_site_strategy_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Backup + replication platform and DR orchestration / runbooks (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 04_dr_site_strategy_mcp.py` to expose it to your agent — or `python 04_dr_site_strategy_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -1225,12 +1228,13 @@ export const resiliencyStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"DR site strategy\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the dr site strategy control (from Backup + replication platform).",
+        "The test: Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"DR site strategy\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Backup + replication platform, DR orchestration / runbooks, Multi-AZ/region infrastructure) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the dr site strategy control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -1254,20 +1258,20 @@ export const resiliencyStages: StageConfig[] = [
         {
           "name": "04_dr_site_strategy_mcp.py",
           "url": "/audit-code/resiliency/04_dr_site_strategy_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Resiliency & Redundancy evidence for \"DR site strategy\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Resiliency & Redundancy evidence for \"DR site strategy\" (in-scope inventory for the dr site strategy control (from backup + replication platform)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"DR site strategy\" control for Resiliency & Redundancy at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"DR site strategy\" control for Resiliency & Redundancy at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"DR site strategy\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the dr site strategy control (from Backup + replication platform) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Backup + replication platform APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Backup + replication platform gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Backup + replication platform is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Backup + replication platform; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Resiliency & Redundancy: \"DR site strategy\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- resiliency_inventory.json   (in-scope items from Backup + replication platform)\n- resiliency_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"DR site strategy\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Resiliency & Redundancy: \"DR site strategy\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"DR site strategy\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- resiliency_inventory.json   (in-scope items — In-scope inventory for the dr site strategy control (from Backup + replication platform))\n- resiliency_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"DR site strategy\",\n  \"domain\": \"Resiliency & Redundancy\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{res_",
         "/evidence/resiliency_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Business Continuity / DR\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"DR site strategy\" control must cover\n# fragment: dr_site_strategy_",
         "/evidence/resiliency_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -1363,7 +1367,7 @@ export const resiliencyStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"DR site strategy\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The DR site strategy evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the dr site strategy control (from Backup + replication platform) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -1429,16 +1433,16 @@ export const resiliencyStages: StageConfig[] = [
         {
           "id": "res-04-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"DR site strategy\"?",
+          "challenge": "Typical finding",
+          "text": "For \"DR site strategy\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the dr site strategy control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the dr site strategy control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "res-04-q9",
@@ -1483,8 +1487,8 @@ export const resiliencyStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Failover and fallback procedures\" control for Resiliency & Redundancy is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Resiliency & Redundancy source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Failover and fallback procedures\" control for Resiliency & Redundancy is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"Failover and fallback procedures\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Resiliency & Redundancy systems of record (Backup + replication platform; DR orchestration / runbooks; Multi-AZ/region infrastructure) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the failover and fallback procedures control (from Backup + replication platform)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -1521,18 +1525,18 @@ export const resiliencyStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Failover and fallback procedures\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Resiliency & Redundancy control.",
+      "tagline": "Auditing \"Failover and fallback procedures\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the failover and fallback procedures control (from Backup + replication platform)) with read-only agents, run the test against policy, and issue a defensible opinion on the Resiliency & Redundancy control.",
       "year": 2025,
       "overview": [
-        "The \"Failover and fallback procedures\" sub-process is one of the controls an auditor must verify for Resiliency & Redundancy. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that failover and fallback procedures is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Backup + replication platform, DR orchestration / runbooks, Multi-AZ/region infrastructure — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Failover and fallback procedures\" sub-process is one of the controls an auditor must verify for Resiliency & Redundancy. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the failover and fallback procedures control (from Backup + replication platform), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Backup + replication platform, DR orchestration / runbooks, Multi-AZ/region infrastructure — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"Failover and fallback procedures\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `05_failover_and_fallback_procedures_mcp.py` exposes read-only tools that turn each Resiliency & Redundancy source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `05_failover_and_fallback_procedures_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Backup + replication platform and DR orchestration / runbooks (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 05_failover_and_fallback_procedures_mcp.py` to expose it to your agent — or `python 05_failover_and_fallback_procedures_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -1590,12 +1594,13 @@ export const resiliencyStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Failover and fallback procedures\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the failover and fallback procedures control (from Backup + replication platform).",
+        "The test: Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"Failover and fallback procedures\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Backup + replication platform, DR orchestration / runbooks, Multi-AZ/region infrastructure) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the failover and fallback procedures control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -1619,20 +1624,20 @@ export const resiliencyStages: StageConfig[] = [
         {
           "name": "05_failover_and_fallback_procedures_mcp.py",
           "url": "/audit-code/resiliency/05_failover_and_fallback_procedures_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Resiliency & Redundancy evidence for \"Failover and fallback procedures\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Resiliency & Redundancy evidence for \"Failover and fallback procedures\" (in-scope inventory for the failover and fallback procedures control (from backup + replication platform)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Failover and fallback procedures\" control for Resiliency & Redundancy at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Failover and fallback procedures\" control for Resiliency & Redundancy at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"Failover and fallback procedures\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the failover and fallback procedures control (from Backup + replication platform) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Backup + replication platform APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Backup + replication platform gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Backup + replication platform is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Backup + replication platform; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Resiliency & Redundancy: \"Failover and fallback procedures\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- resiliency_inventory.json   (in-scope items from Backup + replication platform)\n- resiliency_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Failover and fallback procedures\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Resiliency & Redundancy: \"Failover and fallback procedures\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"Failover and fallback procedures\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- resiliency_inventory.json   (in-scope items — In-scope inventory for the failover and fallback procedures control (from Backup + replication platform))\n- resiliency_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Failover and fallback procedures\",\n  \"domain\": \"Resiliency & Redundancy\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{res_",
         "/evidence/resiliency_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Business Continuity / DR\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Failover and fallback procedures\" control must cover\n# fragment: failover_fallback_procedures_",
         "/evidence/resiliency_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -1728,7 +1733,7 @@ export const resiliencyStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Failover and fallback procedures\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Failover and fallback procedures evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the failover and fallback procedures control (from Backup + replication platform) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -1794,16 +1799,16 @@ export const resiliencyStages: StageConfig[] = [
         {
           "id": "res-05-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Failover and fallback procedures\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Failover and fallback procedures\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the failover and fallback procedures control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the failover and fallback procedures control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "res-05-q9",
@@ -1848,8 +1853,8 @@ export const resiliencyStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Data and service replication\" control for Resiliency & Redundancy is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Resiliency & Redundancy source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Data and service replication\" control for Resiliency & Redundancy is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"Data and service replication\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Resiliency & Redundancy systems of record (Backup + replication platform; DR orchestration / runbooks; Multi-AZ/region infrastructure) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the data and service replication control (from Backup + replication platform)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -1886,18 +1891,18 @@ export const resiliencyStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Data and service replication\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Resiliency & Redundancy control.",
+      "tagline": "Auditing \"Data and service replication\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the data and service replication control (from Backup + replication platform)) with read-only agents, run the test against policy, and issue a defensible opinion on the Resiliency & Redundancy control.",
       "year": 2025,
       "overview": [
-        "The \"Data and service replication\" sub-process is one of the controls an auditor must verify for Resiliency & Redundancy. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that data and service replication is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Backup + replication platform, DR orchestration / runbooks, Multi-AZ/region infrastructure — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Data and service replication\" sub-process is one of the controls an auditor must verify for Resiliency & Redundancy. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the data and service replication control (from Backup + replication platform), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Backup + replication platform, DR orchestration / runbooks, Multi-AZ/region infrastructure — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"Data and service replication\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `06_data_and_service_replication_mcp.py` exposes read-only tools that turn each Resiliency & Redundancy source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `06_data_and_service_replication_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Backup + replication platform and DR orchestration / runbooks (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 06_data_and_service_replication_mcp.py` to expose it to your agent — or `python 06_data_and_service_replication_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -1955,12 +1960,13 @@ export const resiliencyStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Data and service replication\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the data and service replication control (from Backup + replication platform).",
+        "The test: Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"Data and service replication\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Backup + replication platform, DR orchestration / runbooks, Multi-AZ/region infrastructure) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the data and service replication control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -1984,20 +1990,20 @@ export const resiliencyStages: StageConfig[] = [
         {
           "name": "06_data_and_service_replication_mcp.py",
           "url": "/audit-code/resiliency/06_data_and_service_replication_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Resiliency & Redundancy evidence for \"Data and service replication\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Resiliency & Redundancy evidence for \"Data and service replication\" (in-scope inventory for the data and service replication control (from backup + replication platform)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Data and service replication\" control for Resiliency & Redundancy at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Data and service replication\" control for Resiliency & Redundancy at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"Data and service replication\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the data and service replication control (from Backup + replication platform) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Backup + replication platform APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Backup + replication platform gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Backup + replication platform is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Backup + replication platform; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Resiliency & Redundancy: \"Data and service replication\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- resiliency_inventory.json   (in-scope items from Backup + replication platform)\n- resiliency_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Data and service replication\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Resiliency & Redundancy: \"Data and service replication\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"Data and service replication\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- resiliency_inventory.json   (in-scope items — In-scope inventory for the data and service replication control (from Backup + replication platform))\n- resiliency_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Data and service replication\",\n  \"domain\": \"Resiliency & Redundancy\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{res_",
         "/evidence/resiliency_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Business Continuity / DR\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Data and service replication\" control must cover\n# fragment: data_service_replication_",
         "/evidence/resiliency_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -2093,7 +2099,7 @@ export const resiliencyStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Data and service replication\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Data and service replication evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the data and service replication control (from Backup + replication platform) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -2159,16 +2165,16 @@ export const resiliencyStages: StageConfig[] = [
         {
           "id": "res-06-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Data and service replication\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Data and service replication\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the data and service replication control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the data and service replication control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "res-06-q9",
@@ -2213,8 +2219,8 @@ export const resiliencyStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Network redundancy\" control for Resiliency & Redundancy is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Resiliency & Redundancy source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Network redundancy\" control for Resiliency & Redundancy is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"Network redundancy\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Resiliency & Redundancy systems of record (Backup + replication platform; DR orchestration / runbooks; Multi-AZ/region infrastructure) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the network redundancy control (from Backup + replication platform)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -2251,18 +2257,18 @@ export const resiliencyStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Network redundancy\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Resiliency & Redundancy control.",
+      "tagline": "Auditing \"Network redundancy\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the network redundancy control (from Backup + replication platform)) with read-only agents, run the test against policy, and issue a defensible opinion on the Resiliency & Redundancy control.",
       "year": 2025,
       "overview": [
-        "The \"Network redundancy\" sub-process is one of the controls an auditor must verify for Resiliency & Redundancy. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that network redundancy is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Backup + replication platform, DR orchestration / runbooks, Multi-AZ/region infrastructure — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Network redundancy\" sub-process is one of the controls an auditor must verify for Resiliency & Redundancy. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the network redundancy control (from Backup + replication platform), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Backup + replication platform, DR orchestration / runbooks, Multi-AZ/region infrastructure — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"Network redundancy\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `07_network_redundancy_mcp.py` exposes read-only tools that turn each Resiliency & Redundancy source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `07_network_redundancy_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Backup + replication platform and DR orchestration / runbooks (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 07_network_redundancy_mcp.py` to expose it to your agent — or `python 07_network_redundancy_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -2320,12 +2326,13 @@ export const resiliencyStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Network redundancy\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the network redundancy control (from Backup + replication platform).",
+        "The test: Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"Network redundancy\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Backup + replication platform, DR orchestration / runbooks, Multi-AZ/region infrastructure) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the network redundancy control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -2349,20 +2356,20 @@ export const resiliencyStages: StageConfig[] = [
         {
           "name": "07_network_redundancy_mcp.py",
           "url": "/audit-code/resiliency/07_network_redundancy_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Resiliency & Redundancy evidence for \"Network redundancy\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Resiliency & Redundancy evidence for \"Network redundancy\" (in-scope inventory for the network redundancy control (from backup + replication platform)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Network redundancy\" control for Resiliency & Redundancy at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Network redundancy\" control for Resiliency & Redundancy at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"Network redundancy\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the network redundancy control (from Backup + replication platform) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Backup + replication platform APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Backup + replication platform gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Backup + replication platform is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Backup + replication platform; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Resiliency & Redundancy: \"Network redundancy\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- resiliency_inventory.json   (in-scope items from Backup + replication platform)\n- resiliency_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Network redundancy\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Resiliency & Redundancy: \"Network redundancy\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"Network redundancy\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- resiliency_inventory.json   (in-scope items — In-scope inventory for the network redundancy control (from Backup + replication platform))\n- resiliency_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Network redundancy\",\n  \"domain\": \"Resiliency & Redundancy\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{res_",
         "/evidence/resiliency_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Business Continuity / DR\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Network redundancy\" control must cover\n# fragment: network_redundancy_",
         "/evidence/resiliency_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -2458,7 +2465,7 @@ export const resiliencyStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Network redundancy\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Network redundancy evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the network redundancy control (from Backup + replication platform) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -2524,16 +2531,16 @@ export const resiliencyStages: StageConfig[] = [
         {
           "id": "res-07-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Network redundancy\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Network redundancy\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the network redundancy control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the network redundancy control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "res-07-q9",
@@ -2578,8 +2585,8 @@ export const resiliencyStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Multi-region / AZ deployment\" control for Resiliency & Redundancy is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Resiliency & Redundancy source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Multi-region / AZ deployment\" control for Resiliency & Redundancy is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"Multi-region / AZ deployment\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Resiliency & Redundancy systems of record (Backup + replication platform; DR orchestration / runbooks; Multi-AZ/region infrastructure) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the multi-region / az deployment control (from Backup + replication platform)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -2616,18 +2623,18 @@ export const resiliencyStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Multi-region / AZ deployment\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Resiliency & Redundancy control.",
+      "tagline": "Auditing \"Multi-region / AZ deployment\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the multi-region / az deployment control (from Backup + replication platform)) with read-only agents, run the test against policy, and issue a defensible opinion on the Resiliency & Redundancy control.",
       "year": 2025,
       "overview": [
-        "The \"Multi-region / AZ deployment\" sub-process is one of the controls an auditor must verify for Resiliency & Redundancy. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that multi-region / az deployment is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Backup + replication platform, DR orchestration / runbooks, Multi-AZ/region infrastructure — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Multi-region / AZ deployment\" sub-process is one of the controls an auditor must verify for Resiliency & Redundancy. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the multi-region / az deployment control (from Backup + replication platform), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Backup + replication platform, DR orchestration / runbooks, Multi-AZ/region infrastructure — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"Multi-region / AZ deployment\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `08_multi_region_az_deployment_mcp.py` exposes read-only tools that turn each Resiliency & Redundancy source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `08_multi_region_az_deployment_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Backup + replication platform and DR orchestration / runbooks (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 08_multi_region_az_deployment_mcp.py` to expose it to your agent — or `python 08_multi_region_az_deployment_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -2685,12 +2692,13 @@ export const resiliencyStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Multi-region / AZ deployment\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the multi-region / az deployment control (from Backup + replication platform).",
+        "The test: Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"Multi-region / AZ deployment\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Backup + replication platform, DR orchestration / runbooks, Multi-AZ/region infrastructure) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the multi-region / az deployment control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -2714,20 +2722,20 @@ export const resiliencyStages: StageConfig[] = [
         {
           "name": "08_multi_region_az_deployment_mcp.py",
           "url": "/audit-code/resiliency/08_multi_region_az_deployment_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Resiliency & Redundancy evidence for \"Multi-region / AZ deployment\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Resiliency & Redundancy evidence for \"Multi-region / AZ deployment\" (in-scope inventory for the multi-region / az deployment control (from backup + replication platform)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Multi-region / AZ deployment\" control for Resiliency & Redundancy at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Multi-region / AZ deployment\" control for Resiliency & Redundancy at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"Multi-region / AZ deployment\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the multi-region / az deployment control (from Backup + replication platform) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Backup + replication platform APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Backup + replication platform gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Backup + replication platform is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Backup + replication platform; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Resiliency & Redundancy: \"Multi-region / AZ deployment\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- resiliency_inventory.json   (in-scope items from Backup + replication platform)\n- resiliency_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Multi-region / AZ deployment\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Resiliency & Redundancy: \"Multi-region / AZ deployment\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"Multi-region / AZ deployment\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- resiliency_inventory.json   (in-scope items — In-scope inventory for the multi-region / az deployment control (from Backup + replication platform))\n- resiliency_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Multi-region / AZ deployment\",\n  \"domain\": \"Resiliency & Redundancy\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{res_",
         "/evidence/resiliency_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Business Continuity / DR\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Multi-region / AZ deployment\" control must cover\n# fragment: multiregion_az_deployment_",
         "/evidence/resiliency_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -2823,7 +2831,7 @@ export const resiliencyStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Multi-region / AZ deployment\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Multi-region / AZ deployment evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the multi-region / az deployment control (from Backup + replication platform) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -2889,16 +2897,16 @@ export const resiliencyStages: StageConfig[] = [
         {
           "id": "res-08-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Multi-region / AZ deployment\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Multi-region / AZ deployment\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the multi-region / az deployment control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the multi-region / az deployment control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "res-08-q9",
@@ -2943,8 +2951,8 @@ export const resiliencyStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Infrastructure as code\" control for Resiliency & Redundancy is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Resiliency & Redundancy source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Infrastructure as code\" control for Resiliency & Redundancy is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"Infrastructure as code\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Resiliency & Redundancy systems of record (Backup + replication platform; DR orchestration / runbooks; Multi-AZ/region infrastructure) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the infrastructure as code control (from Backup + replication platform)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -2981,18 +2989,18 @@ export const resiliencyStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Infrastructure as code\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Resiliency & Redundancy control.",
+      "tagline": "Auditing \"Infrastructure as code\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the infrastructure as code control (from Backup + replication platform)) with read-only agents, run the test against policy, and issue a defensible opinion on the Resiliency & Redundancy control.",
       "year": 2025,
       "overview": [
-        "The \"Infrastructure as code\" sub-process is one of the controls an auditor must verify for Resiliency & Redundancy. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that infrastructure as code is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Backup + replication platform, DR orchestration / runbooks, Multi-AZ/region infrastructure — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Infrastructure as code\" sub-process is one of the controls an auditor must verify for Resiliency & Redundancy. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the infrastructure as code control (from Backup + replication platform), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Backup + replication platform, DR orchestration / runbooks, Multi-AZ/region infrastructure — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"Infrastructure as code\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `09_infrastructure_as_code_mcp.py` exposes read-only tools that turn each Resiliency & Redundancy source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `09_infrastructure_as_code_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Backup + replication platform and DR orchestration / runbooks (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 09_infrastructure_as_code_mcp.py` to expose it to your agent — or `python 09_infrastructure_as_code_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -3050,12 +3058,13 @@ export const resiliencyStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Infrastructure as code\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the infrastructure as code control (from Backup + replication platform).",
+        "The test: Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"Infrastructure as code\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Backup + replication platform, DR orchestration / runbooks, Multi-AZ/region infrastructure) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the infrastructure as code control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -3079,20 +3088,20 @@ export const resiliencyStages: StageConfig[] = [
         {
           "name": "09_infrastructure_as_code_mcp.py",
           "url": "/audit-code/resiliency/09_infrastructure_as_code_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Resiliency & Redundancy evidence for \"Infrastructure as code\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Resiliency & Redundancy evidence for \"Infrastructure as code\" (in-scope inventory for the infrastructure as code control (from backup + replication platform)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Infrastructure as code\" control for Resiliency & Redundancy at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Infrastructure as code\" control for Resiliency & Redundancy at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"Infrastructure as code\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the infrastructure as code control (from Backup + replication platform) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Backup + replication platform APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Backup + replication platform gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Backup + replication platform is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Backup + replication platform; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Resiliency & Redundancy: \"Infrastructure as code\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- resiliency_inventory.json   (in-scope items from Backup + replication platform)\n- resiliency_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Infrastructure as code\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Resiliency & Redundancy: \"Infrastructure as code\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"Infrastructure as code\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- resiliency_inventory.json   (in-scope items — In-scope inventory for the infrastructure as code control (from Backup + replication platform))\n- resiliency_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Infrastructure as code\",\n  \"domain\": \"Resiliency & Redundancy\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{res_",
         "/evidence/resiliency_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Business Continuity / DR\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Infrastructure as code\" control must cover\n# fragment: infrastructure_as_code_",
         "/evidence/resiliency_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -3188,7 +3197,7 @@ export const resiliencyStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Infrastructure as code\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Infrastructure as code evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the infrastructure as code control (from Backup + replication platform) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -3254,16 +3263,16 @@ export const resiliencyStages: StageConfig[] = [
         {
           "id": "res-09-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Infrastructure as code\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Infrastructure as code\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the infrastructure as code control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the infrastructure as code control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "res-09-q9",
@@ -3308,8 +3317,8 @@ export const resiliencyStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Vendor lock-in risk\" control for Resiliency & Redundancy is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Resiliency & Redundancy source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Vendor lock-in risk\" control for Resiliency & Redundancy is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"Vendor lock-in risk\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Resiliency & Redundancy systems of record (Backup + replication platform; DR orchestration / runbooks; Multi-AZ/region infrastructure) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the vendor lock-in risk control (from Backup + replication platform)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -3346,18 +3355,18 @@ export const resiliencyStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Vendor lock-in risk\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Resiliency & Redundancy control.",
+      "tagline": "Auditing \"Vendor lock-in risk\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the vendor lock-in risk control (from Backup + replication platform)) with read-only agents, run the test against policy, and issue a defensible opinion on the Resiliency & Redundancy control.",
       "year": 2025,
       "overview": [
-        "The \"Vendor lock-in risk\" sub-process is one of the controls an auditor must verify for Resiliency & Redundancy. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that vendor lock-in risk is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Backup + replication platform, DR orchestration / runbooks, Multi-AZ/region infrastructure — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Vendor lock-in risk\" sub-process is one of the controls an auditor must verify for Resiliency & Redundancy. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the vendor lock-in risk control (from Backup + replication platform), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Backup + replication platform, DR orchestration / runbooks, Multi-AZ/region infrastructure — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"Vendor lock-in risk\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `10_vendor_lock_in_risk_mcp.py` exposes read-only tools that turn each Resiliency & Redundancy source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `10_vendor_lock_in_risk_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Backup + replication platform and DR orchestration / runbooks (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 10_vendor_lock_in_risk_mcp.py` to expose it to your agent — or `python 10_vendor_lock_in_risk_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -3415,12 +3424,13 @@ export const resiliencyStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Vendor lock-in risk\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the vendor lock-in risk control (from Backup + replication platform).",
+        "The test: Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"Vendor lock-in risk\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Backup + replication platform, DR orchestration / runbooks, Multi-AZ/region infrastructure) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the vendor lock-in risk control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -3444,20 +3454,20 @@ export const resiliencyStages: StageConfig[] = [
         {
           "name": "10_vendor_lock_in_risk_mcp.py",
           "url": "/audit-code/resiliency/10_vendor_lock_in_risk_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Resiliency & Redundancy evidence for \"Vendor lock-in risk\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Resiliency & Redundancy evidence for \"Vendor lock-in risk\" (in-scope inventory for the vendor lock-in risk control (from backup + replication platform)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Vendor lock-in risk\" control for Resiliency & Redundancy at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Vendor lock-in risk\" control for Resiliency & Redundancy at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"Vendor lock-in risk\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the vendor lock-in risk control (from Backup + replication platform) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Backup + replication platform APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Backup + replication platform gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Backup + replication platform is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Backup + replication platform; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Resiliency & Redundancy: \"Vendor lock-in risk\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- resiliency_inventory.json   (in-scope items from Backup + replication platform)\n- resiliency_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Vendor lock-in risk\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Resiliency & Redundancy: \"Vendor lock-in risk\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"Vendor lock-in risk\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- resiliency_inventory.json   (in-scope items — In-scope inventory for the vendor lock-in risk control (from Backup + replication platform))\n- resiliency_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Vendor lock-in risk\",\n  \"domain\": \"Resiliency & Redundancy\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{res_",
         "/evidence/resiliency_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Business Continuity / DR\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Vendor lock-in risk\" control must cover\n# fragment: vendor_lockin_risk_",
         "/evidence/resiliency_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -3553,7 +3563,7 @@ export const resiliencyStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Vendor lock-in risk\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Vendor lock-in risk evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the vendor lock-in risk control (from Backup + replication platform) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -3619,16 +3629,16 @@ export const resiliencyStages: StageConfig[] = [
         {
           "id": "res-10-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Vendor lock-in risk\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Vendor lock-in risk\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the vendor lock-in risk control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the vendor lock-in risk control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "res-10-q9",
@@ -3673,8 +3683,8 @@ export const resiliencyStages: StageConfig[] = [
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Secret and certificate mgmt\" control for Resiliency & Redundancy is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Resiliency & Redundancy source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Secret and certificate mgmt\" control for Resiliency & Redundancy is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"Secret and certificate mgmt\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Resiliency & Redundancy systems of record (Backup + replication platform; DR orchestration / runbooks; Multi-AZ/region infrastructure) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the secret and certificate mgmt control (from Backup + replication platform)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -3711,18 +3721,18 @@ export const resiliencyStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Secret and certificate mgmt\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Resiliency & Redundancy control.",
+      "tagline": "Auditing \"Secret and certificate mgmt\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the secret and certificate mgmt control (from Backup + replication platform)) with read-only agents, run the test against policy, and issue a defensible opinion on the Resiliency & Redundancy control.",
       "year": 2025,
       "overview": [
-        "The \"Secret and certificate mgmt\" sub-process is one of the controls an auditor must verify for Resiliency & Redundancy. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that secret and certificate mgmt is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Backup + replication platform, DR orchestration / runbooks, Multi-AZ/region infrastructure — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Secret and certificate mgmt\" sub-process is one of the controls an auditor must verify for Resiliency & Redundancy. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the secret and certificate mgmt control (from Backup + replication platform), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Backup + replication platform, DR orchestration / runbooks, Multi-AZ/region infrastructure — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"Secret and certificate mgmt\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `11_secret_and_certificate_mgmt_mcp.py` exposes read-only tools that turn each Resiliency & Redundancy source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `11_secret_and_certificate_mgmt_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Backup + replication platform and DR orchestration / runbooks (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 11_secret_and_certificate_mgmt_mcp.py` to expose it to your agent — or `python 11_secret_and_certificate_mgmt_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -3780,12 +3790,13 @@ export const resiliencyStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Secret and certificate mgmt\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the secret and certificate mgmt control (from Backup + replication platform).",
+        "The test: Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"Secret and certificate mgmt\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Backup + replication platform, DR orchestration / runbooks, Multi-AZ/region infrastructure) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the secret and certificate mgmt control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -3809,20 +3820,20 @@ export const resiliencyStages: StageConfig[] = [
         {
           "name": "11_secret_and_certificate_mgmt_mcp.py",
           "url": "/audit-code/resiliency/11_secret_and_certificate_mgmt_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Resiliency & Redundancy evidence for \"Secret and certificate mgmt\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Resiliency & Redundancy evidence for \"Secret and certificate mgmt\" (in-scope inventory for the secret and certificate mgmt control (from backup + replication platform)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Secret and certificate mgmt\" control for Resiliency & Redundancy at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Secret and certificate mgmt\" control for Resiliency & Redundancy at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"Secret and certificate mgmt\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the secret and certificate mgmt control (from Backup + replication platform) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Backup + replication platform APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Backup + replication platform gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Backup + replication platform is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Backup + replication platform; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Resiliency & Redundancy: \"Secret and certificate mgmt\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- resiliency_inventory.json   (in-scope items from Backup + replication platform)\n- resiliency_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Secret and certificate mgmt\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Resiliency & Redundancy: \"Secret and certificate mgmt\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"Secret and certificate mgmt\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- resiliency_inventory.json   (in-scope items — In-scope inventory for the secret and certificate mgmt control (from Backup + replication platform))\n- resiliency_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Secret and certificate mgmt\",\n  \"domain\": \"Resiliency & Redundancy\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{res_",
         "/evidence/resiliency_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Business Continuity / DR\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Secret and certificate mgmt\" control must cover\n# fragment: secret_certificate_mgmt_",
         "/evidence/resiliency_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -3918,7 +3929,7 @@ export const resiliencyStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Secret and certificate mgmt\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Secret and certificate mgmt evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the secret and certificate mgmt control (from Backup + replication platform) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -3984,16 +3995,16 @@ export const resiliencyStages: StageConfig[] = [
         {
           "id": "res-11-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Secret and certificate mgmt\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Secret and certificate mgmt\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the secret and certificate mgmt control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the secret and certificate mgmt control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "res-11-q9",
@@ -4038,8 +4049,8 @@ export const resiliencyStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"High-availability architecture\" control for Resiliency & Redundancy is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Resiliency & Redundancy source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"High-availability architecture\" control for Resiliency & Redundancy is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"High-availability architecture\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Resiliency & Redundancy systems of record (Backup + replication platform; DR orchestration / runbooks; Multi-AZ/region infrastructure) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the high-availability architecture control (from Backup + replication platform)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -4076,18 +4087,18 @@ export const resiliencyStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"High-availability architecture\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Resiliency & Redundancy control.",
+      "tagline": "Auditing \"High-availability architecture\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the high-availability architecture control (from Backup + replication platform)) with read-only agents, run the test against policy, and issue a defensible opinion on the Resiliency & Redundancy control.",
       "year": 2025,
       "overview": [
-        "The \"High-availability architecture\" sub-process is one of the controls an auditor must verify for Resiliency & Redundancy. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that high-availability architecture is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Backup + replication platform, DR orchestration / runbooks, Multi-AZ/region infrastructure — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"High-availability architecture\" sub-process is one of the controls an auditor must verify for Resiliency & Redundancy. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the high-availability architecture control (from Backup + replication platform), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Backup + replication platform, DR orchestration / runbooks, Multi-AZ/region infrastructure — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"High-availability architecture\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `12_high_availability_architecture_mcp.py` exposes read-only tools that turn each Resiliency & Redundancy source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `12_high_availability_architecture_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Backup + replication platform and DR orchestration / runbooks (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 12_high_availability_architecture_mcp.py` to expose it to your agent — or `python 12_high_availability_architecture_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -4145,12 +4156,13 @@ export const resiliencyStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"High-availability architecture\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the high-availability architecture control (from Backup + replication platform).",
+        "The test: Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"High-availability architecture\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Backup + replication platform, DR orchestration / runbooks, Multi-AZ/region infrastructure) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the high-availability architecture control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -4174,20 +4186,20 @@ export const resiliencyStages: StageConfig[] = [
         {
           "name": "12_high_availability_architecture_mcp.py",
           "url": "/audit-code/resiliency/12_high_availability_architecture_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Resiliency & Redundancy evidence for \"High-availability architecture\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Resiliency & Redundancy evidence for \"High-availability architecture\" (in-scope inventory for the high-availability architecture control (from backup + replication platform)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"High-availability architecture\" control for Resiliency & Redundancy at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"High-availability architecture\" control for Resiliency & Redundancy at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"High-availability architecture\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the high-availability architecture control (from Backup + replication platform) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Backup + replication platform APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Backup + replication platform gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Backup + replication platform is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Backup + replication platform; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Resiliency & Redundancy: \"High-availability architecture\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- resiliency_inventory.json   (in-scope items from Backup + replication platform)\n- resiliency_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"High-availability architecture\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Resiliency & Redundancy: \"High-availability architecture\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"High-availability architecture\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- resiliency_inventory.json   (in-scope items — In-scope inventory for the high-availability architecture control (from Backup + replication platform))\n- resiliency_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"High-availability architecture\",\n  \"domain\": \"Resiliency & Redundancy\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{res_",
         "/evidence/resiliency_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Business Continuity / DR\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"High-availability architecture\" control must cover\n# fragment: highavailability_architecture_",
         "/evidence/resiliency_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -4283,7 +4295,7 @@ export const resiliencyStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"High-availability architecture\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The High-availability architecture evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the high-availability architecture control (from Backup + replication platform) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -4349,16 +4361,16 @@ export const resiliencyStages: StageConfig[] = [
         {
           "id": "res-12-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"High-availability architecture\"?",
+          "challenge": "Typical finding",
+          "text": "For \"High-availability architecture\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the high-availability architecture control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the high-availability architecture control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "res-12-q9",
@@ -4403,8 +4415,8 @@ export const resiliencyStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Chaos engineering\" control for Resiliency & Redundancy is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Resiliency & Redundancy source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Chaos engineering\" control for Resiliency & Redundancy is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"Chaos engineering\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Resiliency & Redundancy systems of record (Backup + replication platform; DR orchestration / runbooks; Multi-AZ/region infrastructure) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the chaos engineering control (from Backup + replication platform)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -4441,18 +4453,18 @@ export const resiliencyStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Chaos engineering\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Resiliency & Redundancy control.",
+      "tagline": "Auditing \"Chaos engineering\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the chaos engineering control (from Backup + replication platform)) with read-only agents, run the test against policy, and issue a defensible opinion on the Resiliency & Redundancy control.",
       "year": 2025,
       "overview": [
-        "The \"Chaos engineering\" sub-process is one of the controls an auditor must verify for Resiliency & Redundancy. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that chaos engineering is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Backup + replication platform, DR orchestration / runbooks, Multi-AZ/region infrastructure — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Chaos engineering\" sub-process is one of the controls an auditor must verify for Resiliency & Redundancy. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the chaos engineering control (from Backup + replication platform), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Backup + replication platform, DR orchestration / runbooks, Multi-AZ/region infrastructure — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"Chaos engineering\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `13_chaos_engineering_mcp.py` exposes read-only tools that turn each Resiliency & Redundancy source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `13_chaos_engineering_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Backup + replication platform and DR orchestration / runbooks (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 13_chaos_engineering_mcp.py` to expose it to your agent — or `python 13_chaos_engineering_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -4510,12 +4522,13 @@ export const resiliencyStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Chaos engineering\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the chaos engineering control (from Backup + replication platform).",
+        "The test: Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"Chaos engineering\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Backup + replication platform, DR orchestration / runbooks, Multi-AZ/region infrastructure) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the chaos engineering control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -4539,20 +4552,20 @@ export const resiliencyStages: StageConfig[] = [
         {
           "name": "13_chaos_engineering_mcp.py",
           "url": "/audit-code/resiliency/13_chaos_engineering_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Resiliency & Redundancy evidence for \"Chaos engineering\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Resiliency & Redundancy evidence for \"Chaos engineering\" (in-scope inventory for the chaos engineering control (from backup + replication platform)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Chaos engineering\" control for Resiliency & Redundancy at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Chaos engineering\" control for Resiliency & Redundancy at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"Chaos engineering\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the chaos engineering control (from Backup + replication platform) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Backup + replication platform APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Backup + replication platform gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Backup + replication platform is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Backup + replication platform; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Resiliency & Redundancy: \"Chaos engineering\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- resiliency_inventory.json   (in-scope items from Backup + replication platform)\n- resiliency_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Chaos engineering\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Resiliency & Redundancy: \"Chaos engineering\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"Chaos engineering\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- resiliency_inventory.json   (in-scope items — In-scope inventory for the chaos engineering control (from Backup + replication platform))\n- resiliency_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Chaos engineering\",\n  \"domain\": \"Resiliency & Redundancy\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{res_",
         "/evidence/resiliency_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Business Continuity / DR\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Chaos engineering\" control must cover\n# fragment: chaos_engineering_",
         "/evidence/resiliency_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -4648,7 +4661,7 @@ export const resiliencyStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Chaos engineering\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Chaos engineering evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the chaos engineering control (from Backup + replication platform) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -4714,16 +4727,16 @@ export const resiliencyStages: StageConfig[] = [
         {
           "id": "res-13-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Chaos engineering\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Chaos engineering\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the chaos engineering control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the chaos engineering control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "res-13-q9",
@@ -4768,8 +4781,8 @@ export const resiliencyStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"SLA and SLO monitoring\" control for Resiliency & Redundancy is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Resiliency & Redundancy source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"SLA and SLO monitoring\" control for Resiliency & Redundancy is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"SLA and SLO monitoring\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Resiliency & Redundancy systems of record (Backup + replication platform; DR orchestration / runbooks; Multi-AZ/region infrastructure) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the sla and slo monitoring control (from Backup + replication platform)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -4806,18 +4819,18 @@ export const resiliencyStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"SLA and SLO monitoring\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Resiliency & Redundancy control.",
+      "tagline": "Auditing \"SLA and SLO monitoring\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the sla and slo monitoring control (from Backup + replication platform)) with read-only agents, run the test against policy, and issue a defensible opinion on the Resiliency & Redundancy control.",
       "year": 2025,
       "overview": [
-        "The \"SLA and SLO monitoring\" sub-process is one of the controls an auditor must verify for Resiliency & Redundancy. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that sla and slo monitoring is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Backup + replication platform, DR orchestration / runbooks, Multi-AZ/region infrastructure — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"SLA and SLO monitoring\" sub-process is one of the controls an auditor must verify for Resiliency & Redundancy. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the sla and slo monitoring control (from Backup + replication platform), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Backup + replication platform, DR orchestration / runbooks, Multi-AZ/region infrastructure — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"SLA and SLO monitoring\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `14_sla_and_slo_monitoring_mcp.py` exposes read-only tools that turn each Resiliency & Redundancy source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `14_sla_and_slo_monitoring_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Backup + replication platform and DR orchestration / runbooks (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 14_sla_and_slo_monitoring_mcp.py` to expose it to your agent — or `python 14_sla_and_slo_monitoring_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -4875,12 +4888,13 @@ export const resiliencyStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"SLA and SLO monitoring\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the sla and slo monitoring control (from Backup + replication platform).",
+        "The test: Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"SLA and SLO monitoring\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Backup + replication platform, DR orchestration / runbooks, Multi-AZ/region infrastructure) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the sla and slo monitoring control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -4904,20 +4918,20 @@ export const resiliencyStages: StageConfig[] = [
         {
           "name": "14_sla_and_slo_monitoring_mcp.py",
           "url": "/audit-code/resiliency/14_sla_and_slo_monitoring_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Resiliency & Redundancy evidence for \"SLA and SLO monitoring\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Resiliency & Redundancy evidence for \"SLA and SLO monitoring\" (in-scope inventory for the sla and slo monitoring control (from backup + replication platform)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"SLA and SLO monitoring\" control for Resiliency & Redundancy at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"SLA and SLO monitoring\" control for Resiliency & Redundancy at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"SLA and SLO monitoring\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the sla and slo monitoring control (from Backup + replication platform) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Backup + replication platform APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Backup + replication platform gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Backup + replication platform is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Backup + replication platform; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Resiliency & Redundancy: \"SLA and SLO monitoring\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- resiliency_inventory.json   (in-scope items from Backup + replication platform)\n- resiliency_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"SLA and SLO monitoring\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Resiliency & Redundancy: \"SLA and SLO monitoring\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the \"SLA and SLO monitoring\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- resiliency_inventory.json   (in-scope items — In-scope inventory for the sla and slo monitoring control (from Backup + replication platform))\n- resiliency_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"SLA and SLO monitoring\",\n  \"domain\": \"Resiliency & Redundancy\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{res_",
         "/evidence/resiliency_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Business Continuity / DR\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"SLA and SLO monitoring\" control must cover\n# fragment: sla_slo_monitoring_",
         "/evidence/resiliency_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -5013,7 +5027,7 @@ export const resiliencyStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"SLA and SLO monitoring\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The SLA and SLO monitoring evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the sla and slo monitoring control (from Backup + replication platform) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -5079,16 +5093,16 @@ export const resiliencyStages: StageConfig[] = [
         {
           "id": "res-14-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"SLA and SLO monitoring\"?",
+          "challenge": "Typical finding",
+          "text": "For \"SLA and SLO monitoring\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the sla and slo monitoring control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the sla and slo monitoring control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "res-14-q9",

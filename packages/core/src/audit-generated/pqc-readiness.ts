@@ -23,8 +23,8 @@ export const pqcReadinessStages: StageConfig[] = [
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Cryptographic inventory and visibility\" control for Post-Quantum Readiness is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Post-Quantum Readiness source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Cryptographic inventory and visibility\" control for Post-Quantum Readiness is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Cryptographic inventory and visibility\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Post-Quantum Readiness systems of record (Cryptographic inventory / CBOM tooling; TLS + certificate estate; KMS / HSM + PKI) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the cryptographic inventory and visibility control (from Cryptographic inventory / CBOM tooling)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -61,18 +61,18 @@ export const pqcReadinessStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Cryptographic inventory and visibility\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Post-Quantum Readiness control.",
+      "tagline": "Auditing \"Cryptographic inventory and visibility\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the cryptographic inventory and visibility control (from Cryptographic inventory / CBOM tooling)) with read-only agents, run the test against policy, and issue a defensible opinion on the Post-Quantum Readiness control.",
       "year": 2025,
       "overview": [
-        "The \"Cryptographic inventory and visibility\" sub-process is one of the controls an auditor must verify for Post-Quantum Readiness. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that cryptographic inventory and visibility is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Cryptographic inventory and visibility\" sub-process is one of the controls an auditor must verify for Post-Quantum Readiness. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the cryptographic inventory and visibility control (from Cryptographic inventory / CBOM tooling), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Cryptographic inventory and visibility\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `01_cryptographic_inventory_and_visibility_mcp.py` exposes read-only tools that turn each Post-Quantum Readiness source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `01_cryptographic_inventory_and_visibility_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Cryptographic inventory / CBOM tooling and TLS + certificate estate (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 01_cryptographic_inventory_and_visibility_mcp.py` to expose it to your agent — or `python 01_cryptographic_inventory_and_visibility_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -130,12 +130,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Cryptographic inventory and visibility\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the cryptographic inventory and visibility control (from Cryptographic inventory / CBOM tooling).",
+        "The test: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Cryptographic inventory and visibility\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the cryptographic inventory and visibility control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -159,20 +160,20 @@ export const pqcReadinessStages: StageConfig[] = [
         {
           "name": "01_cryptographic_inventory_and_visibility_mcp.py",
           "url": "/audit-code/pqc-readiness/01_cryptographic_inventory_and_visibility_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Post-Quantum Readiness evidence for \"Cryptographic inventory and visibility\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Post-Quantum Readiness evidence for \"Cryptographic inventory and visibility\" (in-scope inventory for the cryptographic inventory and visibility control (from cryptographic inventory / cbom tooling)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Cryptographic inventory and visibility\" control for Post-Quantum Readiness at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Cryptographic inventory and visibility\" control for Post-Quantum Readiness at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Cryptographic inventory and visibility\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the cryptographic inventory and visibility control (from Cryptographic inventory / CBOM tooling) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Cryptographic inventory / CBOM tooling APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Cryptographic inventory / CBOM tooling gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Cryptographic inventory / CBOM tooling is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Cryptographic inventory / CBOM tooling; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Post-Quantum Readiness: \"Cryptographic inventory and visibility\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- pqc-readiness_inventory.json   (in-scope items from Cryptographic inventory / CBOM tooling)\n- pqc-readiness_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Cryptographic inventory and visibility\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Post-Quantum Readiness: \"Cryptographic inventory and visibility\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Cryptographic inventory and visibility\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- pqc-readiness_inventory.json   (in-scope items — In-scope inventory for the cryptographic inventory and visibility control (from Cryptographic inventory / CBOM tooling))\n- pqc-readiness_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Cryptographic inventory and visibility\",\n  \"domain\": \"Post-Quantum Readiness\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{pqc_",
         "/evidence/pqc-readiness_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Crypto / PKI team\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Cryptographic inventory and visibility\" control must cover\n# fragment: cryptographic_inventory_visibility_",
         "/evidence/pqc-readiness_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -268,7 +269,7 @@ export const pqcReadinessStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Cryptographic inventory and visibility\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Cryptographic inventory and visibility evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the cryptographic inventory and visibility control (from Cryptographic inventory / CBOM tooling) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -334,16 +335,16 @@ export const pqcReadinessStages: StageConfig[] = [
         {
           "id": "pqc-01-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Cryptographic inventory and visibility\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Cryptographic inventory and visibility\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the cryptographic inventory and visibility control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the cryptographic inventory and visibility control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "pqc-01-q9",
@@ -388,8 +389,8 @@ export const pqcReadinessStages: StageConfig[] = [
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Crypto Bill of Materials (CBOM)\" control for Post-Quantum Readiness is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Post-Quantum Readiness source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Crypto Bill of Materials (CBOM)\" control for Post-Quantum Readiness is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Crypto Bill of Materials (CBOM)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Post-Quantum Readiness systems of record (Cryptographic inventory / CBOM tooling; TLS + certificate estate; KMS / HSM + PKI) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the crypto bill of materials (cbom) control (from Cryptographic inventory / CBOM tooling)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -426,18 +427,18 @@ export const pqcReadinessStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Crypto Bill of Materials (CBOM)\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Post-Quantum Readiness control.",
+      "tagline": "Auditing \"Crypto Bill of Materials (CBOM)\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the crypto bill of materials (cbom) control (from Cryptographic inventory / CBOM tooling)) with read-only agents, run the test against policy, and issue a defensible opinion on the Post-Quantum Readiness control.",
       "year": 2025,
       "overview": [
-        "The \"Crypto Bill of Materials (CBOM)\" sub-process is one of the controls an auditor must verify for Post-Quantum Readiness. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that crypto bill of materials (cbom) is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Crypto Bill of Materials (CBOM)\" sub-process is one of the controls an auditor must verify for Post-Quantum Readiness. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the crypto bill of materials (cbom) control (from Cryptographic inventory / CBOM tooling), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Crypto Bill of Materials (CBOM)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `02_crypto_bill_of_materials_cbom_mcp.py` exposes read-only tools that turn each Post-Quantum Readiness source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `02_crypto_bill_of_materials_cbom_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Cryptographic inventory / CBOM tooling and TLS + certificate estate (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 02_crypto_bill_of_materials_cbom_mcp.py` to expose it to your agent — or `python 02_crypto_bill_of_materials_cbom_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -495,12 +496,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Crypto Bill of Materials (CBOM)\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the crypto bill of materials (cbom) control (from Cryptographic inventory / CBOM tooling).",
+        "The test: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Crypto Bill of Materials (CBOM)\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the crypto bill of materials (cbom) control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -524,20 +526,20 @@ export const pqcReadinessStages: StageConfig[] = [
         {
           "name": "02_crypto_bill_of_materials_cbom_mcp.py",
           "url": "/audit-code/pqc-readiness/02_crypto_bill_of_materials_cbom_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Post-Quantum Readiness evidence for \"Crypto Bill of Materials (CBOM)\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Post-Quantum Readiness evidence for \"Crypto Bill of Materials (CBOM)\" (in-scope inventory for the crypto bill of materials (cbom) control (from cryptographic inventory / cbom tooling)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Crypto Bill of Materials (CBOM)\" control for Post-Quantum Readiness at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Crypto Bill of Materials (CBOM)\" control for Post-Quantum Readiness at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Crypto Bill of Materials (CBOM)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the crypto bill of materials (cbom) control (from Cryptographic inventory / CBOM tooling) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Cryptographic inventory / CBOM tooling APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Cryptographic inventory / CBOM tooling gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Cryptographic inventory / CBOM tooling is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Cryptographic inventory / CBOM tooling; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Post-Quantum Readiness: \"Crypto Bill of Materials (CBOM)\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- pqc-readiness_inventory.json   (in-scope items from Cryptographic inventory / CBOM tooling)\n- pqc-readiness_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Crypto Bill of Materials (CBOM)\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Post-Quantum Readiness: \"Crypto Bill of Materials (CBOM)\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Crypto Bill of Materials (CBOM)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- pqc-readiness_inventory.json   (in-scope items — In-scope inventory for the crypto bill of materials (cbom) control (from Cryptographic inventory / CBOM tooling))\n- pqc-readiness_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Crypto Bill of Materials (CBOM)\",\n  \"domain\": \"Post-Quantum Readiness\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{pqc_",
         "/evidence/pqc-readiness_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Crypto / PKI team\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Crypto Bill of Materials (CBOM)\" control must cover\n# fragment: crypto_bill_materials_",
         "/evidence/pqc-readiness_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -633,7 +635,7 @@ export const pqcReadinessStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Crypto Bill of Materials (CBOM)\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Crypto Bill of Materials (CBOM) evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the crypto bill of materials (cbom) control (from Cryptographic inventory / CBOM tooling) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -699,16 +701,16 @@ export const pqcReadinessStages: StageConfig[] = [
         {
           "id": "pqc-02-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Crypto Bill of Materials (CBOM)\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Crypto Bill of Materials (CBOM)\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the crypto bill of materials (cbom) control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the crypto bill of materials (cbom) control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "pqc-02-q9",
@@ -753,8 +755,8 @@ export const pqcReadinessStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Long-lived data identification\" control for Post-Quantum Readiness is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Post-Quantum Readiness source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Long-lived data identification\" control for Post-Quantum Readiness is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Long-lived data identification\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Post-Quantum Readiness systems of record (Cryptographic inventory / CBOM tooling; TLS + certificate estate; KMS / HSM + PKI) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the long-lived data identification control (from Cryptographic inventory / CBOM tooling)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -791,18 +793,18 @@ export const pqcReadinessStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Long-lived data identification\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Post-Quantum Readiness control.",
+      "tagline": "Auditing \"Long-lived data identification\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the long-lived data identification control (from Cryptographic inventory / CBOM tooling)) with read-only agents, run the test against policy, and issue a defensible opinion on the Post-Quantum Readiness control.",
       "year": 2025,
       "overview": [
-        "The \"Long-lived data identification\" sub-process is one of the controls an auditor must verify for Post-Quantum Readiness. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that long-lived data identification is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Long-lived data identification\" sub-process is one of the controls an auditor must verify for Post-Quantum Readiness. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the long-lived data identification control (from Cryptographic inventory / CBOM tooling), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Long-lived data identification\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `03_long_lived_data_identification_mcp.py` exposes read-only tools that turn each Post-Quantum Readiness source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `03_long_lived_data_identification_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Cryptographic inventory / CBOM tooling and TLS + certificate estate (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 03_long_lived_data_identification_mcp.py` to expose it to your agent — or `python 03_long_lived_data_identification_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -860,12 +862,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Long-lived data identification\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the long-lived data identification control (from Cryptographic inventory / CBOM tooling).",
+        "The test: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Long-lived data identification\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the long-lived data identification control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -889,20 +892,20 @@ export const pqcReadinessStages: StageConfig[] = [
         {
           "name": "03_long_lived_data_identification_mcp.py",
           "url": "/audit-code/pqc-readiness/03_long_lived_data_identification_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Post-Quantum Readiness evidence for \"Long-lived data identification\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Post-Quantum Readiness evidence for \"Long-lived data identification\" (in-scope inventory for the long-lived data identification control (from cryptographic inventory / cbom tooling)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Long-lived data identification\" control for Post-Quantum Readiness at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Long-lived data identification\" control for Post-Quantum Readiness at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Long-lived data identification\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the long-lived data identification control (from Cryptographic inventory / CBOM tooling) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Cryptographic inventory / CBOM tooling APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Cryptographic inventory / CBOM tooling gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Cryptographic inventory / CBOM tooling is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Cryptographic inventory / CBOM tooling; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Post-Quantum Readiness: \"Long-lived data identification\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- pqc-readiness_inventory.json   (in-scope items from Cryptographic inventory / CBOM tooling)\n- pqc-readiness_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Long-lived data identification\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Post-Quantum Readiness: \"Long-lived data identification\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Long-lived data identification\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- pqc-readiness_inventory.json   (in-scope items — In-scope inventory for the long-lived data identification control (from Cryptographic inventory / CBOM tooling))\n- pqc-readiness_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Long-lived data identification\",\n  \"domain\": \"Post-Quantum Readiness\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{pqc_",
         "/evidence/pqc-readiness_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Crypto / PKI team\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Long-lived data identification\" control must cover\n# fragment: longlived_data_identification_",
         "/evidence/pqc-readiness_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -998,7 +1001,7 @@ export const pqcReadinessStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Long-lived data identification\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Long-lived data identification evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the long-lived data identification control (from Cryptographic inventory / CBOM tooling) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -1064,16 +1067,16 @@ export const pqcReadinessStages: StageConfig[] = [
         {
           "id": "pqc-03-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Long-lived data identification\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Long-lived data identification\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the long-lived data identification control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the long-lived data identification control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "pqc-03-q9",
@@ -1118,8 +1121,8 @@ export const pqcReadinessStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Network traffic exposure\" control for Post-Quantum Readiness is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Post-Quantum Readiness source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Network traffic exposure\" control for Post-Quantum Readiness is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Network traffic exposure\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Post-Quantum Readiness systems of record (Cryptographic inventory / CBOM tooling; TLS + certificate estate; KMS / HSM + PKI) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the network traffic exposure control (from Cryptographic inventory / CBOM tooling)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -1156,18 +1159,18 @@ export const pqcReadinessStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Network traffic exposure\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Post-Quantum Readiness control.",
+      "tagline": "Auditing \"Network traffic exposure\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the network traffic exposure control (from Cryptographic inventory / CBOM tooling)) with read-only agents, run the test against policy, and issue a defensible opinion on the Post-Quantum Readiness control.",
       "year": 2025,
       "overview": [
-        "The \"Network traffic exposure\" sub-process is one of the controls an auditor must verify for Post-Quantum Readiness. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that network traffic exposure is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Network traffic exposure\" sub-process is one of the controls an auditor must verify for Post-Quantum Readiness. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the network traffic exposure control (from Cryptographic inventory / CBOM tooling), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Network traffic exposure\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `04_network_traffic_exposure_mcp.py` exposes read-only tools that turn each Post-Quantum Readiness source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `04_network_traffic_exposure_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Cryptographic inventory / CBOM tooling and TLS + certificate estate (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 04_network_traffic_exposure_mcp.py` to expose it to your agent — or `python 04_network_traffic_exposure_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -1225,12 +1228,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Network traffic exposure\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the network traffic exposure control (from Cryptographic inventory / CBOM tooling).",
+        "The test: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Network traffic exposure\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the network traffic exposure control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -1254,20 +1258,20 @@ export const pqcReadinessStages: StageConfig[] = [
         {
           "name": "04_network_traffic_exposure_mcp.py",
           "url": "/audit-code/pqc-readiness/04_network_traffic_exposure_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Post-Quantum Readiness evidence for \"Network traffic exposure\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Post-Quantum Readiness evidence for \"Network traffic exposure\" (in-scope inventory for the network traffic exposure control (from cryptographic inventory / cbom tooling)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Network traffic exposure\" control for Post-Quantum Readiness at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Network traffic exposure\" control for Post-Quantum Readiness at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Network traffic exposure\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the network traffic exposure control (from Cryptographic inventory / CBOM tooling) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Cryptographic inventory / CBOM tooling APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Cryptographic inventory / CBOM tooling gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Cryptographic inventory / CBOM tooling is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Cryptographic inventory / CBOM tooling; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Post-Quantum Readiness: \"Network traffic exposure\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- pqc-readiness_inventory.json   (in-scope items from Cryptographic inventory / CBOM tooling)\n- pqc-readiness_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Network traffic exposure\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Post-Quantum Readiness: \"Network traffic exposure\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Network traffic exposure\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- pqc-readiness_inventory.json   (in-scope items — In-scope inventory for the network traffic exposure control (from Cryptographic inventory / CBOM tooling))\n- pqc-readiness_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Network traffic exposure\",\n  \"domain\": \"Post-Quantum Readiness\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{pqc_",
         "/evidence/pqc-readiness_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Crypto / PKI team\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Network traffic exposure\" control must cover\n# fragment: network_traffic_exposure_",
         "/evidence/pqc-readiness_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -1363,7 +1367,7 @@ export const pqcReadinessStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Network traffic exposure\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Network traffic exposure evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the network traffic exposure control (from Cryptographic inventory / CBOM tooling) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -1429,16 +1433,16 @@ export const pqcReadinessStages: StageConfig[] = [
         {
           "id": "pqc-04-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Network traffic exposure\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Network traffic exposure\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the network traffic exposure control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the network traffic exposure control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "pqc-04-q9",
@@ -1483,8 +1487,8 @@ export const pqcReadinessStages: StageConfig[] = [
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Historical encryption assessment\" control for Post-Quantum Readiness is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Post-Quantum Readiness source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Historical encryption assessment\" control for Post-Quantum Readiness is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Historical encryption assessment\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Post-Quantum Readiness systems of record (Cryptographic inventory / CBOM tooling; TLS + certificate estate; KMS / HSM + PKI) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the historical encryption assessment control (from Cryptographic inventory / CBOM tooling)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -1521,18 +1525,18 @@ export const pqcReadinessStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Historical encryption assessment\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Post-Quantum Readiness control.",
+      "tagline": "Auditing \"Historical encryption assessment\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the historical encryption assessment control (from Cryptographic inventory / CBOM tooling)) with read-only agents, run the test against policy, and issue a defensible opinion on the Post-Quantum Readiness control.",
       "year": 2025,
       "overview": [
-        "The \"Historical encryption assessment\" sub-process is one of the controls an auditor must verify for Post-Quantum Readiness. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that historical encryption assessment is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Historical encryption assessment\" sub-process is one of the controls an auditor must verify for Post-Quantum Readiness. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the historical encryption assessment control (from Cryptographic inventory / CBOM tooling), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Historical encryption assessment\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `05_historical_encryption_assessment_mcp.py` exposes read-only tools that turn each Post-Quantum Readiness source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `05_historical_encryption_assessment_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Cryptographic inventory / CBOM tooling and TLS + certificate estate (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 05_historical_encryption_assessment_mcp.py` to expose it to your agent — or `python 05_historical_encryption_assessment_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -1590,12 +1594,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Historical encryption assessment\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the historical encryption assessment control (from Cryptographic inventory / CBOM tooling).",
+        "The test: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Historical encryption assessment\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the historical encryption assessment control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -1619,20 +1624,20 @@ export const pqcReadinessStages: StageConfig[] = [
         {
           "name": "05_historical_encryption_assessment_mcp.py",
           "url": "/audit-code/pqc-readiness/05_historical_encryption_assessment_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Post-Quantum Readiness evidence for \"Historical encryption assessment\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Post-Quantum Readiness evidence for \"Historical encryption assessment\" (in-scope inventory for the historical encryption assessment control (from cryptographic inventory / cbom tooling)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Historical encryption assessment\" control for Post-Quantum Readiness at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Historical encryption assessment\" control for Post-Quantum Readiness at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Historical encryption assessment\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the historical encryption assessment control (from Cryptographic inventory / CBOM tooling) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Cryptographic inventory / CBOM tooling APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Cryptographic inventory / CBOM tooling gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Cryptographic inventory / CBOM tooling is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Cryptographic inventory / CBOM tooling; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Post-Quantum Readiness: \"Historical encryption assessment\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- pqc-readiness_inventory.json   (in-scope items from Cryptographic inventory / CBOM tooling)\n- pqc-readiness_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Historical encryption assessment\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Post-Quantum Readiness: \"Historical encryption assessment\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Historical encryption assessment\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- pqc-readiness_inventory.json   (in-scope items — In-scope inventory for the historical encryption assessment control (from Cryptographic inventory / CBOM tooling))\n- pqc-readiness_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Historical encryption assessment\",\n  \"domain\": \"Post-Quantum Readiness\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{pqc_",
         "/evidence/pqc-readiness_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Crypto / PKI team\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Historical encryption assessment\" control must cover\n# fragment: historical_encryption_assessment_",
         "/evidence/pqc-readiness_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -1728,7 +1733,7 @@ export const pqcReadinessStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Historical encryption assessment\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Historical encryption assessment evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the historical encryption assessment control (from Cryptographic inventory / CBOM tooling) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -1794,16 +1799,16 @@ export const pqcReadinessStages: StageConfig[] = [
         {
           "id": "pqc-05-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Historical encryption assessment\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Historical encryption assessment\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the historical encryption assessment control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the historical encryption assessment control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "pqc-05-q9",
@@ -1848,8 +1853,8 @@ export const pqcReadinessStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"PQC regulatory compliance\" control for Post-Quantum Readiness is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Post-Quantum Readiness source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"PQC regulatory compliance\" control for Post-Quantum Readiness is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"PQC regulatory compliance\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Post-Quantum Readiness systems of record (Cryptographic inventory / CBOM tooling; TLS + certificate estate; KMS / HSM + PKI) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the pqc regulatory compliance control (from Cryptographic inventory / CBOM tooling)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -1886,18 +1891,18 @@ export const pqcReadinessStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"PQC regulatory compliance\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Post-Quantum Readiness control.",
+      "tagline": "Auditing \"PQC regulatory compliance\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the pqc regulatory compliance control (from Cryptographic inventory / CBOM tooling)) with read-only agents, run the test against policy, and issue a defensible opinion on the Post-Quantum Readiness control.",
       "year": 2025,
       "overview": [
-        "The \"PQC regulatory compliance\" sub-process is one of the controls an auditor must verify for Post-Quantum Readiness. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that pqc regulatory compliance is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"PQC regulatory compliance\" sub-process is one of the controls an auditor must verify for Post-Quantum Readiness. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the pqc regulatory compliance control (from Cryptographic inventory / CBOM tooling), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"PQC regulatory compliance\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `06_pqc_regulatory_compliance_mcp.py` exposes read-only tools that turn each Post-Quantum Readiness source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `06_pqc_regulatory_compliance_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Cryptographic inventory / CBOM tooling and TLS + certificate estate (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 06_pqc_regulatory_compliance_mcp.py` to expose it to your agent — or `python 06_pqc_regulatory_compliance_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -1955,12 +1960,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"PQC regulatory compliance\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the pqc regulatory compliance control (from Cryptographic inventory / CBOM tooling).",
+        "The test: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"PQC regulatory compliance\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the pqc regulatory compliance control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -1984,20 +1990,20 @@ export const pqcReadinessStages: StageConfig[] = [
         {
           "name": "06_pqc_regulatory_compliance_mcp.py",
           "url": "/audit-code/pqc-readiness/06_pqc_regulatory_compliance_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Post-Quantum Readiness evidence for \"PQC regulatory compliance\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Post-Quantum Readiness evidence for \"PQC regulatory compliance\" (in-scope inventory for the pqc regulatory compliance control (from cryptographic inventory / cbom tooling)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"PQC regulatory compliance\" control for Post-Quantum Readiness at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"PQC regulatory compliance\" control for Post-Quantum Readiness at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"PQC regulatory compliance\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the pqc regulatory compliance control (from Cryptographic inventory / CBOM tooling) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Cryptographic inventory / CBOM tooling APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Cryptographic inventory / CBOM tooling gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Cryptographic inventory / CBOM tooling is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Cryptographic inventory / CBOM tooling; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Post-Quantum Readiness: \"PQC regulatory compliance\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- pqc-readiness_inventory.json   (in-scope items from Cryptographic inventory / CBOM tooling)\n- pqc-readiness_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"PQC regulatory compliance\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Post-Quantum Readiness: \"PQC regulatory compliance\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"PQC regulatory compliance\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- pqc-readiness_inventory.json   (in-scope items — In-scope inventory for the pqc regulatory compliance control (from Cryptographic inventory / CBOM tooling))\n- pqc-readiness_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"PQC regulatory compliance\",\n  \"domain\": \"Post-Quantum Readiness\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{pqc_",
         "/evidence/pqc-readiness_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Crypto / PKI team\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"PQC regulatory compliance\" control must cover\n# fragment: pqc_regulatory_compliance_",
         "/evidence/pqc-readiness_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -2093,7 +2099,7 @@ export const pqcReadinessStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"PQC regulatory compliance\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The PQC regulatory compliance evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the pqc regulatory compliance control (from Cryptographic inventory / CBOM tooling) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -2159,16 +2165,16 @@ export const pqcReadinessStages: StageConfig[] = [
         {
           "id": "pqc-06-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"PQC regulatory compliance\"?",
+          "challenge": "Typical finding",
+          "text": "For \"PQC regulatory compliance\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the pqc regulatory compliance control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the pqc regulatory compliance control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "pqc-06-q9",
@@ -2213,8 +2219,8 @@ export const pqcReadinessStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Active HNDL threat intel\" control for Post-Quantum Readiness is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Post-Quantum Readiness source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Active HNDL threat intel\" control for Post-Quantum Readiness is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Active HNDL threat intel\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Post-Quantum Readiness systems of record (Cryptographic inventory / CBOM tooling; TLS + certificate estate; KMS / HSM + PKI) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the active hndl threat intel control (from Cryptographic inventory / CBOM tooling)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -2251,18 +2257,18 @@ export const pqcReadinessStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Active HNDL threat intel\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Post-Quantum Readiness control.",
+      "tagline": "Auditing \"Active HNDL threat intel\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the active hndl threat intel control (from Cryptographic inventory / CBOM tooling)) with read-only agents, run the test against policy, and issue a defensible opinion on the Post-Quantum Readiness control.",
       "year": 2025,
       "overview": [
-        "The \"Active HNDL threat intel\" sub-process is one of the controls an auditor must verify for Post-Quantum Readiness. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that active hndl threat intel is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Active HNDL threat intel\" sub-process is one of the controls an auditor must verify for Post-Quantum Readiness. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the active hndl threat intel control (from Cryptographic inventory / CBOM tooling), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Active HNDL threat intel\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `07_active_hndl_threat_intel_mcp.py` exposes read-only tools that turn each Post-Quantum Readiness source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `07_active_hndl_threat_intel_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Cryptographic inventory / CBOM tooling and TLS + certificate estate (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 07_active_hndl_threat_intel_mcp.py` to expose it to your agent — or `python 07_active_hndl_threat_intel_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -2320,12 +2326,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Active HNDL threat intel\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the active hndl threat intel control (from Cryptographic inventory / CBOM tooling).",
+        "The test: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Active HNDL threat intel\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the active hndl threat intel control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -2349,20 +2356,20 @@ export const pqcReadinessStages: StageConfig[] = [
         {
           "name": "07_active_hndl_threat_intel_mcp.py",
           "url": "/audit-code/pqc-readiness/07_active_hndl_threat_intel_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Post-Quantum Readiness evidence for \"Active HNDL threat intel\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Post-Quantum Readiness evidence for \"Active HNDL threat intel\" (in-scope inventory for the active hndl threat intel control (from cryptographic inventory / cbom tooling)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Active HNDL threat intel\" control for Post-Quantum Readiness at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Active HNDL threat intel\" control for Post-Quantum Readiness at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Active HNDL threat intel\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the active hndl threat intel control (from Cryptographic inventory / CBOM tooling) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Cryptographic inventory / CBOM tooling APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Cryptographic inventory / CBOM tooling gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Cryptographic inventory / CBOM tooling is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Cryptographic inventory / CBOM tooling; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Post-Quantum Readiness: \"Active HNDL threat intel\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- pqc-readiness_inventory.json   (in-scope items from Cryptographic inventory / CBOM tooling)\n- pqc-readiness_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Active HNDL threat intel\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Post-Quantum Readiness: \"Active HNDL threat intel\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Active HNDL threat intel\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- pqc-readiness_inventory.json   (in-scope items — In-scope inventory for the active hndl threat intel control (from Cryptographic inventory / CBOM tooling))\n- pqc-readiness_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Active HNDL threat intel\",\n  \"domain\": \"Post-Quantum Readiness\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{pqc_",
         "/evidence/pqc-readiness_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Crypto / PKI team\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Active HNDL threat intel\" control must cover\n# fragment: active_hndl_threat_",
         "/evidence/pqc-readiness_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -2458,7 +2465,7 @@ export const pqcReadinessStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Active HNDL threat intel\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Active HNDL threat intel evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the active hndl threat intel control (from Cryptographic inventory / CBOM tooling) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -2524,16 +2531,16 @@ export const pqcReadinessStages: StageConfig[] = [
         {
           "id": "pqc-07-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Active HNDL threat intel\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Active HNDL threat intel\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the active hndl threat intel control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the active hndl threat intel control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "pqc-07-q9",
@@ -2578,8 +2585,8 @@ export const pqcReadinessStages: StageConfig[] = [
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Crypto, protocol, hardware agility\" control for Post-Quantum Readiness is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Post-Quantum Readiness source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Crypto, protocol, hardware agility\" control for Post-Quantum Readiness is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Crypto, protocol, hardware agility\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Post-Quantum Readiness systems of record (Cryptographic inventory / CBOM tooling; TLS + certificate estate; KMS / HSM + PKI) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the crypto, protocol, hardware agility control (from Cryptographic inventory / CBOM tooling)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -2616,18 +2623,18 @@ export const pqcReadinessStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Crypto, protocol, hardware agility\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Post-Quantum Readiness control.",
+      "tagline": "Auditing \"Crypto, protocol, hardware agility\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the crypto, protocol, hardware agility control (from Cryptographic inventory / CBOM tooling)) with read-only agents, run the test against policy, and issue a defensible opinion on the Post-Quantum Readiness control.",
       "year": 2025,
       "overview": [
-        "The \"Crypto, protocol, hardware agility\" sub-process is one of the controls an auditor must verify for Post-Quantum Readiness. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that crypto, protocol, hardware agility is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Crypto, protocol, hardware agility\" sub-process is one of the controls an auditor must verify for Post-Quantum Readiness. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the crypto, protocol, hardware agility control (from Cryptographic inventory / CBOM tooling), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Crypto, protocol, hardware agility\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `08_crypto_protocol_hardware_agility_mcp.py` exposes read-only tools that turn each Post-Quantum Readiness source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `08_crypto_protocol_hardware_agility_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Cryptographic inventory / CBOM tooling and TLS + certificate estate (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 08_crypto_protocol_hardware_agility_mcp.py` to expose it to your agent — or `python 08_crypto_protocol_hardware_agility_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -2685,12 +2692,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Crypto, protocol, hardware agility\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the crypto, protocol, hardware agility control (from Cryptographic inventory / CBOM tooling).",
+        "The test: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Crypto, protocol, hardware agility\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the crypto, protocol, hardware agility control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -2714,20 +2722,20 @@ export const pqcReadinessStages: StageConfig[] = [
         {
           "name": "08_crypto_protocol_hardware_agility_mcp.py",
           "url": "/audit-code/pqc-readiness/08_crypto_protocol_hardware_agility_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Post-Quantum Readiness evidence for \"Crypto, protocol, hardware agility\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Post-Quantum Readiness evidence for \"Crypto, protocol, hardware agility\" (in-scope inventory for the crypto, protocol, hardware agility control (from cryptographic inventory / cbom tooling)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Crypto, protocol, hardware agility\" control for Post-Quantum Readiness at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Crypto, protocol, hardware agility\" control for Post-Quantum Readiness at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Crypto, protocol, hardware agility\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the crypto, protocol, hardware agility control (from Cryptographic inventory / CBOM tooling) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Cryptographic inventory / CBOM tooling APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Cryptographic inventory / CBOM tooling gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Cryptographic inventory / CBOM tooling is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Cryptographic inventory / CBOM tooling; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Post-Quantum Readiness: \"Crypto, protocol, hardware agility\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- pqc-readiness_inventory.json   (in-scope items from Cryptographic inventory / CBOM tooling)\n- pqc-readiness_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Crypto, protocol, hardware agility\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Post-Quantum Readiness: \"Crypto, protocol, hardware agility\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Crypto, protocol, hardware agility\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- pqc-readiness_inventory.json   (in-scope items — In-scope inventory for the crypto, protocol, hardware agility control (from Cryptographic inventory / CBOM tooling))\n- pqc-readiness_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Crypto, protocol, hardware agility\",\n  \"domain\": \"Post-Quantum Readiness\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{pqc_",
         "/evidence/pqc-readiness_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Crypto / PKI team\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Crypto, protocol, hardware agility\" control must cover\n# fragment: crypto_protocol_hardware_",
         "/evidence/pqc-readiness_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -2823,7 +2831,7 @@ export const pqcReadinessStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Crypto, protocol, hardware agility\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Crypto, protocol, hardware agility evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the crypto, protocol, hardware agility control (from Cryptographic inventory / CBOM tooling) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -2889,16 +2897,16 @@ export const pqcReadinessStages: StageConfig[] = [
         {
           "id": "pqc-08-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Crypto, protocol, hardware agility\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Crypto, protocol, hardware agility\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the crypto, protocol, hardware agility control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the crypto, protocol, hardware agility control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "pqc-08-q9",
@@ -2943,8 +2951,8 @@ export const pqcReadinessStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Secure communications PQC migration\" control for Post-Quantum Readiness is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Post-Quantum Readiness source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Secure communications PQC migration\" control for Post-Quantum Readiness is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Secure communications PQC migration\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Post-Quantum Readiness systems of record (Cryptographic inventory / CBOM tooling; TLS + certificate estate; KMS / HSM + PKI) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the secure communications pqc migration control (from Cryptographic inventory / CBOM tooling)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -2981,18 +2989,18 @@ export const pqcReadinessStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Secure communications PQC migration\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Post-Quantum Readiness control.",
+      "tagline": "Auditing \"Secure communications PQC migration\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the secure communications pqc migration control (from Cryptographic inventory / CBOM tooling)) with read-only agents, run the test against policy, and issue a defensible opinion on the Post-Quantum Readiness control.",
       "year": 2025,
       "overview": [
-        "The \"Secure communications PQC migration\" sub-process is one of the controls an auditor must verify for Post-Quantum Readiness. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that secure communications pqc migration is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Secure communications PQC migration\" sub-process is one of the controls an auditor must verify for Post-Quantum Readiness. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the secure communications pqc migration control (from Cryptographic inventory / CBOM tooling), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Secure communications PQC migration\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `09_secure_communications_pqc_migration_mcp.py` exposes read-only tools that turn each Post-Quantum Readiness source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `09_secure_communications_pqc_migration_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Cryptographic inventory / CBOM tooling and TLS + certificate estate (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 09_secure_communications_pqc_migration_mcp.py` to expose it to your agent — or `python 09_secure_communications_pqc_migration_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -3050,12 +3058,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Secure communications PQC migration\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the secure communications pqc migration control (from Cryptographic inventory / CBOM tooling).",
+        "The test: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Secure communications PQC migration\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the secure communications pqc migration control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -3079,20 +3088,20 @@ export const pqcReadinessStages: StageConfig[] = [
         {
           "name": "09_secure_communications_pqc_migration_mcp.py",
           "url": "/audit-code/pqc-readiness/09_secure_communications_pqc_migration_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Post-Quantum Readiness evidence for \"Secure communications PQC migration\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Post-Quantum Readiness evidence for \"Secure communications PQC migration\" (in-scope inventory for the secure communications pqc migration control (from cryptographic inventory / cbom tooling)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Secure communications PQC migration\" control for Post-Quantum Readiness at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Secure communications PQC migration\" control for Post-Quantum Readiness at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Secure communications PQC migration\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the secure communications pqc migration control (from Cryptographic inventory / CBOM tooling) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Cryptographic inventory / CBOM tooling APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Cryptographic inventory / CBOM tooling gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Cryptographic inventory / CBOM tooling is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Cryptographic inventory / CBOM tooling; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Post-Quantum Readiness: \"Secure communications PQC migration\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- pqc-readiness_inventory.json   (in-scope items from Cryptographic inventory / CBOM tooling)\n- pqc-readiness_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Secure communications PQC migration\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Post-Quantum Readiness: \"Secure communications PQC migration\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Secure communications PQC migration\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- pqc-readiness_inventory.json   (in-scope items — In-scope inventory for the secure communications pqc migration control (from Cryptographic inventory / CBOM tooling))\n- pqc-readiness_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Secure communications PQC migration\",\n  \"domain\": \"Post-Quantum Readiness\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{pqc_",
         "/evidence/pqc-readiness_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Crypto / PKI team\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Secure communications PQC migration\" control must cover\n# fragment: secure_communications_pqc_",
         "/evidence/pqc-readiness_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -3188,7 +3197,7 @@ export const pqcReadinessStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Secure communications PQC migration\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Secure communications PQC migration evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the secure communications pqc migration control (from Cryptographic inventory / CBOM tooling) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -3254,16 +3263,16 @@ export const pqcReadinessStages: StageConfig[] = [
         {
           "id": "pqc-09-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Secure communications PQC migration\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Secure communications PQC migration\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the secure communications pqc migration control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the secure communications pqc migration control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "pqc-09-q9",
@@ -3308,8 +3317,8 @@ export const pqcReadinessStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"RFC 9881 alignment\" control for Post-Quantum Readiness is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Post-Quantum Readiness source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"RFC 9881 alignment\" control for Post-Quantum Readiness is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"RFC 9881 alignment\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Post-Quantum Readiness systems of record (Cryptographic inventory / CBOM tooling; TLS + certificate estate; KMS / HSM + PKI) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the rfc 9881 alignment control (from Cryptographic inventory / CBOM tooling)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -3346,18 +3355,18 @@ export const pqcReadinessStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"RFC 9881 alignment\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Post-Quantum Readiness control.",
+      "tagline": "Auditing \"RFC 9881 alignment\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the rfc 9881 alignment control (from Cryptographic inventory / CBOM tooling)) with read-only agents, run the test against policy, and issue a defensible opinion on the Post-Quantum Readiness control.",
       "year": 2025,
       "overview": [
-        "The \"RFC 9881 alignment\" sub-process is one of the controls an auditor must verify for Post-Quantum Readiness. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that rfc 9881 alignment is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"RFC 9881 alignment\" sub-process is one of the controls an auditor must verify for Post-Quantum Readiness. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the rfc 9881 alignment control (from Cryptographic inventory / CBOM tooling), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"RFC 9881 alignment\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `10_rfc_9881_alignment_mcp.py` exposes read-only tools that turn each Post-Quantum Readiness source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `10_rfc_9881_alignment_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Cryptographic inventory / CBOM tooling and TLS + certificate estate (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 10_rfc_9881_alignment_mcp.py` to expose it to your agent — or `python 10_rfc_9881_alignment_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -3415,12 +3424,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"RFC 9881 alignment\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the rfc 9881 alignment control (from Cryptographic inventory / CBOM tooling).",
+        "The test: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"RFC 9881 alignment\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the rfc 9881 alignment control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -3444,20 +3454,20 @@ export const pqcReadinessStages: StageConfig[] = [
         {
           "name": "10_rfc_9881_alignment_mcp.py",
           "url": "/audit-code/pqc-readiness/10_rfc_9881_alignment_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Post-Quantum Readiness evidence for \"RFC 9881 alignment\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Post-Quantum Readiness evidence for \"RFC 9881 alignment\" (in-scope inventory for the rfc 9881 alignment control (from cryptographic inventory / cbom tooling)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"RFC 9881 alignment\" control for Post-Quantum Readiness at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"RFC 9881 alignment\" control for Post-Quantum Readiness at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"RFC 9881 alignment\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the rfc 9881 alignment control (from Cryptographic inventory / CBOM tooling) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Cryptographic inventory / CBOM tooling APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Cryptographic inventory / CBOM tooling gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Cryptographic inventory / CBOM tooling is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Cryptographic inventory / CBOM tooling; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Post-Quantum Readiness: \"RFC 9881 alignment\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- pqc-readiness_inventory.json   (in-scope items from Cryptographic inventory / CBOM tooling)\n- pqc-readiness_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"RFC 9881 alignment\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Post-Quantum Readiness: \"RFC 9881 alignment\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"RFC 9881 alignment\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- pqc-readiness_inventory.json   (in-scope items — In-scope inventory for the rfc 9881 alignment control (from Cryptographic inventory / CBOM tooling))\n- pqc-readiness_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"RFC 9881 alignment\",\n  \"domain\": \"Post-Quantum Readiness\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{pqc_",
         "/evidence/pqc-readiness_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Crypto / PKI team\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"RFC 9881 alignment\" control must cover\n# fragment: rfc_9881_alignment_",
         "/evidence/pqc-readiness_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -3553,7 +3563,7 @@ export const pqcReadinessStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"RFC 9881 alignment\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The RFC 9881 alignment evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the rfc 9881 alignment control (from Cryptographic inventory / CBOM tooling) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -3619,16 +3629,16 @@ export const pqcReadinessStages: StageConfig[] = [
         {
           "id": "pqc-10-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"RFC 9881 alignment\"?",
+          "challenge": "Typical finding",
+          "text": "For \"RFC 9881 alignment\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the rfc 9881 alignment control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the rfc 9881 alignment control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "pqc-10-q9",
@@ -3673,8 +3683,8 @@ export const pqcReadinessStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"CNSA 2.0 compliance planning\" control for Post-Quantum Readiness is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Post-Quantum Readiness source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"CNSA 2.0 compliance planning\" control for Post-Quantum Readiness is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"CNSA 2.0 compliance planning\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Post-Quantum Readiness systems of record (Cryptographic inventory / CBOM tooling; TLS + certificate estate; KMS / HSM + PKI) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the cnsa 2.0 compliance planning control (from Cryptographic inventory / CBOM tooling)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -3711,18 +3721,18 @@ export const pqcReadinessStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"CNSA 2.0 compliance planning\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Post-Quantum Readiness control.",
+      "tagline": "Auditing \"CNSA 2.0 compliance planning\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the cnsa 2.0 compliance planning control (from Cryptographic inventory / CBOM tooling)) with read-only agents, run the test against policy, and issue a defensible opinion on the Post-Quantum Readiness control.",
       "year": 2025,
       "overview": [
-        "The \"CNSA 2.0 compliance planning\" sub-process is one of the controls an auditor must verify for Post-Quantum Readiness. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that cnsa 2.0 compliance planning is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"CNSA 2.0 compliance planning\" sub-process is one of the controls an auditor must verify for Post-Quantum Readiness. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the cnsa 2.0 compliance planning control (from Cryptographic inventory / CBOM tooling), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"CNSA 2.0 compliance planning\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `11_cnsa_2_0_compliance_planning_mcp.py` exposes read-only tools that turn each Post-Quantum Readiness source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `11_cnsa_2_0_compliance_planning_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Cryptographic inventory / CBOM tooling and TLS + certificate estate (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 11_cnsa_2_0_compliance_planning_mcp.py` to expose it to your agent — or `python 11_cnsa_2_0_compliance_planning_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -3780,12 +3790,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"CNSA 2.0 compliance planning\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the cnsa 2.0 compliance planning control (from Cryptographic inventory / CBOM tooling).",
+        "The test: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"CNSA 2.0 compliance planning\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the cnsa 2.0 compliance planning control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -3809,20 +3820,20 @@ export const pqcReadinessStages: StageConfig[] = [
         {
           "name": "11_cnsa_2_0_compliance_planning_mcp.py",
           "url": "/audit-code/pqc-readiness/11_cnsa_2_0_compliance_planning_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Post-Quantum Readiness evidence for \"CNSA 2.0 compliance planning\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Post-Quantum Readiness evidence for \"CNSA 2.0 compliance planning\" (in-scope inventory for the cnsa 2.0 compliance planning control (from cryptographic inventory / cbom tooling)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"CNSA 2.0 compliance planning\" control for Post-Quantum Readiness at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"CNSA 2.0 compliance planning\" control for Post-Quantum Readiness at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"CNSA 2.0 compliance planning\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the cnsa 2.0 compliance planning control (from Cryptographic inventory / CBOM tooling) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Cryptographic inventory / CBOM tooling APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Cryptographic inventory / CBOM tooling gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Cryptographic inventory / CBOM tooling is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Cryptographic inventory / CBOM tooling; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Post-Quantum Readiness: \"CNSA 2.0 compliance planning\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- pqc-readiness_inventory.json   (in-scope items from Cryptographic inventory / CBOM tooling)\n- pqc-readiness_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"CNSA 2.0 compliance planning\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Post-Quantum Readiness: \"CNSA 2.0 compliance planning\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"CNSA 2.0 compliance planning\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- pqc-readiness_inventory.json   (in-scope items — In-scope inventory for the cnsa 2.0 compliance planning control (from Cryptographic inventory / CBOM tooling))\n- pqc-readiness_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"CNSA 2.0 compliance planning\",\n  \"domain\": \"Post-Quantum Readiness\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{pqc_",
         "/evidence/pqc-readiness_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Crypto / PKI team\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"CNSA 2.0 compliance planning\" control must cover\n# fragment: cnsa_20_compliance_",
         "/evidence/pqc-readiness_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -3918,7 +3929,7 @@ export const pqcReadinessStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"CNSA 2.0 compliance planning\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The CNSA 2.0 compliance planning evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the cnsa 2.0 compliance planning control (from Cryptographic inventory / CBOM tooling) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -3984,16 +3995,16 @@ export const pqcReadinessStages: StageConfig[] = [
         {
           "id": "pqc-11-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"CNSA 2.0 compliance planning\"?",
+          "challenge": "Typical finding",
+          "text": "For \"CNSA 2.0 compliance planning\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the cnsa 2.0 compliance planning control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the cnsa 2.0 compliance planning control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "pqc-11-q9",
@@ -4038,8 +4049,8 @@ export const pqcReadinessStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Standards monitoring (IETF, NIST)\" control for Post-Quantum Readiness is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Post-Quantum Readiness source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Standards monitoring (IETF, NIST)\" control for Post-Quantum Readiness is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Standards monitoring (IETF, NIST)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Post-Quantum Readiness systems of record (Cryptographic inventory / CBOM tooling; TLS + certificate estate; KMS / HSM + PKI) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the standards monitoring (ietf, nist) control (from Cryptographic inventory / CBOM tooling)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -4076,18 +4087,18 @@ export const pqcReadinessStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Standards monitoring (IETF, NIST)\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Post-Quantum Readiness control.",
+      "tagline": "Auditing \"Standards monitoring (IETF, NIST)\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the standards monitoring (ietf, nist) control (from Cryptographic inventory / CBOM tooling)) with read-only agents, run the test against policy, and issue a defensible opinion on the Post-Quantum Readiness control.",
       "year": 2025,
       "overview": [
-        "The \"Standards monitoring (IETF, NIST)\" sub-process is one of the controls an auditor must verify for Post-Quantum Readiness. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that standards monitoring (ietf, nist) is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Standards monitoring (IETF, NIST)\" sub-process is one of the controls an auditor must verify for Post-Quantum Readiness. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the standards monitoring (ietf, nist) control (from Cryptographic inventory / CBOM tooling), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Standards monitoring (IETF, NIST)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `12_standards_monitoring_ietf_nist_mcp.py` exposes read-only tools that turn each Post-Quantum Readiness source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `12_standards_monitoring_ietf_nist_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Cryptographic inventory / CBOM tooling and TLS + certificate estate (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 12_standards_monitoring_ietf_nist_mcp.py` to expose it to your agent — or `python 12_standards_monitoring_ietf_nist_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -4145,12 +4156,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Standards monitoring (IETF, NIST)\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the standards monitoring (ietf, nist) control (from Cryptographic inventory / CBOM tooling).",
+        "The test: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Standards monitoring (IETF, NIST)\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the standards monitoring (ietf, nist) control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -4174,20 +4186,20 @@ export const pqcReadinessStages: StageConfig[] = [
         {
           "name": "12_standards_monitoring_ietf_nist_mcp.py",
           "url": "/audit-code/pqc-readiness/12_standards_monitoring_ietf_nist_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Post-Quantum Readiness evidence for \"Standards monitoring (IETF, NIST)\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Post-Quantum Readiness evidence for \"Standards monitoring (IETF, NIST)\" (in-scope inventory for the standards monitoring (ietf, nist) control (from cryptographic inventory / cbom tooling)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Standards monitoring (IETF, NIST)\" control for Post-Quantum Readiness at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Standards monitoring (IETF, NIST)\" control for Post-Quantum Readiness at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Standards monitoring (IETF, NIST)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the standards monitoring (ietf, nist) control (from Cryptographic inventory / CBOM tooling) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Cryptographic inventory / CBOM tooling APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Cryptographic inventory / CBOM tooling gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Cryptographic inventory / CBOM tooling is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Cryptographic inventory / CBOM tooling; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Post-Quantum Readiness: \"Standards monitoring (IETF, NIST)\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- pqc-readiness_inventory.json   (in-scope items from Cryptographic inventory / CBOM tooling)\n- pqc-readiness_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Standards monitoring (IETF, NIST)\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Post-Quantum Readiness: \"Standards monitoring (IETF, NIST)\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Standards monitoring (IETF, NIST)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- pqc-readiness_inventory.json   (in-scope items — In-scope inventory for the standards monitoring (ietf, nist) control (from Cryptographic inventory / CBOM tooling))\n- pqc-readiness_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Standards monitoring (IETF, NIST)\",\n  \"domain\": \"Post-Quantum Readiness\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{pqc_",
         "/evidence/pqc-readiness_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Crypto / PKI team\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Standards monitoring (IETF, NIST)\" control must cover\n# fragment: standards_monitoring_ietf_",
         "/evidence/pqc-readiness_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -4283,7 +4295,7 @@ export const pqcReadinessStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Standards monitoring (IETF, NIST)\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Standards monitoring (IETF, NIST) evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the standards monitoring (ietf, nist) control (from Cryptographic inventory / CBOM tooling) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -4349,16 +4361,16 @@ export const pqcReadinessStages: StageConfig[] = [
         {
           "id": "pqc-12-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Standards monitoring (IETF, NIST)\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Standards monitoring (IETF, NIST)\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the standards monitoring (ietf, nist) control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the standards monitoring (ietf, nist) control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "pqc-12-q9",
@@ -4403,8 +4415,8 @@ export const pqcReadinessStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Regional standards alignment\" control for Post-Quantum Readiness is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Post-Quantum Readiness source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Regional standards alignment\" control for Post-Quantum Readiness is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Regional standards alignment\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Post-Quantum Readiness systems of record (Cryptographic inventory / CBOM tooling; TLS + certificate estate; KMS / HSM + PKI) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the regional standards alignment control (from Cryptographic inventory / CBOM tooling)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -4441,18 +4453,18 @@ export const pqcReadinessStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Regional standards alignment\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Post-Quantum Readiness control.",
+      "tagline": "Auditing \"Regional standards alignment\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the regional standards alignment control (from Cryptographic inventory / CBOM tooling)) with read-only agents, run the test against policy, and issue a defensible opinion on the Post-Quantum Readiness control.",
       "year": 2025,
       "overview": [
-        "The \"Regional standards alignment\" sub-process is one of the controls an auditor must verify for Post-Quantum Readiness. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that regional standards alignment is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Regional standards alignment\" sub-process is one of the controls an auditor must verify for Post-Quantum Readiness. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the regional standards alignment control (from Cryptographic inventory / CBOM tooling), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Regional standards alignment\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `13_regional_standards_alignment_mcp.py` exposes read-only tools that turn each Post-Quantum Readiness source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `13_regional_standards_alignment_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Cryptographic inventory / CBOM tooling and TLS + certificate estate (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 13_regional_standards_alignment_mcp.py` to expose it to your agent — or `python 13_regional_standards_alignment_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -4510,12 +4522,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Regional standards alignment\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the regional standards alignment control (from Cryptographic inventory / CBOM tooling).",
+        "The test: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Regional standards alignment\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the regional standards alignment control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -4539,20 +4552,20 @@ export const pqcReadinessStages: StageConfig[] = [
         {
           "name": "13_regional_standards_alignment_mcp.py",
           "url": "/audit-code/pqc-readiness/13_regional_standards_alignment_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Post-Quantum Readiness evidence for \"Regional standards alignment\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Post-Quantum Readiness evidence for \"Regional standards alignment\" (in-scope inventory for the regional standards alignment control (from cryptographic inventory / cbom tooling)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Regional standards alignment\" control for Post-Quantum Readiness at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Regional standards alignment\" control for Post-Quantum Readiness at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Regional standards alignment\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the regional standards alignment control (from Cryptographic inventory / CBOM tooling) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Cryptographic inventory / CBOM tooling APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Cryptographic inventory / CBOM tooling gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Cryptographic inventory / CBOM tooling is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Cryptographic inventory / CBOM tooling; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Post-Quantum Readiness: \"Regional standards alignment\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- pqc-readiness_inventory.json   (in-scope items from Cryptographic inventory / CBOM tooling)\n- pqc-readiness_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Regional standards alignment\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Post-Quantum Readiness: \"Regional standards alignment\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Regional standards alignment\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- pqc-readiness_inventory.json   (in-scope items — In-scope inventory for the regional standards alignment control (from Cryptographic inventory / CBOM tooling))\n- pqc-readiness_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Regional standards alignment\",\n  \"domain\": \"Post-Quantum Readiness\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{pqc_",
         "/evidence/pqc-readiness_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Crypto / PKI team\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Regional standards alignment\" control must cover\n# fragment: regional_standards_alignment_",
         "/evidence/pqc-readiness_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -4648,7 +4661,7 @@ export const pqcReadinessStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Regional standards alignment\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Regional standards alignment evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the regional standards alignment control (from Cryptographic inventory / CBOM tooling) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -4714,16 +4727,16 @@ export const pqcReadinessStages: StageConfig[] = [
         {
           "id": "pqc-13-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Regional standards alignment\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Regional standards alignment\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the regional standards alignment control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the regional standards alignment control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "pqc-13-q9",
@@ -4768,8 +4781,8 @@ export const pqcReadinessStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Trust store updates\" control for Post-Quantum Readiness is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Post-Quantum Readiness source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Trust store updates\" control for Post-Quantum Readiness is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Trust store updates\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Post-Quantum Readiness systems of record (Cryptographic inventory / CBOM tooling; TLS + certificate estate; KMS / HSM + PKI) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the trust store updates control (from Cryptographic inventory / CBOM tooling)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -4806,18 +4819,18 @@ export const pqcReadinessStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Trust store updates\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Post-Quantum Readiness control.",
+      "tagline": "Auditing \"Trust store updates\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the trust store updates control (from Cryptographic inventory / CBOM tooling)) with read-only agents, run the test against policy, and issue a defensible opinion on the Post-Quantum Readiness control.",
       "year": 2025,
       "overview": [
-        "The \"Trust store updates\" sub-process is one of the controls an auditor must verify for Post-Quantum Readiness. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that trust store updates is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Trust store updates\" sub-process is one of the controls an auditor must verify for Post-Quantum Readiness. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the trust store updates control (from Cryptographic inventory / CBOM tooling), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Trust store updates\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `14_trust_store_updates_mcp.py` exposes read-only tools that turn each Post-Quantum Readiness source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `14_trust_store_updates_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Cryptographic inventory / CBOM tooling and TLS + certificate estate (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 14_trust_store_updates_mcp.py` to expose it to your agent — or `python 14_trust_store_updates_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -4875,12 +4888,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Trust store updates\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the trust store updates control (from Cryptographic inventory / CBOM tooling).",
+        "The test: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Trust store updates\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the trust store updates control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -4904,20 +4918,20 @@ export const pqcReadinessStages: StageConfig[] = [
         {
           "name": "14_trust_store_updates_mcp.py",
           "url": "/audit-code/pqc-readiness/14_trust_store_updates_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Post-Quantum Readiness evidence for \"Trust store updates\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Post-Quantum Readiness evidence for \"Trust store updates\" (in-scope inventory for the trust store updates control (from cryptographic inventory / cbom tooling)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Trust store updates\" control for Post-Quantum Readiness at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Trust store updates\" control for Post-Quantum Readiness at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Trust store updates\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the trust store updates control (from Cryptographic inventory / CBOM tooling) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Cryptographic inventory / CBOM tooling APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Cryptographic inventory / CBOM tooling gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Cryptographic inventory / CBOM tooling is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Cryptographic inventory / CBOM tooling; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Post-Quantum Readiness: \"Trust store updates\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- pqc-readiness_inventory.json   (in-scope items from Cryptographic inventory / CBOM tooling)\n- pqc-readiness_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Trust store updates\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Post-Quantum Readiness: \"Trust store updates\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Trust store updates\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- pqc-readiness_inventory.json   (in-scope items — In-scope inventory for the trust store updates control (from Cryptographic inventory / CBOM tooling))\n- pqc-readiness_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Trust store updates\",\n  \"domain\": \"Post-Quantum Readiness\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{pqc_",
         "/evidence/pqc-readiness_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Crypto / PKI team\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Trust store updates\" control must cover\n# fragment: trust_store_updates_",
         "/evidence/pqc-readiness_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -5013,7 +5027,7 @@ export const pqcReadinessStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Trust store updates\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Trust store updates evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the trust store updates control (from Cryptographic inventory / CBOM tooling) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -5079,16 +5093,16 @@ export const pqcReadinessStages: StageConfig[] = [
         {
           "id": "pqc-14-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Trust store updates\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Trust store updates\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the trust store updates control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the trust store updates control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "pqc-14-q9",
@@ -5133,8 +5147,8 @@ export const pqcReadinessStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Vendor PQC roadmap\" control for Post-Quantum Readiness is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Post-Quantum Readiness source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Vendor PQC roadmap\" control for Post-Quantum Readiness is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Vendor PQC roadmap\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Post-Quantum Readiness systems of record (Cryptographic inventory / CBOM tooling; TLS + certificate estate; KMS / HSM + PKI) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the vendor pqc roadmap control (from Cryptographic inventory / CBOM tooling)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -5171,18 +5185,18 @@ export const pqcReadinessStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Vendor PQC roadmap\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Post-Quantum Readiness control.",
+      "tagline": "Auditing \"Vendor PQC roadmap\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the vendor pqc roadmap control (from Cryptographic inventory / CBOM tooling)) with read-only agents, run the test against policy, and issue a defensible opinion on the Post-Quantum Readiness control.",
       "year": 2025,
       "overview": [
-        "The \"Vendor PQC roadmap\" sub-process is one of the controls an auditor must verify for Post-Quantum Readiness. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that vendor pqc roadmap is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Vendor PQC roadmap\" sub-process is one of the controls an auditor must verify for Post-Quantum Readiness. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the vendor pqc roadmap control (from Cryptographic inventory / CBOM tooling), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Vendor PQC roadmap\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `15_vendor_pqc_roadmap_mcp.py` exposes read-only tools that turn each Post-Quantum Readiness source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `15_vendor_pqc_roadmap_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Cryptographic inventory / CBOM tooling and TLS + certificate estate (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 15_vendor_pqc_roadmap_mcp.py` to expose it to your agent — or `python 15_vendor_pqc_roadmap_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -5240,12 +5254,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Vendor PQC roadmap\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the vendor pqc roadmap control (from Cryptographic inventory / CBOM tooling).",
+        "The test: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Vendor PQC roadmap\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the vendor pqc roadmap control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -5269,20 +5284,20 @@ export const pqcReadinessStages: StageConfig[] = [
         {
           "name": "15_vendor_pqc_roadmap_mcp.py",
           "url": "/audit-code/pqc-readiness/15_vendor_pqc_roadmap_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Post-Quantum Readiness evidence for \"Vendor PQC roadmap\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Post-Quantum Readiness evidence for \"Vendor PQC roadmap\" (in-scope inventory for the vendor pqc roadmap control (from cryptographic inventory / cbom tooling)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Vendor PQC roadmap\" control for Post-Quantum Readiness at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Vendor PQC roadmap\" control for Post-Quantum Readiness at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Vendor PQC roadmap\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the vendor pqc roadmap control (from Cryptographic inventory / CBOM tooling) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Cryptographic inventory / CBOM tooling APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Cryptographic inventory / CBOM tooling gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Cryptographic inventory / CBOM tooling is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Cryptographic inventory / CBOM tooling; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Post-Quantum Readiness: \"Vendor PQC roadmap\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- pqc-readiness_inventory.json   (in-scope items from Cryptographic inventory / CBOM tooling)\n- pqc-readiness_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Vendor PQC roadmap\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Post-Quantum Readiness: \"Vendor PQC roadmap\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Vendor PQC roadmap\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- pqc-readiness_inventory.json   (in-scope items — In-scope inventory for the vendor pqc roadmap control (from Cryptographic inventory / CBOM tooling))\n- pqc-readiness_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Vendor PQC roadmap\",\n  \"domain\": \"Post-Quantum Readiness\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{pqc_",
         "/evidence/pqc-readiness_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Crypto / PKI team\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Vendor PQC roadmap\" control must cover\n# fragment: vendor_pqc_roadmap_",
         "/evidence/pqc-readiness_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -5378,7 +5393,7 @@ export const pqcReadinessStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Vendor PQC roadmap\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Vendor PQC roadmap evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the vendor pqc roadmap control (from Cryptographic inventory / CBOM tooling) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -5444,16 +5459,16 @@ export const pqcReadinessStages: StageConfig[] = [
         {
           "id": "pqc-15-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Vendor PQC roadmap\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Vendor PQC roadmap\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the vendor pqc roadmap control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the vendor pqc roadmap control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "pqc-15-q9",
@@ -5498,8 +5513,8 @@ export const pqcReadinessStages: StageConfig[] = [
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Third-party PKI dependency\" control for Post-Quantum Readiness is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Post-Quantum Readiness source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Third-party PKI dependency\" control for Post-Quantum Readiness is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Third-party PKI dependency\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Post-Quantum Readiness systems of record (Cryptographic inventory / CBOM tooling; TLS + certificate estate; KMS / HSM + PKI) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the third-party pki dependency control (from Cryptographic inventory / CBOM tooling)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -5536,18 +5551,18 @@ export const pqcReadinessStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Third-party PKI dependency\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Post-Quantum Readiness control.",
+      "tagline": "Auditing \"Third-party PKI dependency\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the third-party pki dependency control (from Cryptographic inventory / CBOM tooling)) with read-only agents, run the test against policy, and issue a defensible opinion on the Post-Quantum Readiness control.",
       "year": 2025,
       "overview": [
-        "The \"Third-party PKI dependency\" sub-process is one of the controls an auditor must verify for Post-Quantum Readiness. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that third-party pki dependency is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Third-party PKI dependency\" sub-process is one of the controls an auditor must verify for Post-Quantum Readiness. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the third-party pki dependency control (from Cryptographic inventory / CBOM tooling), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Third-party PKI dependency\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `16_third_party_pki_dependency_mcp.py` exposes read-only tools that turn each Post-Quantum Readiness source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `16_third_party_pki_dependency_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Cryptographic inventory / CBOM tooling and TLS + certificate estate (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 16_third_party_pki_dependency_mcp.py` to expose it to your agent — or `python 16_third_party_pki_dependency_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -5605,12 +5620,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Third-party PKI dependency\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the third-party pki dependency control (from Cryptographic inventory / CBOM tooling).",
+        "The test: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Third-party PKI dependency\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the third-party pki dependency control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -5634,20 +5650,20 @@ export const pqcReadinessStages: StageConfig[] = [
         {
           "name": "16_third_party_pki_dependency_mcp.py",
           "url": "/audit-code/pqc-readiness/16_third_party_pki_dependency_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Post-Quantum Readiness evidence for \"Third-party PKI dependency\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Post-Quantum Readiness evidence for \"Third-party PKI dependency\" (in-scope inventory for the third-party pki dependency control (from cryptographic inventory / cbom tooling)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Third-party PKI dependency\" control for Post-Quantum Readiness at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Third-party PKI dependency\" control for Post-Quantum Readiness at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Third-party PKI dependency\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the third-party pki dependency control (from Cryptographic inventory / CBOM tooling) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Cryptographic inventory / CBOM tooling APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Cryptographic inventory / CBOM tooling gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Cryptographic inventory / CBOM tooling is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Cryptographic inventory / CBOM tooling; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Post-Quantum Readiness: \"Third-party PKI dependency\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- pqc-readiness_inventory.json   (in-scope items from Cryptographic inventory / CBOM tooling)\n- pqc-readiness_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Third-party PKI dependency\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Post-Quantum Readiness: \"Third-party PKI dependency\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Third-party PKI dependency\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- pqc-readiness_inventory.json   (in-scope items — In-scope inventory for the third-party pki dependency control (from Cryptographic inventory / CBOM tooling))\n- pqc-readiness_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Third-party PKI dependency\",\n  \"domain\": \"Post-Quantum Readiness\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{pqc_",
         "/evidence/pqc-readiness_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Crypto / PKI team\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Third-party PKI dependency\" control must cover\n# fragment: thirdparty_pki_dependency_",
         "/evidence/pqc-readiness_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -5743,7 +5759,7 @@ export const pqcReadinessStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Third-party PKI dependency\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Third-party PKI dependency evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the third-party pki dependency control (from Cryptographic inventory / CBOM tooling) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -5809,16 +5825,16 @@ export const pqcReadinessStages: StageConfig[] = [
         {
           "id": "pqc-16-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Third-party PKI dependency\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Third-party PKI dependency\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the third-party pki dependency control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the third-party pki dependency control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "pqc-16-q9",
@@ -5863,8 +5879,8 @@ export const pqcReadinessStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Secure product PQC readiness\" control for Post-Quantum Readiness is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Post-Quantum Readiness source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Secure product PQC readiness\" control for Post-Quantum Readiness is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Secure product PQC readiness\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Post-Quantum Readiness systems of record (Cryptographic inventory / CBOM tooling; TLS + certificate estate; KMS / HSM + PKI) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the secure product pqc readiness control (from Cryptographic inventory / CBOM tooling)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -5901,18 +5917,18 @@ export const pqcReadinessStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Secure product PQC readiness\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Post-Quantum Readiness control.",
+      "tagline": "Auditing \"Secure product PQC readiness\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the secure product pqc readiness control (from Cryptographic inventory / CBOM tooling)) with read-only agents, run the test against policy, and issue a defensible opinion on the Post-Quantum Readiness control.",
       "year": 2025,
       "overview": [
-        "The \"Secure product PQC readiness\" sub-process is one of the controls an auditor must verify for Post-Quantum Readiness. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that secure product pqc readiness is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Secure product PQC readiness\" sub-process is one of the controls an auditor must verify for Post-Quantum Readiness. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the secure product pqc readiness control (from Cryptographic inventory / CBOM tooling), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Secure product PQC readiness\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `17_secure_product_pqc_readiness_mcp.py` exposes read-only tools that turn each Post-Quantum Readiness source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `17_secure_product_pqc_readiness_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Cryptographic inventory / CBOM tooling and TLS + certificate estate (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 17_secure_product_pqc_readiness_mcp.py` to expose it to your agent — or `python 17_secure_product_pqc_readiness_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -5970,12 +5986,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Secure product PQC readiness\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the secure product pqc readiness control (from Cryptographic inventory / CBOM tooling).",
+        "The test: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Secure product PQC readiness\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the secure product pqc readiness control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -5999,20 +6016,20 @@ export const pqcReadinessStages: StageConfig[] = [
         {
           "name": "17_secure_product_pqc_readiness_mcp.py",
           "url": "/audit-code/pqc-readiness/17_secure_product_pqc_readiness_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Post-Quantum Readiness evidence for \"Secure product PQC readiness\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Post-Quantum Readiness evidence for \"Secure product PQC readiness\" (in-scope inventory for the secure product pqc readiness control (from cryptographic inventory / cbom tooling)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Secure product PQC readiness\" control for Post-Quantum Readiness at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Secure product PQC readiness\" control for Post-Quantum Readiness at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Secure product PQC readiness\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the secure product pqc readiness control (from Cryptographic inventory / CBOM tooling) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Cryptographic inventory / CBOM tooling APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Cryptographic inventory / CBOM tooling gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Cryptographic inventory / CBOM tooling is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Cryptographic inventory / CBOM tooling; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Post-Quantum Readiness: \"Secure product PQC readiness\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- pqc-readiness_inventory.json   (in-scope items from Cryptographic inventory / CBOM tooling)\n- pqc-readiness_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Secure product PQC readiness\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Post-Quantum Readiness: \"Secure product PQC readiness\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Secure product PQC readiness\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- pqc-readiness_inventory.json   (in-scope items — In-scope inventory for the secure product pqc readiness control (from Cryptographic inventory / CBOM tooling))\n- pqc-readiness_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Secure product PQC readiness\",\n  \"domain\": \"Post-Quantum Readiness\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{pqc_",
         "/evidence/pqc-readiness_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Crypto / PKI team\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Secure product PQC readiness\" control must cover\n# fragment: secure_product_pqc_",
         "/evidence/pqc-readiness_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -6108,7 +6125,7 @@ export const pqcReadinessStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Secure product PQC readiness\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Secure product PQC readiness evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the secure product pqc readiness control (from Cryptographic inventory / CBOM tooling) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -6174,16 +6191,16 @@ export const pqcReadinessStages: StageConfig[] = [
         {
           "id": "pqc-17-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Secure product PQC readiness\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Secure product PQC readiness\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the secure product pqc readiness control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the secure product pqc readiness control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "pqc-17-q9",
@@ -6228,8 +6245,8 @@ export const pqcReadinessStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Industry interop testing\" control for Post-Quantum Readiness is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Post-Quantum Readiness source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Industry interop testing\" control for Post-Quantum Readiness is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Industry interop testing\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Post-Quantum Readiness systems of record (Cryptographic inventory / CBOM tooling; TLS + certificate estate; KMS / HSM + PKI) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the industry interop testing control (from Cryptographic inventory / CBOM tooling)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -6266,18 +6283,18 @@ export const pqcReadinessStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Industry interop testing\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Post-Quantum Readiness control.",
+      "tagline": "Auditing \"Industry interop testing\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the industry interop testing control (from Cryptographic inventory / CBOM tooling)) with read-only agents, run the test against policy, and issue a defensible opinion on the Post-Quantum Readiness control.",
       "year": 2025,
       "overview": [
-        "The \"Industry interop testing\" sub-process is one of the controls an auditor must verify for Post-Quantum Readiness. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that industry interop testing is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Industry interop testing\" sub-process is one of the controls an auditor must verify for Post-Quantum Readiness. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the industry interop testing control (from Cryptographic inventory / CBOM tooling), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Industry interop testing\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `18_industry_interop_testing_mcp.py` exposes read-only tools that turn each Post-Quantum Readiness source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `18_industry_interop_testing_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Cryptographic inventory / CBOM tooling and TLS + certificate estate (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 18_industry_interop_testing_mcp.py` to expose it to your agent — or `python 18_industry_interop_testing_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -6335,12 +6352,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Industry interop testing\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the industry interop testing control (from Cryptographic inventory / CBOM tooling).",
+        "The test: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Industry interop testing\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the industry interop testing control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -6364,20 +6382,20 @@ export const pqcReadinessStages: StageConfig[] = [
         {
           "name": "18_industry_interop_testing_mcp.py",
           "url": "/audit-code/pqc-readiness/18_industry_interop_testing_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Post-Quantum Readiness evidence for \"Industry interop testing\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Post-Quantum Readiness evidence for \"Industry interop testing\" (in-scope inventory for the industry interop testing control (from cryptographic inventory / cbom tooling)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Industry interop testing\" control for Post-Quantum Readiness at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Industry interop testing\" control for Post-Quantum Readiness at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Industry interop testing\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the industry interop testing control (from Cryptographic inventory / CBOM tooling) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Cryptographic inventory / CBOM tooling APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Cryptographic inventory / CBOM tooling gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Cryptographic inventory / CBOM tooling is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Cryptographic inventory / CBOM tooling; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Post-Quantum Readiness: \"Industry interop testing\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- pqc-readiness_inventory.json   (in-scope items from Cryptographic inventory / CBOM tooling)\n- pqc-readiness_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Industry interop testing\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Post-Quantum Readiness: \"Industry interop testing\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"Industry interop testing\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- pqc-readiness_inventory.json   (in-scope items — In-scope inventory for the industry interop testing control (from Cryptographic inventory / CBOM tooling))\n- pqc-readiness_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Industry interop testing\",\n  \"domain\": \"Post-Quantum Readiness\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{pqc_",
         "/evidence/pqc-readiness_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Crypto / PKI team\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Industry interop testing\" control must cover\n# fragment: industry_interop_testing_",
         "/evidence/pqc-readiness_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -6473,7 +6491,7 @@ export const pqcReadinessStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Industry interop testing\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Industry interop testing evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the industry interop testing control (from Cryptographic inventory / CBOM tooling) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -6539,16 +6557,16 @@ export const pqcReadinessStages: StageConfig[] = [
         {
           "id": "pqc-18-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Industry interop testing\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Industry interop testing\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the industry interop testing control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the industry interop testing control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "pqc-18-q9",
@@ -6593,8 +6611,8 @@ export const pqcReadinessStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"PQC pen testing\" control for Post-Quantum Readiness is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Post-Quantum Readiness source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"PQC pen testing\" control for Post-Quantum Readiness is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"PQC pen testing\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Post-Quantum Readiness systems of record (Cryptographic inventory / CBOM tooling; TLS + certificate estate; KMS / HSM + PKI) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the pqc pen testing control (from Cryptographic inventory / CBOM tooling)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -6631,18 +6649,18 @@ export const pqcReadinessStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"PQC pen testing\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Post-Quantum Readiness control.",
+      "tagline": "Auditing \"PQC pen testing\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the pqc pen testing control (from Cryptographic inventory / CBOM tooling)) with read-only agents, run the test against policy, and issue a defensible opinion on the Post-Quantum Readiness control.",
       "year": 2025,
       "overview": [
-        "The \"PQC pen testing\" sub-process is one of the controls an auditor must verify for Post-Quantum Readiness. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that pqc pen testing is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"PQC pen testing\" sub-process is one of the controls an auditor must verify for Post-Quantum Readiness. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the pqc pen testing control (from Cryptographic inventory / CBOM tooling), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"PQC pen testing\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `19_pqc_pen_testing_mcp.py` exposes read-only tools that turn each Post-Quantum Readiness source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `19_pqc_pen_testing_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Cryptographic inventory / CBOM tooling and TLS + certificate estate (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 19_pqc_pen_testing_mcp.py` to expose it to your agent — or `python 19_pqc_pen_testing_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -6700,12 +6718,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"PQC pen testing\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the pqc pen testing control (from Cryptographic inventory / CBOM tooling).",
+        "The test: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"PQC pen testing\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Cryptographic inventory / CBOM tooling, TLS + certificate estate, KMS / HSM + PKI) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the pqc pen testing control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -6729,20 +6748,20 @@ export const pqcReadinessStages: StageConfig[] = [
         {
           "name": "19_pqc_pen_testing_mcp.py",
           "url": "/audit-code/pqc-readiness/19_pqc_pen_testing_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Post-Quantum Readiness evidence for \"PQC pen testing\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Post-Quantum Readiness evidence for \"PQC pen testing\" (in-scope inventory for the pqc pen testing control (from cryptographic inventory / cbom tooling)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"PQC pen testing\" control for Post-Quantum Readiness at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"PQC pen testing\" control for Post-Quantum Readiness at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"PQC pen testing\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the pqc pen testing control (from Cryptographic inventory / CBOM tooling) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Cryptographic inventory / CBOM tooling APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Cryptographic inventory / CBOM tooling gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Cryptographic inventory / CBOM tooling is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Cryptographic inventory / CBOM tooling; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Post-Quantum Readiness: \"PQC pen testing\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- pqc-readiness_inventory.json   (in-scope items from Cryptographic inventory / CBOM tooling)\n- pqc-readiness_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"PQC pen testing\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Post-Quantum Readiness: \"PQC pen testing\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Post-Quantum Readiness policy/standard and flag every item where the \"PQC pen testing\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- pqc-readiness_inventory.json   (in-scope items — In-scope inventory for the pqc pen testing control (from Cryptographic inventory / CBOM tooling))\n- pqc-readiness_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"PQC pen testing\",\n  \"domain\": \"Post-Quantum Readiness\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{pqc_",
         "/evidence/pqc-readiness_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Crypto / PKI team\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"PQC pen testing\" control must cover\n# fragment: pqc_pen_testing_",
         "/evidence/pqc-readiness_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -6838,7 +6857,7 @@ export const pqcReadinessStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"PQC pen testing\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The PQC pen testing evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the pqc pen testing control (from Cryptographic inventory / CBOM tooling) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -6904,16 +6923,16 @@ export const pqcReadinessStages: StageConfig[] = [
         {
           "id": "pqc-19-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"PQC pen testing\"?",
+          "challenge": "Typical finding",
+          "text": "For \"PQC pen testing\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the pqc pen testing control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the pqc pen testing control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "pqc-19-q9",

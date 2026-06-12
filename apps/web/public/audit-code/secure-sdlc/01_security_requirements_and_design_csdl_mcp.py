@@ -1,17 +1,23 @@
 #!/usr/bin/env python3
-"""Read-only MCP server — Secure Software Dev: "Security requirements and design (CSDL)" audit evidence.
+"""Read-only MCP server — Secure Software Development: "Security requirements and design (CSDL)" audit evidence.
 
-Gathers the in-scope inventory and the observed control state from this domain's
-systems of record, evaluates each item against policy, and reports the exceptions
-with a PASS / EXCEPTIONS / MATERIAL-GAP opinion. READ-ONLY: it lists and reports,
-never changes state — the hard requirement for audit tooling.
+THE TEST
+Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the "Security requirements and design (CSDL)" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+
+ARTIFACT (what _gather() pulls)
+    In-scope inventory for the security requirements and design (csdl) control (from SAST / DAST / SCA tooling)
+
+REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
+    (wire read-only API calls to: SAST / DAST / SCA tooling, Issue tracker (Jira), CI security gates, Threat-model + design records)
+
+This server gathers the in-scope inventory and the observed control state, evaluates
+each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /
+MATERIAL-GAP opinion. READ-ONLY: it lists and reports, never changes state — the hard
+requirement for audit tooling.
 
   pip install "mcp[cli]"
   mcp run 01_security_requirements_and_design_csdl_mcp.py                 # expose to an agent
   python 01_security_requirements_and_design_csdl_mcp.py --selftest       # reproduce findings against fixtures, offline
-
-Wire real sources by replacing the _gather() fixtures with read-only API calls to
-SAST / DAST / SCA tooling, Issue tracker (Jira), CI security gates, Threat-model + design records.
 """
 from __future__ import annotations
 import json, sys
@@ -68,7 +74,7 @@ def coverage_report() -> dict:
                else "EXCEPTIONS" if len(exceptions) <= EXCEPTION_THRESHOLD
                else "MATERIAL GAP")
     return {
-        "domain": "Secure Software Dev",
+        "domain": "Secure Software Development",
         "control": "Security requirements and design (CSDL)",
         "in_scope": len(rows),
         "compliant": len(rows) - len(exceptions),

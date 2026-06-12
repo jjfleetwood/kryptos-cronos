@@ -1,17 +1,26 @@
 #!/usr/bin/env python3
-"""Read-only MCP server — Identity & Access Mgmt: "MFA coverage" audit evidence.
+"""Read-only MCP server — Identity & Access Management (IAM): "MFA coverage" audit evidence.
 
-Gathers the in-scope inventory and the observed control state from this domain's
-systems of record, evaluates each item against policy, and reports the exceptions
-with a PASS / EXCEPTIONS / MATERIAL-GAP opinion. READ-ONLY: it lists and reports,
-never changes state — the hard requirement for audit tooling.
+THE TEST
+Reconcile the active-user roster against factor enrolment and the per-app auth policies. PASS: every active human account has at least one phishing-resistant factor (FIDO2/WebAuthn or platform passkey); every application handling confidential/regulated data REQUIRES MFA (not 'optional'); no account relies on SMS or voice as its only factor. Exceptions: active accounts with zero factors or SMS-only, and sensitive apps where MFA is optional or disabled.
+
+ARTIFACT (what _gather() pulls)
+    A CSV of every active user joined to their enrolled authentication factors (factor type + enrolment date)
+
+REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
+    Okta:  GET /api/v1/users?filter=status eq "ACTIVE"  then  GET /api/v1/users/{id}/factors
+    Okta:  GET /api/v1/policies?type=ACCESS_POLICY  for the per-application MFA rules
+    Entra: Get-MgUserAuthenticationMethod -UserId <id>  ;  export Conditional Access policies
+    Entra: AuthenticationMethods registration & usage report (CSV)
+
+This server gathers the in-scope inventory and the observed control state, evaluates
+each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /
+MATERIAL-GAP opinion. READ-ONLY: it lists and reports, never changes state — the hard
+requirement for audit tooling.
 
   pip install "mcp[cli]"
   mcp run 03_mfa_coverage_mcp.py                 # expose to an agent
   python 03_mfa_coverage_mcp.py --selftest       # reproduce findings against fixtures, offline
-
-Wire real sources by replacing the _gather() fixtures with read-only API calls to
-IdP (Okta / Entra ID / Ping), PAM (CyberArk / Delinea), IGA / access-review platform, Directory (AD / LDAP).
 """
 from __future__ import annotations
 import json, sys
@@ -68,7 +77,7 @@ def coverage_report() -> dict:
                else "EXCEPTIONS" if len(exceptions) <= EXCEPTION_THRESHOLD
                else "MATERIAL GAP")
     return {
-        "domain": "Identity & Access Mgmt",
+        "domain": "Identity & Access Management (IAM)",
         "control": "MFA coverage",
         "in_scope": len(rows),
         "compliant": len(rows) - len(exceptions),

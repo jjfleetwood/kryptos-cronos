@@ -2,9 +2,9 @@ import type { EpochConfig, StageConfig } from "../types";
 
 export const vulnPatchEpoch: EpochConfig = {
   "id": "vuln-patch",
-  "name": "Vuln & Patch Mgmt",
-  "subtitle": "Agentic technical & privacy audit — Vuln & Patch Mgmt",
-  "description": "Audit Vuln & Patch Mgmt end to end with a read-only agent fleet: each sub-process is a module that teaches the control as a repeatable agentic workflow with downloadable MCP tooling, a CTF, and a 10-question quiz.",
+  "name": "Vulnerability & Patch Management",
+  "subtitle": "Agentic technical & privacy audit — Vulnerability & Patch Management",
+  "description": "Audit Vulnerability & Patch Management end to end with a read-only agent fleet: each sub-process is a module that teaches the control as a repeatable agentic workflow with downloadable MCP tooling, a CTF, and a 10-question quiz.",
   "emoji": "🩹",
   "color": "Rose",
   "unlocked": true
@@ -23,8 +23,8 @@ export const vulnPatchStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Server build standards and hardening\" control for Vuln & Patch Mgmt is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Vuln & Patch Mgmt source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Server build standards and hardening\" control for Vulnerability & Patch Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the \"Server build standards and hardening\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Vulnerability & Patch Management systems of record (Vuln scanner (Tenable/Qualys/Rapid7); Patch management (SCCM/Intune/Ansible); CMDB / asset inventory) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the server build standards and hardening control (from Vuln scanner (Tenable/Qualys/Rapid7))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -45,34 +45,34 @@ export const vulnPatchStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 5/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Vuln & Patch Mgmt controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Vulnerability & Patch Management controls."
       }
     },
     "badge": {
       "id": "vpm-01-badge",
-      "name": "Vuln & Patch Mgmt Auditor",
+      "name": "Vulnerability & Patch Management Auditor",
       "emoji": "🩹"
     },
     "wonder": {
       "name": "Server build standards and hardening",
-      "location": "Vuln & Patch Mgmt",
+      "location": "Vulnerability & Patch Management",
       "era": "Present Day",
       "emoji": "🩹"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Server build standards and hardening\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Vuln & Patch Mgmt control.",
+      "tagline": "Auditing \"Server build standards and hardening\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the server build standards and hardening control (from Vuln scanner (Tenable/Qualys/Rapid7))) with read-only agents, run the test against policy, and issue a defensible opinion on the Vulnerability & Patch Management control.",
       "year": 2025,
       "overview": [
-        "The \"Server build standards and hardening\" sub-process is one of the controls an auditor must verify for Vuln & Patch Mgmt. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that server build standards and hardening is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Vuln scanner (Tenable/Qualys/Rapid7), Patch management (SCCM/Intune/Ansible), CMDB / asset inventory — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Server build standards and hardening\" sub-process is one of the controls an auditor must verify for Vulnerability & Patch Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the server build standards and hardening control (from Vuln scanner (Tenable/Qualys/Rapid7)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Vuln scanner (Tenable/Qualys/Rapid7), Patch management (SCCM/Intune/Ansible), CMDB / asset inventory — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the \"Server build standards and hardening\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `01_server_build_standards_and_hardening_mcp.py` exposes read-only tools that turn each Vuln & Patch Mgmt source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `01_server_build_standards_and_hardening_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Vuln scanner (Tenable/Qualys/Rapid7) and Patch management (SCCM/Intune/Ansible) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 01_server_build_standards_and_hardening_mcp.py` to expose it to your agent — or `python 01_server_build_standards_and_hardening_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -94,7 +94,7 @@ export const vulnPatchStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Vuln & Patch Mgmt scope + policy",
+            "sub": "define Vulnerability & Patch Management scope + policy",
             "type": "attacker"
           },
           {
@@ -130,12 +130,13 @@ export const vulnPatchStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Server build standards and hardening\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the server build standards and hardening control (from Vuln scanner (Tenable/Qualys/Rapid7)).",
+        "The test: Reconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the \"Server build standards and hardening\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Vuln scanner (Tenable/Qualys/Rapid7), Patch management (SCCM/Intune/Ansible), CMDB / asset inventory) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the server build standards and hardening control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -159,21 +160,21 @@ export const vulnPatchStages: StageConfig[] = [
         {
           "name": "01_server_build_standards_and_hardening_mcp.py",
           "url": "/audit-code/vuln-patch/01_server_build_standards_and_hardening_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Vuln & Patch Mgmt evidence for \"Server build standards and hardening\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Vulnerability & Patch Management evidence for \"Server build standards and hardening\" (in-scope inventory for the server build standards and hardening control (from vuln scanner (tenable/qualys/rapid7))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Server build standards and hardening\" control for Vuln & Patch Mgmt at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Server build standards and hardening\" control for Vulnerability & Patch Management at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the \"Server build standards and hardening\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the server build standards and hardening control (from Vuln scanner (Tenable/Qualys/Rapid7)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Vuln scanner (Tenable/Qualys/Rapid7) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Vuln scanner (Tenable/Qualys/Rapid7) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Vuln scanner (Tenable/Qualys/Rapid7) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Vuln scanner (Tenable/Qualys/Rapid7); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Vuln & Patch Mgmt: \"Server build standards and hardening\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- vuln-patch_inventory.json   (in-scope items from Vuln scanner (Tenable/Qualys/Rapid7))\n- vuln-patch_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Server build standards and hardening\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Server build standards and hardening\",\n  \"domain\": \"Vuln & Patch Mgmt\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{vpm_",
+        "/evidence/README.md": "# AcmeCorp — Vulnerability & Patch Management: \"Server build standards and hardening\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the \"Server build standards and hardening\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- vuln-patch_inventory.json   (in-scope items — In-scope inventory for the server build standards and hardening control (from Vuln scanner (Tenable/Qualys/Rapid7)))\n- vuln-patch_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Server build standards and hardening\",\n  \"domain\": \"Vulnerability & Patch Management\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{vpm_",
         "/evidence/vuln-patch_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"IT Operations\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Server build standards and hardening\" control must cover\n# fragment: server_build_standards_",
         "/evidence/vuln-patch_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -237,7 +238,7 @@ export const vulnPatchStages: StageConfig[] = [
           "id": "vpm-01-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Server build standards and hardening\" sub-process of Vuln & Patch Mgmt?",
+          "text": "What is the primary audit objective for the \"Server build standards and hardening\" sub-process of Vulnerability & Patch Management?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -251,11 +252,11 @@ export const vulnPatchStages: StageConfig[] = [
           "id": "vpm-01-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Server build standards and hardening\" matter to the broader Vuln & Patch Mgmt posture?",
+          "text": "Why does a weakness in \"Server build standards and hardening\" matter to the broader Vulnerability & Patch Management posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Vuln & Patch Mgmt controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Vulnerability & Patch Management controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -268,7 +269,7 @@ export const vulnPatchStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Server build standards and hardening\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Server build standards and hardening evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the server build standards and hardening control (from Vuln scanner (Tenable/Qualys/Rapid7)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -334,16 +335,16 @@ export const vulnPatchStages: StageConfig[] = [
         {
           "id": "vpm-01-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Server build standards and hardening\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Server build standards and hardening\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the server build standards and hardening control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the server build standards and hardening control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "vpm-01-q9",
@@ -388,8 +389,8 @@ export const vulnPatchStages: StageConfig[] = [
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Patch mgmt and exception handling\" control for Vuln & Patch Mgmt is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Vuln & Patch Mgmt source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Patch mgmt and exception handling\" control for Vulnerability & Patch Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the \"Patch mgmt and exception handling\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Vulnerability & Patch Management systems of record (Vuln scanner (Tenable/Qualys/Rapid7); Patch management (SCCM/Intune/Ansible); CMDB / asset inventory) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the patch mgmt and exception handling control (from Vuln scanner (Tenable/Qualys/Rapid7))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -410,34 +411,34 @@ export const vulnPatchStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 6/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 9/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Vuln & Patch Mgmt controls."
+        "value": "VALUE 9/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Vulnerability & Patch Management controls."
       }
     },
     "badge": {
       "id": "vpm-02-badge",
-      "name": "Vuln & Patch Mgmt Auditor",
+      "name": "Vulnerability & Patch Management Auditor",
       "emoji": "🩹"
     },
     "wonder": {
       "name": "Patch mgmt and exception handling",
-      "location": "Vuln & Patch Mgmt",
+      "location": "Vulnerability & Patch Management",
       "era": "Present Day",
       "emoji": "🩹"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Patch mgmt and exception handling\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Vuln & Patch Mgmt control.",
+      "tagline": "Auditing \"Patch mgmt and exception handling\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the patch mgmt and exception handling control (from Vuln scanner (Tenable/Qualys/Rapid7))) with read-only agents, run the test against policy, and issue a defensible opinion on the Vulnerability & Patch Management control.",
       "year": 2025,
       "overview": [
-        "The \"Patch mgmt and exception handling\" sub-process is one of the controls an auditor must verify for Vuln & Patch Mgmt. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that patch mgmt and exception handling is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Vuln scanner (Tenable/Qualys/Rapid7), Patch management (SCCM/Intune/Ansible), CMDB / asset inventory — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Patch mgmt and exception handling\" sub-process is one of the controls an auditor must verify for Vulnerability & Patch Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the patch mgmt and exception handling control (from Vuln scanner (Tenable/Qualys/Rapid7)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Vuln scanner (Tenable/Qualys/Rapid7), Patch management (SCCM/Intune/Ansible), CMDB / asset inventory — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the \"Patch mgmt and exception handling\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `02_patch_mgmt_and_exception_handling_mcp.py` exposes read-only tools that turn each Vuln & Patch Mgmt source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `02_patch_mgmt_and_exception_handling_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Vuln scanner (Tenable/Qualys/Rapid7) and Patch management (SCCM/Intune/Ansible) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 02_patch_mgmt_and_exception_handling_mcp.py` to expose it to your agent — or `python 02_patch_mgmt_and_exception_handling_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -459,7 +460,7 @@ export const vulnPatchStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Vuln & Patch Mgmt scope + policy",
+            "sub": "define Vulnerability & Patch Management scope + policy",
             "type": "attacker"
           },
           {
@@ -495,12 +496,13 @@ export const vulnPatchStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Patch mgmt and exception handling\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the patch mgmt and exception handling control (from Vuln scanner (Tenable/Qualys/Rapid7)).",
+        "The test: Reconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the \"Patch mgmt and exception handling\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Vuln scanner (Tenable/Qualys/Rapid7), Patch management (SCCM/Intune/Ansible), CMDB / asset inventory) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the patch mgmt and exception handling control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -524,21 +526,21 @@ export const vulnPatchStages: StageConfig[] = [
         {
           "name": "02_patch_mgmt_and_exception_handling_mcp.py",
           "url": "/audit-code/vuln-patch/02_patch_mgmt_and_exception_handling_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Vuln & Patch Mgmt evidence for \"Patch mgmt and exception handling\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Vulnerability & Patch Management evidence for \"Patch mgmt and exception handling\" (in-scope inventory for the patch mgmt and exception handling control (from vuln scanner (tenable/qualys/rapid7))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Patch mgmt and exception handling\" control for Vuln & Patch Mgmt at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Patch mgmt and exception handling\" control for Vulnerability & Patch Management at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the \"Patch mgmt and exception handling\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the patch mgmt and exception handling control (from Vuln scanner (Tenable/Qualys/Rapid7)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Vuln scanner (Tenable/Qualys/Rapid7) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Vuln scanner (Tenable/Qualys/Rapid7) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Vuln scanner (Tenable/Qualys/Rapid7) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Vuln scanner (Tenable/Qualys/Rapid7); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Vuln & Patch Mgmt: \"Patch mgmt and exception handling\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- vuln-patch_inventory.json   (in-scope items from Vuln scanner (Tenable/Qualys/Rapid7))\n- vuln-patch_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Patch mgmt and exception handling\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Patch mgmt and exception handling\",\n  \"domain\": \"Vuln & Patch Mgmt\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{vpm_",
+        "/evidence/README.md": "# AcmeCorp — Vulnerability & Patch Management: \"Patch mgmt and exception handling\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the \"Patch mgmt and exception handling\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- vuln-patch_inventory.json   (in-scope items — In-scope inventory for the patch mgmt and exception handling control (from Vuln scanner (Tenable/Qualys/Rapid7)))\n- vuln-patch_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Patch mgmt and exception handling\",\n  \"domain\": \"Vulnerability & Patch Management\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{vpm_",
         "/evidence/vuln-patch_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"IT Operations\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Patch mgmt and exception handling\" control must cover\n# fragment: patch_mgmt_exception_",
         "/evidence/vuln-patch_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -602,7 +604,7 @@ export const vulnPatchStages: StageConfig[] = [
           "id": "vpm-02-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Patch mgmt and exception handling\" sub-process of Vuln & Patch Mgmt?",
+          "text": "What is the primary audit objective for the \"Patch mgmt and exception handling\" sub-process of Vulnerability & Patch Management?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -616,11 +618,11 @@ export const vulnPatchStages: StageConfig[] = [
           "id": "vpm-02-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Patch mgmt and exception handling\" matter to the broader Vuln & Patch Mgmt posture?",
+          "text": "Why does a weakness in \"Patch mgmt and exception handling\" matter to the broader Vulnerability & Patch Management posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Vuln & Patch Mgmt controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Vulnerability & Patch Management controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -633,7 +635,7 @@ export const vulnPatchStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Patch mgmt and exception handling\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Patch mgmt and exception handling evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the patch mgmt and exception handling control (from Vuln scanner (Tenable/Qualys/Rapid7)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -699,16 +701,16 @@ export const vulnPatchStages: StageConfig[] = [
         {
           "id": "vpm-02-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Patch mgmt and exception handling\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Patch mgmt and exception handling\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the patch mgmt and exception handling control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the patch mgmt and exception handling control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "vpm-02-q9",
@@ -753,8 +755,8 @@ export const vulnPatchStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Configuration drift monitoring\" control for Vuln & Patch Mgmt is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Vuln & Patch Mgmt source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Configuration drift monitoring\" control for Vulnerability & Patch Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the \"Configuration drift monitoring\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Vulnerability & Patch Management systems of record (Vuln scanner (Tenable/Qualys/Rapid7); Patch management (SCCM/Intune/Ansible); CMDB / asset inventory) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the configuration drift monitoring control (from Vuln scanner (Tenable/Qualys/Rapid7))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -775,34 +777,34 @@ export const vulnPatchStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 8/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Vuln & Patch Mgmt controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Vulnerability & Patch Management controls."
       }
     },
     "badge": {
       "id": "vpm-03-badge",
-      "name": "Vuln & Patch Mgmt Auditor",
+      "name": "Vulnerability & Patch Management Auditor",
       "emoji": "🩹"
     },
     "wonder": {
       "name": "Configuration drift monitoring",
-      "location": "Vuln & Patch Mgmt",
+      "location": "Vulnerability & Patch Management",
       "era": "Present Day",
       "emoji": "🩹"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Configuration drift monitoring\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Vuln & Patch Mgmt control.",
+      "tagline": "Auditing \"Configuration drift monitoring\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the configuration drift monitoring control (from Vuln scanner (Tenable/Qualys/Rapid7))) with read-only agents, run the test against policy, and issue a defensible opinion on the Vulnerability & Patch Management control.",
       "year": 2025,
       "overview": [
-        "The \"Configuration drift monitoring\" sub-process is one of the controls an auditor must verify for Vuln & Patch Mgmt. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that configuration drift monitoring is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Vuln scanner (Tenable/Qualys/Rapid7), Patch management (SCCM/Intune/Ansible), CMDB / asset inventory — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Configuration drift monitoring\" sub-process is one of the controls an auditor must verify for Vulnerability & Patch Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the configuration drift monitoring control (from Vuln scanner (Tenable/Qualys/Rapid7)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Vuln scanner (Tenable/Qualys/Rapid7), Patch management (SCCM/Intune/Ansible), CMDB / asset inventory — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the \"Configuration drift monitoring\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `03_configuration_drift_monitoring_mcp.py` exposes read-only tools that turn each Vuln & Patch Mgmt source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `03_configuration_drift_monitoring_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Vuln scanner (Tenable/Qualys/Rapid7) and Patch management (SCCM/Intune/Ansible) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 03_configuration_drift_monitoring_mcp.py` to expose it to your agent — or `python 03_configuration_drift_monitoring_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -824,7 +826,7 @@ export const vulnPatchStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Vuln & Patch Mgmt scope + policy",
+            "sub": "define Vulnerability & Patch Management scope + policy",
             "type": "attacker"
           },
           {
@@ -860,12 +862,13 @@ export const vulnPatchStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Configuration drift monitoring\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the configuration drift monitoring control (from Vuln scanner (Tenable/Qualys/Rapid7)).",
+        "The test: Reconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the \"Configuration drift monitoring\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Vuln scanner (Tenable/Qualys/Rapid7), Patch management (SCCM/Intune/Ansible), CMDB / asset inventory) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the configuration drift monitoring control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -889,21 +892,21 @@ export const vulnPatchStages: StageConfig[] = [
         {
           "name": "03_configuration_drift_monitoring_mcp.py",
           "url": "/audit-code/vuln-patch/03_configuration_drift_monitoring_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Vuln & Patch Mgmt evidence for \"Configuration drift monitoring\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Vulnerability & Patch Management evidence for \"Configuration drift monitoring\" (in-scope inventory for the configuration drift monitoring control (from vuln scanner (tenable/qualys/rapid7))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Configuration drift monitoring\" control for Vuln & Patch Mgmt at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Configuration drift monitoring\" control for Vulnerability & Patch Management at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the \"Configuration drift monitoring\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the configuration drift monitoring control (from Vuln scanner (Tenable/Qualys/Rapid7)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Vuln scanner (Tenable/Qualys/Rapid7) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Vuln scanner (Tenable/Qualys/Rapid7) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Vuln scanner (Tenable/Qualys/Rapid7) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Vuln scanner (Tenable/Qualys/Rapid7); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Vuln & Patch Mgmt: \"Configuration drift monitoring\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- vuln-patch_inventory.json   (in-scope items from Vuln scanner (Tenable/Qualys/Rapid7))\n- vuln-patch_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Configuration drift monitoring\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Configuration drift monitoring\",\n  \"domain\": \"Vuln & Patch Mgmt\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{vpm_",
+        "/evidence/README.md": "# AcmeCorp — Vulnerability & Patch Management: \"Configuration drift monitoring\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the \"Configuration drift monitoring\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- vuln-patch_inventory.json   (in-scope items — In-scope inventory for the configuration drift monitoring control (from Vuln scanner (Tenable/Qualys/Rapid7)))\n- vuln-patch_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Configuration drift monitoring\",\n  \"domain\": \"Vulnerability & Patch Management\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{vpm_",
         "/evidence/vuln-patch_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"IT Operations\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Configuration drift monitoring\" control must cover\n# fragment: configuration_drift_monitoring_",
         "/evidence/vuln-patch_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -967,7 +970,7 @@ export const vulnPatchStages: StageConfig[] = [
           "id": "vpm-03-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Configuration drift monitoring\" sub-process of Vuln & Patch Mgmt?",
+          "text": "What is the primary audit objective for the \"Configuration drift monitoring\" sub-process of Vulnerability & Patch Management?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -981,11 +984,11 @@ export const vulnPatchStages: StageConfig[] = [
           "id": "vpm-03-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Configuration drift monitoring\" matter to the broader Vuln & Patch Mgmt posture?",
+          "text": "Why does a weakness in \"Configuration drift monitoring\" matter to the broader Vulnerability & Patch Management posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Vuln & Patch Mgmt controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Vulnerability & Patch Management controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -998,7 +1001,7 @@ export const vulnPatchStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Configuration drift monitoring\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Configuration drift monitoring evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the configuration drift monitoring control (from Vuln scanner (Tenable/Qualys/Rapid7)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -1064,16 +1067,16 @@ export const vulnPatchStages: StageConfig[] = [
         {
           "id": "vpm-03-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Configuration drift monitoring\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Configuration drift monitoring\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the configuration drift monitoring control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the configuration drift monitoring control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "vpm-03-q9",
@@ -1118,8 +1121,8 @@ export const vulnPatchStages: StageConfig[] = [
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Administrative access controls\" control for Vuln & Patch Mgmt is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Vuln & Patch Mgmt source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Administrative access controls\" control for Vulnerability & Patch Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the \"Administrative access controls\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Vulnerability & Patch Management systems of record (Vuln scanner (Tenable/Qualys/Rapid7); Patch management (SCCM/Intune/Ansible); CMDB / asset inventory) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the administrative access controls control (from Vuln scanner (Tenable/Qualys/Rapid7))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -1140,34 +1143,34 @@ export const vulnPatchStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 5/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 9/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Vuln & Patch Mgmt controls."
+        "value": "VALUE 9/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Vulnerability & Patch Management controls."
       }
     },
     "badge": {
       "id": "vpm-04-badge",
-      "name": "Vuln & Patch Mgmt Auditor",
+      "name": "Vulnerability & Patch Management Auditor",
       "emoji": "🩹"
     },
     "wonder": {
       "name": "Administrative access controls",
-      "location": "Vuln & Patch Mgmt",
+      "location": "Vulnerability & Patch Management",
       "era": "Present Day",
       "emoji": "🩹"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Administrative access controls\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Vuln & Patch Mgmt control.",
+      "tagline": "Auditing \"Administrative access controls\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the administrative access controls control (from Vuln scanner (Tenable/Qualys/Rapid7))) with read-only agents, run the test against policy, and issue a defensible opinion on the Vulnerability & Patch Management control.",
       "year": 2025,
       "overview": [
-        "The \"Administrative access controls\" sub-process is one of the controls an auditor must verify for Vuln & Patch Mgmt. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that administrative access controls is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Vuln scanner (Tenable/Qualys/Rapid7), Patch management (SCCM/Intune/Ansible), CMDB / asset inventory — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Administrative access controls\" sub-process is one of the controls an auditor must verify for Vulnerability & Patch Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the administrative access controls control (from Vuln scanner (Tenable/Qualys/Rapid7)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Vuln scanner (Tenable/Qualys/Rapid7), Patch management (SCCM/Intune/Ansible), CMDB / asset inventory — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the \"Administrative access controls\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `04_administrative_access_controls_mcp.py` exposes read-only tools that turn each Vuln & Patch Mgmt source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `04_administrative_access_controls_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Vuln scanner (Tenable/Qualys/Rapid7) and Patch management (SCCM/Intune/Ansible) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 04_administrative_access_controls_mcp.py` to expose it to your agent — or `python 04_administrative_access_controls_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -1189,7 +1192,7 @@ export const vulnPatchStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Vuln & Patch Mgmt scope + policy",
+            "sub": "define Vulnerability & Patch Management scope + policy",
             "type": "attacker"
           },
           {
@@ -1225,12 +1228,13 @@ export const vulnPatchStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Administrative access controls\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the administrative access controls control (from Vuln scanner (Tenable/Qualys/Rapid7)).",
+        "The test: Reconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the \"Administrative access controls\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Vuln scanner (Tenable/Qualys/Rapid7), Patch management (SCCM/Intune/Ansible), CMDB / asset inventory) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the administrative access controls control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -1254,21 +1258,21 @@ export const vulnPatchStages: StageConfig[] = [
         {
           "name": "04_administrative_access_controls_mcp.py",
           "url": "/audit-code/vuln-patch/04_administrative_access_controls_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Vuln & Patch Mgmt evidence for \"Administrative access controls\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Vulnerability & Patch Management evidence for \"Administrative access controls\" (in-scope inventory for the administrative access controls control (from vuln scanner (tenable/qualys/rapid7))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Administrative access controls\" control for Vuln & Patch Mgmt at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Administrative access controls\" control for Vulnerability & Patch Management at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the \"Administrative access controls\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the administrative access controls control (from Vuln scanner (Tenable/Qualys/Rapid7)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Vuln scanner (Tenable/Qualys/Rapid7) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Vuln scanner (Tenable/Qualys/Rapid7) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Vuln scanner (Tenable/Qualys/Rapid7) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Vuln scanner (Tenable/Qualys/Rapid7); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Vuln & Patch Mgmt: \"Administrative access controls\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- vuln-patch_inventory.json   (in-scope items from Vuln scanner (Tenable/Qualys/Rapid7))\n- vuln-patch_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Administrative access controls\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Administrative access controls\",\n  \"domain\": \"Vuln & Patch Mgmt\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{vpm_",
+        "/evidence/README.md": "# AcmeCorp — Vulnerability & Patch Management: \"Administrative access controls\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the \"Administrative access controls\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- vuln-patch_inventory.json   (in-scope items — In-scope inventory for the administrative access controls control (from Vuln scanner (Tenable/Qualys/Rapid7)))\n- vuln-patch_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Administrative access controls\",\n  \"domain\": \"Vulnerability & Patch Management\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{vpm_",
         "/evidence/vuln-patch_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"IT Operations\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Administrative access controls\" control must cover\n# fragment: administrative_access_controls_",
         "/evidence/vuln-patch_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -1332,7 +1336,7 @@ export const vulnPatchStages: StageConfig[] = [
           "id": "vpm-04-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Administrative access controls\" sub-process of Vuln & Patch Mgmt?",
+          "text": "What is the primary audit objective for the \"Administrative access controls\" sub-process of Vulnerability & Patch Management?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -1346,11 +1350,11 @@ export const vulnPatchStages: StageConfig[] = [
           "id": "vpm-04-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Administrative access controls\" matter to the broader Vuln & Patch Mgmt posture?",
+          "text": "Why does a weakness in \"Administrative access controls\" matter to the broader Vulnerability & Patch Management posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Vuln & Patch Mgmt controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Vulnerability & Patch Management controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -1363,7 +1367,7 @@ export const vulnPatchStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Administrative access controls\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Administrative access controls evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the administrative access controls control (from Vuln scanner (Tenable/Qualys/Rapid7)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -1429,16 +1433,16 @@ export const vulnPatchStages: StageConfig[] = [
         {
           "id": "vpm-04-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Administrative access controls\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Administrative access controls\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the administrative access controls control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the administrative access controls control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "vpm-04-q9",
@@ -1483,8 +1487,8 @@ export const vulnPatchStages: StageConfig[] = [
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Vulnerability management\" control for Vuln & Patch Mgmt is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Vuln & Patch Mgmt source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Vulnerability management\" control for Vulnerability & Patch Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the \"Vulnerability management\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Vulnerability & Patch Management systems of record (Vuln scanner (Tenable/Qualys/Rapid7); Patch management (SCCM/Intune/Ansible); CMDB / asset inventory) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the vulnerability management control (from Vuln scanner (Tenable/Qualys/Rapid7))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -1505,34 +1509,34 @@ export const vulnPatchStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 6/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 9/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Vuln & Patch Mgmt controls."
+        "value": "VALUE 9/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Vulnerability & Patch Management controls."
       }
     },
     "badge": {
       "id": "vpm-05-badge",
-      "name": "Vuln & Patch Mgmt Auditor",
+      "name": "Vulnerability & Patch Management Auditor",
       "emoji": "🩹"
     },
     "wonder": {
       "name": "Vulnerability management",
-      "location": "Vuln & Patch Mgmt",
+      "location": "Vulnerability & Patch Management",
       "era": "Present Day",
       "emoji": "🩹"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Vulnerability management\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Vuln & Patch Mgmt control.",
+      "tagline": "Auditing \"Vulnerability management\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the vulnerability management control (from Vuln scanner (Tenable/Qualys/Rapid7))) with read-only agents, run the test against policy, and issue a defensible opinion on the Vulnerability & Patch Management control.",
       "year": 2025,
       "overview": [
-        "The \"Vulnerability management\" sub-process is one of the controls an auditor must verify for Vuln & Patch Mgmt. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that vulnerability management is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Vuln scanner (Tenable/Qualys/Rapid7), Patch management (SCCM/Intune/Ansible), CMDB / asset inventory — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Vulnerability management\" sub-process is one of the controls an auditor must verify for Vulnerability & Patch Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the vulnerability management control (from Vuln scanner (Tenable/Qualys/Rapid7)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Vuln scanner (Tenable/Qualys/Rapid7), Patch management (SCCM/Intune/Ansible), CMDB / asset inventory — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the \"Vulnerability management\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `05_vulnerability_management_mcp.py` exposes read-only tools that turn each Vuln & Patch Mgmt source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `05_vulnerability_management_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Vuln scanner (Tenable/Qualys/Rapid7) and Patch management (SCCM/Intune/Ansible) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 05_vulnerability_management_mcp.py` to expose it to your agent — or `python 05_vulnerability_management_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -1554,7 +1558,7 @@ export const vulnPatchStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Vuln & Patch Mgmt scope + policy",
+            "sub": "define Vulnerability & Patch Management scope + policy",
             "type": "attacker"
           },
           {
@@ -1590,12 +1594,13 @@ export const vulnPatchStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Vulnerability management\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the vulnerability management control (from Vuln scanner (Tenable/Qualys/Rapid7)).",
+        "The test: Reconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the \"Vulnerability management\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Vuln scanner (Tenable/Qualys/Rapid7), Patch management (SCCM/Intune/Ansible), CMDB / asset inventory) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the vulnerability management control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -1619,21 +1624,21 @@ export const vulnPatchStages: StageConfig[] = [
         {
           "name": "05_vulnerability_management_mcp.py",
           "url": "/audit-code/vuln-patch/05_vulnerability_management_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Vuln & Patch Mgmt evidence for \"Vulnerability management\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Vulnerability & Patch Management evidence for \"Vulnerability management\" (in-scope inventory for the vulnerability management control (from vuln scanner (tenable/qualys/rapid7))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Vulnerability management\" control for Vuln & Patch Mgmt at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Vulnerability management\" control for Vulnerability & Patch Management at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the \"Vulnerability management\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the vulnerability management control (from Vuln scanner (Tenable/Qualys/Rapid7)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Vuln scanner (Tenable/Qualys/Rapid7) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Vuln scanner (Tenable/Qualys/Rapid7) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Vuln scanner (Tenable/Qualys/Rapid7) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Vuln scanner (Tenable/Qualys/Rapid7); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Vuln & Patch Mgmt: \"Vulnerability management\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- vuln-patch_inventory.json   (in-scope items from Vuln scanner (Tenable/Qualys/Rapid7))\n- vuln-patch_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Vulnerability management\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Vulnerability management\",\n  \"domain\": \"Vuln & Patch Mgmt\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{vpm_",
+        "/evidence/README.md": "# AcmeCorp — Vulnerability & Patch Management: \"Vulnerability management\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the \"Vulnerability management\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- vuln-patch_inventory.json   (in-scope items — In-scope inventory for the vulnerability management control (from Vuln scanner (Tenable/Qualys/Rapid7)))\n- vuln-patch_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Vulnerability management\",\n  \"domain\": \"Vulnerability & Patch Management\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{vpm_",
         "/evidence/vuln-patch_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"IT Operations\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Vulnerability management\" control must cover\n# fragment: vulnerability_management_",
         "/evidence/vuln-patch_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"EXCEPTIONS\"\n}\n# fragment: exceptions}"
@@ -1697,7 +1702,7 @@ export const vulnPatchStages: StageConfig[] = [
           "id": "vpm-05-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Vulnerability management\" sub-process of Vuln & Patch Mgmt?",
+          "text": "What is the primary audit objective for the \"Vulnerability management\" sub-process of Vulnerability & Patch Management?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -1711,11 +1716,11 @@ export const vulnPatchStages: StageConfig[] = [
           "id": "vpm-05-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Vulnerability management\" matter to the broader Vuln & Patch Mgmt posture?",
+          "text": "Why does a weakness in \"Vulnerability management\" matter to the broader Vulnerability & Patch Management posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Vuln & Patch Mgmt controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Vulnerability & Patch Management controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -1728,7 +1733,7 @@ export const vulnPatchStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Vulnerability management\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Vulnerability management evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the vulnerability management control (from Vuln scanner (Tenable/Qualys/Rapid7)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -1794,16 +1799,16 @@ export const vulnPatchStages: StageConfig[] = [
         {
           "id": "vpm-05-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Vulnerability management\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Vulnerability management\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the vulnerability management control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the vulnerability management control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "vpm-05-q9",
@@ -1848,8 +1853,8 @@ export const vulnPatchStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Host event logging and monitoring\" control for Vuln & Patch Mgmt is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Vuln & Patch Mgmt source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Host event logging and monitoring\" control for Vulnerability & Patch Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the \"Host event logging and monitoring\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Vulnerability & Patch Management systems of record (Vuln scanner (Tenable/Qualys/Rapid7); Patch management (SCCM/Intune/Ansible); CMDB / asset inventory) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the host event logging and monitoring control (from Vuln scanner (Tenable/Qualys/Rapid7))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -1870,34 +1875,34 @@ export const vulnPatchStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 8/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Vuln & Patch Mgmt controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Vulnerability & Patch Management controls."
       }
     },
     "badge": {
       "id": "vpm-06-badge",
-      "name": "Vuln & Patch Mgmt Auditor",
+      "name": "Vulnerability & Patch Management Auditor",
       "emoji": "🩹"
     },
     "wonder": {
       "name": "Host event logging and monitoring",
-      "location": "Vuln & Patch Mgmt",
+      "location": "Vulnerability & Patch Management",
       "era": "Present Day",
       "emoji": "🩹"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Host event logging and monitoring\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Vuln & Patch Mgmt control.",
+      "tagline": "Auditing \"Host event logging and monitoring\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the host event logging and monitoring control (from Vuln scanner (Tenable/Qualys/Rapid7))) with read-only agents, run the test against policy, and issue a defensible opinion on the Vulnerability & Patch Management control.",
       "year": 2025,
       "overview": [
-        "The \"Host event logging and monitoring\" sub-process is one of the controls an auditor must verify for Vuln & Patch Mgmt. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that host event logging and monitoring is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Vuln scanner (Tenable/Qualys/Rapid7), Patch management (SCCM/Intune/Ansible), CMDB / asset inventory — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Host event logging and monitoring\" sub-process is one of the controls an auditor must verify for Vulnerability & Patch Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the host event logging and monitoring control (from Vuln scanner (Tenable/Qualys/Rapid7)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Vuln scanner (Tenable/Qualys/Rapid7), Patch management (SCCM/Intune/Ansible), CMDB / asset inventory — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the \"Host event logging and monitoring\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `06_host_event_logging_and_monitoring_mcp.py` exposes read-only tools that turn each Vuln & Patch Mgmt source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `06_host_event_logging_and_monitoring_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Vuln scanner (Tenable/Qualys/Rapid7) and Patch management (SCCM/Intune/Ansible) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 06_host_event_logging_and_monitoring_mcp.py` to expose it to your agent — or `python 06_host_event_logging_and_monitoring_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -1919,7 +1924,7 @@ export const vulnPatchStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Vuln & Patch Mgmt scope + policy",
+            "sub": "define Vulnerability & Patch Management scope + policy",
             "type": "attacker"
           },
           {
@@ -1955,12 +1960,13 @@ export const vulnPatchStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Host event logging and monitoring\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the host event logging and monitoring control (from Vuln scanner (Tenable/Qualys/Rapid7)).",
+        "The test: Reconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the \"Host event logging and monitoring\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Vuln scanner (Tenable/Qualys/Rapid7), Patch management (SCCM/Intune/Ansible), CMDB / asset inventory) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the host event logging and monitoring control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -1984,21 +1990,21 @@ export const vulnPatchStages: StageConfig[] = [
         {
           "name": "06_host_event_logging_and_monitoring_mcp.py",
           "url": "/audit-code/vuln-patch/06_host_event_logging_and_monitoring_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Vuln & Patch Mgmt evidence for \"Host event logging and monitoring\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Vulnerability & Patch Management evidence for \"Host event logging and monitoring\" (in-scope inventory for the host event logging and monitoring control (from vuln scanner (tenable/qualys/rapid7))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Host event logging and monitoring\" control for Vuln & Patch Mgmt at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Host event logging and monitoring\" control for Vulnerability & Patch Management at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the \"Host event logging and monitoring\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the host event logging and monitoring control (from Vuln scanner (Tenable/Qualys/Rapid7)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Vuln scanner (Tenable/Qualys/Rapid7) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Vuln scanner (Tenable/Qualys/Rapid7) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Vuln scanner (Tenable/Qualys/Rapid7) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Vuln scanner (Tenable/Qualys/Rapid7); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Vuln & Patch Mgmt: \"Host event logging and monitoring\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- vuln-patch_inventory.json   (in-scope items from Vuln scanner (Tenable/Qualys/Rapid7))\n- vuln-patch_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Host event logging and monitoring\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Host event logging and monitoring\",\n  \"domain\": \"Vuln & Patch Mgmt\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{vpm_",
+        "/evidence/README.md": "# AcmeCorp — Vulnerability & Patch Management: \"Host event logging and monitoring\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the \"Host event logging and monitoring\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- vuln-patch_inventory.json   (in-scope items — In-scope inventory for the host event logging and monitoring control (from Vuln scanner (Tenable/Qualys/Rapid7)))\n- vuln-patch_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Host event logging and monitoring\",\n  \"domain\": \"Vulnerability & Patch Management\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{vpm_",
         "/evidence/vuln-patch_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"IT Operations\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Host event logging and monitoring\" control must cover\n# fragment: host_event_logging_",
         "/evidence/vuln-patch_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -2062,7 +2068,7 @@ export const vulnPatchStages: StageConfig[] = [
           "id": "vpm-06-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Host event logging and monitoring\" sub-process of Vuln & Patch Mgmt?",
+          "text": "What is the primary audit objective for the \"Host event logging and monitoring\" sub-process of Vulnerability & Patch Management?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -2076,11 +2082,11 @@ export const vulnPatchStages: StageConfig[] = [
           "id": "vpm-06-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Host event logging and monitoring\" matter to the broader Vuln & Patch Mgmt posture?",
+          "text": "Why does a weakness in \"Host event logging and monitoring\" matter to the broader Vulnerability & Patch Management posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Vuln & Patch Mgmt controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Vulnerability & Patch Management controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -2093,7 +2099,7 @@ export const vulnPatchStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Host event logging and monitoring\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Host event logging and monitoring evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the host event logging and monitoring control (from Vuln scanner (Tenable/Qualys/Rapid7)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -2159,16 +2165,16 @@ export const vulnPatchStages: StageConfig[] = [
         {
           "id": "vpm-06-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Host event logging and monitoring\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Host event logging and monitoring\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the host event logging and monitoring control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the host event logging and monitoring control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "vpm-06-q9",
@@ -2213,8 +2219,8 @@ export const vulnPatchStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Red and blue teaming\" control for Vuln & Patch Mgmt is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Vuln & Patch Mgmt source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Red and blue teaming\" control for Vulnerability & Patch Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the \"Red and blue teaming\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Vulnerability & Patch Management systems of record (Vuln scanner (Tenable/Qualys/Rapid7); Patch management (SCCM/Intune/Ansible); CMDB / asset inventory) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the red and blue teaming control (from Vuln scanner (Tenable/Qualys/Rapid7))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -2235,34 +2241,34 @@ export const vulnPatchStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 5/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Vuln & Patch Mgmt controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Vulnerability & Patch Management controls."
       }
     },
     "badge": {
       "id": "vpm-07-badge",
-      "name": "Vuln & Patch Mgmt Auditor",
+      "name": "Vulnerability & Patch Management Auditor",
       "emoji": "🩹"
     },
     "wonder": {
       "name": "Red and blue teaming",
-      "location": "Vuln & Patch Mgmt",
+      "location": "Vulnerability & Patch Management",
       "era": "Present Day",
       "emoji": "🩹"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Red and blue teaming\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Vuln & Patch Mgmt control.",
+      "tagline": "Auditing \"Red and blue teaming\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the red and blue teaming control (from Vuln scanner (Tenable/Qualys/Rapid7))) with read-only agents, run the test against policy, and issue a defensible opinion on the Vulnerability & Patch Management control.",
       "year": 2025,
       "overview": [
-        "The \"Red and blue teaming\" sub-process is one of the controls an auditor must verify for Vuln & Patch Mgmt. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that red and blue teaming is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Vuln scanner (Tenable/Qualys/Rapid7), Patch management (SCCM/Intune/Ansible), CMDB / asset inventory — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Red and blue teaming\" sub-process is one of the controls an auditor must verify for Vulnerability & Patch Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the red and blue teaming control (from Vuln scanner (Tenable/Qualys/Rapid7)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Vuln scanner (Tenable/Qualys/Rapid7), Patch management (SCCM/Intune/Ansible), CMDB / asset inventory — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the \"Red and blue teaming\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `07_red_and_blue_teaming_mcp.py` exposes read-only tools that turn each Vuln & Patch Mgmt source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `07_red_and_blue_teaming_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Vuln scanner (Tenable/Qualys/Rapid7) and Patch management (SCCM/Intune/Ansible) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 07_red_and_blue_teaming_mcp.py` to expose it to your agent — or `python 07_red_and_blue_teaming_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -2284,7 +2290,7 @@ export const vulnPatchStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Vuln & Patch Mgmt scope + policy",
+            "sub": "define Vulnerability & Patch Management scope + policy",
             "type": "attacker"
           },
           {
@@ -2320,12 +2326,13 @@ export const vulnPatchStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Red and blue teaming\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the red and blue teaming control (from Vuln scanner (Tenable/Qualys/Rapid7)).",
+        "The test: Reconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the \"Red and blue teaming\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Vuln scanner (Tenable/Qualys/Rapid7), Patch management (SCCM/Intune/Ansible), CMDB / asset inventory) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the red and blue teaming control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -2349,21 +2356,21 @@ export const vulnPatchStages: StageConfig[] = [
         {
           "name": "07_red_and_blue_teaming_mcp.py",
           "url": "/audit-code/vuln-patch/07_red_and_blue_teaming_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Vuln & Patch Mgmt evidence for \"Red and blue teaming\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Vulnerability & Patch Management evidence for \"Red and blue teaming\" (in-scope inventory for the red and blue teaming control (from vuln scanner (tenable/qualys/rapid7))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Red and blue teaming\" control for Vuln & Patch Mgmt at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Red and blue teaming\" control for Vulnerability & Patch Management at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the \"Red and blue teaming\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the red and blue teaming control (from Vuln scanner (Tenable/Qualys/Rapid7)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Vuln scanner (Tenable/Qualys/Rapid7) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Vuln scanner (Tenable/Qualys/Rapid7) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Vuln scanner (Tenable/Qualys/Rapid7) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Vuln scanner (Tenable/Qualys/Rapid7); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Vuln & Patch Mgmt: \"Red and blue teaming\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- vuln-patch_inventory.json   (in-scope items from Vuln scanner (Tenable/Qualys/Rapid7))\n- vuln-patch_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Red and blue teaming\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Red and blue teaming\",\n  \"domain\": \"Vuln & Patch Mgmt\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{vpm_",
+        "/evidence/README.md": "# AcmeCorp — Vulnerability & Patch Management: \"Red and blue teaming\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the \"Red and blue teaming\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- vuln-patch_inventory.json   (in-scope items — In-scope inventory for the red and blue teaming control (from Vuln scanner (Tenable/Qualys/Rapid7)))\n- vuln-patch_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Red and blue teaming\",\n  \"domain\": \"Vulnerability & Patch Management\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{vpm_",
         "/evidence/vuln-patch_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"IT Operations\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Red and blue teaming\" control must cover\n# fragment: red_blue_teaming_",
         "/evidence/vuln-patch_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -2427,7 +2434,7 @@ export const vulnPatchStages: StageConfig[] = [
           "id": "vpm-07-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Red and blue teaming\" sub-process of Vuln & Patch Mgmt?",
+          "text": "What is the primary audit objective for the \"Red and blue teaming\" sub-process of Vulnerability & Patch Management?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -2441,11 +2448,11 @@ export const vulnPatchStages: StageConfig[] = [
           "id": "vpm-07-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Red and blue teaming\" matter to the broader Vuln & Patch Mgmt posture?",
+          "text": "Why does a weakness in \"Red and blue teaming\" matter to the broader Vulnerability & Patch Management posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Vuln & Patch Mgmt controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Vulnerability & Patch Management controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -2458,7 +2465,7 @@ export const vulnPatchStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Red and blue teaming\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Red and blue teaming evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the red and blue teaming control (from Vuln scanner (Tenable/Qualys/Rapid7)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -2524,16 +2531,16 @@ export const vulnPatchStages: StageConfig[] = [
         {
           "id": "vpm-07-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Red and blue teaming\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Red and blue teaming\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the red and blue teaming control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the red and blue teaming control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "vpm-07-q9",
@@ -2578,8 +2585,8 @@ export const vulnPatchStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Malware analysis\" control for Vuln & Patch Mgmt is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Vuln & Patch Mgmt source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Malware analysis\" control for Vulnerability & Patch Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the \"Malware analysis\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Vulnerability & Patch Management systems of record (Vuln scanner (Tenable/Qualys/Rapid7); Patch management (SCCM/Intune/Ansible); CMDB / asset inventory) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the malware analysis control (from Vuln scanner (Tenable/Qualys/Rapid7))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -2600,34 +2607,34 @@ export const vulnPatchStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 6/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Vuln & Patch Mgmt controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Vulnerability & Patch Management controls."
       }
     },
     "badge": {
       "id": "vpm-08-badge",
-      "name": "Vuln & Patch Mgmt Auditor",
+      "name": "Vulnerability & Patch Management Auditor",
       "emoji": "🩹"
     },
     "wonder": {
       "name": "Malware analysis",
-      "location": "Vuln & Patch Mgmt",
+      "location": "Vulnerability & Patch Management",
       "era": "Present Day",
       "emoji": "🩹"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Malware analysis\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Vuln & Patch Mgmt control.",
+      "tagline": "Auditing \"Malware analysis\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the malware analysis control (from Vuln scanner (Tenable/Qualys/Rapid7))) with read-only agents, run the test against policy, and issue a defensible opinion on the Vulnerability & Patch Management control.",
       "year": 2025,
       "overview": [
-        "The \"Malware analysis\" sub-process is one of the controls an auditor must verify for Vuln & Patch Mgmt. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that malware analysis is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Vuln scanner (Tenable/Qualys/Rapid7), Patch management (SCCM/Intune/Ansible), CMDB / asset inventory — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Malware analysis\" sub-process is one of the controls an auditor must verify for Vulnerability & Patch Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the malware analysis control (from Vuln scanner (Tenable/Qualys/Rapid7)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Vuln scanner (Tenable/Qualys/Rapid7), Patch management (SCCM/Intune/Ansible), CMDB / asset inventory — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the \"Malware analysis\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `08_malware_analysis_mcp.py` exposes read-only tools that turn each Vuln & Patch Mgmt source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `08_malware_analysis_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Vuln scanner (Tenable/Qualys/Rapid7) and Patch management (SCCM/Intune/Ansible) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 08_malware_analysis_mcp.py` to expose it to your agent — or `python 08_malware_analysis_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -2649,7 +2656,7 @@ export const vulnPatchStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Vuln & Patch Mgmt scope + policy",
+            "sub": "define Vulnerability & Patch Management scope + policy",
             "type": "attacker"
           },
           {
@@ -2685,12 +2692,13 @@ export const vulnPatchStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Malware analysis\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the malware analysis control (from Vuln scanner (Tenable/Qualys/Rapid7)).",
+        "The test: Reconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the \"Malware analysis\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Vuln scanner (Tenable/Qualys/Rapid7), Patch management (SCCM/Intune/Ansible), CMDB / asset inventory) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the malware analysis control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -2714,21 +2722,21 @@ export const vulnPatchStages: StageConfig[] = [
         {
           "name": "08_malware_analysis_mcp.py",
           "url": "/audit-code/vuln-patch/08_malware_analysis_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Vuln & Patch Mgmt evidence for \"Malware analysis\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Vulnerability & Patch Management evidence for \"Malware analysis\" (in-scope inventory for the malware analysis control (from vuln scanner (tenable/qualys/rapid7))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Malware analysis\" control for Vuln & Patch Mgmt at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Malware analysis\" control for Vulnerability & Patch Management at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the \"Malware analysis\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the malware analysis control (from Vuln scanner (Tenable/Qualys/Rapid7)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Vuln scanner (Tenable/Qualys/Rapid7) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Vuln scanner (Tenable/Qualys/Rapid7) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Vuln scanner (Tenable/Qualys/Rapid7) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Vuln scanner (Tenable/Qualys/Rapid7); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Vuln & Patch Mgmt: \"Malware analysis\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- vuln-patch_inventory.json   (in-scope items from Vuln scanner (Tenable/Qualys/Rapid7))\n- vuln-patch_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Malware analysis\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Malware analysis\",\n  \"domain\": \"Vuln & Patch Mgmt\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{vpm_",
+        "/evidence/README.md": "# AcmeCorp — Vulnerability & Patch Management: \"Malware analysis\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the \"Malware analysis\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- vuln-patch_inventory.json   (in-scope items — In-scope inventory for the malware analysis control (from Vuln scanner (Tenable/Qualys/Rapid7)))\n- vuln-patch_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Malware analysis\",\n  \"domain\": \"Vulnerability & Patch Management\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{vpm_",
         "/evidence/vuln-patch_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"IT Operations\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Malware analysis\" control must cover\n# fragment: malware_analysis_",
         "/evidence/vuln-patch_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -2792,7 +2800,7 @@ export const vulnPatchStages: StageConfig[] = [
           "id": "vpm-08-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Malware analysis\" sub-process of Vuln & Patch Mgmt?",
+          "text": "What is the primary audit objective for the \"Malware analysis\" sub-process of Vulnerability & Patch Management?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -2806,11 +2814,11 @@ export const vulnPatchStages: StageConfig[] = [
           "id": "vpm-08-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Malware analysis\" matter to the broader Vuln & Patch Mgmt posture?",
+          "text": "Why does a weakness in \"Malware analysis\" matter to the broader Vulnerability & Patch Management posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Vuln & Patch Mgmt controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Vulnerability & Patch Management controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -2823,7 +2831,7 @@ export const vulnPatchStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Malware analysis\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Malware analysis evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the malware analysis control (from Vuln scanner (Tenable/Qualys/Rapid7)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -2889,16 +2897,16 @@ export const vulnPatchStages: StageConfig[] = [
         {
           "id": "vpm-08-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Malware analysis\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Malware analysis\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the malware analysis control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the malware analysis control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "vpm-08-q9",
@@ -2943,8 +2951,8 @@ export const vulnPatchStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"AI for red teaming\" control for Vuln & Patch Mgmt is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Vuln & Patch Mgmt source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"AI for red teaming\" control for Vulnerability & Patch Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the \"AI for red teaming\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Vulnerability & Patch Management systems of record (Vuln scanner (Tenable/Qualys/Rapid7); Patch management (SCCM/Intune/Ansible); CMDB / asset inventory) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the ai for red teaming control (from Vuln scanner (Tenable/Qualys/Rapid7))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -2965,34 +2973,34 @@ export const vulnPatchStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 5/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Vuln & Patch Mgmt controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Vulnerability & Patch Management controls."
       }
     },
     "badge": {
       "id": "vpm-09-badge",
-      "name": "Vuln & Patch Mgmt Auditor",
+      "name": "Vulnerability & Patch Management Auditor",
       "emoji": "🩹"
     },
     "wonder": {
       "name": "AI for red teaming",
-      "location": "Vuln & Patch Mgmt",
+      "location": "Vulnerability & Patch Management",
       "era": "Present Day",
       "emoji": "🩹"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"AI for red teaming\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Vuln & Patch Mgmt control.",
+      "tagline": "Auditing \"AI for red teaming\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the ai for red teaming control (from Vuln scanner (Tenable/Qualys/Rapid7))) with read-only agents, run the test against policy, and issue a defensible opinion on the Vulnerability & Patch Management control.",
       "year": 2025,
       "overview": [
-        "The \"AI for red teaming\" sub-process is one of the controls an auditor must verify for Vuln & Patch Mgmt. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that ai for red teaming is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Vuln scanner (Tenable/Qualys/Rapid7), Patch management (SCCM/Intune/Ansible), CMDB / asset inventory — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"AI for red teaming\" sub-process is one of the controls an auditor must verify for Vulnerability & Patch Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the ai for red teaming control (from Vuln scanner (Tenable/Qualys/Rapid7)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Vuln scanner (Tenable/Qualys/Rapid7), Patch management (SCCM/Intune/Ansible), CMDB / asset inventory — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the \"AI for red teaming\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `09_ai_for_red_teaming_mcp.py` exposes read-only tools that turn each Vuln & Patch Mgmt source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `09_ai_for_red_teaming_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Vuln scanner (Tenable/Qualys/Rapid7) and Patch management (SCCM/Intune/Ansible) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 09_ai_for_red_teaming_mcp.py` to expose it to your agent — or `python 09_ai_for_red_teaming_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -3014,7 +3022,7 @@ export const vulnPatchStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Vuln & Patch Mgmt scope + policy",
+            "sub": "define Vulnerability & Patch Management scope + policy",
             "type": "attacker"
           },
           {
@@ -3050,12 +3058,13 @@ export const vulnPatchStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"AI for red teaming\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the ai for red teaming control (from Vuln scanner (Tenable/Qualys/Rapid7)).",
+        "The test: Reconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the \"AI for red teaming\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Vuln scanner (Tenable/Qualys/Rapid7), Patch management (SCCM/Intune/Ansible), CMDB / asset inventory) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the ai for red teaming control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -3079,21 +3088,21 @@ export const vulnPatchStages: StageConfig[] = [
         {
           "name": "09_ai_for_red_teaming_mcp.py",
           "url": "/audit-code/vuln-patch/09_ai_for_red_teaming_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Vuln & Patch Mgmt evidence for \"AI for red teaming\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Vulnerability & Patch Management evidence for \"AI for red teaming\" (in-scope inventory for the ai for red teaming control (from vuln scanner (tenable/qualys/rapid7))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"AI for red teaming\" control for Vuln & Patch Mgmt at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"AI for red teaming\" control for Vulnerability & Patch Management at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the \"AI for red teaming\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the ai for red teaming control (from Vuln scanner (Tenable/Qualys/Rapid7)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Vuln scanner (Tenable/Qualys/Rapid7) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Vuln scanner (Tenable/Qualys/Rapid7) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Vuln scanner (Tenable/Qualys/Rapid7) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Vuln scanner (Tenable/Qualys/Rapid7); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Vuln & Patch Mgmt: \"AI for red teaming\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- vuln-patch_inventory.json   (in-scope items from Vuln scanner (Tenable/Qualys/Rapid7))\n- vuln-patch_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"AI for red teaming\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"AI for red teaming\",\n  \"domain\": \"Vuln & Patch Mgmt\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{vpm_",
+        "/evidence/README.md": "# AcmeCorp — Vulnerability & Patch Management: \"AI for red teaming\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the \"AI for red teaming\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- vuln-patch_inventory.json   (in-scope items — In-scope inventory for the ai for red teaming control (from Vuln scanner (Tenable/Qualys/Rapid7)))\n- vuln-patch_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"AI for red teaming\",\n  \"domain\": \"Vulnerability & Patch Management\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{vpm_",
         "/evidence/vuln-patch_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"IT Operations\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"AI for red teaming\" control must cover\n# fragment: ai_red_teaming_",
         "/evidence/vuln-patch_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -3157,7 +3166,7 @@ export const vulnPatchStages: StageConfig[] = [
           "id": "vpm-09-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"AI for red teaming\" sub-process of Vuln & Patch Mgmt?",
+          "text": "What is the primary audit objective for the \"AI for red teaming\" sub-process of Vulnerability & Patch Management?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -3171,11 +3180,11 @@ export const vulnPatchStages: StageConfig[] = [
           "id": "vpm-09-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"AI for red teaming\" matter to the broader Vuln & Patch Mgmt posture?",
+          "text": "Why does a weakness in \"AI for red teaming\" matter to the broader Vulnerability & Patch Management posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Vuln & Patch Mgmt controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Vulnerability & Patch Management controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -3188,7 +3197,7 @@ export const vulnPatchStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"AI for red teaming\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The AI for red teaming evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the ai for red teaming control (from Vuln scanner (Tenable/Qualys/Rapid7)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -3254,16 +3263,16 @@ export const vulnPatchStages: StageConfig[] = [
         {
           "id": "vpm-09-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"AI for red teaming\"?",
+          "challenge": "Typical finding",
+          "text": "For \"AI for red teaming\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the ai for red teaming control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the ai for red teaming control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "vpm-09-q9",
@@ -3308,8 +3317,8 @@ export const vulnPatchStages: StageConfig[] = [
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"STE — cloud infra vuln tickets\" control for Vuln & Patch Mgmt is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Vuln & Patch Mgmt source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"STE — cloud infra vuln tickets\" control for Vulnerability & Patch Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the \"STE — cloud infra vuln tickets\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Vulnerability & Patch Management systems of record (Vuln scanner (Tenable/Qualys/Rapid7); Patch management (SCCM/Intune/Ansible); CMDB / asset inventory) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the ste — cloud infra vuln tickets control (from Vuln scanner (Tenable/Qualys/Rapid7))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -3330,34 +3339,34 @@ export const vulnPatchStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 5/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 9/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Vuln & Patch Mgmt controls."
+        "value": "VALUE 9/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Vulnerability & Patch Management controls."
       }
     },
     "badge": {
       "id": "vpm-10-badge",
-      "name": "Vuln & Patch Mgmt Auditor",
+      "name": "Vulnerability & Patch Management Auditor",
       "emoji": "🩹"
     },
     "wonder": {
       "name": "STE — cloud infra vuln tickets",
-      "location": "Vuln & Patch Mgmt",
+      "location": "Vulnerability & Patch Management",
       "era": "Present Day",
       "emoji": "🩹"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"STE — cloud infra vuln tickets\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Vuln & Patch Mgmt control.",
+      "tagline": "Auditing \"STE — cloud infra vuln tickets\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the ste — cloud infra vuln tickets control (from Vuln scanner (Tenable/Qualys/Rapid7))) with read-only agents, run the test against policy, and issue a defensible opinion on the Vulnerability & Patch Management control.",
       "year": 2025,
       "overview": [
-        "The \"STE — cloud infra vuln tickets\" sub-process is one of the controls an auditor must verify for Vuln & Patch Mgmt. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that ste — cloud infra vuln tickets is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Vuln scanner (Tenable/Qualys/Rapid7), Patch management (SCCM/Intune/Ansible), CMDB / asset inventory — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"STE — cloud infra vuln tickets\" sub-process is one of the controls an auditor must verify for Vulnerability & Patch Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the ste — cloud infra vuln tickets control (from Vuln scanner (Tenable/Qualys/Rapid7)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Vuln scanner (Tenable/Qualys/Rapid7), Patch management (SCCM/Intune/Ansible), CMDB / asset inventory — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the \"STE — cloud infra vuln tickets\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `10_ste_cloud_infra_vuln_tickets_mcp.py` exposes read-only tools that turn each Vuln & Patch Mgmt source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `10_ste_cloud_infra_vuln_tickets_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Vuln scanner (Tenable/Qualys/Rapid7) and Patch management (SCCM/Intune/Ansible) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 10_ste_cloud_infra_vuln_tickets_mcp.py` to expose it to your agent — or `python 10_ste_cloud_infra_vuln_tickets_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -3379,7 +3388,7 @@ export const vulnPatchStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Vuln & Patch Mgmt scope + policy",
+            "sub": "define Vulnerability & Patch Management scope + policy",
             "type": "attacker"
           },
           {
@@ -3415,12 +3424,13 @@ export const vulnPatchStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"STE — cloud infra vuln tickets\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the ste — cloud infra vuln tickets control (from Vuln scanner (Tenable/Qualys/Rapid7)).",
+        "The test: Reconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the \"STE — cloud infra vuln tickets\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Vuln scanner (Tenable/Qualys/Rapid7), Patch management (SCCM/Intune/Ansible), CMDB / asset inventory) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the ste — cloud infra vuln tickets control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -3444,21 +3454,21 @@ export const vulnPatchStages: StageConfig[] = [
         {
           "name": "10_ste_cloud_infra_vuln_tickets_mcp.py",
           "url": "/audit-code/vuln-patch/10_ste_cloud_infra_vuln_tickets_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Vuln & Patch Mgmt evidence for \"STE — cloud infra vuln tickets\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Vulnerability & Patch Management evidence for \"STE — cloud infra vuln tickets\" (in-scope inventory for the ste — cloud infra vuln tickets control (from vuln scanner (tenable/qualys/rapid7))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"STE — cloud infra vuln tickets\" control for Vuln & Patch Mgmt at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"STE — cloud infra vuln tickets\" control for Vulnerability & Patch Management at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the \"STE — cloud infra vuln tickets\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the ste — cloud infra vuln tickets control (from Vuln scanner (Tenable/Qualys/Rapid7)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Vuln scanner (Tenable/Qualys/Rapid7) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Vuln scanner (Tenable/Qualys/Rapid7) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Vuln scanner (Tenable/Qualys/Rapid7) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Vuln scanner (Tenable/Qualys/Rapid7); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Vuln & Patch Mgmt: \"STE — cloud infra vuln tickets\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- vuln-patch_inventory.json   (in-scope items from Vuln scanner (Tenable/Qualys/Rapid7))\n- vuln-patch_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"STE — cloud infra vuln tickets\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"STE — cloud infra vuln tickets\",\n  \"domain\": \"Vuln & Patch Mgmt\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{vpm_",
+        "/evidence/README.md": "# AcmeCorp — Vulnerability & Patch Management: \"STE — cloud infra vuln tickets\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Vulnerability & Patch Management policy/standard and flag every item where the \"STE — cloud infra vuln tickets\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- vuln-patch_inventory.json   (in-scope items — In-scope inventory for the ste — cloud infra vuln tickets control (from Vuln scanner (Tenable/Qualys/Rapid7)))\n- vuln-patch_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"STE — cloud infra vuln tickets\",\n  \"domain\": \"Vulnerability & Patch Management\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{vpm_",
         "/evidence/vuln-patch_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"IT Operations\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"STE — cloud infra vuln tickets\" control must cover\n# fragment: ste_cloud_infra_",
         "/evidence/vuln-patch_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"EXCEPTIONS\"\n}\n# fragment: exceptions}"
@@ -3522,7 +3532,7 @@ export const vulnPatchStages: StageConfig[] = [
           "id": "vpm-10-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"STE — cloud infra vuln tickets\" sub-process of Vuln & Patch Mgmt?",
+          "text": "What is the primary audit objective for the \"STE — cloud infra vuln tickets\" sub-process of Vulnerability & Patch Management?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -3536,11 +3546,11 @@ export const vulnPatchStages: StageConfig[] = [
           "id": "vpm-10-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"STE — cloud infra vuln tickets\" matter to the broader Vuln & Patch Mgmt posture?",
+          "text": "Why does a weakness in \"STE — cloud infra vuln tickets\" matter to the broader Vulnerability & Patch Management posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Vuln & Patch Mgmt controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Vulnerability & Patch Management controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -3553,7 +3563,7 @@ export const vulnPatchStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"STE — cloud infra vuln tickets\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The STE — cloud infra vuln tickets evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the ste — cloud infra vuln tickets control (from Vuln scanner (Tenable/Qualys/Rapid7)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -3619,16 +3629,16 @@ export const vulnPatchStages: StageConfig[] = [
         {
           "id": "vpm-10-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"STE — cloud infra vuln tickets\"?",
+          "challenge": "Typical finding",
+          "text": "For \"STE — cloud infra vuln tickets\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the ste — cloud infra vuln tickets control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the ste — cloud infra vuln tickets control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "vpm-10-q9",

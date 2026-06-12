@@ -1,17 +1,23 @@
 #!/usr/bin/env python3
-"""Read-only MCP server — RPA Governance: "Infra hardening and vuln mgmt" audit evidence.
+"""Read-only MCP server — Robotic Process Automation (RPA) Governance: "Infra hardening and vuln mgmt" audit evidence.
 
-Gathers the in-scope inventory and the observed control state from this domain's
-systems of record, evaluates each item against policy, and reports the exceptions
-with a PASS / EXCEPTIONS / MATERIAL-GAP opinion. READ-ONLY: it lists and reports,
-never changes state — the hard requirement for audit tooling.
+THE TEST
+Reconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the "Infra hardening and vuln mgmt" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+
+ARTIFACT (what _gather() pulls)
+    In-scope inventory for the infra hardening and vuln mgmt control (from RPA platform (UiPath/Automation Anywhere/Power Automate))
+
+REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
+    (wire read-only API calls to: RPA platform (UiPath/Automation Anywhere/Power Automate), Bot credential vault, Bot orchestration + logs, Version control for bots)
+
+This server gathers the in-scope inventory and the observed control state, evaluates
+each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /
+MATERIAL-GAP opinion. READ-ONLY: it lists and reports, never changes state — the hard
+requirement for audit tooling.
 
   pip install "mcp[cli]"
   mcp run 07_infra_hardening_and_vuln_mgmt_mcp.py                 # expose to an agent
   python 07_infra_hardening_and_vuln_mgmt_mcp.py --selftest       # reproduce findings against fixtures, offline
-
-Wire real sources by replacing the _gather() fixtures with read-only API calls to
-RPA platform (UiPath/Automation Anywhere/Power Automate), Bot credential vault, Bot orchestration + logs, Version control for bots.
 """
 from __future__ import annotations
 import json, sys
@@ -68,7 +74,7 @@ def coverage_report() -> dict:
                else "EXCEPTIONS" if len(exceptions) <= EXCEPTION_THRESHOLD
                else "MATERIAL GAP")
     return {
-        "domain": "RPA Governance",
+        "domain": "Robotic Process Automation (RPA) Governance",
         "control": "Infra hardening and vuln mgmt",
         "in_scope": len(rows),
         "compliant": len(rows) - len(exceptions),

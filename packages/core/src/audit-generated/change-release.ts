@@ -2,9 +2,9 @@ import type { EpochConfig, StageConfig } from "../types";
 
 export const changeReleaseEpoch: EpochConfig = {
   "id": "change-release",
-  "name": "Change, Release & Config Mgmt",
-  "subtitle": "Agentic technical & privacy audit — Change, Release & Config Mgmt",
-  "description": "Audit Change, Release & Config Mgmt end to end with a read-only agent fleet: each sub-process is a module that teaches the control as a repeatable agentic workflow with downloadable MCP tooling, a CTF, and a 10-question quiz.",
+  "name": "Change, Release & Configuration Management",
+  "subtitle": "Agentic technical & privacy audit — Change, Release & Configuration Management",
+  "description": "Audit Change, Release & Configuration Management end to end with a read-only agent fleet: each sub-process is a module that teaches the control as a repeatable agentic workflow with downloadable MCP tooling, a CTF, and a 10-question quiz.",
   "emoji": "🔁",
   "color": "Orange",
   "unlocked": true
@@ -23,8 +23,8 @@ export const changeReleaseStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Change approvals and SoD\" control for Change, Release & Config Mgmt is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Change, Release & Config Mgmt source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Change approvals and SoD\" control for Change, Release & Configuration Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the \"Change approvals and SoD\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Change, Release & Configuration Management systems of record (ITSM change tooling (ServiceNow); Release/deploy pipeline; Configuration baseline (CMDB)) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the change approvals and sod control (from ITSM change tooling (ServiceNow))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -45,34 +45,34 @@ export const changeReleaseStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 5/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Change, Release & Config Mgmt controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Change, Release & Configuration Management controls."
       }
     },
     "badge": {
       "id": "crc-01-badge",
-      "name": "Change, Release & Config Mgmt Auditor",
+      "name": "Change, Release & Configuration Management Auditor",
       "emoji": "🔁"
     },
     "wonder": {
       "name": "Change approvals and SoD",
-      "location": "Change, Release & Config Mgmt",
+      "location": "Change, Release & Configuration Management",
       "era": "Present Day",
       "emoji": "🔁"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Change approvals and SoD\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Change, Release & Config Mgmt control.",
+      "tagline": "Auditing \"Change approvals and SoD\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the change approvals and sod control (from ITSM change tooling (ServiceNow))) with read-only agents, run the test against policy, and issue a defensible opinion on the Change, Release & Configuration Management control.",
       "year": 2025,
       "overview": [
-        "The \"Change approvals and SoD\" sub-process is one of the controls an auditor must verify for Change, Release & Config Mgmt. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that change approvals and sod is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically ITSM change tooling (ServiceNow), Release/deploy pipeline, Configuration baseline (CMDB) — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Change approvals and SoD\" sub-process is one of the controls an auditor must verify for Change, Release & Configuration Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the change approvals and sod control (from ITSM change tooling (ServiceNow)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here ITSM change tooling (ServiceNow), Release/deploy pipeline, Configuration baseline (CMDB) — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the \"Change approvals and SoD\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `01_change_approvals_and_sod_mcp.py` exposes read-only tools that turn each Change, Release & Config Mgmt source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `01_change_approvals_and_sod_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from ITSM change tooling (ServiceNow) and Release/deploy pipeline (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 01_change_approvals_and_sod_mcp.py` to expose it to your agent — or `python 01_change_approvals_and_sod_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -94,7 +94,7 @@ export const changeReleaseStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Change, Release & Config Mgmt scope + policy",
+            "sub": "define Change, Release & Configuration Management scope + policy",
             "type": "attacker"
           },
           {
@@ -130,12 +130,13 @@ export const changeReleaseStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Change approvals and SoD\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the change approvals and sod control (from ITSM change tooling (ServiceNow)).",
+        "The test: Reconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the \"Change approvals and SoD\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (ITSM change tooling (ServiceNow), Release/deploy pipeline, Configuration baseline (CMDB)) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the change approvals and sod control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -159,21 +160,21 @@ export const changeReleaseStages: StageConfig[] = [
         {
           "name": "01_change_approvals_and_sod_mcp.py",
           "url": "/audit-code/change-release/01_change_approvals_and_sod_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Change, Release & Config Mgmt evidence for \"Change approvals and SoD\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Change, Release & Configuration Management evidence for \"Change approvals and SoD\" (in-scope inventory for the change approvals and sod control (from itsm change tooling (servicenow))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Change approvals and SoD\" control for Change, Release & Config Mgmt at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Change approvals and SoD\" control for Change, Release & Configuration Management at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the \"Change approvals and SoD\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the change approvals and sod control (from ITSM change tooling (ServiceNow)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live ITSM change tooling (ServiceNow) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. ITSM change tooling (ServiceNow) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. ITSM change tooling (ServiceNow) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from ITSM change tooling (ServiceNow); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Change, Release & Config Mgmt: \"Change approvals and SoD\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- change-release_inventory.json   (in-scope items from ITSM change tooling (ServiceNow))\n- change-release_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Change approvals and SoD\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Change approvals and SoD\",\n  \"domain\": \"Change, Release & Config Mgmt\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{crc_",
+        "/evidence/README.md": "# AcmeCorp — Change, Release & Configuration Management: \"Change approvals and SoD\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the \"Change approvals and SoD\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- change-release_inventory.json   (in-scope items — In-scope inventory for the change approvals and sod control (from ITSM change tooling (ServiceNow)))\n- change-release_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Change approvals and SoD\",\n  \"domain\": \"Change, Release & Configuration Management\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{crc_",
         "/evidence/change-release_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Change Advisory Board / IT Ops\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Change approvals and SoD\" control must cover\n# fragment: change_approvals_sod_",
         "/evidence/change-release_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -237,7 +238,7 @@ export const changeReleaseStages: StageConfig[] = [
           "id": "crc-01-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Change approvals and SoD\" sub-process of Change, Release & Config Mgmt?",
+          "text": "What is the primary audit objective for the \"Change approvals and SoD\" sub-process of Change, Release & Configuration Management?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -251,11 +252,11 @@ export const changeReleaseStages: StageConfig[] = [
           "id": "crc-01-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Change approvals and SoD\" matter to the broader Change, Release & Config Mgmt posture?",
+          "text": "Why does a weakness in \"Change approvals and SoD\" matter to the broader Change, Release & Configuration Management posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Change, Release & Config Mgmt controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Change, Release & Configuration Management controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -268,7 +269,7 @@ export const changeReleaseStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Change approvals and SoD\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Change approvals and SoD evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the change approvals and sod control (from ITSM change tooling (ServiceNow)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -334,16 +335,16 @@ export const changeReleaseStages: StageConfig[] = [
         {
           "id": "crc-01-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Change approvals and SoD\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Change approvals and SoD\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the change approvals and sod control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the change approvals and sod control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "crc-01-q9",
@@ -388,8 +389,8 @@ export const changeReleaseStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Emergency change process\" control for Change, Release & Config Mgmt is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Change, Release & Config Mgmt source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Emergency change process\" control for Change, Release & Configuration Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the \"Emergency change process\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Change, Release & Configuration Management systems of record (ITSM change tooling (ServiceNow); Release/deploy pipeline; Configuration baseline (CMDB)) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the emergency change process control (from ITSM change tooling (ServiceNow))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -410,34 +411,34 @@ export const changeReleaseStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 6/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Change, Release & Config Mgmt controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Change, Release & Configuration Management controls."
       }
     },
     "badge": {
       "id": "crc-02-badge",
-      "name": "Change, Release & Config Mgmt Auditor",
+      "name": "Change, Release & Configuration Management Auditor",
       "emoji": "🔁"
     },
     "wonder": {
       "name": "Emergency change process",
-      "location": "Change, Release & Config Mgmt",
+      "location": "Change, Release & Configuration Management",
       "era": "Present Day",
       "emoji": "🔁"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Emergency change process\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Change, Release & Config Mgmt control.",
+      "tagline": "Auditing \"Emergency change process\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the emergency change process control (from ITSM change tooling (ServiceNow))) with read-only agents, run the test against policy, and issue a defensible opinion on the Change, Release & Configuration Management control.",
       "year": 2025,
       "overview": [
-        "The \"Emergency change process\" sub-process is one of the controls an auditor must verify for Change, Release & Config Mgmt. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that emergency change process is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically ITSM change tooling (ServiceNow), Release/deploy pipeline, Configuration baseline (CMDB) — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Emergency change process\" sub-process is one of the controls an auditor must verify for Change, Release & Configuration Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the emergency change process control (from ITSM change tooling (ServiceNow)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here ITSM change tooling (ServiceNow), Release/deploy pipeline, Configuration baseline (CMDB) — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the \"Emergency change process\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `02_emergency_change_process_mcp.py` exposes read-only tools that turn each Change, Release & Config Mgmt source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `02_emergency_change_process_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from ITSM change tooling (ServiceNow) and Release/deploy pipeline (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 02_emergency_change_process_mcp.py` to expose it to your agent — or `python 02_emergency_change_process_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -459,7 +460,7 @@ export const changeReleaseStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Change, Release & Config Mgmt scope + policy",
+            "sub": "define Change, Release & Configuration Management scope + policy",
             "type": "attacker"
           },
           {
@@ -495,12 +496,13 @@ export const changeReleaseStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Emergency change process\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the emergency change process control (from ITSM change tooling (ServiceNow)).",
+        "The test: Reconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the \"Emergency change process\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (ITSM change tooling (ServiceNow), Release/deploy pipeline, Configuration baseline (CMDB)) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the emergency change process control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -524,21 +526,21 @@ export const changeReleaseStages: StageConfig[] = [
         {
           "name": "02_emergency_change_process_mcp.py",
           "url": "/audit-code/change-release/02_emergency_change_process_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Change, Release & Config Mgmt evidence for \"Emergency change process\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Change, Release & Configuration Management evidence for \"Emergency change process\" (in-scope inventory for the emergency change process control (from itsm change tooling (servicenow))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Emergency change process\" control for Change, Release & Config Mgmt at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Emergency change process\" control for Change, Release & Configuration Management at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the \"Emergency change process\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the emergency change process control (from ITSM change tooling (ServiceNow)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live ITSM change tooling (ServiceNow) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. ITSM change tooling (ServiceNow) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. ITSM change tooling (ServiceNow) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from ITSM change tooling (ServiceNow); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Change, Release & Config Mgmt: \"Emergency change process\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- change-release_inventory.json   (in-scope items from ITSM change tooling (ServiceNow))\n- change-release_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Emergency change process\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Emergency change process\",\n  \"domain\": \"Change, Release & Config Mgmt\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{crc_",
+        "/evidence/README.md": "# AcmeCorp — Change, Release & Configuration Management: \"Emergency change process\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the \"Emergency change process\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- change-release_inventory.json   (in-scope items — In-scope inventory for the emergency change process control (from ITSM change tooling (ServiceNow)))\n- change-release_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Emergency change process\",\n  \"domain\": \"Change, Release & Configuration Management\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{crc_",
         "/evidence/change-release_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Change Advisory Board / IT Ops\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Emergency change process\" control must cover\n# fragment: emergency_change_process_",
         "/evidence/change-release_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -602,7 +604,7 @@ export const changeReleaseStages: StageConfig[] = [
           "id": "crc-02-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Emergency change process\" sub-process of Change, Release & Config Mgmt?",
+          "text": "What is the primary audit objective for the \"Emergency change process\" sub-process of Change, Release & Configuration Management?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -616,11 +618,11 @@ export const changeReleaseStages: StageConfig[] = [
           "id": "crc-02-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Emergency change process\" matter to the broader Change, Release & Config Mgmt posture?",
+          "text": "Why does a weakness in \"Emergency change process\" matter to the broader Change, Release & Configuration Management posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Change, Release & Config Mgmt controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Change, Release & Configuration Management controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -633,7 +635,7 @@ export const changeReleaseStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Emergency change process\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Emergency change process evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the emergency change process control (from ITSM change tooling (ServiceNow)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -699,16 +701,16 @@ export const changeReleaseStages: StageConfig[] = [
         {
           "id": "crc-02-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Emergency change process\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Emergency change process\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the emergency change process control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the emergency change process control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "crc-02-q9",
@@ -753,8 +755,8 @@ export const changeReleaseStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Release planning & backout\" control for Change, Release & Config Mgmt is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Change, Release & Config Mgmt source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Release planning & backout\" control for Change, Release & Configuration Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the \"Release planning & backout\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Change, Release & Configuration Management systems of record (ITSM change tooling (ServiceNow); Release/deploy pipeline; Configuration baseline (CMDB)) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the release planning & backout control (from ITSM change tooling (ServiceNow))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -775,34 +777,34 @@ export const changeReleaseStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 7/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Change, Release & Config Mgmt controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Change, Release & Configuration Management controls."
       }
     },
     "badge": {
       "id": "crc-03-badge",
-      "name": "Change, Release & Config Mgmt Auditor",
+      "name": "Change, Release & Configuration Management Auditor",
       "emoji": "🔁"
     },
     "wonder": {
       "name": "Release planning & backout",
-      "location": "Change, Release & Config Mgmt",
+      "location": "Change, Release & Configuration Management",
       "era": "Present Day",
       "emoji": "🔁"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Release planning & backout\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Change, Release & Config Mgmt control.",
+      "tagline": "Auditing \"Release planning & backout\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the release planning & backout control (from ITSM change tooling (ServiceNow))) with read-only agents, run the test against policy, and issue a defensible opinion on the Change, Release & Configuration Management control.",
       "year": 2025,
       "overview": [
-        "The \"Release planning & backout\" sub-process is one of the controls an auditor must verify for Change, Release & Config Mgmt. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that release planning & backout is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically ITSM change tooling (ServiceNow), Release/deploy pipeline, Configuration baseline (CMDB) — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Release planning & backout\" sub-process is one of the controls an auditor must verify for Change, Release & Configuration Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the release planning & backout control (from ITSM change tooling (ServiceNow)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here ITSM change tooling (ServiceNow), Release/deploy pipeline, Configuration baseline (CMDB) — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the \"Release planning & backout\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `03_release_planning_backout_mcp.py` exposes read-only tools that turn each Change, Release & Config Mgmt source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `03_release_planning_backout_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from ITSM change tooling (ServiceNow) and Release/deploy pipeline (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 03_release_planning_backout_mcp.py` to expose it to your agent — or `python 03_release_planning_backout_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -824,7 +826,7 @@ export const changeReleaseStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Change, Release & Config Mgmt scope + policy",
+            "sub": "define Change, Release & Configuration Management scope + policy",
             "type": "attacker"
           },
           {
@@ -860,12 +862,13 @@ export const changeReleaseStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Release planning & backout\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the release planning & backout control (from ITSM change tooling (ServiceNow)).",
+        "The test: Reconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the \"Release planning & backout\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (ITSM change tooling (ServiceNow), Release/deploy pipeline, Configuration baseline (CMDB)) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the release planning & backout control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -889,21 +892,21 @@ export const changeReleaseStages: StageConfig[] = [
         {
           "name": "03_release_planning_backout_mcp.py",
           "url": "/audit-code/change-release/03_release_planning_backout_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Change, Release & Config Mgmt evidence for \"Release planning & backout\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Change, Release & Configuration Management evidence for \"Release planning & backout\" (in-scope inventory for the release planning & backout control (from itsm change tooling (servicenow))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Release planning & backout\" control for Change, Release & Config Mgmt at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Release planning & backout\" control for Change, Release & Configuration Management at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the \"Release planning & backout\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the release planning & backout control (from ITSM change tooling (ServiceNow)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live ITSM change tooling (ServiceNow) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. ITSM change tooling (ServiceNow) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. ITSM change tooling (ServiceNow) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from ITSM change tooling (ServiceNow); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Change, Release & Config Mgmt: \"Release planning & backout\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- change-release_inventory.json   (in-scope items from ITSM change tooling (ServiceNow))\n- change-release_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Release planning & backout\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Release planning & backout\",\n  \"domain\": \"Change, Release & Config Mgmt\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{crc_",
+        "/evidence/README.md": "# AcmeCorp — Change, Release & Configuration Management: \"Release planning & backout\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the \"Release planning & backout\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- change-release_inventory.json   (in-scope items — In-scope inventory for the release planning & backout control (from ITSM change tooling (ServiceNow)))\n- change-release_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Release planning & backout\",\n  \"domain\": \"Change, Release & Configuration Management\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{crc_",
         "/evidence/change-release_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Change Advisory Board / IT Ops\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Release planning & backout\" control must cover\n# fragment: release_planning_backout_",
         "/evidence/change-release_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -967,7 +970,7 @@ export const changeReleaseStages: StageConfig[] = [
           "id": "crc-03-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Release planning & backout\" sub-process of Change, Release & Config Mgmt?",
+          "text": "What is the primary audit objective for the \"Release planning & backout\" sub-process of Change, Release & Configuration Management?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -981,11 +984,11 @@ export const changeReleaseStages: StageConfig[] = [
           "id": "crc-03-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Release planning & backout\" matter to the broader Change, Release & Config Mgmt posture?",
+          "text": "Why does a weakness in \"Release planning & backout\" matter to the broader Change, Release & Configuration Management posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Change, Release & Config Mgmt controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Change, Release & Configuration Management controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -998,7 +1001,7 @@ export const changeReleaseStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Release planning & backout\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Release planning & backout evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the release planning & backout control (from ITSM change tooling (ServiceNow)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -1064,16 +1067,16 @@ export const changeReleaseStages: StageConfig[] = [
         {
           "id": "crc-03-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Release planning & backout\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Release planning & backout\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the release planning & backout control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the release planning & backout control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "crc-03-q9",
@@ -1118,8 +1121,8 @@ export const changeReleaseStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Configuration management\" control for Change, Release & Config Mgmt is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Change, Release & Config Mgmt source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Configuration management\" control for Change, Release & Configuration Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the \"Configuration management\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Change, Release & Configuration Management systems of record (ITSM change tooling (ServiceNow); Release/deploy pipeline; Configuration baseline (CMDB)) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the configuration management control (from ITSM change tooling (ServiceNow))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -1140,34 +1143,34 @@ export const changeReleaseStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 6/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Change, Release & Config Mgmt controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Change, Release & Configuration Management controls."
       }
     },
     "badge": {
       "id": "crc-04-badge",
-      "name": "Change, Release & Config Mgmt Auditor",
+      "name": "Change, Release & Configuration Management Auditor",
       "emoji": "🔁"
     },
     "wonder": {
       "name": "Configuration management",
-      "location": "Change, Release & Config Mgmt",
+      "location": "Change, Release & Configuration Management",
       "era": "Present Day",
       "emoji": "🔁"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Configuration management\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Change, Release & Config Mgmt control.",
+      "tagline": "Auditing \"Configuration management\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the configuration management control (from ITSM change tooling (ServiceNow))) with read-only agents, run the test against policy, and issue a defensible opinion on the Change, Release & Configuration Management control.",
       "year": 2025,
       "overview": [
-        "The \"Configuration management\" sub-process is one of the controls an auditor must verify for Change, Release & Config Mgmt. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that configuration management is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically ITSM change tooling (ServiceNow), Release/deploy pipeline, Configuration baseline (CMDB) — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Configuration management\" sub-process is one of the controls an auditor must verify for Change, Release & Configuration Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the configuration management control (from ITSM change tooling (ServiceNow)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here ITSM change tooling (ServiceNow), Release/deploy pipeline, Configuration baseline (CMDB) — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the \"Configuration management\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `04_configuration_management_mcp.py` exposes read-only tools that turn each Change, Release & Config Mgmt source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `04_configuration_management_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from ITSM change tooling (ServiceNow) and Release/deploy pipeline (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 04_configuration_management_mcp.py` to expose it to your agent — or `python 04_configuration_management_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -1189,7 +1192,7 @@ export const changeReleaseStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Change, Release & Config Mgmt scope + policy",
+            "sub": "define Change, Release & Configuration Management scope + policy",
             "type": "attacker"
           },
           {
@@ -1225,12 +1228,13 @@ export const changeReleaseStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Configuration management\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the configuration management control (from ITSM change tooling (ServiceNow)).",
+        "The test: Reconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the \"Configuration management\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (ITSM change tooling (ServiceNow), Release/deploy pipeline, Configuration baseline (CMDB)) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the configuration management control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -1254,21 +1258,21 @@ export const changeReleaseStages: StageConfig[] = [
         {
           "name": "04_configuration_management_mcp.py",
           "url": "/audit-code/change-release/04_configuration_management_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Change, Release & Config Mgmt evidence for \"Configuration management\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Change, Release & Configuration Management evidence for \"Configuration management\" (in-scope inventory for the configuration management control (from itsm change tooling (servicenow))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Configuration management\" control for Change, Release & Config Mgmt at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Configuration management\" control for Change, Release & Configuration Management at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the \"Configuration management\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the configuration management control (from ITSM change tooling (ServiceNow)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live ITSM change tooling (ServiceNow) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. ITSM change tooling (ServiceNow) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. ITSM change tooling (ServiceNow) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from ITSM change tooling (ServiceNow); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Change, Release & Config Mgmt: \"Configuration management\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- change-release_inventory.json   (in-scope items from ITSM change tooling (ServiceNow))\n- change-release_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Configuration management\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Configuration management\",\n  \"domain\": \"Change, Release & Config Mgmt\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{crc_",
+        "/evidence/README.md": "# AcmeCorp — Change, Release & Configuration Management: \"Configuration management\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the \"Configuration management\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- change-release_inventory.json   (in-scope items — In-scope inventory for the configuration management control (from ITSM change tooling (ServiceNow)))\n- change-release_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Configuration management\",\n  \"domain\": \"Change, Release & Configuration Management\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{crc_",
         "/evidence/change-release_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Change Advisory Board / IT Ops\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Configuration management\" control must cover\n# fragment: configuration_management_",
         "/evidence/change-release_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -1332,7 +1336,7 @@ export const changeReleaseStages: StageConfig[] = [
           "id": "crc-04-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Configuration management\" sub-process of Change, Release & Config Mgmt?",
+          "text": "What is the primary audit objective for the \"Configuration management\" sub-process of Change, Release & Configuration Management?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -1346,11 +1350,11 @@ export const changeReleaseStages: StageConfig[] = [
           "id": "crc-04-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Configuration management\" matter to the broader Change, Release & Config Mgmt posture?",
+          "text": "Why does a weakness in \"Configuration management\" matter to the broader Change, Release & Configuration Management posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Change, Release & Config Mgmt controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Change, Release & Configuration Management controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -1363,7 +1367,7 @@ export const changeReleaseStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Configuration management\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Configuration management evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the configuration management control (from ITSM change tooling (ServiceNow)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -1429,16 +1433,16 @@ export const changeReleaseStages: StageConfig[] = [
         {
           "id": "crc-04-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Configuration management\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Configuration management\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the configuration management control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the configuration management control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "crc-04-q9",
@@ -1483,8 +1487,8 @@ export const changeReleaseStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Baseline enforcement\" control for Change, Release & Config Mgmt is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Change, Release & Config Mgmt source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Baseline enforcement\" control for Change, Release & Configuration Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the \"Baseline enforcement\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Change, Release & Configuration Management systems of record (ITSM change tooling (ServiceNow); Release/deploy pipeline; Configuration baseline (CMDB)) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the baseline enforcement control (from ITSM change tooling (ServiceNow))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -1505,34 +1509,34 @@ export const changeReleaseStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 7/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Change, Release & Config Mgmt controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Change, Release & Configuration Management controls."
       }
     },
     "badge": {
       "id": "crc-05-badge",
-      "name": "Change, Release & Config Mgmt Auditor",
+      "name": "Change, Release & Configuration Management Auditor",
       "emoji": "🔁"
     },
     "wonder": {
       "name": "Baseline enforcement",
-      "location": "Change, Release & Config Mgmt",
+      "location": "Change, Release & Configuration Management",
       "era": "Present Day",
       "emoji": "🔁"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Baseline enforcement\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Change, Release & Config Mgmt control.",
+      "tagline": "Auditing \"Baseline enforcement\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the baseline enforcement control (from ITSM change tooling (ServiceNow))) with read-only agents, run the test against policy, and issue a defensible opinion on the Change, Release & Configuration Management control.",
       "year": 2025,
       "overview": [
-        "The \"Baseline enforcement\" sub-process is one of the controls an auditor must verify for Change, Release & Config Mgmt. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that baseline enforcement is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically ITSM change tooling (ServiceNow), Release/deploy pipeline, Configuration baseline (CMDB) — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Baseline enforcement\" sub-process is one of the controls an auditor must verify for Change, Release & Configuration Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the baseline enforcement control (from ITSM change tooling (ServiceNow)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here ITSM change tooling (ServiceNow), Release/deploy pipeline, Configuration baseline (CMDB) — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the \"Baseline enforcement\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `05_baseline_enforcement_mcp.py` exposes read-only tools that turn each Change, Release & Config Mgmt source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `05_baseline_enforcement_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from ITSM change tooling (ServiceNow) and Release/deploy pipeline (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 05_baseline_enforcement_mcp.py` to expose it to your agent — or `python 05_baseline_enforcement_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -1554,7 +1558,7 @@ export const changeReleaseStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Change, Release & Config Mgmt scope + policy",
+            "sub": "define Change, Release & Configuration Management scope + policy",
             "type": "attacker"
           },
           {
@@ -1590,12 +1594,13 @@ export const changeReleaseStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Baseline enforcement\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the baseline enforcement control (from ITSM change tooling (ServiceNow)).",
+        "The test: Reconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the \"Baseline enforcement\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (ITSM change tooling (ServiceNow), Release/deploy pipeline, Configuration baseline (CMDB)) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the baseline enforcement control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -1619,21 +1624,21 @@ export const changeReleaseStages: StageConfig[] = [
         {
           "name": "05_baseline_enforcement_mcp.py",
           "url": "/audit-code/change-release/05_baseline_enforcement_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Change, Release & Config Mgmt evidence for \"Baseline enforcement\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Change, Release & Configuration Management evidence for \"Baseline enforcement\" (in-scope inventory for the baseline enforcement control (from itsm change tooling (servicenow))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Baseline enforcement\" control for Change, Release & Config Mgmt at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Baseline enforcement\" control for Change, Release & Configuration Management at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the \"Baseline enforcement\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the baseline enforcement control (from ITSM change tooling (ServiceNow)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live ITSM change tooling (ServiceNow) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. ITSM change tooling (ServiceNow) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. ITSM change tooling (ServiceNow) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from ITSM change tooling (ServiceNow); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Change, Release & Config Mgmt: \"Baseline enforcement\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- change-release_inventory.json   (in-scope items from ITSM change tooling (ServiceNow))\n- change-release_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Baseline enforcement\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Baseline enforcement\",\n  \"domain\": \"Change, Release & Config Mgmt\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{crc_",
+        "/evidence/README.md": "# AcmeCorp — Change, Release & Configuration Management: \"Baseline enforcement\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the \"Baseline enforcement\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- change-release_inventory.json   (in-scope items — In-scope inventory for the baseline enforcement control (from ITSM change tooling (ServiceNow)))\n- change-release_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Baseline enforcement\",\n  \"domain\": \"Change, Release & Configuration Management\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{crc_",
         "/evidence/change-release_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Change Advisory Board / IT Ops\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Baseline enforcement\" control must cover\n# fragment: baseline_enforcement_",
         "/evidence/change-release_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"EXCEPTIONS\"\n}\n# fragment: exceptions}"
@@ -1697,7 +1702,7 @@ export const changeReleaseStages: StageConfig[] = [
           "id": "crc-05-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Baseline enforcement\" sub-process of Change, Release & Config Mgmt?",
+          "text": "What is the primary audit objective for the \"Baseline enforcement\" sub-process of Change, Release & Configuration Management?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -1711,11 +1716,11 @@ export const changeReleaseStages: StageConfig[] = [
           "id": "crc-05-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Baseline enforcement\" matter to the broader Change, Release & Config Mgmt posture?",
+          "text": "Why does a weakness in \"Baseline enforcement\" matter to the broader Change, Release & Configuration Management posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Change, Release & Config Mgmt controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Change, Release & Configuration Management controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -1728,7 +1733,7 @@ export const changeReleaseStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Baseline enforcement\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Baseline enforcement evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the baseline enforcement control (from ITSM change tooling (ServiceNow)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -1794,16 +1799,16 @@ export const changeReleaseStages: StageConfig[] = [
         {
           "id": "crc-05-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Baseline enforcement\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Baseline enforcement\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the baseline enforcement control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the baseline enforcement control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "crc-05-q9",
@@ -1848,8 +1853,8 @@ export const changeReleaseStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Post-implementation review\" control for Change, Release & Config Mgmt is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Change, Release & Config Mgmt source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Post-implementation review\" control for Change, Release & Configuration Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the \"Post-implementation review\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Change, Release & Configuration Management systems of record (ITSM change tooling (ServiceNow); Release/deploy pipeline; Configuration baseline (CMDB)) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the post-implementation review control (from ITSM change tooling (ServiceNow))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -1870,34 +1875,34 @@ export const changeReleaseStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 8/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Change, Release & Config Mgmt controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Change, Release & Configuration Management controls."
       }
     },
     "badge": {
       "id": "crc-06-badge",
-      "name": "Change, Release & Config Mgmt Auditor",
+      "name": "Change, Release & Configuration Management Auditor",
       "emoji": "🔁"
     },
     "wonder": {
       "name": "Post-implementation review",
-      "location": "Change, Release & Config Mgmt",
+      "location": "Change, Release & Configuration Management",
       "era": "Present Day",
       "emoji": "🔁"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Post-implementation review\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Change, Release & Config Mgmt control.",
+      "tagline": "Auditing \"Post-implementation review\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the post-implementation review control (from ITSM change tooling (ServiceNow))) with read-only agents, run the test against policy, and issue a defensible opinion on the Change, Release & Configuration Management control.",
       "year": 2025,
       "overview": [
-        "The \"Post-implementation review\" sub-process is one of the controls an auditor must verify for Change, Release & Config Mgmt. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that post-implementation review is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically ITSM change tooling (ServiceNow), Release/deploy pipeline, Configuration baseline (CMDB) — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Post-implementation review\" sub-process is one of the controls an auditor must verify for Change, Release & Configuration Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the post-implementation review control (from ITSM change tooling (ServiceNow)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here ITSM change tooling (ServiceNow), Release/deploy pipeline, Configuration baseline (CMDB) — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the \"Post-implementation review\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `06_post_implementation_review_mcp.py` exposes read-only tools that turn each Change, Release & Config Mgmt source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `06_post_implementation_review_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from ITSM change tooling (ServiceNow) and Release/deploy pipeline (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 06_post_implementation_review_mcp.py` to expose it to your agent — or `python 06_post_implementation_review_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -1919,7 +1924,7 @@ export const changeReleaseStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Change, Release & Config Mgmt scope + policy",
+            "sub": "define Change, Release & Configuration Management scope + policy",
             "type": "attacker"
           },
           {
@@ -1955,12 +1960,13 @@ export const changeReleaseStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Post-implementation review\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the post-implementation review control (from ITSM change tooling (ServiceNow)).",
+        "The test: Reconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the \"Post-implementation review\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (ITSM change tooling (ServiceNow), Release/deploy pipeline, Configuration baseline (CMDB)) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the post-implementation review control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -1984,21 +1990,21 @@ export const changeReleaseStages: StageConfig[] = [
         {
           "name": "06_post_implementation_review_mcp.py",
           "url": "/audit-code/change-release/06_post_implementation_review_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Change, Release & Config Mgmt evidence for \"Post-implementation review\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Change, Release & Configuration Management evidence for \"Post-implementation review\" (in-scope inventory for the post-implementation review control (from itsm change tooling (servicenow))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Post-implementation review\" control for Change, Release & Config Mgmt at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Post-implementation review\" control for Change, Release & Configuration Management at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the \"Post-implementation review\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the post-implementation review control (from ITSM change tooling (ServiceNow)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live ITSM change tooling (ServiceNow) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. ITSM change tooling (ServiceNow) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. ITSM change tooling (ServiceNow) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from ITSM change tooling (ServiceNow); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Change, Release & Config Mgmt: \"Post-implementation review\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- change-release_inventory.json   (in-scope items from ITSM change tooling (ServiceNow))\n- change-release_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Post-implementation review\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Post-implementation review\",\n  \"domain\": \"Change, Release & Config Mgmt\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{crc_",
+        "/evidence/README.md": "# AcmeCorp — Change, Release & Configuration Management: \"Post-implementation review\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the \"Post-implementation review\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- change-release_inventory.json   (in-scope items — In-scope inventory for the post-implementation review control (from ITSM change tooling (ServiceNow)))\n- change-release_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Post-implementation review\",\n  \"domain\": \"Change, Release & Configuration Management\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{crc_",
         "/evidence/change-release_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Change Advisory Board / IT Ops\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Post-implementation review\" control must cover\n# fragment: postimplementation_review_",
         "/evidence/change-release_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -2062,7 +2068,7 @@ export const changeReleaseStages: StageConfig[] = [
           "id": "crc-06-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Post-implementation review\" sub-process of Change, Release & Config Mgmt?",
+          "text": "What is the primary audit objective for the \"Post-implementation review\" sub-process of Change, Release & Configuration Management?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -2076,11 +2082,11 @@ export const changeReleaseStages: StageConfig[] = [
           "id": "crc-06-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Post-implementation review\" matter to the broader Change, Release & Config Mgmt posture?",
+          "text": "Why does a weakness in \"Post-implementation review\" matter to the broader Change, Release & Configuration Management posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Change, Release & Config Mgmt controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Change, Release & Configuration Management controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -2093,7 +2099,7 @@ export const changeReleaseStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Post-implementation review\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Post-implementation review evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the post-implementation review control (from ITSM change tooling (ServiceNow)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -2159,16 +2165,16 @@ export const changeReleaseStages: StageConfig[] = [
         {
           "id": "crc-06-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Post-implementation review\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Post-implementation review\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the post-implementation review control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the post-implementation review control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "crc-06-q9",
@@ -2213,8 +2219,8 @@ export const changeReleaseStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Business impact analysis\" control for Change, Release & Config Mgmt is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Change, Release & Config Mgmt source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Business impact analysis\" control for Change, Release & Configuration Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the \"Business impact analysis\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Change, Release & Configuration Management systems of record (ITSM change tooling (ServiceNow); Release/deploy pipeline; Configuration baseline (CMDB)) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the business impact analysis control (from ITSM change tooling (ServiceNow))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -2235,34 +2241,34 @@ export const changeReleaseStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 5/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Change, Release & Config Mgmt controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Change, Release & Configuration Management controls."
       }
     },
     "badge": {
       "id": "crc-07-badge",
-      "name": "Change, Release & Config Mgmt Auditor",
+      "name": "Change, Release & Configuration Management Auditor",
       "emoji": "🔁"
     },
     "wonder": {
       "name": "Business impact analysis",
-      "location": "Change, Release & Config Mgmt",
+      "location": "Change, Release & Configuration Management",
       "era": "Present Day",
       "emoji": "🔁"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Business impact analysis\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Change, Release & Config Mgmt control.",
+      "tagline": "Auditing \"Business impact analysis\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the business impact analysis control (from ITSM change tooling (ServiceNow))) with read-only agents, run the test against policy, and issue a defensible opinion on the Change, Release & Configuration Management control.",
       "year": 2025,
       "overview": [
-        "The \"Business impact analysis\" sub-process is one of the controls an auditor must verify for Change, Release & Config Mgmt. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that business impact analysis is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically ITSM change tooling (ServiceNow), Release/deploy pipeline, Configuration baseline (CMDB) — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Business impact analysis\" sub-process is one of the controls an auditor must verify for Change, Release & Configuration Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the business impact analysis control (from ITSM change tooling (ServiceNow)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here ITSM change tooling (ServiceNow), Release/deploy pipeline, Configuration baseline (CMDB) — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the \"Business impact analysis\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `07_business_impact_analysis_mcp.py` exposes read-only tools that turn each Change, Release & Config Mgmt source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `07_business_impact_analysis_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from ITSM change tooling (ServiceNow) and Release/deploy pipeline (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 07_business_impact_analysis_mcp.py` to expose it to your agent — or `python 07_business_impact_analysis_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -2284,7 +2290,7 @@ export const changeReleaseStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Change, Release & Config Mgmt scope + policy",
+            "sub": "define Change, Release & Configuration Management scope + policy",
             "type": "attacker"
           },
           {
@@ -2320,12 +2326,13 @@ export const changeReleaseStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Business impact analysis\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the business impact analysis control (from ITSM change tooling (ServiceNow)).",
+        "The test: Reconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the \"Business impact analysis\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (ITSM change tooling (ServiceNow), Release/deploy pipeline, Configuration baseline (CMDB)) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the business impact analysis control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -2349,21 +2356,21 @@ export const changeReleaseStages: StageConfig[] = [
         {
           "name": "07_business_impact_analysis_mcp.py",
           "url": "/audit-code/change-release/07_business_impact_analysis_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Change, Release & Config Mgmt evidence for \"Business impact analysis\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Change, Release & Configuration Management evidence for \"Business impact analysis\" (in-scope inventory for the business impact analysis control (from itsm change tooling (servicenow))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Business impact analysis\" control for Change, Release & Config Mgmt at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Business impact analysis\" control for Change, Release & Configuration Management at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the \"Business impact analysis\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the business impact analysis control (from ITSM change tooling (ServiceNow)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live ITSM change tooling (ServiceNow) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. ITSM change tooling (ServiceNow) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. ITSM change tooling (ServiceNow) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from ITSM change tooling (ServiceNow); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Change, Release & Config Mgmt: \"Business impact analysis\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- change-release_inventory.json   (in-scope items from ITSM change tooling (ServiceNow))\n- change-release_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Business impact analysis\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Business impact analysis\",\n  \"domain\": \"Change, Release & Config Mgmt\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{crc_",
+        "/evidence/README.md": "# AcmeCorp — Change, Release & Configuration Management: \"Business impact analysis\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the \"Business impact analysis\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- change-release_inventory.json   (in-scope items — In-scope inventory for the business impact analysis control (from ITSM change tooling (ServiceNow)))\n- change-release_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Business impact analysis\",\n  \"domain\": \"Change, Release & Configuration Management\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{crc_",
         "/evidence/change-release_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Change Advisory Board / IT Ops\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Business impact analysis\" control must cover\n# fragment: business_impact_analysis_",
         "/evidence/change-release_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -2427,7 +2434,7 @@ export const changeReleaseStages: StageConfig[] = [
           "id": "crc-07-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Business impact analysis\" sub-process of Change, Release & Config Mgmt?",
+          "text": "What is the primary audit objective for the \"Business impact analysis\" sub-process of Change, Release & Configuration Management?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -2441,11 +2448,11 @@ export const changeReleaseStages: StageConfig[] = [
           "id": "crc-07-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Business impact analysis\" matter to the broader Change, Release & Config Mgmt posture?",
+          "text": "Why does a weakness in \"Business impact analysis\" matter to the broader Change, Release & Configuration Management posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Change, Release & Config Mgmt controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Change, Release & Configuration Management controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -2458,7 +2465,7 @@ export const changeReleaseStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Business impact analysis\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Business impact analysis evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the business impact analysis control (from ITSM change tooling (ServiceNow)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -2524,16 +2531,16 @@ export const changeReleaseStages: StageConfig[] = [
         {
           "id": "crc-07-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Business impact analysis\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Business impact analysis\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the business impact analysis control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the business impact analysis control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "crc-07-q9",
@@ -2578,8 +2585,8 @@ export const changeReleaseStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Version control\" control for Change, Release & Config Mgmt is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Change, Release & Config Mgmt source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Version control\" control for Change, Release & Configuration Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the \"Version control\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Change, Release & Configuration Management systems of record (ITSM change tooling (ServiceNow); Release/deploy pipeline; Configuration baseline (CMDB)) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the version control control (from ITSM change tooling (ServiceNow))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -2600,34 +2607,34 @@ export const changeReleaseStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 6/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Change, Release & Config Mgmt controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Change, Release & Configuration Management controls."
       }
     },
     "badge": {
       "id": "crc-08-badge",
-      "name": "Change, Release & Config Mgmt Auditor",
+      "name": "Change, Release & Configuration Management Auditor",
       "emoji": "🔁"
     },
     "wonder": {
       "name": "Version control",
-      "location": "Change, Release & Config Mgmt",
+      "location": "Change, Release & Configuration Management",
       "era": "Present Day",
       "emoji": "🔁"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Version control\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Change, Release & Config Mgmt control.",
+      "tagline": "Auditing \"Version control\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the version control control (from ITSM change tooling (ServiceNow))) with read-only agents, run the test against policy, and issue a defensible opinion on the Change, Release & Configuration Management control.",
       "year": 2025,
       "overview": [
-        "The \"Version control\" sub-process is one of the controls an auditor must verify for Change, Release & Config Mgmt. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that version control is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically ITSM change tooling (ServiceNow), Release/deploy pipeline, Configuration baseline (CMDB) — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Version control\" sub-process is one of the controls an auditor must verify for Change, Release & Configuration Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the version control control (from ITSM change tooling (ServiceNow)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here ITSM change tooling (ServiceNow), Release/deploy pipeline, Configuration baseline (CMDB) — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the \"Version control\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `08_version_control_mcp.py` exposes read-only tools that turn each Change, Release & Config Mgmt source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `08_version_control_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from ITSM change tooling (ServiceNow) and Release/deploy pipeline (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 08_version_control_mcp.py` to expose it to your agent — or `python 08_version_control_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -2649,7 +2656,7 @@ export const changeReleaseStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Change, Release & Config Mgmt scope + policy",
+            "sub": "define Change, Release & Configuration Management scope + policy",
             "type": "attacker"
           },
           {
@@ -2685,12 +2692,13 @@ export const changeReleaseStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Version control\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the version control control (from ITSM change tooling (ServiceNow)).",
+        "The test: Reconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the \"Version control\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (ITSM change tooling (ServiceNow), Release/deploy pipeline, Configuration baseline (CMDB)) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the version control control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -2714,21 +2722,21 @@ export const changeReleaseStages: StageConfig[] = [
         {
           "name": "08_version_control_mcp.py",
           "url": "/audit-code/change-release/08_version_control_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Change, Release & Config Mgmt evidence for \"Version control\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Change, Release & Configuration Management evidence for \"Version control\" (in-scope inventory for the version control control (from itsm change tooling (servicenow))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Version control\" control for Change, Release & Config Mgmt at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Version control\" control for Change, Release & Configuration Management at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the \"Version control\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the version control control (from ITSM change tooling (ServiceNow)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live ITSM change tooling (ServiceNow) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. ITSM change tooling (ServiceNow) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. ITSM change tooling (ServiceNow) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from ITSM change tooling (ServiceNow); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Change, Release & Config Mgmt: \"Version control\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- change-release_inventory.json   (in-scope items from ITSM change tooling (ServiceNow))\n- change-release_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Version control\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Version control\",\n  \"domain\": \"Change, Release & Config Mgmt\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{crc_",
+        "/evidence/README.md": "# AcmeCorp — Change, Release & Configuration Management: \"Version control\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the \"Version control\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- change-release_inventory.json   (in-scope items — In-scope inventory for the version control control (from ITSM change tooling (ServiceNow)))\n- change-release_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Version control\",\n  \"domain\": \"Change, Release & Configuration Management\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{crc_",
         "/evidence/change-release_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Change Advisory Board / IT Ops\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Version control\" control must cover\n# fragment: version_control_",
         "/evidence/change-release_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -2792,7 +2800,7 @@ export const changeReleaseStages: StageConfig[] = [
           "id": "crc-08-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Version control\" sub-process of Change, Release & Config Mgmt?",
+          "text": "What is the primary audit objective for the \"Version control\" sub-process of Change, Release & Configuration Management?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -2806,11 +2814,11 @@ export const changeReleaseStages: StageConfig[] = [
           "id": "crc-08-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Version control\" matter to the broader Change, Release & Config Mgmt posture?",
+          "text": "Why does a weakness in \"Version control\" matter to the broader Change, Release & Configuration Management posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Change, Release & Config Mgmt controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Change, Release & Configuration Management controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -2823,7 +2831,7 @@ export const changeReleaseStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Version control\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Version control evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the version control control (from ITSM change tooling (ServiceNow)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -2889,16 +2897,16 @@ export const changeReleaseStages: StageConfig[] = [
         {
           "id": "crc-08-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Version control\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Version control\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the version control control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the version control control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "crc-08-q9",
@@ -2943,8 +2951,8 @@ export const changeReleaseStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Roles and responsibilities\" control for Change, Release & Config Mgmt is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Change, Release & Config Mgmt source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Roles and responsibilities\" control for Change, Release & Configuration Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the \"Roles and responsibilities\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Change, Release & Configuration Management systems of record (ITSM change tooling (ServiceNow); Release/deploy pipeline; Configuration baseline (CMDB)) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the roles and responsibilities control (from ITSM change tooling (ServiceNow))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -2965,34 +2973,34 @@ export const changeReleaseStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 7/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Change, Release & Config Mgmt controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Change, Release & Configuration Management controls."
       }
     },
     "badge": {
       "id": "crc-09-badge",
-      "name": "Change, Release & Config Mgmt Auditor",
+      "name": "Change, Release & Configuration Management Auditor",
       "emoji": "🔁"
     },
     "wonder": {
       "name": "Roles and responsibilities",
-      "location": "Change, Release & Config Mgmt",
+      "location": "Change, Release & Configuration Management",
       "era": "Present Day",
       "emoji": "🔁"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Roles and responsibilities\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Change, Release & Config Mgmt control.",
+      "tagline": "Auditing \"Roles and responsibilities\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the roles and responsibilities control (from ITSM change tooling (ServiceNow))) with read-only agents, run the test against policy, and issue a defensible opinion on the Change, Release & Configuration Management control.",
       "year": 2025,
       "overview": [
-        "The \"Roles and responsibilities\" sub-process is one of the controls an auditor must verify for Change, Release & Config Mgmt. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that roles and responsibilities is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically ITSM change tooling (ServiceNow), Release/deploy pipeline, Configuration baseline (CMDB) — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Roles and responsibilities\" sub-process is one of the controls an auditor must verify for Change, Release & Configuration Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the roles and responsibilities control (from ITSM change tooling (ServiceNow)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here ITSM change tooling (ServiceNow), Release/deploy pipeline, Configuration baseline (CMDB) — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the \"Roles and responsibilities\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `09_roles_and_responsibilities_mcp.py` exposes read-only tools that turn each Change, Release & Config Mgmt source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `09_roles_and_responsibilities_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from ITSM change tooling (ServiceNow) and Release/deploy pipeline (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 09_roles_and_responsibilities_mcp.py` to expose it to your agent — or `python 09_roles_and_responsibilities_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -3014,7 +3022,7 @@ export const changeReleaseStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Change, Release & Config Mgmt scope + policy",
+            "sub": "define Change, Release & Configuration Management scope + policy",
             "type": "attacker"
           },
           {
@@ -3050,12 +3058,13 @@ export const changeReleaseStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Roles and responsibilities\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the roles and responsibilities control (from ITSM change tooling (ServiceNow)).",
+        "The test: Reconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the \"Roles and responsibilities\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (ITSM change tooling (ServiceNow), Release/deploy pipeline, Configuration baseline (CMDB)) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the roles and responsibilities control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -3079,21 +3088,21 @@ export const changeReleaseStages: StageConfig[] = [
         {
           "name": "09_roles_and_responsibilities_mcp.py",
           "url": "/audit-code/change-release/09_roles_and_responsibilities_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Change, Release & Config Mgmt evidence for \"Roles and responsibilities\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Change, Release & Configuration Management evidence for \"Roles and responsibilities\" (in-scope inventory for the roles and responsibilities control (from itsm change tooling (servicenow))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Roles and responsibilities\" control for Change, Release & Config Mgmt at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Roles and responsibilities\" control for Change, Release & Configuration Management at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the \"Roles and responsibilities\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the roles and responsibilities control (from ITSM change tooling (ServiceNow)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live ITSM change tooling (ServiceNow) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. ITSM change tooling (ServiceNow) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. ITSM change tooling (ServiceNow) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from ITSM change tooling (ServiceNow); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Change, Release & Config Mgmt: \"Roles and responsibilities\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- change-release_inventory.json   (in-scope items from ITSM change tooling (ServiceNow))\n- change-release_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Roles and responsibilities\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Roles and responsibilities\",\n  \"domain\": \"Change, Release & Config Mgmt\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{crc_",
+        "/evidence/README.md": "# AcmeCorp — Change, Release & Configuration Management: \"Roles and responsibilities\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the \"Roles and responsibilities\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- change-release_inventory.json   (in-scope items — In-scope inventory for the roles and responsibilities control (from ITSM change tooling (ServiceNow)))\n- change-release_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Roles and responsibilities\",\n  \"domain\": \"Change, Release & Configuration Management\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{crc_",
         "/evidence/change-release_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Change Advisory Board / IT Ops\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Roles and responsibilities\" control must cover\n# fragment: roles_responsibilities_",
         "/evidence/change-release_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -3157,7 +3166,7 @@ export const changeReleaseStages: StageConfig[] = [
           "id": "crc-09-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Roles and responsibilities\" sub-process of Change, Release & Config Mgmt?",
+          "text": "What is the primary audit objective for the \"Roles and responsibilities\" sub-process of Change, Release & Configuration Management?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -3171,11 +3180,11 @@ export const changeReleaseStages: StageConfig[] = [
           "id": "crc-09-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Roles and responsibilities\" matter to the broader Change, Release & Config Mgmt posture?",
+          "text": "Why does a weakness in \"Roles and responsibilities\" matter to the broader Change, Release & Configuration Management posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Change, Release & Config Mgmt controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Change, Release & Configuration Management controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -3188,7 +3197,7 @@ export const changeReleaseStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Roles and responsibilities\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Roles and responsibilities evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the roles and responsibilities control (from ITSM change tooling (ServiceNow)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -3254,16 +3263,16 @@ export const changeReleaseStages: StageConfig[] = [
         {
           "id": "crc-09-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Roles and responsibilities\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Roles and responsibilities\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the roles and responsibilities control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the roles and responsibilities control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "crc-09-q9",

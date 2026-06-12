@@ -1,17 +1,26 @@
 #!/usr/bin/env python3
-"""Read-only MCP server — Identity & Access Mgmt: "Zero trust" audit evidence.
+"""Read-only MCP server — Identity & Access Management (IAM): "Zero trust" audit evidence.
 
-Gathers the in-scope inventory and the observed control state from this domain's
-systems of record, evaluates each item against policy, and reports the exceptions
-with a PASS / EXCEPTIONS / MATERIAL-GAP opinion. READ-ONLY: it lists and reports,
-never changes state — the hard requirement for audit tooling.
+THE TEST
+Sample sensitive resources and verify access requires a verified identity AND device posture AND context on every request — not network location. PASS: policies enforce least privilege per session, require MFA + a compliant/managed device, and continuously evaluate risk to revoke access; there is no 'on the corporate LAN = trusted'. Exceptions: resources reachable on the LAN with no auth/posture check, a VPN that grants flat subnet access, and policies keyed only to source IP.
+
+ARTIFACT (what _gather() pulls)
+    The access-policy matrix — for each sensitive resource, what identity + device posture + context is required
+
+REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
+    Entra:  export Conditional Access policies + confirm Continuous Access Evaluation (CAE) is enabled
+    Posture: Intune device-compliance state feeding device-based Conditional Access
+    ZTNA:   export the per-application access policy (identity + posture + context conditions)
+    Test:   attempt to reach a sensitive resource from an untrusted segment / non-compliant device and confirm it is denied
+
+This server gathers the in-scope inventory and the observed control state, evaluates
+each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /
+MATERIAL-GAP opinion. READ-ONLY: it lists and reports, never changes state — the hard
+requirement for audit tooling.
 
   pip install "mcp[cli]"
   mcp run 10_zero_trust_mcp.py                 # expose to an agent
   python 10_zero_trust_mcp.py --selftest       # reproduce findings against fixtures, offline
-
-Wire real sources by replacing the _gather() fixtures with read-only API calls to
-IdP (Okta / Entra ID / Ping), PAM (CyberArk / Delinea), IGA / access-review platform, Directory (AD / LDAP).
 """
 from __future__ import annotations
 import json, sys
@@ -68,7 +77,7 @@ def coverage_report() -> dict:
                else "EXCEPTIONS" if len(exceptions) <= EXCEPTION_THRESHOLD
                else "MATERIAL GAP")
     return {
-        "domain": "Identity & Access Mgmt",
+        "domain": "Identity & Access Management (IAM)",
         "control": "Zero trust",
         "in_scope": len(rows),
         "compliant": len(rows) - len(exceptions),

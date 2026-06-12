@@ -16,6 +16,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { MODULES } from "./audit-content.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const CORE = path.resolve(__dirname, "..");
@@ -41,37 +42,37 @@ const D = {
     owners: ["Application owners", "Identity & Access Management", "Cloud Platform / FinOps", "AppSec"],
     refs: [["OWASP Application Security Verification Standard (ASVS)", "https://owasp.org/www-project-application-security-verification-standard/"], ["NIST SP 800-53 — SA/CM families", "https://csrc.nist.gov/projects/risk-management/sp800-53-controls"]],
     incident: { title: "When an unreviewed application became the breach", when: "Recurring (representative)", where: "Enterprise application estates", impact: "An application weakness that an application review would have caught becomes the entry point for a full compromise.", body: ["Across post-mortems the pattern is the same: a control that an application review is designed to test — inventory, authn, secure config, API security — was never verified for one app, and that app became the entry point.", "The audit lesson is that application controls are only as good as the review that confirms they exist and operate on every app in scope."], anchorYear: 2017, anchorEvent: "Equifax: unpatched internet-facing app — an application-control failure at root", secondYear: 2021, secondEvent: "OWASP Top 10 refresh foregrounds broken access control + insecure design" } },
-  "Build Env / CI/CD": { slug: "build-cicd", prefix: "bcd", emoji: "🏗️", color: "Indigo",
+  "Build Env / CI/CD": { slug: "build-cicd", prefix: "bcd", emoji: "🏗️", color: "Indigo", displayName: "Build Environment & CI/CD (Continuous Integration / Continuous Delivery)",
     systems: ["GitHub Actions / GitLab CI / Jenkins", "Container registry (ECR/GHCR)", "Kubernetes / orchestration", "Artifact + SBOM store"],
     owners: ["Platform / DevOps engineering", "Release engineering", "AppSec", "Cloud Platform"],
     refs: [["SLSA — Supply-chain Levels for Software Artifacts", "https://slsa.dev/"], ["CIS Software Supply Chain Security Guide", "https://www.cisecurity.org/insights/white-papers/cis-software-supply-chain-security-guide"], ["NIST SP 800-204D — CI/CD security", "https://csrc.nist.gov/pubs/sp/800/204/d/final"]],
     incident: { title: "SolarWinds: the build system as the attack surface", when: "2020", where: "SolarWinds Orion build pipeline", impact: "Malicious code injected during the build reached ~18,000 customers through a signed, trusted update.", body: ["The SUNBURST actors did not tamper with source in the repo — they compromised the BUILD environment and injected the backdoor as Orion was compiled, so the malicious artifact was signed and shipped as legitimate.", "It reframed CI/CD as a first-class attack surface: an auditor must verify build-environment isolation, provenance/SLSA attestation, and that what ships is provably built from reviewed source."], anchorYear: 2020, anchorEvent: "SolarWinds SUNBURST — build-time injection into a signed update", secondYear: 2021, secondEvent: "Codecov bash-uploader compromise exposes CI secrets at scale" } },
-  "Repository Mgmt": { slug: "repository-mgmt", prefix: "repo", emoji: "🗂️", color: "Blue",
+  "Repository Mgmt": { slug: "repository-mgmt", prefix: "repo", emoji: "🗂️", color: "Blue", displayName: "Repository Management",
     systems: ["GitHub / GitLab / Bitbucket", "Branch protection + CODEOWNERS", "SCM audit log", "Secret scanning service"],
     owners: ["Engineering org owners", "Repo / org admins", "AppSec", "Developer platform team"],
     refs: [["OWASP SCM Security Best Practices", "https://owasp.org/www-project-devsecops-guideline/"], ["GitHub — securing your organization", "https://docs.github.com/en/organizations/keeping-your-organization-secure"], ["NIST SSDF (SP 800-218) — PO/PS", "https://csrc.nist.gov/pubs/sp/800/218/final"]],
     incident: { title: "Leaked tokens and unprotected branches", when: "Recurring", where: "Source-control platforms", impact: "A committed secret or an unprotected default branch lets an attacker alter code or pull credentials straight from history.", body: ["Repeated incidents trace back to repository hygiene: a long-lived token committed to history, a default branch with no required review, or an over-broad org membership.", "Repository management is audited because the SCM is where code integrity is won or lost before it ever reaches the pipeline."], anchorYear: 2022, anchorEvent: "OAuth-token theft (Heroku/Travis) used to clone private repos", secondYear: 2023, secondEvent: "Mass secret-in-repo exposure drives push-protection adoption" } },
-  "Crypto Key & Secrets": { slug: "crypto-secrets", prefix: "cks", emoji: "🔐", color: "Amber",
+  "Crypto Key & Secrets": { slug: "crypto-secrets", prefix: "cks", emoji: "🔐", color: "Amber", displayName: "Cryptographic Key & Secrets Management",
     systems: ["HashiCorp Vault / AWS KMS / Azure Key Vault", "HSM (PKCS#11)", "Certificate authority / ACME", "Secret-scanning service"],
     owners: ["PKI / Crypto team", "Platform security", "Application owners", "Cloud Platform"],
     refs: [["NIST SP 800-57 — Key Management", "https://csrc.nist.gov/projects/key-management"], ["OWASP Secrets Management Cheat Sheet", "https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html"], ["NIST SP 800-131A — crypto transitions", "https://csrc.nist.gov/pubs/sp/800/131/a/r2/final"]],
     incident: { title: "The key that never rotated", when: "Recurring", where: "Key & secret stores", impact: "A static, over-shared, or expired key undermines every control built on top of it — encryption, signing, and authentication all fail quietly.", body: ["Key and secret findings are high-impact because they are load-bearing: a hardcoded secret, a key past its crypto-period, or an unmonitored HSM defeats the controls that depend on it.", "Auditors verify the full lifecycle — generation, storage, rotation, revocation, destruction — and that no secret lives in source or config in cleartext."], anchorYear: 2021, anchorEvent: "Codecov: stolen CI credentials harvested from environment", secondYear: 2023, secondEvent: "Storm-0558: a stolen signing key forged tokens across tenants" } },
-  "Secure Software Dev": { slug: "secure-sdlc", prefix: "ssd", emoji: "🛡️", color: "Emerald",
+  "Secure Software Dev": { slug: "secure-sdlc", prefix: "ssd", emoji: "🛡️", color: "Emerald", displayName: "Secure Software Development",
     systems: ["SAST / DAST / SCA tooling", "Issue tracker (Jira)", "CI security gates", "Threat-model + design records"],
     owners: ["Product engineering", "AppSec / Security champions", "QA", "Engineering leadership"],
     refs: [["NIST SSDF — SP 800-218", "https://csrc.nist.gov/pubs/sp/800/218/final"], ["OWASP SAMM", "https://owaspsamm.org/"], ["BSIMM", "https://www.bsimm.com/"]],
     incident: { title: "Insecure design ships to production", when: "Recurring", where: "Software delivery lifecycles", impact: "A class of vulnerability that a secure-SDLC gate is meant to stop reaches production because the gate was advisory, not enforced.", body: ["When security testing is bolted on at the end — or is non-blocking — known-bad patterns ship anyway. Insecure design and unvalidated third-party code are the recurring root causes.", "The audit confirms security is built into requirements, design, coding standards, and enforced gates across the lifecycle, with evidence at each stage."], anchorYear: 2021, anchorEvent: "Log4Shell: a dependency flaw becomes everyone's incident", secondYear: 2021, secondEvent: "OWASP Top 10 adds A04 Insecure Design + A06 Vulnerable Components" } },
-  "IaC": { slug: "iac", prefix: "iac", emoji: "📜", color: "Cyan",
+  "IaC": { slug: "iac", prefix: "iac", emoji: "📜", color: "Cyan", displayName: "Infrastructure as Code (IaC)",
     systems: ["Terraform / CloudFormation / Bicep", "Policy-as-code (OPA / Sentinel)", "IaC scanners (tfsec/Checkov)", "GitOps controller (Argo/Flux)"],
     owners: ["Platform / Cloud engineering", "SRE", "Security engineering", "FinOps"],
     refs: [["CIS Benchmarks", "https://www.cisecurity.org/cis-benchmarks"], ["OWASP IaC Security", "https://owasp.org/www-project-devsecops-guideline/"], ["NIST SP 800-204D", "https://csrc.nist.gov/pubs/sp/800/204/d/final"]],
     incident: { title: "One misconfigured template, many exposed resources", when: "Recurring", where: "Cloud estates managed by IaC", impact: "A single insecure module is reused across hundreds of deployments, multiplying one mistake into a fleet-wide exposure.", body: ["IaC's power is repetition, which is also its risk: a module that defaults a bucket to public or a security group to 0.0.0.0/0 propagates that flaw everywhere it's instantiated.", "Auditors check that IaC changes are peer-reviewed, scanned, governed by policy-as-code, and that runtime hasn't drifted from the declared state."], anchorYear: 2019, anchorEvent: "Capital One: an SSRF + over-permissive role exposes 100M records", secondYear: 2022, secondEvent: "Public-bucket misconfigurations remain the top cloud exposure class" } },
-  "Cloud Platform & SaaS": { slug: "cloud-saas", prefix: "cld", emoji: "☁️", color: "Sky",
+  "Cloud Platform & SaaS": { slug: "cloud-saas", prefix: "cld", emoji: "☁️", color: "Sky", displayName: "Cloud Platform & SaaS (Software-as-a-Service)",
     systems: ["AWS / Azure / GCP control plane", "CSPM (Wiz / Prisma / Defender)", "SaaS admin consoles (M365/Salesforce)", "Cloud audit logs (CloudTrail)"],
     owners: ["Cloud Platform team", "SaaS application owners", "Cloud security", "IAM"],
     refs: [["CIS Cloud Foundations Benchmarks", "https://www.cisecurity.org/benchmark/amazon_web_services"], ["Cloud Security Alliance CCM", "https://cloudsecurityalliance.org/research/cloud-controls-matrix"], ["NIST SP 800-210 — cloud access control", "https://csrc.nist.gov/pubs/sp/800/210/final"]],
     incident: { title: "Capital One: a cloud misconfiguration at scale", when: "2019", where: "AWS-hosted banking application", impact: "An SSRF flaw plus an over-permissive IAM role let an attacker read 100M+ customer records from cloud storage.", body: ["The breach combined an application flaw with a cloud-platform control failure: a role with far more access than it needed, and no guardrail to stop the metadata-service abuse.", "It made the cloud landing zone, IAM least-privilege, and CSPM guardrails central audit subjects — the platform's defaults decide the blast radius."], anchorYear: 2019, anchorEvent: "Capital One — SSRF + over-privileged role, 100M records", secondYear: 2023, secondEvent: "SaaS misconfiguration (over-shared tenants) emerges as a top breach vector" } },
-  "Vuln & Patch Mgmt": { slug: "vuln-patch", prefix: "vpm", emoji: "🩹", color: "Rose",
+  "Vuln & Patch Mgmt": { slug: "vuln-patch", prefix: "vpm", emoji: "🩹", color: "Rose", displayName: "Vulnerability & Patch Management",
     systems: ["Vuln scanner (Tenable/Qualys/Rapid7)", "Patch management (SCCM/Intune/Ansible)", "CMDB / asset inventory", "CISA KEV feed"],
     owners: ["IT Operations", "Server / endpoint owners", "Security operations", "Risk management"],
     refs: [["CISA Known Exploited Vulnerabilities", "https://www.cisa.gov/known-exploited-vulnerabilities-catalog"], ["NIST SP 800-40 — Patch Management", "https://csrc.nist.gov/pubs/sp/800/40/r4/final"], ["CIS Control 7 — Continuous Vulnerability Mgmt", "https://www.cisecurity.org/controls"]],
@@ -81,7 +82,7 @@ const D = {
     owners: ["Data Protection Officer / Privacy", "Data owners / stewards", "Security engineering", "Legal & Compliance"],
     refs: [["NIST Privacy Framework", "https://www.nist.gov/privacy-framework"], ["GDPR (EU 2016/679)", "https://gdpr-info.eu/"], ["ISO/IEC 27701 — Privacy Information Management", "https://www.iso.org/standard/71670.html"]],
     incident: { title: "Sensitive data, unencrypted and over-retained", when: "Recurring", where: "Data stores across the estate", impact: "Regulated data held in cleartext, beyond its retention period, or outside its sovereignty boundary turns a breach into a reportable, fineable event.", body: ["Privacy findings convert a security incident into a regulatory one: unencrypted PII, data kept long past its purpose, or data in the wrong jurisdiction each trigger statutory obligations.", "Auditors verify classification, encryption in transit/at rest/in use, retention/disposal, DLP coverage, and lawful cross-border handling."], anchorYear: 2018, anchorEvent: "GDPR enforcement begins — retention + minimization become auditable", secondYear: 2023, secondEvent: "Record privacy fines for over-retention and unlawful transfers" } },
-  "Datacenter / Lab / CoLo": { slug: "datacenter", prefix: "dcr", emoji: "🏢", color: "Stone",
+  "Datacenter / Lab / CoLo": { slug: "datacenter", prefix: "dcr", emoji: "🏢", color: "Stone", displayName: "Datacenter / Lab / Colocation (CoLo)",
     systems: ["Badge / PACS access system", "Environmental + power monitoring (DCIM)", "Asset / rack inventory", "Vendor / maintenance ticketing"],
     owners: ["Facilities / Datacenter operations", "Physical security", "IT asset management", "Vendor management"],
     refs: [["ANSI/TIA-942 — Data Center standard", "https://tiaonline.org/products-and-services/tia942certification/"], ["Uptime Institute Tier Standard", "https://uptimeinstitute.com/tiers"], ["NIST SP 800-53 — PE Physical & Environmental", "https://csrc.nist.gov/projects/risk-management/sp800-53-controls"]],
@@ -96,12 +97,12 @@ const D = {
     owners: ["Network engineering", "Network security", "Security operations", "Cloud Platform"],
     refs: [["NIST SP 800-207 — Zero Trust Architecture", "https://csrc.nist.gov/pubs/sp/800/207/final"], ["CIS Control 12 — Network Infrastructure", "https://www.cisecurity.org/controls"], ["NIST SP 800-41 — Firewall policy", "https://csrc.nist.gov/pubs/sp/800/41/r1/final"]],
     incident: { title: "Flat network, fast spread", when: "2013", where: "Retail enterprise network", impact: "Weak segmentation let an intrusion that began in a low-value zone reach payment systems.", body: ["Target's breach started through an HVAC vendor and spread because the network wasn't segmented to keep that foothold away from card systems.", "Auditors verify segmentation/trust zones, firewall-rule governance, secure remote access, and that logging and architecture would contain — not amplify — an intrusion."], anchorYear: 2013, anchorEvent: "Target: vendor foothold reaches POS via flat network", secondYear: 2021, secondEvent: "Zero-trust segmentation mandated in US EO 14028" } },
-  "Identity & Access Mgmt": { slug: "iam", prefix: "iam", emoji: "🪪", color: "Violet",
+  "Identity & Access Mgmt": { slug: "iam", prefix: "iam", emoji: "🪪", color: "Violet", displayName: "Identity & Access Management (IAM)",
     systems: ["IdP (Okta / Entra ID / Ping)", "PAM (CyberArk / Delinea)", "IGA / access-review platform", "Directory (AD / LDAP)"],
     owners: ["Identity & Access Management", "Application/data owners (approvers)", "HR (joiner-mover-leaver)", "Security operations"],
     refs: [["NIST SP 800-63 — Digital Identity", "https://pages.nist.gov/800-63-3/"], ["CIS Control 5/6 — Account & Access Mgmt", "https://www.cisecurity.org/controls"], ["NIST SP 800-207 — Zero Trust", "https://csrc.nist.gov/pubs/sp/800/207/final"]],
     incident: { title: "Orphaned accounts and missing MFA", when: "Recurring", where: "Enterprise identity stores", impact: "A leaver who kept access, a shared service account, or an MFA gap is the credential an attacker walks in with.", body: ["Most intrusions are logins, not break-ins: stolen or stale credentials, accounts that outlived their owner, and admin access without MFA.", "Auditors test provisioning/deprovisioning, joiner-mover-leaver, MFA coverage, privileged access, and periodic access recertification with least privilege and SoD."], anchorYear: 2023, anchorEvent: "MGM/Okta-adjacent intrusions via help-desk + identity gaps", secondYear: 2021, secondEvent: "US EO 14028 mandates MFA across federal systems" } },
-  "Change, Release & Config Mgmt": { slug: "change-release", prefix: "crc", emoji: "🔁", color: "Orange",
+  "Change, Release & Config Mgmt": { slug: "change-release", prefix: "crc", emoji: "🔁", color: "Orange", displayName: "Change, Release & Configuration Management",
     systems: ["ITSM change tooling (ServiceNow)", "Release/deploy pipeline", "Configuration baseline (CMDB)", "Change audit log"],
     owners: ["Change Advisory Board / IT Ops", "Release management", "Application owners", "Security engineering"],
     refs: [["ITIL 4 — Change Enablement", "https://www.axelos.com/certifications/itil-service-management"], ["NIST SP 800-128 — Configuration Mgmt", "https://csrc.nist.gov/pubs/sp/800/128/final"], ["CIS Control 4 — Secure Configuration", "https://www.cisecurity.org/controls"]],
@@ -116,7 +117,7 @@ const D = {
     owners: ["Project management", "Business analysts / process owners", "QA", "Vendor management"],
     refs: [["PMI / PMBOK", "https://www.pmi.org/"], ["ISO/IEC/IEEE 29119 — Software Testing", "https://www.iso.org/standard/81291.html"], ["ISACA IS audit guidance", "https://www.isaca.org/"]],
     incident: { title: "Requirements gap reaches production", when: "Recurring", where: "Functional system implementations", impact: "An unverified requirement or untested path ships, and the defect surfaces as a business or compliance failure after go-live.", body: ["At the functional level, projects falter when requirements, design, and testing aren't traceable, so go-live carries unknown defects.", "Auditors verify project management, requirements/design traceability, testing rigor, cutover, data migration, and vendor/SLA controls."], anchorYear: 2020, anchorEvent: "Public-sector system rollouts fail UAT-to-prod traceability", secondYear: 2022, secondEvent: "Requirements/testing gaps remain the top implementation finding" } },
-  "System Implementation — AI": { slug: "sysimpl-ai", prefix: "sia", emoji: "🤖", color: "Fuchsia",
+  "System Implementation — AI": { slug: "sysimpl-ai", prefix: "sia", emoji: "🤖", color: "Fuchsia", displayName: "System Implementation — AI (Artificial Intelligence)",
     systems: ["ML platform (SageMaker/Vertex/Azure ML)", "Feature + data store", "Model registry + eval harness", "Model monitoring / drift"],
     owners: ["Data science / ML engineering", "Data governance", "Responsible-AI / risk", "Product owners"],
     refs: [["NIST AI Risk Management Framework", "https://www.nist.gov/itl/ai-risk-management-framework"], ["ISO/IEC 42001 — AI management system", "https://www.iso.org/standard/81230.html"], ["EU AI Act", "https://artificialintelligenceact.eu/"]],
@@ -136,22 +137,22 @@ const D = {
     owners: ["Security operations / CSIRT", "IT operations", "Legal & Communications", "Risk management"],
     refs: [["NIST SP 800-61 — Incident Handling", "https://csrc.nist.gov/pubs/sp/800/61/r2/final"], ["SANS Incident Handler's Handbook", "https://www.sans.org/white-papers/33901/"], ["ISO/IEC 27035 — Incident Management", "https://www.iso.org/standard/78973.html"]],
     incident: { title: "Detected late, contained slowly", when: "Recurring", where: "Security operations", impact: "An incident without a tested plan, clean evidence handling, or clear escalation drifts — dwell time grows and breach-notification obligations are missed.", body: ["The difference between an event and a disaster is the response: a rehearsed plan, fast triage, forensically sound evidence, and timely notification.", "Auditors verify IR plans/playbooks, intake and triage, evidence/forensics handling, escalation, post-incident review, and breach-communication readiness."], anchorYear: 2017, anchorEvent: "Equifax: delayed detection + notification compounds the breach", secondYear: 2023, secondEvent: "SEC cyber-disclosure rules tighten incident-notification timelines" } },
-  "IT Governance": { slug: "it-governance", prefix: "gov", emoji: "📋", color: "Sky",
+  "IT Governance": { slug: "it-governance", prefix: "gov", emoji: "📋", color: "Sky", displayName: "Information Technology (IT) Governance",
     systems: ["GRC platform", "Policy + standard repository", "Risk register", "Metrics / KRI dashboard"],
     owners: ["CISO / IT risk", "Policy owners", "Internal audit", "Executive / board"],
     refs: [["NIST Cybersecurity Framework 2.0 — Govern", "https://www.nist.gov/cyberframework"], ["COBIT 2019", "https://www.isaca.org/resources/cobit"], ["ISO/IEC 27001 — ISMS", "https://www.iso.org/standard/27001"]],
     incident: { title: "Risk accepted by no one, tracked by nobody", when: "Recurring", where: "Security governance programs", impact: "Without policy lifecycle, a live risk register, and metrics, security decisions are invisible — and accountability evaporates when something fails.", body: ["Governance gaps are quiet until an incident: stale policies, risks with no owner or expiry, exceptions that never close, and no metrics to show the program's state.", "Auditors verify policy/standard lifecycle, risk assessment and tracking, security metrics/reporting, exception management, and awareness."], anchorYear: 2024, anchorEvent: "NIST CSF 2.0 adds a Govern function — accountability as a control", secondYear: 2023, secondEvent: "SEC rules require governance + risk-management disclosure" } },
-  "RPA Governance": { slug: "rpa-governance", prefix: "rpa", emoji: "⚙️", color: "Cyan",
+  "RPA Governance": { slug: "rpa-governance", prefix: "rpa", emoji: "⚙️", color: "Cyan", displayName: "Robotic Process Automation (RPA) Governance",
     systems: ["RPA platform (UiPath/Automation Anywhere/Power Automate)", "Bot credential vault", "Bot orchestration + logs", "Version control for bots"],
     owners: ["Automation CoE", "Bot/process owners", "Security engineering", "Internal audit"],
     refs: [["ISACA — Auditing RPA", "https://www.isaca.org/"], ["NIST SP 800-53 — AC/AU families", "https://csrc.nist.gov/projects/risk-management/sp800-53-controls"], ["OWASP — automation/credential guidance", "https://owasp.org/"]],
     incident: { title: "The bot with standing privileged access", when: "Recurring", where: "RPA estates", impact: "An over-privileged, unmonitored bot with stored credentials becomes a powerful, unattended attack path or a compliance blind spot.", body: ["Bots act as users at machine speed, often with broad standing access and stored credentials — and frequently outside change control and logging.", "Auditors verify RPA governance, secure dev/test/deploy, change control, least-privilege bot access, credential handling, and bot activity logging."], anchorYear: 2022, anchorEvent: "Unattended bots flagged as a top emerging access-risk class", secondYear: 2023, secondEvent: "Credential-laden automation accounts targeted for lateral movement" } },
-  "AI": { slug: "ai-audit", prefix: "aig", emoji: "🧠", color: "Purple",
+  "AI": { slug: "ai-audit", prefix: "aig", emoji: "🧠", color: "Purple", displayName: "Artificial Intelligence (AI)",
     systems: ["Model registry + lineage", "Eval / red-team harness", "AI gateway + guardrails", "Model + prompt monitoring"],
     owners: ["AI/ML engineering", "Responsible-AI / governance", "Security (AI red team)", "Data governance"],
     refs: [["NIST AI RMF + Generative AI Profile", "https://www.nist.gov/itl/ai-risk-management-framework"], ["OWASP Top 10 for LLM Applications", "https://owasp.org/www-project-top-10-for-large-language-model-applications/"], ["MITRE ATLAS", "https://atlas.mitre.org/"]],
     incident: { title: "Prompt injection and the leaky model", when: "Recurring", where: "Production AI systems", impact: "An AI system with weak guardrails leaks data, executes injected instructions, or is manipulated — and without monitoring no one notices.", body: ["AI introduces new failure modes: prompt injection, training-data poisoning, model/output manipulation, and sensitive-data leakage through generations.", "Auditors verify AI governance, model testing/validation, data governance, adversarial defense, AI infra/access security, and operational monitoring."], anchorYear: 2023, anchorEvent: "OWASP LLM Top 10 codifies prompt injection + data leakage risks", secondYear: 2024, secondEvent: "Agentic-AI incidents elevate tool-use + autonomy as audit subjects" } },
-  "IoT": { slug: "iot", prefix: "iot", emoji: "📡", color: "Teal",
+  "IoT": { slug: "iot", prefix: "iot", emoji: "📡", color: "Teal", displayName: "Internet of Things (IoT)",
     systems: ["IoT device fleet + firmware", "IoT gateway / broker", "Device-identity / certificate service", "IoT monitoring (NDR/asset)"],
     owners: ["IoT / product engineering", "Network security", "Security operations", "Facilities (for OT-adjacent IoT)"],
     refs: [["NIST SP 800-213 — IoT device cybersecurity", "https://csrc.nist.gov/pubs/sp/800/213/final"], ["OWASP IoT Top 10", "https://owasp.org/www-project-internet-of-things/"], ["ETSI EN 303 645 — Consumer IoT", "https://www.etsi.org/standards"]],
@@ -203,10 +204,31 @@ function scores(sub, idx) {
   return { ease, value };
 }
 
-function quizFor(id, dn, sub, meta, opinion) {
-  const sys = meta.systems[0];
-  const art = `${sub} evidence export`;
-  const owner = meta.owners[0];
+// Resolve the real per-module facts — the rich authored record if present, else a
+// sensible generic fallback. Surfaces the concrete artifact, the test + PASS
+// criteria, the source systems, the real tools/commands, and the typical finding.
+function facts(dn, sub, meta, rec) {
+  return {
+    artifacts: rec?.artifacts ?? [
+      `In-scope inventory for the ${sub.toLowerCase()} control (from ${meta.systems[0]})`,
+      `Observed configuration/state evidence showing whether the control is applied and operating`,
+      `The control policy / standard / threshold the evidence is judged against`,
+      `The reconciled exceptions list + coverage report (the working paper)`,
+    ],
+    test: rec?.test ?? `Reconcile the in-scope inventory against the ${dn} policy/standard and flag every item where the "${sub}" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.`,
+    systems: rec?.systems ?? meta.systems,
+    owners: rec?.owners ?? meta.owners,
+    tools: rec?.tools ?? [],
+    finding: rec?.finding ?? `in-scope items where the ${sub.toLowerCase()} control is not applied, mis-scoped, or has drifted from the approved baseline`,
+    refs: rec?.refs ?? null,
+    authored: !!rec,
+  };
+}
+
+function quizFor(id, dn, sub, f, opinion) {
+  const sys = f.systems[0];
+  const art = f.artifacts[0];
+  const owner = f.owners[0];
   const q = (n, type, challenge, text, options, correct, explanation) => ({
     id: `${id}-q${n}`, type, challenge, text, options, correctIndex: correct, explanation,
   });
@@ -246,10 +268,10 @@ function quizFor(id, dn, sub, meta, opinion) {
       "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
       ["Read-only servers are simply faster", "MCP cannot perform writes", "So it can run without any credentials"],
       "Non-interference is a hard requirement for audit evidence-gathering tools."),
-    build(8, "Findings", "What is a finding", `Which observation is a reportable finding for "${sub}"?`,
-      "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-      ["The team uses a popular vendor", "The control exists and operates as designed", "A new feature shipped on time"],
-      "A finding is a gap between the policy/standard and the observed evidence."),
+    build(8, "Findings", "Typical finding", `For "${sub}", which is a realistic reportable finding?`,
+      f.finding.charAt(0).toUpperCase() + f.finding.slice(1),
+      ["The control exists and operates as designed for every in-scope item", "The team uses a popular commercial vendor", "A new feature shipped on schedule"],
+      `A finding is a concrete, named gap against the standard — e.g. ${f.finding}`),
     build(9, "Deliverable", "The opinion", "How does the coverage report escalate its opinion?",
       `PASS → EXCEPTIONS → ${"MATERIAL GAP"} as the count and severity of gaps increase`,
       ["It is always PASS to avoid conflict", "Randomly each run", "Only the asset count is reported, never an opinion"],
@@ -261,21 +283,28 @@ function quizFor(id, dn, sub, meta, opinion) {
   ] };
 }
 
-function infoFor(id, dn, sub, meta, opinion, pyName) {
-  const sys = meta.systems;
+function infoFor(id, dn, sub, meta, opinion, pyName, f) {
+  const sys = f.systems;
+  const examples = [];
+  if (f.tools.length) {
+    examples.push({
+      label: "Pull the evidence — the real commands / API calls",
+      code: f.tools.join("\n"),
+    });
+  }
   return {
-    tagline: `Auditing "${sub}" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the ${dn} control.`,
+    tagline: `Auditing "${sub}" as a repeatable agentic workflow: pull the real evidence (${f.artifacts[0]}) with read-only agents, run the test against policy, and issue a defensible opinion on the ${dn} control.`,
     year: 2025,
     overview: [
-      `The "${sub}" sub-process is one of the controls an auditor must verify for ${dn}. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: "show me the evidence that ${sub.toLowerCase()} is in place and working, for everything in scope."`,
-      `It is hard because the truth lives across systems that were never reconciled — typically ${sys.slice(0, 3).join(", ")} — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.`,
-      `The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail.`,
+      `The "${sub}" sub-process is one of the controls an auditor must verify for ${dn}. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: "show me ${f.artifacts[0].charAt(0).toLowerCase() + f.artifacts[0].slice(1)}, for everything in scope."`,
+      `The evidence lives across systems that were never reconciled — here ${sys.slice(0, 3).join(", ")} — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. ${f.tools.length ? `In practice you gather it with calls like \`${(f.tools[0].split(/\s{2,}/)[1] || f.tools[0]).slice(0, 80)}\` — read-only, against the systems of record.` : "A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished."}`,
+      `The test itself is specific. ${f.test} The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion.`,
     ],
     technical: {
       title: "The agentic workflow — automate the evidence, not the judgement",
       body: [
-        `The included \`${pyName}\` exposes read-only tools that turn each ${dn} source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a \`coverage_report()\` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.`,
-        `The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across ${sys.length} systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.`,
+        `The included \`${pyName}\` implements exactly this test as read-only MCP tools: one gathers the raw evidence from ${sys.slice(0, 2).join(" and ")}${sys.length > 2 ? " (and the other sources)" : ""}, one evaluates each in-scope item against the policy and surfaces the exceptions, and \`coverage_report()\` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ${f.tools.length ? "The exact queries it wraps are listed in the examples below, so you can run them by hand first." : ""}`,
+        `The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.`,
         `To run it: \`pip install "mcp[cli]"\`, wire the source credentials read-only, then \`mcp run ${pyName}\` to expose it to your agent — or \`python ${pyName} --selftest\` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required.`,
       ],
       codeExample: {
@@ -298,25 +327,26 @@ function infoFor(id, dn, sub, meta, opinion, pyName) {
       { year: meta.incident.secondYear, event: meta.incident.secondEvent },
       { year: 2025, event: `Agentic evidence-gathering becomes the practical way to keep "${sub}" continuously assured`, highlight: true },
     ],
+    examples,
     keyTakeaways: [
-      `Audit "${sub}" by evidence, not assertion: reconcile the systems of record and name the exceptions.`,
-      `The control is scoped per item — anything the control was never applied to is the highest-value finding.`,
-      `The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.`,
-      `Audit tooling must be read-only — verify the MCP server can list and report but never change state.`,
-      `The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path.`,
+      `The artifact to pull: ${f.artifacts[0]}.`,
+      `The test: ${f.test.split(". ")[0]}.`,
+      `Reconcile the systems of record (${sys.slice(0, 3).join(", ")}) — anything the control never reached is the highest-value finding.`,
+      `The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.`,
+      `The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. ${f.finding}`,
     ],
     references: [
-      ...meta.refs.map(([title, url]) => ({ title, url })),
+      ...((f.refs ?? meta.refs).map(([title, url]) => ({ title, url }))),
       { title: "Model Context Protocol — specification", url: "https://modelcontextprotocol.io/" },
     ],
     downloads: [
       { name: pyName, url: `/audit-code/${meta.slug}/${pyName}`,
-        description: `Runnable read-only MCP server: gathers ${dn} evidence for "${sub}", evaluates against policy, and reports exceptions + opinion. pip install "mcp[cli]".` },
+        description: `Runnable read-only MCP server: gathers the ${dn} evidence for "${sub}" (${f.artifacts[0].toLowerCase()}), runs the test, and reports exceptions + opinion. pip install "mcp[cli]".` },
     ],
   };
 }
 
-function ctfFor(id, dn, sub, meta, opinion) {
+function ctfFor(id, dn, sub, meta, opinion, f) {
   const tag = abbr(sub);
   const f1 = `FLAG{${meta.prefix}_`;
   const f2 = `${tag}_`;
@@ -324,18 +354,18 @@ function ctfFor(id, dn, sub, meta, opinion) {
   const opTok = opinion.toLowerCase().replace(/\s+/g, "_");
   const f4 = `${opTok}}`;
   const flag = f1 + f2 + f3 + f4;
-  const sys = meta.systems;
+  const sys = f.systems;
   return { flag, ctf: {
-    scenario: `You're the auditor testing the "${sub}" control for ${dn} at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)`,
-    hint: `The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.`,
+    scenario: `You're the auditor testing the "${sub}" control for ${dn} at AcmeCorp. THE TEST: ${f.test} The evidence — ${f.artifacts[0]} — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live ${sys[0]} APIs; here the same sources are exported to files.)`,
+    hint: `Read every file in /evidence. ${sys[0]} gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.`,
     hints: [
-      `cat each file in /evidence. ${sys[0]} is the system of record; the others show what is actually configured/running.`,
-      `An in-scope item present in one source but missing the required control in another is an exception — that is your finding.`,
+      `cat each file in /evidence. The inventory comes from ${sys[0]}; the state file shows what is actually configured/running.`,
+      `An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.`,
       `Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion).`,
     ],
     files: {
       "/evidence/README.md":
-        `# AcmeCorp — ${dn}: "${sub}" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- ${meta.slug}_inventory.json   (in-scope items from ${sys[0]})\n- ${meta.slug}_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n"${sub}" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. \`cat\` every file to collect the finding.`,
+        `# AcmeCorp — ${dn}: "${sub}" Audit Evidence\n\nThe test:\n${f.test}\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- ${meta.slug}_inventory.json   (in-scope items — ${f.artifacts[0]})\n- ${meta.slug}_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. \`cat\` every file to collect the finding.`,
       "/evidence/policy.json":
         `{\n  "control": ${JSON.stringify(sub)},\n  "domain": ${JSON.stringify(dn)},\n  "requirement": "every in-scope item must have the control applied and operating",\n  "exception_threshold": 3\n}\n# fragment: ${f1}`,
       [`/evidence/${meta.slug}_inventory.json`]:
@@ -364,22 +394,31 @@ function ctfFor(id, dn, sub, meta, opinion) {
   } };
 }
 
-function pyFor(dn, sub, meta, pyName) {
+function pyFor(dn, sub, meta, pyName, f) {
   const cls = meta.prefix.toUpperCase();
+  const toolLines = f.tools.length
+    ? f.tools.map((t) => `    ${t}`).join("\n")
+    : `    (wire read-only API calls to: ${f.systems.join(", ")})`;
   return `#!/usr/bin/env python3
 """Read-only MCP server — ${dn}: "${sub}" audit evidence.
 
-Gathers the in-scope inventory and the observed control state from this domain's
-systems of record, evaluates each item against policy, and reports the exceptions
-with a PASS / EXCEPTIONS / MATERIAL-GAP opinion. READ-ONLY: it lists and reports,
-never changes state — the hard requirement for audit tooling.
+THE TEST
+${f.test}
+
+ARTIFACT (what _gather() pulls)
+    ${f.artifacts[0]}
+
+REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
+${toolLines}
+
+This server gathers the in-scope inventory and the observed control state, evaluates
+each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /
+MATERIAL-GAP opinion. READ-ONLY: it lists and reports, never changes state — the hard
+requirement for audit tooling.
 
   pip install "mcp[cli]"
   mcp run ${pyName}                 # expose to an agent
   python ${pyName} --selftest       # reproduce findings against fixtures, offline
-
-Wire real sources by replacing the _gather() fixtures with read-only API calls to
-${meta.systems.join(", ")}.
 """
 from __future__ import annotations
 import json, sys
@@ -482,7 +521,8 @@ for (const [name, subs] of groups) {
     const opinion = opinionFor(order);
     const pyName = `${pad2(order)}_${slugify(sub).replace(/-/g, "_")}_mcp.py`;
     const { ease, value } = scores(sub, i);
-    const { flag, ctf } = ctfFor(id, dn, sub, meta, opinion);
+    const f = facts(dn, sub, meta, MODULES[id]); // real per-module specifics (or fallback)
+    const { flag, ctf } = ctfFor(id, dn, sub, meta, opinion, f);
     flags[id] = flag;
     const stage = {
       epochId: meta.slug,
@@ -493,16 +533,11 @@ for (const [name, subs] of groups) {
       xp: 100,
       easeScore: ease, valueScore: value, rank: 0,
       auditMeta: {
-        objective: `Prove the "${sub}" control for ${dn} is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.`,
-        approach: `An audit agent calls a read-only MCP server that wraps each ${dn} source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)`,
-        artifacts: [
-          `In-scope inventory for the ${sub.toLowerCase()} control (from ${meta.systems[0]})`,
-          `Observed configuration/state evidence showing whether the control is applied and operating`,
-          `The control policy / standard / threshold the evidence is judged against`,
-          `The reconciled exceptions list + coverage report (the working paper)`,
-        ],
-        system: meta.systems.map((s) => `${s}`),
-        dataOwner: meta.owners.map((o) => `${o}`),
+        objective: `Prove the "${sub}" control for ${dn} is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: ${f.test}`,
+        approach: `An audit agent calls a read-only MCP server that wraps the ${dn} systems of record (${f.systems.slice(0, 3).join("; ")}) as tools${f.tools.length ? ` — e.g. \`${(f.tools[0].split(/\s{2,}/)[1] || f.tools[0]).trim().slice(0, 70)}\`` : ""}, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)`,
+        artifacts: f.artifacts,
+        system: f.systems,
+        dataOwner: f.owners,
         scoring: {
           ease: `EASE ${ease}/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.`,
           value: `VALUE ${value}/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream ${dn} controls.`,
@@ -511,16 +546,16 @@ for (const [name, subs] of groups) {
       badge: { id: `${id}-badge`, name: `${dn} Auditor`, emoji: meta.emoji },
       wonder: { name: `${sub}`, location: dn, era: "Present Day", emoji: meta.emoji },
       challengeType: "ctf",
-      info: infoFor(id, dn, sub, meta, opinion, pyName),
+      info: infoFor(id, dn, sub, meta, opinion, pyName, f),
       ctf,
-      quiz: quizFor(id, dn, sub, meta, opinion),
+      quiz: quizFor(id, dn, sub, f, opinion),
     };
     stages.push(stage);
     totalModules++;
     // write python
     const pdir = path.join(PUBCODE, meta.slug);
     fs.mkdirSync(pdir, { recursive: true });
-    fs.writeFileSync(path.join(pdir, pyName), pyFor(dn, sub, meta, pyName), "utf8");
+    fs.writeFileSync(path.join(pdir, pyName), pyFor(dn, sub, meta, pyName, f), "utf8");
   });
 
   const cml = camel(meta.slug);

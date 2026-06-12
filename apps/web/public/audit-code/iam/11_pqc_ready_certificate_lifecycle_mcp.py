@@ -1,17 +1,26 @@
 #!/usr/bin/env python3
-"""Read-only MCP server — Identity & Access Mgmt: "PQC-ready certificate lifecycle" audit evidence.
+"""Read-only MCP server — Identity & Access Management (IAM): "PQC-ready certificate lifecycle" audit evidence.
 
-Gathers the in-scope inventory and the observed control state from this domain's
-systems of record, evaluates each item against policy, and reports the exceptions
-with a PASS / EXCEPTIONS / MATERIAL-GAP opinion. READ-ONLY: it lists and reports,
-never changes state — the hard requirement for audit tooling.
+THE TEST
+Assess the certificate and PKI estate for quantum readiness. PASS: a complete CBOM exists; the classical algorithms in use are catalogued; crypto is agile (cert and key types can be rotated centrally); a migration plan to NIST PQC standards (ML-KEM / ML-DSA, FIPS 203/204) and hybrid certificates exists with timelines aligned to CNSA 2.0; and long-lived secrets are prioritised for harvest-now-decrypt-later (HNDL) risk. Exceptions: no crypto inventory, hardcoded/un-agile algorithms, long-lived RSA/ECC protecting data that must outlive a cryptographically-relevant quantum computer, and no vendor PQC commitment.
+
+ARTIFACT (what _gather() pulls)
+    The cryptographic inventory / CBOM (Cryptographic Bill of Materials) for certificates and key-exchange — algorithms, key sizes, and where each is used
+
+REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
+    CBOM:  generate a cryptography Bill of Materials (e.g. CycloneDX crypto-assets) across the estate
+    Inventory: Venafi/Keyfactor crypto inventory (algorithm + key size + validity + location)
+    Scan:  probe endpoints for negotiated key-exchange and any hybrid PQC support
+    Map:   join data sensitivity + retention period against certificate/key validity to score HNDL exposure
+
+This server gathers the in-scope inventory and the observed control state, evaluates
+each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /
+MATERIAL-GAP opinion. READ-ONLY: it lists and reports, never changes state — the hard
+requirement for audit tooling.
 
   pip install "mcp[cli]"
   mcp run 11_pqc_ready_certificate_lifecycle_mcp.py                 # expose to an agent
   python 11_pqc_ready_certificate_lifecycle_mcp.py --selftest       # reproduce findings against fixtures, offline
-
-Wire real sources by replacing the _gather() fixtures with read-only API calls to
-IdP (Okta / Entra ID / Ping), PAM (CyberArk / Delinea), IGA / access-review platform, Directory (AD / LDAP).
 """
 from __future__ import annotations
 import json, sys
@@ -68,7 +77,7 @@ def coverage_report() -> dict:
                else "EXCEPTIONS" if len(exceptions) <= EXCEPTION_THRESHOLD
                else "MATERIAL GAP")
     return {
-        "domain": "Identity & Access Mgmt",
+        "domain": "Identity & Access Management (IAM)",
         "control": "PQC-ready certificate lifecycle",
         "in_scope": len(rows),
         "compliant": len(rows) - len(exceptions),

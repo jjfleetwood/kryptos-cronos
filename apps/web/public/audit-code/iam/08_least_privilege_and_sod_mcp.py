@@ -1,17 +1,26 @@
 #!/usr/bin/env python3
-"""Read-only MCP server — Identity & Access Mgmt: "Least privilege and SoD" audit evidence.
+"""Read-only MCP server — Identity & Access Management (IAM): "Least privilege and SoD" audit evidence.
 
-Gathers the in-scope inventory and the observed control state from this domain's
-systems of record, evaluates each item against policy, and reports the exceptions
-with a PASS / EXCEPTIONS / MATERIAL-GAP opinion. READ-ONLY: it lists and reports,
-never changes state — the hard requirement for audit tooling.
+THE TEST
+Run the SoD ruleset against current assignments and assess least privilege. PASS: no user holds a toxic combination without an approved, real mitigating control; entitlements trend toward least privilege (unused/over-broad access is removed). Exceptions: active SoD conflicts (e.g. a user who can both create and approve payments), over-entitled accounts with access far beyond their role, and conflicts 'accepted' with no genuine compensating control.
+
+ARTIFACT (what _gather() pulls)
+    The entitlement-to-user assignment export (who holds what, across apps and cloud)
+
+REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
+    SAP GRC: Access Risk Analysis (ARA) report — user-level risk violations against the ruleset
+    IGA:     export entitlement assignments and join against the toxic-combination ruleset
+    AWS:     IAM Access Analyzer 'unused access' + Access Advisor last-accessed (least-privilege evidence)
+    Cloud:   flag policies granting wildcard '*' actions or '*' resources
+
+This server gathers the in-scope inventory and the observed control state, evaluates
+each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /
+MATERIAL-GAP opinion. READ-ONLY: it lists and reports, never changes state — the hard
+requirement for audit tooling.
 
   pip install "mcp[cli]"
   mcp run 08_least_privilege_and_sod_mcp.py                 # expose to an agent
   python 08_least_privilege_and_sod_mcp.py --selftest       # reproduce findings against fixtures, offline
-
-Wire real sources by replacing the _gather() fixtures with read-only API calls to
-IdP (Okta / Entra ID / Ping), PAM (CyberArk / Delinea), IGA / access-review platform, Directory (AD / LDAP).
 """
 from __future__ import annotations
 import json, sys
@@ -68,7 +77,7 @@ def coverage_report() -> dict:
                else "EXCEPTIONS" if len(exceptions) <= EXCEPTION_THRESHOLD
                else "MATERIAL GAP")
     return {
-        "domain": "Identity & Access Mgmt",
+        "domain": "Identity & Access Management (IAM)",
         "control": "Least privilege and SoD",
         "in_scope": len(rows),
         "compliant": len(rows) - len(exceptions),

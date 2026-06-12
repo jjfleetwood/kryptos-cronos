@@ -2,9 +2,9 @@ import type { EpochConfig, StageConfig } from "../types";
 
 export const cryptoSecretsEpoch: EpochConfig = {
   "id": "crypto-secrets",
-  "name": "Crypto Key & Secrets",
-  "subtitle": "Agentic technical & privacy audit — Crypto Key & Secrets",
-  "description": "Audit Crypto Key & Secrets end to end with a read-only agent fleet: each sub-process is a module that teaches the control as a repeatable agentic workflow with downloadable MCP tooling, a CTF, and a 10-question quiz.",
+  "name": "Cryptographic Key & Secrets Management",
+  "subtitle": "Agentic technical & privacy audit — Cryptographic Key & Secrets Management",
+  "description": "Audit Cryptographic Key & Secrets Management end to end with a read-only agent fleet: each sub-process is a module that teaches the control as a repeatable agentic workflow with downloadable MCP tooling, a CTF, and a 10-question quiz.",
   "emoji": "🔐",
   "color": "Amber",
   "unlocked": true
@@ -23,8 +23,8 @@ export const cryptoSecretsStages: StageConfig[] = [
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Key Lifecycle Management\" control for Crypto Key & Secrets is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Crypto Key & Secrets source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Key Lifecycle Management\" control for Cryptographic Key & Secrets Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the \"Key Lifecycle Management\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Cryptographic Key & Secrets Management systems of record (HashiCorp Vault / AWS KMS / Azure Key Vault; HSM (PKCS#11); Certificate authority / ACME) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the key lifecycle management control (from HashiCorp Vault / AWS KMS / Azure Key Vault)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -45,34 +45,34 @@ export const cryptoSecretsStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 5/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 9/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Crypto Key & Secrets controls."
+        "value": "VALUE 9/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Cryptographic Key & Secrets Management controls."
       }
     },
     "badge": {
       "id": "cks-01-badge",
-      "name": "Crypto Key & Secrets Auditor",
+      "name": "Cryptographic Key & Secrets Management Auditor",
       "emoji": "🔐"
     },
     "wonder": {
       "name": "Key Lifecycle Management",
-      "location": "Crypto Key & Secrets",
+      "location": "Cryptographic Key & Secrets Management",
       "era": "Present Day",
       "emoji": "🔐"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Key Lifecycle Management\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Crypto Key & Secrets control.",
+      "tagline": "Auditing \"Key Lifecycle Management\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the key lifecycle management control (from HashiCorp Vault / AWS KMS / Azure Key Vault)) with read-only agents, run the test against policy, and issue a defensible opinion on the Cryptographic Key & Secrets Management control.",
       "year": 2025,
       "overview": [
-        "The \"Key Lifecycle Management\" sub-process is one of the controls an auditor must verify for Crypto Key & Secrets. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that key lifecycle management is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically HashiCorp Vault / AWS KMS / Azure Key Vault, HSM (PKCS#11), Certificate authority / ACME — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Key Lifecycle Management\" sub-process is one of the controls an auditor must verify for Cryptographic Key & Secrets Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the key lifecycle management control (from HashiCorp Vault / AWS KMS / Azure Key Vault), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here HashiCorp Vault / AWS KMS / Azure Key Vault, HSM (PKCS#11), Certificate authority / ACME — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the \"Key Lifecycle Management\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `01_key_lifecycle_management_mcp.py` exposes read-only tools that turn each Crypto Key & Secrets source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `01_key_lifecycle_management_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from HashiCorp Vault / AWS KMS / Azure Key Vault and HSM (PKCS#11) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 01_key_lifecycle_management_mcp.py` to expose it to your agent — or `python 01_key_lifecycle_management_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -94,7 +94,7 @@ export const cryptoSecretsStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Crypto Key & Secrets scope + policy",
+            "sub": "define Cryptographic Key & Secrets Management scope + policy",
             "type": "attacker"
           },
           {
@@ -130,12 +130,13 @@ export const cryptoSecretsStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Key Lifecycle Management\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the key lifecycle management control (from HashiCorp Vault / AWS KMS / Azure Key Vault).",
+        "The test: Reconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the \"Key Lifecycle Management\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (HashiCorp Vault / AWS KMS / Azure Key Vault, HSM (PKCS#11), Certificate authority / ACME) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the key lifecycle management control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -159,21 +160,21 @@ export const cryptoSecretsStages: StageConfig[] = [
         {
           "name": "01_key_lifecycle_management_mcp.py",
           "url": "/audit-code/crypto-secrets/01_key_lifecycle_management_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Crypto Key & Secrets evidence for \"Key Lifecycle Management\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Cryptographic Key & Secrets Management evidence for \"Key Lifecycle Management\" (in-scope inventory for the key lifecycle management control (from hashicorp vault / aws kms / azure key vault)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Key Lifecycle Management\" control for Crypto Key & Secrets at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Key Lifecycle Management\" control for Cryptographic Key & Secrets Management at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the \"Key Lifecycle Management\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the key lifecycle management control (from HashiCorp Vault / AWS KMS / Azure Key Vault) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live HashiCorp Vault / AWS KMS / Azure Key Vault APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. HashiCorp Vault / AWS KMS / Azure Key Vault gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. HashiCorp Vault / AWS KMS / Azure Key Vault is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from HashiCorp Vault / AWS KMS / Azure Key Vault; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Crypto Key & Secrets: \"Key Lifecycle Management\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- crypto-secrets_inventory.json   (in-scope items from HashiCorp Vault / AWS KMS / Azure Key Vault)\n- crypto-secrets_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Key Lifecycle Management\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Key Lifecycle Management\",\n  \"domain\": \"Crypto Key & Secrets\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{cks_",
+        "/evidence/README.md": "# AcmeCorp — Cryptographic Key & Secrets Management: \"Key Lifecycle Management\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the \"Key Lifecycle Management\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- crypto-secrets_inventory.json   (in-scope items — In-scope inventory for the key lifecycle management control (from HashiCorp Vault / AWS KMS / Azure Key Vault))\n- crypto-secrets_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Key Lifecycle Management\",\n  \"domain\": \"Cryptographic Key & Secrets Management\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{cks_",
         "/evidence/crypto-secrets_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"PKI / Crypto team\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Key Lifecycle Management\" control must cover\n# fragment: key_lifecycle_management_",
         "/evidence/crypto-secrets_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -237,7 +238,7 @@ export const cryptoSecretsStages: StageConfig[] = [
           "id": "cks-01-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Key Lifecycle Management\" sub-process of Crypto Key & Secrets?",
+          "text": "What is the primary audit objective for the \"Key Lifecycle Management\" sub-process of Cryptographic Key & Secrets Management?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -251,11 +252,11 @@ export const cryptoSecretsStages: StageConfig[] = [
           "id": "cks-01-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Key Lifecycle Management\" matter to the broader Crypto Key & Secrets posture?",
+          "text": "Why does a weakness in \"Key Lifecycle Management\" matter to the broader Cryptographic Key & Secrets Management posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Crypto Key & Secrets controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Cryptographic Key & Secrets Management controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -268,7 +269,7 @@ export const cryptoSecretsStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Key Lifecycle Management\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Key Lifecycle Management evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the key lifecycle management control (from HashiCorp Vault / AWS KMS / Azure Key Vault) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -334,16 +335,16 @@ export const cryptoSecretsStages: StageConfig[] = [
         {
           "id": "cks-01-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Key Lifecycle Management\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Key Lifecycle Management\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the key lifecycle management control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the key lifecycle management control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "cks-01-q9",
@@ -388,8 +389,8 @@ export const cryptoSecretsStages: StageConfig[] = [
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Secrets Management\" control for Crypto Key & Secrets is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Crypto Key & Secrets source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Secrets Management\" control for Cryptographic Key & Secrets Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the \"Secrets Management\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Cryptographic Key & Secrets Management systems of record (HashiCorp Vault / AWS KMS / Azure Key Vault; HSM (PKCS#11); Certificate authority / ACME) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the secrets management control (from HashiCorp Vault / AWS KMS / Azure Key Vault)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -410,34 +411,34 @@ export const cryptoSecretsStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 6/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 9/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Crypto Key & Secrets controls."
+        "value": "VALUE 9/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Cryptographic Key & Secrets Management controls."
       }
     },
     "badge": {
       "id": "cks-02-badge",
-      "name": "Crypto Key & Secrets Auditor",
+      "name": "Cryptographic Key & Secrets Management Auditor",
       "emoji": "🔐"
     },
     "wonder": {
       "name": "Secrets Management",
-      "location": "Crypto Key & Secrets",
+      "location": "Cryptographic Key & Secrets Management",
       "era": "Present Day",
       "emoji": "🔐"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Secrets Management\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Crypto Key & Secrets control.",
+      "tagline": "Auditing \"Secrets Management\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the secrets management control (from HashiCorp Vault / AWS KMS / Azure Key Vault)) with read-only agents, run the test against policy, and issue a defensible opinion on the Cryptographic Key & Secrets Management control.",
       "year": 2025,
       "overview": [
-        "The \"Secrets Management\" sub-process is one of the controls an auditor must verify for Crypto Key & Secrets. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that secrets management is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically HashiCorp Vault / AWS KMS / Azure Key Vault, HSM (PKCS#11), Certificate authority / ACME — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Secrets Management\" sub-process is one of the controls an auditor must verify for Cryptographic Key & Secrets Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the secrets management control (from HashiCorp Vault / AWS KMS / Azure Key Vault), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here HashiCorp Vault / AWS KMS / Azure Key Vault, HSM (PKCS#11), Certificate authority / ACME — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the \"Secrets Management\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `02_secrets_management_mcp.py` exposes read-only tools that turn each Crypto Key & Secrets source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `02_secrets_management_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from HashiCorp Vault / AWS KMS / Azure Key Vault and HSM (PKCS#11) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 02_secrets_management_mcp.py` to expose it to your agent — or `python 02_secrets_management_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -459,7 +460,7 @@ export const cryptoSecretsStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Crypto Key & Secrets scope + policy",
+            "sub": "define Cryptographic Key & Secrets Management scope + policy",
             "type": "attacker"
           },
           {
@@ -495,12 +496,13 @@ export const cryptoSecretsStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Secrets Management\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the secrets management control (from HashiCorp Vault / AWS KMS / Azure Key Vault).",
+        "The test: Reconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the \"Secrets Management\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (HashiCorp Vault / AWS KMS / Azure Key Vault, HSM (PKCS#11), Certificate authority / ACME) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the secrets management control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -524,21 +526,21 @@ export const cryptoSecretsStages: StageConfig[] = [
         {
           "name": "02_secrets_management_mcp.py",
           "url": "/audit-code/crypto-secrets/02_secrets_management_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Crypto Key & Secrets evidence for \"Secrets Management\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Cryptographic Key & Secrets Management evidence for \"Secrets Management\" (in-scope inventory for the secrets management control (from hashicorp vault / aws kms / azure key vault)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Secrets Management\" control for Crypto Key & Secrets at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Secrets Management\" control for Cryptographic Key & Secrets Management at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the \"Secrets Management\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the secrets management control (from HashiCorp Vault / AWS KMS / Azure Key Vault) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live HashiCorp Vault / AWS KMS / Azure Key Vault APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. HashiCorp Vault / AWS KMS / Azure Key Vault gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. HashiCorp Vault / AWS KMS / Azure Key Vault is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from HashiCorp Vault / AWS KMS / Azure Key Vault; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Crypto Key & Secrets: \"Secrets Management\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- crypto-secrets_inventory.json   (in-scope items from HashiCorp Vault / AWS KMS / Azure Key Vault)\n- crypto-secrets_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Secrets Management\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Secrets Management\",\n  \"domain\": \"Crypto Key & Secrets\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{cks_",
+        "/evidence/README.md": "# AcmeCorp — Cryptographic Key & Secrets Management: \"Secrets Management\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the \"Secrets Management\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- crypto-secrets_inventory.json   (in-scope items — In-scope inventory for the secrets management control (from HashiCorp Vault / AWS KMS / Azure Key Vault))\n- crypto-secrets_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Secrets Management\",\n  \"domain\": \"Cryptographic Key & Secrets Management\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{cks_",
         "/evidence/crypto-secrets_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"PKI / Crypto team\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Secrets Management\" control must cover\n# fragment: secrets_management_",
         "/evidence/crypto-secrets_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -602,7 +604,7 @@ export const cryptoSecretsStages: StageConfig[] = [
           "id": "cks-02-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Secrets Management\" sub-process of Crypto Key & Secrets?",
+          "text": "What is the primary audit objective for the \"Secrets Management\" sub-process of Cryptographic Key & Secrets Management?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -616,11 +618,11 @@ export const cryptoSecretsStages: StageConfig[] = [
           "id": "cks-02-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Secrets Management\" matter to the broader Crypto Key & Secrets posture?",
+          "text": "Why does a weakness in \"Secrets Management\" matter to the broader Cryptographic Key & Secrets Management posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Crypto Key & Secrets controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Cryptographic Key & Secrets Management controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -633,7 +635,7 @@ export const cryptoSecretsStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Secrets Management\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Secrets Management evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the secrets management control (from HashiCorp Vault / AWS KMS / Azure Key Vault) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -699,16 +701,16 @@ export const cryptoSecretsStages: StageConfig[] = [
         {
           "id": "cks-02-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Secrets Management\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Secrets Management\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the secrets management control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the secrets management control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "cks-02-q9",
@@ -753,8 +755,8 @@ export const cryptoSecretsStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Certificate Management\" control for Crypto Key & Secrets is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Crypto Key & Secrets source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Certificate Management\" control for Cryptographic Key & Secrets Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the \"Certificate Management\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Cryptographic Key & Secrets Management systems of record (HashiCorp Vault / AWS KMS / Azure Key Vault; HSM (PKCS#11); Certificate authority / ACME) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the certificate management control (from HashiCorp Vault / AWS KMS / Azure Key Vault)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -775,34 +777,34 @@ export const cryptoSecretsStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 7/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Crypto Key & Secrets controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Cryptographic Key & Secrets Management controls."
       }
     },
     "badge": {
       "id": "cks-03-badge",
-      "name": "Crypto Key & Secrets Auditor",
+      "name": "Cryptographic Key & Secrets Management Auditor",
       "emoji": "🔐"
     },
     "wonder": {
       "name": "Certificate Management",
-      "location": "Crypto Key & Secrets",
+      "location": "Cryptographic Key & Secrets Management",
       "era": "Present Day",
       "emoji": "🔐"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Certificate Management\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Crypto Key & Secrets control.",
+      "tagline": "Auditing \"Certificate Management\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the certificate management control (from HashiCorp Vault / AWS KMS / Azure Key Vault)) with read-only agents, run the test against policy, and issue a defensible opinion on the Cryptographic Key & Secrets Management control.",
       "year": 2025,
       "overview": [
-        "The \"Certificate Management\" sub-process is one of the controls an auditor must verify for Crypto Key & Secrets. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that certificate management is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically HashiCorp Vault / AWS KMS / Azure Key Vault, HSM (PKCS#11), Certificate authority / ACME — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Certificate Management\" sub-process is one of the controls an auditor must verify for Cryptographic Key & Secrets Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the certificate management control (from HashiCorp Vault / AWS KMS / Azure Key Vault), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here HashiCorp Vault / AWS KMS / Azure Key Vault, HSM (PKCS#11), Certificate authority / ACME — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the \"Certificate Management\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `03_certificate_management_mcp.py` exposes read-only tools that turn each Crypto Key & Secrets source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `03_certificate_management_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from HashiCorp Vault / AWS KMS / Azure Key Vault and HSM (PKCS#11) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 03_certificate_management_mcp.py` to expose it to your agent — or `python 03_certificate_management_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -824,7 +826,7 @@ export const cryptoSecretsStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Crypto Key & Secrets scope + policy",
+            "sub": "define Cryptographic Key & Secrets Management scope + policy",
             "type": "attacker"
           },
           {
@@ -860,12 +862,13 @@ export const cryptoSecretsStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Certificate Management\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the certificate management control (from HashiCorp Vault / AWS KMS / Azure Key Vault).",
+        "The test: Reconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the \"Certificate Management\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (HashiCorp Vault / AWS KMS / Azure Key Vault, HSM (PKCS#11), Certificate authority / ACME) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the certificate management control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -889,21 +892,21 @@ export const cryptoSecretsStages: StageConfig[] = [
         {
           "name": "03_certificate_management_mcp.py",
           "url": "/audit-code/crypto-secrets/03_certificate_management_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Crypto Key & Secrets evidence for \"Certificate Management\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Cryptographic Key & Secrets Management evidence for \"Certificate Management\" (in-scope inventory for the certificate management control (from hashicorp vault / aws kms / azure key vault)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Certificate Management\" control for Crypto Key & Secrets at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Certificate Management\" control for Cryptographic Key & Secrets Management at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the \"Certificate Management\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the certificate management control (from HashiCorp Vault / AWS KMS / Azure Key Vault) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live HashiCorp Vault / AWS KMS / Azure Key Vault APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. HashiCorp Vault / AWS KMS / Azure Key Vault gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. HashiCorp Vault / AWS KMS / Azure Key Vault is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from HashiCorp Vault / AWS KMS / Azure Key Vault; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Crypto Key & Secrets: \"Certificate Management\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- crypto-secrets_inventory.json   (in-scope items from HashiCorp Vault / AWS KMS / Azure Key Vault)\n- crypto-secrets_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Certificate Management\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Certificate Management\",\n  \"domain\": \"Crypto Key & Secrets\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{cks_",
+        "/evidence/README.md": "# AcmeCorp — Cryptographic Key & Secrets Management: \"Certificate Management\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the \"Certificate Management\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- crypto-secrets_inventory.json   (in-scope items — In-scope inventory for the certificate management control (from HashiCorp Vault / AWS KMS / Azure Key Vault))\n- crypto-secrets_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Certificate Management\",\n  \"domain\": \"Cryptographic Key & Secrets Management\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{cks_",
         "/evidence/crypto-secrets_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"PKI / Crypto team\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Certificate Management\" control must cover\n# fragment: certificate_management_",
         "/evidence/crypto-secrets_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -967,7 +970,7 @@ export const cryptoSecretsStages: StageConfig[] = [
           "id": "cks-03-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Certificate Management\" sub-process of Crypto Key & Secrets?",
+          "text": "What is the primary audit objective for the \"Certificate Management\" sub-process of Cryptographic Key & Secrets Management?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -981,11 +984,11 @@ export const cryptoSecretsStages: StageConfig[] = [
           "id": "cks-03-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Certificate Management\" matter to the broader Crypto Key & Secrets posture?",
+          "text": "Why does a weakness in \"Certificate Management\" matter to the broader Cryptographic Key & Secrets Management posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Crypto Key & Secrets controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Cryptographic Key & Secrets Management controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -998,7 +1001,7 @@ export const cryptoSecretsStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Certificate Management\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Certificate Management evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the certificate management control (from HashiCorp Vault / AWS KMS / Azure Key Vault) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -1064,16 +1067,16 @@ export const cryptoSecretsStages: StageConfig[] = [
         {
           "id": "cks-03-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Certificate Management\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Certificate Management\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the certificate management control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the certificate management control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "cks-03-q9",
@@ -1118,8 +1121,8 @@ export const cryptoSecretsStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"HSM controls\" control for Crypto Key & Secrets is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Crypto Key & Secrets source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"HSM controls\" control for Cryptographic Key & Secrets Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the \"HSM controls\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Cryptographic Key & Secrets Management systems of record (HashiCorp Vault / AWS KMS / Azure Key Vault; HSM (PKCS#11); Certificate authority / ACME) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the hsm controls control (from HashiCorp Vault / AWS KMS / Azure Key Vault)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -1140,34 +1143,34 @@ export const cryptoSecretsStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 3/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Crypto Key & Secrets controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Cryptographic Key & Secrets Management controls."
       }
     },
     "badge": {
       "id": "cks-04-badge",
-      "name": "Crypto Key & Secrets Auditor",
+      "name": "Cryptographic Key & Secrets Management Auditor",
       "emoji": "🔐"
     },
     "wonder": {
       "name": "HSM controls",
-      "location": "Crypto Key & Secrets",
+      "location": "Cryptographic Key & Secrets Management",
       "era": "Present Day",
       "emoji": "🔐"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"HSM controls\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Crypto Key & Secrets control.",
+      "tagline": "Auditing \"HSM controls\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the hsm controls control (from HashiCorp Vault / AWS KMS / Azure Key Vault)) with read-only agents, run the test against policy, and issue a defensible opinion on the Cryptographic Key & Secrets Management control.",
       "year": 2025,
       "overview": [
-        "The \"HSM controls\" sub-process is one of the controls an auditor must verify for Crypto Key & Secrets. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that hsm controls is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically HashiCorp Vault / AWS KMS / Azure Key Vault, HSM (PKCS#11), Certificate authority / ACME — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"HSM controls\" sub-process is one of the controls an auditor must verify for Cryptographic Key & Secrets Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the hsm controls control (from HashiCorp Vault / AWS KMS / Azure Key Vault), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here HashiCorp Vault / AWS KMS / Azure Key Vault, HSM (PKCS#11), Certificate authority / ACME — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the \"HSM controls\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `04_hsm_controls_mcp.py` exposes read-only tools that turn each Crypto Key & Secrets source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `04_hsm_controls_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from HashiCorp Vault / AWS KMS / Azure Key Vault and HSM (PKCS#11) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 04_hsm_controls_mcp.py` to expose it to your agent — or `python 04_hsm_controls_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -1189,7 +1192,7 @@ export const cryptoSecretsStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Crypto Key & Secrets scope + policy",
+            "sub": "define Cryptographic Key & Secrets Management scope + policy",
             "type": "attacker"
           },
           {
@@ -1225,12 +1228,13 @@ export const cryptoSecretsStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"HSM controls\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the hsm controls control (from HashiCorp Vault / AWS KMS / Azure Key Vault).",
+        "The test: Reconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the \"HSM controls\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (HashiCorp Vault / AWS KMS / Azure Key Vault, HSM (PKCS#11), Certificate authority / ACME) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the hsm controls control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -1254,21 +1258,21 @@ export const cryptoSecretsStages: StageConfig[] = [
         {
           "name": "04_hsm_controls_mcp.py",
           "url": "/audit-code/crypto-secrets/04_hsm_controls_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Crypto Key & Secrets evidence for \"HSM controls\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Cryptographic Key & Secrets Management evidence for \"HSM controls\" (in-scope inventory for the hsm controls control (from hashicorp vault / aws kms / azure key vault)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"HSM controls\" control for Crypto Key & Secrets at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"HSM controls\" control for Cryptographic Key & Secrets Management at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the \"HSM controls\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the hsm controls control (from HashiCorp Vault / AWS KMS / Azure Key Vault) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live HashiCorp Vault / AWS KMS / Azure Key Vault APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. HashiCorp Vault / AWS KMS / Azure Key Vault gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. HashiCorp Vault / AWS KMS / Azure Key Vault is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from HashiCorp Vault / AWS KMS / Azure Key Vault; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Crypto Key & Secrets: \"HSM controls\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- crypto-secrets_inventory.json   (in-scope items from HashiCorp Vault / AWS KMS / Azure Key Vault)\n- crypto-secrets_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"HSM controls\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"HSM controls\",\n  \"domain\": \"Crypto Key & Secrets\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{cks_",
+        "/evidence/README.md": "# AcmeCorp — Cryptographic Key & Secrets Management: \"HSM controls\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the \"HSM controls\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- crypto-secrets_inventory.json   (in-scope items — In-scope inventory for the hsm controls control (from HashiCorp Vault / AWS KMS / Azure Key Vault))\n- crypto-secrets_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"HSM controls\",\n  \"domain\": \"Cryptographic Key & Secrets Management\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{cks_",
         "/evidence/crypto-secrets_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"PKI / Crypto team\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"HSM controls\" control must cover\n# fragment: hsm_controls_",
         "/evidence/crypto-secrets_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -1332,7 +1336,7 @@ export const cryptoSecretsStages: StageConfig[] = [
           "id": "cks-04-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"HSM controls\" sub-process of Crypto Key & Secrets?",
+          "text": "What is the primary audit objective for the \"HSM controls\" sub-process of Cryptographic Key & Secrets Management?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -1346,11 +1350,11 @@ export const cryptoSecretsStages: StageConfig[] = [
           "id": "cks-04-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"HSM controls\" matter to the broader Crypto Key & Secrets posture?",
+          "text": "Why does a weakness in \"HSM controls\" matter to the broader Cryptographic Key & Secrets Management posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Crypto Key & Secrets controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Cryptographic Key & Secrets Management controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -1363,7 +1367,7 @@ export const cryptoSecretsStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"HSM controls\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The HSM controls evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the hsm controls control (from HashiCorp Vault / AWS KMS / Azure Key Vault) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -1429,16 +1433,16 @@ export const cryptoSecretsStages: StageConfig[] = [
         {
           "id": "cks-04-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"HSM controls\"?",
+          "challenge": "Typical finding",
+          "text": "For \"HSM controls\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the hsm controls control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the hsm controls control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "cks-04-q9",
@@ -1483,8 +1487,8 @@ export const cryptoSecretsStages: StageConfig[] = [
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Cryptographic implementation\" control for Crypto Key & Secrets is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Crypto Key & Secrets source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Cryptographic implementation\" control for Cryptographic Key & Secrets Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the \"Cryptographic implementation\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Cryptographic Key & Secrets Management systems of record (HashiCorp Vault / AWS KMS / Azure Key Vault; HSM (PKCS#11); Certificate authority / ACME) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the cryptographic implementation control (from HashiCorp Vault / AWS KMS / Azure Key Vault)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -1505,34 +1509,34 @@ export const cryptoSecretsStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 6/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 9/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Crypto Key & Secrets controls."
+        "value": "VALUE 9/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Cryptographic Key & Secrets Management controls."
       }
     },
     "badge": {
       "id": "cks-05-badge",
-      "name": "Crypto Key & Secrets Auditor",
+      "name": "Cryptographic Key & Secrets Management Auditor",
       "emoji": "🔐"
     },
     "wonder": {
       "name": "Cryptographic implementation",
-      "location": "Crypto Key & Secrets",
+      "location": "Cryptographic Key & Secrets Management",
       "era": "Present Day",
       "emoji": "🔐"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Cryptographic implementation\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Crypto Key & Secrets control.",
+      "tagline": "Auditing \"Cryptographic implementation\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the cryptographic implementation control (from HashiCorp Vault / AWS KMS / Azure Key Vault)) with read-only agents, run the test against policy, and issue a defensible opinion on the Cryptographic Key & Secrets Management control.",
       "year": 2025,
       "overview": [
-        "The \"Cryptographic implementation\" sub-process is one of the controls an auditor must verify for Crypto Key & Secrets. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that cryptographic implementation is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically HashiCorp Vault / AWS KMS / Azure Key Vault, HSM (PKCS#11), Certificate authority / ACME — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Cryptographic implementation\" sub-process is one of the controls an auditor must verify for Cryptographic Key & Secrets Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the cryptographic implementation control (from HashiCorp Vault / AWS KMS / Azure Key Vault), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here HashiCorp Vault / AWS KMS / Azure Key Vault, HSM (PKCS#11), Certificate authority / ACME — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the \"Cryptographic implementation\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `05_cryptographic_implementation_mcp.py` exposes read-only tools that turn each Crypto Key & Secrets source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `05_cryptographic_implementation_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from HashiCorp Vault / AWS KMS / Azure Key Vault and HSM (PKCS#11) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 05_cryptographic_implementation_mcp.py` to expose it to your agent — or `python 05_cryptographic_implementation_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -1554,7 +1558,7 @@ export const cryptoSecretsStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Crypto Key & Secrets scope + policy",
+            "sub": "define Cryptographic Key & Secrets Management scope + policy",
             "type": "attacker"
           },
           {
@@ -1590,12 +1594,13 @@ export const cryptoSecretsStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Cryptographic implementation\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the cryptographic implementation control (from HashiCorp Vault / AWS KMS / Azure Key Vault).",
+        "The test: Reconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the \"Cryptographic implementation\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (HashiCorp Vault / AWS KMS / Azure Key Vault, HSM (PKCS#11), Certificate authority / ACME) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the cryptographic implementation control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -1619,21 +1624,21 @@ export const cryptoSecretsStages: StageConfig[] = [
         {
           "name": "05_cryptographic_implementation_mcp.py",
           "url": "/audit-code/crypto-secrets/05_cryptographic_implementation_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Crypto Key & Secrets evidence for \"Cryptographic implementation\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Cryptographic Key & Secrets Management evidence for \"Cryptographic implementation\" (in-scope inventory for the cryptographic implementation control (from hashicorp vault / aws kms / azure key vault)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Cryptographic implementation\" control for Crypto Key & Secrets at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Cryptographic implementation\" control for Cryptographic Key & Secrets Management at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the \"Cryptographic implementation\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the cryptographic implementation control (from HashiCorp Vault / AWS KMS / Azure Key Vault) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live HashiCorp Vault / AWS KMS / Azure Key Vault APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. HashiCorp Vault / AWS KMS / Azure Key Vault gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. HashiCorp Vault / AWS KMS / Azure Key Vault is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from HashiCorp Vault / AWS KMS / Azure Key Vault; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Crypto Key & Secrets: \"Cryptographic implementation\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- crypto-secrets_inventory.json   (in-scope items from HashiCorp Vault / AWS KMS / Azure Key Vault)\n- crypto-secrets_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Cryptographic implementation\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Cryptographic implementation\",\n  \"domain\": \"Crypto Key & Secrets\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{cks_",
+        "/evidence/README.md": "# AcmeCorp — Cryptographic Key & Secrets Management: \"Cryptographic implementation\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the \"Cryptographic implementation\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- crypto-secrets_inventory.json   (in-scope items — In-scope inventory for the cryptographic implementation control (from HashiCorp Vault / AWS KMS / Azure Key Vault))\n- crypto-secrets_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Cryptographic implementation\",\n  \"domain\": \"Cryptographic Key & Secrets Management\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{cks_",
         "/evidence/crypto-secrets_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"PKI / Crypto team\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Cryptographic implementation\" control must cover\n# fragment: cryptographic_implementation_",
         "/evidence/crypto-secrets_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"EXCEPTIONS\"\n}\n# fragment: exceptions}"
@@ -1697,7 +1702,7 @@ export const cryptoSecretsStages: StageConfig[] = [
           "id": "cks-05-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Cryptographic implementation\" sub-process of Crypto Key & Secrets?",
+          "text": "What is the primary audit objective for the \"Cryptographic implementation\" sub-process of Cryptographic Key & Secrets Management?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -1711,11 +1716,11 @@ export const cryptoSecretsStages: StageConfig[] = [
           "id": "cks-05-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Cryptographic implementation\" matter to the broader Crypto Key & Secrets posture?",
+          "text": "Why does a weakness in \"Cryptographic implementation\" matter to the broader Cryptographic Key & Secrets Management posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Crypto Key & Secrets controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Cryptographic Key & Secrets Management controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -1728,7 +1733,7 @@ export const cryptoSecretsStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Cryptographic implementation\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Cryptographic implementation evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the cryptographic implementation control (from HashiCorp Vault / AWS KMS / Azure Key Vault) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -1794,16 +1799,16 @@ export const cryptoSecretsStages: StageConfig[] = [
         {
           "id": "cks-05-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Cryptographic implementation\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Cryptographic implementation\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the cryptographic implementation control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the cryptographic implementation control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "cks-05-q9",
@@ -1848,8 +1853,8 @@ export const cryptoSecretsStages: StageConfig[] = [
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Post-quantum cryptography readiness\" control for Crypto Key & Secrets is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Crypto Key & Secrets source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Post-quantum cryptography readiness\" control for Cryptographic Key & Secrets Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the \"Post-quantum cryptography readiness\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Cryptographic Key & Secrets Management systems of record (HashiCorp Vault / AWS KMS / Azure Key Vault; HSM (PKCS#11); Certificate authority / ACME) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the post-quantum cryptography readiness control (from HashiCorp Vault / AWS KMS / Azure Key Vault)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -1870,34 +1875,34 @@ export const cryptoSecretsStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 7/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 9/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Crypto Key & Secrets controls."
+        "value": "VALUE 9/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Cryptographic Key & Secrets Management controls."
       }
     },
     "badge": {
       "id": "cks-06-badge",
-      "name": "Crypto Key & Secrets Auditor",
+      "name": "Cryptographic Key & Secrets Management Auditor",
       "emoji": "🔐"
     },
     "wonder": {
       "name": "Post-quantum cryptography readiness",
-      "location": "Crypto Key & Secrets",
+      "location": "Cryptographic Key & Secrets Management",
       "era": "Present Day",
       "emoji": "🔐"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Post-quantum cryptography readiness\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Crypto Key & Secrets control.",
+      "tagline": "Auditing \"Post-quantum cryptography readiness\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the post-quantum cryptography readiness control (from HashiCorp Vault / AWS KMS / Azure Key Vault)) with read-only agents, run the test against policy, and issue a defensible opinion on the Cryptographic Key & Secrets Management control.",
       "year": 2025,
       "overview": [
-        "The \"Post-quantum cryptography readiness\" sub-process is one of the controls an auditor must verify for Crypto Key & Secrets. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that post-quantum cryptography readiness is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically HashiCorp Vault / AWS KMS / Azure Key Vault, HSM (PKCS#11), Certificate authority / ACME — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Post-quantum cryptography readiness\" sub-process is one of the controls an auditor must verify for Cryptographic Key & Secrets Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the post-quantum cryptography readiness control (from HashiCorp Vault / AWS KMS / Azure Key Vault), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here HashiCorp Vault / AWS KMS / Azure Key Vault, HSM (PKCS#11), Certificate authority / ACME — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the \"Post-quantum cryptography readiness\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `06_post_quantum_cryptography_readiness_mcp.py` exposes read-only tools that turn each Crypto Key & Secrets source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `06_post_quantum_cryptography_readiness_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from HashiCorp Vault / AWS KMS / Azure Key Vault and HSM (PKCS#11) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 06_post_quantum_cryptography_readiness_mcp.py` to expose it to your agent — or `python 06_post_quantum_cryptography_readiness_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -1919,7 +1924,7 @@ export const cryptoSecretsStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Crypto Key & Secrets scope + policy",
+            "sub": "define Cryptographic Key & Secrets Management scope + policy",
             "type": "attacker"
           },
           {
@@ -1955,12 +1960,13 @@ export const cryptoSecretsStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Post-quantum cryptography readiness\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the post-quantum cryptography readiness control (from HashiCorp Vault / AWS KMS / Azure Key Vault).",
+        "The test: Reconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the \"Post-quantum cryptography readiness\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (HashiCorp Vault / AWS KMS / Azure Key Vault, HSM (PKCS#11), Certificate authority / ACME) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the post-quantum cryptography readiness control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -1984,21 +1990,21 @@ export const cryptoSecretsStages: StageConfig[] = [
         {
           "name": "06_post_quantum_cryptography_readiness_mcp.py",
           "url": "/audit-code/crypto-secrets/06_post_quantum_cryptography_readiness_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Crypto Key & Secrets evidence for \"Post-quantum cryptography readiness\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Cryptographic Key & Secrets Management evidence for \"Post-quantum cryptography readiness\" (in-scope inventory for the post-quantum cryptography readiness control (from hashicorp vault / aws kms / azure key vault)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Post-quantum cryptography readiness\" control for Crypto Key & Secrets at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Post-quantum cryptography readiness\" control for Cryptographic Key & Secrets Management at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the \"Post-quantum cryptography readiness\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the post-quantum cryptography readiness control (from HashiCorp Vault / AWS KMS / Azure Key Vault) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live HashiCorp Vault / AWS KMS / Azure Key Vault APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. HashiCorp Vault / AWS KMS / Azure Key Vault gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. HashiCorp Vault / AWS KMS / Azure Key Vault is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from HashiCorp Vault / AWS KMS / Azure Key Vault; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Crypto Key & Secrets: \"Post-quantum cryptography readiness\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- crypto-secrets_inventory.json   (in-scope items from HashiCorp Vault / AWS KMS / Azure Key Vault)\n- crypto-secrets_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Post-quantum cryptography readiness\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Post-quantum cryptography readiness\",\n  \"domain\": \"Crypto Key & Secrets\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{cks_",
+        "/evidence/README.md": "# AcmeCorp — Cryptographic Key & Secrets Management: \"Post-quantum cryptography readiness\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the \"Post-quantum cryptography readiness\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- crypto-secrets_inventory.json   (in-scope items — In-scope inventory for the post-quantum cryptography readiness control (from HashiCorp Vault / AWS KMS / Azure Key Vault))\n- crypto-secrets_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Post-quantum cryptography readiness\",\n  \"domain\": \"Cryptographic Key & Secrets Management\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{cks_",
         "/evidence/crypto-secrets_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"PKI / Crypto team\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Post-quantum cryptography readiness\" control must cover\n# fragment: postquantum_cryptography_readiness_",
         "/evidence/crypto-secrets_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -2062,7 +2068,7 @@ export const cryptoSecretsStages: StageConfig[] = [
           "id": "cks-06-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Post-quantum cryptography readiness\" sub-process of Crypto Key & Secrets?",
+          "text": "What is the primary audit objective for the \"Post-quantum cryptography readiness\" sub-process of Cryptographic Key & Secrets Management?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -2076,11 +2082,11 @@ export const cryptoSecretsStages: StageConfig[] = [
           "id": "cks-06-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Post-quantum cryptography readiness\" matter to the broader Crypto Key & Secrets posture?",
+          "text": "Why does a weakness in \"Post-quantum cryptography readiness\" matter to the broader Cryptographic Key & Secrets Management posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Crypto Key & Secrets controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Cryptographic Key & Secrets Management controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -2093,7 +2099,7 @@ export const cryptoSecretsStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Post-quantum cryptography readiness\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Post-quantum cryptography readiness evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the post-quantum cryptography readiness control (from HashiCorp Vault / AWS KMS / Azure Key Vault) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -2159,16 +2165,16 @@ export const cryptoSecretsStages: StageConfig[] = [
         {
           "id": "cks-06-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Post-quantum cryptography readiness\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Post-quantum cryptography readiness\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the post-quantum cryptography readiness control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the post-quantum cryptography readiness control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "cks-06-q9",
@@ -2213,8 +2219,8 @@ export const cryptoSecretsStages: StageConfig[] = [
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Secrets detection and prevention\" control for Crypto Key & Secrets is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Crypto Key & Secrets source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Secrets detection and prevention\" control for Cryptographic Key & Secrets Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the \"Secrets detection and prevention\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Cryptographic Key & Secrets Management systems of record (HashiCorp Vault / AWS KMS / Azure Key Vault; HSM (PKCS#11); Certificate authority / ACME) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the secrets detection and prevention control (from HashiCorp Vault / AWS KMS / Azure Key Vault)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -2235,34 +2241,34 @@ export const cryptoSecretsStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 5/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 9/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Crypto Key & Secrets controls."
+        "value": "VALUE 9/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Cryptographic Key & Secrets Management controls."
       }
     },
     "badge": {
       "id": "cks-07-badge",
-      "name": "Crypto Key & Secrets Auditor",
+      "name": "Cryptographic Key & Secrets Management Auditor",
       "emoji": "🔐"
     },
     "wonder": {
       "name": "Secrets detection and prevention",
-      "location": "Crypto Key & Secrets",
+      "location": "Cryptographic Key & Secrets Management",
       "era": "Present Day",
       "emoji": "🔐"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Secrets detection and prevention\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Crypto Key & Secrets control.",
+      "tagline": "Auditing \"Secrets detection and prevention\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the secrets detection and prevention control (from HashiCorp Vault / AWS KMS / Azure Key Vault)) with read-only agents, run the test against policy, and issue a defensible opinion on the Cryptographic Key & Secrets Management control.",
       "year": 2025,
       "overview": [
-        "The \"Secrets detection and prevention\" sub-process is one of the controls an auditor must verify for Crypto Key & Secrets. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that secrets detection and prevention is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically HashiCorp Vault / AWS KMS / Azure Key Vault, HSM (PKCS#11), Certificate authority / ACME — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Secrets detection and prevention\" sub-process is one of the controls an auditor must verify for Cryptographic Key & Secrets Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the secrets detection and prevention control (from HashiCorp Vault / AWS KMS / Azure Key Vault), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here HashiCorp Vault / AWS KMS / Azure Key Vault, HSM (PKCS#11), Certificate authority / ACME — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the \"Secrets detection and prevention\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `07_secrets_detection_and_prevention_mcp.py` exposes read-only tools that turn each Crypto Key & Secrets source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `07_secrets_detection_and_prevention_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from HashiCorp Vault / AWS KMS / Azure Key Vault and HSM (PKCS#11) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 07_secrets_detection_and_prevention_mcp.py` to expose it to your agent — or `python 07_secrets_detection_and_prevention_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -2284,7 +2290,7 @@ export const cryptoSecretsStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Crypto Key & Secrets scope + policy",
+            "sub": "define Cryptographic Key & Secrets Management scope + policy",
             "type": "attacker"
           },
           {
@@ -2320,12 +2326,13 @@ export const cryptoSecretsStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Secrets detection and prevention\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the secrets detection and prevention control (from HashiCorp Vault / AWS KMS / Azure Key Vault).",
+        "The test: Reconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the \"Secrets detection and prevention\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (HashiCorp Vault / AWS KMS / Azure Key Vault, HSM (PKCS#11), Certificate authority / ACME) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the secrets detection and prevention control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -2349,21 +2356,21 @@ export const cryptoSecretsStages: StageConfig[] = [
         {
           "name": "07_secrets_detection_and_prevention_mcp.py",
           "url": "/audit-code/crypto-secrets/07_secrets_detection_and_prevention_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Crypto Key & Secrets evidence for \"Secrets detection and prevention\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Cryptographic Key & Secrets Management evidence for \"Secrets detection and prevention\" (in-scope inventory for the secrets detection and prevention control (from hashicorp vault / aws kms / azure key vault)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Secrets detection and prevention\" control for Crypto Key & Secrets at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Secrets detection and prevention\" control for Cryptographic Key & Secrets Management at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the \"Secrets detection and prevention\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the secrets detection and prevention control (from HashiCorp Vault / AWS KMS / Azure Key Vault) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live HashiCorp Vault / AWS KMS / Azure Key Vault APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. HashiCorp Vault / AWS KMS / Azure Key Vault gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. HashiCorp Vault / AWS KMS / Azure Key Vault is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from HashiCorp Vault / AWS KMS / Azure Key Vault; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Crypto Key & Secrets: \"Secrets detection and prevention\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- crypto-secrets_inventory.json   (in-scope items from HashiCorp Vault / AWS KMS / Azure Key Vault)\n- crypto-secrets_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Secrets detection and prevention\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Secrets detection and prevention\",\n  \"domain\": \"Crypto Key & Secrets\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{cks_",
+        "/evidence/README.md": "# AcmeCorp — Cryptographic Key & Secrets Management: \"Secrets detection and prevention\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the \"Secrets detection and prevention\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- crypto-secrets_inventory.json   (in-scope items — In-scope inventory for the secrets detection and prevention control (from HashiCorp Vault / AWS KMS / Azure Key Vault))\n- crypto-secrets_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Secrets detection and prevention\",\n  \"domain\": \"Cryptographic Key & Secrets Management\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{cks_",
         "/evidence/crypto-secrets_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"PKI / Crypto team\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Secrets detection and prevention\" control must cover\n# fragment: secrets_detection_prevention_",
         "/evidence/crypto-secrets_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -2427,7 +2434,7 @@ export const cryptoSecretsStages: StageConfig[] = [
           "id": "cks-07-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Secrets detection and prevention\" sub-process of Crypto Key & Secrets?",
+          "text": "What is the primary audit objective for the \"Secrets detection and prevention\" sub-process of Cryptographic Key & Secrets Management?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -2441,11 +2448,11 @@ export const cryptoSecretsStages: StageConfig[] = [
           "id": "cks-07-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Secrets detection and prevention\" matter to the broader Crypto Key & Secrets posture?",
+          "text": "Why does a weakness in \"Secrets detection and prevention\" matter to the broader Cryptographic Key & Secrets Management posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Crypto Key & Secrets controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Cryptographic Key & Secrets Management controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -2458,7 +2465,7 @@ export const cryptoSecretsStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Secrets detection and prevention\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Secrets detection and prevention evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the secrets detection and prevention control (from HashiCorp Vault / AWS KMS / Azure Key Vault) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -2524,16 +2531,16 @@ export const cryptoSecretsStages: StageConfig[] = [
         {
           "id": "cks-07-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Secrets detection and prevention\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Secrets detection and prevention\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the secrets detection and prevention control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the secrets detection and prevention control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "cks-07-q9",
@@ -2578,8 +2585,8 @@ export const cryptoSecretsStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Audit logging and monitoring\" control for Crypto Key & Secrets is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Crypto Key & Secrets source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Audit logging and monitoring\" control for Cryptographic Key & Secrets Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the \"Audit logging and monitoring\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Cryptographic Key & Secrets Management systems of record (HashiCorp Vault / AWS KMS / Azure Key Vault; HSM (PKCS#11); Certificate authority / ACME) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the audit logging and monitoring control (from HashiCorp Vault / AWS KMS / Azure Key Vault)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -2600,34 +2607,34 @@ export const cryptoSecretsStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 7/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Crypto Key & Secrets controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Cryptographic Key & Secrets Management controls."
       }
     },
     "badge": {
       "id": "cks-08-badge",
-      "name": "Crypto Key & Secrets Auditor",
+      "name": "Cryptographic Key & Secrets Management Auditor",
       "emoji": "🔐"
     },
     "wonder": {
       "name": "Audit logging and monitoring",
-      "location": "Crypto Key & Secrets",
+      "location": "Cryptographic Key & Secrets Management",
       "era": "Present Day",
       "emoji": "🔐"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Audit logging and monitoring\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Crypto Key & Secrets control.",
+      "tagline": "Auditing \"Audit logging and monitoring\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the audit logging and monitoring control (from HashiCorp Vault / AWS KMS / Azure Key Vault)) with read-only agents, run the test against policy, and issue a defensible opinion on the Cryptographic Key & Secrets Management control.",
       "year": 2025,
       "overview": [
-        "The \"Audit logging and monitoring\" sub-process is one of the controls an auditor must verify for Crypto Key & Secrets. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that audit logging and monitoring is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically HashiCorp Vault / AWS KMS / Azure Key Vault, HSM (PKCS#11), Certificate authority / ACME — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Audit logging and monitoring\" sub-process is one of the controls an auditor must verify for Cryptographic Key & Secrets Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the audit logging and monitoring control (from HashiCorp Vault / AWS KMS / Azure Key Vault), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here HashiCorp Vault / AWS KMS / Azure Key Vault, HSM (PKCS#11), Certificate authority / ACME — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the \"Audit logging and monitoring\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `08_audit_logging_and_monitoring_mcp.py` exposes read-only tools that turn each Crypto Key & Secrets source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `08_audit_logging_and_monitoring_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from HashiCorp Vault / AWS KMS / Azure Key Vault and HSM (PKCS#11) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 08_audit_logging_and_monitoring_mcp.py` to expose it to your agent — or `python 08_audit_logging_and_monitoring_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -2649,7 +2656,7 @@ export const cryptoSecretsStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Crypto Key & Secrets scope + policy",
+            "sub": "define Cryptographic Key & Secrets Management scope + policy",
             "type": "attacker"
           },
           {
@@ -2685,12 +2692,13 @@ export const cryptoSecretsStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Audit logging and monitoring\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the audit logging and monitoring control (from HashiCorp Vault / AWS KMS / Azure Key Vault).",
+        "The test: Reconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the \"Audit logging and monitoring\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (HashiCorp Vault / AWS KMS / Azure Key Vault, HSM (PKCS#11), Certificate authority / ACME) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the audit logging and monitoring control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -2714,21 +2722,21 @@ export const cryptoSecretsStages: StageConfig[] = [
         {
           "name": "08_audit_logging_and_monitoring_mcp.py",
           "url": "/audit-code/crypto-secrets/08_audit_logging_and_monitoring_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Crypto Key & Secrets evidence for \"Audit logging and monitoring\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Cryptographic Key & Secrets Management evidence for \"Audit logging and monitoring\" (in-scope inventory for the audit logging and monitoring control (from hashicorp vault / aws kms / azure key vault)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Audit logging and monitoring\" control for Crypto Key & Secrets at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Audit logging and monitoring\" control for Cryptographic Key & Secrets Management at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the \"Audit logging and monitoring\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the audit logging and monitoring control (from HashiCorp Vault / AWS KMS / Azure Key Vault) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live HashiCorp Vault / AWS KMS / Azure Key Vault APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. HashiCorp Vault / AWS KMS / Azure Key Vault gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. HashiCorp Vault / AWS KMS / Azure Key Vault is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from HashiCorp Vault / AWS KMS / Azure Key Vault; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Crypto Key & Secrets: \"Audit logging and monitoring\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- crypto-secrets_inventory.json   (in-scope items from HashiCorp Vault / AWS KMS / Azure Key Vault)\n- crypto-secrets_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Audit logging and monitoring\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Audit logging and monitoring\",\n  \"domain\": \"Crypto Key & Secrets\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{cks_",
+        "/evidence/README.md": "# AcmeCorp — Cryptographic Key & Secrets Management: \"Audit logging and monitoring\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the \"Audit logging and monitoring\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- crypto-secrets_inventory.json   (in-scope items — In-scope inventory for the audit logging and monitoring control (from HashiCorp Vault / AWS KMS / Azure Key Vault))\n- crypto-secrets_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Audit logging and monitoring\",\n  \"domain\": \"Cryptographic Key & Secrets Management\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{cks_",
         "/evidence/crypto-secrets_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"PKI / Crypto team\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Audit logging and monitoring\" control must cover\n# fragment: audit_logging_monitoring_",
         "/evidence/crypto-secrets_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -2792,7 +2800,7 @@ export const cryptoSecretsStages: StageConfig[] = [
           "id": "cks-08-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Audit logging and monitoring\" sub-process of Crypto Key & Secrets?",
+          "text": "What is the primary audit objective for the \"Audit logging and monitoring\" sub-process of Cryptographic Key & Secrets Management?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -2806,11 +2814,11 @@ export const cryptoSecretsStages: StageConfig[] = [
           "id": "cks-08-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Audit logging and monitoring\" matter to the broader Crypto Key & Secrets posture?",
+          "text": "Why does a weakness in \"Audit logging and monitoring\" matter to the broader Cryptographic Key & Secrets Management posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Crypto Key & Secrets controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Cryptographic Key & Secrets Management controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -2823,7 +2831,7 @@ export const cryptoSecretsStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Audit logging and monitoring\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Audit logging and monitoring evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the audit logging and monitoring control (from HashiCorp Vault / AWS KMS / Azure Key Vault) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -2889,16 +2897,16 @@ export const cryptoSecretsStages: StageConfig[] = [
         {
           "id": "cks-08-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Audit logging and monitoring\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Audit logging and monitoring\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the audit logging and monitoring control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the audit logging and monitoring control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "cks-08-q9",
@@ -2943,8 +2951,8 @@ export const cryptoSecretsStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Compliance and regulatory alignment\" control for Crypto Key & Secrets is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Crypto Key & Secrets source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Compliance and regulatory alignment\" control for Cryptographic Key & Secrets Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the \"Compliance and regulatory alignment\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Cryptographic Key & Secrets Management systems of record (HashiCorp Vault / AWS KMS / Azure Key Vault; HSM (PKCS#11); Certificate authority / ACME) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the compliance and regulatory alignment control (from HashiCorp Vault / AWS KMS / Azure Key Vault)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -2965,34 +2973,34 @@ export const cryptoSecretsStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 7/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Crypto Key & Secrets controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Cryptographic Key & Secrets Management controls."
       }
     },
     "badge": {
       "id": "cks-09-badge",
-      "name": "Crypto Key & Secrets Auditor",
+      "name": "Cryptographic Key & Secrets Management Auditor",
       "emoji": "🔐"
     },
     "wonder": {
       "name": "Compliance and regulatory alignment",
-      "location": "Crypto Key & Secrets",
+      "location": "Cryptographic Key & Secrets Management",
       "era": "Present Day",
       "emoji": "🔐"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Compliance and regulatory alignment\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Crypto Key & Secrets control.",
+      "tagline": "Auditing \"Compliance and regulatory alignment\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the compliance and regulatory alignment control (from HashiCorp Vault / AWS KMS / Azure Key Vault)) with read-only agents, run the test against policy, and issue a defensible opinion on the Cryptographic Key & Secrets Management control.",
       "year": 2025,
       "overview": [
-        "The \"Compliance and regulatory alignment\" sub-process is one of the controls an auditor must verify for Crypto Key & Secrets. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that compliance and regulatory alignment is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically HashiCorp Vault / AWS KMS / Azure Key Vault, HSM (PKCS#11), Certificate authority / ACME — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Compliance and regulatory alignment\" sub-process is one of the controls an auditor must verify for Cryptographic Key & Secrets Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the compliance and regulatory alignment control (from HashiCorp Vault / AWS KMS / Azure Key Vault), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here HashiCorp Vault / AWS KMS / Azure Key Vault, HSM (PKCS#11), Certificate authority / ACME — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the \"Compliance and regulatory alignment\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `09_compliance_and_regulatory_alignment_mcp.py` exposes read-only tools that turn each Crypto Key & Secrets source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `09_compliance_and_regulatory_alignment_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from HashiCorp Vault / AWS KMS / Azure Key Vault and HSM (PKCS#11) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 09_compliance_and_regulatory_alignment_mcp.py` to expose it to your agent — or `python 09_compliance_and_regulatory_alignment_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -3014,7 +3022,7 @@ export const cryptoSecretsStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Crypto Key & Secrets scope + policy",
+            "sub": "define Cryptographic Key & Secrets Management scope + policy",
             "type": "attacker"
           },
           {
@@ -3050,12 +3058,13 @@ export const cryptoSecretsStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Compliance and regulatory alignment\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the compliance and regulatory alignment control (from HashiCorp Vault / AWS KMS / Azure Key Vault).",
+        "The test: Reconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the \"Compliance and regulatory alignment\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (HashiCorp Vault / AWS KMS / Azure Key Vault, HSM (PKCS#11), Certificate authority / ACME) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the compliance and regulatory alignment control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -3079,21 +3088,21 @@ export const cryptoSecretsStages: StageConfig[] = [
         {
           "name": "09_compliance_and_regulatory_alignment_mcp.py",
           "url": "/audit-code/crypto-secrets/09_compliance_and_regulatory_alignment_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Crypto Key & Secrets evidence for \"Compliance and regulatory alignment\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Cryptographic Key & Secrets Management evidence for \"Compliance and regulatory alignment\" (in-scope inventory for the compliance and regulatory alignment control (from hashicorp vault / aws kms / azure key vault)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Compliance and regulatory alignment\" control for Crypto Key & Secrets at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Compliance and regulatory alignment\" control for Cryptographic Key & Secrets Management at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the \"Compliance and regulatory alignment\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the compliance and regulatory alignment control (from HashiCorp Vault / AWS KMS / Azure Key Vault) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live HashiCorp Vault / AWS KMS / Azure Key Vault APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. HashiCorp Vault / AWS KMS / Azure Key Vault gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. HashiCorp Vault / AWS KMS / Azure Key Vault is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from HashiCorp Vault / AWS KMS / Azure Key Vault; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Crypto Key & Secrets: \"Compliance and regulatory alignment\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- crypto-secrets_inventory.json   (in-scope items from HashiCorp Vault / AWS KMS / Azure Key Vault)\n- crypto-secrets_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Compliance and regulatory alignment\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Compliance and regulatory alignment\",\n  \"domain\": \"Crypto Key & Secrets\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{cks_",
+        "/evidence/README.md": "# AcmeCorp — Cryptographic Key & Secrets Management: \"Compliance and regulatory alignment\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the \"Compliance and regulatory alignment\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- crypto-secrets_inventory.json   (in-scope items — In-scope inventory for the compliance and regulatory alignment control (from HashiCorp Vault / AWS KMS / Azure Key Vault))\n- crypto-secrets_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Compliance and regulatory alignment\",\n  \"domain\": \"Cryptographic Key & Secrets Management\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{cks_",
         "/evidence/crypto-secrets_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"PKI / Crypto team\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Compliance and regulatory alignment\" control must cover\n# fragment: compliance_regulatory_alignment_",
         "/evidence/crypto-secrets_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -3157,7 +3166,7 @@ export const cryptoSecretsStages: StageConfig[] = [
           "id": "cks-09-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Compliance and regulatory alignment\" sub-process of Crypto Key & Secrets?",
+          "text": "What is the primary audit objective for the \"Compliance and regulatory alignment\" sub-process of Cryptographic Key & Secrets Management?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -3171,11 +3180,11 @@ export const cryptoSecretsStages: StageConfig[] = [
           "id": "cks-09-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Compliance and regulatory alignment\" matter to the broader Crypto Key & Secrets posture?",
+          "text": "Why does a weakness in \"Compliance and regulatory alignment\" matter to the broader Cryptographic Key & Secrets Management posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Crypto Key & Secrets controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Cryptographic Key & Secrets Management controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -3188,7 +3197,7 @@ export const cryptoSecretsStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Compliance and regulatory alignment\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Compliance and regulatory alignment evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the compliance and regulatory alignment control (from HashiCorp Vault / AWS KMS / Azure Key Vault) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -3254,16 +3263,16 @@ export const cryptoSecretsStages: StageConfig[] = [
         {
           "id": "cks-09-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Compliance and regulatory alignment\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Compliance and regulatory alignment\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the compliance and regulatory alignment control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the compliance and regulatory alignment control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "cks-09-q9",

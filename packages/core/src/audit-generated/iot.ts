@@ -2,9 +2,9 @@ import type { EpochConfig, StageConfig } from "../types";
 
 export const iotEpoch: EpochConfig = {
   "id": "iot",
-  "name": "IoT",
-  "subtitle": "Agentic technical & privacy audit — IoT",
-  "description": "Audit IoT end to end with a read-only agent fleet: each sub-process is a module that teaches the control as a repeatable agentic workflow with downloadable MCP tooling, a CTF, and a 10-question quiz.",
+  "name": "Internet of Things (IoT)",
+  "subtitle": "Agentic technical & privacy audit — Internet of Things (IoT)",
+  "description": "Audit Internet of Things (IoT) end to end with a read-only agent fleet: each sub-process is a module that teaches the control as a repeatable agentic workflow with downloadable MCP tooling, a CTF, and a 10-question quiz.",
   "emoji": "📡",
   "color": "Teal",
   "unlocked": true
@@ -23,8 +23,8 @@ export const iotStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Security by design\" control for IoT is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each IoT source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Security by design\" control for Internet of Things (IoT) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"Security by design\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Internet of Things (IoT) systems of record (IoT device fleet + firmware; IoT gateway / broker; Device-identity / certificate service) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the security by design control (from IoT device fleet + firmware)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -45,34 +45,34 @@ export const iotStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 5/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream IoT controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Internet of Things (IoT) controls."
       }
     },
     "badge": {
       "id": "iot-01-badge",
-      "name": "IoT Auditor",
+      "name": "Internet of Things (IoT) Auditor",
       "emoji": "📡"
     },
     "wonder": {
       "name": "Security by design",
-      "location": "IoT",
+      "location": "Internet of Things (IoT)",
       "era": "Present Day",
       "emoji": "📡"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Security by design\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the IoT control.",
+      "tagline": "Auditing \"Security by design\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the security by design control (from IoT device fleet + firmware)) with read-only agents, run the test against policy, and issue a defensible opinion on the Internet of Things (IoT) control.",
       "year": 2025,
       "overview": [
-        "The \"Security by design\" sub-process is one of the controls an auditor must verify for IoT. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that security by design is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically IoT device fleet + firmware, IoT gateway / broker, Device-identity / certificate service — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Security by design\" sub-process is one of the controls an auditor must verify for Internet of Things (IoT). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the security by design control (from IoT device fleet + firmware), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here IoT device fleet + firmware, IoT gateway / broker, Device-identity / certificate service — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"Security by design\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `01_security_by_design_mcp.py` exposes read-only tools that turn each IoT source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `01_security_by_design_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from IoT device fleet + firmware and IoT gateway / broker (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 01_security_by_design_mcp.py` to expose it to your agent — or `python 01_security_by_design_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -94,7 +94,7 @@ export const iotStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define IoT scope + policy",
+            "sub": "define Internet of Things (IoT) scope + policy",
             "type": "attacker"
           },
           {
@@ -130,12 +130,13 @@ export const iotStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Security by design\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the security by design control (from IoT device fleet + firmware).",
+        "The test: Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"Security by design\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (IoT device fleet + firmware, IoT gateway / broker, Device-identity / certificate service) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the security by design control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -159,21 +160,21 @@ export const iotStages: StageConfig[] = [
         {
           "name": "01_security_by_design_mcp.py",
           "url": "/audit-code/iot/01_security_by_design_mcp.py",
-          "description": "Runnable read-only MCP server: gathers IoT evidence for \"Security by design\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Internet of Things (IoT) evidence for \"Security by design\" (in-scope inventory for the security by design control (from iot device fleet + firmware)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Security by design\" control for IoT at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Security by design\" control for Internet of Things (IoT) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"Security by design\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the security by design control (from IoT device fleet + firmware) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live IoT device fleet + firmware APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. IoT device fleet + firmware gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. IoT device fleet + firmware is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from IoT device fleet + firmware; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — IoT: \"Security by design\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- iot_inventory.json   (in-scope items from IoT device fleet + firmware)\n- iot_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Security by design\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Security by design\",\n  \"domain\": \"IoT\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{iot_",
+        "/evidence/README.md": "# AcmeCorp — Internet of Things (IoT): \"Security by design\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"Security by design\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- iot_inventory.json   (in-scope items — In-scope inventory for the security by design control (from IoT device fleet + firmware))\n- iot_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Security by design\",\n  \"domain\": \"Internet of Things (IoT)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{iot_",
         "/evidence/iot_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"IoT / product engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Security by design\" control must cover\n# fragment: security_by_design_",
         "/evidence/iot_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -237,7 +238,7 @@ export const iotStages: StageConfig[] = [
           "id": "iot-01-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Security by design\" sub-process of IoT?",
+          "text": "What is the primary audit objective for the \"Security by design\" sub-process of Internet of Things (IoT)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -251,11 +252,11 @@ export const iotStages: StageConfig[] = [
           "id": "iot-01-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Security by design\" matter to the broader IoT posture?",
+          "text": "Why does a weakness in \"Security by design\" matter to the broader Internet of Things (IoT) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other IoT controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Internet of Things (IoT) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -268,7 +269,7 @@ export const iotStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Security by design\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Security by design evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the security by design control (from IoT device fleet + firmware) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -334,16 +335,16 @@ export const iotStages: StageConfig[] = [
         {
           "id": "iot-01-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Security by design\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Security by design\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the security by design control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the security by design control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "iot-01-q9",
@@ -388,8 +389,8 @@ export const iotStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Privacy by design\" control for IoT is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each IoT source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Privacy by design\" control for Internet of Things (IoT) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"Privacy by design\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Internet of Things (IoT) systems of record (IoT device fleet + firmware; IoT gateway / broker; Device-identity / certificate service) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the privacy by design control (from IoT device fleet + firmware)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -410,34 +411,34 @@ export const iotStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 6/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream IoT controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Internet of Things (IoT) controls."
       }
     },
     "badge": {
       "id": "iot-02-badge",
-      "name": "IoT Auditor",
+      "name": "Internet of Things (IoT) Auditor",
       "emoji": "📡"
     },
     "wonder": {
       "name": "Privacy by design",
-      "location": "IoT",
+      "location": "Internet of Things (IoT)",
       "era": "Present Day",
       "emoji": "📡"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Privacy by design\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the IoT control.",
+      "tagline": "Auditing \"Privacy by design\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the privacy by design control (from IoT device fleet + firmware)) with read-only agents, run the test against policy, and issue a defensible opinion on the Internet of Things (IoT) control.",
       "year": 2025,
       "overview": [
-        "The \"Privacy by design\" sub-process is one of the controls an auditor must verify for IoT. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that privacy by design is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically IoT device fleet + firmware, IoT gateway / broker, Device-identity / certificate service — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Privacy by design\" sub-process is one of the controls an auditor must verify for Internet of Things (IoT). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the privacy by design control (from IoT device fleet + firmware), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here IoT device fleet + firmware, IoT gateway / broker, Device-identity / certificate service — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"Privacy by design\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `02_privacy_by_design_mcp.py` exposes read-only tools that turn each IoT source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `02_privacy_by_design_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from IoT device fleet + firmware and IoT gateway / broker (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 02_privacy_by_design_mcp.py` to expose it to your agent — or `python 02_privacy_by_design_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -459,7 +460,7 @@ export const iotStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define IoT scope + policy",
+            "sub": "define Internet of Things (IoT) scope + policy",
             "type": "attacker"
           },
           {
@@ -495,12 +496,13 @@ export const iotStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Privacy by design\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the privacy by design control (from IoT device fleet + firmware).",
+        "The test: Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"Privacy by design\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (IoT device fleet + firmware, IoT gateway / broker, Device-identity / certificate service) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the privacy by design control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -524,21 +526,21 @@ export const iotStages: StageConfig[] = [
         {
           "name": "02_privacy_by_design_mcp.py",
           "url": "/audit-code/iot/02_privacy_by_design_mcp.py",
-          "description": "Runnable read-only MCP server: gathers IoT evidence for \"Privacy by design\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Internet of Things (IoT) evidence for \"Privacy by design\" (in-scope inventory for the privacy by design control (from iot device fleet + firmware)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Privacy by design\" control for IoT at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Privacy by design\" control for Internet of Things (IoT) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"Privacy by design\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the privacy by design control (from IoT device fleet + firmware) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live IoT device fleet + firmware APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. IoT device fleet + firmware gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. IoT device fleet + firmware is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from IoT device fleet + firmware; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — IoT: \"Privacy by design\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- iot_inventory.json   (in-scope items from IoT device fleet + firmware)\n- iot_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Privacy by design\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Privacy by design\",\n  \"domain\": \"IoT\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{iot_",
+        "/evidence/README.md": "# AcmeCorp — Internet of Things (IoT): \"Privacy by design\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"Privacy by design\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- iot_inventory.json   (in-scope items — In-scope inventory for the privacy by design control (from IoT device fleet + firmware))\n- iot_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Privacy by design\",\n  \"domain\": \"Internet of Things (IoT)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{iot_",
         "/evidence/iot_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"IoT / product engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Privacy by design\" control must cover\n# fragment: privacy_by_design_",
         "/evidence/iot_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -602,7 +604,7 @@ export const iotStages: StageConfig[] = [
           "id": "iot-02-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Privacy by design\" sub-process of IoT?",
+          "text": "What is the primary audit objective for the \"Privacy by design\" sub-process of Internet of Things (IoT)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -616,11 +618,11 @@ export const iotStages: StageConfig[] = [
           "id": "iot-02-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Privacy by design\" matter to the broader IoT posture?",
+          "text": "Why does a weakness in \"Privacy by design\" matter to the broader Internet of Things (IoT) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other IoT controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Internet of Things (IoT) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -633,7 +635,7 @@ export const iotStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Privacy by design\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Privacy by design evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the privacy by design control (from IoT device fleet + firmware) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -699,16 +701,16 @@ export const iotStages: StageConfig[] = [
         {
           "id": "iot-02-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Privacy by design\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Privacy by design\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the privacy by design control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the privacy by design control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "iot-02-q9",
@@ -753,8 +755,8 @@ export const iotStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Attack surface minimization\" control for IoT is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each IoT source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Attack surface minimization\" control for Internet of Things (IoT) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"Attack surface minimization\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Internet of Things (IoT) systems of record (IoT device fleet + firmware; IoT gateway / broker; Device-identity / certificate service) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the attack surface minimization control (from IoT device fleet + firmware)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -775,34 +777,34 @@ export const iotStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 7/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream IoT controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Internet of Things (IoT) controls."
       }
     },
     "badge": {
       "id": "iot-03-badge",
-      "name": "IoT Auditor",
+      "name": "Internet of Things (IoT) Auditor",
       "emoji": "📡"
     },
     "wonder": {
       "name": "Attack surface minimization",
-      "location": "IoT",
+      "location": "Internet of Things (IoT)",
       "era": "Present Day",
       "emoji": "📡"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Attack surface minimization\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the IoT control.",
+      "tagline": "Auditing \"Attack surface minimization\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the attack surface minimization control (from IoT device fleet + firmware)) with read-only agents, run the test against policy, and issue a defensible opinion on the Internet of Things (IoT) control.",
       "year": 2025,
       "overview": [
-        "The \"Attack surface minimization\" sub-process is one of the controls an auditor must verify for IoT. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that attack surface minimization is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically IoT device fleet + firmware, IoT gateway / broker, Device-identity / certificate service — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Attack surface minimization\" sub-process is one of the controls an auditor must verify for Internet of Things (IoT). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the attack surface minimization control (from IoT device fleet + firmware), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here IoT device fleet + firmware, IoT gateway / broker, Device-identity / certificate service — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"Attack surface minimization\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `03_attack_surface_minimization_mcp.py` exposes read-only tools that turn each IoT source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `03_attack_surface_minimization_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from IoT device fleet + firmware and IoT gateway / broker (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 03_attack_surface_minimization_mcp.py` to expose it to your agent — or `python 03_attack_surface_minimization_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -824,7 +826,7 @@ export const iotStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define IoT scope + policy",
+            "sub": "define Internet of Things (IoT) scope + policy",
             "type": "attacker"
           },
           {
@@ -860,12 +862,13 @@ export const iotStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Attack surface minimization\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the attack surface minimization control (from IoT device fleet + firmware).",
+        "The test: Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"Attack surface minimization\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (IoT device fleet + firmware, IoT gateway / broker, Device-identity / certificate service) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the attack surface minimization control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -889,21 +892,21 @@ export const iotStages: StageConfig[] = [
         {
           "name": "03_attack_surface_minimization_mcp.py",
           "url": "/audit-code/iot/03_attack_surface_minimization_mcp.py",
-          "description": "Runnable read-only MCP server: gathers IoT evidence for \"Attack surface minimization\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Internet of Things (IoT) evidence for \"Attack surface minimization\" (in-scope inventory for the attack surface minimization control (from iot device fleet + firmware)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Attack surface minimization\" control for IoT at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Attack surface minimization\" control for Internet of Things (IoT) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"Attack surface minimization\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the attack surface minimization control (from IoT device fleet + firmware) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live IoT device fleet + firmware APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. IoT device fleet + firmware gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. IoT device fleet + firmware is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from IoT device fleet + firmware; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — IoT: \"Attack surface minimization\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- iot_inventory.json   (in-scope items from IoT device fleet + firmware)\n- iot_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Attack surface minimization\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Attack surface minimization\",\n  \"domain\": \"IoT\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{iot_",
+        "/evidence/README.md": "# AcmeCorp — Internet of Things (IoT): \"Attack surface minimization\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"Attack surface minimization\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- iot_inventory.json   (in-scope items — In-scope inventory for the attack surface minimization control (from IoT device fleet + firmware))\n- iot_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Attack surface minimization\",\n  \"domain\": \"Internet of Things (IoT)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{iot_",
         "/evidence/iot_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"IoT / product engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Attack surface minimization\" control must cover\n# fragment: attack_surface_minimization_",
         "/evidence/iot_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -967,7 +970,7 @@ export const iotStages: StageConfig[] = [
           "id": "iot-03-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Attack surface minimization\" sub-process of IoT?",
+          "text": "What is the primary audit objective for the \"Attack surface minimization\" sub-process of Internet of Things (IoT)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -981,11 +984,11 @@ export const iotStages: StageConfig[] = [
           "id": "iot-03-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Attack surface minimization\" matter to the broader IoT posture?",
+          "text": "Why does a weakness in \"Attack surface minimization\" matter to the broader Internet of Things (IoT) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other IoT controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Internet of Things (IoT) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -998,7 +1001,7 @@ export const iotStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Attack surface minimization\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Attack surface minimization evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the attack surface minimization control (from IoT device fleet + firmware) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -1064,16 +1067,16 @@ export const iotStages: StageConfig[] = [
         {
           "id": "iot-03-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Attack surface minimization\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Attack surface minimization\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the attack surface minimization control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the attack surface minimization control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "iot-03-q9",
@@ -1118,8 +1121,8 @@ export const iotStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Threat modeling\" control for IoT is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each IoT source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Threat modeling\" control for Internet of Things (IoT) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"Threat modeling\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Internet of Things (IoT) systems of record (IoT device fleet + firmware; IoT gateway / broker; Device-identity / certificate service) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the threat modeling control (from IoT device fleet + firmware)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -1140,34 +1143,34 @@ export const iotStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 3/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream IoT controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Internet of Things (IoT) controls."
       }
     },
     "badge": {
       "id": "iot-04-badge",
-      "name": "IoT Auditor",
+      "name": "Internet of Things (IoT) Auditor",
       "emoji": "📡"
     },
     "wonder": {
       "name": "Threat modeling",
-      "location": "IoT",
+      "location": "Internet of Things (IoT)",
       "era": "Present Day",
       "emoji": "📡"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Threat modeling\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the IoT control.",
+      "tagline": "Auditing \"Threat modeling\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the threat modeling control (from IoT device fleet + firmware)) with read-only agents, run the test against policy, and issue a defensible opinion on the Internet of Things (IoT) control.",
       "year": 2025,
       "overview": [
-        "The \"Threat modeling\" sub-process is one of the controls an auditor must verify for IoT. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that threat modeling is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically IoT device fleet + firmware, IoT gateway / broker, Device-identity / certificate service — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Threat modeling\" sub-process is one of the controls an auditor must verify for Internet of Things (IoT). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the threat modeling control (from IoT device fleet + firmware), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here IoT device fleet + firmware, IoT gateway / broker, Device-identity / certificate service — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"Threat modeling\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `04_threat_modeling_mcp.py` exposes read-only tools that turn each IoT source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `04_threat_modeling_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from IoT device fleet + firmware and IoT gateway / broker (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 04_threat_modeling_mcp.py` to expose it to your agent — or `python 04_threat_modeling_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -1189,7 +1192,7 @@ export const iotStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define IoT scope + policy",
+            "sub": "define Internet of Things (IoT) scope + policy",
             "type": "attacker"
           },
           {
@@ -1225,12 +1228,13 @@ export const iotStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Threat modeling\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the threat modeling control (from IoT device fleet + firmware).",
+        "The test: Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"Threat modeling\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (IoT device fleet + firmware, IoT gateway / broker, Device-identity / certificate service) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the threat modeling control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -1254,21 +1258,21 @@ export const iotStages: StageConfig[] = [
         {
           "name": "04_threat_modeling_mcp.py",
           "url": "/audit-code/iot/04_threat_modeling_mcp.py",
-          "description": "Runnable read-only MCP server: gathers IoT evidence for \"Threat modeling\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Internet of Things (IoT) evidence for \"Threat modeling\" (in-scope inventory for the threat modeling control (from iot device fleet + firmware)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Threat modeling\" control for IoT at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Threat modeling\" control for Internet of Things (IoT) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"Threat modeling\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the threat modeling control (from IoT device fleet + firmware) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live IoT device fleet + firmware APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. IoT device fleet + firmware gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. IoT device fleet + firmware is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from IoT device fleet + firmware; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — IoT: \"Threat modeling\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- iot_inventory.json   (in-scope items from IoT device fleet + firmware)\n- iot_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Threat modeling\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Threat modeling\",\n  \"domain\": \"IoT\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{iot_",
+        "/evidence/README.md": "# AcmeCorp — Internet of Things (IoT): \"Threat modeling\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"Threat modeling\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- iot_inventory.json   (in-scope items — In-scope inventory for the threat modeling control (from IoT device fleet + firmware))\n- iot_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Threat modeling\",\n  \"domain\": \"Internet of Things (IoT)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{iot_",
         "/evidence/iot_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"IoT / product engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Threat modeling\" control must cover\n# fragment: threat_modeling_",
         "/evidence/iot_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -1332,7 +1336,7 @@ export const iotStages: StageConfig[] = [
           "id": "iot-04-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Threat modeling\" sub-process of IoT?",
+          "text": "What is the primary audit objective for the \"Threat modeling\" sub-process of Internet of Things (IoT)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -1346,11 +1350,11 @@ export const iotStages: StageConfig[] = [
           "id": "iot-04-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Threat modeling\" matter to the broader IoT posture?",
+          "text": "Why does a weakness in \"Threat modeling\" matter to the broader Internet of Things (IoT) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other IoT controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Internet of Things (IoT) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -1363,7 +1367,7 @@ export const iotStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Threat modeling\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Threat modeling evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the threat modeling control (from IoT device fleet + firmware) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -1429,16 +1433,16 @@ export const iotStages: StageConfig[] = [
         {
           "id": "iot-04-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Threat modeling\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Threat modeling\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the threat modeling control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the threat modeling control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "iot-04-q9",
@@ -1483,8 +1487,8 @@ export const iotStages: StageConfig[] = [
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Third-party components\" control for IoT is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each IoT source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Third-party components\" control for Internet of Things (IoT) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"Third-party components\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Internet of Things (IoT) systems of record (IoT device fleet + firmware; IoT gateway / broker; Device-identity / certificate service) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the third-party components control (from IoT device fleet + firmware)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -1505,34 +1509,34 @@ export const iotStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 6/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 9/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream IoT controls."
+        "value": "VALUE 9/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Internet of Things (IoT) controls."
       }
     },
     "badge": {
       "id": "iot-05-badge",
-      "name": "IoT Auditor",
+      "name": "Internet of Things (IoT) Auditor",
       "emoji": "📡"
     },
     "wonder": {
       "name": "Third-party components",
-      "location": "IoT",
+      "location": "Internet of Things (IoT)",
       "era": "Present Day",
       "emoji": "📡"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Third-party components\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the IoT control.",
+      "tagline": "Auditing \"Third-party components\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the third-party components control (from IoT device fleet + firmware)) with read-only agents, run the test against policy, and issue a defensible opinion on the Internet of Things (IoT) control.",
       "year": 2025,
       "overview": [
-        "The \"Third-party components\" sub-process is one of the controls an auditor must verify for IoT. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that third-party components is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically IoT device fleet + firmware, IoT gateway / broker, Device-identity / certificate service — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Third-party components\" sub-process is one of the controls an auditor must verify for Internet of Things (IoT). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the third-party components control (from IoT device fleet + firmware), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here IoT device fleet + firmware, IoT gateway / broker, Device-identity / certificate service — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"Third-party components\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `05_third_party_components_mcp.py` exposes read-only tools that turn each IoT source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `05_third_party_components_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from IoT device fleet + firmware and IoT gateway / broker (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 05_third_party_components_mcp.py` to expose it to your agent — or `python 05_third_party_components_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -1554,7 +1558,7 @@ export const iotStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define IoT scope + policy",
+            "sub": "define Internet of Things (IoT) scope + policy",
             "type": "attacker"
           },
           {
@@ -1590,12 +1594,13 @@ export const iotStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Third-party components\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the third-party components control (from IoT device fleet + firmware).",
+        "The test: Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"Third-party components\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (IoT device fleet + firmware, IoT gateway / broker, Device-identity / certificate service) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the third-party components control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -1619,21 +1624,21 @@ export const iotStages: StageConfig[] = [
         {
           "name": "05_third_party_components_mcp.py",
           "url": "/audit-code/iot/05_third_party_components_mcp.py",
-          "description": "Runnable read-only MCP server: gathers IoT evidence for \"Third-party components\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Internet of Things (IoT) evidence for \"Third-party components\" (in-scope inventory for the third-party components control (from iot device fleet + firmware)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Third-party components\" control for IoT at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Third-party components\" control for Internet of Things (IoT) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"Third-party components\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the third-party components control (from IoT device fleet + firmware) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live IoT device fleet + firmware APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. IoT device fleet + firmware gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. IoT device fleet + firmware is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from IoT device fleet + firmware; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — IoT: \"Third-party components\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- iot_inventory.json   (in-scope items from IoT device fleet + firmware)\n- iot_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Third-party components\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Third-party components\",\n  \"domain\": \"IoT\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{iot_",
+        "/evidence/README.md": "# AcmeCorp — Internet of Things (IoT): \"Third-party components\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"Third-party components\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- iot_inventory.json   (in-scope items — In-scope inventory for the third-party components control (from IoT device fleet + firmware))\n- iot_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Third-party components\",\n  \"domain\": \"Internet of Things (IoT)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{iot_",
         "/evidence/iot_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"IoT / product engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Third-party components\" control must cover\n# fragment: thirdparty_components_",
         "/evidence/iot_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"EXCEPTIONS\"\n}\n# fragment: exceptions}"
@@ -1697,7 +1702,7 @@ export const iotStages: StageConfig[] = [
           "id": "iot-05-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Third-party components\" sub-process of IoT?",
+          "text": "What is the primary audit objective for the \"Third-party components\" sub-process of Internet of Things (IoT)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -1711,11 +1716,11 @@ export const iotStages: StageConfig[] = [
           "id": "iot-05-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Third-party components\" matter to the broader IoT posture?",
+          "text": "Why does a weakness in \"Third-party components\" matter to the broader Internet of Things (IoT) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other IoT controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Internet of Things (IoT) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -1728,7 +1733,7 @@ export const iotStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Third-party components\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Third-party components evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the third-party components control (from IoT device fleet + firmware) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -1794,16 +1799,16 @@ export const iotStages: StageConfig[] = [
         {
           "id": "iot-05-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Third-party components\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Third-party components\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the third-party components control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the third-party components control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "iot-05-q9",
@@ -1848,8 +1853,8 @@ export const iotStages: StageConfig[] = [
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Lightweight cryptography\" control for IoT is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each IoT source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Lightweight cryptography\" control for Internet of Things (IoT) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"Lightweight cryptography\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Internet of Things (IoT) systems of record (IoT device fleet + firmware; IoT gateway / broker; Device-identity / certificate service) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the lightweight cryptography control (from IoT device fleet + firmware)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -1870,34 +1875,34 @@ export const iotStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 7/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 9/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream IoT controls."
+        "value": "VALUE 9/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Internet of Things (IoT) controls."
       }
     },
     "badge": {
       "id": "iot-06-badge",
-      "name": "IoT Auditor",
+      "name": "Internet of Things (IoT) Auditor",
       "emoji": "📡"
     },
     "wonder": {
       "name": "Lightweight cryptography",
-      "location": "IoT",
+      "location": "Internet of Things (IoT)",
       "era": "Present Day",
       "emoji": "📡"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Lightweight cryptography\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the IoT control.",
+      "tagline": "Auditing \"Lightweight cryptography\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the lightweight cryptography control (from IoT device fleet + firmware)) with read-only agents, run the test against policy, and issue a defensible opinion on the Internet of Things (IoT) control.",
       "year": 2025,
       "overview": [
-        "The \"Lightweight cryptography\" sub-process is one of the controls an auditor must verify for IoT. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that lightweight cryptography is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically IoT device fleet + firmware, IoT gateway / broker, Device-identity / certificate service — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Lightweight cryptography\" sub-process is one of the controls an auditor must verify for Internet of Things (IoT). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the lightweight cryptography control (from IoT device fleet + firmware), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here IoT device fleet + firmware, IoT gateway / broker, Device-identity / certificate service — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"Lightweight cryptography\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `06_lightweight_cryptography_mcp.py` exposes read-only tools that turn each IoT source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `06_lightweight_cryptography_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from IoT device fleet + firmware and IoT gateway / broker (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 06_lightweight_cryptography_mcp.py` to expose it to your agent — or `python 06_lightweight_cryptography_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -1919,7 +1924,7 @@ export const iotStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define IoT scope + policy",
+            "sub": "define Internet of Things (IoT) scope + policy",
             "type": "attacker"
           },
           {
@@ -1955,12 +1960,13 @@ export const iotStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Lightweight cryptography\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the lightweight cryptography control (from IoT device fleet + firmware).",
+        "The test: Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"Lightweight cryptography\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (IoT device fleet + firmware, IoT gateway / broker, Device-identity / certificate service) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the lightweight cryptography control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -1984,21 +1990,21 @@ export const iotStages: StageConfig[] = [
         {
           "name": "06_lightweight_cryptography_mcp.py",
           "url": "/audit-code/iot/06_lightweight_cryptography_mcp.py",
-          "description": "Runnable read-only MCP server: gathers IoT evidence for \"Lightweight cryptography\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Internet of Things (IoT) evidence for \"Lightweight cryptography\" (in-scope inventory for the lightweight cryptography control (from iot device fleet + firmware)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Lightweight cryptography\" control for IoT at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Lightweight cryptography\" control for Internet of Things (IoT) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"Lightweight cryptography\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the lightweight cryptography control (from IoT device fleet + firmware) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live IoT device fleet + firmware APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. IoT device fleet + firmware gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. IoT device fleet + firmware is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from IoT device fleet + firmware; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — IoT: \"Lightweight cryptography\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- iot_inventory.json   (in-scope items from IoT device fleet + firmware)\n- iot_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Lightweight cryptography\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Lightweight cryptography\",\n  \"domain\": \"IoT\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{iot_",
+        "/evidence/README.md": "# AcmeCorp — Internet of Things (IoT): \"Lightweight cryptography\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"Lightweight cryptography\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- iot_inventory.json   (in-scope items — In-scope inventory for the lightweight cryptography control (from IoT device fleet + firmware))\n- iot_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Lightweight cryptography\",\n  \"domain\": \"Internet of Things (IoT)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{iot_",
         "/evidence/iot_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"IoT / product engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Lightweight cryptography\" control must cover\n# fragment: lightweight_cryptography_",
         "/evidence/iot_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -2062,7 +2068,7 @@ export const iotStages: StageConfig[] = [
           "id": "iot-06-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Lightweight cryptography\" sub-process of IoT?",
+          "text": "What is the primary audit objective for the \"Lightweight cryptography\" sub-process of Internet of Things (IoT)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -2076,11 +2082,11 @@ export const iotStages: StageConfig[] = [
           "id": "iot-06-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Lightweight cryptography\" matter to the broader IoT posture?",
+          "text": "Why does a weakness in \"Lightweight cryptography\" matter to the broader Internet of Things (IoT) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other IoT controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Internet of Things (IoT) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -2093,7 +2099,7 @@ export const iotStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Lightweight cryptography\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Lightweight cryptography evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the lightweight cryptography control (from IoT device fleet + firmware) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -2159,16 +2165,16 @@ export const iotStages: StageConfig[] = [
         {
           "id": "iot-06-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Lightweight cryptography\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Lightweight cryptography\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the lightweight cryptography control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the lightweight cryptography control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "iot-06-q9",
@@ -2213,8 +2219,8 @@ export const iotStages: StageConfig[] = [
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Vulnerability mgmt and pen test\" control for IoT is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each IoT source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Vulnerability mgmt and pen test\" control for Internet of Things (IoT) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"Vulnerability mgmt and pen test\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Internet of Things (IoT) systems of record (IoT device fleet + firmware; IoT gateway / broker; Device-identity / certificate service) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the vulnerability mgmt and pen test control (from IoT device fleet + firmware)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -2235,34 +2241,34 @@ export const iotStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 5/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 9/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream IoT controls."
+        "value": "VALUE 9/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Internet of Things (IoT) controls."
       }
     },
     "badge": {
       "id": "iot-07-badge",
-      "name": "IoT Auditor",
+      "name": "Internet of Things (IoT) Auditor",
       "emoji": "📡"
     },
     "wonder": {
       "name": "Vulnerability mgmt and pen test",
-      "location": "IoT",
+      "location": "Internet of Things (IoT)",
       "era": "Present Day",
       "emoji": "📡"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Vulnerability mgmt and pen test\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the IoT control.",
+      "tagline": "Auditing \"Vulnerability mgmt and pen test\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the vulnerability mgmt and pen test control (from IoT device fleet + firmware)) with read-only agents, run the test against policy, and issue a defensible opinion on the Internet of Things (IoT) control.",
       "year": 2025,
       "overview": [
-        "The \"Vulnerability mgmt and pen test\" sub-process is one of the controls an auditor must verify for IoT. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that vulnerability mgmt and pen test is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically IoT device fleet + firmware, IoT gateway / broker, Device-identity / certificate service — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Vulnerability mgmt and pen test\" sub-process is one of the controls an auditor must verify for Internet of Things (IoT). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the vulnerability mgmt and pen test control (from IoT device fleet + firmware), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here IoT device fleet + firmware, IoT gateway / broker, Device-identity / certificate service — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"Vulnerability mgmt and pen test\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `07_vulnerability_mgmt_and_pen_test_mcp.py` exposes read-only tools that turn each IoT source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `07_vulnerability_mgmt_and_pen_test_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from IoT device fleet + firmware and IoT gateway / broker (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 07_vulnerability_mgmt_and_pen_test_mcp.py` to expose it to your agent — or `python 07_vulnerability_mgmt_and_pen_test_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -2284,7 +2290,7 @@ export const iotStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define IoT scope + policy",
+            "sub": "define Internet of Things (IoT) scope + policy",
             "type": "attacker"
           },
           {
@@ -2320,12 +2326,13 @@ export const iotStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Vulnerability mgmt and pen test\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the vulnerability mgmt and pen test control (from IoT device fleet + firmware).",
+        "The test: Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"Vulnerability mgmt and pen test\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (IoT device fleet + firmware, IoT gateway / broker, Device-identity / certificate service) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the vulnerability mgmt and pen test control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -2349,21 +2356,21 @@ export const iotStages: StageConfig[] = [
         {
           "name": "07_vulnerability_mgmt_and_pen_test_mcp.py",
           "url": "/audit-code/iot/07_vulnerability_mgmt_and_pen_test_mcp.py",
-          "description": "Runnable read-only MCP server: gathers IoT evidence for \"Vulnerability mgmt and pen test\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Internet of Things (IoT) evidence for \"Vulnerability mgmt and pen test\" (in-scope inventory for the vulnerability mgmt and pen test control (from iot device fleet + firmware)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Vulnerability mgmt and pen test\" control for IoT at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Vulnerability mgmt and pen test\" control for Internet of Things (IoT) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"Vulnerability mgmt and pen test\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the vulnerability mgmt and pen test control (from IoT device fleet + firmware) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live IoT device fleet + firmware APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. IoT device fleet + firmware gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. IoT device fleet + firmware is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from IoT device fleet + firmware; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — IoT: \"Vulnerability mgmt and pen test\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- iot_inventory.json   (in-scope items from IoT device fleet + firmware)\n- iot_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Vulnerability mgmt and pen test\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Vulnerability mgmt and pen test\",\n  \"domain\": \"IoT\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{iot_",
+        "/evidence/README.md": "# AcmeCorp — Internet of Things (IoT): \"Vulnerability mgmt and pen test\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"Vulnerability mgmt and pen test\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- iot_inventory.json   (in-scope items — In-scope inventory for the vulnerability mgmt and pen test control (from IoT device fleet + firmware))\n- iot_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Vulnerability mgmt and pen test\",\n  \"domain\": \"Internet of Things (IoT)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{iot_",
         "/evidence/iot_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"IoT / product engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Vulnerability mgmt and pen test\" control must cover\n# fragment: vulnerability_mgmt_pen_",
         "/evidence/iot_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -2427,7 +2434,7 @@ export const iotStages: StageConfig[] = [
           "id": "iot-07-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Vulnerability mgmt and pen test\" sub-process of IoT?",
+          "text": "What is the primary audit objective for the \"Vulnerability mgmt and pen test\" sub-process of Internet of Things (IoT)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -2441,11 +2448,11 @@ export const iotStages: StageConfig[] = [
           "id": "iot-07-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Vulnerability mgmt and pen test\" matter to the broader IoT posture?",
+          "text": "Why does a weakness in \"Vulnerability mgmt and pen test\" matter to the broader Internet of Things (IoT) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other IoT controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Internet of Things (IoT) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -2458,7 +2465,7 @@ export const iotStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Vulnerability mgmt and pen test\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Vulnerability mgmt and pen test evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the vulnerability mgmt and pen test control (from IoT device fleet + firmware) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -2524,16 +2531,16 @@ export const iotStages: StageConfig[] = [
         {
           "id": "iot-07-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Vulnerability mgmt and pen test\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Vulnerability mgmt and pen test\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the vulnerability mgmt and pen test control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the vulnerability mgmt and pen test control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "iot-07-q9",
@@ -2578,8 +2585,8 @@ export const iotStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"NAC\" control for IoT is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each IoT source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"NAC\" control for Internet of Things (IoT) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"NAC\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Internet of Things (IoT) systems of record (IoT device fleet + firmware; IoT gateway / broker; Device-identity / certificate service) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the nac control (from IoT device fleet + firmware)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -2600,34 +2607,34 @@ export const iotStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 6/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream IoT controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Internet of Things (IoT) controls."
       }
     },
     "badge": {
       "id": "iot-08-badge",
-      "name": "IoT Auditor",
+      "name": "Internet of Things (IoT) Auditor",
       "emoji": "📡"
     },
     "wonder": {
       "name": "NAC",
-      "location": "IoT",
+      "location": "Internet of Things (IoT)",
       "era": "Present Day",
       "emoji": "📡"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"NAC\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the IoT control.",
+      "tagline": "Auditing \"NAC\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the nac control (from IoT device fleet + firmware)) with read-only agents, run the test against policy, and issue a defensible opinion on the Internet of Things (IoT) control.",
       "year": 2025,
       "overview": [
-        "The \"NAC\" sub-process is one of the controls an auditor must verify for IoT. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that nac is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically IoT device fleet + firmware, IoT gateway / broker, Device-identity / certificate service — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"NAC\" sub-process is one of the controls an auditor must verify for Internet of Things (IoT). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the nac control (from IoT device fleet + firmware), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here IoT device fleet + firmware, IoT gateway / broker, Device-identity / certificate service — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"NAC\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `08_nac_mcp.py` exposes read-only tools that turn each IoT source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `08_nac_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from IoT device fleet + firmware and IoT gateway / broker (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 08_nac_mcp.py` to expose it to your agent — or `python 08_nac_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -2649,7 +2656,7 @@ export const iotStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define IoT scope + policy",
+            "sub": "define Internet of Things (IoT) scope + policy",
             "type": "attacker"
           },
           {
@@ -2685,12 +2692,13 @@ export const iotStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"NAC\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the nac control (from IoT device fleet + firmware).",
+        "The test: Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"NAC\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (IoT device fleet + firmware, IoT gateway / broker, Device-identity / certificate service) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the nac control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -2714,21 +2722,21 @@ export const iotStages: StageConfig[] = [
         {
           "name": "08_nac_mcp.py",
           "url": "/audit-code/iot/08_nac_mcp.py",
-          "description": "Runnable read-only MCP server: gathers IoT evidence for \"NAC\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Internet of Things (IoT) evidence for \"NAC\" (in-scope inventory for the nac control (from iot device fleet + firmware)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"NAC\" control for IoT at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"NAC\" control for Internet of Things (IoT) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"NAC\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the nac control (from IoT device fleet + firmware) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live IoT device fleet + firmware APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. IoT device fleet + firmware gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. IoT device fleet + firmware is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from IoT device fleet + firmware; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — IoT: \"NAC\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- iot_inventory.json   (in-scope items from IoT device fleet + firmware)\n- iot_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"NAC\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"NAC\",\n  \"domain\": \"IoT\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{iot_",
+        "/evidence/README.md": "# AcmeCorp — Internet of Things (IoT): \"NAC\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"NAC\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- iot_inventory.json   (in-scope items — In-scope inventory for the nac control (from IoT device fleet + firmware))\n- iot_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"NAC\",\n  \"domain\": \"Internet of Things (IoT)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{iot_",
         "/evidence/iot_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"IoT / product engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"NAC\" control must cover\n# fragment: nac_",
         "/evidence/iot_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -2792,7 +2800,7 @@ export const iotStages: StageConfig[] = [
           "id": "iot-08-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"NAC\" sub-process of IoT?",
+          "text": "What is the primary audit objective for the \"NAC\" sub-process of Internet of Things (IoT)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -2806,11 +2814,11 @@ export const iotStages: StageConfig[] = [
           "id": "iot-08-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"NAC\" matter to the broader IoT posture?",
+          "text": "Why does a weakness in \"NAC\" matter to the broader Internet of Things (IoT) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other IoT controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Internet of Things (IoT) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -2823,7 +2831,7 @@ export const iotStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"NAC\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The NAC evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the nac control (from IoT device fleet + firmware) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -2889,16 +2897,16 @@ export const iotStages: StageConfig[] = [
         {
           "id": "iot-08-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"NAC\"?",
+          "challenge": "Typical finding",
+          "text": "For \"NAC\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the nac control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the nac control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "iot-08-q9",
@@ -2943,8 +2951,8 @@ export const iotStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"IoT gateway security\" control for IoT is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each IoT source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"IoT gateway security\" control for Internet of Things (IoT) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"IoT gateway security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Internet of Things (IoT) systems of record (IoT device fleet + firmware; IoT gateway / broker; Device-identity / certificate service) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the iot gateway security control (from IoT device fleet + firmware)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -2965,34 +2973,34 @@ export const iotStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 7/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream IoT controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Internet of Things (IoT) controls."
       }
     },
     "badge": {
       "id": "iot-09-badge",
-      "name": "IoT Auditor",
+      "name": "Internet of Things (IoT) Auditor",
       "emoji": "📡"
     },
     "wonder": {
       "name": "IoT gateway security",
-      "location": "IoT",
+      "location": "Internet of Things (IoT)",
       "era": "Present Day",
       "emoji": "📡"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"IoT gateway security\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the IoT control.",
+      "tagline": "Auditing \"IoT gateway security\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the iot gateway security control (from IoT device fleet + firmware)) with read-only agents, run the test against policy, and issue a defensible opinion on the Internet of Things (IoT) control.",
       "year": 2025,
       "overview": [
-        "The \"IoT gateway security\" sub-process is one of the controls an auditor must verify for IoT. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that iot gateway security is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically IoT device fleet + firmware, IoT gateway / broker, Device-identity / certificate service — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"IoT gateway security\" sub-process is one of the controls an auditor must verify for Internet of Things (IoT). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the iot gateway security control (from IoT device fleet + firmware), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here IoT device fleet + firmware, IoT gateway / broker, Device-identity / certificate service — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"IoT gateway security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `09_iot_gateway_security_mcp.py` exposes read-only tools that turn each IoT source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `09_iot_gateway_security_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from IoT device fleet + firmware and IoT gateway / broker (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 09_iot_gateway_security_mcp.py` to expose it to your agent — or `python 09_iot_gateway_security_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -3014,7 +3022,7 @@ export const iotStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define IoT scope + policy",
+            "sub": "define Internet of Things (IoT) scope + policy",
             "type": "attacker"
           },
           {
@@ -3050,12 +3058,13 @@ export const iotStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"IoT gateway security\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the iot gateway security control (from IoT device fleet + firmware).",
+        "The test: Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"IoT gateway security\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (IoT device fleet + firmware, IoT gateway / broker, Device-identity / certificate service) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the iot gateway security control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -3079,21 +3088,21 @@ export const iotStages: StageConfig[] = [
         {
           "name": "09_iot_gateway_security_mcp.py",
           "url": "/audit-code/iot/09_iot_gateway_security_mcp.py",
-          "description": "Runnable read-only MCP server: gathers IoT evidence for \"IoT gateway security\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Internet of Things (IoT) evidence for \"IoT gateway security\" (in-scope inventory for the iot gateway security control (from iot device fleet + firmware)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"IoT gateway security\" control for IoT at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"IoT gateway security\" control for Internet of Things (IoT) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"IoT gateway security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the iot gateway security control (from IoT device fleet + firmware) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live IoT device fleet + firmware APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. IoT device fleet + firmware gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. IoT device fleet + firmware is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from IoT device fleet + firmware; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — IoT: \"IoT gateway security\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- iot_inventory.json   (in-scope items from IoT device fleet + firmware)\n- iot_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"IoT gateway security\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"IoT gateway security\",\n  \"domain\": \"IoT\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{iot_",
+        "/evidence/README.md": "# AcmeCorp — Internet of Things (IoT): \"IoT gateway security\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"IoT gateway security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- iot_inventory.json   (in-scope items — In-scope inventory for the iot gateway security control (from IoT device fleet + firmware))\n- iot_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"IoT gateway security\",\n  \"domain\": \"Internet of Things (IoT)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{iot_",
         "/evidence/iot_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"IoT / product engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"IoT gateway security\" control must cover\n# fragment: iot_gateway_security_",
         "/evidence/iot_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -3157,7 +3166,7 @@ export const iotStages: StageConfig[] = [
           "id": "iot-09-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"IoT gateway security\" sub-process of IoT?",
+          "text": "What is the primary audit objective for the \"IoT gateway security\" sub-process of Internet of Things (IoT)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -3171,11 +3180,11 @@ export const iotStages: StageConfig[] = [
           "id": "iot-09-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"IoT gateway security\" matter to the broader IoT posture?",
+          "text": "Why does a weakness in \"IoT gateway security\" matter to the broader Internet of Things (IoT) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other IoT controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Internet of Things (IoT) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -3188,7 +3197,7 @@ export const iotStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"IoT gateway security\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The IoT gateway security evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the iot gateway security control (from IoT device fleet + firmware) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -3254,16 +3263,16 @@ export const iotStages: StageConfig[] = [
         {
           "id": "iot-09-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"IoT gateway security\"?",
+          "challenge": "Typical finding",
+          "text": "For \"IoT gateway security\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the iot gateway security control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the iot gateway security control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "iot-09-q9",
@@ -3308,8 +3317,8 @@ export const iotStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Out-of-band management\" control for IoT is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each IoT source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Out-of-band management\" control for Internet of Things (IoT) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"Out-of-band management\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Internet of Things (IoT) systems of record (IoT device fleet + firmware; IoT gateway / broker; Device-identity / certificate service) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the out-of-band management control (from IoT device fleet + firmware)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -3330,34 +3339,34 @@ export const iotStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 5/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream IoT controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Internet of Things (IoT) controls."
       }
     },
     "badge": {
       "id": "iot-10-badge",
-      "name": "IoT Auditor",
+      "name": "Internet of Things (IoT) Auditor",
       "emoji": "📡"
     },
     "wonder": {
       "name": "Out-of-band management",
-      "location": "IoT",
+      "location": "Internet of Things (IoT)",
       "era": "Present Day",
       "emoji": "📡"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Out-of-band management\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the IoT control.",
+      "tagline": "Auditing \"Out-of-band management\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the out-of-band management control (from IoT device fleet + firmware)) with read-only agents, run the test against policy, and issue a defensible opinion on the Internet of Things (IoT) control.",
       "year": 2025,
       "overview": [
-        "The \"Out-of-band management\" sub-process is one of the controls an auditor must verify for IoT. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that out-of-band management is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically IoT device fleet + firmware, IoT gateway / broker, Device-identity / certificate service — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Out-of-band management\" sub-process is one of the controls an auditor must verify for Internet of Things (IoT). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the out-of-band management control (from IoT device fleet + firmware), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here IoT device fleet + firmware, IoT gateway / broker, Device-identity / certificate service — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"Out-of-band management\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `10_out_of_band_management_mcp.py` exposes read-only tools that turn each IoT source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `10_out_of_band_management_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from IoT device fleet + firmware and IoT gateway / broker (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 10_out_of_band_management_mcp.py` to expose it to your agent — or `python 10_out_of_band_management_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -3379,7 +3388,7 @@ export const iotStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define IoT scope + policy",
+            "sub": "define Internet of Things (IoT) scope + policy",
             "type": "attacker"
           },
           {
@@ -3415,12 +3424,13 @@ export const iotStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Out-of-band management\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the out-of-band management control (from IoT device fleet + firmware).",
+        "The test: Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"Out-of-band management\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (IoT device fleet + firmware, IoT gateway / broker, Device-identity / certificate service) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the out-of-band management control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -3444,21 +3454,21 @@ export const iotStages: StageConfig[] = [
         {
           "name": "10_out_of_band_management_mcp.py",
           "url": "/audit-code/iot/10_out_of_band_management_mcp.py",
-          "description": "Runnable read-only MCP server: gathers IoT evidence for \"Out-of-band management\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Internet of Things (IoT) evidence for \"Out-of-band management\" (in-scope inventory for the out-of-band management control (from iot device fleet + firmware)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Out-of-band management\" control for IoT at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Out-of-band management\" control for Internet of Things (IoT) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"Out-of-band management\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the out-of-band management control (from IoT device fleet + firmware) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live IoT device fleet + firmware APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. IoT device fleet + firmware gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. IoT device fleet + firmware is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from IoT device fleet + firmware; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — IoT: \"Out-of-band management\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- iot_inventory.json   (in-scope items from IoT device fleet + firmware)\n- iot_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Out-of-band management\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Out-of-band management\",\n  \"domain\": \"IoT\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{iot_",
+        "/evidence/README.md": "# AcmeCorp — Internet of Things (IoT): \"Out-of-band management\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"Out-of-band management\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- iot_inventory.json   (in-scope items — In-scope inventory for the out-of-band management control (from IoT device fleet + firmware))\n- iot_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Out-of-band management\",\n  \"domain\": \"Internet of Things (IoT)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{iot_",
         "/evidence/iot_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"IoT / product engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Out-of-band management\" control must cover\n# fragment: outofband_management_",
         "/evidence/iot_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"EXCEPTIONS\"\n}\n# fragment: exceptions}"
@@ -3522,7 +3532,7 @@ export const iotStages: StageConfig[] = [
           "id": "iot-10-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Out-of-band management\" sub-process of IoT?",
+          "text": "What is the primary audit objective for the \"Out-of-band management\" sub-process of Internet of Things (IoT)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -3536,11 +3546,11 @@ export const iotStages: StageConfig[] = [
           "id": "iot-10-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Out-of-band management\" matter to the broader IoT posture?",
+          "text": "Why does a weakness in \"Out-of-band management\" matter to the broader Internet of Things (IoT) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other IoT controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Internet of Things (IoT) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -3553,7 +3563,7 @@ export const iotStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Out-of-band management\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Out-of-band management evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the out-of-band management control (from IoT device fleet + firmware) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -3619,16 +3629,16 @@ export const iotStages: StageConfig[] = [
         {
           "id": "iot-10-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Out-of-band management\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Out-of-band management\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the out-of-band management control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the out-of-band management control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "iot-10-q9",
@@ -3673,8 +3683,8 @@ export const iotStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Shadow IoT detection\" control for IoT is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each IoT source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Shadow IoT detection\" control for Internet of Things (IoT) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"Shadow IoT detection\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Internet of Things (IoT) systems of record (IoT device fleet + firmware; IoT gateway / broker; Device-identity / certificate service) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the shadow iot detection control (from IoT device fleet + firmware)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -3695,34 +3705,34 @@ export const iotStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 6/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream IoT controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Internet of Things (IoT) controls."
       }
     },
     "badge": {
       "id": "iot-11-badge",
-      "name": "IoT Auditor",
+      "name": "Internet of Things (IoT) Auditor",
       "emoji": "📡"
     },
     "wonder": {
       "name": "Shadow IoT detection",
-      "location": "IoT",
+      "location": "Internet of Things (IoT)",
       "era": "Present Day",
       "emoji": "📡"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Shadow IoT detection\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the IoT control.",
+      "tagline": "Auditing \"Shadow IoT detection\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the shadow iot detection control (from IoT device fleet + firmware)) with read-only agents, run the test against policy, and issue a defensible opinion on the Internet of Things (IoT) control.",
       "year": 2025,
       "overview": [
-        "The \"Shadow IoT detection\" sub-process is one of the controls an auditor must verify for IoT. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that shadow iot detection is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically IoT device fleet + firmware, IoT gateway / broker, Device-identity / certificate service — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Shadow IoT detection\" sub-process is one of the controls an auditor must verify for Internet of Things (IoT). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the shadow iot detection control (from IoT device fleet + firmware), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here IoT device fleet + firmware, IoT gateway / broker, Device-identity / certificate service — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"Shadow IoT detection\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `11_shadow_iot_detection_mcp.py` exposes read-only tools that turn each IoT source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `11_shadow_iot_detection_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from IoT device fleet + firmware and IoT gateway / broker (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 11_shadow_iot_detection_mcp.py` to expose it to your agent — or `python 11_shadow_iot_detection_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -3744,7 +3754,7 @@ export const iotStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define IoT scope + policy",
+            "sub": "define Internet of Things (IoT) scope + policy",
             "type": "attacker"
           },
           {
@@ -3780,12 +3790,13 @@ export const iotStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Shadow IoT detection\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the shadow iot detection control (from IoT device fleet + firmware).",
+        "The test: Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"Shadow IoT detection\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (IoT device fleet + firmware, IoT gateway / broker, Device-identity / certificate service) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the shadow iot detection control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -3809,21 +3820,21 @@ export const iotStages: StageConfig[] = [
         {
           "name": "11_shadow_iot_detection_mcp.py",
           "url": "/audit-code/iot/11_shadow_iot_detection_mcp.py",
-          "description": "Runnable read-only MCP server: gathers IoT evidence for \"Shadow IoT detection\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Internet of Things (IoT) evidence for \"Shadow IoT detection\" (in-scope inventory for the shadow iot detection control (from iot device fleet + firmware)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Shadow IoT detection\" control for IoT at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Shadow IoT detection\" control for Internet of Things (IoT) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"Shadow IoT detection\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the shadow iot detection control (from IoT device fleet + firmware) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live IoT device fleet + firmware APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. IoT device fleet + firmware gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. IoT device fleet + firmware is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from IoT device fleet + firmware; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — IoT: \"Shadow IoT detection\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- iot_inventory.json   (in-scope items from IoT device fleet + firmware)\n- iot_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Shadow IoT detection\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Shadow IoT detection\",\n  \"domain\": \"IoT\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{iot_",
+        "/evidence/README.md": "# AcmeCorp — Internet of Things (IoT): \"Shadow IoT detection\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"Shadow IoT detection\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- iot_inventory.json   (in-scope items — In-scope inventory for the shadow iot detection control (from IoT device fleet + firmware))\n- iot_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Shadow IoT detection\",\n  \"domain\": \"Internet of Things (IoT)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{iot_",
         "/evidence/iot_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"IoT / product engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Shadow IoT detection\" control must cover\n# fragment: shadow_iot_detection_",
         "/evidence/iot_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -3887,7 +3898,7 @@ export const iotStages: StageConfig[] = [
           "id": "iot-11-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Shadow IoT detection\" sub-process of IoT?",
+          "text": "What is the primary audit objective for the \"Shadow IoT detection\" sub-process of Internet of Things (IoT)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -3901,11 +3912,11 @@ export const iotStages: StageConfig[] = [
           "id": "iot-11-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Shadow IoT detection\" matter to the broader IoT posture?",
+          "text": "Why does a weakness in \"Shadow IoT detection\" matter to the broader Internet of Things (IoT) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other IoT controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Internet of Things (IoT) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -3918,7 +3929,7 @@ export const iotStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Shadow IoT detection\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Shadow IoT detection evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the shadow iot detection control (from IoT device fleet + firmware) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -3984,16 +3995,16 @@ export const iotStages: StageConfig[] = [
         {
           "id": "iot-11-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Shadow IoT detection\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Shadow IoT detection\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the shadow iot detection control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the shadow iot detection control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "iot-11-q9",
@@ -4038,8 +4049,8 @@ export const iotStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"IoT monitoring and IR\" control for IoT is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each IoT source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"IoT monitoring and IR\" control for Internet of Things (IoT) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"IoT monitoring and IR\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Internet of Things (IoT) systems of record (IoT device fleet + firmware; IoT gateway / broker; Device-identity / certificate service) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the iot monitoring and ir control (from IoT device fleet + firmware)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -4060,34 +4071,34 @@ export const iotStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 8/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream IoT controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Internet of Things (IoT) controls."
       }
     },
     "badge": {
       "id": "iot-12-badge",
-      "name": "IoT Auditor",
+      "name": "Internet of Things (IoT) Auditor",
       "emoji": "📡"
     },
     "wonder": {
       "name": "IoT monitoring and IR",
-      "location": "IoT",
+      "location": "Internet of Things (IoT)",
       "era": "Present Day",
       "emoji": "📡"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"IoT monitoring and IR\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the IoT control.",
+      "tagline": "Auditing \"IoT monitoring and IR\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the iot monitoring and ir control (from IoT device fleet + firmware)) with read-only agents, run the test against policy, and issue a defensible opinion on the Internet of Things (IoT) control.",
       "year": 2025,
       "overview": [
-        "The \"IoT monitoring and IR\" sub-process is one of the controls an auditor must verify for IoT. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that iot monitoring and ir is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically IoT device fleet + firmware, IoT gateway / broker, Device-identity / certificate service — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"IoT monitoring and IR\" sub-process is one of the controls an auditor must verify for Internet of Things (IoT). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the iot monitoring and ir control (from IoT device fleet + firmware), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here IoT device fleet + firmware, IoT gateway / broker, Device-identity / certificate service — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"IoT monitoring and IR\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `12_iot_monitoring_and_ir_mcp.py` exposes read-only tools that turn each IoT source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `12_iot_monitoring_and_ir_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from IoT device fleet + firmware and IoT gateway / broker (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 12_iot_monitoring_and_ir_mcp.py` to expose it to your agent — or `python 12_iot_monitoring_and_ir_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -4109,7 +4120,7 @@ export const iotStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define IoT scope + policy",
+            "sub": "define Internet of Things (IoT) scope + policy",
             "type": "attacker"
           },
           {
@@ -4145,12 +4156,13 @@ export const iotStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"IoT monitoring and IR\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the iot monitoring and ir control (from IoT device fleet + firmware).",
+        "The test: Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"IoT monitoring and IR\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (IoT device fleet + firmware, IoT gateway / broker, Device-identity / certificate service) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the iot monitoring and ir control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -4174,21 +4186,21 @@ export const iotStages: StageConfig[] = [
         {
           "name": "12_iot_monitoring_and_ir_mcp.py",
           "url": "/audit-code/iot/12_iot_monitoring_and_ir_mcp.py",
-          "description": "Runnable read-only MCP server: gathers IoT evidence for \"IoT monitoring and IR\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Internet of Things (IoT) evidence for \"IoT monitoring and IR\" (in-scope inventory for the iot monitoring and ir control (from iot device fleet + firmware)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"IoT monitoring and IR\" control for IoT at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"IoT monitoring and IR\" control for Internet of Things (IoT) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"IoT monitoring and IR\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the iot monitoring and ir control (from IoT device fleet + firmware) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live IoT device fleet + firmware APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. IoT device fleet + firmware gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. IoT device fleet + firmware is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from IoT device fleet + firmware; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — IoT: \"IoT monitoring and IR\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- iot_inventory.json   (in-scope items from IoT device fleet + firmware)\n- iot_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"IoT monitoring and IR\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"IoT monitoring and IR\",\n  \"domain\": \"IoT\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{iot_",
+        "/evidence/README.md": "# AcmeCorp — Internet of Things (IoT): \"IoT monitoring and IR\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"IoT monitoring and IR\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- iot_inventory.json   (in-scope items — In-scope inventory for the iot monitoring and ir control (from IoT device fleet + firmware))\n- iot_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"IoT monitoring and IR\",\n  \"domain\": \"Internet of Things (IoT)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{iot_",
         "/evidence/iot_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"IoT / product engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"IoT monitoring and IR\" control must cover\n# fragment: iot_monitoring_ir_",
         "/evidence/iot_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -4252,7 +4264,7 @@ export const iotStages: StageConfig[] = [
           "id": "iot-12-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"IoT monitoring and IR\" sub-process of IoT?",
+          "text": "What is the primary audit objective for the \"IoT monitoring and IR\" sub-process of Internet of Things (IoT)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -4266,11 +4278,11 @@ export const iotStages: StageConfig[] = [
           "id": "iot-12-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"IoT monitoring and IR\" matter to the broader IoT posture?",
+          "text": "Why does a weakness in \"IoT monitoring and IR\" matter to the broader Internet of Things (IoT) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other IoT controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Internet of Things (IoT) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -4283,7 +4295,7 @@ export const iotStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"IoT monitoring and IR\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The IoT monitoring and IR evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the iot monitoring and ir control (from IoT device fleet + firmware) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -4349,16 +4361,16 @@ export const iotStages: StageConfig[] = [
         {
           "id": "iot-12-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"IoT monitoring and IR\"?",
+          "challenge": "Typical finding",
+          "text": "For \"IoT monitoring and IR\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the iot monitoring and ir control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the iot monitoring and ir control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "iot-12-q9",
@@ -4403,8 +4415,8 @@ export const iotStages: StageConfig[] = [
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Physical access\" control for IoT is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each IoT source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Physical access\" control for Internet of Things (IoT) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"Physical access\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Internet of Things (IoT) systems of record (IoT device fleet + firmware; IoT gateway / broker; Device-identity / certificate service) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the physical access control (from IoT device fleet + firmware)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -4425,34 +4437,34 @@ export const iotStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 5/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 9/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream IoT controls."
+        "value": "VALUE 9/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Internet of Things (IoT) controls."
       }
     },
     "badge": {
       "id": "iot-13-badge",
-      "name": "IoT Auditor",
+      "name": "Internet of Things (IoT) Auditor",
       "emoji": "📡"
     },
     "wonder": {
       "name": "Physical access",
-      "location": "IoT",
+      "location": "Internet of Things (IoT)",
       "era": "Present Day",
       "emoji": "📡"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Physical access\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the IoT control.",
+      "tagline": "Auditing \"Physical access\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the physical access control (from IoT device fleet + firmware)) with read-only agents, run the test against policy, and issue a defensible opinion on the Internet of Things (IoT) control.",
       "year": 2025,
       "overview": [
-        "The \"Physical access\" sub-process is one of the controls an auditor must verify for IoT. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that physical access is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically IoT device fleet + firmware, IoT gateway / broker, Device-identity / certificate service — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Physical access\" sub-process is one of the controls an auditor must verify for Internet of Things (IoT). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the physical access control (from IoT device fleet + firmware), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here IoT device fleet + firmware, IoT gateway / broker, Device-identity / certificate service — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"Physical access\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `13_physical_access_mcp.py` exposes read-only tools that turn each IoT source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `13_physical_access_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from IoT device fleet + firmware and IoT gateway / broker (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 13_physical_access_mcp.py` to expose it to your agent — or `python 13_physical_access_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -4474,7 +4486,7 @@ export const iotStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define IoT scope + policy",
+            "sub": "define Internet of Things (IoT) scope + policy",
             "type": "attacker"
           },
           {
@@ -4510,12 +4522,13 @@ export const iotStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Physical access\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the physical access control (from IoT device fleet + firmware).",
+        "The test: Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"Physical access\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (IoT device fleet + firmware, IoT gateway / broker, Device-identity / certificate service) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the physical access control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -4539,21 +4552,21 @@ export const iotStages: StageConfig[] = [
         {
           "name": "13_physical_access_mcp.py",
           "url": "/audit-code/iot/13_physical_access_mcp.py",
-          "description": "Runnable read-only MCP server: gathers IoT evidence for \"Physical access\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Internet of Things (IoT) evidence for \"Physical access\" (in-scope inventory for the physical access control (from iot device fleet + firmware)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Physical access\" control for IoT at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Physical access\" control for Internet of Things (IoT) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"Physical access\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the physical access control (from IoT device fleet + firmware) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live IoT device fleet + firmware APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. IoT device fleet + firmware gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. IoT device fleet + firmware is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from IoT device fleet + firmware; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — IoT: \"Physical access\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- iot_inventory.json   (in-scope items from IoT device fleet + firmware)\n- iot_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Physical access\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Physical access\",\n  \"domain\": \"IoT\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{iot_",
+        "/evidence/README.md": "# AcmeCorp — Internet of Things (IoT): \"Physical access\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the \"Physical access\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- iot_inventory.json   (in-scope items — In-scope inventory for the physical access control (from IoT device fleet + firmware))\n- iot_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Physical access\",\n  \"domain\": \"Internet of Things (IoT)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{iot_",
         "/evidence/iot_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"IoT / product engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Physical access\" control must cover\n# fragment: physical_access_",
         "/evidence/iot_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -4617,7 +4630,7 @@ export const iotStages: StageConfig[] = [
           "id": "iot-13-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Physical access\" sub-process of IoT?",
+          "text": "What is the primary audit objective for the \"Physical access\" sub-process of Internet of Things (IoT)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -4631,11 +4644,11 @@ export const iotStages: StageConfig[] = [
           "id": "iot-13-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Physical access\" matter to the broader IoT posture?",
+          "text": "Why does a weakness in \"Physical access\" matter to the broader Internet of Things (IoT) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other IoT controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Internet of Things (IoT) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -4648,7 +4661,7 @@ export const iotStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Physical access\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Physical access evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the physical access control (from IoT device fleet + firmware) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -4714,16 +4727,16 @@ export const iotStages: StageConfig[] = [
         {
           "id": "iot-13-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Physical access\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Physical access\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the physical access control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the physical access control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "iot-13-q9",

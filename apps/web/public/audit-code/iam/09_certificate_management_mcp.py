@@ -1,17 +1,26 @@
 #!/usr/bin/env python3
-"""Read-only MCP server — Identity & Access Mgmt: "Certificate management" audit evidence.
+"""Read-only MCP server — Identity & Access Management (IAM): "Certificate management" audit evidence.
 
-Gathers the in-scope inventory and the observed control state from this domain's
-systems of record, evaluates each item against policy, and reports the exceptions
-with a PASS / EXCEPTIONS / MATERIAL-GAP opinion. READ-ONLY: it lists and reports,
-never changes state — the hard requirement for audit tooling.
+THE TEST
+Inventory all TLS, client, and code-signing certificates. PASS: every certificate is inventoried and owned, uses approved algorithms and key sizes (RSA-2048+/ECDSA-P256+, SHA-256+), is not expired or expiring-without-an-owner, auto-renews where possible, and has its private key HSM-protected with least-privilege access; no self-signed certs in production and no unmanaged wildcard sprawl. Exceptions: unknown or expired certs serving production, weak keys (RSA-1024/SHA-1), private keys world-readable on disk, and certs expiring with no renewal owner.
+
+ARTIFACT (what _gather() pulls)
+    The certificate inventory — CN/SAN, issuer, key type/size, signature algorithm, expiry, and where each cert is deployed
+
+REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
+    Inventory: Venafi/ACM export (CN, issuer, key, expiry, deployment)
+    Discovery: query Certificate Transparency logs (crt.sh) for all certs issued for the org's domains
+    Endpoint: nmap --script ssl-cert / openssl s_client -connect host:443 (algorithm + expiry of what's actually served)
+    AD CS:    the issued-certificates database (templates, key archival, weak-key issuance)
+
+This server gathers the in-scope inventory and the observed control state, evaluates
+each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /
+MATERIAL-GAP opinion. READ-ONLY: it lists and reports, never changes state — the hard
+requirement for audit tooling.
 
   pip install "mcp[cli]"
   mcp run 09_certificate_management_mcp.py                 # expose to an agent
   python 09_certificate_management_mcp.py --selftest       # reproduce findings against fixtures, offline
-
-Wire real sources by replacing the _gather() fixtures with read-only API calls to
-IdP (Okta / Entra ID / Ping), PAM (CyberArk / Delinea), IGA / access-review platform, Directory (AD / LDAP).
 """
 from __future__ import annotations
 import json, sys
@@ -68,7 +77,7 @@ def coverage_report() -> dict:
                else "EXCEPTIONS" if len(exceptions) <= EXCEPTION_THRESHOLD
                else "MATERIAL GAP")
     return {
-        "domain": "Identity & Access Mgmt",
+        "domain": "Identity & Access Management (IAM)",
         "control": "Certificate management",
         "in_scope": len(rows),
         "compliant": len(rows) - len(exceptions),

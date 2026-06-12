@@ -2,9 +2,9 @@ import type { EpochConfig, StageConfig } from "../types";
 
 export const rpaGovernanceEpoch: EpochConfig = {
   "id": "rpa-governance",
-  "name": "RPA Governance",
-  "subtitle": "Agentic technical & privacy audit — RPA Governance",
-  "description": "Audit RPA Governance end to end with a read-only agent fleet: each sub-process is a module that teaches the control as a repeatable agentic workflow with downloadable MCP tooling, a CTF, and a 10-question quiz.",
+  "name": "Robotic Process Automation (RPA) Governance",
+  "subtitle": "Agentic technical & privacy audit — Robotic Process Automation (RPA) Governance",
+  "description": "Audit Robotic Process Automation (RPA) Governance end to end with a read-only agent fleet: each sub-process is a module that teaches the control as a repeatable agentic workflow with downloadable MCP tooling, a CTF, and a 10-question quiz.",
   "emoji": "⚙️",
   "color": "Cyan",
   "unlocked": true
@@ -23,8 +23,8 @@ export const rpaGovernanceStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"RPA strategy and governance\" control for RPA Governance is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each RPA Governance source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"RPA strategy and governance\" control for Robotic Process Automation (RPA) Governance is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the \"RPA strategy and governance\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Robotic Process Automation (RPA) Governance systems of record (RPA platform (UiPath/Automation Anywhere/Power Automate); Bot credential vault; Bot orchestration + logs) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the rpa strategy and governance control (from RPA platform (UiPath/Automation Anywhere/Power Automate))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -45,34 +45,34 @@ export const rpaGovernanceStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 5/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream RPA Governance controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Robotic Process Automation (RPA) Governance controls."
       }
     },
     "badge": {
       "id": "rpa-01-badge",
-      "name": "RPA Governance Auditor",
+      "name": "Robotic Process Automation (RPA) Governance Auditor",
       "emoji": "⚙️"
     },
     "wonder": {
       "name": "RPA strategy and governance",
-      "location": "RPA Governance",
+      "location": "Robotic Process Automation (RPA) Governance",
       "era": "Present Day",
       "emoji": "⚙️"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"RPA strategy and governance\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the RPA Governance control.",
+      "tagline": "Auditing \"RPA strategy and governance\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the rpa strategy and governance control (from RPA platform (UiPath/Automation Anywhere/Power Automate))) with read-only agents, run the test against policy, and issue a defensible opinion on the Robotic Process Automation (RPA) Governance control.",
       "year": 2025,
       "overview": [
-        "The \"RPA strategy and governance\" sub-process is one of the controls an auditor must verify for RPA Governance. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that rpa strategy and governance is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically RPA platform (UiPath/Automation Anywhere/Power Automate), Bot credential vault, Bot orchestration + logs — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"RPA strategy and governance\" sub-process is one of the controls an auditor must verify for Robotic Process Automation (RPA) Governance. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the rpa strategy and governance control (from RPA platform (UiPath/Automation Anywhere/Power Automate)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here RPA platform (UiPath/Automation Anywhere/Power Automate), Bot credential vault, Bot orchestration + logs — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the \"RPA strategy and governance\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `01_rpa_strategy_and_governance_mcp.py` exposes read-only tools that turn each RPA Governance source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `01_rpa_strategy_and_governance_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from RPA platform (UiPath/Automation Anywhere/Power Automate) and Bot credential vault (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 01_rpa_strategy_and_governance_mcp.py` to expose it to your agent — or `python 01_rpa_strategy_and_governance_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -94,7 +94,7 @@ export const rpaGovernanceStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define RPA Governance scope + policy",
+            "sub": "define Robotic Process Automation (RPA) Governance scope + policy",
             "type": "attacker"
           },
           {
@@ -130,12 +130,13 @@ export const rpaGovernanceStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"RPA strategy and governance\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the rpa strategy and governance control (from RPA platform (UiPath/Automation Anywhere/Power Automate)).",
+        "The test: Reconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the \"RPA strategy and governance\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (RPA platform (UiPath/Automation Anywhere/Power Automate), Bot credential vault, Bot orchestration + logs) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the rpa strategy and governance control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -159,21 +160,21 @@ export const rpaGovernanceStages: StageConfig[] = [
         {
           "name": "01_rpa_strategy_and_governance_mcp.py",
           "url": "/audit-code/rpa-governance/01_rpa_strategy_and_governance_mcp.py",
-          "description": "Runnable read-only MCP server: gathers RPA Governance evidence for \"RPA strategy and governance\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Robotic Process Automation (RPA) Governance evidence for \"RPA strategy and governance\" (in-scope inventory for the rpa strategy and governance control (from rpa platform (uipath/automation anywhere/power automate))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"RPA strategy and governance\" control for RPA Governance at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"RPA strategy and governance\" control for Robotic Process Automation (RPA) Governance at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the \"RPA strategy and governance\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the rpa strategy and governance control (from RPA platform (UiPath/Automation Anywhere/Power Automate)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live RPA platform (UiPath/Automation Anywhere/Power Automate) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. RPA platform (UiPath/Automation Anywhere/Power Automate) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. RPA platform (UiPath/Automation Anywhere/Power Automate) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from RPA platform (UiPath/Automation Anywhere/Power Automate); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — RPA Governance: \"RPA strategy and governance\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- rpa-governance_inventory.json   (in-scope items from RPA platform (UiPath/Automation Anywhere/Power Automate))\n- rpa-governance_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"RPA strategy and governance\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"RPA strategy and governance\",\n  \"domain\": \"RPA Governance\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{rpa_",
+        "/evidence/README.md": "# AcmeCorp — Robotic Process Automation (RPA) Governance: \"RPA strategy and governance\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the \"RPA strategy and governance\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- rpa-governance_inventory.json   (in-scope items — In-scope inventory for the rpa strategy and governance control (from RPA platform (UiPath/Automation Anywhere/Power Automate)))\n- rpa-governance_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"RPA strategy and governance\",\n  \"domain\": \"Robotic Process Automation (RPA) Governance\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{rpa_",
         "/evidence/rpa-governance_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Automation CoE\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"RPA strategy and governance\" control must cover\n# fragment: rpa_strategy_governance_",
         "/evidence/rpa-governance_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -237,7 +238,7 @@ export const rpaGovernanceStages: StageConfig[] = [
           "id": "rpa-01-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"RPA strategy and governance\" sub-process of RPA Governance?",
+          "text": "What is the primary audit objective for the \"RPA strategy and governance\" sub-process of Robotic Process Automation (RPA) Governance?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -251,11 +252,11 @@ export const rpaGovernanceStages: StageConfig[] = [
           "id": "rpa-01-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"RPA strategy and governance\" matter to the broader RPA Governance posture?",
+          "text": "Why does a weakness in \"RPA strategy and governance\" matter to the broader Robotic Process Automation (RPA) Governance posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other RPA Governance controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Robotic Process Automation (RPA) Governance controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -268,7 +269,7 @@ export const rpaGovernanceStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"RPA strategy and governance\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The RPA strategy and governance evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the rpa strategy and governance control (from RPA platform (UiPath/Automation Anywhere/Power Automate)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -334,16 +335,16 @@ export const rpaGovernanceStages: StageConfig[] = [
         {
           "id": "rpa-01-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"RPA strategy and governance\"?",
+          "challenge": "Typical finding",
+          "text": "For \"RPA strategy and governance\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the rpa strategy and governance control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the rpa strategy and governance control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "rpa-01-q9",
@@ -388,8 +389,8 @@ export const rpaGovernanceStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Legal and regulatory compliance\" control for RPA Governance is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each RPA Governance source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Legal and regulatory compliance\" control for Robotic Process Automation (RPA) Governance is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the \"Legal and regulatory compliance\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Robotic Process Automation (RPA) Governance systems of record (RPA platform (UiPath/Automation Anywhere/Power Automate); Bot credential vault; Bot orchestration + logs) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the legal and regulatory compliance control (from RPA platform (UiPath/Automation Anywhere/Power Automate))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -410,34 +411,34 @@ export const rpaGovernanceStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 6/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream RPA Governance controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Robotic Process Automation (RPA) Governance controls."
       }
     },
     "badge": {
       "id": "rpa-02-badge",
-      "name": "RPA Governance Auditor",
+      "name": "Robotic Process Automation (RPA) Governance Auditor",
       "emoji": "⚙️"
     },
     "wonder": {
       "name": "Legal and regulatory compliance",
-      "location": "RPA Governance",
+      "location": "Robotic Process Automation (RPA) Governance",
       "era": "Present Day",
       "emoji": "⚙️"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Legal and regulatory compliance\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the RPA Governance control.",
+      "tagline": "Auditing \"Legal and regulatory compliance\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the legal and regulatory compliance control (from RPA platform (UiPath/Automation Anywhere/Power Automate))) with read-only agents, run the test against policy, and issue a defensible opinion on the Robotic Process Automation (RPA) Governance control.",
       "year": 2025,
       "overview": [
-        "The \"Legal and regulatory compliance\" sub-process is one of the controls an auditor must verify for RPA Governance. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that legal and regulatory compliance is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically RPA platform (UiPath/Automation Anywhere/Power Automate), Bot credential vault, Bot orchestration + logs — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Legal and regulatory compliance\" sub-process is one of the controls an auditor must verify for Robotic Process Automation (RPA) Governance. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the legal and regulatory compliance control (from RPA platform (UiPath/Automation Anywhere/Power Automate)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here RPA platform (UiPath/Automation Anywhere/Power Automate), Bot credential vault, Bot orchestration + logs — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the \"Legal and regulatory compliance\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `02_legal_and_regulatory_compliance_mcp.py` exposes read-only tools that turn each RPA Governance source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `02_legal_and_regulatory_compliance_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from RPA platform (UiPath/Automation Anywhere/Power Automate) and Bot credential vault (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 02_legal_and_regulatory_compliance_mcp.py` to expose it to your agent — or `python 02_legal_and_regulatory_compliance_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -459,7 +460,7 @@ export const rpaGovernanceStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define RPA Governance scope + policy",
+            "sub": "define Robotic Process Automation (RPA) Governance scope + policy",
             "type": "attacker"
           },
           {
@@ -495,12 +496,13 @@ export const rpaGovernanceStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Legal and regulatory compliance\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the legal and regulatory compliance control (from RPA platform (UiPath/Automation Anywhere/Power Automate)).",
+        "The test: Reconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the \"Legal and regulatory compliance\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (RPA platform (UiPath/Automation Anywhere/Power Automate), Bot credential vault, Bot orchestration + logs) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the legal and regulatory compliance control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -524,21 +526,21 @@ export const rpaGovernanceStages: StageConfig[] = [
         {
           "name": "02_legal_and_regulatory_compliance_mcp.py",
           "url": "/audit-code/rpa-governance/02_legal_and_regulatory_compliance_mcp.py",
-          "description": "Runnable read-only MCP server: gathers RPA Governance evidence for \"Legal and regulatory compliance\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Robotic Process Automation (RPA) Governance evidence for \"Legal and regulatory compliance\" (in-scope inventory for the legal and regulatory compliance control (from rpa platform (uipath/automation anywhere/power automate))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Legal and regulatory compliance\" control for RPA Governance at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Legal and regulatory compliance\" control for Robotic Process Automation (RPA) Governance at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the \"Legal and regulatory compliance\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the legal and regulatory compliance control (from RPA platform (UiPath/Automation Anywhere/Power Automate)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live RPA platform (UiPath/Automation Anywhere/Power Automate) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. RPA platform (UiPath/Automation Anywhere/Power Automate) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. RPA platform (UiPath/Automation Anywhere/Power Automate) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from RPA platform (UiPath/Automation Anywhere/Power Automate); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — RPA Governance: \"Legal and regulatory compliance\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- rpa-governance_inventory.json   (in-scope items from RPA platform (UiPath/Automation Anywhere/Power Automate))\n- rpa-governance_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Legal and regulatory compliance\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Legal and regulatory compliance\",\n  \"domain\": \"RPA Governance\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{rpa_",
+        "/evidence/README.md": "# AcmeCorp — Robotic Process Automation (RPA) Governance: \"Legal and regulatory compliance\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the \"Legal and regulatory compliance\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- rpa-governance_inventory.json   (in-scope items — In-scope inventory for the legal and regulatory compliance control (from RPA platform (UiPath/Automation Anywhere/Power Automate)))\n- rpa-governance_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Legal and regulatory compliance\",\n  \"domain\": \"Robotic Process Automation (RPA) Governance\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{rpa_",
         "/evidence/rpa-governance_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Automation CoE\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Legal and regulatory compliance\" control must cover\n# fragment: legal_regulatory_compliance_",
         "/evidence/rpa-governance_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -602,7 +604,7 @@ export const rpaGovernanceStages: StageConfig[] = [
           "id": "rpa-02-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Legal and regulatory compliance\" sub-process of RPA Governance?",
+          "text": "What is the primary audit objective for the \"Legal and regulatory compliance\" sub-process of Robotic Process Automation (RPA) Governance?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -616,11 +618,11 @@ export const rpaGovernanceStages: StageConfig[] = [
           "id": "rpa-02-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Legal and regulatory compliance\" matter to the broader RPA Governance posture?",
+          "text": "Why does a weakness in \"Legal and regulatory compliance\" matter to the broader Robotic Process Automation (RPA) Governance posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other RPA Governance controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Robotic Process Automation (RPA) Governance controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -633,7 +635,7 @@ export const rpaGovernanceStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Legal and regulatory compliance\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Legal and regulatory compliance evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the legal and regulatory compliance control (from RPA platform (UiPath/Automation Anywhere/Power Automate)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -699,16 +701,16 @@ export const rpaGovernanceStages: StageConfig[] = [
         {
           "id": "rpa-02-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Legal and regulatory compliance\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Legal and regulatory compliance\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the legal and regulatory compliance control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the legal and regulatory compliance control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "rpa-02-q9",
@@ -753,8 +755,8 @@ export const rpaGovernanceStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Dev, test, deploy cycle\" control for RPA Governance is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each RPA Governance source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Dev, test, deploy cycle\" control for Robotic Process Automation (RPA) Governance is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the \"Dev, test, deploy cycle\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Robotic Process Automation (RPA) Governance systems of record (RPA platform (UiPath/Automation Anywhere/Power Automate); Bot credential vault; Bot orchestration + logs) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the dev, test, deploy cycle control (from RPA platform (UiPath/Automation Anywhere/Power Automate))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -775,34 +777,34 @@ export const rpaGovernanceStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 7/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream RPA Governance controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Robotic Process Automation (RPA) Governance controls."
       }
     },
     "badge": {
       "id": "rpa-03-badge",
-      "name": "RPA Governance Auditor",
+      "name": "Robotic Process Automation (RPA) Governance Auditor",
       "emoji": "⚙️"
     },
     "wonder": {
       "name": "Dev, test, deploy cycle",
-      "location": "RPA Governance",
+      "location": "Robotic Process Automation (RPA) Governance",
       "era": "Present Day",
       "emoji": "⚙️"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Dev, test, deploy cycle\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the RPA Governance control.",
+      "tagline": "Auditing \"Dev, test, deploy cycle\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the dev, test, deploy cycle control (from RPA platform (UiPath/Automation Anywhere/Power Automate))) with read-only agents, run the test against policy, and issue a defensible opinion on the Robotic Process Automation (RPA) Governance control.",
       "year": 2025,
       "overview": [
-        "The \"Dev, test, deploy cycle\" sub-process is one of the controls an auditor must verify for RPA Governance. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that dev, test, deploy cycle is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically RPA platform (UiPath/Automation Anywhere/Power Automate), Bot credential vault, Bot orchestration + logs — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Dev, test, deploy cycle\" sub-process is one of the controls an auditor must verify for Robotic Process Automation (RPA) Governance. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the dev, test, deploy cycle control (from RPA platform (UiPath/Automation Anywhere/Power Automate)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here RPA platform (UiPath/Automation Anywhere/Power Automate), Bot credential vault, Bot orchestration + logs — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the \"Dev, test, deploy cycle\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `03_dev_test_deploy_cycle_mcp.py` exposes read-only tools that turn each RPA Governance source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `03_dev_test_deploy_cycle_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from RPA platform (UiPath/Automation Anywhere/Power Automate) and Bot credential vault (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 03_dev_test_deploy_cycle_mcp.py` to expose it to your agent — or `python 03_dev_test_deploy_cycle_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -824,7 +826,7 @@ export const rpaGovernanceStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define RPA Governance scope + policy",
+            "sub": "define Robotic Process Automation (RPA) Governance scope + policy",
             "type": "attacker"
           },
           {
@@ -860,12 +862,13 @@ export const rpaGovernanceStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Dev, test, deploy cycle\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the dev, test, deploy cycle control (from RPA platform (UiPath/Automation Anywhere/Power Automate)).",
+        "The test: Reconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the \"Dev, test, deploy cycle\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (RPA platform (UiPath/Automation Anywhere/Power Automate), Bot credential vault, Bot orchestration + logs) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the dev, test, deploy cycle control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -889,21 +892,21 @@ export const rpaGovernanceStages: StageConfig[] = [
         {
           "name": "03_dev_test_deploy_cycle_mcp.py",
           "url": "/audit-code/rpa-governance/03_dev_test_deploy_cycle_mcp.py",
-          "description": "Runnable read-only MCP server: gathers RPA Governance evidence for \"Dev, test, deploy cycle\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Robotic Process Automation (RPA) Governance evidence for \"Dev, test, deploy cycle\" (in-scope inventory for the dev, test, deploy cycle control (from rpa platform (uipath/automation anywhere/power automate))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Dev, test, deploy cycle\" control for RPA Governance at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Dev, test, deploy cycle\" control for Robotic Process Automation (RPA) Governance at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the \"Dev, test, deploy cycle\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the dev, test, deploy cycle control (from RPA platform (UiPath/Automation Anywhere/Power Automate)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live RPA platform (UiPath/Automation Anywhere/Power Automate) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. RPA platform (UiPath/Automation Anywhere/Power Automate) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. RPA platform (UiPath/Automation Anywhere/Power Automate) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from RPA platform (UiPath/Automation Anywhere/Power Automate); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — RPA Governance: \"Dev, test, deploy cycle\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- rpa-governance_inventory.json   (in-scope items from RPA platform (UiPath/Automation Anywhere/Power Automate))\n- rpa-governance_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Dev, test, deploy cycle\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Dev, test, deploy cycle\",\n  \"domain\": \"RPA Governance\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{rpa_",
+        "/evidence/README.md": "# AcmeCorp — Robotic Process Automation (RPA) Governance: \"Dev, test, deploy cycle\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the \"Dev, test, deploy cycle\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- rpa-governance_inventory.json   (in-scope items — In-scope inventory for the dev, test, deploy cycle control (from RPA platform (UiPath/Automation Anywhere/Power Automate)))\n- rpa-governance_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Dev, test, deploy cycle\",\n  \"domain\": \"Robotic Process Automation (RPA) Governance\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{rpa_",
         "/evidence/rpa-governance_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Automation CoE\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Dev, test, deploy cycle\" control must cover\n# fragment: dev_test_deploy_",
         "/evidence/rpa-governance_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -967,7 +970,7 @@ export const rpaGovernanceStages: StageConfig[] = [
           "id": "rpa-03-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Dev, test, deploy cycle\" sub-process of RPA Governance?",
+          "text": "What is the primary audit objective for the \"Dev, test, deploy cycle\" sub-process of Robotic Process Automation (RPA) Governance?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -981,11 +984,11 @@ export const rpaGovernanceStages: StageConfig[] = [
           "id": "rpa-03-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Dev, test, deploy cycle\" matter to the broader RPA Governance posture?",
+          "text": "Why does a weakness in \"Dev, test, deploy cycle\" matter to the broader Robotic Process Automation (RPA) Governance posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other RPA Governance controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Robotic Process Automation (RPA) Governance controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -998,7 +1001,7 @@ export const rpaGovernanceStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Dev, test, deploy cycle\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Dev, test, deploy cycle evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the dev, test, deploy cycle control (from RPA platform (UiPath/Automation Anywhere/Power Automate)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -1064,16 +1067,16 @@ export const rpaGovernanceStages: StageConfig[] = [
         {
           "id": "rpa-03-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Dev, test, deploy cycle\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Dev, test, deploy cycle\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the dev, test, deploy cycle control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the dev, test, deploy cycle control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "rpa-03-q9",
@@ -1118,8 +1121,8 @@ export const rpaGovernanceStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Change mgmt and version control\" control for RPA Governance is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each RPA Governance source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Change mgmt and version control\" control for Robotic Process Automation (RPA) Governance is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the \"Change mgmt and version control\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Robotic Process Automation (RPA) Governance systems of record (RPA platform (UiPath/Automation Anywhere/Power Automate); Bot credential vault; Bot orchestration + logs) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the change mgmt and version control control (from RPA platform (UiPath/Automation Anywhere/Power Automate))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -1140,34 +1143,34 @@ export const rpaGovernanceStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 5/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream RPA Governance controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Robotic Process Automation (RPA) Governance controls."
       }
     },
     "badge": {
       "id": "rpa-04-badge",
-      "name": "RPA Governance Auditor",
+      "name": "Robotic Process Automation (RPA) Governance Auditor",
       "emoji": "⚙️"
     },
     "wonder": {
       "name": "Change mgmt and version control",
-      "location": "RPA Governance",
+      "location": "Robotic Process Automation (RPA) Governance",
       "era": "Present Day",
       "emoji": "⚙️"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Change mgmt and version control\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the RPA Governance control.",
+      "tagline": "Auditing \"Change mgmt and version control\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the change mgmt and version control control (from RPA platform (UiPath/Automation Anywhere/Power Automate))) with read-only agents, run the test against policy, and issue a defensible opinion on the Robotic Process Automation (RPA) Governance control.",
       "year": 2025,
       "overview": [
-        "The \"Change mgmt and version control\" sub-process is one of the controls an auditor must verify for RPA Governance. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that change mgmt and version control is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically RPA platform (UiPath/Automation Anywhere/Power Automate), Bot credential vault, Bot orchestration + logs — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Change mgmt and version control\" sub-process is one of the controls an auditor must verify for Robotic Process Automation (RPA) Governance. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the change mgmt and version control control (from RPA platform (UiPath/Automation Anywhere/Power Automate)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here RPA platform (UiPath/Automation Anywhere/Power Automate), Bot credential vault, Bot orchestration + logs — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the \"Change mgmt and version control\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `04_change_mgmt_and_version_control_mcp.py` exposes read-only tools that turn each RPA Governance source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `04_change_mgmt_and_version_control_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from RPA platform (UiPath/Automation Anywhere/Power Automate) and Bot credential vault (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 04_change_mgmt_and_version_control_mcp.py` to expose it to your agent — or `python 04_change_mgmt_and_version_control_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -1189,7 +1192,7 @@ export const rpaGovernanceStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define RPA Governance scope + policy",
+            "sub": "define Robotic Process Automation (RPA) Governance scope + policy",
             "type": "attacker"
           },
           {
@@ -1225,12 +1228,13 @@ export const rpaGovernanceStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Change mgmt and version control\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the change mgmt and version control control (from RPA platform (UiPath/Automation Anywhere/Power Automate)).",
+        "The test: Reconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the \"Change mgmt and version control\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (RPA platform (UiPath/Automation Anywhere/Power Automate), Bot credential vault, Bot orchestration + logs) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the change mgmt and version control control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -1254,21 +1258,21 @@ export const rpaGovernanceStages: StageConfig[] = [
         {
           "name": "04_change_mgmt_and_version_control_mcp.py",
           "url": "/audit-code/rpa-governance/04_change_mgmt_and_version_control_mcp.py",
-          "description": "Runnable read-only MCP server: gathers RPA Governance evidence for \"Change mgmt and version control\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Robotic Process Automation (RPA) Governance evidence for \"Change mgmt and version control\" (in-scope inventory for the change mgmt and version control control (from rpa platform (uipath/automation anywhere/power automate))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Change mgmt and version control\" control for RPA Governance at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Change mgmt and version control\" control for Robotic Process Automation (RPA) Governance at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the \"Change mgmt and version control\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the change mgmt and version control control (from RPA platform (UiPath/Automation Anywhere/Power Automate)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live RPA platform (UiPath/Automation Anywhere/Power Automate) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. RPA platform (UiPath/Automation Anywhere/Power Automate) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. RPA platform (UiPath/Automation Anywhere/Power Automate) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from RPA platform (UiPath/Automation Anywhere/Power Automate); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — RPA Governance: \"Change mgmt and version control\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- rpa-governance_inventory.json   (in-scope items from RPA platform (UiPath/Automation Anywhere/Power Automate))\n- rpa-governance_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Change mgmt and version control\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Change mgmt and version control\",\n  \"domain\": \"RPA Governance\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{rpa_",
+        "/evidence/README.md": "# AcmeCorp — Robotic Process Automation (RPA) Governance: \"Change mgmt and version control\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the \"Change mgmt and version control\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- rpa-governance_inventory.json   (in-scope items — In-scope inventory for the change mgmt and version control control (from RPA platform (UiPath/Automation Anywhere/Power Automate)))\n- rpa-governance_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Change mgmt and version control\",\n  \"domain\": \"Robotic Process Automation (RPA) Governance\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{rpa_",
         "/evidence/rpa-governance_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Automation CoE\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Change mgmt and version control\" control must cover\n# fragment: change_mgmt_version_",
         "/evidence/rpa-governance_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -1332,7 +1336,7 @@ export const rpaGovernanceStages: StageConfig[] = [
           "id": "rpa-04-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Change mgmt and version control\" sub-process of RPA Governance?",
+          "text": "What is the primary audit objective for the \"Change mgmt and version control\" sub-process of Robotic Process Automation (RPA) Governance?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -1346,11 +1350,11 @@ export const rpaGovernanceStages: StageConfig[] = [
           "id": "rpa-04-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Change mgmt and version control\" matter to the broader RPA Governance posture?",
+          "text": "Why does a weakness in \"Change mgmt and version control\" matter to the broader Robotic Process Automation (RPA) Governance posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other RPA Governance controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Robotic Process Automation (RPA) Governance controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -1363,7 +1367,7 @@ export const rpaGovernanceStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Change mgmt and version control\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Change mgmt and version control evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the change mgmt and version control control (from RPA platform (UiPath/Automation Anywhere/Power Automate)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -1429,16 +1433,16 @@ export const rpaGovernanceStages: StageConfig[] = [
         {
           "id": "rpa-04-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Change mgmt and version control\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Change mgmt and version control\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the change mgmt and version control control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the change mgmt and version control control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "rpa-04-q9",
@@ -1483,8 +1487,8 @@ export const rpaGovernanceStages: StageConfig[] = [
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Access management\" control for RPA Governance is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each RPA Governance source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Access management\" control for Robotic Process Automation (RPA) Governance is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the \"Access management\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Robotic Process Automation (RPA) Governance systems of record (RPA platform (UiPath/Automation Anywhere/Power Automate); Bot credential vault; Bot orchestration + logs) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the access management control (from RPA platform (UiPath/Automation Anywhere/Power Automate))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -1505,34 +1509,34 @@ export const rpaGovernanceStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 6/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 9/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream RPA Governance controls."
+        "value": "VALUE 9/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Robotic Process Automation (RPA) Governance controls."
       }
     },
     "badge": {
       "id": "rpa-05-badge",
-      "name": "RPA Governance Auditor",
+      "name": "Robotic Process Automation (RPA) Governance Auditor",
       "emoji": "⚙️"
     },
     "wonder": {
       "name": "Access management",
-      "location": "RPA Governance",
+      "location": "Robotic Process Automation (RPA) Governance",
       "era": "Present Day",
       "emoji": "⚙️"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Access management\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the RPA Governance control.",
+      "tagline": "Auditing \"Access management\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the access management control (from RPA platform (UiPath/Automation Anywhere/Power Automate))) with read-only agents, run the test against policy, and issue a defensible opinion on the Robotic Process Automation (RPA) Governance control.",
       "year": 2025,
       "overview": [
-        "The \"Access management\" sub-process is one of the controls an auditor must verify for RPA Governance. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that access management is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically RPA platform (UiPath/Automation Anywhere/Power Automate), Bot credential vault, Bot orchestration + logs — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Access management\" sub-process is one of the controls an auditor must verify for Robotic Process Automation (RPA) Governance. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the access management control (from RPA platform (UiPath/Automation Anywhere/Power Automate)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here RPA platform (UiPath/Automation Anywhere/Power Automate), Bot credential vault, Bot orchestration + logs — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the \"Access management\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `05_access_management_mcp.py` exposes read-only tools that turn each RPA Governance source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `05_access_management_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from RPA platform (UiPath/Automation Anywhere/Power Automate) and Bot credential vault (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 05_access_management_mcp.py` to expose it to your agent — or `python 05_access_management_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -1554,7 +1558,7 @@ export const rpaGovernanceStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define RPA Governance scope + policy",
+            "sub": "define Robotic Process Automation (RPA) Governance scope + policy",
             "type": "attacker"
           },
           {
@@ -1590,12 +1594,13 @@ export const rpaGovernanceStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Access management\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the access management control (from RPA platform (UiPath/Automation Anywhere/Power Automate)).",
+        "The test: Reconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the \"Access management\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (RPA platform (UiPath/Automation Anywhere/Power Automate), Bot credential vault, Bot orchestration + logs) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the access management control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -1619,21 +1624,21 @@ export const rpaGovernanceStages: StageConfig[] = [
         {
           "name": "05_access_management_mcp.py",
           "url": "/audit-code/rpa-governance/05_access_management_mcp.py",
-          "description": "Runnable read-only MCP server: gathers RPA Governance evidence for \"Access management\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Robotic Process Automation (RPA) Governance evidence for \"Access management\" (in-scope inventory for the access management control (from rpa platform (uipath/automation anywhere/power automate))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Access management\" control for RPA Governance at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Access management\" control for Robotic Process Automation (RPA) Governance at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the \"Access management\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the access management control (from RPA platform (UiPath/Automation Anywhere/Power Automate)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live RPA platform (UiPath/Automation Anywhere/Power Automate) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. RPA platform (UiPath/Automation Anywhere/Power Automate) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. RPA platform (UiPath/Automation Anywhere/Power Automate) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from RPA platform (UiPath/Automation Anywhere/Power Automate); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — RPA Governance: \"Access management\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- rpa-governance_inventory.json   (in-scope items from RPA platform (UiPath/Automation Anywhere/Power Automate))\n- rpa-governance_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Access management\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Access management\",\n  \"domain\": \"RPA Governance\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{rpa_",
+        "/evidence/README.md": "# AcmeCorp — Robotic Process Automation (RPA) Governance: \"Access management\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the \"Access management\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- rpa-governance_inventory.json   (in-scope items — In-scope inventory for the access management control (from RPA platform (UiPath/Automation Anywhere/Power Automate)))\n- rpa-governance_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Access management\",\n  \"domain\": \"Robotic Process Automation (RPA) Governance\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{rpa_",
         "/evidence/rpa-governance_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Automation CoE\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Access management\" control must cover\n# fragment: access_management_",
         "/evidence/rpa-governance_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"EXCEPTIONS\"\n}\n# fragment: exceptions}"
@@ -1697,7 +1702,7 @@ export const rpaGovernanceStages: StageConfig[] = [
           "id": "rpa-05-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Access management\" sub-process of RPA Governance?",
+          "text": "What is the primary audit objective for the \"Access management\" sub-process of Robotic Process Automation (RPA) Governance?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -1711,11 +1716,11 @@ export const rpaGovernanceStages: StageConfig[] = [
           "id": "rpa-05-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Access management\" matter to the broader RPA Governance posture?",
+          "text": "Why does a weakness in \"Access management\" matter to the broader Robotic Process Automation (RPA) Governance posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other RPA Governance controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Robotic Process Automation (RPA) Governance controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -1728,7 +1733,7 @@ export const rpaGovernanceStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Access management\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Access management evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the access management control (from RPA platform (UiPath/Automation Anywhere/Power Automate)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -1794,16 +1799,16 @@ export const rpaGovernanceStages: StageConfig[] = [
         {
           "id": "rpa-05-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Access management\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Access management\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the access management control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the access management control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "rpa-05-q9",
@@ -1848,8 +1853,8 @@ export const rpaGovernanceStages: StageConfig[] = [
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Data handling and encryption\" control for RPA Governance is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each RPA Governance source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Data handling and encryption\" control for Robotic Process Automation (RPA) Governance is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the \"Data handling and encryption\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Robotic Process Automation (RPA) Governance systems of record (RPA platform (UiPath/Automation Anywhere/Power Automate); Bot credential vault; Bot orchestration + logs) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the data handling and encryption control (from RPA platform (UiPath/Automation Anywhere/Power Automate))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -1870,34 +1875,34 @@ export const rpaGovernanceStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 7/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 9/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream RPA Governance controls."
+        "value": "VALUE 9/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Robotic Process Automation (RPA) Governance controls."
       }
     },
     "badge": {
       "id": "rpa-06-badge",
-      "name": "RPA Governance Auditor",
+      "name": "Robotic Process Automation (RPA) Governance Auditor",
       "emoji": "⚙️"
     },
     "wonder": {
       "name": "Data handling and encryption",
-      "location": "RPA Governance",
+      "location": "Robotic Process Automation (RPA) Governance",
       "era": "Present Day",
       "emoji": "⚙️"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Data handling and encryption\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the RPA Governance control.",
+      "tagline": "Auditing \"Data handling and encryption\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the data handling and encryption control (from RPA platform (UiPath/Automation Anywhere/Power Automate))) with read-only agents, run the test against policy, and issue a defensible opinion on the Robotic Process Automation (RPA) Governance control.",
       "year": 2025,
       "overview": [
-        "The \"Data handling and encryption\" sub-process is one of the controls an auditor must verify for RPA Governance. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that data handling and encryption is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically RPA platform (UiPath/Automation Anywhere/Power Automate), Bot credential vault, Bot orchestration + logs — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Data handling and encryption\" sub-process is one of the controls an auditor must verify for Robotic Process Automation (RPA) Governance. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the data handling and encryption control (from RPA platform (UiPath/Automation Anywhere/Power Automate)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here RPA platform (UiPath/Automation Anywhere/Power Automate), Bot credential vault, Bot orchestration + logs — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the \"Data handling and encryption\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `06_data_handling_and_encryption_mcp.py` exposes read-only tools that turn each RPA Governance source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `06_data_handling_and_encryption_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from RPA platform (UiPath/Automation Anywhere/Power Automate) and Bot credential vault (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 06_data_handling_and_encryption_mcp.py` to expose it to your agent — or `python 06_data_handling_and_encryption_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -1919,7 +1924,7 @@ export const rpaGovernanceStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define RPA Governance scope + policy",
+            "sub": "define Robotic Process Automation (RPA) Governance scope + policy",
             "type": "attacker"
           },
           {
@@ -1955,12 +1960,13 @@ export const rpaGovernanceStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Data handling and encryption\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the data handling and encryption control (from RPA platform (UiPath/Automation Anywhere/Power Automate)).",
+        "The test: Reconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the \"Data handling and encryption\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (RPA platform (UiPath/Automation Anywhere/Power Automate), Bot credential vault, Bot orchestration + logs) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the data handling and encryption control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -1984,21 +1990,21 @@ export const rpaGovernanceStages: StageConfig[] = [
         {
           "name": "06_data_handling_and_encryption_mcp.py",
           "url": "/audit-code/rpa-governance/06_data_handling_and_encryption_mcp.py",
-          "description": "Runnable read-only MCP server: gathers RPA Governance evidence for \"Data handling and encryption\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Robotic Process Automation (RPA) Governance evidence for \"Data handling and encryption\" (in-scope inventory for the data handling and encryption control (from rpa platform (uipath/automation anywhere/power automate))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Data handling and encryption\" control for RPA Governance at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Data handling and encryption\" control for Robotic Process Automation (RPA) Governance at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the \"Data handling and encryption\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the data handling and encryption control (from RPA platform (UiPath/Automation Anywhere/Power Automate)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live RPA platform (UiPath/Automation Anywhere/Power Automate) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. RPA platform (UiPath/Automation Anywhere/Power Automate) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. RPA platform (UiPath/Automation Anywhere/Power Automate) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from RPA platform (UiPath/Automation Anywhere/Power Automate); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — RPA Governance: \"Data handling and encryption\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- rpa-governance_inventory.json   (in-scope items from RPA platform (UiPath/Automation Anywhere/Power Automate))\n- rpa-governance_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Data handling and encryption\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Data handling and encryption\",\n  \"domain\": \"RPA Governance\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{rpa_",
+        "/evidence/README.md": "# AcmeCorp — Robotic Process Automation (RPA) Governance: \"Data handling and encryption\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the \"Data handling and encryption\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- rpa-governance_inventory.json   (in-scope items — In-scope inventory for the data handling and encryption control (from RPA platform (UiPath/Automation Anywhere/Power Automate)))\n- rpa-governance_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Data handling and encryption\",\n  \"domain\": \"Robotic Process Automation (RPA) Governance\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{rpa_",
         "/evidence/rpa-governance_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Automation CoE\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Data handling and encryption\" control must cover\n# fragment: data_handling_encryption_",
         "/evidence/rpa-governance_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -2062,7 +2068,7 @@ export const rpaGovernanceStages: StageConfig[] = [
           "id": "rpa-06-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Data handling and encryption\" sub-process of RPA Governance?",
+          "text": "What is the primary audit objective for the \"Data handling and encryption\" sub-process of Robotic Process Automation (RPA) Governance?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -2076,11 +2082,11 @@ export const rpaGovernanceStages: StageConfig[] = [
           "id": "rpa-06-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Data handling and encryption\" matter to the broader RPA Governance posture?",
+          "text": "Why does a weakness in \"Data handling and encryption\" matter to the broader Robotic Process Automation (RPA) Governance posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other RPA Governance controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Robotic Process Automation (RPA) Governance controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -2093,7 +2099,7 @@ export const rpaGovernanceStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Data handling and encryption\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Data handling and encryption evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the data handling and encryption control (from RPA platform (UiPath/Automation Anywhere/Power Automate)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -2159,16 +2165,16 @@ export const rpaGovernanceStages: StageConfig[] = [
         {
           "id": "rpa-06-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Data handling and encryption\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Data handling and encryption\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the data handling and encryption control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the data handling and encryption control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "rpa-06-q9",
@@ -2213,8 +2219,8 @@ export const rpaGovernanceStages: StageConfig[] = [
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Infra hardening and vuln mgmt\" control for RPA Governance is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each RPA Governance source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Infra hardening and vuln mgmt\" control for Robotic Process Automation (RPA) Governance is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the \"Infra hardening and vuln mgmt\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Robotic Process Automation (RPA) Governance systems of record (RPA platform (UiPath/Automation Anywhere/Power Automate); Bot credential vault; Bot orchestration + logs) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the infra hardening and vuln mgmt control (from RPA platform (UiPath/Automation Anywhere/Power Automate))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -2235,34 +2241,34 @@ export const rpaGovernanceStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 5/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 9/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream RPA Governance controls."
+        "value": "VALUE 9/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Robotic Process Automation (RPA) Governance controls."
       }
     },
     "badge": {
       "id": "rpa-07-badge",
-      "name": "RPA Governance Auditor",
+      "name": "Robotic Process Automation (RPA) Governance Auditor",
       "emoji": "⚙️"
     },
     "wonder": {
       "name": "Infra hardening and vuln mgmt",
-      "location": "RPA Governance",
+      "location": "Robotic Process Automation (RPA) Governance",
       "era": "Present Day",
       "emoji": "⚙️"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Infra hardening and vuln mgmt\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the RPA Governance control.",
+      "tagline": "Auditing \"Infra hardening and vuln mgmt\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the infra hardening and vuln mgmt control (from RPA platform (UiPath/Automation Anywhere/Power Automate))) with read-only agents, run the test against policy, and issue a defensible opinion on the Robotic Process Automation (RPA) Governance control.",
       "year": 2025,
       "overview": [
-        "The \"Infra hardening and vuln mgmt\" sub-process is one of the controls an auditor must verify for RPA Governance. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that infra hardening and vuln mgmt is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically RPA platform (UiPath/Automation Anywhere/Power Automate), Bot credential vault, Bot orchestration + logs — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Infra hardening and vuln mgmt\" sub-process is one of the controls an auditor must verify for Robotic Process Automation (RPA) Governance. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the infra hardening and vuln mgmt control (from RPA platform (UiPath/Automation Anywhere/Power Automate)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here RPA platform (UiPath/Automation Anywhere/Power Automate), Bot credential vault, Bot orchestration + logs — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the \"Infra hardening and vuln mgmt\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `07_infra_hardening_and_vuln_mgmt_mcp.py` exposes read-only tools that turn each RPA Governance source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `07_infra_hardening_and_vuln_mgmt_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from RPA platform (UiPath/Automation Anywhere/Power Automate) and Bot credential vault (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 07_infra_hardening_and_vuln_mgmt_mcp.py` to expose it to your agent — or `python 07_infra_hardening_and_vuln_mgmt_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -2284,7 +2290,7 @@ export const rpaGovernanceStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define RPA Governance scope + policy",
+            "sub": "define Robotic Process Automation (RPA) Governance scope + policy",
             "type": "attacker"
           },
           {
@@ -2320,12 +2326,13 @@ export const rpaGovernanceStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Infra hardening and vuln mgmt\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the infra hardening and vuln mgmt control (from RPA platform (UiPath/Automation Anywhere/Power Automate)).",
+        "The test: Reconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the \"Infra hardening and vuln mgmt\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (RPA platform (UiPath/Automation Anywhere/Power Automate), Bot credential vault, Bot orchestration + logs) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the infra hardening and vuln mgmt control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -2349,21 +2356,21 @@ export const rpaGovernanceStages: StageConfig[] = [
         {
           "name": "07_infra_hardening_and_vuln_mgmt_mcp.py",
           "url": "/audit-code/rpa-governance/07_infra_hardening_and_vuln_mgmt_mcp.py",
-          "description": "Runnable read-only MCP server: gathers RPA Governance evidence for \"Infra hardening and vuln mgmt\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Robotic Process Automation (RPA) Governance evidence for \"Infra hardening and vuln mgmt\" (in-scope inventory for the infra hardening and vuln mgmt control (from rpa platform (uipath/automation anywhere/power automate))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Infra hardening and vuln mgmt\" control for RPA Governance at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Infra hardening and vuln mgmt\" control for Robotic Process Automation (RPA) Governance at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the \"Infra hardening and vuln mgmt\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the infra hardening and vuln mgmt control (from RPA platform (UiPath/Automation Anywhere/Power Automate)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live RPA platform (UiPath/Automation Anywhere/Power Automate) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. RPA platform (UiPath/Automation Anywhere/Power Automate) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. RPA platform (UiPath/Automation Anywhere/Power Automate) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from RPA platform (UiPath/Automation Anywhere/Power Automate); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — RPA Governance: \"Infra hardening and vuln mgmt\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- rpa-governance_inventory.json   (in-scope items from RPA platform (UiPath/Automation Anywhere/Power Automate))\n- rpa-governance_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Infra hardening and vuln mgmt\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Infra hardening and vuln mgmt\",\n  \"domain\": \"RPA Governance\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{rpa_",
+        "/evidence/README.md": "# AcmeCorp — Robotic Process Automation (RPA) Governance: \"Infra hardening and vuln mgmt\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the \"Infra hardening and vuln mgmt\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- rpa-governance_inventory.json   (in-scope items — In-scope inventory for the infra hardening and vuln mgmt control (from RPA platform (UiPath/Automation Anywhere/Power Automate)))\n- rpa-governance_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Infra hardening and vuln mgmt\",\n  \"domain\": \"Robotic Process Automation (RPA) Governance\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{rpa_",
         "/evidence/rpa-governance_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Automation CoE\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Infra hardening and vuln mgmt\" control must cover\n# fragment: infra_hardening_vuln_",
         "/evidence/rpa-governance_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -2427,7 +2434,7 @@ export const rpaGovernanceStages: StageConfig[] = [
           "id": "rpa-07-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Infra hardening and vuln mgmt\" sub-process of RPA Governance?",
+          "text": "What is the primary audit objective for the \"Infra hardening and vuln mgmt\" sub-process of Robotic Process Automation (RPA) Governance?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -2441,11 +2448,11 @@ export const rpaGovernanceStages: StageConfig[] = [
           "id": "rpa-07-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Infra hardening and vuln mgmt\" matter to the broader RPA Governance posture?",
+          "text": "Why does a weakness in \"Infra hardening and vuln mgmt\" matter to the broader Robotic Process Automation (RPA) Governance posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other RPA Governance controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Robotic Process Automation (RPA) Governance controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -2458,7 +2465,7 @@ export const rpaGovernanceStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Infra hardening and vuln mgmt\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Infra hardening and vuln mgmt evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the infra hardening and vuln mgmt control (from RPA platform (UiPath/Automation Anywhere/Power Automate)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -2524,16 +2531,16 @@ export const rpaGovernanceStages: StageConfig[] = [
         {
           "id": "rpa-07-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Infra hardening and vuln mgmt\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Infra hardening and vuln mgmt\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the infra hardening and vuln mgmt control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the infra hardening and vuln mgmt control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "rpa-07-q9",
@@ -2578,8 +2585,8 @@ export const rpaGovernanceStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Business Continuity (RPA)\" control for RPA Governance is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each RPA Governance source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Business Continuity (RPA)\" control for Robotic Process Automation (RPA) Governance is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the \"Business Continuity (RPA)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Robotic Process Automation (RPA) Governance systems of record (RPA platform (UiPath/Automation Anywhere/Power Automate); Bot credential vault; Bot orchestration + logs) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the business continuity (rpa) control (from RPA platform (UiPath/Automation Anywhere/Power Automate))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -2600,34 +2607,34 @@ export const rpaGovernanceStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 6/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream RPA Governance controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Robotic Process Automation (RPA) Governance controls."
       }
     },
     "badge": {
       "id": "rpa-08-badge",
-      "name": "RPA Governance Auditor",
+      "name": "Robotic Process Automation (RPA) Governance Auditor",
       "emoji": "⚙️"
     },
     "wonder": {
       "name": "Business Continuity (RPA)",
-      "location": "RPA Governance",
+      "location": "Robotic Process Automation (RPA) Governance",
       "era": "Present Day",
       "emoji": "⚙️"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Business Continuity (RPA)\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the RPA Governance control.",
+      "tagline": "Auditing \"Business Continuity (RPA)\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the business continuity (rpa) control (from RPA platform (UiPath/Automation Anywhere/Power Automate))) with read-only agents, run the test against policy, and issue a defensible opinion on the Robotic Process Automation (RPA) Governance control.",
       "year": 2025,
       "overview": [
-        "The \"Business Continuity (RPA)\" sub-process is one of the controls an auditor must verify for RPA Governance. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that business continuity (rpa) is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically RPA platform (UiPath/Automation Anywhere/Power Automate), Bot credential vault, Bot orchestration + logs — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Business Continuity (RPA)\" sub-process is one of the controls an auditor must verify for Robotic Process Automation (RPA) Governance. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the business continuity (rpa) control (from RPA platform (UiPath/Automation Anywhere/Power Automate)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here RPA platform (UiPath/Automation Anywhere/Power Automate), Bot credential vault, Bot orchestration + logs — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the \"Business Continuity (RPA)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `08_business_continuity_rpa_mcp.py` exposes read-only tools that turn each RPA Governance source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `08_business_continuity_rpa_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from RPA platform (UiPath/Automation Anywhere/Power Automate) and Bot credential vault (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 08_business_continuity_rpa_mcp.py` to expose it to your agent — or `python 08_business_continuity_rpa_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -2649,7 +2656,7 @@ export const rpaGovernanceStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define RPA Governance scope + policy",
+            "sub": "define Robotic Process Automation (RPA) Governance scope + policy",
             "type": "attacker"
           },
           {
@@ -2685,12 +2692,13 @@ export const rpaGovernanceStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Business Continuity (RPA)\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the business continuity (rpa) control (from RPA platform (UiPath/Automation Anywhere/Power Automate)).",
+        "The test: Reconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the \"Business Continuity (RPA)\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (RPA platform (UiPath/Automation Anywhere/Power Automate), Bot credential vault, Bot orchestration + logs) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the business continuity (rpa) control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -2714,21 +2722,21 @@ export const rpaGovernanceStages: StageConfig[] = [
         {
           "name": "08_business_continuity_rpa_mcp.py",
           "url": "/audit-code/rpa-governance/08_business_continuity_rpa_mcp.py",
-          "description": "Runnable read-only MCP server: gathers RPA Governance evidence for \"Business Continuity (RPA)\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Robotic Process Automation (RPA) Governance evidence for \"Business Continuity (RPA)\" (in-scope inventory for the business continuity (rpa) control (from rpa platform (uipath/automation anywhere/power automate))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Business Continuity (RPA)\" control for RPA Governance at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Business Continuity (RPA)\" control for Robotic Process Automation (RPA) Governance at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the \"Business Continuity (RPA)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the business continuity (rpa) control (from RPA platform (UiPath/Automation Anywhere/Power Automate)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live RPA platform (UiPath/Automation Anywhere/Power Automate) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. RPA platform (UiPath/Automation Anywhere/Power Automate) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. RPA platform (UiPath/Automation Anywhere/Power Automate) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from RPA platform (UiPath/Automation Anywhere/Power Automate); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — RPA Governance: \"Business Continuity (RPA)\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- rpa-governance_inventory.json   (in-scope items from RPA platform (UiPath/Automation Anywhere/Power Automate))\n- rpa-governance_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Business Continuity (RPA)\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Business Continuity (RPA)\",\n  \"domain\": \"RPA Governance\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{rpa_",
+        "/evidence/README.md": "# AcmeCorp — Robotic Process Automation (RPA) Governance: \"Business Continuity (RPA)\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the \"Business Continuity (RPA)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- rpa-governance_inventory.json   (in-scope items — In-scope inventory for the business continuity (rpa) control (from RPA platform (UiPath/Automation Anywhere/Power Automate)))\n- rpa-governance_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Business Continuity (RPA)\",\n  \"domain\": \"Robotic Process Automation (RPA) Governance\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{rpa_",
         "/evidence/rpa-governance_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Automation CoE\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Business Continuity (RPA)\" control must cover\n# fragment: business_continuity_rpa_",
         "/evidence/rpa-governance_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -2792,7 +2800,7 @@ export const rpaGovernanceStages: StageConfig[] = [
           "id": "rpa-08-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Business Continuity (RPA)\" sub-process of RPA Governance?",
+          "text": "What is the primary audit objective for the \"Business Continuity (RPA)\" sub-process of Robotic Process Automation (RPA) Governance?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -2806,11 +2814,11 @@ export const rpaGovernanceStages: StageConfig[] = [
           "id": "rpa-08-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Business Continuity (RPA)\" matter to the broader RPA Governance posture?",
+          "text": "Why does a weakness in \"Business Continuity (RPA)\" matter to the broader Robotic Process Automation (RPA) Governance posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other RPA Governance controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Robotic Process Automation (RPA) Governance controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -2823,7 +2831,7 @@ export const rpaGovernanceStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Business Continuity (RPA)\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Business Continuity (RPA) evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the business continuity (rpa) control (from RPA platform (UiPath/Automation Anywhere/Power Automate)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -2889,16 +2897,16 @@ export const rpaGovernanceStages: StageConfig[] = [
         {
           "id": "rpa-08-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Business Continuity (RPA)\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Business Continuity (RPA)\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the business continuity (rpa) control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the business continuity (rpa) control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "rpa-08-q9",
@@ -2943,8 +2951,8 @@ export const rpaGovernanceStages: StageConfig[] = [
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Third-party / OSS contribution\" control for RPA Governance is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each RPA Governance source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Third-party / OSS contribution\" control for Robotic Process Automation (RPA) Governance is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the \"Third-party / OSS contribution\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Robotic Process Automation (RPA) Governance systems of record (RPA platform (UiPath/Automation Anywhere/Power Automate); Bot credential vault; Bot orchestration + logs) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the third-party / oss contribution control (from RPA platform (UiPath/Automation Anywhere/Power Automate))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -2965,34 +2973,34 @@ export const rpaGovernanceStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 7/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 9/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream RPA Governance controls."
+        "value": "VALUE 9/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Robotic Process Automation (RPA) Governance controls."
       }
     },
     "badge": {
       "id": "rpa-09-badge",
-      "name": "RPA Governance Auditor",
+      "name": "Robotic Process Automation (RPA) Governance Auditor",
       "emoji": "⚙️"
     },
     "wonder": {
       "name": "Third-party / OSS contribution",
-      "location": "RPA Governance",
+      "location": "Robotic Process Automation (RPA) Governance",
       "era": "Present Day",
       "emoji": "⚙️"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Third-party / OSS contribution\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the RPA Governance control.",
+      "tagline": "Auditing \"Third-party / OSS contribution\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the third-party / oss contribution control (from RPA platform (UiPath/Automation Anywhere/Power Automate))) with read-only agents, run the test against policy, and issue a defensible opinion on the Robotic Process Automation (RPA) Governance control.",
       "year": 2025,
       "overview": [
-        "The \"Third-party / OSS contribution\" sub-process is one of the controls an auditor must verify for RPA Governance. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that third-party / oss contribution is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically RPA platform (UiPath/Automation Anywhere/Power Automate), Bot credential vault, Bot orchestration + logs — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Third-party / OSS contribution\" sub-process is one of the controls an auditor must verify for Robotic Process Automation (RPA) Governance. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the third-party / oss contribution control (from RPA platform (UiPath/Automation Anywhere/Power Automate)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here RPA platform (UiPath/Automation Anywhere/Power Automate), Bot credential vault, Bot orchestration + logs — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the \"Third-party / OSS contribution\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `09_third_party_oss_contribution_mcp.py` exposes read-only tools that turn each RPA Governance source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `09_third_party_oss_contribution_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from RPA platform (UiPath/Automation Anywhere/Power Automate) and Bot credential vault (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 09_third_party_oss_contribution_mcp.py` to expose it to your agent — or `python 09_third_party_oss_contribution_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -3014,7 +3022,7 @@ export const rpaGovernanceStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define RPA Governance scope + policy",
+            "sub": "define Robotic Process Automation (RPA) Governance scope + policy",
             "type": "attacker"
           },
           {
@@ -3050,12 +3058,13 @@ export const rpaGovernanceStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Third-party / OSS contribution\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the third-party / oss contribution control (from RPA platform (UiPath/Automation Anywhere/Power Automate)).",
+        "The test: Reconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the \"Third-party / OSS contribution\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (RPA platform (UiPath/Automation Anywhere/Power Automate), Bot credential vault, Bot orchestration + logs) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the third-party / oss contribution control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -3079,21 +3088,21 @@ export const rpaGovernanceStages: StageConfig[] = [
         {
           "name": "09_third_party_oss_contribution_mcp.py",
           "url": "/audit-code/rpa-governance/09_third_party_oss_contribution_mcp.py",
-          "description": "Runnable read-only MCP server: gathers RPA Governance evidence for \"Third-party / OSS contribution\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Robotic Process Automation (RPA) Governance evidence for \"Third-party / OSS contribution\" (in-scope inventory for the third-party / oss contribution control (from rpa platform (uipath/automation anywhere/power automate))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Third-party / OSS contribution\" control for RPA Governance at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Third-party / OSS contribution\" control for Robotic Process Automation (RPA) Governance at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the \"Third-party / OSS contribution\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the third-party / oss contribution control (from RPA platform (UiPath/Automation Anywhere/Power Automate)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live RPA platform (UiPath/Automation Anywhere/Power Automate) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. RPA platform (UiPath/Automation Anywhere/Power Automate) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. RPA platform (UiPath/Automation Anywhere/Power Automate) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from RPA platform (UiPath/Automation Anywhere/Power Automate); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — RPA Governance: \"Third-party / OSS contribution\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- rpa-governance_inventory.json   (in-scope items from RPA platform (UiPath/Automation Anywhere/Power Automate))\n- rpa-governance_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Third-party / OSS contribution\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Third-party / OSS contribution\",\n  \"domain\": \"RPA Governance\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{rpa_",
+        "/evidence/README.md": "# AcmeCorp — Robotic Process Automation (RPA) Governance: \"Third-party / OSS contribution\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the \"Third-party / OSS contribution\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- rpa-governance_inventory.json   (in-scope items — In-scope inventory for the third-party / oss contribution control (from RPA platform (UiPath/Automation Anywhere/Power Automate)))\n- rpa-governance_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Third-party / OSS contribution\",\n  \"domain\": \"Robotic Process Automation (RPA) Governance\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{rpa_",
         "/evidence/rpa-governance_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Automation CoE\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Third-party / OSS contribution\" control must cover\n# fragment: thirdparty_oss_contribution_",
         "/evidence/rpa-governance_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -3157,7 +3166,7 @@ export const rpaGovernanceStages: StageConfig[] = [
           "id": "rpa-09-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Third-party / OSS contribution\" sub-process of RPA Governance?",
+          "text": "What is the primary audit objective for the \"Third-party / OSS contribution\" sub-process of Robotic Process Automation (RPA) Governance?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -3171,11 +3180,11 @@ export const rpaGovernanceStages: StageConfig[] = [
           "id": "rpa-09-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Third-party / OSS contribution\" matter to the broader RPA Governance posture?",
+          "text": "Why does a weakness in \"Third-party / OSS contribution\" matter to the broader Robotic Process Automation (RPA) Governance posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other RPA Governance controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Robotic Process Automation (RPA) Governance controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -3188,7 +3197,7 @@ export const rpaGovernanceStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Third-party / OSS contribution\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Third-party / OSS contribution evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the third-party / oss contribution control (from RPA platform (UiPath/Automation Anywhere/Power Automate)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -3254,16 +3263,16 @@ export const rpaGovernanceStages: StageConfig[] = [
         {
           "id": "rpa-09-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Third-party / OSS contribution\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Third-party / OSS contribution\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the third-party / oss contribution control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the third-party / oss contribution control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "rpa-09-q9",

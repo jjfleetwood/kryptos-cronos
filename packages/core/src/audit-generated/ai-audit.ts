@@ -2,9 +2,9 @@ import type { EpochConfig, StageConfig } from "../types";
 
 export const aiAuditEpoch: EpochConfig = {
   "id": "ai-audit",
-  "name": "AI",
-  "subtitle": "Agentic technical & privacy audit — AI",
-  "description": "Audit AI end to end with a read-only agent fleet: each sub-process is a module that teaches the control as a repeatable agentic workflow with downloadable MCP tooling, a CTF, and a 10-question quiz.",
+  "name": "Artificial Intelligence (AI)",
+  "subtitle": "Agentic technical & privacy audit — Artificial Intelligence (AI)",
+  "description": "Audit Artificial Intelligence (AI) end to end with a read-only agent fleet: each sub-process is a module that teaches the control as a repeatable agentic workflow with downloadable MCP tooling, a CTF, and a 10-question quiz.",
   "emoji": "🧠",
   "color": "Purple",
   "unlocked": true
@@ -23,8 +23,8 @@ export const aiAuditStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"AI governance and strategic planning\" control for AI is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each AI source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"AI governance and strategic planning\" control for Artificial Intelligence (AI) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the \"AI governance and strategic planning\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Artificial Intelligence (AI) systems of record (Model registry + lineage; Eval / red-team harness; AI gateway + guardrails) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the ai governance and strategic planning control (from Model registry + lineage)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -45,34 +45,34 @@ export const aiAuditStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 5/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream AI controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Artificial Intelligence (AI) controls."
       }
     },
     "badge": {
       "id": "aig-01-badge",
-      "name": "AI Auditor",
+      "name": "Artificial Intelligence (AI) Auditor",
       "emoji": "🧠"
     },
     "wonder": {
       "name": "AI governance and strategic planning",
-      "location": "AI",
+      "location": "Artificial Intelligence (AI)",
       "era": "Present Day",
       "emoji": "🧠"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"AI governance and strategic planning\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the AI control.",
+      "tagline": "Auditing \"AI governance and strategic planning\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the ai governance and strategic planning control (from Model registry + lineage)) with read-only agents, run the test against policy, and issue a defensible opinion on the Artificial Intelligence (AI) control.",
       "year": 2025,
       "overview": [
-        "The \"AI governance and strategic planning\" sub-process is one of the controls an auditor must verify for AI. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that ai governance and strategic planning is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Model registry + lineage, Eval / red-team harness, AI gateway + guardrails — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"AI governance and strategic planning\" sub-process is one of the controls an auditor must verify for Artificial Intelligence (AI). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the ai governance and strategic planning control (from Model registry + lineage), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Model registry + lineage, Eval / red-team harness, AI gateway + guardrails — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the \"AI governance and strategic planning\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `01_ai_governance_and_strategic_planning_mcp.py` exposes read-only tools that turn each AI source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `01_ai_governance_and_strategic_planning_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Model registry + lineage and Eval / red-team harness (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 01_ai_governance_and_strategic_planning_mcp.py` to expose it to your agent — or `python 01_ai_governance_and_strategic_planning_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -94,7 +94,7 @@ export const aiAuditStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define AI scope + policy",
+            "sub": "define Artificial Intelligence (AI) scope + policy",
             "type": "attacker"
           },
           {
@@ -130,12 +130,13 @@ export const aiAuditStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"AI governance and strategic planning\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the ai governance and strategic planning control (from Model registry + lineage).",
+        "The test: Reconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the \"AI governance and strategic planning\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Model registry + lineage, Eval / red-team harness, AI gateway + guardrails) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the ai governance and strategic planning control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -159,21 +160,21 @@ export const aiAuditStages: StageConfig[] = [
         {
           "name": "01_ai_governance_and_strategic_planning_mcp.py",
           "url": "/audit-code/ai-audit/01_ai_governance_and_strategic_planning_mcp.py",
-          "description": "Runnable read-only MCP server: gathers AI evidence for \"AI governance and strategic planning\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Artificial Intelligence (AI) evidence for \"AI governance and strategic planning\" (in-scope inventory for the ai governance and strategic planning control (from model registry + lineage)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"AI governance and strategic planning\" control for AI at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"AI governance and strategic planning\" control for Artificial Intelligence (AI) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the \"AI governance and strategic planning\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the ai governance and strategic planning control (from Model registry + lineage) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Model registry + lineage APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Model registry + lineage gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Model registry + lineage is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Model registry + lineage; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — AI: \"AI governance and strategic planning\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- ai-audit_inventory.json   (in-scope items from Model registry + lineage)\n- ai-audit_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"AI governance and strategic planning\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"AI governance and strategic planning\",\n  \"domain\": \"AI\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{aig_",
+        "/evidence/README.md": "# AcmeCorp — Artificial Intelligence (AI): \"AI governance and strategic planning\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the \"AI governance and strategic planning\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- ai-audit_inventory.json   (in-scope items — In-scope inventory for the ai governance and strategic planning control (from Model registry + lineage))\n- ai-audit_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"AI governance and strategic planning\",\n  \"domain\": \"Artificial Intelligence (AI)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{aig_",
         "/evidence/ai-audit_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"AI/ML engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"AI governance and strategic planning\" control must cover\n# fragment: ai_governance_strategic_",
         "/evidence/ai-audit_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -237,7 +238,7 @@ export const aiAuditStages: StageConfig[] = [
           "id": "aig-01-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"AI governance and strategic planning\" sub-process of AI?",
+          "text": "What is the primary audit objective for the \"AI governance and strategic planning\" sub-process of Artificial Intelligence (AI)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -251,11 +252,11 @@ export const aiAuditStages: StageConfig[] = [
           "id": "aig-01-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"AI governance and strategic planning\" matter to the broader AI posture?",
+          "text": "Why does a weakness in \"AI governance and strategic planning\" matter to the broader Artificial Intelligence (AI) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other AI controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Artificial Intelligence (AI) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -268,7 +269,7 @@ export const aiAuditStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"AI governance and strategic planning\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The AI governance and strategic planning evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the ai governance and strategic planning control (from Model registry + lineage) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -334,16 +335,16 @@ export const aiAuditStages: StageConfig[] = [
         {
           "id": "aig-01-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"AI governance and strategic planning\"?",
+          "challenge": "Typical finding",
+          "text": "For \"AI governance and strategic planning\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the ai governance and strategic planning control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the ai governance and strategic planning control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "aig-01-q9",
@@ -388,8 +389,8 @@ export const aiAuditStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Legal, ethics, compliance\" control for AI is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each AI source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Legal, ethics, compliance\" control for Artificial Intelligence (AI) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the \"Legal, ethics, compliance\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Artificial Intelligence (AI) systems of record (Model registry + lineage; Eval / red-team harness; AI gateway + guardrails) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the legal, ethics, compliance control (from Model registry + lineage)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -410,34 +411,34 @@ export const aiAuditStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 6/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream AI controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Artificial Intelligence (AI) controls."
       }
     },
     "badge": {
       "id": "aig-02-badge",
-      "name": "AI Auditor",
+      "name": "Artificial Intelligence (AI) Auditor",
       "emoji": "🧠"
     },
     "wonder": {
       "name": "Legal, ethics, compliance",
-      "location": "AI",
+      "location": "Artificial Intelligence (AI)",
       "era": "Present Day",
       "emoji": "🧠"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Legal, ethics, compliance\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the AI control.",
+      "tagline": "Auditing \"Legal, ethics, compliance\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the legal, ethics, compliance control (from Model registry + lineage)) with read-only agents, run the test against policy, and issue a defensible opinion on the Artificial Intelligence (AI) control.",
       "year": 2025,
       "overview": [
-        "The \"Legal, ethics, compliance\" sub-process is one of the controls an auditor must verify for AI. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that legal, ethics, compliance is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Model registry + lineage, Eval / red-team harness, AI gateway + guardrails — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Legal, ethics, compliance\" sub-process is one of the controls an auditor must verify for Artificial Intelligence (AI). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the legal, ethics, compliance control (from Model registry + lineage), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Model registry + lineage, Eval / red-team harness, AI gateway + guardrails — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the \"Legal, ethics, compliance\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `02_legal_ethics_compliance_mcp.py` exposes read-only tools that turn each AI source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `02_legal_ethics_compliance_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Model registry + lineage and Eval / red-team harness (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 02_legal_ethics_compliance_mcp.py` to expose it to your agent — or `python 02_legal_ethics_compliance_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -459,7 +460,7 @@ export const aiAuditStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define AI scope + policy",
+            "sub": "define Artificial Intelligence (AI) scope + policy",
             "type": "attacker"
           },
           {
@@ -495,12 +496,13 @@ export const aiAuditStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Legal, ethics, compliance\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the legal, ethics, compliance control (from Model registry + lineage).",
+        "The test: Reconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the \"Legal, ethics, compliance\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Model registry + lineage, Eval / red-team harness, AI gateway + guardrails) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the legal, ethics, compliance control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -524,21 +526,21 @@ export const aiAuditStages: StageConfig[] = [
         {
           "name": "02_legal_ethics_compliance_mcp.py",
           "url": "/audit-code/ai-audit/02_legal_ethics_compliance_mcp.py",
-          "description": "Runnable read-only MCP server: gathers AI evidence for \"Legal, ethics, compliance\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Artificial Intelligence (AI) evidence for \"Legal, ethics, compliance\" (in-scope inventory for the legal, ethics, compliance control (from model registry + lineage)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Legal, ethics, compliance\" control for AI at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Legal, ethics, compliance\" control for Artificial Intelligence (AI) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the \"Legal, ethics, compliance\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the legal, ethics, compliance control (from Model registry + lineage) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Model registry + lineage APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Model registry + lineage gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Model registry + lineage is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Model registry + lineage; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — AI: \"Legal, ethics, compliance\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- ai-audit_inventory.json   (in-scope items from Model registry + lineage)\n- ai-audit_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Legal, ethics, compliance\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Legal, ethics, compliance\",\n  \"domain\": \"AI\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{aig_",
+        "/evidence/README.md": "# AcmeCorp — Artificial Intelligence (AI): \"Legal, ethics, compliance\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the \"Legal, ethics, compliance\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- ai-audit_inventory.json   (in-scope items — In-scope inventory for the legal, ethics, compliance control (from Model registry + lineage))\n- ai-audit_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Legal, ethics, compliance\",\n  \"domain\": \"Artificial Intelligence (AI)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{aig_",
         "/evidence/ai-audit_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"AI/ML engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Legal, ethics, compliance\" control must cover\n# fragment: legal_ethics_compliance_",
         "/evidence/ai-audit_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -602,7 +604,7 @@ export const aiAuditStages: StageConfig[] = [
           "id": "aig-02-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Legal, ethics, compliance\" sub-process of AI?",
+          "text": "What is the primary audit objective for the \"Legal, ethics, compliance\" sub-process of Artificial Intelligence (AI)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -616,11 +618,11 @@ export const aiAuditStages: StageConfig[] = [
           "id": "aig-02-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Legal, ethics, compliance\" matter to the broader AI posture?",
+          "text": "Why does a weakness in \"Legal, ethics, compliance\" matter to the broader Artificial Intelligence (AI) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other AI controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Artificial Intelligence (AI) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -633,7 +635,7 @@ export const aiAuditStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Legal, ethics, compliance\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Legal, ethics, compliance evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the legal, ethics, compliance control (from Model registry + lineage) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -699,16 +701,16 @@ export const aiAuditStages: StageConfig[] = [
         {
           "id": "aig-02-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Legal, ethics, compliance\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Legal, ethics, compliance\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the legal, ethics, compliance control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the legal, ethics, compliance control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "aig-02-q9",
@@ -753,8 +755,8 @@ export const aiAuditStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"AI system architecture and dev\" control for AI is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each AI source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"AI system architecture and dev\" control for Artificial Intelligence (AI) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the \"AI system architecture and dev\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Artificial Intelligence (AI) systems of record (Model registry + lineage; Eval / red-team harness; AI gateway + guardrails) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the ai system architecture and dev control (from Model registry + lineage)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -775,34 +777,34 @@ export const aiAuditStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 5/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream AI controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Artificial Intelligence (AI) controls."
       }
     },
     "badge": {
       "id": "aig-03-badge",
-      "name": "AI Auditor",
+      "name": "Artificial Intelligence (AI) Auditor",
       "emoji": "🧠"
     },
     "wonder": {
       "name": "AI system architecture and dev",
-      "location": "AI",
+      "location": "Artificial Intelligence (AI)",
       "era": "Present Day",
       "emoji": "🧠"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"AI system architecture and dev\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the AI control.",
+      "tagline": "Auditing \"AI system architecture and dev\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the ai system architecture and dev control (from Model registry + lineage)) with read-only agents, run the test against policy, and issue a defensible opinion on the Artificial Intelligence (AI) control.",
       "year": 2025,
       "overview": [
-        "The \"AI system architecture and dev\" sub-process is one of the controls an auditor must verify for AI. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that ai system architecture and dev is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Model registry + lineage, Eval / red-team harness, AI gateway + guardrails — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"AI system architecture and dev\" sub-process is one of the controls an auditor must verify for Artificial Intelligence (AI). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the ai system architecture and dev control (from Model registry + lineage), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Model registry + lineage, Eval / red-team harness, AI gateway + guardrails — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the \"AI system architecture and dev\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `03_ai_system_architecture_and_dev_mcp.py` exposes read-only tools that turn each AI source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `03_ai_system_architecture_and_dev_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Model registry + lineage and Eval / red-team harness (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 03_ai_system_architecture_and_dev_mcp.py` to expose it to your agent — or `python 03_ai_system_architecture_and_dev_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -824,7 +826,7 @@ export const aiAuditStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define AI scope + policy",
+            "sub": "define Artificial Intelligence (AI) scope + policy",
             "type": "attacker"
           },
           {
@@ -860,12 +862,13 @@ export const aiAuditStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"AI system architecture and dev\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the ai system architecture and dev control (from Model registry + lineage).",
+        "The test: Reconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the \"AI system architecture and dev\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Model registry + lineage, Eval / red-team harness, AI gateway + guardrails) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the ai system architecture and dev control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -889,21 +892,21 @@ export const aiAuditStages: StageConfig[] = [
         {
           "name": "03_ai_system_architecture_and_dev_mcp.py",
           "url": "/audit-code/ai-audit/03_ai_system_architecture_and_dev_mcp.py",
-          "description": "Runnable read-only MCP server: gathers AI evidence for \"AI system architecture and dev\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Artificial Intelligence (AI) evidence for \"AI system architecture and dev\" (in-scope inventory for the ai system architecture and dev control (from model registry + lineage)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"AI system architecture and dev\" control for AI at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"AI system architecture and dev\" control for Artificial Intelligence (AI) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the \"AI system architecture and dev\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the ai system architecture and dev control (from Model registry + lineage) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Model registry + lineage APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Model registry + lineage gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Model registry + lineage is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Model registry + lineage; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — AI: \"AI system architecture and dev\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- ai-audit_inventory.json   (in-scope items from Model registry + lineage)\n- ai-audit_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"AI system architecture and dev\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"AI system architecture and dev\",\n  \"domain\": \"AI\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{aig_",
+        "/evidence/README.md": "# AcmeCorp — Artificial Intelligence (AI): \"AI system architecture and dev\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the \"AI system architecture and dev\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- ai-audit_inventory.json   (in-scope items — In-scope inventory for the ai system architecture and dev control (from Model registry + lineage))\n- ai-audit_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"AI system architecture and dev\",\n  \"domain\": \"Artificial Intelligence (AI)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{aig_",
         "/evidence/ai-audit_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"AI/ML engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"AI system architecture and dev\" control must cover\n# fragment: ai_system_architecture_",
         "/evidence/ai-audit_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -967,7 +970,7 @@ export const aiAuditStages: StageConfig[] = [
           "id": "aig-03-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"AI system architecture and dev\" sub-process of AI?",
+          "text": "What is the primary audit objective for the \"AI system architecture and dev\" sub-process of Artificial Intelligence (AI)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -981,11 +984,11 @@ export const aiAuditStages: StageConfig[] = [
           "id": "aig-03-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"AI system architecture and dev\" matter to the broader AI posture?",
+          "text": "Why does a weakness in \"AI system architecture and dev\" matter to the broader Artificial Intelligence (AI) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other AI controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Artificial Intelligence (AI) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -998,7 +1001,7 @@ export const aiAuditStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"AI system architecture and dev\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The AI system architecture and dev evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the ai system architecture and dev control (from Model registry + lineage) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -1064,16 +1067,16 @@ export const aiAuditStages: StageConfig[] = [
         {
           "id": "aig-03-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"AI system architecture and dev\"?",
+          "challenge": "Typical finding",
+          "text": "For \"AI system architecture and dev\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the ai system architecture and dev control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the ai system architecture and dev control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "aig-03-q9",
@@ -1118,8 +1121,8 @@ export const aiAuditStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Model testing and validation\" control for AI is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each AI source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Model testing and validation\" control for Artificial Intelligence (AI) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the \"Model testing and validation\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Artificial Intelligence (AI) systems of record (Model registry + lineage; Eval / red-team harness; AI gateway + guardrails) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the model testing and validation control (from Model registry + lineage)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -1140,34 +1143,34 @@ export const aiAuditStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 5/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream AI controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Artificial Intelligence (AI) controls."
       }
     },
     "badge": {
       "id": "aig-04-badge",
-      "name": "AI Auditor",
+      "name": "Artificial Intelligence (AI) Auditor",
       "emoji": "🧠"
     },
     "wonder": {
       "name": "Model testing and validation",
-      "location": "AI",
+      "location": "Artificial Intelligence (AI)",
       "era": "Present Day",
       "emoji": "🧠"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Model testing and validation\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the AI control.",
+      "tagline": "Auditing \"Model testing and validation\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the model testing and validation control (from Model registry + lineage)) with read-only agents, run the test against policy, and issue a defensible opinion on the Artificial Intelligence (AI) control.",
       "year": 2025,
       "overview": [
-        "The \"Model testing and validation\" sub-process is one of the controls an auditor must verify for AI. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that model testing and validation is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Model registry + lineage, Eval / red-team harness, AI gateway + guardrails — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Model testing and validation\" sub-process is one of the controls an auditor must verify for Artificial Intelligence (AI). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the model testing and validation control (from Model registry + lineage), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Model registry + lineage, Eval / red-team harness, AI gateway + guardrails — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the \"Model testing and validation\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `04_model_testing_and_validation_mcp.py` exposes read-only tools that turn each AI source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `04_model_testing_and_validation_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Model registry + lineage and Eval / red-team harness (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 04_model_testing_and_validation_mcp.py` to expose it to your agent — or `python 04_model_testing_and_validation_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -1189,7 +1192,7 @@ export const aiAuditStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define AI scope + policy",
+            "sub": "define Artificial Intelligence (AI) scope + policy",
             "type": "attacker"
           },
           {
@@ -1225,12 +1228,13 @@ export const aiAuditStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Model testing and validation\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the model testing and validation control (from Model registry + lineage).",
+        "The test: Reconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the \"Model testing and validation\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Model registry + lineage, Eval / red-team harness, AI gateway + guardrails) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the model testing and validation control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -1254,21 +1258,21 @@ export const aiAuditStages: StageConfig[] = [
         {
           "name": "04_model_testing_and_validation_mcp.py",
           "url": "/audit-code/ai-audit/04_model_testing_and_validation_mcp.py",
-          "description": "Runnable read-only MCP server: gathers AI evidence for \"Model testing and validation\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Artificial Intelligence (AI) evidence for \"Model testing and validation\" (in-scope inventory for the model testing and validation control (from model registry + lineage)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Model testing and validation\" control for AI at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Model testing and validation\" control for Artificial Intelligence (AI) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the \"Model testing and validation\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the model testing and validation control (from Model registry + lineage) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Model registry + lineage APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Model registry + lineage gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Model registry + lineage is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Model registry + lineage; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — AI: \"Model testing and validation\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- ai-audit_inventory.json   (in-scope items from Model registry + lineage)\n- ai-audit_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Model testing and validation\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Model testing and validation\",\n  \"domain\": \"AI\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{aig_",
+        "/evidence/README.md": "# AcmeCorp — Artificial Intelligence (AI): \"Model testing and validation\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the \"Model testing and validation\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- ai-audit_inventory.json   (in-scope items — In-scope inventory for the model testing and validation control (from Model registry + lineage))\n- ai-audit_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Model testing and validation\",\n  \"domain\": \"Artificial Intelligence (AI)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{aig_",
         "/evidence/ai-audit_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"AI/ML engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Model testing and validation\" control must cover\n# fragment: model_testing_validation_",
         "/evidence/ai-audit_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -1332,7 +1336,7 @@ export const aiAuditStages: StageConfig[] = [
           "id": "aig-04-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Model testing and validation\" sub-process of AI?",
+          "text": "What is the primary audit objective for the \"Model testing and validation\" sub-process of Artificial Intelligence (AI)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -1346,11 +1350,11 @@ export const aiAuditStages: StageConfig[] = [
           "id": "aig-04-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Model testing and validation\" matter to the broader AI posture?",
+          "text": "Why does a weakness in \"Model testing and validation\" matter to the broader Artificial Intelligence (AI) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other AI controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Artificial Intelligence (AI) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -1363,7 +1367,7 @@ export const aiAuditStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Model testing and validation\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Model testing and validation evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the model testing and validation control (from Model registry + lineage) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -1429,16 +1433,16 @@ export const aiAuditStages: StageConfig[] = [
         {
           "id": "aig-04-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Model testing and validation\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Model testing and validation\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the model testing and validation control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the model testing and validation control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "aig-04-q9",
@@ -1483,8 +1487,8 @@ export const aiAuditStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Data governance and handling (AI)\" control for AI is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each AI source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Data governance and handling (AI)\" control for Artificial Intelligence (AI) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the \"Data governance and handling (AI)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Artificial Intelligence (AI) systems of record (Model registry + lineage; Eval / red-team harness; AI gateway + guardrails) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the data governance and handling (ai) control (from Model registry + lineage)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -1505,34 +1509,34 @@ export const aiAuditStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 6/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream AI controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Artificial Intelligence (AI) controls."
       }
     },
     "badge": {
       "id": "aig-05-badge",
-      "name": "AI Auditor",
+      "name": "Artificial Intelligence (AI) Auditor",
       "emoji": "🧠"
     },
     "wonder": {
       "name": "Data governance and handling (AI)",
-      "location": "AI",
+      "location": "Artificial Intelligence (AI)",
       "era": "Present Day",
       "emoji": "🧠"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Data governance and handling (AI)\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the AI control.",
+      "tagline": "Auditing \"Data governance and handling (AI)\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the data governance and handling (ai) control (from Model registry + lineage)) with read-only agents, run the test against policy, and issue a defensible opinion on the Artificial Intelligence (AI) control.",
       "year": 2025,
       "overview": [
-        "The \"Data governance and handling (AI)\" sub-process is one of the controls an auditor must verify for AI. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that data governance and handling (ai) is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Model registry + lineage, Eval / red-team harness, AI gateway + guardrails — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Data governance and handling (AI)\" sub-process is one of the controls an auditor must verify for Artificial Intelligence (AI). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the data governance and handling (ai) control (from Model registry + lineage), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Model registry + lineage, Eval / red-team harness, AI gateway + guardrails — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the \"Data governance and handling (AI)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `05_data_governance_and_handling_ai_mcp.py` exposes read-only tools that turn each AI source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `05_data_governance_and_handling_ai_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Model registry + lineage and Eval / red-team harness (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 05_data_governance_and_handling_ai_mcp.py` to expose it to your agent — or `python 05_data_governance_and_handling_ai_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -1554,7 +1558,7 @@ export const aiAuditStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define AI scope + policy",
+            "sub": "define Artificial Intelligence (AI) scope + policy",
             "type": "attacker"
           },
           {
@@ -1590,12 +1594,13 @@ export const aiAuditStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Data governance and handling (AI)\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the data governance and handling (ai) control (from Model registry + lineage).",
+        "The test: Reconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the \"Data governance and handling (AI)\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Model registry + lineage, Eval / red-team harness, AI gateway + guardrails) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the data governance and handling (ai) control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -1619,21 +1624,21 @@ export const aiAuditStages: StageConfig[] = [
         {
           "name": "05_data_governance_and_handling_ai_mcp.py",
           "url": "/audit-code/ai-audit/05_data_governance_and_handling_ai_mcp.py",
-          "description": "Runnable read-only MCP server: gathers AI evidence for \"Data governance and handling (AI)\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Artificial Intelligence (AI) evidence for \"Data governance and handling (AI)\" (in-scope inventory for the data governance and handling (ai) control (from model registry + lineage)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Data governance and handling (AI)\" control for AI at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Data governance and handling (AI)\" control for Artificial Intelligence (AI) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the \"Data governance and handling (AI)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the data governance and handling (ai) control (from Model registry + lineage) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Model registry + lineage APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Model registry + lineage gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Model registry + lineage is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Model registry + lineage; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — AI: \"Data governance and handling (AI)\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- ai-audit_inventory.json   (in-scope items from Model registry + lineage)\n- ai-audit_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Data governance and handling (AI)\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Data governance and handling (AI)\",\n  \"domain\": \"AI\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{aig_",
+        "/evidence/README.md": "# AcmeCorp — Artificial Intelligence (AI): \"Data governance and handling (AI)\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the \"Data governance and handling (AI)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- ai-audit_inventory.json   (in-scope items — In-scope inventory for the data governance and handling (ai) control (from Model registry + lineage))\n- ai-audit_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Data governance and handling (AI)\",\n  \"domain\": \"Artificial Intelligence (AI)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{aig_",
         "/evidence/ai-audit_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"AI/ML engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Data governance and handling (AI)\" control must cover\n# fragment: data_governance_handling_",
         "/evidence/ai-audit_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"EXCEPTIONS\"\n}\n# fragment: exceptions}"
@@ -1697,7 +1702,7 @@ export const aiAuditStages: StageConfig[] = [
           "id": "aig-05-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Data governance and handling (AI)\" sub-process of AI?",
+          "text": "What is the primary audit objective for the \"Data governance and handling (AI)\" sub-process of Artificial Intelligence (AI)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -1711,11 +1716,11 @@ export const aiAuditStages: StageConfig[] = [
           "id": "aig-05-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Data governance and handling (AI)\" matter to the broader AI posture?",
+          "text": "Why does a weakness in \"Data governance and handling (AI)\" matter to the broader Artificial Intelligence (AI) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other AI controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Artificial Intelligence (AI) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -1728,7 +1733,7 @@ export const aiAuditStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Data governance and handling (AI)\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Data governance and handling (AI) evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the data governance and handling (ai) control (from Model registry + lineage) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -1794,16 +1799,16 @@ export const aiAuditStages: StageConfig[] = [
         {
           "id": "aig-05-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Data governance and handling (AI)\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Data governance and handling (AI)\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the data governance and handling (ai) control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the data governance and handling (ai) control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "aig-05-q9",
@@ -1848,8 +1853,8 @@ export const aiAuditStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Data privacy and security (AI)\" control for AI is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each AI source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Data privacy and security (AI)\" control for Artificial Intelligence (AI) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the \"Data privacy and security (AI)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Artificial Intelligence (AI) systems of record (Model registry + lineage; Eval / red-team harness; AI gateway + guardrails) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the data privacy and security (ai) control (from Model registry + lineage)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -1870,34 +1875,34 @@ export const aiAuditStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 7/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream AI controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Artificial Intelligence (AI) controls."
       }
     },
     "badge": {
       "id": "aig-06-badge",
-      "name": "AI Auditor",
+      "name": "Artificial Intelligence (AI) Auditor",
       "emoji": "🧠"
     },
     "wonder": {
       "name": "Data privacy and security (AI)",
-      "location": "AI",
+      "location": "Artificial Intelligence (AI)",
       "era": "Present Day",
       "emoji": "🧠"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Data privacy and security (AI)\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the AI control.",
+      "tagline": "Auditing \"Data privacy and security (AI)\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the data privacy and security (ai) control (from Model registry + lineage)) with read-only agents, run the test against policy, and issue a defensible opinion on the Artificial Intelligence (AI) control.",
       "year": 2025,
       "overview": [
-        "The \"Data privacy and security (AI)\" sub-process is one of the controls an auditor must verify for AI. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that data privacy and security (ai) is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Model registry + lineage, Eval / red-team harness, AI gateway + guardrails — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Data privacy and security (AI)\" sub-process is one of the controls an auditor must verify for Artificial Intelligence (AI). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the data privacy and security (ai) control (from Model registry + lineage), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Model registry + lineage, Eval / red-team harness, AI gateway + guardrails — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the \"Data privacy and security (AI)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `06_data_privacy_and_security_ai_mcp.py` exposes read-only tools that turn each AI source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `06_data_privacy_and_security_ai_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Model registry + lineage and Eval / red-team harness (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 06_data_privacy_and_security_ai_mcp.py` to expose it to your agent — or `python 06_data_privacy_and_security_ai_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -1919,7 +1924,7 @@ export const aiAuditStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define AI scope + policy",
+            "sub": "define Artificial Intelligence (AI) scope + policy",
             "type": "attacker"
           },
           {
@@ -1955,12 +1960,13 @@ export const aiAuditStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Data privacy and security (AI)\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the data privacy and security (ai) control (from Model registry + lineage).",
+        "The test: Reconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the \"Data privacy and security (AI)\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Model registry + lineage, Eval / red-team harness, AI gateway + guardrails) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the data privacy and security (ai) control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -1984,21 +1990,21 @@ export const aiAuditStages: StageConfig[] = [
         {
           "name": "06_data_privacy_and_security_ai_mcp.py",
           "url": "/audit-code/ai-audit/06_data_privacy_and_security_ai_mcp.py",
-          "description": "Runnable read-only MCP server: gathers AI evidence for \"Data privacy and security (AI)\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Artificial Intelligence (AI) evidence for \"Data privacy and security (AI)\" (in-scope inventory for the data privacy and security (ai) control (from model registry + lineage)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Data privacy and security (AI)\" control for AI at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Data privacy and security (AI)\" control for Artificial Intelligence (AI) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the \"Data privacy and security (AI)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the data privacy and security (ai) control (from Model registry + lineage) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Model registry + lineage APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Model registry + lineage gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Model registry + lineage is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Model registry + lineage; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — AI: \"Data privacy and security (AI)\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- ai-audit_inventory.json   (in-scope items from Model registry + lineage)\n- ai-audit_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Data privacy and security (AI)\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Data privacy and security (AI)\",\n  \"domain\": \"AI\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{aig_",
+        "/evidence/README.md": "# AcmeCorp — Artificial Intelligence (AI): \"Data privacy and security (AI)\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the \"Data privacy and security (AI)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- ai-audit_inventory.json   (in-scope items — In-scope inventory for the data privacy and security (ai) control (from Model registry + lineage))\n- ai-audit_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Data privacy and security (AI)\",\n  \"domain\": \"Artificial Intelligence (AI)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{aig_",
         "/evidence/ai-audit_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"AI/ML engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Data privacy and security (AI)\" control must cover\n# fragment: data_privacy_security_",
         "/evidence/ai-audit_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -2062,7 +2068,7 @@ export const aiAuditStages: StageConfig[] = [
           "id": "aig-06-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Data privacy and security (AI)\" sub-process of AI?",
+          "text": "What is the primary audit objective for the \"Data privacy and security (AI)\" sub-process of Artificial Intelligence (AI)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -2076,11 +2082,11 @@ export const aiAuditStages: StageConfig[] = [
           "id": "aig-06-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Data privacy and security (AI)\" matter to the broader AI posture?",
+          "text": "Why does a weakness in \"Data privacy and security (AI)\" matter to the broader Artificial Intelligence (AI) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other AI controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Artificial Intelligence (AI) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -2093,7 +2099,7 @@ export const aiAuditStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Data privacy and security (AI)\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Data privacy and security (AI) evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the data privacy and security (ai) control (from Model registry + lineage) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -2159,16 +2165,16 @@ export const aiAuditStages: StageConfig[] = [
         {
           "id": "aig-06-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Data privacy and security (AI)\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Data privacy and security (AI)\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the data privacy and security (ai) control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the data privacy and security (ai) control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "aig-06-q9",
@@ -2213,8 +2219,8 @@ export const aiAuditStages: StageConfig[] = [
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"AI infra and access security\" control for AI is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each AI source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"AI infra and access security\" control for Artificial Intelligence (AI) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the \"AI infra and access security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Artificial Intelligence (AI) systems of record (Model registry + lineage; Eval / red-team harness; AI gateway + guardrails) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the ai infra and access security control (from Model registry + lineage)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -2235,34 +2241,34 @@ export const aiAuditStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 5/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 9/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream AI controls."
+        "value": "VALUE 9/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Artificial Intelligence (AI) controls."
       }
     },
     "badge": {
       "id": "aig-07-badge",
-      "name": "AI Auditor",
+      "name": "Artificial Intelligence (AI) Auditor",
       "emoji": "🧠"
     },
     "wonder": {
       "name": "AI infra and access security",
-      "location": "AI",
+      "location": "Artificial Intelligence (AI)",
       "era": "Present Day",
       "emoji": "🧠"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"AI infra and access security\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the AI control.",
+      "tagline": "Auditing \"AI infra and access security\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the ai infra and access security control (from Model registry + lineage)) with read-only agents, run the test against policy, and issue a defensible opinion on the Artificial Intelligence (AI) control.",
       "year": 2025,
       "overview": [
-        "The \"AI infra and access security\" sub-process is one of the controls an auditor must verify for AI. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that ai infra and access security is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Model registry + lineage, Eval / red-team harness, AI gateway + guardrails — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"AI infra and access security\" sub-process is one of the controls an auditor must verify for Artificial Intelligence (AI). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the ai infra and access security control (from Model registry + lineage), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Model registry + lineage, Eval / red-team harness, AI gateway + guardrails — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the \"AI infra and access security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `07_ai_infra_and_access_security_mcp.py` exposes read-only tools that turn each AI source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `07_ai_infra_and_access_security_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Model registry + lineage and Eval / red-team harness (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 07_ai_infra_and_access_security_mcp.py` to expose it to your agent — or `python 07_ai_infra_and_access_security_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -2284,7 +2290,7 @@ export const aiAuditStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define AI scope + policy",
+            "sub": "define Artificial Intelligence (AI) scope + policy",
             "type": "attacker"
           },
           {
@@ -2320,12 +2326,13 @@ export const aiAuditStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"AI infra and access security\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the ai infra and access security control (from Model registry + lineage).",
+        "The test: Reconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the \"AI infra and access security\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Model registry + lineage, Eval / red-team harness, AI gateway + guardrails) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the ai infra and access security control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -2349,21 +2356,21 @@ export const aiAuditStages: StageConfig[] = [
         {
           "name": "07_ai_infra_and_access_security_mcp.py",
           "url": "/audit-code/ai-audit/07_ai_infra_and_access_security_mcp.py",
-          "description": "Runnable read-only MCP server: gathers AI evidence for \"AI infra and access security\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Artificial Intelligence (AI) evidence for \"AI infra and access security\" (in-scope inventory for the ai infra and access security control (from model registry + lineage)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"AI infra and access security\" control for AI at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"AI infra and access security\" control for Artificial Intelligence (AI) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the \"AI infra and access security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the ai infra and access security control (from Model registry + lineage) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Model registry + lineage APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Model registry + lineage gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Model registry + lineage is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Model registry + lineage; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — AI: \"AI infra and access security\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- ai-audit_inventory.json   (in-scope items from Model registry + lineage)\n- ai-audit_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"AI infra and access security\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"AI infra and access security\",\n  \"domain\": \"AI\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{aig_",
+        "/evidence/README.md": "# AcmeCorp — Artificial Intelligence (AI): \"AI infra and access security\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the \"AI infra and access security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- ai-audit_inventory.json   (in-scope items — In-scope inventory for the ai infra and access security control (from Model registry + lineage))\n- ai-audit_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"AI infra and access security\",\n  \"domain\": \"Artificial Intelligence (AI)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{aig_",
         "/evidence/ai-audit_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"AI/ML engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"AI infra and access security\" control must cover\n# fragment: ai_infra_access_",
         "/evidence/ai-audit_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -2427,7 +2434,7 @@ export const aiAuditStages: StageConfig[] = [
           "id": "aig-07-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"AI infra and access security\" sub-process of AI?",
+          "text": "What is the primary audit objective for the \"AI infra and access security\" sub-process of Artificial Intelligence (AI)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -2441,11 +2448,11 @@ export const aiAuditStages: StageConfig[] = [
           "id": "aig-07-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"AI infra and access security\" matter to the broader AI posture?",
+          "text": "Why does a weakness in \"AI infra and access security\" matter to the broader Artificial Intelligence (AI) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other AI controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Artificial Intelligence (AI) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -2458,7 +2465,7 @@ export const aiAuditStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"AI infra and access security\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The AI infra and access security evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the ai infra and access security control (from Model registry + lineage) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -2524,16 +2531,16 @@ export const aiAuditStages: StageConfig[] = [
         {
           "id": "aig-07-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"AI infra and access security\"?",
+          "challenge": "Typical finding",
+          "text": "For \"AI infra and access security\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the ai infra and access security control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the ai infra and access security control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "aig-07-q9",
@@ -2578,8 +2585,8 @@ export const aiAuditStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Adversarial AI and threat defense\" control for AI is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each AI source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Adversarial AI and threat defense\" control for Artificial Intelligence (AI) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the \"Adversarial AI and threat defense\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Artificial Intelligence (AI) systems of record (Model registry + lineage; Eval / red-team harness; AI gateway + guardrails) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the adversarial ai and threat defense control (from Model registry + lineage)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -2600,34 +2607,34 @@ export const aiAuditStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 4/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream AI controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Artificial Intelligence (AI) controls."
       }
     },
     "badge": {
       "id": "aig-08-badge",
-      "name": "AI Auditor",
+      "name": "Artificial Intelligence (AI) Auditor",
       "emoji": "🧠"
     },
     "wonder": {
       "name": "Adversarial AI and threat defense",
-      "location": "AI",
+      "location": "Artificial Intelligence (AI)",
       "era": "Present Day",
       "emoji": "🧠"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Adversarial AI and threat defense\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the AI control.",
+      "tagline": "Auditing \"Adversarial AI and threat defense\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the adversarial ai and threat defense control (from Model registry + lineage)) with read-only agents, run the test against policy, and issue a defensible opinion on the Artificial Intelligence (AI) control.",
       "year": 2025,
       "overview": [
-        "The \"Adversarial AI and threat defense\" sub-process is one of the controls an auditor must verify for AI. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that adversarial ai and threat defense is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Model registry + lineage, Eval / red-team harness, AI gateway + guardrails — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Adversarial AI and threat defense\" sub-process is one of the controls an auditor must verify for Artificial Intelligence (AI). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the adversarial ai and threat defense control (from Model registry + lineage), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Model registry + lineage, Eval / red-team harness, AI gateway + guardrails — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the \"Adversarial AI and threat defense\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `08_adversarial_ai_and_threat_defense_mcp.py` exposes read-only tools that turn each AI source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `08_adversarial_ai_and_threat_defense_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Model registry + lineage and Eval / red-team harness (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 08_adversarial_ai_and_threat_defense_mcp.py` to expose it to your agent — or `python 08_adversarial_ai_and_threat_defense_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -2649,7 +2656,7 @@ export const aiAuditStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define AI scope + policy",
+            "sub": "define Artificial Intelligence (AI) scope + policy",
             "type": "attacker"
           },
           {
@@ -2685,12 +2692,13 @@ export const aiAuditStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Adversarial AI and threat defense\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the adversarial ai and threat defense control (from Model registry + lineage).",
+        "The test: Reconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the \"Adversarial AI and threat defense\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Model registry + lineage, Eval / red-team harness, AI gateway + guardrails) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the adversarial ai and threat defense control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -2714,21 +2722,21 @@ export const aiAuditStages: StageConfig[] = [
         {
           "name": "08_adversarial_ai_and_threat_defense_mcp.py",
           "url": "/audit-code/ai-audit/08_adversarial_ai_and_threat_defense_mcp.py",
-          "description": "Runnable read-only MCP server: gathers AI evidence for \"Adversarial AI and threat defense\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Artificial Intelligence (AI) evidence for \"Adversarial AI and threat defense\" (in-scope inventory for the adversarial ai and threat defense control (from model registry + lineage)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Adversarial AI and threat defense\" control for AI at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Adversarial AI and threat defense\" control for Artificial Intelligence (AI) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the \"Adversarial AI and threat defense\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the adversarial ai and threat defense control (from Model registry + lineage) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Model registry + lineage APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Model registry + lineage gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Model registry + lineage is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Model registry + lineage; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — AI: \"Adversarial AI and threat defense\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- ai-audit_inventory.json   (in-scope items from Model registry + lineage)\n- ai-audit_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Adversarial AI and threat defense\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Adversarial AI and threat defense\",\n  \"domain\": \"AI\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{aig_",
+        "/evidence/README.md": "# AcmeCorp — Artificial Intelligence (AI): \"Adversarial AI and threat defense\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the \"Adversarial AI and threat defense\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- ai-audit_inventory.json   (in-scope items — In-scope inventory for the adversarial ai and threat defense control (from Model registry + lineage))\n- ai-audit_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Adversarial AI and threat defense\",\n  \"domain\": \"Artificial Intelligence (AI)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{aig_",
         "/evidence/ai-audit_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"AI/ML engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Adversarial AI and threat defense\" control must cover\n# fragment: adversarial_ai_threat_",
         "/evidence/ai-audit_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -2792,7 +2800,7 @@ export const aiAuditStages: StageConfig[] = [
           "id": "aig-08-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Adversarial AI and threat defense\" sub-process of AI?",
+          "text": "What is the primary audit objective for the \"Adversarial AI and threat defense\" sub-process of Artificial Intelligence (AI)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -2806,11 +2814,11 @@ export const aiAuditStages: StageConfig[] = [
           "id": "aig-08-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Adversarial AI and threat defense\" matter to the broader AI posture?",
+          "text": "Why does a weakness in \"Adversarial AI and threat defense\" matter to the broader Artificial Intelligence (AI) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other AI controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Artificial Intelligence (AI) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -2823,7 +2831,7 @@ export const aiAuditStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Adversarial AI and threat defense\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Adversarial AI and threat defense evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the adversarial ai and threat defense control (from Model registry + lineage) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -2889,16 +2897,16 @@ export const aiAuditStages: StageConfig[] = [
         {
           "id": "aig-08-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Adversarial AI and threat defense\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Adversarial AI and threat defense\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the adversarial ai and threat defense control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the adversarial ai and threat defense control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "aig-08-q9",
@@ -2943,8 +2951,8 @@ export const aiAuditStages: StageConfig[] = [
     "valueScore": 8,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Incident management and reporting (AI)\" control for AI is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each AI source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Incident management and reporting (AI)\" control for Artificial Intelligence (AI) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the \"Incident management and reporting (AI)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Artificial Intelligence (AI) systems of record (Model registry + lineage; Eval / red-team harness; AI gateway + guardrails) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the incident management and reporting (ai) control (from Model registry + lineage)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -2965,34 +2973,34 @@ export const aiAuditStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 8/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 8/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream AI controls."
+        "value": "VALUE 8/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Artificial Intelligence (AI) controls."
       }
     },
     "badge": {
       "id": "aig-09-badge",
-      "name": "AI Auditor",
+      "name": "Artificial Intelligence (AI) Auditor",
       "emoji": "🧠"
     },
     "wonder": {
       "name": "Incident management and reporting (AI)",
-      "location": "AI",
+      "location": "Artificial Intelligence (AI)",
       "era": "Present Day",
       "emoji": "🧠"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Incident management and reporting (AI)\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the AI control.",
+      "tagline": "Auditing \"Incident management and reporting (AI)\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the incident management and reporting (ai) control (from Model registry + lineage)) with read-only agents, run the test against policy, and issue a defensible opinion on the Artificial Intelligence (AI) control.",
       "year": 2025,
       "overview": [
-        "The \"Incident management and reporting (AI)\" sub-process is one of the controls an auditor must verify for AI. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that incident management and reporting (ai) is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Model registry + lineage, Eval / red-team harness, AI gateway + guardrails — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Incident management and reporting (AI)\" sub-process is one of the controls an auditor must verify for Artificial Intelligence (AI). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the incident management and reporting (ai) control (from Model registry + lineage), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Model registry + lineage, Eval / red-team harness, AI gateway + guardrails — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the \"Incident management and reporting (AI)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `09_incident_management_and_reporting_ai_mcp.py` exposes read-only tools that turn each AI source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `09_incident_management_and_reporting_ai_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Model registry + lineage and Eval / red-team harness (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 09_incident_management_and_reporting_ai_mcp.py` to expose it to your agent — or `python 09_incident_management_and_reporting_ai_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -3014,7 +3022,7 @@ export const aiAuditStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define AI scope + policy",
+            "sub": "define Artificial Intelligence (AI) scope + policy",
             "type": "attacker"
           },
           {
@@ -3050,12 +3058,13 @@ export const aiAuditStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Incident management and reporting (AI)\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the incident management and reporting (ai) control (from Model registry + lineage).",
+        "The test: Reconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the \"Incident management and reporting (AI)\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Model registry + lineage, Eval / red-team harness, AI gateway + guardrails) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the incident management and reporting (ai) control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -3079,21 +3088,21 @@ export const aiAuditStages: StageConfig[] = [
         {
           "name": "09_incident_management_and_reporting_ai_mcp.py",
           "url": "/audit-code/ai-audit/09_incident_management_and_reporting_ai_mcp.py",
-          "description": "Runnable read-only MCP server: gathers AI evidence for \"Incident management and reporting (AI)\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Artificial Intelligence (AI) evidence for \"Incident management and reporting (AI)\" (in-scope inventory for the incident management and reporting (ai) control (from model registry + lineage)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Incident management and reporting (AI)\" control for AI at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Incident management and reporting (AI)\" control for Artificial Intelligence (AI) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the \"Incident management and reporting (AI)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the incident management and reporting (ai) control (from Model registry + lineage) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Model registry + lineage APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Model registry + lineage gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Model registry + lineage is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Model registry + lineage; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — AI: \"Incident management and reporting (AI)\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- ai-audit_inventory.json   (in-scope items from Model registry + lineage)\n- ai-audit_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Incident management and reporting (AI)\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Incident management and reporting (AI)\",\n  \"domain\": \"AI\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{aig_",
+        "/evidence/README.md": "# AcmeCorp — Artificial Intelligence (AI): \"Incident management and reporting (AI)\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the \"Incident management and reporting (AI)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- ai-audit_inventory.json   (in-scope items — In-scope inventory for the incident management and reporting (ai) control (from Model registry + lineage))\n- ai-audit_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Incident management and reporting (AI)\",\n  \"domain\": \"Artificial Intelligence (AI)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{aig_",
         "/evidence/ai-audit_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"AI/ML engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Incident management and reporting (AI)\" control must cover\n# fragment: incident_management_reporting_",
         "/evidence/ai-audit_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -3157,7 +3166,7 @@ export const aiAuditStages: StageConfig[] = [
           "id": "aig-09-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Incident management and reporting (AI)\" sub-process of AI?",
+          "text": "What is the primary audit objective for the \"Incident management and reporting (AI)\" sub-process of Artificial Intelligence (AI)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -3171,11 +3180,11 @@ export const aiAuditStages: StageConfig[] = [
           "id": "aig-09-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Incident management and reporting (AI)\" matter to the broader AI posture?",
+          "text": "Why does a weakness in \"Incident management and reporting (AI)\" matter to the broader Artificial Intelligence (AI) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other AI controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Artificial Intelligence (AI) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -3188,7 +3197,7 @@ export const aiAuditStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Incident management and reporting (AI)\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Incident management and reporting (AI) evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the incident management and reporting (ai) control (from Model registry + lineage) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -3254,16 +3263,16 @@ export const aiAuditStages: StageConfig[] = [
         {
           "id": "aig-09-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Incident management and reporting (AI)\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Incident management and reporting (AI)\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the incident management and reporting (ai) control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the incident management and reporting (ai) control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "aig-09-q9",
@@ -3308,8 +3317,8 @@ export const aiAuditStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Operational monitoring (AI)\" control for AI is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each AI source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Operational monitoring (AI)\" control for Artificial Intelligence (AI) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the \"Operational monitoring (AI)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Artificial Intelligence (AI) systems of record (Model registry + lineage; Eval / red-team harness; AI gateway + guardrails) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the operational monitoring (ai) control (from Model registry + lineage)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -3330,34 +3339,34 @@ export const aiAuditStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 6/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream AI controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Artificial Intelligence (AI) controls."
       }
     },
     "badge": {
       "id": "aig-10-badge",
-      "name": "AI Auditor",
+      "name": "Artificial Intelligence (AI) Auditor",
       "emoji": "🧠"
     },
     "wonder": {
       "name": "Operational monitoring (AI)",
-      "location": "AI",
+      "location": "Artificial Intelligence (AI)",
       "era": "Present Day",
       "emoji": "🧠"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Operational monitoring (AI)\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the AI control.",
+      "tagline": "Auditing \"Operational monitoring (AI)\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the operational monitoring (ai) control (from Model registry + lineage)) with read-only agents, run the test against policy, and issue a defensible opinion on the Artificial Intelligence (AI) control.",
       "year": 2025,
       "overview": [
-        "The \"Operational monitoring (AI)\" sub-process is one of the controls an auditor must verify for AI. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that operational monitoring (ai) is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Model registry + lineage, Eval / red-team harness, AI gateway + guardrails — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Operational monitoring (AI)\" sub-process is one of the controls an auditor must verify for Artificial Intelligence (AI). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the operational monitoring (ai) control (from Model registry + lineage), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Model registry + lineage, Eval / red-team harness, AI gateway + guardrails — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the \"Operational monitoring (AI)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `10_operational_monitoring_ai_mcp.py` exposes read-only tools that turn each AI source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `10_operational_monitoring_ai_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Model registry + lineage and Eval / red-team harness (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 10_operational_monitoring_ai_mcp.py` to expose it to your agent — or `python 10_operational_monitoring_ai_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -3379,7 +3388,7 @@ export const aiAuditStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define AI scope + policy",
+            "sub": "define Artificial Intelligence (AI) scope + policy",
             "type": "attacker"
           },
           {
@@ -3415,12 +3424,13 @@ export const aiAuditStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Operational monitoring (AI)\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the operational monitoring (ai) control (from Model registry + lineage).",
+        "The test: Reconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the \"Operational monitoring (AI)\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Model registry + lineage, Eval / red-team harness, AI gateway + guardrails) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the operational monitoring (ai) control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -3444,21 +3454,21 @@ export const aiAuditStages: StageConfig[] = [
         {
           "name": "10_operational_monitoring_ai_mcp.py",
           "url": "/audit-code/ai-audit/10_operational_monitoring_ai_mcp.py",
-          "description": "Runnable read-only MCP server: gathers AI evidence for \"Operational monitoring (AI)\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Artificial Intelligence (AI) evidence for \"Operational monitoring (AI)\" (in-scope inventory for the operational monitoring (ai) control (from model registry + lineage)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Operational monitoring (AI)\" control for AI at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Operational monitoring (AI)\" control for Artificial Intelligence (AI) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the \"Operational monitoring (AI)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the operational monitoring (ai) control (from Model registry + lineage) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Model registry + lineage APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Model registry + lineage gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Model registry + lineage is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Model registry + lineage; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — AI: \"Operational monitoring (AI)\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- ai-audit_inventory.json   (in-scope items from Model registry + lineage)\n- ai-audit_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Operational monitoring (AI)\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Operational monitoring (AI)\",\n  \"domain\": \"AI\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{aig_",
+        "/evidence/README.md": "# AcmeCorp — Artificial Intelligence (AI): \"Operational monitoring (AI)\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the \"Operational monitoring (AI)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- ai-audit_inventory.json   (in-scope items — In-scope inventory for the operational monitoring (ai) control (from Model registry + lineage))\n- ai-audit_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Operational monitoring (AI)\",\n  \"domain\": \"Artificial Intelligence (AI)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{aig_",
         "/evidence/ai-audit_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"AI/ML engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Operational monitoring (AI)\" control must cover\n# fragment: operational_monitoring_ai_",
         "/evidence/ai-audit_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"EXCEPTIONS\"\n}\n# fragment: exceptions}"
@@ -3522,7 +3532,7 @@ export const aiAuditStages: StageConfig[] = [
           "id": "aig-10-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Operational monitoring (AI)\" sub-process of AI?",
+          "text": "What is the primary audit objective for the \"Operational monitoring (AI)\" sub-process of Artificial Intelligence (AI)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -3536,11 +3546,11 @@ export const aiAuditStages: StageConfig[] = [
           "id": "aig-10-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Operational monitoring (AI)\" matter to the broader AI posture?",
+          "text": "Why does a weakness in \"Operational monitoring (AI)\" matter to the broader Artificial Intelligence (AI) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other AI controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Artificial Intelligence (AI) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -3553,7 +3563,7 @@ export const aiAuditStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Operational monitoring (AI)\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Operational monitoring (AI) evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the operational monitoring (ai) control (from Model registry + lineage) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -3619,16 +3629,16 @@ export const aiAuditStages: StageConfig[] = [
         {
           "id": "aig-10-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Operational monitoring (AI)\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Operational monitoring (AI)\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the operational monitoring (ai) control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the operational monitoring (ai) control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "aig-10-q9",

@@ -23,8 +23,8 @@ export const networkSecurityStages: StageConfig[] = [
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Network segmentation and trust zones\" control for Network Security is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Network Security source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Network segmentation and trust zones\" control for Network Security is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Network Security policy/standard and flag every item where the \"Network segmentation and trust zones\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Network Security systems of record (Next-gen firewalls (Palo Alto/Fortinet); Network segmentation / microsegmentation; ZTNA / VPN gateways) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the network segmentation and trust zones control (from Next-gen firewalls (Palo Alto/Fortinet))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -61,18 +61,18 @@ export const networkSecurityStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Network segmentation and trust zones\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Network Security control.",
+      "tagline": "Auditing \"Network segmentation and trust zones\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the network segmentation and trust zones control (from Next-gen firewalls (Palo Alto/Fortinet))) with read-only agents, run the test against policy, and issue a defensible opinion on the Network Security control.",
       "year": 2025,
       "overview": [
-        "The \"Network segmentation and trust zones\" sub-process is one of the controls an auditor must verify for Network Security. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that network segmentation and trust zones is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Next-gen firewalls (Palo Alto/Fortinet), Network segmentation / microsegmentation, ZTNA / VPN gateways — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Network segmentation and trust zones\" sub-process is one of the controls an auditor must verify for Network Security. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the network segmentation and trust zones control (from Next-gen firewalls (Palo Alto/Fortinet)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Next-gen firewalls (Palo Alto/Fortinet), Network segmentation / microsegmentation, ZTNA / VPN gateways — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Network Security policy/standard and flag every item where the \"Network segmentation and trust zones\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `01_network_segmentation_and_trust_zones_mcp.py` exposes read-only tools that turn each Network Security source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `01_network_segmentation_and_trust_zones_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Next-gen firewalls (Palo Alto/Fortinet) and Network segmentation / microsegmentation (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 01_network_segmentation_and_trust_zones_mcp.py` to expose it to your agent — or `python 01_network_segmentation_and_trust_zones_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -130,12 +130,13 @@ export const networkSecurityStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Network segmentation and trust zones\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the network segmentation and trust zones control (from Next-gen firewalls (Palo Alto/Fortinet)).",
+        "The test: Reconcile the in-scope inventory against the Network Security policy/standard and flag every item where the \"Network segmentation and trust zones\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Next-gen firewalls (Palo Alto/Fortinet), Network segmentation / microsegmentation, ZTNA / VPN gateways) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the network segmentation and trust zones control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -159,20 +160,20 @@ export const networkSecurityStages: StageConfig[] = [
         {
           "name": "01_network_segmentation_and_trust_zones_mcp.py",
           "url": "/audit-code/network-security/01_network_segmentation_and_trust_zones_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Network Security evidence for \"Network segmentation and trust zones\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Network Security evidence for \"Network segmentation and trust zones\" (in-scope inventory for the network segmentation and trust zones control (from next-gen firewalls (palo alto/fortinet))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Network segmentation and trust zones\" control for Network Security at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Network segmentation and trust zones\" control for Network Security at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Network Security policy/standard and flag every item where the \"Network segmentation and trust zones\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the network segmentation and trust zones control (from Next-gen firewalls (Palo Alto/Fortinet)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Next-gen firewalls (Palo Alto/Fortinet) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Next-gen firewalls (Palo Alto/Fortinet) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Next-gen firewalls (Palo Alto/Fortinet) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Next-gen firewalls (Palo Alto/Fortinet); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Network Security: \"Network segmentation and trust zones\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- network-security_inventory.json   (in-scope items from Next-gen firewalls (Palo Alto/Fortinet))\n- network-security_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Network segmentation and trust zones\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Network Security: \"Network segmentation and trust zones\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Network Security policy/standard and flag every item where the \"Network segmentation and trust zones\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- network-security_inventory.json   (in-scope items — In-scope inventory for the network segmentation and trust zones control (from Next-gen firewalls (Palo Alto/Fortinet)))\n- network-security_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Network segmentation and trust zones\",\n  \"domain\": \"Network Security\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{net_",
         "/evidence/network-security_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Network engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Network segmentation and trust zones\" control must cover\n# fragment: network_segmentation_trust_",
         "/evidence/network-security_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -268,7 +269,7 @@ export const networkSecurityStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Network segmentation and trust zones\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Network segmentation and trust zones evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the network segmentation and trust zones control (from Next-gen firewalls (Palo Alto/Fortinet)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -334,16 +335,16 @@ export const networkSecurityStages: StageConfig[] = [
         {
           "id": "net-01-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Network segmentation and trust zones\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Network segmentation and trust zones\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the network segmentation and trust zones control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the network segmentation and trust zones control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "net-01-q9",
@@ -388,8 +389,8 @@ export const networkSecurityStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Firewall rule governance\" control for Network Security is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Network Security source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Firewall rule governance\" control for Network Security is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Network Security policy/standard and flag every item where the \"Firewall rule governance\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Network Security systems of record (Next-gen firewalls (Palo Alto/Fortinet); Network segmentation / microsegmentation; ZTNA / VPN gateways) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the firewall rule governance control (from Next-gen firewalls (Palo Alto/Fortinet))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -426,18 +427,18 @@ export const networkSecurityStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Firewall rule governance\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Network Security control.",
+      "tagline": "Auditing \"Firewall rule governance\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the firewall rule governance control (from Next-gen firewalls (Palo Alto/Fortinet))) with read-only agents, run the test against policy, and issue a defensible opinion on the Network Security control.",
       "year": 2025,
       "overview": [
-        "The \"Firewall rule governance\" sub-process is one of the controls an auditor must verify for Network Security. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that firewall rule governance is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Next-gen firewalls (Palo Alto/Fortinet), Network segmentation / microsegmentation, ZTNA / VPN gateways — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Firewall rule governance\" sub-process is one of the controls an auditor must verify for Network Security. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the firewall rule governance control (from Next-gen firewalls (Palo Alto/Fortinet)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Next-gen firewalls (Palo Alto/Fortinet), Network segmentation / microsegmentation, ZTNA / VPN gateways — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Network Security policy/standard and flag every item where the \"Firewall rule governance\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `02_firewall_rule_governance_mcp.py` exposes read-only tools that turn each Network Security source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `02_firewall_rule_governance_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Next-gen firewalls (Palo Alto/Fortinet) and Network segmentation / microsegmentation (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 02_firewall_rule_governance_mcp.py` to expose it to your agent — or `python 02_firewall_rule_governance_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -495,12 +496,13 @@ export const networkSecurityStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Firewall rule governance\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the firewall rule governance control (from Next-gen firewalls (Palo Alto/Fortinet)).",
+        "The test: Reconcile the in-scope inventory against the Network Security policy/standard and flag every item where the \"Firewall rule governance\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Next-gen firewalls (Palo Alto/Fortinet), Network segmentation / microsegmentation, ZTNA / VPN gateways) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the firewall rule governance control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -524,20 +526,20 @@ export const networkSecurityStages: StageConfig[] = [
         {
           "name": "02_firewall_rule_governance_mcp.py",
           "url": "/audit-code/network-security/02_firewall_rule_governance_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Network Security evidence for \"Firewall rule governance\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Network Security evidence for \"Firewall rule governance\" (in-scope inventory for the firewall rule governance control (from next-gen firewalls (palo alto/fortinet))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Firewall rule governance\" control for Network Security at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Firewall rule governance\" control for Network Security at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Network Security policy/standard and flag every item where the \"Firewall rule governance\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the firewall rule governance control (from Next-gen firewalls (Palo Alto/Fortinet)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Next-gen firewalls (Palo Alto/Fortinet) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Next-gen firewalls (Palo Alto/Fortinet) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Next-gen firewalls (Palo Alto/Fortinet) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Next-gen firewalls (Palo Alto/Fortinet); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Network Security: \"Firewall rule governance\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- network-security_inventory.json   (in-scope items from Next-gen firewalls (Palo Alto/Fortinet))\n- network-security_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Firewall rule governance\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Network Security: \"Firewall rule governance\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Network Security policy/standard and flag every item where the \"Firewall rule governance\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- network-security_inventory.json   (in-scope items — In-scope inventory for the firewall rule governance control (from Next-gen firewalls (Palo Alto/Fortinet)))\n- network-security_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Firewall rule governance\",\n  \"domain\": \"Network Security\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{net_",
         "/evidence/network-security_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Network engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Firewall rule governance\" control must cover\n# fragment: firewall_rule_governance_",
         "/evidence/network-security_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -633,7 +635,7 @@ export const networkSecurityStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Firewall rule governance\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Firewall rule governance evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the firewall rule governance control (from Next-gen firewalls (Palo Alto/Fortinet)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -699,16 +701,16 @@ export const networkSecurityStages: StageConfig[] = [
         {
           "id": "net-02-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Firewall rule governance\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Firewall rule governance\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the firewall rule governance control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the firewall rule governance control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "net-02-q9",
@@ -753,8 +755,8 @@ export const networkSecurityStages: StageConfig[] = [
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Remote access (VPN, ZTNA)\" control for Network Security is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Network Security source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Remote access (VPN, ZTNA)\" control for Network Security is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Network Security policy/standard and flag every item where the \"Remote access (VPN, ZTNA)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Network Security systems of record (Next-gen firewalls (Palo Alto/Fortinet); Network segmentation / microsegmentation; ZTNA / VPN gateways) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the remote access (vpn, ztna) control (from Next-gen firewalls (Palo Alto/Fortinet))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -791,18 +793,18 @@ export const networkSecurityStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Remote access (VPN, ZTNA)\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Network Security control.",
+      "tagline": "Auditing \"Remote access (VPN, ZTNA)\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the remote access (vpn, ztna) control (from Next-gen firewalls (Palo Alto/Fortinet))) with read-only agents, run the test against policy, and issue a defensible opinion on the Network Security control.",
       "year": 2025,
       "overview": [
-        "The \"Remote access (VPN, ZTNA)\" sub-process is one of the controls an auditor must verify for Network Security. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that remote access (vpn, ztna) is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Next-gen firewalls (Palo Alto/Fortinet), Network segmentation / microsegmentation, ZTNA / VPN gateways — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Remote access (VPN, ZTNA)\" sub-process is one of the controls an auditor must verify for Network Security. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the remote access (vpn, ztna) control (from Next-gen firewalls (Palo Alto/Fortinet)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Next-gen firewalls (Palo Alto/Fortinet), Network segmentation / microsegmentation, ZTNA / VPN gateways — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Network Security policy/standard and flag every item where the \"Remote access (VPN, ZTNA)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `03_remote_access_vpn_ztna_mcp.py` exposes read-only tools that turn each Network Security source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `03_remote_access_vpn_ztna_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Next-gen firewalls (Palo Alto/Fortinet) and Network segmentation / microsegmentation (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 03_remote_access_vpn_ztna_mcp.py` to expose it to your agent — or `python 03_remote_access_vpn_ztna_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -860,12 +862,13 @@ export const networkSecurityStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Remote access (VPN, ZTNA)\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the remote access (vpn, ztna) control (from Next-gen firewalls (Palo Alto/Fortinet)).",
+        "The test: Reconcile the in-scope inventory against the Network Security policy/standard and flag every item where the \"Remote access (VPN, ZTNA)\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Next-gen firewalls (Palo Alto/Fortinet), Network segmentation / microsegmentation, ZTNA / VPN gateways) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the remote access (vpn, ztna) control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -889,20 +892,20 @@ export const networkSecurityStages: StageConfig[] = [
         {
           "name": "03_remote_access_vpn_ztna_mcp.py",
           "url": "/audit-code/network-security/03_remote_access_vpn_ztna_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Network Security evidence for \"Remote access (VPN, ZTNA)\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Network Security evidence for \"Remote access (VPN, ZTNA)\" (in-scope inventory for the remote access (vpn, ztna) control (from next-gen firewalls (palo alto/fortinet))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Remote access (VPN, ZTNA)\" control for Network Security at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Remote access (VPN, ZTNA)\" control for Network Security at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Network Security policy/standard and flag every item where the \"Remote access (VPN, ZTNA)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the remote access (vpn, ztna) control (from Next-gen firewalls (Palo Alto/Fortinet)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Next-gen firewalls (Palo Alto/Fortinet) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Next-gen firewalls (Palo Alto/Fortinet) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Next-gen firewalls (Palo Alto/Fortinet) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Next-gen firewalls (Palo Alto/Fortinet); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Network Security: \"Remote access (VPN, ZTNA)\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- network-security_inventory.json   (in-scope items from Next-gen firewalls (Palo Alto/Fortinet))\n- network-security_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Remote access (VPN, ZTNA)\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Network Security: \"Remote access (VPN, ZTNA)\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Network Security policy/standard and flag every item where the \"Remote access (VPN, ZTNA)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- network-security_inventory.json   (in-scope items — In-scope inventory for the remote access (vpn, ztna) control (from Next-gen firewalls (Palo Alto/Fortinet)))\n- network-security_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Remote access (VPN, ZTNA)\",\n  \"domain\": \"Network Security\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{net_",
         "/evidence/network-security_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Network engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Remote access (VPN, ZTNA)\" control must cover\n# fragment: remote_access_vpn_",
         "/evidence/network-security_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -998,7 +1001,7 @@ export const networkSecurityStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Remote access (VPN, ZTNA)\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Remote access (VPN, ZTNA) evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the remote access (vpn, ztna) control (from Next-gen firewalls (Palo Alto/Fortinet)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -1064,16 +1067,16 @@ export const networkSecurityStages: StageConfig[] = [
         {
           "id": "net-03-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Remote access (VPN, ZTNA)\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Remote access (VPN, ZTNA)\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the remote access (vpn, ztna) control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the remote access (vpn, ztna) control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "net-03-q9",
@@ -1118,8 +1121,8 @@ export const networkSecurityStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Logging and monitoring\" control for Network Security is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Network Security source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Logging and monitoring\" control for Network Security is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Network Security policy/standard and flag every item where the \"Logging and monitoring\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Network Security systems of record (Next-gen firewalls (Palo Alto/Fortinet); Network segmentation / microsegmentation; ZTNA / VPN gateways) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the logging and monitoring control (from Next-gen firewalls (Palo Alto/Fortinet))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -1156,18 +1159,18 @@ export const networkSecurityStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Logging and monitoring\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Network Security control.",
+      "tagline": "Auditing \"Logging and monitoring\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the logging and monitoring control (from Next-gen firewalls (Palo Alto/Fortinet))) with read-only agents, run the test against policy, and issue a defensible opinion on the Network Security control.",
       "year": 2025,
       "overview": [
-        "The \"Logging and monitoring\" sub-process is one of the controls an auditor must verify for Network Security. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that logging and monitoring is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Next-gen firewalls (Palo Alto/Fortinet), Network segmentation / microsegmentation, ZTNA / VPN gateways — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Logging and monitoring\" sub-process is one of the controls an auditor must verify for Network Security. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the logging and monitoring control (from Next-gen firewalls (Palo Alto/Fortinet)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Next-gen firewalls (Palo Alto/Fortinet), Network segmentation / microsegmentation, ZTNA / VPN gateways — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Network Security policy/standard and flag every item where the \"Logging and monitoring\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `04_logging_and_monitoring_mcp.py` exposes read-only tools that turn each Network Security source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `04_logging_and_monitoring_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Next-gen firewalls (Palo Alto/Fortinet) and Network segmentation / microsegmentation (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 04_logging_and_monitoring_mcp.py` to expose it to your agent — or `python 04_logging_and_monitoring_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -1225,12 +1228,13 @@ export const networkSecurityStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Logging and monitoring\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the logging and monitoring control (from Next-gen firewalls (Palo Alto/Fortinet)).",
+        "The test: Reconcile the in-scope inventory against the Network Security policy/standard and flag every item where the \"Logging and monitoring\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Next-gen firewalls (Palo Alto/Fortinet), Network segmentation / microsegmentation, ZTNA / VPN gateways) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the logging and monitoring control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -1254,20 +1258,20 @@ export const networkSecurityStages: StageConfig[] = [
         {
           "name": "04_logging_and_monitoring_mcp.py",
           "url": "/audit-code/network-security/04_logging_and_monitoring_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Network Security evidence for \"Logging and monitoring\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Network Security evidence for \"Logging and monitoring\" (in-scope inventory for the logging and monitoring control (from next-gen firewalls (palo alto/fortinet))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Logging and monitoring\" control for Network Security at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Logging and monitoring\" control for Network Security at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Network Security policy/standard and flag every item where the \"Logging and monitoring\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the logging and monitoring control (from Next-gen firewalls (Palo Alto/Fortinet)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Next-gen firewalls (Palo Alto/Fortinet) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Next-gen firewalls (Palo Alto/Fortinet) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Next-gen firewalls (Palo Alto/Fortinet) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Next-gen firewalls (Palo Alto/Fortinet); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Network Security: \"Logging and monitoring\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- network-security_inventory.json   (in-scope items from Next-gen firewalls (Palo Alto/Fortinet))\n- network-security_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Logging and monitoring\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Network Security: \"Logging and monitoring\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Network Security policy/standard and flag every item where the \"Logging and monitoring\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- network-security_inventory.json   (in-scope items — In-scope inventory for the logging and monitoring control (from Next-gen firewalls (Palo Alto/Fortinet)))\n- network-security_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Logging and monitoring\",\n  \"domain\": \"Network Security\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{net_",
         "/evidence/network-security_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Network engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Logging and monitoring\" control must cover\n# fragment: logging_monitoring_",
         "/evidence/network-security_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -1363,7 +1367,7 @@ export const networkSecurityStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Logging and monitoring\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Logging and monitoring evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the logging and monitoring control (from Next-gen firewalls (Palo Alto/Fortinet)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -1429,16 +1433,16 @@ export const networkSecurityStages: StageConfig[] = [
         {
           "id": "net-04-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Logging and monitoring\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Logging and monitoring\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the logging and monitoring control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the logging and monitoring control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "net-04-q9",
@@ -1483,8 +1487,8 @@ export const networkSecurityStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Secure network architecture\" control for Network Security is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Network Security source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Secure network architecture\" control for Network Security is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Network Security policy/standard and flag every item where the \"Secure network architecture\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Network Security systems of record (Next-gen firewalls (Palo Alto/Fortinet); Network segmentation / microsegmentation; ZTNA / VPN gateways) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the secure network architecture control (from Next-gen firewalls (Palo Alto/Fortinet))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -1521,18 +1525,18 @@ export const networkSecurityStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Secure network architecture\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Network Security control.",
+      "tagline": "Auditing \"Secure network architecture\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the secure network architecture control (from Next-gen firewalls (Palo Alto/Fortinet))) with read-only agents, run the test against policy, and issue a defensible opinion on the Network Security control.",
       "year": 2025,
       "overview": [
-        "The \"Secure network architecture\" sub-process is one of the controls an auditor must verify for Network Security. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that secure network architecture is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Next-gen firewalls (Palo Alto/Fortinet), Network segmentation / microsegmentation, ZTNA / VPN gateways — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Secure network architecture\" sub-process is one of the controls an auditor must verify for Network Security. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the secure network architecture control (from Next-gen firewalls (Palo Alto/Fortinet)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Next-gen firewalls (Palo Alto/Fortinet), Network segmentation / microsegmentation, ZTNA / VPN gateways — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Network Security policy/standard and flag every item where the \"Secure network architecture\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `05_secure_network_architecture_mcp.py` exposes read-only tools that turn each Network Security source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `05_secure_network_architecture_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Next-gen firewalls (Palo Alto/Fortinet) and Network segmentation / microsegmentation (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 05_secure_network_architecture_mcp.py` to expose it to your agent — or `python 05_secure_network_architecture_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -1590,12 +1594,13 @@ export const networkSecurityStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Secure network architecture\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the secure network architecture control (from Next-gen firewalls (Palo Alto/Fortinet)).",
+        "The test: Reconcile the in-scope inventory against the Network Security policy/standard and flag every item where the \"Secure network architecture\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Next-gen firewalls (Palo Alto/Fortinet), Network segmentation / microsegmentation, ZTNA / VPN gateways) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the secure network architecture control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -1619,20 +1624,20 @@ export const networkSecurityStages: StageConfig[] = [
         {
           "name": "05_secure_network_architecture_mcp.py",
           "url": "/audit-code/network-security/05_secure_network_architecture_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Network Security evidence for \"Secure network architecture\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Network Security evidence for \"Secure network architecture\" (in-scope inventory for the secure network architecture control (from next-gen firewalls (palo alto/fortinet))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Secure network architecture\" control for Network Security at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Secure network architecture\" control for Network Security at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Network Security policy/standard and flag every item where the \"Secure network architecture\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the secure network architecture control (from Next-gen firewalls (Palo Alto/Fortinet)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Next-gen firewalls (Palo Alto/Fortinet) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Next-gen firewalls (Palo Alto/Fortinet) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Next-gen firewalls (Palo Alto/Fortinet) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Next-gen firewalls (Palo Alto/Fortinet); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Network Security: \"Secure network architecture\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- network-security_inventory.json   (in-scope items from Next-gen firewalls (Palo Alto/Fortinet))\n- network-security_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Secure network architecture\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Network Security: \"Secure network architecture\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Network Security policy/standard and flag every item where the \"Secure network architecture\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- network-security_inventory.json   (in-scope items — In-scope inventory for the secure network architecture control (from Next-gen firewalls (Palo Alto/Fortinet)))\n- network-security_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Secure network architecture\",\n  \"domain\": \"Network Security\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{net_",
         "/evidence/network-security_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Network engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Secure network architecture\" control must cover\n# fragment: secure_network_architecture_",
         "/evidence/network-security_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -1728,7 +1733,7 @@ export const networkSecurityStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Secure network architecture\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Secure network architecture evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the secure network architecture control (from Next-gen firewalls (Palo Alto/Fortinet)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -1794,16 +1799,16 @@ export const networkSecurityStages: StageConfig[] = [
         {
           "id": "net-05-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Secure network architecture\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Secure network architecture\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the secure network architecture control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the secure network architecture control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "net-05-q9",
@@ -1848,8 +1853,8 @@ export const networkSecurityStages: StageConfig[] = [
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Device config mgmt and backups\" control for Network Security is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Network Security source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Device config mgmt and backups\" control for Network Security is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Network Security policy/standard and flag every item where the \"Device config mgmt and backups\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Network Security systems of record (Next-gen firewalls (Palo Alto/Fortinet); Network segmentation / microsegmentation; ZTNA / VPN gateways) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the device config mgmt and backups control (from Next-gen firewalls (Palo Alto/Fortinet))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -1886,18 +1891,18 @@ export const networkSecurityStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Device config mgmt and backups\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Network Security control.",
+      "tagline": "Auditing \"Device config mgmt and backups\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the device config mgmt and backups control (from Next-gen firewalls (Palo Alto/Fortinet))) with read-only agents, run the test against policy, and issue a defensible opinion on the Network Security control.",
       "year": 2025,
       "overview": [
-        "The \"Device config mgmt and backups\" sub-process is one of the controls an auditor must verify for Network Security. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that device config mgmt and backups is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Next-gen firewalls (Palo Alto/Fortinet), Network segmentation / microsegmentation, ZTNA / VPN gateways — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Device config mgmt and backups\" sub-process is one of the controls an auditor must verify for Network Security. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the device config mgmt and backups control (from Next-gen firewalls (Palo Alto/Fortinet)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Next-gen firewalls (Palo Alto/Fortinet), Network segmentation / microsegmentation, ZTNA / VPN gateways — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Network Security policy/standard and flag every item where the \"Device config mgmt and backups\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `06_device_config_mgmt_and_backups_mcp.py` exposes read-only tools that turn each Network Security source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `06_device_config_mgmt_and_backups_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Next-gen firewalls (Palo Alto/Fortinet) and Network segmentation / microsegmentation (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 06_device_config_mgmt_and_backups_mcp.py` to expose it to your agent — or `python 06_device_config_mgmt_and_backups_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -1955,12 +1960,13 @@ export const networkSecurityStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Device config mgmt and backups\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the device config mgmt and backups control (from Next-gen firewalls (Palo Alto/Fortinet)).",
+        "The test: Reconcile the in-scope inventory against the Network Security policy/standard and flag every item where the \"Device config mgmt and backups\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Next-gen firewalls (Palo Alto/Fortinet), Network segmentation / microsegmentation, ZTNA / VPN gateways) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the device config mgmt and backups control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -1984,20 +1990,20 @@ export const networkSecurityStages: StageConfig[] = [
         {
           "name": "06_device_config_mgmt_and_backups_mcp.py",
           "url": "/audit-code/network-security/06_device_config_mgmt_and_backups_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Network Security evidence for \"Device config mgmt and backups\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Network Security evidence for \"Device config mgmt and backups\" (in-scope inventory for the device config mgmt and backups control (from next-gen firewalls (palo alto/fortinet))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Device config mgmt and backups\" control for Network Security at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Device config mgmt and backups\" control for Network Security at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Network Security policy/standard and flag every item where the \"Device config mgmt and backups\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the device config mgmt and backups control (from Next-gen firewalls (Palo Alto/Fortinet)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Next-gen firewalls (Palo Alto/Fortinet) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Next-gen firewalls (Palo Alto/Fortinet) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Next-gen firewalls (Palo Alto/Fortinet) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Next-gen firewalls (Palo Alto/Fortinet); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Network Security: \"Device config mgmt and backups\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- network-security_inventory.json   (in-scope items from Next-gen firewalls (Palo Alto/Fortinet))\n- network-security_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Device config mgmt and backups\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Network Security: \"Device config mgmt and backups\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Network Security policy/standard and flag every item where the \"Device config mgmt and backups\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- network-security_inventory.json   (in-scope items — In-scope inventory for the device config mgmt and backups control (from Next-gen firewalls (Palo Alto/Fortinet)))\n- network-security_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Device config mgmt and backups\",\n  \"domain\": \"Network Security\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{net_",
         "/evidence/network-security_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Network engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Device config mgmt and backups\" control must cover\n# fragment: device_config_mgmt_",
         "/evidence/network-security_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -2093,7 +2099,7 @@ export const networkSecurityStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Device config mgmt and backups\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Device config mgmt and backups evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the device config mgmt and backups control (from Next-gen firewalls (Palo Alto/Fortinet)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -2159,16 +2165,16 @@ export const networkSecurityStages: StageConfig[] = [
         {
           "id": "net-06-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Device config mgmt and backups\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Device config mgmt and backups\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the device config mgmt and backups control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the device config mgmt and backups control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "net-06-q9",
@@ -2213,8 +2219,8 @@ export const networkSecurityStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"AIOps / AI-driven networking\" control for Network Security is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Network Security source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"AIOps / AI-driven networking\" control for Network Security is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Network Security policy/standard and flag every item where the \"AIOps / AI-driven networking\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Network Security systems of record (Next-gen firewalls (Palo Alto/Fortinet); Network segmentation / microsegmentation; ZTNA / VPN gateways) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the aiops / ai-driven networking control (from Next-gen firewalls (Palo Alto/Fortinet))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -2251,18 +2257,18 @@ export const networkSecurityStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"AIOps / AI-driven networking\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Network Security control.",
+      "tagline": "Auditing \"AIOps / AI-driven networking\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the aiops / ai-driven networking control (from Next-gen firewalls (Palo Alto/Fortinet))) with read-only agents, run the test against policy, and issue a defensible opinion on the Network Security control.",
       "year": 2025,
       "overview": [
-        "The \"AIOps / AI-driven networking\" sub-process is one of the controls an auditor must verify for Network Security. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that aiops / ai-driven networking is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically Next-gen firewalls (Palo Alto/Fortinet), Network segmentation / microsegmentation, ZTNA / VPN gateways — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"AIOps / AI-driven networking\" sub-process is one of the controls an auditor must verify for Network Security. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the aiops / ai-driven networking control (from Next-gen firewalls (Palo Alto/Fortinet)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Next-gen firewalls (Palo Alto/Fortinet), Network segmentation / microsegmentation, ZTNA / VPN gateways — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Network Security policy/standard and flag every item where the \"AIOps / AI-driven networking\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `07_aiops_ai_driven_networking_mcp.py` exposes read-only tools that turn each Network Security source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `07_aiops_ai_driven_networking_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Next-gen firewalls (Palo Alto/Fortinet) and Network segmentation / microsegmentation (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 07_aiops_ai_driven_networking_mcp.py` to expose it to your agent — or `python 07_aiops_ai_driven_networking_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -2320,12 +2326,13 @@ export const networkSecurityStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"AIOps / AI-driven networking\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the aiops / ai-driven networking control (from Next-gen firewalls (Palo Alto/Fortinet)).",
+        "The test: Reconcile the in-scope inventory against the Network Security policy/standard and flag every item where the \"AIOps / AI-driven networking\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (Next-gen firewalls (Palo Alto/Fortinet), Network segmentation / microsegmentation, ZTNA / VPN gateways) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the aiops / ai-driven networking control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -2349,20 +2356,20 @@ export const networkSecurityStages: StageConfig[] = [
         {
           "name": "07_aiops_ai_driven_networking_mcp.py",
           "url": "/audit-code/network-security/07_aiops_ai_driven_networking_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Network Security evidence for \"AIOps / AI-driven networking\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Network Security evidence for \"AIOps / AI-driven networking\" (in-scope inventory for the aiops / ai-driven networking control (from next-gen firewalls (palo alto/fortinet))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"AIOps / AI-driven networking\" control for Network Security at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"AIOps / AI-driven networking\" control for Network Security at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Network Security policy/standard and flag every item where the \"AIOps / AI-driven networking\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the aiops / ai-driven networking control (from Next-gen firewalls (Palo Alto/Fortinet)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Next-gen firewalls (Palo Alto/Fortinet) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Next-gen firewalls (Palo Alto/Fortinet) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. Next-gen firewalls (Palo Alto/Fortinet) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from Next-gen firewalls (Palo Alto/Fortinet); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Network Security: \"AIOps / AI-driven networking\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- network-security_inventory.json   (in-scope items from Next-gen firewalls (Palo Alto/Fortinet))\n- network-security_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"AIOps / AI-driven networking\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Network Security: \"AIOps / AI-driven networking\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Network Security policy/standard and flag every item where the \"AIOps / AI-driven networking\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- network-security_inventory.json   (in-scope items — In-scope inventory for the aiops / ai-driven networking control (from Next-gen firewalls (Palo Alto/Fortinet)))\n- network-security_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"AIOps / AI-driven networking\",\n  \"domain\": \"Network Security\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{net_",
         "/evidence/network-security_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Network engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"AIOps / AI-driven networking\" control must cover\n# fragment: aiops_aidriven_networking_",
         "/evidence/network-security_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -2458,7 +2465,7 @@ export const networkSecurityStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"AIOps / AI-driven networking\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The AIOps / AI-driven networking evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the aiops / ai-driven networking control (from Next-gen firewalls (Palo Alto/Fortinet)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -2524,16 +2531,16 @@ export const networkSecurityStages: StageConfig[] = [
         {
           "id": "net-07-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"AIOps / AI-driven networking\"?",
+          "challenge": "Typical finding",
+          "text": "For \"AIOps / AI-driven networking\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the aiops / ai-driven networking control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the aiops / ai-driven networking control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "net-07-q9",

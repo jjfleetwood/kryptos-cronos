@@ -23,8 +23,8 @@ export const thirdPartyStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Data security and privacy\" control for Third Party Systems is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Third Party Systems source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Data security and privacy\" control for Third Party Systems is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Data security and privacy\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Third Party Systems systems of record (TPRM / GRC platform (Archer/OneTrust); Vendor inventory + contracts; SOC 2 / attestation repository) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the data security and privacy control (from TPRM / GRC platform (Archer/OneTrust))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -61,18 +61,18 @@ export const thirdPartyStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Data security and privacy\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Third Party Systems control.",
+      "tagline": "Auditing \"Data security and privacy\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the data security and privacy control (from TPRM / GRC platform (Archer/OneTrust))) with read-only agents, run the test against policy, and issue a defensible opinion on the Third Party Systems control.",
       "year": 2025,
       "overview": [
-        "The \"Data security and privacy\" sub-process is one of the controls an auditor must verify for Third Party Systems. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that data security and privacy is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Data security and privacy\" sub-process is one of the controls an auditor must verify for Third Party Systems. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the data security and privacy control (from TPRM / GRC platform (Archer/OneTrust)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Data security and privacy\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `01_data_security_and_privacy_mcp.py` exposes read-only tools that turn each Third Party Systems source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `01_data_security_and_privacy_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from TPRM / GRC platform (Archer/OneTrust) and Vendor inventory + contracts (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 01_data_security_and_privacy_mcp.py` to expose it to your agent — or `python 01_data_security_and_privacy_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -130,12 +130,13 @@ export const thirdPartyStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Data security and privacy\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the data security and privacy control (from TPRM / GRC platform (Archer/OneTrust)).",
+        "The test: Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Data security and privacy\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the data security and privacy control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -159,20 +160,20 @@ export const thirdPartyStages: StageConfig[] = [
         {
           "name": "01_data_security_and_privacy_mcp.py",
           "url": "/audit-code/third-party/01_data_security_and_privacy_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Third Party Systems evidence for \"Data security and privacy\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Third Party Systems evidence for \"Data security and privacy\" (in-scope inventory for the data security and privacy control (from tprm / grc platform (archer/onetrust))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Data security and privacy\" control for Third Party Systems at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Data security and privacy\" control for Third Party Systems at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Data security and privacy\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the data security and privacy control (from TPRM / GRC platform (Archer/OneTrust)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live TPRM / GRC platform (Archer/OneTrust) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. TPRM / GRC platform (Archer/OneTrust) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. TPRM / GRC platform (Archer/OneTrust) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from TPRM / GRC platform (Archer/OneTrust); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Third Party Systems: \"Data security and privacy\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- third-party_inventory.json   (in-scope items from TPRM / GRC platform (Archer/OneTrust))\n- third-party_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Data security and privacy\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Third Party Systems: \"Data security and privacy\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Data security and privacy\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- third-party_inventory.json   (in-scope items — In-scope inventory for the data security and privacy control (from TPRM / GRC platform (Archer/OneTrust)))\n- third-party_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Data security and privacy\",\n  \"domain\": \"Third Party Systems\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{tps_",
         "/evidence/third-party_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Third-party risk management\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Data security and privacy\" control must cover\n# fragment: data_security_privacy_",
         "/evidence/third-party_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -268,7 +269,7 @@ export const thirdPartyStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Data security and privacy\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Data security and privacy evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the data security and privacy control (from TPRM / GRC platform (Archer/OneTrust)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -334,16 +335,16 @@ export const thirdPartyStages: StageConfig[] = [
         {
           "id": "tps-01-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Data security and privacy\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Data security and privacy\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the data security and privacy control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the data security and privacy control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "tps-01-q9",
@@ -388,8 +389,8 @@ export const thirdPartyStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Integration and interface security\" control for Third Party Systems is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Third Party Systems source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Integration and interface security\" control for Third Party Systems is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Integration and interface security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Third Party Systems systems of record (TPRM / GRC platform (Archer/OneTrust); Vendor inventory + contracts; SOC 2 / attestation repository) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the integration and interface security control (from TPRM / GRC platform (Archer/OneTrust))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -426,18 +427,18 @@ export const thirdPartyStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Integration and interface security\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Third Party Systems control.",
+      "tagline": "Auditing \"Integration and interface security\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the integration and interface security control (from TPRM / GRC platform (Archer/OneTrust))) with read-only agents, run the test against policy, and issue a defensible opinion on the Third Party Systems control.",
       "year": 2025,
       "overview": [
-        "The \"Integration and interface security\" sub-process is one of the controls an auditor must verify for Third Party Systems. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that integration and interface security is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Integration and interface security\" sub-process is one of the controls an auditor must verify for Third Party Systems. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the integration and interface security control (from TPRM / GRC platform (Archer/OneTrust)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Integration and interface security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `02_integration_and_interface_security_mcp.py` exposes read-only tools that turn each Third Party Systems source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `02_integration_and_interface_security_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from TPRM / GRC platform (Archer/OneTrust) and Vendor inventory + contracts (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 02_integration_and_interface_security_mcp.py` to expose it to your agent — or `python 02_integration_and_interface_security_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -495,12 +496,13 @@ export const thirdPartyStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Integration and interface security\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the integration and interface security control (from TPRM / GRC platform (Archer/OneTrust)).",
+        "The test: Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Integration and interface security\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the integration and interface security control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -524,20 +526,20 @@ export const thirdPartyStages: StageConfig[] = [
         {
           "name": "02_integration_and_interface_security_mcp.py",
           "url": "/audit-code/third-party/02_integration_and_interface_security_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Third Party Systems evidence for \"Integration and interface security\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Third Party Systems evidence for \"Integration and interface security\" (in-scope inventory for the integration and interface security control (from tprm / grc platform (archer/onetrust))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Integration and interface security\" control for Third Party Systems at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Integration and interface security\" control for Third Party Systems at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Integration and interface security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the integration and interface security control (from TPRM / GRC platform (Archer/OneTrust)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live TPRM / GRC platform (Archer/OneTrust) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. TPRM / GRC platform (Archer/OneTrust) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. TPRM / GRC platform (Archer/OneTrust) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from TPRM / GRC platform (Archer/OneTrust); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Third Party Systems: \"Integration and interface security\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- third-party_inventory.json   (in-scope items from TPRM / GRC platform (Archer/OneTrust))\n- third-party_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Integration and interface security\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Third Party Systems: \"Integration and interface security\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Integration and interface security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- third-party_inventory.json   (in-scope items — In-scope inventory for the integration and interface security control (from TPRM / GRC platform (Archer/OneTrust)))\n- third-party_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Integration and interface security\",\n  \"domain\": \"Third Party Systems\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{tps_",
         "/evidence/third-party_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Third-party risk management\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Integration and interface security\" control must cover\n# fragment: integration_interface_security_",
         "/evidence/third-party_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -633,7 +635,7 @@ export const thirdPartyStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Integration and interface security\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Integration and interface security evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the integration and interface security control (from TPRM / GRC platform (Archer/OneTrust)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -699,16 +701,16 @@ export const thirdPartyStages: StageConfig[] = [
         {
           "id": "tps-02-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Integration and interface security\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Integration and interface security\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the integration and interface security control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the integration and interface security control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "tps-02-q9",
@@ -753,8 +755,8 @@ export const thirdPartyStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Change and release mgmt (vendor)\" control for Third Party Systems is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Third Party Systems source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Change and release mgmt (vendor)\" control for Third Party Systems is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Change and release mgmt (vendor)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Third Party Systems systems of record (TPRM / GRC platform (Archer/OneTrust); Vendor inventory + contracts; SOC 2 / attestation repository) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the change and release mgmt (vendor) control (from TPRM / GRC platform (Archer/OneTrust))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -791,18 +793,18 @@ export const thirdPartyStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Change and release mgmt (vendor)\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Third Party Systems control.",
+      "tagline": "Auditing \"Change and release mgmt (vendor)\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the change and release mgmt (vendor) control (from TPRM / GRC platform (Archer/OneTrust))) with read-only agents, run the test against policy, and issue a defensible opinion on the Third Party Systems control.",
       "year": 2025,
       "overview": [
-        "The \"Change and release mgmt (vendor)\" sub-process is one of the controls an auditor must verify for Third Party Systems. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that change and release mgmt (vendor) is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Change and release mgmt (vendor)\" sub-process is one of the controls an auditor must verify for Third Party Systems. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the change and release mgmt (vendor) control (from TPRM / GRC platform (Archer/OneTrust)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Change and release mgmt (vendor)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `03_change_and_release_mgmt_vendor_mcp.py` exposes read-only tools that turn each Third Party Systems source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `03_change_and_release_mgmt_vendor_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from TPRM / GRC platform (Archer/OneTrust) and Vendor inventory + contracts (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 03_change_and_release_mgmt_vendor_mcp.py` to expose it to your agent — or `python 03_change_and_release_mgmt_vendor_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -860,12 +862,13 @@ export const thirdPartyStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Change and release mgmt (vendor)\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the change and release mgmt (vendor) control (from TPRM / GRC platform (Archer/OneTrust)).",
+        "The test: Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Change and release mgmt (vendor)\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the change and release mgmt (vendor) control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -889,20 +892,20 @@ export const thirdPartyStages: StageConfig[] = [
         {
           "name": "03_change_and_release_mgmt_vendor_mcp.py",
           "url": "/audit-code/third-party/03_change_and_release_mgmt_vendor_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Third Party Systems evidence for \"Change and release mgmt (vendor)\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Third Party Systems evidence for \"Change and release mgmt (vendor)\" (in-scope inventory for the change and release mgmt (vendor) control (from tprm / grc platform (archer/onetrust))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Change and release mgmt (vendor)\" control for Third Party Systems at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Change and release mgmt (vendor)\" control for Third Party Systems at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Change and release mgmt (vendor)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the change and release mgmt (vendor) control (from TPRM / GRC platform (Archer/OneTrust)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live TPRM / GRC platform (Archer/OneTrust) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. TPRM / GRC platform (Archer/OneTrust) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. TPRM / GRC platform (Archer/OneTrust) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from TPRM / GRC platform (Archer/OneTrust); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Third Party Systems: \"Change and release mgmt (vendor)\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- third-party_inventory.json   (in-scope items from TPRM / GRC platform (Archer/OneTrust))\n- third-party_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Change and release mgmt (vendor)\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Third Party Systems: \"Change and release mgmt (vendor)\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Change and release mgmt (vendor)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- third-party_inventory.json   (in-scope items — In-scope inventory for the change and release mgmt (vendor) control (from TPRM / GRC platform (Archer/OneTrust)))\n- third-party_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Change and release mgmt (vendor)\",\n  \"domain\": \"Third Party Systems\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{tps_",
         "/evidence/third-party_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Third-party risk management\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Change and release mgmt (vendor)\" control must cover\n# fragment: change_release_mgmt_",
         "/evidence/third-party_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -998,7 +1001,7 @@ export const thirdPartyStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Change and release mgmt (vendor)\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Change and release mgmt (vendor) evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the change and release mgmt (vendor) control (from TPRM / GRC platform (Archer/OneTrust)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -1064,16 +1067,16 @@ export const thirdPartyStages: StageConfig[] = [
         {
           "id": "tps-03-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Change and release mgmt (vendor)\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Change and release mgmt (vendor)\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the change and release mgmt (vendor) control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the change and release mgmt (vendor) control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "tps-03-q9",
@@ -1118,8 +1121,8 @@ export const thirdPartyStages: StageConfig[] = [
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Incident and problem mgmt (vendor)\" control for Third Party Systems is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Third Party Systems source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Incident and problem mgmt (vendor)\" control for Third Party Systems is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Incident and problem mgmt (vendor)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Third Party Systems systems of record (TPRM / GRC platform (Archer/OneTrust); Vendor inventory + contracts; SOC 2 / attestation repository) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the incident and problem mgmt (vendor) control (from TPRM / GRC platform (Archer/OneTrust))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -1156,18 +1159,18 @@ export const thirdPartyStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Incident and problem mgmt (vendor)\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Third Party Systems control.",
+      "tagline": "Auditing \"Incident and problem mgmt (vendor)\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the incident and problem mgmt (vendor) control (from TPRM / GRC platform (Archer/OneTrust))) with read-only agents, run the test against policy, and issue a defensible opinion on the Third Party Systems control.",
       "year": 2025,
       "overview": [
-        "The \"Incident and problem mgmt (vendor)\" sub-process is one of the controls an auditor must verify for Third Party Systems. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that incident and problem mgmt (vendor) is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Incident and problem mgmt (vendor)\" sub-process is one of the controls an auditor must verify for Third Party Systems. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the incident and problem mgmt (vendor) control (from TPRM / GRC platform (Archer/OneTrust)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Incident and problem mgmt (vendor)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `04_incident_and_problem_mgmt_vendor_mcp.py` exposes read-only tools that turn each Third Party Systems source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `04_incident_and_problem_mgmt_vendor_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from TPRM / GRC platform (Archer/OneTrust) and Vendor inventory + contracts (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 04_incident_and_problem_mgmt_vendor_mcp.py` to expose it to your agent — or `python 04_incident_and_problem_mgmt_vendor_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -1225,12 +1228,13 @@ export const thirdPartyStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Incident and problem mgmt (vendor)\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the incident and problem mgmt (vendor) control (from TPRM / GRC platform (Archer/OneTrust)).",
+        "The test: Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Incident and problem mgmt (vendor)\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the incident and problem mgmt (vendor) control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -1254,20 +1258,20 @@ export const thirdPartyStages: StageConfig[] = [
         {
           "name": "04_incident_and_problem_mgmt_vendor_mcp.py",
           "url": "/audit-code/third-party/04_incident_and_problem_mgmt_vendor_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Third Party Systems evidence for \"Incident and problem mgmt (vendor)\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Third Party Systems evidence for \"Incident and problem mgmt (vendor)\" (in-scope inventory for the incident and problem mgmt (vendor) control (from tprm / grc platform (archer/onetrust))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Incident and problem mgmt (vendor)\" control for Third Party Systems at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Incident and problem mgmt (vendor)\" control for Third Party Systems at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Incident and problem mgmt (vendor)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the incident and problem mgmt (vendor) control (from TPRM / GRC platform (Archer/OneTrust)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live TPRM / GRC platform (Archer/OneTrust) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. TPRM / GRC platform (Archer/OneTrust) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. TPRM / GRC platform (Archer/OneTrust) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from TPRM / GRC platform (Archer/OneTrust); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Third Party Systems: \"Incident and problem mgmt (vendor)\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- third-party_inventory.json   (in-scope items from TPRM / GRC platform (Archer/OneTrust))\n- third-party_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Incident and problem mgmt (vendor)\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Third Party Systems: \"Incident and problem mgmt (vendor)\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Incident and problem mgmt (vendor)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- third-party_inventory.json   (in-scope items — In-scope inventory for the incident and problem mgmt (vendor) control (from TPRM / GRC platform (Archer/OneTrust)))\n- third-party_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Incident and problem mgmt (vendor)\",\n  \"domain\": \"Third Party Systems\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{tps_",
         "/evidence/third-party_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Third-party risk management\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Incident and problem mgmt (vendor)\" control must cover\n# fragment: incident_problem_mgmt_",
         "/evidence/third-party_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -1363,7 +1367,7 @@ export const thirdPartyStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Incident and problem mgmt (vendor)\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Incident and problem mgmt (vendor) evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the incident and problem mgmt (vendor) control (from TPRM / GRC platform (Archer/OneTrust)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -1429,16 +1433,16 @@ export const thirdPartyStages: StageConfig[] = [
         {
           "id": "tps-04-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Incident and problem mgmt (vendor)\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Incident and problem mgmt (vendor)\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the incident and problem mgmt (vendor) control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the incident and problem mgmt (vendor) control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "tps-04-q9",
@@ -1483,8 +1487,8 @@ export const thirdPartyStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Compliance and regulatory alignment\" control for Third Party Systems is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Third Party Systems source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Compliance and regulatory alignment\" control for Third Party Systems is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Compliance and regulatory alignment\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Third Party Systems systems of record (TPRM / GRC platform (Archer/OneTrust); Vendor inventory + contracts; SOC 2 / attestation repository) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the compliance and regulatory alignment control (from TPRM / GRC platform (Archer/OneTrust))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -1521,18 +1525,18 @@ export const thirdPartyStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Compliance and regulatory alignment\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Third Party Systems control.",
+      "tagline": "Auditing \"Compliance and regulatory alignment\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the compliance and regulatory alignment control (from TPRM / GRC platform (Archer/OneTrust))) with read-only agents, run the test against policy, and issue a defensible opinion on the Third Party Systems control.",
       "year": 2025,
       "overview": [
-        "The \"Compliance and regulatory alignment\" sub-process is one of the controls an auditor must verify for Third Party Systems. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that compliance and regulatory alignment is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Compliance and regulatory alignment\" sub-process is one of the controls an auditor must verify for Third Party Systems. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the compliance and regulatory alignment control (from TPRM / GRC platform (Archer/OneTrust)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Compliance and regulatory alignment\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `05_compliance_and_regulatory_alignment_mcp.py` exposes read-only tools that turn each Third Party Systems source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `05_compliance_and_regulatory_alignment_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from TPRM / GRC platform (Archer/OneTrust) and Vendor inventory + contracts (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 05_compliance_and_regulatory_alignment_mcp.py` to expose it to your agent — or `python 05_compliance_and_regulatory_alignment_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -1590,12 +1594,13 @@ export const thirdPartyStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Compliance and regulatory alignment\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the compliance and regulatory alignment control (from TPRM / GRC platform (Archer/OneTrust)).",
+        "The test: Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Compliance and regulatory alignment\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the compliance and regulatory alignment control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -1619,20 +1624,20 @@ export const thirdPartyStages: StageConfig[] = [
         {
           "name": "05_compliance_and_regulatory_alignment_mcp.py",
           "url": "/audit-code/third-party/05_compliance_and_regulatory_alignment_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Third Party Systems evidence for \"Compliance and regulatory alignment\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Third Party Systems evidence for \"Compliance and regulatory alignment\" (in-scope inventory for the compliance and regulatory alignment control (from tprm / grc platform (archer/onetrust))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Compliance and regulatory alignment\" control for Third Party Systems at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Compliance and regulatory alignment\" control for Third Party Systems at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Compliance and regulatory alignment\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the compliance and regulatory alignment control (from TPRM / GRC platform (Archer/OneTrust)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live TPRM / GRC platform (Archer/OneTrust) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. TPRM / GRC platform (Archer/OneTrust) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. TPRM / GRC platform (Archer/OneTrust) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from TPRM / GRC platform (Archer/OneTrust); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Third Party Systems: \"Compliance and regulatory alignment\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- third-party_inventory.json   (in-scope items from TPRM / GRC platform (Archer/OneTrust))\n- third-party_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Compliance and regulatory alignment\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Third Party Systems: \"Compliance and regulatory alignment\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Compliance and regulatory alignment\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- third-party_inventory.json   (in-scope items — In-scope inventory for the compliance and regulatory alignment control (from TPRM / GRC platform (Archer/OneTrust)))\n- third-party_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Compliance and regulatory alignment\",\n  \"domain\": \"Third Party Systems\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{tps_",
         "/evidence/third-party_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Third-party risk management\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Compliance and regulatory alignment\" control must cover\n# fragment: compliance_regulatory_alignment_",
         "/evidence/third-party_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -1728,7 +1733,7 @@ export const thirdPartyStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Compliance and regulatory alignment\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Compliance and regulatory alignment evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the compliance and regulatory alignment control (from TPRM / GRC platform (Archer/OneTrust)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -1794,16 +1799,16 @@ export const thirdPartyStages: StageConfig[] = [
         {
           "id": "tps-05-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Compliance and regulatory alignment\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Compliance and regulatory alignment\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the compliance and regulatory alignment control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the compliance and regulatory alignment control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "tps-05-q9",
@@ -1848,8 +1853,8 @@ export const thirdPartyStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"BCP and resilience (vendor)\" control for Third Party Systems is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Third Party Systems source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"BCP and resilience (vendor)\" control for Third Party Systems is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"BCP and resilience (vendor)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Third Party Systems systems of record (TPRM / GRC platform (Archer/OneTrust); Vendor inventory + contracts; SOC 2 / attestation repository) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the bcp and resilience (vendor) control (from TPRM / GRC platform (Archer/OneTrust))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -1886,18 +1891,18 @@ export const thirdPartyStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"BCP and resilience (vendor)\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Third Party Systems control.",
+      "tagline": "Auditing \"BCP and resilience (vendor)\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the bcp and resilience (vendor) control (from TPRM / GRC platform (Archer/OneTrust))) with read-only agents, run the test against policy, and issue a defensible opinion on the Third Party Systems control.",
       "year": 2025,
       "overview": [
-        "The \"BCP and resilience (vendor)\" sub-process is one of the controls an auditor must verify for Third Party Systems. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that bcp and resilience (vendor) is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"BCP and resilience (vendor)\" sub-process is one of the controls an auditor must verify for Third Party Systems. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the bcp and resilience (vendor) control (from TPRM / GRC platform (Archer/OneTrust)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"BCP and resilience (vendor)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `06_bcp_and_resilience_vendor_mcp.py` exposes read-only tools that turn each Third Party Systems source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `06_bcp_and_resilience_vendor_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from TPRM / GRC platform (Archer/OneTrust) and Vendor inventory + contracts (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 06_bcp_and_resilience_vendor_mcp.py` to expose it to your agent — or `python 06_bcp_and_resilience_vendor_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -1955,12 +1960,13 @@ export const thirdPartyStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"BCP and resilience (vendor)\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the bcp and resilience (vendor) control (from TPRM / GRC platform (Archer/OneTrust)).",
+        "The test: Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"BCP and resilience (vendor)\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the bcp and resilience (vendor) control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -1984,20 +1990,20 @@ export const thirdPartyStages: StageConfig[] = [
         {
           "name": "06_bcp_and_resilience_vendor_mcp.py",
           "url": "/audit-code/third-party/06_bcp_and_resilience_vendor_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Third Party Systems evidence for \"BCP and resilience (vendor)\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Third Party Systems evidence for \"BCP and resilience (vendor)\" (in-scope inventory for the bcp and resilience (vendor) control (from tprm / grc platform (archer/onetrust))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"BCP and resilience (vendor)\" control for Third Party Systems at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"BCP and resilience (vendor)\" control for Third Party Systems at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"BCP and resilience (vendor)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the bcp and resilience (vendor) control (from TPRM / GRC platform (Archer/OneTrust)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live TPRM / GRC platform (Archer/OneTrust) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. TPRM / GRC platform (Archer/OneTrust) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. TPRM / GRC platform (Archer/OneTrust) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from TPRM / GRC platform (Archer/OneTrust); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Third Party Systems: \"BCP and resilience (vendor)\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- third-party_inventory.json   (in-scope items from TPRM / GRC platform (Archer/OneTrust))\n- third-party_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"BCP and resilience (vendor)\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Third Party Systems: \"BCP and resilience (vendor)\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"BCP and resilience (vendor)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- third-party_inventory.json   (in-scope items — In-scope inventory for the bcp and resilience (vendor) control (from TPRM / GRC platform (Archer/OneTrust)))\n- third-party_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"BCP and resilience (vendor)\",\n  \"domain\": \"Third Party Systems\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{tps_",
         "/evidence/third-party_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Third-party risk management\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"BCP and resilience (vendor)\" control must cover\n# fragment: bcp_resilience_vendor_",
         "/evidence/third-party_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -2093,7 +2099,7 @@ export const thirdPartyStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"BCP and resilience (vendor)\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The BCP and resilience (vendor) evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the bcp and resilience (vendor) control (from TPRM / GRC platform (Archer/OneTrust)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -2159,16 +2165,16 @@ export const thirdPartyStages: StageConfig[] = [
         {
           "id": "tps-06-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"BCP and resilience (vendor)\"?",
+          "challenge": "Typical finding",
+          "text": "For \"BCP and resilience (vendor)\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the bcp and resilience (vendor) control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the bcp and resilience (vendor) control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "tps-06-q9",
@@ -2213,8 +2219,8 @@ export const thirdPartyStages: StageConfig[] = [
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Vulnerability and patch (vendor)\" control for Third Party Systems is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Third Party Systems source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Vulnerability and patch (vendor)\" control for Third Party Systems is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Vulnerability and patch (vendor)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Third Party Systems systems of record (TPRM / GRC platform (Archer/OneTrust); Vendor inventory + contracts; SOC 2 / attestation repository) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the vulnerability and patch (vendor) control (from TPRM / GRC platform (Archer/OneTrust))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -2251,18 +2257,18 @@ export const thirdPartyStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Vulnerability and patch (vendor)\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Third Party Systems control.",
+      "tagline": "Auditing \"Vulnerability and patch (vendor)\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the vulnerability and patch (vendor) control (from TPRM / GRC platform (Archer/OneTrust))) with read-only agents, run the test against policy, and issue a defensible opinion on the Third Party Systems control.",
       "year": 2025,
       "overview": [
-        "The \"Vulnerability and patch (vendor)\" sub-process is one of the controls an auditor must verify for Third Party Systems. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that vulnerability and patch (vendor) is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Vulnerability and patch (vendor)\" sub-process is one of the controls an auditor must verify for Third Party Systems. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the vulnerability and patch (vendor) control (from TPRM / GRC platform (Archer/OneTrust)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Vulnerability and patch (vendor)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `07_vulnerability_and_patch_vendor_mcp.py` exposes read-only tools that turn each Third Party Systems source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `07_vulnerability_and_patch_vendor_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from TPRM / GRC platform (Archer/OneTrust) and Vendor inventory + contracts (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 07_vulnerability_and_patch_vendor_mcp.py` to expose it to your agent — or `python 07_vulnerability_and_patch_vendor_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -2320,12 +2326,13 @@ export const thirdPartyStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Vulnerability and patch (vendor)\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the vulnerability and patch (vendor) control (from TPRM / GRC platform (Archer/OneTrust)).",
+        "The test: Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Vulnerability and patch (vendor)\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the vulnerability and patch (vendor) control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -2349,20 +2356,20 @@ export const thirdPartyStages: StageConfig[] = [
         {
           "name": "07_vulnerability_and_patch_vendor_mcp.py",
           "url": "/audit-code/third-party/07_vulnerability_and_patch_vendor_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Third Party Systems evidence for \"Vulnerability and patch (vendor)\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Third Party Systems evidence for \"Vulnerability and patch (vendor)\" (in-scope inventory for the vulnerability and patch (vendor) control (from tprm / grc platform (archer/onetrust))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Vulnerability and patch (vendor)\" control for Third Party Systems at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Vulnerability and patch (vendor)\" control for Third Party Systems at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Vulnerability and patch (vendor)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the vulnerability and patch (vendor) control (from TPRM / GRC platform (Archer/OneTrust)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live TPRM / GRC platform (Archer/OneTrust) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. TPRM / GRC platform (Archer/OneTrust) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. TPRM / GRC platform (Archer/OneTrust) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from TPRM / GRC platform (Archer/OneTrust); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Third Party Systems: \"Vulnerability and patch (vendor)\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- third-party_inventory.json   (in-scope items from TPRM / GRC platform (Archer/OneTrust))\n- third-party_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Vulnerability and patch (vendor)\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Third Party Systems: \"Vulnerability and patch (vendor)\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Vulnerability and patch (vendor)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- third-party_inventory.json   (in-scope items — In-scope inventory for the vulnerability and patch (vendor) control (from TPRM / GRC platform (Archer/OneTrust)))\n- third-party_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Vulnerability and patch (vendor)\",\n  \"domain\": \"Third Party Systems\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{tps_",
         "/evidence/third-party_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Third-party risk management\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Vulnerability and patch (vendor)\" control must cover\n# fragment: vulnerability_patch_vendor_",
         "/evidence/third-party_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -2458,7 +2465,7 @@ export const thirdPartyStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Vulnerability and patch (vendor)\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Vulnerability and patch (vendor) evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the vulnerability and patch (vendor) control (from TPRM / GRC platform (Archer/OneTrust)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -2524,16 +2531,16 @@ export const thirdPartyStages: StageConfig[] = [
         {
           "id": "tps-07-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Vulnerability and patch (vendor)\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Vulnerability and patch (vendor)\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the vulnerability and patch (vendor) control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the vulnerability and patch (vendor) control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "tps-07-q9",
@@ -2578,8 +2585,8 @@ export const thirdPartyStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Vendor governance and risk mgmt\" control for Third Party Systems is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Third Party Systems source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Vendor governance and risk mgmt\" control for Third Party Systems is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Vendor governance and risk mgmt\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Third Party Systems systems of record (TPRM / GRC platform (Archer/OneTrust); Vendor inventory + contracts; SOC 2 / attestation repository) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the vendor governance and risk mgmt control (from TPRM / GRC platform (Archer/OneTrust))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -2616,18 +2623,18 @@ export const thirdPartyStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Vendor governance and risk mgmt\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Third Party Systems control.",
+      "tagline": "Auditing \"Vendor governance and risk mgmt\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the vendor governance and risk mgmt control (from TPRM / GRC platform (Archer/OneTrust))) with read-only agents, run the test against policy, and issue a defensible opinion on the Third Party Systems control.",
       "year": 2025,
       "overview": [
-        "The \"Vendor governance and risk mgmt\" sub-process is one of the controls an auditor must verify for Third Party Systems. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that vendor governance and risk mgmt is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Vendor governance and risk mgmt\" sub-process is one of the controls an auditor must verify for Third Party Systems. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the vendor governance and risk mgmt control (from TPRM / GRC platform (Archer/OneTrust)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Vendor governance and risk mgmt\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `08_vendor_governance_and_risk_mgmt_mcp.py` exposes read-only tools that turn each Third Party Systems source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `08_vendor_governance_and_risk_mgmt_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from TPRM / GRC platform (Archer/OneTrust) and Vendor inventory + contracts (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 08_vendor_governance_and_risk_mgmt_mcp.py` to expose it to your agent — or `python 08_vendor_governance_and_risk_mgmt_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -2685,12 +2692,13 @@ export const thirdPartyStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Vendor governance and risk mgmt\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the vendor governance and risk mgmt control (from TPRM / GRC platform (Archer/OneTrust)).",
+        "The test: Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Vendor governance and risk mgmt\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the vendor governance and risk mgmt control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -2714,20 +2722,20 @@ export const thirdPartyStages: StageConfig[] = [
         {
           "name": "08_vendor_governance_and_risk_mgmt_mcp.py",
           "url": "/audit-code/third-party/08_vendor_governance_and_risk_mgmt_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Third Party Systems evidence for \"Vendor governance and risk mgmt\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Third Party Systems evidence for \"Vendor governance and risk mgmt\" (in-scope inventory for the vendor governance and risk mgmt control (from tprm / grc platform (archer/onetrust))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Vendor governance and risk mgmt\" control for Third Party Systems at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Vendor governance and risk mgmt\" control for Third Party Systems at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Vendor governance and risk mgmt\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the vendor governance and risk mgmt control (from TPRM / GRC platform (Archer/OneTrust)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live TPRM / GRC platform (Archer/OneTrust) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. TPRM / GRC platform (Archer/OneTrust) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. TPRM / GRC platform (Archer/OneTrust) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from TPRM / GRC platform (Archer/OneTrust); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Third Party Systems: \"Vendor governance and risk mgmt\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- third-party_inventory.json   (in-scope items from TPRM / GRC platform (Archer/OneTrust))\n- third-party_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Vendor governance and risk mgmt\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Third Party Systems: \"Vendor governance and risk mgmt\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Vendor governance and risk mgmt\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- third-party_inventory.json   (in-scope items — In-scope inventory for the vendor governance and risk mgmt control (from TPRM / GRC platform (Archer/OneTrust)))\n- third-party_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Vendor governance and risk mgmt\",\n  \"domain\": \"Third Party Systems\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{tps_",
         "/evidence/third-party_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Third-party risk management\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Vendor governance and risk mgmt\" control must cover\n# fragment: vendor_governance_risk_",
         "/evidence/third-party_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -2823,7 +2831,7 @@ export const thirdPartyStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Vendor governance and risk mgmt\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Vendor governance and risk mgmt evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the vendor governance and risk mgmt control (from TPRM / GRC platform (Archer/OneTrust)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -2889,16 +2897,16 @@ export const thirdPartyStages: StageConfig[] = [
         {
           "id": "tps-08-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Vendor governance and risk mgmt\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Vendor governance and risk mgmt\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the vendor governance and risk mgmt control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the vendor governance and risk mgmt control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "tps-08-q9",
@@ -2943,8 +2951,8 @@ export const thirdPartyStages: StageConfig[] = [
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Data backup and recovery (vendor)\" control for Third Party Systems is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Third Party Systems source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Data backup and recovery (vendor)\" control for Third Party Systems is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Data backup and recovery (vendor)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Third Party Systems systems of record (TPRM / GRC platform (Archer/OneTrust); Vendor inventory + contracts; SOC 2 / attestation repository) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the data backup and recovery (vendor) control (from TPRM / GRC platform (Archer/OneTrust))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -2981,18 +2989,18 @@ export const thirdPartyStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Data backup and recovery (vendor)\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Third Party Systems control.",
+      "tagline": "Auditing \"Data backup and recovery (vendor)\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the data backup and recovery (vendor) control (from TPRM / GRC platform (Archer/OneTrust))) with read-only agents, run the test against policy, and issue a defensible opinion on the Third Party Systems control.",
       "year": 2025,
       "overview": [
-        "The \"Data backup and recovery (vendor)\" sub-process is one of the controls an auditor must verify for Third Party Systems. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that data backup and recovery (vendor) is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Data backup and recovery (vendor)\" sub-process is one of the controls an auditor must verify for Third Party Systems. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the data backup and recovery (vendor) control (from TPRM / GRC platform (Archer/OneTrust)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Data backup and recovery (vendor)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `09_data_backup_and_recovery_vendor_mcp.py` exposes read-only tools that turn each Third Party Systems source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `09_data_backup_and_recovery_vendor_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from TPRM / GRC platform (Archer/OneTrust) and Vendor inventory + contracts (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 09_data_backup_and_recovery_vendor_mcp.py` to expose it to your agent — or `python 09_data_backup_and_recovery_vendor_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -3050,12 +3058,13 @@ export const thirdPartyStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Data backup and recovery (vendor)\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the data backup and recovery (vendor) control (from TPRM / GRC platform (Archer/OneTrust)).",
+        "The test: Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Data backup and recovery (vendor)\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the data backup and recovery (vendor) control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -3079,20 +3088,20 @@ export const thirdPartyStages: StageConfig[] = [
         {
           "name": "09_data_backup_and_recovery_vendor_mcp.py",
           "url": "/audit-code/third-party/09_data_backup_and_recovery_vendor_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Third Party Systems evidence for \"Data backup and recovery (vendor)\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Third Party Systems evidence for \"Data backup and recovery (vendor)\" (in-scope inventory for the data backup and recovery (vendor) control (from tprm / grc platform (archer/onetrust))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Data backup and recovery (vendor)\" control for Third Party Systems at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Data backup and recovery (vendor)\" control for Third Party Systems at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Data backup and recovery (vendor)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the data backup and recovery (vendor) control (from TPRM / GRC platform (Archer/OneTrust)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live TPRM / GRC platform (Archer/OneTrust) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. TPRM / GRC platform (Archer/OneTrust) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. TPRM / GRC platform (Archer/OneTrust) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from TPRM / GRC platform (Archer/OneTrust); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Third Party Systems: \"Data backup and recovery (vendor)\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- third-party_inventory.json   (in-scope items from TPRM / GRC platform (Archer/OneTrust))\n- third-party_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Data backup and recovery (vendor)\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Third Party Systems: \"Data backup and recovery (vendor)\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Data backup and recovery (vendor)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- third-party_inventory.json   (in-scope items — In-scope inventory for the data backup and recovery (vendor) control (from TPRM / GRC platform (Archer/OneTrust)))\n- third-party_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Data backup and recovery (vendor)\",\n  \"domain\": \"Third Party Systems\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{tps_",
         "/evidence/third-party_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Third-party risk management\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Data backup and recovery (vendor)\" control must cover\n# fragment: data_backup_recovery_",
         "/evidence/third-party_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -3188,7 +3197,7 @@ export const thirdPartyStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Data backup and recovery (vendor)\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Data backup and recovery (vendor) evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the data backup and recovery (vendor) control (from TPRM / GRC platform (Archer/OneTrust)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -3254,16 +3263,16 @@ export const thirdPartyStages: StageConfig[] = [
         {
           "id": "tps-09-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Data backup and recovery (vendor)\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Data backup and recovery (vendor)\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the data backup and recovery (vendor) control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the data backup and recovery (vendor) control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "tps-09-q9",
@@ -3308,8 +3317,8 @@ export const thirdPartyStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Systems availability and capacity\" control for Third Party Systems is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Third Party Systems source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Systems availability and capacity\" control for Third Party Systems is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Systems availability and capacity\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Third Party Systems systems of record (TPRM / GRC platform (Archer/OneTrust); Vendor inventory + contracts; SOC 2 / attestation repository) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the systems availability and capacity control (from TPRM / GRC platform (Archer/OneTrust))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -3346,18 +3355,18 @@ export const thirdPartyStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Systems availability and capacity\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Third Party Systems control.",
+      "tagline": "Auditing \"Systems availability and capacity\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the systems availability and capacity control (from TPRM / GRC platform (Archer/OneTrust))) with read-only agents, run the test against policy, and issue a defensible opinion on the Third Party Systems control.",
       "year": 2025,
       "overview": [
-        "The \"Systems availability and capacity\" sub-process is one of the controls an auditor must verify for Third Party Systems. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that systems availability and capacity is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Systems availability and capacity\" sub-process is one of the controls an auditor must verify for Third Party Systems. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the systems availability and capacity control (from TPRM / GRC platform (Archer/OneTrust)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Systems availability and capacity\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `10_systems_availability_and_capacity_mcp.py` exposes read-only tools that turn each Third Party Systems source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `10_systems_availability_and_capacity_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from TPRM / GRC platform (Archer/OneTrust) and Vendor inventory + contracts (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 10_systems_availability_and_capacity_mcp.py` to expose it to your agent — or `python 10_systems_availability_and_capacity_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -3415,12 +3424,13 @@ export const thirdPartyStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Systems availability and capacity\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the systems availability and capacity control (from TPRM / GRC platform (Archer/OneTrust)).",
+        "The test: Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Systems availability and capacity\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the systems availability and capacity control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -3444,20 +3454,20 @@ export const thirdPartyStages: StageConfig[] = [
         {
           "name": "10_systems_availability_and_capacity_mcp.py",
           "url": "/audit-code/third-party/10_systems_availability_and_capacity_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Third Party Systems evidence for \"Systems availability and capacity\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Third Party Systems evidence for \"Systems availability and capacity\" (in-scope inventory for the systems availability and capacity control (from tprm / grc platform (archer/onetrust))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Systems availability and capacity\" control for Third Party Systems at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Systems availability and capacity\" control for Third Party Systems at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Systems availability and capacity\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the systems availability and capacity control (from TPRM / GRC platform (Archer/OneTrust)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live TPRM / GRC platform (Archer/OneTrust) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. TPRM / GRC platform (Archer/OneTrust) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. TPRM / GRC platform (Archer/OneTrust) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from TPRM / GRC platform (Archer/OneTrust); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Third Party Systems: \"Systems availability and capacity\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- third-party_inventory.json   (in-scope items from TPRM / GRC platform (Archer/OneTrust))\n- third-party_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Systems availability and capacity\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Third Party Systems: \"Systems availability and capacity\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Systems availability and capacity\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- third-party_inventory.json   (in-scope items — In-scope inventory for the systems availability and capacity control (from TPRM / GRC platform (Archer/OneTrust)))\n- third-party_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Systems availability and capacity\",\n  \"domain\": \"Third Party Systems\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{tps_",
         "/evidence/third-party_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Third-party risk management\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Systems availability and capacity\" control must cover\n# fragment: systems_availability_capacity_",
         "/evidence/third-party_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -3553,7 +3563,7 @@ export const thirdPartyStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Systems availability and capacity\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Systems availability and capacity evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the systems availability and capacity control (from TPRM / GRC platform (Archer/OneTrust)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -3619,16 +3629,16 @@ export const thirdPartyStages: StageConfig[] = [
         {
           "id": "tps-10-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Systems availability and capacity\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Systems availability and capacity\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the systems availability and capacity control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the systems availability and capacity control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "tps-10-q9",
@@ -3673,8 +3683,8 @@ export const thirdPartyStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Audit and monitoring rights\" control for Third Party Systems is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Third Party Systems source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Audit and monitoring rights\" control for Third Party Systems is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Audit and monitoring rights\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Third Party Systems systems of record (TPRM / GRC platform (Archer/OneTrust); Vendor inventory + contracts; SOC 2 / attestation repository) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the audit and monitoring rights control (from TPRM / GRC platform (Archer/OneTrust))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -3711,18 +3721,18 @@ export const thirdPartyStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Audit and monitoring rights\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Third Party Systems control.",
+      "tagline": "Auditing \"Audit and monitoring rights\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the audit and monitoring rights control (from TPRM / GRC platform (Archer/OneTrust))) with read-only agents, run the test against policy, and issue a defensible opinion on the Third Party Systems control.",
       "year": 2025,
       "overview": [
-        "The \"Audit and monitoring rights\" sub-process is one of the controls an auditor must verify for Third Party Systems. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that audit and monitoring rights is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Audit and monitoring rights\" sub-process is one of the controls an auditor must verify for Third Party Systems. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the audit and monitoring rights control (from TPRM / GRC platform (Archer/OneTrust)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Audit and monitoring rights\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `11_audit_and_monitoring_rights_mcp.py` exposes read-only tools that turn each Third Party Systems source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `11_audit_and_monitoring_rights_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from TPRM / GRC platform (Archer/OneTrust) and Vendor inventory + contracts (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 11_audit_and_monitoring_rights_mcp.py` to expose it to your agent — or `python 11_audit_and_monitoring_rights_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -3780,12 +3790,13 @@ export const thirdPartyStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Audit and monitoring rights\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the audit and monitoring rights control (from TPRM / GRC platform (Archer/OneTrust)).",
+        "The test: Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Audit and monitoring rights\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the audit and monitoring rights control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -3809,20 +3820,20 @@ export const thirdPartyStages: StageConfig[] = [
         {
           "name": "11_audit_and_monitoring_rights_mcp.py",
           "url": "/audit-code/third-party/11_audit_and_monitoring_rights_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Third Party Systems evidence for \"Audit and monitoring rights\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Third Party Systems evidence for \"Audit and monitoring rights\" (in-scope inventory for the audit and monitoring rights control (from tprm / grc platform (archer/onetrust))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Audit and monitoring rights\" control for Third Party Systems at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Audit and monitoring rights\" control for Third Party Systems at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Audit and monitoring rights\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the audit and monitoring rights control (from TPRM / GRC platform (Archer/OneTrust)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live TPRM / GRC platform (Archer/OneTrust) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. TPRM / GRC platform (Archer/OneTrust) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. TPRM / GRC platform (Archer/OneTrust) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from TPRM / GRC platform (Archer/OneTrust); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Third Party Systems: \"Audit and monitoring rights\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- third-party_inventory.json   (in-scope items from TPRM / GRC platform (Archer/OneTrust))\n- third-party_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Audit and monitoring rights\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Third Party Systems: \"Audit and monitoring rights\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Audit and monitoring rights\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- third-party_inventory.json   (in-scope items — In-scope inventory for the audit and monitoring rights control (from TPRM / GRC platform (Archer/OneTrust)))\n- third-party_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Audit and monitoring rights\",\n  \"domain\": \"Third Party Systems\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{tps_",
         "/evidence/third-party_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Third-party risk management\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Audit and monitoring rights\" control must cover\n# fragment: audit_monitoring_rights_",
         "/evidence/third-party_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -3918,7 +3929,7 @@ export const thirdPartyStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Audit and monitoring rights\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Audit and monitoring rights evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the audit and monitoring rights control (from TPRM / GRC platform (Archer/OneTrust)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -3984,16 +3995,16 @@ export const thirdPartyStages: StageConfig[] = [
         {
           "id": "tps-11-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Audit and monitoring rights\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Audit and monitoring rights\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the audit and monitoring rights control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the audit and monitoring rights control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "tps-11-q9",
@@ -4038,8 +4049,8 @@ export const thirdPartyStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Subcontractor / nth party risk\" control for Third Party Systems is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Third Party Systems source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Subcontractor / nth party risk\" control for Third Party Systems is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Subcontractor / nth party risk\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Third Party Systems systems of record (TPRM / GRC platform (Archer/OneTrust); Vendor inventory + contracts; SOC 2 / attestation repository) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the subcontractor / nth party risk control (from TPRM / GRC platform (Archer/OneTrust))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -4076,18 +4087,18 @@ export const thirdPartyStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Subcontractor / nth party risk\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Third Party Systems control.",
+      "tagline": "Auditing \"Subcontractor / nth party risk\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the subcontractor / nth party risk control (from TPRM / GRC platform (Archer/OneTrust))) with read-only agents, run the test against policy, and issue a defensible opinion on the Third Party Systems control.",
       "year": 2025,
       "overview": [
-        "The \"Subcontractor / nth party risk\" sub-process is one of the controls an auditor must verify for Third Party Systems. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that subcontractor / nth party risk is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Subcontractor / nth party risk\" sub-process is one of the controls an auditor must verify for Third Party Systems. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the subcontractor / nth party risk control (from TPRM / GRC platform (Archer/OneTrust)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Subcontractor / nth party risk\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `12_subcontractor_nth_party_risk_mcp.py` exposes read-only tools that turn each Third Party Systems source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `12_subcontractor_nth_party_risk_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from TPRM / GRC platform (Archer/OneTrust) and Vendor inventory + contracts (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 12_subcontractor_nth_party_risk_mcp.py` to expose it to your agent — or `python 12_subcontractor_nth_party_risk_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -4145,12 +4156,13 @@ export const thirdPartyStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Subcontractor / nth party risk\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the subcontractor / nth party risk control (from TPRM / GRC platform (Archer/OneTrust)).",
+        "The test: Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Subcontractor / nth party risk\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the subcontractor / nth party risk control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -4174,20 +4186,20 @@ export const thirdPartyStages: StageConfig[] = [
         {
           "name": "12_subcontractor_nth_party_risk_mcp.py",
           "url": "/audit-code/third-party/12_subcontractor_nth_party_risk_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Third Party Systems evidence for \"Subcontractor / nth party risk\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Third Party Systems evidence for \"Subcontractor / nth party risk\" (in-scope inventory for the subcontractor / nth party risk control (from tprm / grc platform (archer/onetrust))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Subcontractor / nth party risk\" control for Third Party Systems at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Subcontractor / nth party risk\" control for Third Party Systems at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Subcontractor / nth party risk\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the subcontractor / nth party risk control (from TPRM / GRC platform (Archer/OneTrust)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live TPRM / GRC platform (Archer/OneTrust) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. TPRM / GRC platform (Archer/OneTrust) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. TPRM / GRC platform (Archer/OneTrust) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from TPRM / GRC platform (Archer/OneTrust); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Third Party Systems: \"Subcontractor / nth party risk\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- third-party_inventory.json   (in-scope items from TPRM / GRC platform (Archer/OneTrust))\n- third-party_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Subcontractor / nth party risk\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Third Party Systems: \"Subcontractor / nth party risk\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Subcontractor / nth party risk\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- third-party_inventory.json   (in-scope items — In-scope inventory for the subcontractor / nth party risk control (from TPRM / GRC platform (Archer/OneTrust)))\n- third-party_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Subcontractor / nth party risk\",\n  \"domain\": \"Third Party Systems\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{tps_",
         "/evidence/third-party_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Third-party risk management\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Subcontractor / nth party risk\" control must cover\n# fragment: subcontractor_nth_party_",
         "/evidence/third-party_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -4283,7 +4295,7 @@ export const thirdPartyStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Subcontractor / nth party risk\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Subcontractor / nth party risk evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the subcontractor / nth party risk control (from TPRM / GRC platform (Archer/OneTrust)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -4349,16 +4361,16 @@ export const thirdPartyStages: StageConfig[] = [
         {
           "id": "tps-12-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Subcontractor / nth party risk\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Subcontractor / nth party risk\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the subcontractor / nth party risk control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the subcontractor / nth party risk control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "tps-12-q9",
@@ -4403,8 +4415,8 @@ export const thirdPartyStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Identity federation and authentication\" control for Third Party Systems is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Third Party Systems source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Identity federation and authentication\" control for Third Party Systems is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Identity federation and authentication\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Third Party Systems systems of record (TPRM / GRC platform (Archer/OneTrust); Vendor inventory + contracts; SOC 2 / attestation repository) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the identity federation and authentication control (from TPRM / GRC platform (Archer/OneTrust))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -4441,18 +4453,18 @@ export const thirdPartyStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Identity federation and authentication\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Third Party Systems control.",
+      "tagline": "Auditing \"Identity federation and authentication\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the identity federation and authentication control (from TPRM / GRC platform (Archer/OneTrust))) with read-only agents, run the test against policy, and issue a defensible opinion on the Third Party Systems control.",
       "year": 2025,
       "overview": [
-        "The \"Identity federation and authentication\" sub-process is one of the controls an auditor must verify for Third Party Systems. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that identity federation and authentication is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Identity federation and authentication\" sub-process is one of the controls an auditor must verify for Third Party Systems. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the identity federation and authentication control (from TPRM / GRC platform (Archer/OneTrust)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Identity federation and authentication\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `13_identity_federation_and_authentication_mcp.py` exposes read-only tools that turn each Third Party Systems source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `13_identity_federation_and_authentication_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from TPRM / GRC platform (Archer/OneTrust) and Vendor inventory + contracts (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 13_identity_federation_and_authentication_mcp.py` to expose it to your agent — or `python 13_identity_federation_and_authentication_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -4510,12 +4522,13 @@ export const thirdPartyStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Identity federation and authentication\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the identity federation and authentication control (from TPRM / GRC platform (Archer/OneTrust)).",
+        "The test: Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Identity federation and authentication\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the identity federation and authentication control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -4539,20 +4552,20 @@ export const thirdPartyStages: StageConfig[] = [
         {
           "name": "13_identity_federation_and_authentication_mcp.py",
           "url": "/audit-code/third-party/13_identity_federation_and_authentication_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Third Party Systems evidence for \"Identity federation and authentication\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Third Party Systems evidence for \"Identity federation and authentication\" (in-scope inventory for the identity federation and authentication control (from tprm / grc platform (archer/onetrust))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Identity federation and authentication\" control for Third Party Systems at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Identity federation and authentication\" control for Third Party Systems at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Identity federation and authentication\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the identity federation and authentication control (from TPRM / GRC platform (Archer/OneTrust)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live TPRM / GRC platform (Archer/OneTrust) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. TPRM / GRC platform (Archer/OneTrust) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. TPRM / GRC platform (Archer/OneTrust) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from TPRM / GRC platform (Archer/OneTrust); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Third Party Systems: \"Identity federation and authentication\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- third-party_inventory.json   (in-scope items from TPRM / GRC platform (Archer/OneTrust))\n- third-party_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Identity federation and authentication\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Third Party Systems: \"Identity federation and authentication\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Identity federation and authentication\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- third-party_inventory.json   (in-scope items — In-scope inventory for the identity federation and authentication control (from TPRM / GRC platform (Archer/OneTrust)))\n- third-party_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Identity federation and authentication\",\n  \"domain\": \"Third Party Systems\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{tps_",
         "/evidence/third-party_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Third-party risk management\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Identity federation and authentication\" control must cover\n# fragment: identity_federation_authentication_",
         "/evidence/third-party_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -4648,7 +4661,7 @@ export const thirdPartyStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Identity federation and authentication\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Identity federation and authentication evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the identity federation and authentication control (from TPRM / GRC platform (Archer/OneTrust)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -4714,16 +4727,16 @@ export const thirdPartyStages: StageConfig[] = [
         {
           "id": "tps-13-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Identity federation and authentication\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Identity federation and authentication\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the identity federation and authentication control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the identity federation and authentication control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "tps-13-q9",
@@ -4768,8 +4781,8 @@ export const thirdPartyStages: StageConfig[] = [
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Vendor AI supply chain\" control for Third Party Systems is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Third Party Systems source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Vendor AI supply chain\" control for Third Party Systems is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Vendor AI supply chain\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Third Party Systems systems of record (TPRM / GRC platform (Archer/OneTrust); Vendor inventory + contracts; SOC 2 / attestation repository) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the vendor ai supply chain control (from TPRM / GRC platform (Archer/OneTrust))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -4806,18 +4819,18 @@ export const thirdPartyStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Vendor AI supply chain\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Third Party Systems control.",
+      "tagline": "Auditing \"Vendor AI supply chain\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the vendor ai supply chain control (from TPRM / GRC platform (Archer/OneTrust))) with read-only agents, run the test against policy, and issue a defensible opinion on the Third Party Systems control.",
       "year": 2025,
       "overview": [
-        "The \"Vendor AI supply chain\" sub-process is one of the controls an auditor must verify for Third Party Systems. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that vendor ai supply chain is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Vendor AI supply chain\" sub-process is one of the controls an auditor must verify for Third Party Systems. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the vendor ai supply chain control (from TPRM / GRC platform (Archer/OneTrust)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Vendor AI supply chain\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `14_vendor_ai_supply_chain_mcp.py` exposes read-only tools that turn each Third Party Systems source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `14_vendor_ai_supply_chain_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from TPRM / GRC platform (Archer/OneTrust) and Vendor inventory + contracts (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 14_vendor_ai_supply_chain_mcp.py` to expose it to your agent — or `python 14_vendor_ai_supply_chain_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -4875,12 +4888,13 @@ export const thirdPartyStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Vendor AI supply chain\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the vendor ai supply chain control (from TPRM / GRC platform (Archer/OneTrust)).",
+        "The test: Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Vendor AI supply chain\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the vendor ai supply chain control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -4904,20 +4918,20 @@ export const thirdPartyStages: StageConfig[] = [
         {
           "name": "14_vendor_ai_supply_chain_mcp.py",
           "url": "/audit-code/third-party/14_vendor_ai_supply_chain_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Third Party Systems evidence for \"Vendor AI supply chain\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Third Party Systems evidence for \"Vendor AI supply chain\" (in-scope inventory for the vendor ai supply chain control (from tprm / grc platform (archer/onetrust))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Vendor AI supply chain\" control for Third Party Systems at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Vendor AI supply chain\" control for Third Party Systems at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Vendor AI supply chain\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the vendor ai supply chain control (from TPRM / GRC platform (Archer/OneTrust)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live TPRM / GRC platform (Archer/OneTrust) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. TPRM / GRC platform (Archer/OneTrust) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. TPRM / GRC platform (Archer/OneTrust) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from TPRM / GRC platform (Archer/OneTrust); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Third Party Systems: \"Vendor AI supply chain\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- third-party_inventory.json   (in-scope items from TPRM / GRC platform (Archer/OneTrust))\n- third-party_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Vendor AI supply chain\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Third Party Systems: \"Vendor AI supply chain\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Vendor AI supply chain\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- third-party_inventory.json   (in-scope items — In-scope inventory for the vendor ai supply chain control (from TPRM / GRC platform (Archer/OneTrust)))\n- third-party_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Vendor AI supply chain\",\n  \"domain\": \"Third Party Systems\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{tps_",
         "/evidence/third-party_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Third-party risk management\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Vendor AI supply chain\" control must cover\n# fragment: vendor_ai_supply_",
         "/evidence/third-party_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -5013,7 +5027,7 @@ export const thirdPartyStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Vendor AI supply chain\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Vendor AI supply chain evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the vendor ai supply chain control (from TPRM / GRC platform (Archer/OneTrust)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -5079,16 +5093,16 @@ export const thirdPartyStages: StageConfig[] = [
         {
           "id": "tps-14-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Vendor AI supply chain\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Vendor AI supply chain\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the vendor ai supply chain control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the vendor ai supply chain control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "tps-14-q9",
@@ -5133,8 +5147,8 @@ export const thirdPartyStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Post-quantum protection support\" control for Third Party Systems is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Third Party Systems source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Post-quantum protection support\" control for Third Party Systems is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Post-quantum protection support\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Third Party Systems systems of record (TPRM / GRC platform (Archer/OneTrust); Vendor inventory + contracts; SOC 2 / attestation repository) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the post-quantum protection support control (from TPRM / GRC platform (Archer/OneTrust))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -5171,18 +5185,18 @@ export const thirdPartyStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Post-quantum protection support\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Third Party Systems control.",
+      "tagline": "Auditing \"Post-quantum protection support\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the post-quantum protection support control (from TPRM / GRC platform (Archer/OneTrust))) with read-only agents, run the test against policy, and issue a defensible opinion on the Third Party Systems control.",
       "year": 2025,
       "overview": [
-        "The \"Post-quantum protection support\" sub-process is one of the controls an auditor must verify for Third Party Systems. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that post-quantum protection support is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Post-quantum protection support\" sub-process is one of the controls an auditor must verify for Third Party Systems. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the post-quantum protection support control (from TPRM / GRC platform (Archer/OneTrust)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Post-quantum protection support\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `15_post_quantum_protection_support_mcp.py` exposes read-only tools that turn each Third Party Systems source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `15_post_quantum_protection_support_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from TPRM / GRC platform (Archer/OneTrust) and Vendor inventory + contracts (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 15_post_quantum_protection_support_mcp.py` to expose it to your agent — or `python 15_post_quantum_protection_support_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -5240,12 +5254,13 @@ export const thirdPartyStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Post-quantum protection support\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the post-quantum protection support control (from TPRM / GRC platform (Archer/OneTrust)).",
+        "The test: Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Post-quantum protection support\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (TPRM / GRC platform (Archer/OneTrust), Vendor inventory + contracts, SOC 2 / attestation repository) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the post-quantum protection support control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -5269,20 +5284,20 @@ export const thirdPartyStages: StageConfig[] = [
         {
           "name": "15_post_quantum_protection_support_mcp.py",
           "url": "/audit-code/third-party/15_post_quantum_protection_support_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Third Party Systems evidence for \"Post-quantum protection support\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Third Party Systems evidence for \"Post-quantum protection support\" (in-scope inventory for the post-quantum protection support control (from tprm / grc platform (archer/onetrust))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Post-quantum protection support\" control for Third Party Systems at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Post-quantum protection support\" control for Third Party Systems at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Post-quantum protection support\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the post-quantum protection support control (from TPRM / GRC platform (Archer/OneTrust)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live TPRM / GRC platform (Archer/OneTrust) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. TPRM / GRC platform (Archer/OneTrust) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. TPRM / GRC platform (Archer/OneTrust) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from TPRM / GRC platform (Archer/OneTrust); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Third Party Systems: \"Post-quantum protection support\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- third-party_inventory.json   (in-scope items from TPRM / GRC platform (Archer/OneTrust))\n- third-party_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Post-quantum protection support\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Third Party Systems: \"Post-quantum protection support\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Third Party Systems policy/standard and flag every item where the \"Post-quantum protection support\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- third-party_inventory.json   (in-scope items — In-scope inventory for the post-quantum protection support control (from TPRM / GRC platform (Archer/OneTrust)))\n- third-party_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Post-quantum protection support\",\n  \"domain\": \"Third Party Systems\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{tps_",
         "/evidence/third-party_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Third-party risk management\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Post-quantum protection support\" control must cover\n# fragment: postquantum_protection_support_",
         "/evidence/third-party_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -5378,7 +5393,7 @@ export const thirdPartyStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Post-quantum protection support\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Post-quantum protection support evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the post-quantum protection support control (from TPRM / GRC platform (Archer/OneTrust)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -5444,16 +5459,16 @@ export const thirdPartyStages: StageConfig[] = [
         {
           "id": "tps-15-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Post-quantum protection support\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Post-quantum protection support\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the post-quantum protection support control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the post-quantum protection support control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "tps-15-q9",

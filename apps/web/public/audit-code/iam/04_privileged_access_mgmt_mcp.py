@@ -1,17 +1,26 @@
 #!/usr/bin/env python3
-"""Read-only MCP server — Identity & Access Mgmt: "Privileged access mgmt" audit evidence.
+"""Read-only MCP server — Identity & Access Management (IAM): "Privileged access mgmt" audit evidence.
 
-Gathers the in-scope inventory and the observed control state from this domain's
-systems of record, evaluates each item against policy, and reports the exceptions
-with a PASS / EXCEPTIONS / MATERIAL-GAP opinion. READ-ONLY: it lists and reports,
-never changes state — the hard requirement for audit tooling.
+THE TEST
+Enumerate every privileged principal across directory, cloud, and hosts, then reconcile against the PAM vault. PASS: each is vaulted with automatic rotation, requires MFA + approval/checkout, prefers JIT over standing access, and sessions are logged/recorded; break-glass accounts are sealed and alert on use. Exceptions: privileged accounts NOT in the vault ('discovered, not managed'), unjustified standing admin, shared admin credentials, and break-glass used without a corresponding incident.
+
+ARTIFACT (what _gather() pulls)
+    The privileged-principal inventory — Domain/Enterprise Admins, cloud admin roles, root, local admins, and application super-users
+
+REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
+    AD:      Get-ADGroupMember 'Domain Admins','Enterprise Admins','Schema Admins','Administrators' -Recursive
+    Entra:   Get-MgRoleManagementDirectoryRoleAssignment  +  PIM eligible vs active assignments
+    AWS:     aws iam list-entities-for-policy --policy-arn arn:aws:iam::aws:policy/AdministratorAccess  + Access Analyzer
+    CyberArk: 'accounts discovered (DNA/Discovery) vs onboarded' reconciliation export
+
+This server gathers the in-scope inventory and the observed control state, evaluates
+each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /
+MATERIAL-GAP opinion. READ-ONLY: it lists and reports, never changes state — the hard
+requirement for audit tooling.
 
   pip install "mcp[cli]"
   mcp run 04_privileged_access_mgmt_mcp.py                 # expose to an agent
   python 04_privileged_access_mgmt_mcp.py --selftest       # reproduce findings against fixtures, offline
-
-Wire real sources by replacing the _gather() fixtures with read-only API calls to
-IdP (Okta / Entra ID / Ping), PAM (CyberArk / Delinea), IGA / access-review platform, Directory (AD / LDAP).
 """
 from __future__ import annotations
 import json, sys
@@ -68,7 +77,7 @@ def coverage_report() -> dict:
                else "EXCEPTIONS" if len(exceptions) <= EXCEPTION_THRESHOLD
                else "MATERIAL GAP")
     return {
-        "domain": "Identity & Access Mgmt",
+        "domain": "Identity & Access Management (IAM)",
         "control": "Privileged access mgmt",
         "in_scope": len(rows),
         "compliant": len(rows) - len(exceptions),

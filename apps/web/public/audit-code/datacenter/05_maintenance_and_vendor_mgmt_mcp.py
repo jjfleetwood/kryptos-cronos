@@ -1,17 +1,23 @@
 #!/usr/bin/env python3
-"""Read-only MCP server — Datacenter / Lab / CoLo: "Maintenance and vendor mgmt" audit evidence.
+"""Read-only MCP server — Datacenter / Lab / Colocation (CoLo): "Maintenance and vendor mgmt" audit evidence.
 
-Gathers the in-scope inventory and the observed control state from this domain's
-systems of record, evaluates each item against policy, and reports the exceptions
-with a PASS / EXCEPTIONS / MATERIAL-GAP opinion. READ-ONLY: it lists and reports,
-never changes state — the hard requirement for audit tooling.
+THE TEST
+Reconcile the in-scope inventory against the Datacenter / Lab / Colocation (CoLo) policy/standard and flag every item where the "Maintenance and vendor mgmt" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+
+ARTIFACT (what _gather() pulls)
+    In-scope inventory for the maintenance and vendor mgmt control (from Badge / PACS access system)
+
+REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
+    (wire read-only API calls to: Badge / PACS access system, Environmental + power monitoring (DCIM), Asset / rack inventory, Vendor / maintenance ticketing)
+
+This server gathers the in-scope inventory and the observed control state, evaluates
+each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /
+MATERIAL-GAP opinion. READ-ONLY: it lists and reports, never changes state — the hard
+requirement for audit tooling.
 
   pip install "mcp[cli]"
   mcp run 05_maintenance_and_vendor_mgmt_mcp.py                 # expose to an agent
   python 05_maintenance_and_vendor_mgmt_mcp.py --selftest       # reproduce findings against fixtures, offline
-
-Wire real sources by replacing the _gather() fixtures with read-only API calls to
-Badge / PACS access system, Environmental + power monitoring (DCIM), Asset / rack inventory, Vendor / maintenance ticketing.
 """
 from __future__ import annotations
 import json, sys
@@ -68,7 +74,7 @@ def coverage_report() -> dict:
                else "EXCEPTIONS" if len(exceptions) <= EXCEPTION_THRESHOLD
                else "MATERIAL GAP")
     return {
-        "domain": "Datacenter / Lab / CoLo",
+        "domain": "Datacenter / Lab / Colocation (CoLo)",
         "control": "Maintenance and vendor mgmt",
         "in_scope": len(rows),
         "compliant": len(rows) - len(exceptions),

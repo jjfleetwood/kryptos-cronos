@@ -23,8 +23,8 @@ export const endpointStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Device management platform\" control for Endpoint Devices is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Endpoint Devices source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Device management platform\" control for Endpoint Devices is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Device management platform\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Endpoint Devices systems of record (MDM / UEM (Intune / Jamf); EDR (CrowdStrike / Defender / SentinelOne); Disk-encryption manager (BitLocker/FileVault)) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the device management platform control (from MDM / UEM (Intune / Jamf))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -61,18 +61,18 @@ export const endpointStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Device management platform\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Endpoint Devices control.",
+      "tagline": "Auditing \"Device management platform\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the device management platform control (from MDM / UEM (Intune / Jamf))) with read-only agents, run the test against policy, and issue a defensible opinion on the Endpoint Devices control.",
       "year": 2025,
       "overview": [
-        "The \"Device management platform\" sub-process is one of the controls an auditor must verify for Endpoint Devices. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that device management platform is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault) — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Device management platform\" sub-process is one of the controls an auditor must verify for Endpoint Devices. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the device management platform control (from MDM / UEM (Intune / Jamf)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault) — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Device management platform\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `01_device_management_platform_mcp.py` exposes read-only tools that turn each Endpoint Devices source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `01_device_management_platform_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from MDM / UEM (Intune / Jamf) and EDR (CrowdStrike / Defender / SentinelOne) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 01_device_management_platform_mcp.py` to expose it to your agent — or `python 01_device_management_platform_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -130,12 +130,13 @@ export const endpointStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Device management platform\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the device management platform control (from MDM / UEM (Intune / Jamf)).",
+        "The test: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Device management platform\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault)) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the device management platform control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -159,20 +160,20 @@ export const endpointStages: StageConfig[] = [
         {
           "name": "01_device_management_platform_mcp.py",
           "url": "/audit-code/endpoint/01_device_management_platform_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Endpoint Devices evidence for \"Device management platform\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Endpoint Devices evidence for \"Device management platform\" (in-scope inventory for the device management platform control (from mdm / uem (intune / jamf))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Device management platform\" control for Endpoint Devices at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Device management platform\" control for Endpoint Devices at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Device management platform\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the device management platform control (from MDM / UEM (Intune / Jamf)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live MDM / UEM (Intune / Jamf) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. MDM / UEM (Intune / Jamf) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. MDM / UEM (Intune / Jamf) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from MDM / UEM (Intune / Jamf); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Endpoint Devices: \"Device management platform\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- endpoint_inventory.json   (in-scope items from MDM / UEM (Intune / Jamf))\n- endpoint_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Device management platform\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Endpoint Devices: \"Device management platform\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Device management platform\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- endpoint_inventory.json   (in-scope items — In-scope inventory for the device management platform control (from MDM / UEM (Intune / Jamf)))\n- endpoint_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Device management platform\",\n  \"domain\": \"Endpoint Devices\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ept_",
         "/evidence/endpoint_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"End-user computing / IT\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Device management platform\" control must cover\n# fragment: device_management_platform_",
         "/evidence/endpoint_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -268,7 +269,7 @@ export const endpointStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Device management platform\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Device management platform evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the device management platform control (from MDM / UEM (Intune / Jamf)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -334,16 +335,16 @@ export const endpointStages: StageConfig[] = [
         {
           "id": "ept-01-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Device management platform\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Device management platform\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the device management platform control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the device management platform control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "ept-01-q9",
@@ -388,8 +389,8 @@ export const endpointStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"End point inventory and unauthorized devices\" control for Endpoint Devices is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Endpoint Devices source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"End point inventory and unauthorized devices\" control for Endpoint Devices is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"End point inventory and unauthorized devices\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Endpoint Devices systems of record (MDM / UEM (Intune / Jamf); EDR (CrowdStrike / Defender / SentinelOne); Disk-encryption manager (BitLocker/FileVault)) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the end point inventory and unauthorized devices control (from MDM / UEM (Intune / Jamf))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -426,18 +427,18 @@ export const endpointStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"End point inventory and unauthorized devices\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Endpoint Devices control.",
+      "tagline": "Auditing \"End point inventory and unauthorized devices\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the end point inventory and unauthorized devices control (from MDM / UEM (Intune / Jamf))) with read-only agents, run the test against policy, and issue a defensible opinion on the Endpoint Devices control.",
       "year": 2025,
       "overview": [
-        "The \"End point inventory and unauthorized devices\" sub-process is one of the controls an auditor must verify for Endpoint Devices. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that end point inventory and unauthorized devices is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault) — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"End point inventory and unauthorized devices\" sub-process is one of the controls an auditor must verify for Endpoint Devices. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the end point inventory and unauthorized devices control (from MDM / UEM (Intune / Jamf)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault) — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"End point inventory and unauthorized devices\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `02_end_point_inventory_and_unauthorized_devices_mcp.py` exposes read-only tools that turn each Endpoint Devices source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `02_end_point_inventory_and_unauthorized_devices_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from MDM / UEM (Intune / Jamf) and EDR (CrowdStrike / Defender / SentinelOne) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 02_end_point_inventory_and_unauthorized_devices_mcp.py` to expose it to your agent — or `python 02_end_point_inventory_and_unauthorized_devices_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -495,12 +496,13 @@ export const endpointStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"End point inventory and unauthorized devices\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the end point inventory and unauthorized devices control (from MDM / UEM (Intune / Jamf)).",
+        "The test: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"End point inventory and unauthorized devices\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault)) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the end point inventory and unauthorized devices control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -524,20 +526,20 @@ export const endpointStages: StageConfig[] = [
         {
           "name": "02_end_point_inventory_and_unauthorized_devices_mcp.py",
           "url": "/audit-code/endpoint/02_end_point_inventory_and_unauthorized_devices_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Endpoint Devices evidence for \"End point inventory and unauthorized devices\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Endpoint Devices evidence for \"End point inventory and unauthorized devices\" (in-scope inventory for the end point inventory and unauthorized devices control (from mdm / uem (intune / jamf))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"End point inventory and unauthorized devices\" control for Endpoint Devices at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"End point inventory and unauthorized devices\" control for Endpoint Devices at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"End point inventory and unauthorized devices\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the end point inventory and unauthorized devices control (from MDM / UEM (Intune / Jamf)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live MDM / UEM (Intune / Jamf) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. MDM / UEM (Intune / Jamf) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. MDM / UEM (Intune / Jamf) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from MDM / UEM (Intune / Jamf); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Endpoint Devices: \"End point inventory and unauthorized devices\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- endpoint_inventory.json   (in-scope items from MDM / UEM (Intune / Jamf))\n- endpoint_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"End point inventory and unauthorized devices\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Endpoint Devices: \"End point inventory and unauthorized devices\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"End point inventory and unauthorized devices\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- endpoint_inventory.json   (in-scope items — In-scope inventory for the end point inventory and unauthorized devices control (from MDM / UEM (Intune / Jamf)))\n- endpoint_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"End point inventory and unauthorized devices\",\n  \"domain\": \"Endpoint Devices\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ept_",
         "/evidence/endpoint_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"End-user computing / IT\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"End point inventory and unauthorized devices\" control must cover\n# fragment: end_point_inventory_",
         "/evidence/endpoint_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -633,7 +635,7 @@ export const endpointStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"End point inventory and unauthorized devices\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The End point inventory and unauthorized devices evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the end point inventory and unauthorized devices control (from MDM / UEM (Intune / Jamf)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -699,16 +701,16 @@ export const endpointStages: StageConfig[] = [
         {
           "id": "ept-02-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"End point inventory and unauthorized devices\"?",
+          "challenge": "Typical finding",
+          "text": "For \"End point inventory and unauthorized devices\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the end point inventory and unauthorized devices control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the end point inventory and unauthorized devices control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "ept-02-q9",
@@ -753,8 +755,8 @@ export const endpointStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Hardware lifecycle tracking\" control for Endpoint Devices is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Endpoint Devices source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Hardware lifecycle tracking\" control for Endpoint Devices is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Hardware lifecycle tracking\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Endpoint Devices systems of record (MDM / UEM (Intune / Jamf); EDR (CrowdStrike / Defender / SentinelOne); Disk-encryption manager (BitLocker/FileVault)) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the hardware lifecycle tracking control (from MDM / UEM (Intune / Jamf))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -791,18 +793,18 @@ export const endpointStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Hardware lifecycle tracking\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Endpoint Devices control.",
+      "tagline": "Auditing \"Hardware lifecycle tracking\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the hardware lifecycle tracking control (from MDM / UEM (Intune / Jamf))) with read-only agents, run the test against policy, and issue a defensible opinion on the Endpoint Devices control.",
       "year": 2025,
       "overview": [
-        "The \"Hardware lifecycle tracking\" sub-process is one of the controls an auditor must verify for Endpoint Devices. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that hardware lifecycle tracking is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault) — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Hardware lifecycle tracking\" sub-process is one of the controls an auditor must verify for Endpoint Devices. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the hardware lifecycle tracking control (from MDM / UEM (Intune / Jamf)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault) — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Hardware lifecycle tracking\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `03_hardware_lifecycle_tracking_mcp.py` exposes read-only tools that turn each Endpoint Devices source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `03_hardware_lifecycle_tracking_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from MDM / UEM (Intune / Jamf) and EDR (CrowdStrike / Defender / SentinelOne) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 03_hardware_lifecycle_tracking_mcp.py` to expose it to your agent — or `python 03_hardware_lifecycle_tracking_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -860,12 +862,13 @@ export const endpointStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Hardware lifecycle tracking\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the hardware lifecycle tracking control (from MDM / UEM (Intune / Jamf)).",
+        "The test: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Hardware lifecycle tracking\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault)) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the hardware lifecycle tracking control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -889,20 +892,20 @@ export const endpointStages: StageConfig[] = [
         {
           "name": "03_hardware_lifecycle_tracking_mcp.py",
           "url": "/audit-code/endpoint/03_hardware_lifecycle_tracking_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Endpoint Devices evidence for \"Hardware lifecycle tracking\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Endpoint Devices evidence for \"Hardware lifecycle tracking\" (in-scope inventory for the hardware lifecycle tracking control (from mdm / uem (intune / jamf))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Hardware lifecycle tracking\" control for Endpoint Devices at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Hardware lifecycle tracking\" control for Endpoint Devices at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Hardware lifecycle tracking\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the hardware lifecycle tracking control (from MDM / UEM (Intune / Jamf)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live MDM / UEM (Intune / Jamf) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. MDM / UEM (Intune / Jamf) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. MDM / UEM (Intune / Jamf) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from MDM / UEM (Intune / Jamf); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Endpoint Devices: \"Hardware lifecycle tracking\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- endpoint_inventory.json   (in-scope items from MDM / UEM (Intune / Jamf))\n- endpoint_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Hardware lifecycle tracking\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Endpoint Devices: \"Hardware lifecycle tracking\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Hardware lifecycle tracking\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- endpoint_inventory.json   (in-scope items — In-scope inventory for the hardware lifecycle tracking control (from MDM / UEM (Intune / Jamf)))\n- endpoint_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Hardware lifecycle tracking\",\n  \"domain\": \"Endpoint Devices\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ept_",
         "/evidence/endpoint_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"End-user computing / IT\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Hardware lifecycle tracking\" control must cover\n# fragment: hardware_lifecycle_tracking_",
         "/evidence/endpoint_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -998,7 +1001,7 @@ export const endpointStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Hardware lifecycle tracking\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Hardware lifecycle tracking evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the hardware lifecycle tracking control (from MDM / UEM (Intune / Jamf)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -1064,16 +1067,16 @@ export const endpointStages: StageConfig[] = [
         {
           "id": "ept-03-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Hardware lifecycle tracking\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Hardware lifecycle tracking\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the hardware lifecycle tracking control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the hardware lifecycle tracking control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "ept-03-q9",
@@ -1118,8 +1121,8 @@ export const endpointStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Device image version mgmt\" control for Endpoint Devices is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Endpoint Devices source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Device image version mgmt\" control for Endpoint Devices is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Device image version mgmt\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Endpoint Devices systems of record (MDM / UEM (Intune / Jamf); EDR (CrowdStrike / Defender / SentinelOne); Disk-encryption manager (BitLocker/FileVault)) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the device image version mgmt control (from MDM / UEM (Intune / Jamf))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -1156,18 +1159,18 @@ export const endpointStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Device image version mgmt\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Endpoint Devices control.",
+      "tagline": "Auditing \"Device image version mgmt\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the device image version mgmt control (from MDM / UEM (Intune / Jamf))) with read-only agents, run the test against policy, and issue a defensible opinion on the Endpoint Devices control.",
       "year": 2025,
       "overview": [
-        "The \"Device image version mgmt\" sub-process is one of the controls an auditor must verify for Endpoint Devices. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that device image version mgmt is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault) — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Device image version mgmt\" sub-process is one of the controls an auditor must verify for Endpoint Devices. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the device image version mgmt control (from MDM / UEM (Intune / Jamf)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault) — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Device image version mgmt\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `04_device_image_version_mgmt_mcp.py` exposes read-only tools that turn each Endpoint Devices source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `04_device_image_version_mgmt_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from MDM / UEM (Intune / Jamf) and EDR (CrowdStrike / Defender / SentinelOne) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 04_device_image_version_mgmt_mcp.py` to expose it to your agent — or `python 04_device_image_version_mgmt_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -1225,12 +1228,13 @@ export const endpointStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Device image version mgmt\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the device image version mgmt control (from MDM / UEM (Intune / Jamf)).",
+        "The test: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Device image version mgmt\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault)) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the device image version mgmt control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -1254,20 +1258,20 @@ export const endpointStages: StageConfig[] = [
         {
           "name": "04_device_image_version_mgmt_mcp.py",
           "url": "/audit-code/endpoint/04_device_image_version_mgmt_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Endpoint Devices evidence for \"Device image version mgmt\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Endpoint Devices evidence for \"Device image version mgmt\" (in-scope inventory for the device image version mgmt control (from mdm / uem (intune / jamf))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Device image version mgmt\" control for Endpoint Devices at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Device image version mgmt\" control for Endpoint Devices at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Device image version mgmt\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the device image version mgmt control (from MDM / UEM (Intune / Jamf)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live MDM / UEM (Intune / Jamf) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. MDM / UEM (Intune / Jamf) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. MDM / UEM (Intune / Jamf) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from MDM / UEM (Intune / Jamf); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Endpoint Devices: \"Device image version mgmt\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- endpoint_inventory.json   (in-scope items from MDM / UEM (Intune / Jamf))\n- endpoint_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Device image version mgmt\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Endpoint Devices: \"Device image version mgmt\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Device image version mgmt\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- endpoint_inventory.json   (in-scope items — In-scope inventory for the device image version mgmt control (from MDM / UEM (Intune / Jamf)))\n- endpoint_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Device image version mgmt\",\n  \"domain\": \"Endpoint Devices\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ept_",
         "/evidence/endpoint_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"End-user computing / IT\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Device image version mgmt\" control must cover\n# fragment: device_image_version_",
         "/evidence/endpoint_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -1363,7 +1367,7 @@ export const endpointStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Device image version mgmt\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Device image version mgmt evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the device image version mgmt control (from MDM / UEM (Intune / Jamf)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -1429,16 +1433,16 @@ export const endpointStages: StageConfig[] = [
         {
           "id": "ept-04-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Device image version mgmt\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Device image version mgmt\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the device image version mgmt control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the device image version mgmt control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "ept-04-q9",
@@ -1483,8 +1487,8 @@ export const endpointStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"EDR & antimalware\" control for Endpoint Devices is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Endpoint Devices source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"EDR & antimalware\" control for Endpoint Devices is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"EDR & antimalware\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Endpoint Devices systems of record (MDM / UEM (Intune / Jamf); EDR (CrowdStrike / Defender / SentinelOne); Disk-encryption manager (BitLocker/FileVault)) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the edr & antimalware control (from MDM / UEM (Intune / Jamf))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -1521,18 +1525,18 @@ export const endpointStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"EDR & antimalware\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Endpoint Devices control.",
+      "tagline": "Auditing \"EDR & antimalware\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the edr & antimalware control (from MDM / UEM (Intune / Jamf))) with read-only agents, run the test against policy, and issue a defensible opinion on the Endpoint Devices control.",
       "year": 2025,
       "overview": [
-        "The \"EDR & antimalware\" sub-process is one of the controls an auditor must verify for Endpoint Devices. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that edr & antimalware is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault) — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"EDR & antimalware\" sub-process is one of the controls an auditor must verify for Endpoint Devices. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the edr & antimalware control (from MDM / UEM (Intune / Jamf)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault) — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"EDR & antimalware\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `05_edr_antimalware_mcp.py` exposes read-only tools that turn each Endpoint Devices source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `05_edr_antimalware_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from MDM / UEM (Intune / Jamf) and EDR (CrowdStrike / Defender / SentinelOne) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 05_edr_antimalware_mcp.py` to expose it to your agent — or `python 05_edr_antimalware_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -1590,12 +1594,13 @@ export const endpointStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"EDR & antimalware\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the edr & antimalware control (from MDM / UEM (Intune / Jamf)).",
+        "The test: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"EDR & antimalware\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault)) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the edr & antimalware control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -1619,20 +1624,20 @@ export const endpointStages: StageConfig[] = [
         {
           "name": "05_edr_antimalware_mcp.py",
           "url": "/audit-code/endpoint/05_edr_antimalware_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Endpoint Devices evidence for \"EDR & antimalware\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Endpoint Devices evidence for \"EDR & antimalware\" (in-scope inventory for the edr & antimalware control (from mdm / uem (intune / jamf))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"EDR & antimalware\" control for Endpoint Devices at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"EDR & antimalware\" control for Endpoint Devices at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"EDR & antimalware\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the edr & antimalware control (from MDM / UEM (Intune / Jamf)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live MDM / UEM (Intune / Jamf) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. MDM / UEM (Intune / Jamf) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. MDM / UEM (Intune / Jamf) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from MDM / UEM (Intune / Jamf); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Endpoint Devices: \"EDR & antimalware\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- endpoint_inventory.json   (in-scope items from MDM / UEM (Intune / Jamf))\n- endpoint_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"EDR & antimalware\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Endpoint Devices: \"EDR & antimalware\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"EDR & antimalware\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- endpoint_inventory.json   (in-scope items — In-scope inventory for the edr & antimalware control (from MDM / UEM (Intune / Jamf)))\n- endpoint_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"EDR & antimalware\",\n  \"domain\": \"Endpoint Devices\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ept_",
         "/evidence/endpoint_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"End-user computing / IT\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"EDR & antimalware\" control must cover\n# fragment: edr_antimalware_",
         "/evidence/endpoint_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -1728,7 +1733,7 @@ export const endpointStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"EDR & antimalware\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The EDR & antimalware evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the edr & antimalware control (from MDM / UEM (Intune / Jamf)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -1794,16 +1799,16 @@ export const endpointStages: StageConfig[] = [
         {
           "id": "ept-05-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"EDR & antimalware\"?",
+          "challenge": "Typical finding",
+          "text": "For \"EDR & antimalware\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the edr & antimalware control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the edr & antimalware control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "ept-05-q9",
@@ -1848,8 +1853,8 @@ export const endpointStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Coverage gaps\" control for Endpoint Devices is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Endpoint Devices source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Coverage gaps\" control for Endpoint Devices is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Coverage gaps\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Endpoint Devices systems of record (MDM / UEM (Intune / Jamf); EDR (CrowdStrike / Defender / SentinelOne); Disk-encryption manager (BitLocker/FileVault)) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the coverage gaps control (from MDM / UEM (Intune / Jamf))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -1886,18 +1891,18 @@ export const endpointStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Coverage gaps\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Endpoint Devices control.",
+      "tagline": "Auditing \"Coverage gaps\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the coverage gaps control (from MDM / UEM (Intune / Jamf))) with read-only agents, run the test against policy, and issue a defensible opinion on the Endpoint Devices control.",
       "year": 2025,
       "overview": [
-        "The \"Coverage gaps\" sub-process is one of the controls an auditor must verify for Endpoint Devices. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that coverage gaps is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault) — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Coverage gaps\" sub-process is one of the controls an auditor must verify for Endpoint Devices. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the coverage gaps control (from MDM / UEM (Intune / Jamf)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault) — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Coverage gaps\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `06_coverage_gaps_mcp.py` exposes read-only tools that turn each Endpoint Devices source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `06_coverage_gaps_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from MDM / UEM (Intune / Jamf) and EDR (CrowdStrike / Defender / SentinelOne) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 06_coverage_gaps_mcp.py` to expose it to your agent — or `python 06_coverage_gaps_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -1955,12 +1960,13 @@ export const endpointStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Coverage gaps\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the coverage gaps control (from MDM / UEM (Intune / Jamf)).",
+        "The test: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Coverage gaps\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault)) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the coverage gaps control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -1984,20 +1990,20 @@ export const endpointStages: StageConfig[] = [
         {
           "name": "06_coverage_gaps_mcp.py",
           "url": "/audit-code/endpoint/06_coverage_gaps_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Endpoint Devices evidence for \"Coverage gaps\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Endpoint Devices evidence for \"Coverage gaps\" (in-scope inventory for the coverage gaps control (from mdm / uem (intune / jamf))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Coverage gaps\" control for Endpoint Devices at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Coverage gaps\" control for Endpoint Devices at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Coverage gaps\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the coverage gaps control (from MDM / UEM (Intune / Jamf)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live MDM / UEM (Intune / Jamf) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. MDM / UEM (Intune / Jamf) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. MDM / UEM (Intune / Jamf) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from MDM / UEM (Intune / Jamf); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Endpoint Devices: \"Coverage gaps\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- endpoint_inventory.json   (in-scope items from MDM / UEM (Intune / Jamf))\n- endpoint_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Coverage gaps\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Endpoint Devices: \"Coverage gaps\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Coverage gaps\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- endpoint_inventory.json   (in-scope items — In-scope inventory for the coverage gaps control (from MDM / UEM (Intune / Jamf)))\n- endpoint_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Coverage gaps\",\n  \"domain\": \"Endpoint Devices\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ept_",
         "/evidence/endpoint_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"End-user computing / IT\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Coverage gaps\" control must cover\n# fragment: coverage_gaps_",
         "/evidence/endpoint_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -2093,7 +2099,7 @@ export const endpointStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Coverage gaps\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Coverage gaps evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the coverage gaps control (from MDM / UEM (Intune / Jamf)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -2159,16 +2165,16 @@ export const endpointStages: StageConfig[] = [
         {
           "id": "ept-06-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Coverage gaps\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Coverage gaps\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the coverage gaps control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the coverage gaps control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "ept-06-q9",
@@ -2213,8 +2219,8 @@ export const endpointStages: StageConfig[] = [
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"OS patching cadence\" control for Endpoint Devices is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Endpoint Devices source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"OS patching cadence\" control for Endpoint Devices is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"OS patching cadence\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Endpoint Devices systems of record (MDM / UEM (Intune / Jamf); EDR (CrowdStrike / Defender / SentinelOne); Disk-encryption manager (BitLocker/FileVault)) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the os patching cadence control (from MDM / UEM (Intune / Jamf))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -2251,18 +2257,18 @@ export const endpointStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"OS patching cadence\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Endpoint Devices control.",
+      "tagline": "Auditing \"OS patching cadence\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the os patching cadence control (from MDM / UEM (Intune / Jamf))) with read-only agents, run the test against policy, and issue a defensible opinion on the Endpoint Devices control.",
       "year": 2025,
       "overview": [
-        "The \"OS patching cadence\" sub-process is one of the controls an auditor must verify for Endpoint Devices. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that os patching cadence is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault) — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"OS patching cadence\" sub-process is one of the controls an auditor must verify for Endpoint Devices. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the os patching cadence control (from MDM / UEM (Intune / Jamf)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault) — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"OS patching cadence\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `07_os_patching_cadence_mcp.py` exposes read-only tools that turn each Endpoint Devices source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `07_os_patching_cadence_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from MDM / UEM (Intune / Jamf) and EDR (CrowdStrike / Defender / SentinelOne) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 07_os_patching_cadence_mcp.py` to expose it to your agent — or `python 07_os_patching_cadence_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -2320,12 +2326,13 @@ export const endpointStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"OS patching cadence\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the os patching cadence control (from MDM / UEM (Intune / Jamf)).",
+        "The test: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"OS patching cadence\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault)) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the os patching cadence control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -2349,20 +2356,20 @@ export const endpointStages: StageConfig[] = [
         {
           "name": "07_os_patching_cadence_mcp.py",
           "url": "/audit-code/endpoint/07_os_patching_cadence_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Endpoint Devices evidence for \"OS patching cadence\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Endpoint Devices evidence for \"OS patching cadence\" (in-scope inventory for the os patching cadence control (from mdm / uem (intune / jamf))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"OS patching cadence\" control for Endpoint Devices at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"OS patching cadence\" control for Endpoint Devices at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"OS patching cadence\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the os patching cadence control (from MDM / UEM (Intune / Jamf)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live MDM / UEM (Intune / Jamf) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. MDM / UEM (Intune / Jamf) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. MDM / UEM (Intune / Jamf) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from MDM / UEM (Intune / Jamf); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Endpoint Devices: \"OS patching cadence\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- endpoint_inventory.json   (in-scope items from MDM / UEM (Intune / Jamf))\n- endpoint_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"OS patching cadence\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Endpoint Devices: \"OS patching cadence\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"OS patching cadence\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- endpoint_inventory.json   (in-scope items — In-scope inventory for the os patching cadence control (from MDM / UEM (Intune / Jamf)))\n- endpoint_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"OS patching cadence\",\n  \"domain\": \"Endpoint Devices\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ept_",
         "/evidence/endpoint_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"End-user computing / IT\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"OS patching cadence\" control must cover\n# fragment: os_patching_cadence_",
         "/evidence/endpoint_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -2458,7 +2465,7 @@ export const endpointStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"OS patching cadence\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The OS patching cadence evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the os patching cadence control (from MDM / UEM (Intune / Jamf)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -2524,16 +2531,16 @@ export const endpointStages: StageConfig[] = [
         {
           "id": "ept-07-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"OS patching cadence\"?",
+          "challenge": "Typical finding",
+          "text": "For \"OS patching cadence\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the os patching cadence control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the os patching cadence control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "ept-07-q9",
@@ -2578,8 +2585,8 @@ export const endpointStages: StageConfig[] = [
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Vulnerability scanning\" control for Endpoint Devices is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Endpoint Devices source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Vulnerability scanning\" control for Endpoint Devices is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Vulnerability scanning\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Endpoint Devices systems of record (MDM / UEM (Intune / Jamf); EDR (CrowdStrike / Defender / SentinelOne); Disk-encryption manager (BitLocker/FileVault)) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the vulnerability scanning control (from MDM / UEM (Intune / Jamf))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -2616,18 +2623,18 @@ export const endpointStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Vulnerability scanning\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Endpoint Devices control.",
+      "tagline": "Auditing \"Vulnerability scanning\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the vulnerability scanning control (from MDM / UEM (Intune / Jamf))) with read-only agents, run the test against policy, and issue a defensible opinion on the Endpoint Devices control.",
       "year": 2025,
       "overview": [
-        "The \"Vulnerability scanning\" sub-process is one of the controls an auditor must verify for Endpoint Devices. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that vulnerability scanning is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault) — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Vulnerability scanning\" sub-process is one of the controls an auditor must verify for Endpoint Devices. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the vulnerability scanning control (from MDM / UEM (Intune / Jamf)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault) — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Vulnerability scanning\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `08_vulnerability_scanning_mcp.py` exposes read-only tools that turn each Endpoint Devices source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `08_vulnerability_scanning_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from MDM / UEM (Intune / Jamf) and EDR (CrowdStrike / Defender / SentinelOne) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 08_vulnerability_scanning_mcp.py` to expose it to your agent — or `python 08_vulnerability_scanning_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -2685,12 +2692,13 @@ export const endpointStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Vulnerability scanning\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the vulnerability scanning control (from MDM / UEM (Intune / Jamf)).",
+        "The test: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Vulnerability scanning\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault)) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the vulnerability scanning control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -2714,20 +2722,20 @@ export const endpointStages: StageConfig[] = [
         {
           "name": "08_vulnerability_scanning_mcp.py",
           "url": "/audit-code/endpoint/08_vulnerability_scanning_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Endpoint Devices evidence for \"Vulnerability scanning\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Endpoint Devices evidence for \"Vulnerability scanning\" (in-scope inventory for the vulnerability scanning control (from mdm / uem (intune / jamf))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Vulnerability scanning\" control for Endpoint Devices at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Vulnerability scanning\" control for Endpoint Devices at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Vulnerability scanning\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the vulnerability scanning control (from MDM / UEM (Intune / Jamf)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live MDM / UEM (Intune / Jamf) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. MDM / UEM (Intune / Jamf) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. MDM / UEM (Intune / Jamf) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from MDM / UEM (Intune / Jamf); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Endpoint Devices: \"Vulnerability scanning\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- endpoint_inventory.json   (in-scope items from MDM / UEM (Intune / Jamf))\n- endpoint_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Vulnerability scanning\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Endpoint Devices: \"Vulnerability scanning\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Vulnerability scanning\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- endpoint_inventory.json   (in-scope items — In-scope inventory for the vulnerability scanning control (from MDM / UEM (Intune / Jamf)))\n- endpoint_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Vulnerability scanning\",\n  \"domain\": \"Endpoint Devices\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ept_",
         "/evidence/endpoint_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"End-user computing / IT\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Vulnerability scanning\" control must cover\n# fragment: vulnerability_scanning_",
         "/evidence/endpoint_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -2823,7 +2831,7 @@ export const endpointStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Vulnerability scanning\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Vulnerability scanning evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the vulnerability scanning control (from MDM / UEM (Intune / Jamf)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -2889,16 +2897,16 @@ export const endpointStages: StageConfig[] = [
         {
           "id": "ept-08-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Vulnerability scanning\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Vulnerability scanning\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the vulnerability scanning control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the vulnerability scanning control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "ept-08-q9",
@@ -2943,8 +2951,8 @@ export const endpointStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"End-of-life management\" control for Endpoint Devices is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Endpoint Devices source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"End-of-life management\" control for Endpoint Devices is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"End-of-life management\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Endpoint Devices systems of record (MDM / UEM (Intune / Jamf); EDR (CrowdStrike / Defender / SentinelOne); Disk-encryption manager (BitLocker/FileVault)) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the end-of-life management control (from MDM / UEM (Intune / Jamf))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -2981,18 +2989,18 @@ export const endpointStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"End-of-life management\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Endpoint Devices control.",
+      "tagline": "Auditing \"End-of-life management\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the end-of-life management control (from MDM / UEM (Intune / Jamf))) with read-only agents, run the test against policy, and issue a defensible opinion on the Endpoint Devices control.",
       "year": 2025,
       "overview": [
-        "The \"End-of-life management\" sub-process is one of the controls an auditor must verify for Endpoint Devices. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that end-of-life management is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault) — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"End-of-life management\" sub-process is one of the controls an auditor must verify for Endpoint Devices. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the end-of-life management control (from MDM / UEM (Intune / Jamf)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault) — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"End-of-life management\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `09_end_of_life_management_mcp.py` exposes read-only tools that turn each Endpoint Devices source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `09_end_of_life_management_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from MDM / UEM (Intune / Jamf) and EDR (CrowdStrike / Defender / SentinelOne) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 09_end_of_life_management_mcp.py` to expose it to your agent — or `python 09_end_of_life_management_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -3050,12 +3058,13 @@ export const endpointStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"End-of-life management\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the end-of-life management control (from MDM / UEM (Intune / Jamf)).",
+        "The test: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"End-of-life management\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault)) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the end-of-life management control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -3079,20 +3088,20 @@ export const endpointStages: StageConfig[] = [
         {
           "name": "09_end_of_life_management_mcp.py",
           "url": "/audit-code/endpoint/09_end_of_life_management_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Endpoint Devices evidence for \"End-of-life management\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Endpoint Devices evidence for \"End-of-life management\" (in-scope inventory for the end-of-life management control (from mdm / uem (intune / jamf))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"End-of-life management\" control for Endpoint Devices at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"End-of-life management\" control for Endpoint Devices at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"End-of-life management\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the end-of-life management control (from MDM / UEM (Intune / Jamf)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live MDM / UEM (Intune / Jamf) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. MDM / UEM (Intune / Jamf) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. MDM / UEM (Intune / Jamf) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from MDM / UEM (Intune / Jamf); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Endpoint Devices: \"End-of-life management\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- endpoint_inventory.json   (in-scope items from MDM / UEM (Intune / Jamf))\n- endpoint_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"End-of-life management\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Endpoint Devices: \"End-of-life management\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"End-of-life management\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- endpoint_inventory.json   (in-scope items — In-scope inventory for the end-of-life management control (from MDM / UEM (Intune / Jamf)))\n- endpoint_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"End-of-life management\",\n  \"domain\": \"Endpoint Devices\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ept_",
         "/evidence/endpoint_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"End-user computing / IT\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"End-of-life management\" control must cover\n# fragment: endoflife_management_",
         "/evidence/endpoint_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -3188,7 +3197,7 @@ export const endpointStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"End-of-life management\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The End-of-life management evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the end-of-life management control (from MDM / UEM (Intune / Jamf)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -3254,16 +3263,16 @@ export const endpointStages: StageConfig[] = [
         {
           "id": "ept-09-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"End-of-life management\"?",
+          "challenge": "Typical finding",
+          "text": "For \"End-of-life management\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the end-of-life management control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the end-of-life management control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "ept-09-q9",
@@ -3308,8 +3317,8 @@ export const endpointStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Physical controls (USB, BT)\" control for Endpoint Devices is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Endpoint Devices source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Physical controls (USB, BT)\" control for Endpoint Devices is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Physical controls (USB, BT)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Endpoint Devices systems of record (MDM / UEM (Intune / Jamf); EDR (CrowdStrike / Defender / SentinelOne); Disk-encryption manager (BitLocker/FileVault)) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the physical controls (usb, bt) control (from MDM / UEM (Intune / Jamf))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -3346,18 +3355,18 @@ export const endpointStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Physical controls (USB, BT)\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Endpoint Devices control.",
+      "tagline": "Auditing \"Physical controls (USB, BT)\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the physical controls (usb, bt) control (from MDM / UEM (Intune / Jamf))) with read-only agents, run the test against policy, and issue a defensible opinion on the Endpoint Devices control.",
       "year": 2025,
       "overview": [
-        "The \"Physical controls (USB, BT)\" sub-process is one of the controls an auditor must verify for Endpoint Devices. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that physical controls (usb, bt) is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault) — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Physical controls (USB, BT)\" sub-process is one of the controls an auditor must verify for Endpoint Devices. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the physical controls (usb, bt) control (from MDM / UEM (Intune / Jamf)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault) — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Physical controls (USB, BT)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `10_physical_controls_usb_bt_mcp.py` exposes read-only tools that turn each Endpoint Devices source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `10_physical_controls_usb_bt_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from MDM / UEM (Intune / Jamf) and EDR (CrowdStrike / Defender / SentinelOne) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 10_physical_controls_usb_bt_mcp.py` to expose it to your agent — or `python 10_physical_controls_usb_bt_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -3415,12 +3424,13 @@ export const endpointStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Physical controls (USB, BT)\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the physical controls (usb, bt) control (from MDM / UEM (Intune / Jamf)).",
+        "The test: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Physical controls (USB, BT)\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault)) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the physical controls (usb, bt) control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -3444,20 +3454,20 @@ export const endpointStages: StageConfig[] = [
         {
           "name": "10_physical_controls_usb_bt_mcp.py",
           "url": "/audit-code/endpoint/10_physical_controls_usb_bt_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Endpoint Devices evidence for \"Physical controls (USB, BT)\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Endpoint Devices evidence for \"Physical controls (USB, BT)\" (in-scope inventory for the physical controls (usb, bt) control (from mdm / uem (intune / jamf))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Physical controls (USB, BT)\" control for Endpoint Devices at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Physical controls (USB, BT)\" control for Endpoint Devices at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Physical controls (USB, BT)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the physical controls (usb, bt) control (from MDM / UEM (Intune / Jamf)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live MDM / UEM (Intune / Jamf) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. MDM / UEM (Intune / Jamf) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. MDM / UEM (Intune / Jamf) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from MDM / UEM (Intune / Jamf); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Endpoint Devices: \"Physical controls (USB, BT)\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- endpoint_inventory.json   (in-scope items from MDM / UEM (Intune / Jamf))\n- endpoint_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Physical controls (USB, BT)\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Endpoint Devices: \"Physical controls (USB, BT)\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Physical controls (USB, BT)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- endpoint_inventory.json   (in-scope items — In-scope inventory for the physical controls (usb, bt) control (from MDM / UEM (Intune / Jamf)))\n- endpoint_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Physical controls (USB, BT)\",\n  \"domain\": \"Endpoint Devices\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ept_",
         "/evidence/endpoint_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"End-user computing / IT\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Physical controls (USB, BT)\" control must cover\n# fragment: physical_controls_usb_",
         "/evidence/endpoint_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -3553,7 +3563,7 @@ export const endpointStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Physical controls (USB, BT)\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Physical controls (USB, BT) evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the physical controls (usb, bt) control (from MDM / UEM (Intune / Jamf)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -3619,16 +3629,16 @@ export const endpointStages: StageConfig[] = [
         {
           "id": "ept-10-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Physical controls (USB, BT)\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Physical controls (USB, BT)\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the physical controls (usb, bt) control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the physical controls (usb, bt) control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "ept-10-q9",
@@ -3673,8 +3683,8 @@ export const endpointStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Screen lock and timeout\" control for Endpoint Devices is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Endpoint Devices source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Screen lock and timeout\" control for Endpoint Devices is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Screen lock and timeout\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Endpoint Devices systems of record (MDM / UEM (Intune / Jamf); EDR (CrowdStrike / Defender / SentinelOne); Disk-encryption manager (BitLocker/FileVault)) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the screen lock and timeout control (from MDM / UEM (Intune / Jamf))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -3711,18 +3721,18 @@ export const endpointStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Screen lock and timeout\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Endpoint Devices control.",
+      "tagline": "Auditing \"Screen lock and timeout\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the screen lock and timeout control (from MDM / UEM (Intune / Jamf))) with read-only agents, run the test against policy, and issue a defensible opinion on the Endpoint Devices control.",
       "year": 2025,
       "overview": [
-        "The \"Screen lock and timeout\" sub-process is one of the controls an auditor must verify for Endpoint Devices. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that screen lock and timeout is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault) — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Screen lock and timeout\" sub-process is one of the controls an auditor must verify for Endpoint Devices. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the screen lock and timeout control (from MDM / UEM (Intune / Jamf)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault) — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Screen lock and timeout\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `11_screen_lock_and_timeout_mcp.py` exposes read-only tools that turn each Endpoint Devices source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `11_screen_lock_and_timeout_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from MDM / UEM (Intune / Jamf) and EDR (CrowdStrike / Defender / SentinelOne) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 11_screen_lock_and_timeout_mcp.py` to expose it to your agent — or `python 11_screen_lock_and_timeout_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -3780,12 +3790,13 @@ export const endpointStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Screen lock and timeout\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the screen lock and timeout control (from MDM / UEM (Intune / Jamf)).",
+        "The test: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Screen lock and timeout\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault)) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the screen lock and timeout control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -3809,20 +3820,20 @@ export const endpointStages: StageConfig[] = [
         {
           "name": "11_screen_lock_and_timeout_mcp.py",
           "url": "/audit-code/endpoint/11_screen_lock_and_timeout_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Endpoint Devices evidence for \"Screen lock and timeout\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Endpoint Devices evidence for \"Screen lock and timeout\" (in-scope inventory for the screen lock and timeout control (from mdm / uem (intune / jamf))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Screen lock and timeout\" control for Endpoint Devices at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Screen lock and timeout\" control for Endpoint Devices at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Screen lock and timeout\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the screen lock and timeout control (from MDM / UEM (Intune / Jamf)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live MDM / UEM (Intune / Jamf) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. MDM / UEM (Intune / Jamf) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. MDM / UEM (Intune / Jamf) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from MDM / UEM (Intune / Jamf); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Endpoint Devices: \"Screen lock and timeout\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- endpoint_inventory.json   (in-scope items from MDM / UEM (Intune / Jamf))\n- endpoint_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Screen lock and timeout\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Endpoint Devices: \"Screen lock and timeout\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Screen lock and timeout\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- endpoint_inventory.json   (in-scope items — In-scope inventory for the screen lock and timeout control (from MDM / UEM (Intune / Jamf)))\n- endpoint_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Screen lock and timeout\",\n  \"domain\": \"Endpoint Devices\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ept_",
         "/evidence/endpoint_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"End-user computing / IT\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Screen lock and timeout\" control must cover\n# fragment: screen_lock_timeout_",
         "/evidence/endpoint_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -3918,7 +3929,7 @@ export const endpointStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Screen lock and timeout\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Screen lock and timeout evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the screen lock and timeout control (from MDM / UEM (Intune / Jamf)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -3984,16 +3995,16 @@ export const endpointStages: StageConfig[] = [
         {
           "id": "ept-11-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Screen lock and timeout\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Screen lock and timeout\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the screen lock and timeout control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the screen lock and timeout control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "ept-11-q9",
@@ -4038,8 +4049,8 @@ export const endpointStages: StageConfig[] = [
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Full disk encryption\" control for Endpoint Devices is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Endpoint Devices source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Full disk encryption\" control for Endpoint Devices is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Full disk encryption\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Endpoint Devices systems of record (MDM / UEM (Intune / Jamf); EDR (CrowdStrike / Defender / SentinelOne); Disk-encryption manager (BitLocker/FileVault)) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the full disk encryption control (from MDM / UEM (Intune / Jamf))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -4076,18 +4087,18 @@ export const endpointStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Full disk encryption\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Endpoint Devices control.",
+      "tagline": "Auditing \"Full disk encryption\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the full disk encryption control (from MDM / UEM (Intune / Jamf))) with read-only agents, run the test against policy, and issue a defensible opinion on the Endpoint Devices control.",
       "year": 2025,
       "overview": [
-        "The \"Full disk encryption\" sub-process is one of the controls an auditor must verify for Endpoint Devices. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that full disk encryption is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault) — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Full disk encryption\" sub-process is one of the controls an auditor must verify for Endpoint Devices. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the full disk encryption control (from MDM / UEM (Intune / Jamf)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault) — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Full disk encryption\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `12_full_disk_encryption_mcp.py` exposes read-only tools that turn each Endpoint Devices source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `12_full_disk_encryption_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from MDM / UEM (Intune / Jamf) and EDR (CrowdStrike / Defender / SentinelOne) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 12_full_disk_encryption_mcp.py` to expose it to your agent — or `python 12_full_disk_encryption_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -4145,12 +4156,13 @@ export const endpointStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Full disk encryption\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the full disk encryption control (from MDM / UEM (Intune / Jamf)).",
+        "The test: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Full disk encryption\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault)) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the full disk encryption control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -4174,20 +4186,20 @@ export const endpointStages: StageConfig[] = [
         {
           "name": "12_full_disk_encryption_mcp.py",
           "url": "/audit-code/endpoint/12_full_disk_encryption_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Endpoint Devices evidence for \"Full disk encryption\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Endpoint Devices evidence for \"Full disk encryption\" (in-scope inventory for the full disk encryption control (from mdm / uem (intune / jamf))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Full disk encryption\" control for Endpoint Devices at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Full disk encryption\" control for Endpoint Devices at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Full disk encryption\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the full disk encryption control (from MDM / UEM (Intune / Jamf)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live MDM / UEM (Intune / Jamf) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. MDM / UEM (Intune / Jamf) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. MDM / UEM (Intune / Jamf) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from MDM / UEM (Intune / Jamf); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Endpoint Devices: \"Full disk encryption\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- endpoint_inventory.json   (in-scope items from MDM / UEM (Intune / Jamf))\n- endpoint_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Full disk encryption\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Endpoint Devices: \"Full disk encryption\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Full disk encryption\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- endpoint_inventory.json   (in-scope items — In-scope inventory for the full disk encryption control (from MDM / UEM (Intune / Jamf)))\n- endpoint_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Full disk encryption\",\n  \"domain\": \"Endpoint Devices\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ept_",
         "/evidence/endpoint_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"End-user computing / IT\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Full disk encryption\" control must cover\n# fragment: full_disk_encryption_",
         "/evidence/endpoint_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -4283,7 +4295,7 @@ export const endpointStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Full disk encryption\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Full disk encryption evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the full disk encryption control (from MDM / UEM (Intune / Jamf)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -4349,16 +4361,16 @@ export const endpointStages: StageConfig[] = [
         {
           "id": "ept-12-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Full disk encryption\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Full disk encryption\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the full disk encryption control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the full disk encryption control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "ept-12-q9",
@@ -4403,8 +4415,8 @@ export const endpointStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Data loss prevention (endpoint)\" control for Endpoint Devices is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Endpoint Devices source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Data loss prevention (endpoint)\" control for Endpoint Devices is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Data loss prevention (endpoint)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Endpoint Devices systems of record (MDM / UEM (Intune / Jamf); EDR (CrowdStrike / Defender / SentinelOne); Disk-encryption manager (BitLocker/FileVault)) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the data loss prevention (endpoint) control (from MDM / UEM (Intune / Jamf))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -4441,18 +4453,18 @@ export const endpointStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Data loss prevention (endpoint)\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Endpoint Devices control.",
+      "tagline": "Auditing \"Data loss prevention (endpoint)\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the data loss prevention (endpoint) control (from MDM / UEM (Intune / Jamf))) with read-only agents, run the test against policy, and issue a defensible opinion on the Endpoint Devices control.",
       "year": 2025,
       "overview": [
-        "The \"Data loss prevention (endpoint)\" sub-process is one of the controls an auditor must verify for Endpoint Devices. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that data loss prevention (endpoint) is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault) — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Data loss prevention (endpoint)\" sub-process is one of the controls an auditor must verify for Endpoint Devices. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the data loss prevention (endpoint) control (from MDM / UEM (Intune / Jamf)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault) — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Data loss prevention (endpoint)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `13_data_loss_prevention_endpoint_mcp.py` exposes read-only tools that turn each Endpoint Devices source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `13_data_loss_prevention_endpoint_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from MDM / UEM (Intune / Jamf) and EDR (CrowdStrike / Defender / SentinelOne) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 13_data_loss_prevention_endpoint_mcp.py` to expose it to your agent — or `python 13_data_loss_prevention_endpoint_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -4510,12 +4522,13 @@ export const endpointStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Data loss prevention (endpoint)\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the data loss prevention (endpoint) control (from MDM / UEM (Intune / Jamf)).",
+        "The test: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Data loss prevention (endpoint)\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault)) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the data loss prevention (endpoint) control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -4539,20 +4552,20 @@ export const endpointStages: StageConfig[] = [
         {
           "name": "13_data_loss_prevention_endpoint_mcp.py",
           "url": "/audit-code/endpoint/13_data_loss_prevention_endpoint_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Endpoint Devices evidence for \"Data loss prevention (endpoint)\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Endpoint Devices evidence for \"Data loss prevention (endpoint)\" (in-scope inventory for the data loss prevention (endpoint) control (from mdm / uem (intune / jamf))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Data loss prevention (endpoint)\" control for Endpoint Devices at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Data loss prevention (endpoint)\" control for Endpoint Devices at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Data loss prevention (endpoint)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the data loss prevention (endpoint) control (from MDM / UEM (Intune / Jamf)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live MDM / UEM (Intune / Jamf) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. MDM / UEM (Intune / Jamf) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. MDM / UEM (Intune / Jamf) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from MDM / UEM (Intune / Jamf); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Endpoint Devices: \"Data loss prevention (endpoint)\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- endpoint_inventory.json   (in-scope items from MDM / UEM (Intune / Jamf))\n- endpoint_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Data loss prevention (endpoint)\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Endpoint Devices: \"Data loss prevention (endpoint)\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Data loss prevention (endpoint)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- endpoint_inventory.json   (in-scope items — In-scope inventory for the data loss prevention (endpoint) control (from MDM / UEM (Intune / Jamf)))\n- endpoint_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Data loss prevention (endpoint)\",\n  \"domain\": \"Endpoint Devices\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ept_",
         "/evidence/endpoint_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"End-user computing / IT\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Data loss prevention (endpoint)\" control must cover\n# fragment: data_loss_prevention_",
         "/evidence/endpoint_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -4648,7 +4661,7 @@ export const endpointStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Data loss prevention (endpoint)\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Data loss prevention (endpoint) evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the data loss prevention (endpoint) control (from MDM / UEM (Intune / Jamf)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -4714,16 +4727,16 @@ export const endpointStages: StageConfig[] = [
         {
           "id": "ept-13-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Data loss prevention (endpoint)\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Data loss prevention (endpoint)\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the data loss prevention (endpoint) control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the data loss prevention (endpoint) control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "ept-13-q9",
@@ -4768,8 +4781,8 @@ export const endpointStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"MDM and containerization\" control for Endpoint Devices is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Endpoint Devices source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"MDM and containerization\" control for Endpoint Devices is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"MDM and containerization\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Endpoint Devices systems of record (MDM / UEM (Intune / Jamf); EDR (CrowdStrike / Defender / SentinelOne); Disk-encryption manager (BitLocker/FileVault)) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the mdm and containerization control (from MDM / UEM (Intune / Jamf))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -4806,18 +4819,18 @@ export const endpointStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"MDM and containerization\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Endpoint Devices control.",
+      "tagline": "Auditing \"MDM and containerization\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the mdm and containerization control (from MDM / UEM (Intune / Jamf))) with read-only agents, run the test against policy, and issue a defensible opinion on the Endpoint Devices control.",
       "year": 2025,
       "overview": [
-        "The \"MDM and containerization\" sub-process is one of the controls an auditor must verify for Endpoint Devices. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that mdm and containerization is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault) — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"MDM and containerization\" sub-process is one of the controls an auditor must verify for Endpoint Devices. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the mdm and containerization control (from MDM / UEM (Intune / Jamf)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault) — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"MDM and containerization\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `14_mdm_and_containerization_mcp.py` exposes read-only tools that turn each Endpoint Devices source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `14_mdm_and_containerization_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from MDM / UEM (Intune / Jamf) and EDR (CrowdStrike / Defender / SentinelOne) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 14_mdm_and_containerization_mcp.py` to expose it to your agent — or `python 14_mdm_and_containerization_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -4875,12 +4888,13 @@ export const endpointStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"MDM and containerization\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the mdm and containerization control (from MDM / UEM (Intune / Jamf)).",
+        "The test: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"MDM and containerization\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault)) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the mdm and containerization control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -4904,20 +4918,20 @@ export const endpointStages: StageConfig[] = [
         {
           "name": "14_mdm_and_containerization_mcp.py",
           "url": "/audit-code/endpoint/14_mdm_and_containerization_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Endpoint Devices evidence for \"MDM and containerization\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Endpoint Devices evidence for \"MDM and containerization\" (in-scope inventory for the mdm and containerization control (from mdm / uem (intune / jamf))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"MDM and containerization\" control for Endpoint Devices at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"MDM and containerization\" control for Endpoint Devices at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"MDM and containerization\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the mdm and containerization control (from MDM / UEM (Intune / Jamf)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live MDM / UEM (Intune / Jamf) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. MDM / UEM (Intune / Jamf) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. MDM / UEM (Intune / Jamf) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from MDM / UEM (Intune / Jamf); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Endpoint Devices: \"MDM and containerization\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- endpoint_inventory.json   (in-scope items from MDM / UEM (Intune / Jamf))\n- endpoint_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"MDM and containerization\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Endpoint Devices: \"MDM and containerization\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"MDM and containerization\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- endpoint_inventory.json   (in-scope items — In-scope inventory for the mdm and containerization control (from MDM / UEM (Intune / Jamf)))\n- endpoint_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"MDM and containerization\",\n  \"domain\": \"Endpoint Devices\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ept_",
         "/evidence/endpoint_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"End-user computing / IT\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"MDM and containerization\" control must cover\n# fragment: mdm_containerization_",
         "/evidence/endpoint_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -5013,7 +5027,7 @@ export const endpointStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"MDM and containerization\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The MDM and containerization evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the mdm and containerization control (from MDM / UEM (Intune / Jamf)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -5079,16 +5093,16 @@ export const endpointStages: StageConfig[] = [
         {
           "id": "ept-14-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"MDM and containerization\"?",
+          "challenge": "Typical finding",
+          "text": "For \"MDM and containerization\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the mdm and containerization control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the mdm and containerization control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "ept-14-q9",
@@ -5133,8 +5147,8 @@ export const endpointStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"NAC, VPN, ZTNA\" control for Endpoint Devices is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Endpoint Devices source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"NAC, VPN, ZTNA\" control for Endpoint Devices is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"NAC, VPN, ZTNA\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Endpoint Devices systems of record (MDM / UEM (Intune / Jamf); EDR (CrowdStrike / Defender / SentinelOne); Disk-encryption manager (BitLocker/FileVault)) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the nac, vpn, ztna control (from MDM / UEM (Intune / Jamf))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -5171,18 +5185,18 @@ export const endpointStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"NAC, VPN, ZTNA\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Endpoint Devices control.",
+      "tagline": "Auditing \"NAC, VPN, ZTNA\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the nac, vpn, ztna control (from MDM / UEM (Intune / Jamf))) with read-only agents, run the test against policy, and issue a defensible opinion on the Endpoint Devices control.",
       "year": 2025,
       "overview": [
-        "The \"NAC, VPN, ZTNA\" sub-process is one of the controls an auditor must verify for Endpoint Devices. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that nac, vpn, ztna is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault) — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"NAC, VPN, ZTNA\" sub-process is one of the controls an auditor must verify for Endpoint Devices. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the nac, vpn, ztna control (from MDM / UEM (Intune / Jamf)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault) — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"NAC, VPN, ZTNA\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `15_nac_vpn_ztna_mcp.py` exposes read-only tools that turn each Endpoint Devices source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `15_nac_vpn_ztna_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from MDM / UEM (Intune / Jamf) and EDR (CrowdStrike / Defender / SentinelOne) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 15_nac_vpn_ztna_mcp.py` to expose it to your agent — or `python 15_nac_vpn_ztna_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -5240,12 +5254,13 @@ export const endpointStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"NAC, VPN, ZTNA\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the nac, vpn, ztna control (from MDM / UEM (Intune / Jamf)).",
+        "The test: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"NAC, VPN, ZTNA\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault)) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the nac, vpn, ztna control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -5269,20 +5284,20 @@ export const endpointStages: StageConfig[] = [
         {
           "name": "15_nac_vpn_ztna_mcp.py",
           "url": "/audit-code/endpoint/15_nac_vpn_ztna_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Endpoint Devices evidence for \"NAC, VPN, ZTNA\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Endpoint Devices evidence for \"NAC, VPN, ZTNA\" (in-scope inventory for the nac, vpn, ztna control (from mdm / uem (intune / jamf))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"NAC, VPN, ZTNA\" control for Endpoint Devices at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"NAC, VPN, ZTNA\" control for Endpoint Devices at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"NAC, VPN, ZTNA\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the nac, vpn, ztna control (from MDM / UEM (Intune / Jamf)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live MDM / UEM (Intune / Jamf) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. MDM / UEM (Intune / Jamf) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. MDM / UEM (Intune / Jamf) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from MDM / UEM (Intune / Jamf); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Endpoint Devices: \"NAC, VPN, ZTNA\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- endpoint_inventory.json   (in-scope items from MDM / UEM (Intune / Jamf))\n- endpoint_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"NAC, VPN, ZTNA\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Endpoint Devices: \"NAC, VPN, ZTNA\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"NAC, VPN, ZTNA\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- endpoint_inventory.json   (in-scope items — In-scope inventory for the nac, vpn, ztna control (from MDM / UEM (Intune / Jamf)))\n- endpoint_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"NAC, VPN, ZTNA\",\n  \"domain\": \"Endpoint Devices\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ept_",
         "/evidence/endpoint_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"End-user computing / IT\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"NAC, VPN, ZTNA\" control must cover\n# fragment: nac_vpn_ztna_",
         "/evidence/endpoint_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -5378,7 +5393,7 @@ export const endpointStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"NAC, VPN, ZTNA\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The NAC, VPN, ZTNA evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the nac, vpn, ztna control (from MDM / UEM (Intune / Jamf)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -5444,16 +5459,16 @@ export const endpointStages: StageConfig[] = [
         {
           "id": "ept-15-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"NAC, VPN, ZTNA\"?",
+          "challenge": "Typical finding",
+          "text": "For \"NAC, VPN, ZTNA\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the nac, vpn, ztna control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the nac, vpn, ztna control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "ept-15-q9",
@@ -5498,8 +5513,8 @@ export const endpointStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"GPS, log collection coverage\" control for Endpoint Devices is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Endpoint Devices source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"GPS, log collection coverage\" control for Endpoint Devices is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"GPS, log collection coverage\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Endpoint Devices systems of record (MDM / UEM (Intune / Jamf); EDR (CrowdStrike / Defender / SentinelOne); Disk-encryption manager (BitLocker/FileVault)) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the gps, log collection coverage control (from MDM / UEM (Intune / Jamf))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -5536,18 +5551,18 @@ export const endpointStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"GPS, log collection coverage\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Endpoint Devices control.",
+      "tagline": "Auditing \"GPS, log collection coverage\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the gps, log collection coverage control (from MDM / UEM (Intune / Jamf))) with read-only agents, run the test against policy, and issue a defensible opinion on the Endpoint Devices control.",
       "year": 2025,
       "overview": [
-        "The \"GPS, log collection coverage\" sub-process is one of the controls an auditor must verify for Endpoint Devices. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that gps, log collection coverage is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault) — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"GPS, log collection coverage\" sub-process is one of the controls an auditor must verify for Endpoint Devices. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the gps, log collection coverage control (from MDM / UEM (Intune / Jamf)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault) — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"GPS, log collection coverage\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `16_gps_log_collection_coverage_mcp.py` exposes read-only tools that turn each Endpoint Devices source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `16_gps_log_collection_coverage_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from MDM / UEM (Intune / Jamf) and EDR (CrowdStrike / Defender / SentinelOne) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 16_gps_log_collection_coverage_mcp.py` to expose it to your agent — or `python 16_gps_log_collection_coverage_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -5605,12 +5620,13 @@ export const endpointStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"GPS, log collection coverage\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the gps, log collection coverage control (from MDM / UEM (Intune / Jamf)).",
+        "The test: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"GPS, log collection coverage\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault)) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the gps, log collection coverage control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -5634,20 +5650,20 @@ export const endpointStages: StageConfig[] = [
         {
           "name": "16_gps_log_collection_coverage_mcp.py",
           "url": "/audit-code/endpoint/16_gps_log_collection_coverage_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Endpoint Devices evidence for \"GPS, log collection coverage\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Endpoint Devices evidence for \"GPS, log collection coverage\" (in-scope inventory for the gps, log collection coverage control (from mdm / uem (intune / jamf))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"GPS, log collection coverage\" control for Endpoint Devices at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"GPS, log collection coverage\" control for Endpoint Devices at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"GPS, log collection coverage\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the gps, log collection coverage control (from MDM / UEM (Intune / Jamf)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live MDM / UEM (Intune / Jamf) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. MDM / UEM (Intune / Jamf) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. MDM / UEM (Intune / Jamf) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from MDM / UEM (Intune / Jamf); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Endpoint Devices: \"GPS, log collection coverage\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- endpoint_inventory.json   (in-scope items from MDM / UEM (Intune / Jamf))\n- endpoint_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"GPS, log collection coverage\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Endpoint Devices: \"GPS, log collection coverage\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"GPS, log collection coverage\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- endpoint_inventory.json   (in-scope items — In-scope inventory for the gps, log collection coverage control (from MDM / UEM (Intune / Jamf)))\n- endpoint_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"GPS, log collection coverage\",\n  \"domain\": \"Endpoint Devices\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ept_",
         "/evidence/endpoint_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"End-user computing / IT\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"GPS, log collection coverage\" control must cover\n# fragment: gps_log_collection_",
         "/evidence/endpoint_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -5743,7 +5759,7 @@ export const endpointStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"GPS, log collection coverage\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The GPS, log collection coverage evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the gps, log collection coverage control (from MDM / UEM (Intune / Jamf)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -5809,16 +5825,16 @@ export const endpointStages: StageConfig[] = [
         {
           "id": "ept-16-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"GPS, log collection coverage\"?",
+          "challenge": "Typical finding",
+          "text": "For \"GPS, log collection coverage\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the gps, log collection coverage control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the gps, log collection coverage control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "ept-16-q9",
@@ -5863,8 +5879,8 @@ export const endpointStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Forensic readiness\" control for Endpoint Devices is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Endpoint Devices source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Forensic readiness\" control for Endpoint Devices is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Forensic readiness\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Endpoint Devices systems of record (MDM / UEM (Intune / Jamf); EDR (CrowdStrike / Defender / SentinelOne); Disk-encryption manager (BitLocker/FileVault)) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the forensic readiness control (from MDM / UEM (Intune / Jamf))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -5901,18 +5917,18 @@ export const endpointStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Forensic readiness\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Endpoint Devices control.",
+      "tagline": "Auditing \"Forensic readiness\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the forensic readiness control (from MDM / UEM (Intune / Jamf))) with read-only agents, run the test against policy, and issue a defensible opinion on the Endpoint Devices control.",
       "year": 2025,
       "overview": [
-        "The \"Forensic readiness\" sub-process is one of the controls an auditor must verify for Endpoint Devices. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that forensic readiness is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault) — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Forensic readiness\" sub-process is one of the controls an auditor must verify for Endpoint Devices. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the forensic readiness control (from MDM / UEM (Intune / Jamf)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault) — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Forensic readiness\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `17_forensic_readiness_mcp.py` exposes read-only tools that turn each Endpoint Devices source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `17_forensic_readiness_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from MDM / UEM (Intune / Jamf) and EDR (CrowdStrike / Defender / SentinelOne) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 17_forensic_readiness_mcp.py` to expose it to your agent — or `python 17_forensic_readiness_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -5970,12 +5986,13 @@ export const endpointStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Forensic readiness\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the forensic readiness control (from MDM / UEM (Intune / Jamf)).",
+        "The test: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Forensic readiness\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault)) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the forensic readiness control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -5999,20 +6016,20 @@ export const endpointStages: StageConfig[] = [
         {
           "name": "17_forensic_readiness_mcp.py",
           "url": "/audit-code/endpoint/17_forensic_readiness_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Endpoint Devices evidence for \"Forensic readiness\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Endpoint Devices evidence for \"Forensic readiness\" (in-scope inventory for the forensic readiness control (from mdm / uem (intune / jamf))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Forensic readiness\" control for Endpoint Devices at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Forensic readiness\" control for Endpoint Devices at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Forensic readiness\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the forensic readiness control (from MDM / UEM (Intune / Jamf)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live MDM / UEM (Intune / Jamf) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. MDM / UEM (Intune / Jamf) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. MDM / UEM (Intune / Jamf) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from MDM / UEM (Intune / Jamf); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Endpoint Devices: \"Forensic readiness\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- endpoint_inventory.json   (in-scope items from MDM / UEM (Intune / Jamf))\n- endpoint_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Forensic readiness\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Endpoint Devices: \"Forensic readiness\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Forensic readiness\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- endpoint_inventory.json   (in-scope items — In-scope inventory for the forensic readiness control (from MDM / UEM (Intune / Jamf)))\n- endpoint_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Forensic readiness\",\n  \"domain\": \"Endpoint Devices\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ept_",
         "/evidence/endpoint_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"End-user computing / IT\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Forensic readiness\" control must cover\n# fragment: forensic_readiness_",
         "/evidence/endpoint_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -6108,7 +6125,7 @@ export const endpointStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Forensic readiness\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Forensic readiness evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the forensic readiness control (from MDM / UEM (Intune / Jamf)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -6174,16 +6191,16 @@ export const endpointStages: StageConfig[] = [
         {
           "id": "ept-17-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Forensic readiness\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Forensic readiness\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the forensic readiness control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the forensic readiness control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "ept-17-q9",
@@ -6228,8 +6245,8 @@ export const endpointStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Exception management\" control for Endpoint Devices is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Endpoint Devices source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Exception management\" control for Endpoint Devices is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Exception management\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Endpoint Devices systems of record (MDM / UEM (Intune / Jamf); EDR (CrowdStrike / Defender / SentinelOne); Disk-encryption manager (BitLocker/FileVault)) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the exception management control (from MDM / UEM (Intune / Jamf))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -6266,18 +6283,18 @@ export const endpointStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Exception management\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Endpoint Devices control.",
+      "tagline": "Auditing \"Exception management\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the exception management control (from MDM / UEM (Intune / Jamf))) with read-only agents, run the test against policy, and issue a defensible opinion on the Endpoint Devices control.",
       "year": 2025,
       "overview": [
-        "The \"Exception management\" sub-process is one of the controls an auditor must verify for Endpoint Devices. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that exception management is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault) — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Exception management\" sub-process is one of the controls an auditor must verify for Endpoint Devices. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the exception management control (from MDM / UEM (Intune / Jamf)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault) — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Exception management\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `18_exception_management_mcp.py` exposes read-only tools that turn each Endpoint Devices source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `18_exception_management_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from MDM / UEM (Intune / Jamf) and EDR (CrowdStrike / Defender / SentinelOne) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 18_exception_management_mcp.py` to expose it to your agent — or `python 18_exception_management_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -6335,12 +6352,13 @@ export const endpointStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Exception management\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the exception management control (from MDM / UEM (Intune / Jamf)).",
+        "The test: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Exception management\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (MDM / UEM (Intune / Jamf), EDR (CrowdStrike / Defender / SentinelOne), Disk-encryption manager (BitLocker/FileVault)) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the exception management control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -6364,20 +6382,20 @@ export const endpointStages: StageConfig[] = [
         {
           "name": "18_exception_management_mcp.py",
           "url": "/audit-code/endpoint/18_exception_management_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Endpoint Devices evidence for \"Exception management\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Endpoint Devices evidence for \"Exception management\" (in-scope inventory for the exception management control (from mdm / uem (intune / jamf))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Exception management\" control for Endpoint Devices at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Exception management\" control for Endpoint Devices at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Exception management\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the exception management control (from MDM / UEM (Intune / Jamf)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live MDM / UEM (Intune / Jamf) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. MDM / UEM (Intune / Jamf) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. MDM / UEM (Intune / Jamf) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from MDM / UEM (Intune / Jamf); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Endpoint Devices: \"Exception management\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- endpoint_inventory.json   (in-scope items from MDM / UEM (Intune / Jamf))\n- endpoint_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Exception management\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Endpoint Devices: \"Exception management\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Endpoint Devices policy/standard and flag every item where the \"Exception management\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- endpoint_inventory.json   (in-scope items — In-scope inventory for the exception management control (from MDM / UEM (Intune / Jamf)))\n- endpoint_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Exception management\",\n  \"domain\": \"Endpoint Devices\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ept_",
         "/evidence/endpoint_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"End-user computing / IT\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Exception management\" control must cover\n# fragment: exception_management_",
         "/evidence/endpoint_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -6473,7 +6491,7 @@ export const endpointStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Exception management\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Exception management evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the exception management control (from MDM / UEM (Intune / Jamf)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -6539,16 +6557,16 @@ export const endpointStages: StageConfig[] = [
         {
           "id": "ept-18-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Exception management\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Exception management\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the exception management control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the exception management control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "ept-18-q9",

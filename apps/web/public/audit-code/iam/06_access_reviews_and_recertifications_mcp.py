@@ -1,17 +1,26 @@
 #!/usr/bin/env python3
-"""Read-only MCP server — Identity & Access Mgmt: "Access reviews and recertifications" audit evidence.
+"""Read-only MCP server — Identity & Access Management (IAM): "Access reviews and recertifications" audit evidence.
 
-Gathers the in-scope inventory and the observed control state from this domain's
-systems of record, evaluates each item against policy, and reports the exceptions
-with a PASS / EXCEPTIONS / MATERIAL-GAP opinion. READ-ONLY: it lists and reports,
-never changes state — the hard requirement for audit tooling.
+THE TEST
+Examine the most recent recertification campaign for in-scope high-risk entitlements. PASS: every high-risk entitlement was reviewed by an accountable owner within the cycle (e.g. quarterly for privileged, annually for standard); 'revoke' decisions were actually executed within SLA; and no reviewer certified their own access. Exceptions: entitlements never included in any campaign, revokes decided but not executed, a reviewer approving 100% of items in minutes (rubber-stamping), or reviewer = grantee.
+
+ARTIFACT (what _gather() pulls)
+    The access-certification campaign records — reviewer, items reviewed, approve/revoke decisions, and timestamps
+
+REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
+    SailPoint: certification campaign export (item-level decisions + decision timestamps)
+    Entra:    GET /identityGovernance/accessReviews/definitions/{id}/instances/{id}/decisions
+    Correlate: each 'revoke' decision → the deprovisioning ticket/event that executed it
+    Analytics: per-reviewer approve-rate and median seconds-per-decision (rubber-stamp signal)
+
+This server gathers the in-scope inventory and the observed control state, evaluates
+each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /
+MATERIAL-GAP opinion. READ-ONLY: it lists and reports, never changes state — the hard
+requirement for audit tooling.
 
   pip install "mcp[cli]"
   mcp run 06_access_reviews_and_recertifications_mcp.py                 # expose to an agent
   python 06_access_reviews_and_recertifications_mcp.py --selftest       # reproduce findings against fixtures, offline
-
-Wire real sources by replacing the _gather() fixtures with read-only API calls to
-IdP (Okta / Entra ID / Ping), PAM (CyberArk / Delinea), IGA / access-review platform, Directory (AD / LDAP).
 """
 from __future__ import annotations
 import json, sys
@@ -68,7 +77,7 @@ def coverage_report() -> dict:
                else "EXCEPTIONS" if len(exceptions) <= EXCEPTION_THRESHOLD
                else "MATERIAL GAP")
     return {
-        "domain": "Identity & Access Mgmt",
+        "domain": "Identity & Access Management (IAM)",
         "control": "Access reviews and recertifications",
         "in_scope": len(rows),
         "compliant": len(rows) - len(exceptions),

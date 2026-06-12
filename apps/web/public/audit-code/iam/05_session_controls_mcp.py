@@ -1,17 +1,26 @@
 #!/usr/bin/env python3
-"""Read-only MCP server — Identity & Access Mgmt: "Session controls" audit evidence.
+"""Read-only MCP server — Identity & Access Management (IAM): "Session controls" audit evidence.
 
-Gathers the in-scope inventory and the observed control state from this domain's
-systems of record, evaluates each item against policy, and reports the exceptions
-with a PASS / EXCEPTIONS / MATERIAL-GAP opinion. READ-ONLY: it lists and reports,
-never changes state — the hard requirement for audit tooling.
+THE TEST
+Review session controls across the IdP and the sensitive applications. PASS: idle and absolute session limits are set in proportion to sensitivity (e.g. ≤15-min idle for admin consoles); refresh-token lifetime is bounded and rotated; step-up reauthentication is required for high-risk actions; sessions are revoked on logout and termination; cookies are HttpOnly/Secure/SameSite. Exceptions: unbounded or over-long sessions on sensitive apps, no step-up, refresh tokens never rotated, sessions not revoked on deprovision.
+
+ARTIFACT (what _gather() pulls)
+    The IdP session/token policy export — idle timeout, absolute lifetime, refresh-token lifetime + rotation, reauthentication rules
+
+REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
+    Okta:  GET /api/v1/policies?type=ACCESS_POLICY  (session rules) and the global session policy export
+    Entra: Conditional Access 'Sign-in frequency' + 'Persistent browser session' policy export
+    App:   inspect Set-Cookie flags + documented idle/absolute timeouts for each sensitive app
+    Token: confirm refresh-token rotation + revocation-on-logout in the OAuth/OIDC config
+
+This server gathers the in-scope inventory and the observed control state, evaluates
+each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /
+MATERIAL-GAP opinion. READ-ONLY: it lists and reports, never changes state — the hard
+requirement for audit tooling.
 
   pip install "mcp[cli]"
   mcp run 05_session_controls_mcp.py                 # expose to an agent
   python 05_session_controls_mcp.py --selftest       # reproduce findings against fixtures, offline
-
-Wire real sources by replacing the _gather() fixtures with read-only API calls to
-IdP (Okta / Entra ID / Ping), PAM (CyberArk / Delinea), IGA / access-review platform, Directory (AD / LDAP).
 """
 from __future__ import annotations
 import json, sys
@@ -68,7 +77,7 @@ def coverage_report() -> dict:
                else "EXCEPTIONS" if len(exceptions) <= EXCEPTION_THRESHOLD
                else "MATERIAL GAP")
     return {
-        "domain": "Identity & Access Mgmt",
+        "domain": "Identity & Access Management (IAM)",
         "control": "Session controls",
         "in_scope": len(rows),
         "compliant": len(rows) - len(exceptions),

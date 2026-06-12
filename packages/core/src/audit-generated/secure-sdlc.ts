@@ -2,9 +2,9 @@ import type { EpochConfig, StageConfig } from "../types";
 
 export const secureSdlcEpoch: EpochConfig = {
   "id": "secure-sdlc",
-  "name": "Secure Software Dev",
-  "subtitle": "Agentic technical & privacy audit — Secure Software Dev",
-  "description": "Audit Secure Software Dev end to end with a read-only agent fleet: each sub-process is a module that teaches the control as a repeatable agentic workflow with downloadable MCP tooling, a CTF, and a 10-question quiz.",
+  "name": "Secure Software Development",
+  "subtitle": "Agentic technical & privacy audit — Secure Software Development",
+  "description": "Audit Secure Software Development end to end with a read-only agent fleet: each sub-process is a module that teaches the control as a repeatable agentic workflow with downloadable MCP tooling, a CTF, and a 10-question quiz.",
   "emoji": "🛡️",
   "color": "Emerald",
   "unlocked": true
@@ -23,8 +23,8 @@ export const secureSdlcStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Security requirements and design (CSDL)\" control for Secure Software Dev is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Secure Software Dev source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Security requirements and design (CSDL)\" control for Secure Software Development is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"Security requirements and design (CSDL)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Secure Software Development systems of record (SAST / DAST / SCA tooling; Issue tracker (Jira); CI security gates) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the security requirements and design (csdl) control (from SAST / DAST / SCA tooling)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -45,34 +45,34 @@ export const secureSdlcStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 5/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Secure Software Dev controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Secure Software Development controls."
       }
     },
     "badge": {
       "id": "ssd-01-badge",
-      "name": "Secure Software Dev Auditor",
+      "name": "Secure Software Development Auditor",
       "emoji": "🛡️"
     },
     "wonder": {
       "name": "Security requirements and design (CSDL)",
-      "location": "Secure Software Dev",
+      "location": "Secure Software Development",
       "era": "Present Day",
       "emoji": "🛡️"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Security requirements and design (CSDL)\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Secure Software Dev control.",
+      "tagline": "Auditing \"Security requirements and design (CSDL)\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the security requirements and design (csdl) control (from SAST / DAST / SCA tooling)) with read-only agents, run the test against policy, and issue a defensible opinion on the Secure Software Development control.",
       "year": 2025,
       "overview": [
-        "The \"Security requirements and design (CSDL)\" sub-process is one of the controls an auditor must verify for Secure Software Dev. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that security requirements and design (csdl) is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically SAST / DAST / SCA tooling, Issue tracker (Jira), CI security gates — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Security requirements and design (CSDL)\" sub-process is one of the controls an auditor must verify for Secure Software Development. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the security requirements and design (csdl) control (from SAST / DAST / SCA tooling), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here SAST / DAST / SCA tooling, Issue tracker (Jira), CI security gates — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"Security requirements and design (CSDL)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `01_security_requirements_and_design_csdl_mcp.py` exposes read-only tools that turn each Secure Software Dev source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `01_security_requirements_and_design_csdl_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from SAST / DAST / SCA tooling and Issue tracker (Jira) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 01_security_requirements_and_design_csdl_mcp.py` to expose it to your agent — or `python 01_security_requirements_and_design_csdl_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -94,7 +94,7 @@ export const secureSdlcStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Secure Software Dev scope + policy",
+            "sub": "define Secure Software Development scope + policy",
             "type": "attacker"
           },
           {
@@ -130,12 +130,13 @@ export const secureSdlcStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Security requirements and design (CSDL)\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the security requirements and design (csdl) control (from SAST / DAST / SCA tooling).",
+        "The test: Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"Security requirements and design (CSDL)\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (SAST / DAST / SCA tooling, Issue tracker (Jira), CI security gates) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the security requirements and design (csdl) control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -159,21 +160,21 @@ export const secureSdlcStages: StageConfig[] = [
         {
           "name": "01_security_requirements_and_design_csdl_mcp.py",
           "url": "/audit-code/secure-sdlc/01_security_requirements_and_design_csdl_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Secure Software Dev evidence for \"Security requirements and design (CSDL)\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Secure Software Development evidence for \"Security requirements and design (CSDL)\" (in-scope inventory for the security requirements and design (csdl) control (from sast / dast / sca tooling)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Security requirements and design (CSDL)\" control for Secure Software Dev at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Security requirements and design (CSDL)\" control for Secure Software Development at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"Security requirements and design (CSDL)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the security requirements and design (csdl) control (from SAST / DAST / SCA tooling) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live SAST / DAST / SCA tooling APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. SAST / DAST / SCA tooling gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. SAST / DAST / SCA tooling is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from SAST / DAST / SCA tooling; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Secure Software Dev: \"Security requirements and design (CSDL)\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- secure-sdlc_inventory.json   (in-scope items from SAST / DAST / SCA tooling)\n- secure-sdlc_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Security requirements and design (CSDL)\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Security requirements and design (CSDL)\",\n  \"domain\": \"Secure Software Dev\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ssd_",
+        "/evidence/README.md": "# AcmeCorp — Secure Software Development: \"Security requirements and design (CSDL)\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"Security requirements and design (CSDL)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- secure-sdlc_inventory.json   (in-scope items — In-scope inventory for the security requirements and design (csdl) control (from SAST / DAST / SCA tooling))\n- secure-sdlc_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Security requirements and design (CSDL)\",\n  \"domain\": \"Secure Software Development\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ssd_",
         "/evidence/secure-sdlc_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Product engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Security requirements and design (CSDL)\" control must cover\n# fragment: security_requirements_design_",
         "/evidence/secure-sdlc_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -237,7 +238,7 @@ export const secureSdlcStages: StageConfig[] = [
           "id": "ssd-01-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Security requirements and design (CSDL)\" sub-process of Secure Software Dev?",
+          "text": "What is the primary audit objective for the \"Security requirements and design (CSDL)\" sub-process of Secure Software Development?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -251,11 +252,11 @@ export const secureSdlcStages: StageConfig[] = [
           "id": "ssd-01-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Security requirements and design (CSDL)\" matter to the broader Secure Software Dev posture?",
+          "text": "Why does a weakness in \"Security requirements and design (CSDL)\" matter to the broader Secure Software Development posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Secure Software Dev controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Secure Software Development controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -268,7 +269,7 @@ export const secureSdlcStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Security requirements and design (CSDL)\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Security requirements and design (CSDL) evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the security requirements and design (csdl) control (from SAST / DAST / SCA tooling) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -334,16 +335,16 @@ export const secureSdlcStages: StageConfig[] = [
         {
           "id": "ssd-01-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Security requirements and design (CSDL)\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Security requirements and design (CSDL)\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the security requirements and design (csdl) control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the security requirements and design (csdl) control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "ssd-01-q9",
@@ -388,8 +389,8 @@ export const secureSdlcStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Secure coding standards (OWASP)\" control for Secure Software Dev is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Secure Software Dev source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Secure coding standards (OWASP)\" control for Secure Software Development is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"Secure coding standards (OWASP)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Secure Software Development systems of record (SAST / DAST / SCA tooling; Issue tracker (Jira); CI security gates) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the secure coding standards (owasp) control (from SAST / DAST / SCA tooling)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -410,34 +411,34 @@ export const secureSdlcStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 6/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Secure Software Dev controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Secure Software Development controls."
       }
     },
     "badge": {
       "id": "ssd-02-badge",
-      "name": "Secure Software Dev Auditor",
+      "name": "Secure Software Development Auditor",
       "emoji": "🛡️"
     },
     "wonder": {
       "name": "Secure coding standards (OWASP)",
-      "location": "Secure Software Dev",
+      "location": "Secure Software Development",
       "era": "Present Day",
       "emoji": "🛡️"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Secure coding standards (OWASP)\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Secure Software Dev control.",
+      "tagline": "Auditing \"Secure coding standards (OWASP)\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the secure coding standards (owasp) control (from SAST / DAST / SCA tooling)) with read-only agents, run the test against policy, and issue a defensible opinion on the Secure Software Development control.",
       "year": 2025,
       "overview": [
-        "The \"Secure coding standards (OWASP)\" sub-process is one of the controls an auditor must verify for Secure Software Dev. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that secure coding standards (owasp) is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically SAST / DAST / SCA tooling, Issue tracker (Jira), CI security gates — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Secure coding standards (OWASP)\" sub-process is one of the controls an auditor must verify for Secure Software Development. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the secure coding standards (owasp) control (from SAST / DAST / SCA tooling), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here SAST / DAST / SCA tooling, Issue tracker (Jira), CI security gates — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"Secure coding standards (OWASP)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `02_secure_coding_standards_owasp_mcp.py` exposes read-only tools that turn each Secure Software Dev source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `02_secure_coding_standards_owasp_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from SAST / DAST / SCA tooling and Issue tracker (Jira) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 02_secure_coding_standards_owasp_mcp.py` to expose it to your agent — or `python 02_secure_coding_standards_owasp_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -459,7 +460,7 @@ export const secureSdlcStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Secure Software Dev scope + policy",
+            "sub": "define Secure Software Development scope + policy",
             "type": "attacker"
           },
           {
@@ -495,12 +496,13 @@ export const secureSdlcStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Secure coding standards (OWASP)\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the secure coding standards (owasp) control (from SAST / DAST / SCA tooling).",
+        "The test: Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"Secure coding standards (OWASP)\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (SAST / DAST / SCA tooling, Issue tracker (Jira), CI security gates) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the secure coding standards (owasp) control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -524,21 +526,21 @@ export const secureSdlcStages: StageConfig[] = [
         {
           "name": "02_secure_coding_standards_owasp_mcp.py",
           "url": "/audit-code/secure-sdlc/02_secure_coding_standards_owasp_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Secure Software Dev evidence for \"Secure coding standards (OWASP)\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Secure Software Development evidence for \"Secure coding standards (OWASP)\" (in-scope inventory for the secure coding standards (owasp) control (from sast / dast / sca tooling)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Secure coding standards (OWASP)\" control for Secure Software Dev at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Secure coding standards (OWASP)\" control for Secure Software Development at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"Secure coding standards (OWASP)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the secure coding standards (owasp) control (from SAST / DAST / SCA tooling) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live SAST / DAST / SCA tooling APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. SAST / DAST / SCA tooling gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. SAST / DAST / SCA tooling is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from SAST / DAST / SCA tooling; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Secure Software Dev: \"Secure coding standards (OWASP)\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- secure-sdlc_inventory.json   (in-scope items from SAST / DAST / SCA tooling)\n- secure-sdlc_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Secure coding standards (OWASP)\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Secure coding standards (OWASP)\",\n  \"domain\": \"Secure Software Dev\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ssd_",
+        "/evidence/README.md": "# AcmeCorp — Secure Software Development: \"Secure coding standards (OWASP)\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"Secure coding standards (OWASP)\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- secure-sdlc_inventory.json   (in-scope items — In-scope inventory for the secure coding standards (owasp) control (from SAST / DAST / SCA tooling))\n- secure-sdlc_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Secure coding standards (OWASP)\",\n  \"domain\": \"Secure Software Development\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ssd_",
         "/evidence/secure-sdlc_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Product engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Secure coding standards (OWASP)\" control must cover\n# fragment: secure_coding_standards_",
         "/evidence/secure-sdlc_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -602,7 +604,7 @@ export const secureSdlcStages: StageConfig[] = [
           "id": "ssd-02-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Secure coding standards (OWASP)\" sub-process of Secure Software Dev?",
+          "text": "What is the primary audit objective for the \"Secure coding standards (OWASP)\" sub-process of Secure Software Development?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -616,11 +618,11 @@ export const secureSdlcStages: StageConfig[] = [
           "id": "ssd-02-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Secure coding standards (OWASP)\" matter to the broader Secure Software Dev posture?",
+          "text": "Why does a weakness in \"Secure coding standards (OWASP)\" matter to the broader Secure Software Development posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Secure Software Dev controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Secure Software Development controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -633,7 +635,7 @@ export const secureSdlcStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Secure coding standards (OWASP)\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Secure coding standards (OWASP) evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the secure coding standards (owasp) control (from SAST / DAST / SCA tooling) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -699,16 +701,16 @@ export const secureSdlcStages: StageConfig[] = [
         {
           "id": "ssd-02-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Secure coding standards (OWASP)\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Secure coding standards (OWASP)\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the secure coding standards (owasp) control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the secure coding standards (owasp) control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "ssd-02-q9",
@@ -753,8 +755,8 @@ export const secureSdlcStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"SAST, DAST, penetration testing\" control for Secure Software Dev is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Secure Software Dev source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"SAST, DAST, penetration testing\" control for Secure Software Development is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"SAST, DAST, penetration testing\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Secure Software Development systems of record (SAST / DAST / SCA tooling; Issue tracker (Jira); CI security gates) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the sast, dast, penetration testing control (from SAST / DAST / SCA tooling)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -775,34 +777,34 @@ export const secureSdlcStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 7/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Secure Software Dev controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Secure Software Development controls."
       }
     },
     "badge": {
       "id": "ssd-03-badge",
-      "name": "Secure Software Dev Auditor",
+      "name": "Secure Software Development Auditor",
       "emoji": "🛡️"
     },
     "wonder": {
       "name": "SAST, DAST, penetration testing",
-      "location": "Secure Software Dev",
+      "location": "Secure Software Development",
       "era": "Present Day",
       "emoji": "🛡️"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"SAST, DAST, penetration testing\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Secure Software Dev control.",
+      "tagline": "Auditing \"SAST, DAST, penetration testing\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the sast, dast, penetration testing control (from SAST / DAST / SCA tooling)) with read-only agents, run the test against policy, and issue a defensible opinion on the Secure Software Development control.",
       "year": 2025,
       "overview": [
-        "The \"SAST, DAST, penetration testing\" sub-process is one of the controls an auditor must verify for Secure Software Dev. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that sast, dast, penetration testing is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically SAST / DAST / SCA tooling, Issue tracker (Jira), CI security gates — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"SAST, DAST, penetration testing\" sub-process is one of the controls an auditor must verify for Secure Software Development. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the sast, dast, penetration testing control (from SAST / DAST / SCA tooling), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here SAST / DAST / SCA tooling, Issue tracker (Jira), CI security gates — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"SAST, DAST, penetration testing\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `03_sast_dast_penetration_testing_mcp.py` exposes read-only tools that turn each Secure Software Dev source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `03_sast_dast_penetration_testing_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from SAST / DAST / SCA tooling and Issue tracker (Jira) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 03_sast_dast_penetration_testing_mcp.py` to expose it to your agent — or `python 03_sast_dast_penetration_testing_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -824,7 +826,7 @@ export const secureSdlcStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Secure Software Dev scope + policy",
+            "sub": "define Secure Software Development scope + policy",
             "type": "attacker"
           },
           {
@@ -860,12 +862,13 @@ export const secureSdlcStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"SAST, DAST, penetration testing\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the sast, dast, penetration testing control (from SAST / DAST / SCA tooling).",
+        "The test: Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"SAST, DAST, penetration testing\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (SAST / DAST / SCA tooling, Issue tracker (Jira), CI security gates) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the sast, dast, penetration testing control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -889,21 +892,21 @@ export const secureSdlcStages: StageConfig[] = [
         {
           "name": "03_sast_dast_penetration_testing_mcp.py",
           "url": "/audit-code/secure-sdlc/03_sast_dast_penetration_testing_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Secure Software Dev evidence for \"SAST, DAST, penetration testing\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Secure Software Development evidence for \"SAST, DAST, penetration testing\" (in-scope inventory for the sast, dast, penetration testing control (from sast / dast / sca tooling)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"SAST, DAST, penetration testing\" control for Secure Software Dev at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"SAST, DAST, penetration testing\" control for Secure Software Development at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"SAST, DAST, penetration testing\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the sast, dast, penetration testing control (from SAST / DAST / SCA tooling) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live SAST / DAST / SCA tooling APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. SAST / DAST / SCA tooling gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. SAST / DAST / SCA tooling is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from SAST / DAST / SCA tooling; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Secure Software Dev: \"SAST, DAST, penetration testing\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- secure-sdlc_inventory.json   (in-scope items from SAST / DAST / SCA tooling)\n- secure-sdlc_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"SAST, DAST, penetration testing\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"SAST, DAST, penetration testing\",\n  \"domain\": \"Secure Software Dev\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ssd_",
+        "/evidence/README.md": "# AcmeCorp — Secure Software Development: \"SAST, DAST, penetration testing\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"SAST, DAST, penetration testing\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- secure-sdlc_inventory.json   (in-scope items — In-scope inventory for the sast, dast, penetration testing control (from SAST / DAST / SCA tooling))\n- secure-sdlc_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"SAST, DAST, penetration testing\",\n  \"domain\": \"Secure Software Development\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ssd_",
         "/evidence/secure-sdlc_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Product engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"SAST, DAST, penetration testing\" control must cover\n# fragment: sast_dast_penetration_",
         "/evidence/secure-sdlc_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -967,7 +970,7 @@ export const secureSdlcStages: StageConfig[] = [
           "id": "ssd-03-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"SAST, DAST, penetration testing\" sub-process of Secure Software Dev?",
+          "text": "What is the primary audit objective for the \"SAST, DAST, penetration testing\" sub-process of Secure Software Development?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -981,11 +984,11 @@ export const secureSdlcStages: StageConfig[] = [
           "id": "ssd-03-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"SAST, DAST, penetration testing\" matter to the broader Secure Software Dev posture?",
+          "text": "Why does a weakness in \"SAST, DAST, penetration testing\" matter to the broader Secure Software Development posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Secure Software Dev controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Secure Software Development controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -998,7 +1001,7 @@ export const secureSdlcStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"SAST, DAST, penetration testing\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The SAST, DAST, penetration testing evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the sast, dast, penetration testing control (from SAST / DAST / SCA tooling) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -1064,16 +1067,16 @@ export const secureSdlcStages: StageConfig[] = [
         {
           "id": "ssd-03-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"SAST, DAST, penetration testing\"?",
+          "challenge": "Typical finding",
+          "text": "For \"SAST, DAST, penetration testing\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the sast, dast, penetration testing control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the sast, dast, penetration testing control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "ssd-03-q9",
@@ -1118,8 +1121,8 @@ export const secureSdlcStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Software composition analysis\" control for Secure Software Dev is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Secure Software Dev source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Software composition analysis\" control for Secure Software Development is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"Software composition analysis\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Secure Software Development systems of record (SAST / DAST / SCA tooling; Issue tracker (Jira); CI security gates) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the software composition analysis control (from SAST / DAST / SCA tooling)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -1140,34 +1143,34 @@ export const secureSdlcStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 5/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Secure Software Dev controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Secure Software Development controls."
       }
     },
     "badge": {
       "id": "ssd-04-badge",
-      "name": "Secure Software Dev Auditor",
+      "name": "Secure Software Development Auditor",
       "emoji": "🛡️"
     },
     "wonder": {
       "name": "Software composition analysis",
-      "location": "Secure Software Dev",
+      "location": "Secure Software Development",
       "era": "Present Day",
       "emoji": "🛡️"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Software composition analysis\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Secure Software Dev control.",
+      "tagline": "Auditing \"Software composition analysis\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the software composition analysis control (from SAST / DAST / SCA tooling)) with read-only agents, run the test against policy, and issue a defensible opinion on the Secure Software Development control.",
       "year": 2025,
       "overview": [
-        "The \"Software composition analysis\" sub-process is one of the controls an auditor must verify for Secure Software Dev. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that software composition analysis is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically SAST / DAST / SCA tooling, Issue tracker (Jira), CI security gates — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Software composition analysis\" sub-process is one of the controls an auditor must verify for Secure Software Development. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the software composition analysis control (from SAST / DAST / SCA tooling), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here SAST / DAST / SCA tooling, Issue tracker (Jira), CI security gates — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"Software composition analysis\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `04_software_composition_analysis_mcp.py` exposes read-only tools that turn each Secure Software Dev source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `04_software_composition_analysis_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from SAST / DAST / SCA tooling and Issue tracker (Jira) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 04_software_composition_analysis_mcp.py` to expose it to your agent — or `python 04_software_composition_analysis_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -1189,7 +1192,7 @@ export const secureSdlcStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Secure Software Dev scope + policy",
+            "sub": "define Secure Software Development scope + policy",
             "type": "attacker"
           },
           {
@@ -1225,12 +1228,13 @@ export const secureSdlcStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Software composition analysis\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the software composition analysis control (from SAST / DAST / SCA tooling).",
+        "The test: Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"Software composition analysis\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (SAST / DAST / SCA tooling, Issue tracker (Jira), CI security gates) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the software composition analysis control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -1254,21 +1258,21 @@ export const secureSdlcStages: StageConfig[] = [
         {
           "name": "04_software_composition_analysis_mcp.py",
           "url": "/audit-code/secure-sdlc/04_software_composition_analysis_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Secure Software Dev evidence for \"Software composition analysis\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Secure Software Development evidence for \"Software composition analysis\" (in-scope inventory for the software composition analysis control (from sast / dast / sca tooling)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Software composition analysis\" control for Secure Software Dev at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Software composition analysis\" control for Secure Software Development at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"Software composition analysis\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the software composition analysis control (from SAST / DAST / SCA tooling) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live SAST / DAST / SCA tooling APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. SAST / DAST / SCA tooling gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. SAST / DAST / SCA tooling is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from SAST / DAST / SCA tooling; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Secure Software Dev: \"Software composition analysis\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- secure-sdlc_inventory.json   (in-scope items from SAST / DAST / SCA tooling)\n- secure-sdlc_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Software composition analysis\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Software composition analysis\",\n  \"domain\": \"Secure Software Dev\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ssd_",
+        "/evidence/README.md": "# AcmeCorp — Secure Software Development: \"Software composition analysis\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"Software composition analysis\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- secure-sdlc_inventory.json   (in-scope items — In-scope inventory for the software composition analysis control (from SAST / DAST / SCA tooling))\n- secure-sdlc_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Software composition analysis\",\n  \"domain\": \"Secure Software Development\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ssd_",
         "/evidence/secure-sdlc_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Product engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Software composition analysis\" control must cover\n# fragment: software_composition_analysis_",
         "/evidence/secure-sdlc_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -1332,7 +1336,7 @@ export const secureSdlcStages: StageConfig[] = [
           "id": "ssd-04-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Software composition analysis\" sub-process of Secure Software Dev?",
+          "text": "What is the primary audit objective for the \"Software composition analysis\" sub-process of Secure Software Development?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -1346,11 +1350,11 @@ export const secureSdlcStages: StageConfig[] = [
           "id": "ssd-04-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Software composition analysis\" matter to the broader Secure Software Dev posture?",
+          "text": "Why does a weakness in \"Software composition analysis\" matter to the broader Secure Software Development posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Secure Software Dev controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Secure Software Development controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -1363,7 +1367,7 @@ export const secureSdlcStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Software composition analysis\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Software composition analysis evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the software composition analysis control (from SAST / DAST / SCA tooling) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -1429,16 +1433,16 @@ export const secureSdlcStages: StageConfig[] = [
         {
           "id": "ssd-04-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Software composition analysis\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Software composition analysis\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the software composition analysis control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the software composition analysis control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "ssd-04-q9",
@@ -1483,8 +1487,8 @@ export const secureSdlcStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Open source security\" control for Secure Software Dev is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Secure Software Dev source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Open source security\" control for Secure Software Development is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"Open source security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Secure Software Development systems of record (SAST / DAST / SCA tooling; Issue tracker (Jira); CI security gates) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the open source security control (from SAST / DAST / SCA tooling)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -1505,34 +1509,34 @@ export const secureSdlcStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 6/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Secure Software Dev controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Secure Software Development controls."
       }
     },
     "badge": {
       "id": "ssd-05-badge",
-      "name": "Secure Software Dev Auditor",
+      "name": "Secure Software Development Auditor",
       "emoji": "🛡️"
     },
     "wonder": {
       "name": "Open source security",
-      "location": "Secure Software Dev",
+      "location": "Secure Software Development",
       "era": "Present Day",
       "emoji": "🛡️"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Open source security\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Secure Software Dev control.",
+      "tagline": "Auditing \"Open source security\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the open source security control (from SAST / DAST / SCA tooling)) with read-only agents, run the test against policy, and issue a defensible opinion on the Secure Software Development control.",
       "year": 2025,
       "overview": [
-        "The \"Open source security\" sub-process is one of the controls an auditor must verify for Secure Software Dev. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that open source security is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically SAST / DAST / SCA tooling, Issue tracker (Jira), CI security gates — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Open source security\" sub-process is one of the controls an auditor must verify for Secure Software Development. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the open source security control (from SAST / DAST / SCA tooling), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here SAST / DAST / SCA tooling, Issue tracker (Jira), CI security gates — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"Open source security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `05_open_source_security_mcp.py` exposes read-only tools that turn each Secure Software Dev source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `05_open_source_security_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from SAST / DAST / SCA tooling and Issue tracker (Jira) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 05_open_source_security_mcp.py` to expose it to your agent — or `python 05_open_source_security_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -1554,7 +1558,7 @@ export const secureSdlcStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Secure Software Dev scope + policy",
+            "sub": "define Secure Software Development scope + policy",
             "type": "attacker"
           },
           {
@@ -1590,12 +1594,13 @@ export const secureSdlcStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Open source security\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the open source security control (from SAST / DAST / SCA tooling).",
+        "The test: Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"Open source security\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (SAST / DAST / SCA tooling, Issue tracker (Jira), CI security gates) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the open source security control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -1619,21 +1624,21 @@ export const secureSdlcStages: StageConfig[] = [
         {
           "name": "05_open_source_security_mcp.py",
           "url": "/audit-code/secure-sdlc/05_open_source_security_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Secure Software Dev evidence for \"Open source security\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Secure Software Development evidence for \"Open source security\" (in-scope inventory for the open source security control (from sast / dast / sca tooling)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Open source security\" control for Secure Software Dev at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Open source security\" control for Secure Software Development at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"Open source security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the open source security control (from SAST / DAST / SCA tooling) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live SAST / DAST / SCA tooling APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. SAST / DAST / SCA tooling gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. SAST / DAST / SCA tooling is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from SAST / DAST / SCA tooling; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Secure Software Dev: \"Open source security\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- secure-sdlc_inventory.json   (in-scope items from SAST / DAST / SCA tooling)\n- secure-sdlc_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Open source security\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Open source security\",\n  \"domain\": \"Secure Software Dev\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ssd_",
+        "/evidence/README.md": "# AcmeCorp — Secure Software Development: \"Open source security\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"Open source security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- secure-sdlc_inventory.json   (in-scope items — In-scope inventory for the open source security control (from SAST / DAST / SCA tooling))\n- secure-sdlc_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Open source security\",\n  \"domain\": \"Secure Software Development\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ssd_",
         "/evidence/secure-sdlc_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Product engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Open source security\" control must cover\n# fragment: open_source_security_",
         "/evidence/secure-sdlc_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"EXCEPTIONS\"\n}\n# fragment: exceptions}"
@@ -1697,7 +1702,7 @@ export const secureSdlcStages: StageConfig[] = [
           "id": "ssd-05-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Open source security\" sub-process of Secure Software Dev?",
+          "text": "What is the primary audit objective for the \"Open source security\" sub-process of Secure Software Development?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -1711,11 +1716,11 @@ export const secureSdlcStages: StageConfig[] = [
           "id": "ssd-05-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Open source security\" matter to the broader Secure Software Dev posture?",
+          "text": "Why does a weakness in \"Open source security\" matter to the broader Secure Software Development posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Secure Software Dev controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Secure Software Development controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -1728,7 +1733,7 @@ export const secureSdlcStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Open source security\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Open source security evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the open source security control (from SAST / DAST / SCA tooling) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -1794,16 +1799,16 @@ export const secureSdlcStages: StageConfig[] = [
         {
           "id": "ssd-05-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Open source security\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Open source security\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the open source security control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the open source security control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "ssd-05-q9",
@@ -1848,8 +1853,8 @@ export const secureSdlcStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Infrastructure as code (IaC) security\" control for Secure Software Dev is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Secure Software Dev source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Infrastructure as code (IaC) security\" control for Secure Software Development is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"Infrastructure as code (IaC) security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Secure Software Development systems of record (SAST / DAST / SCA tooling; Issue tracker (Jira); CI security gates) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the infrastructure as code (iac) security control (from SAST / DAST / SCA tooling)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -1870,34 +1875,34 @@ export const secureSdlcStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 7/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Secure Software Dev controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Secure Software Development controls."
       }
     },
     "badge": {
       "id": "ssd-06-badge",
-      "name": "Secure Software Dev Auditor",
+      "name": "Secure Software Development Auditor",
       "emoji": "🛡️"
     },
     "wonder": {
       "name": "Infrastructure as code (IaC) security",
-      "location": "Secure Software Dev",
+      "location": "Secure Software Development",
       "era": "Present Day",
       "emoji": "🛡️"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Infrastructure as code (IaC) security\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Secure Software Dev control.",
+      "tagline": "Auditing \"Infrastructure as code (IaC) security\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the infrastructure as code (iac) security control (from SAST / DAST / SCA tooling)) with read-only agents, run the test against policy, and issue a defensible opinion on the Secure Software Development control.",
       "year": 2025,
       "overview": [
-        "The \"Infrastructure as code (IaC) security\" sub-process is one of the controls an auditor must verify for Secure Software Dev. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that infrastructure as code (iac) security is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically SAST / DAST / SCA tooling, Issue tracker (Jira), CI security gates — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Infrastructure as code (IaC) security\" sub-process is one of the controls an auditor must verify for Secure Software Development. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the infrastructure as code (iac) security control (from SAST / DAST / SCA tooling), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here SAST / DAST / SCA tooling, Issue tracker (Jira), CI security gates — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"Infrastructure as code (IaC) security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `06_infrastructure_as_code_iac_security_mcp.py` exposes read-only tools that turn each Secure Software Dev source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `06_infrastructure_as_code_iac_security_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from SAST / DAST / SCA tooling and Issue tracker (Jira) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 06_infrastructure_as_code_iac_security_mcp.py` to expose it to your agent — or `python 06_infrastructure_as_code_iac_security_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -1919,7 +1924,7 @@ export const secureSdlcStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Secure Software Dev scope + policy",
+            "sub": "define Secure Software Development scope + policy",
             "type": "attacker"
           },
           {
@@ -1955,12 +1960,13 @@ export const secureSdlcStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Infrastructure as code (IaC) security\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the infrastructure as code (iac) security control (from SAST / DAST / SCA tooling).",
+        "The test: Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"Infrastructure as code (IaC) security\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (SAST / DAST / SCA tooling, Issue tracker (Jira), CI security gates) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the infrastructure as code (iac) security control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -1984,21 +1990,21 @@ export const secureSdlcStages: StageConfig[] = [
         {
           "name": "06_infrastructure_as_code_iac_security_mcp.py",
           "url": "/audit-code/secure-sdlc/06_infrastructure_as_code_iac_security_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Secure Software Dev evidence for \"Infrastructure as code (IaC) security\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Secure Software Development evidence for \"Infrastructure as code (IaC) security\" (in-scope inventory for the infrastructure as code (iac) security control (from sast / dast / sca tooling)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Infrastructure as code (IaC) security\" control for Secure Software Dev at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Infrastructure as code (IaC) security\" control for Secure Software Development at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"Infrastructure as code (IaC) security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the infrastructure as code (iac) security control (from SAST / DAST / SCA tooling) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live SAST / DAST / SCA tooling APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. SAST / DAST / SCA tooling gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. SAST / DAST / SCA tooling is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from SAST / DAST / SCA tooling; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Secure Software Dev: \"Infrastructure as code (IaC) security\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- secure-sdlc_inventory.json   (in-scope items from SAST / DAST / SCA tooling)\n- secure-sdlc_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Infrastructure as code (IaC) security\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Infrastructure as code (IaC) security\",\n  \"domain\": \"Secure Software Dev\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ssd_",
+        "/evidence/README.md": "# AcmeCorp — Secure Software Development: \"Infrastructure as code (IaC) security\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"Infrastructure as code (IaC) security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- secure-sdlc_inventory.json   (in-scope items — In-scope inventory for the infrastructure as code (iac) security control (from SAST / DAST / SCA tooling))\n- secure-sdlc_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Infrastructure as code (IaC) security\",\n  \"domain\": \"Secure Software Development\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ssd_",
         "/evidence/secure-sdlc_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Product engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Infrastructure as code (IaC) security\" control must cover\n# fragment: infrastructure_as_code_",
         "/evidence/secure-sdlc_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -2062,7 +2068,7 @@ export const secureSdlcStages: StageConfig[] = [
           "id": "ssd-06-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Infrastructure as code (IaC) security\" sub-process of Secure Software Dev?",
+          "text": "What is the primary audit objective for the \"Infrastructure as code (IaC) security\" sub-process of Secure Software Development?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -2076,11 +2082,11 @@ export const secureSdlcStages: StageConfig[] = [
           "id": "ssd-06-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Infrastructure as code (IaC) security\" matter to the broader Secure Software Dev posture?",
+          "text": "Why does a weakness in \"Infrastructure as code (IaC) security\" matter to the broader Secure Software Development posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Secure Software Dev controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Secure Software Development controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -2093,7 +2099,7 @@ export const secureSdlcStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Infrastructure as code (IaC) security\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Infrastructure as code (IaC) security evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the infrastructure as code (iac) security control (from SAST / DAST / SCA tooling) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -2159,16 +2165,16 @@ export const secureSdlcStages: StageConfig[] = [
         {
           "id": "ssd-06-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Infrastructure as code (IaC) security\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Infrastructure as code (IaC) security\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the infrastructure as code (iac) security control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the infrastructure as code (iac) security control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "ssd-06-q9",
@@ -2213,8 +2219,8 @@ export const secureSdlcStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"API security\" control for Secure Software Dev is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Secure Software Dev source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"API security\" control for Secure Software Development is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"API security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Secure Software Development systems of record (SAST / DAST / SCA tooling; Issue tracker (Jira); CI security gates) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the api security control (from SAST / DAST / SCA tooling)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -2235,34 +2241,34 @@ export const secureSdlcStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 5/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Secure Software Dev controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Secure Software Development controls."
       }
     },
     "badge": {
       "id": "ssd-07-badge",
-      "name": "Secure Software Dev Auditor",
+      "name": "Secure Software Development Auditor",
       "emoji": "🛡️"
     },
     "wonder": {
       "name": "API security",
-      "location": "Secure Software Dev",
+      "location": "Secure Software Development",
       "era": "Present Day",
       "emoji": "🛡️"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"API security\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Secure Software Dev control.",
+      "tagline": "Auditing \"API security\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the api security control (from SAST / DAST / SCA tooling)) with read-only agents, run the test against policy, and issue a defensible opinion on the Secure Software Development control.",
       "year": 2025,
       "overview": [
-        "The \"API security\" sub-process is one of the controls an auditor must verify for Secure Software Dev. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that api security is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically SAST / DAST / SCA tooling, Issue tracker (Jira), CI security gates — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"API security\" sub-process is one of the controls an auditor must verify for Secure Software Development. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the api security control (from SAST / DAST / SCA tooling), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here SAST / DAST / SCA tooling, Issue tracker (Jira), CI security gates — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"API security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `07_api_security_mcp.py` exposes read-only tools that turn each Secure Software Dev source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `07_api_security_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from SAST / DAST / SCA tooling and Issue tracker (Jira) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 07_api_security_mcp.py` to expose it to your agent — or `python 07_api_security_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -2284,7 +2290,7 @@ export const secureSdlcStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Secure Software Dev scope + policy",
+            "sub": "define Secure Software Development scope + policy",
             "type": "attacker"
           },
           {
@@ -2320,12 +2326,13 @@ export const secureSdlcStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"API security\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the api security control (from SAST / DAST / SCA tooling).",
+        "The test: Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"API security\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (SAST / DAST / SCA tooling, Issue tracker (Jira), CI security gates) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the api security control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -2349,21 +2356,21 @@ export const secureSdlcStages: StageConfig[] = [
         {
           "name": "07_api_security_mcp.py",
           "url": "/audit-code/secure-sdlc/07_api_security_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Secure Software Dev evidence for \"API security\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Secure Software Development evidence for \"API security\" (in-scope inventory for the api security control (from sast / dast / sca tooling)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"API security\" control for Secure Software Dev at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"API security\" control for Secure Software Development at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"API security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the api security control (from SAST / DAST / SCA tooling) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live SAST / DAST / SCA tooling APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. SAST / DAST / SCA tooling gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. SAST / DAST / SCA tooling is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from SAST / DAST / SCA tooling; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Secure Software Dev: \"API security\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- secure-sdlc_inventory.json   (in-scope items from SAST / DAST / SCA tooling)\n- secure-sdlc_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"API security\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"API security\",\n  \"domain\": \"Secure Software Dev\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ssd_",
+        "/evidence/README.md": "# AcmeCorp — Secure Software Development: \"API security\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"API security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- secure-sdlc_inventory.json   (in-scope items — In-scope inventory for the api security control (from SAST / DAST / SCA tooling))\n- secure-sdlc_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"API security\",\n  \"domain\": \"Secure Software Development\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ssd_",
         "/evidence/secure-sdlc_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Product engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"API security\" control must cover\n# fragment: api_security_",
         "/evidence/secure-sdlc_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -2427,7 +2434,7 @@ export const secureSdlcStages: StageConfig[] = [
           "id": "ssd-07-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"API security\" sub-process of Secure Software Dev?",
+          "text": "What is the primary audit objective for the \"API security\" sub-process of Secure Software Development?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -2441,11 +2448,11 @@ export const secureSdlcStages: StageConfig[] = [
           "id": "ssd-07-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"API security\" matter to the broader Secure Software Dev posture?",
+          "text": "Why does a weakness in \"API security\" matter to the broader Secure Software Development posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Secure Software Dev controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Secure Software Development controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -2458,7 +2465,7 @@ export const secureSdlcStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"API security\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The API security evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the api security control (from SAST / DAST / SCA tooling) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -2524,16 +2531,16 @@ export const secureSdlcStages: StageConfig[] = [
         {
           "id": "ssd-07-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"API security\"?",
+          "challenge": "Typical finding",
+          "text": "For \"API security\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the api security control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the api security control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "ssd-07-q9",
@@ -2578,8 +2585,8 @@ export const secureSdlcStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Container and cloud-native security\" control for Secure Software Dev is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Secure Software Dev source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Container and cloud-native security\" control for Secure Software Development is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"Container and cloud-native security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Secure Software Development systems of record (SAST / DAST / SCA tooling; Issue tracker (Jira); CI security gates) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the container and cloud-native security control (from SAST / DAST / SCA tooling)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -2600,34 +2607,34 @@ export const secureSdlcStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 6/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Secure Software Dev controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Secure Software Development controls."
       }
     },
     "badge": {
       "id": "ssd-08-badge",
-      "name": "Secure Software Dev Auditor",
+      "name": "Secure Software Development Auditor",
       "emoji": "🛡️"
     },
     "wonder": {
       "name": "Container and cloud-native security",
-      "location": "Secure Software Dev",
+      "location": "Secure Software Development",
       "era": "Present Day",
       "emoji": "🛡️"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Container and cloud-native security\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Secure Software Dev control.",
+      "tagline": "Auditing \"Container and cloud-native security\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the container and cloud-native security control (from SAST / DAST / SCA tooling)) with read-only agents, run the test against policy, and issue a defensible opinion on the Secure Software Development control.",
       "year": 2025,
       "overview": [
-        "The \"Container and cloud-native security\" sub-process is one of the controls an auditor must verify for Secure Software Dev. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that container and cloud-native security is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically SAST / DAST / SCA tooling, Issue tracker (Jira), CI security gates — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Container and cloud-native security\" sub-process is one of the controls an auditor must verify for Secure Software Development. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the container and cloud-native security control (from SAST / DAST / SCA tooling), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here SAST / DAST / SCA tooling, Issue tracker (Jira), CI security gates — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"Container and cloud-native security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `08_container_and_cloud_native_security_mcp.py` exposes read-only tools that turn each Secure Software Dev source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `08_container_and_cloud_native_security_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from SAST / DAST / SCA tooling and Issue tracker (Jira) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 08_container_and_cloud_native_security_mcp.py` to expose it to your agent — or `python 08_container_and_cloud_native_security_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -2649,7 +2656,7 @@ export const secureSdlcStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Secure Software Dev scope + policy",
+            "sub": "define Secure Software Development scope + policy",
             "type": "attacker"
           },
           {
@@ -2685,12 +2692,13 @@ export const secureSdlcStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Container and cloud-native security\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the container and cloud-native security control (from SAST / DAST / SCA tooling).",
+        "The test: Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"Container and cloud-native security\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (SAST / DAST / SCA tooling, Issue tracker (Jira), CI security gates) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the container and cloud-native security control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -2714,21 +2722,21 @@ export const secureSdlcStages: StageConfig[] = [
         {
           "name": "08_container_and_cloud_native_security_mcp.py",
           "url": "/audit-code/secure-sdlc/08_container_and_cloud_native_security_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Secure Software Dev evidence for \"Container and cloud-native security\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Secure Software Development evidence for \"Container and cloud-native security\" (in-scope inventory for the container and cloud-native security control (from sast / dast / sca tooling)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Container and cloud-native security\" control for Secure Software Dev at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Container and cloud-native security\" control for Secure Software Development at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"Container and cloud-native security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the container and cloud-native security control (from SAST / DAST / SCA tooling) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live SAST / DAST / SCA tooling APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. SAST / DAST / SCA tooling gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. SAST / DAST / SCA tooling is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from SAST / DAST / SCA tooling; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Secure Software Dev: \"Container and cloud-native security\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- secure-sdlc_inventory.json   (in-scope items from SAST / DAST / SCA tooling)\n- secure-sdlc_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Container and cloud-native security\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Container and cloud-native security\",\n  \"domain\": \"Secure Software Dev\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ssd_",
+        "/evidence/README.md": "# AcmeCorp — Secure Software Development: \"Container and cloud-native security\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"Container and cloud-native security\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- secure-sdlc_inventory.json   (in-scope items — In-scope inventory for the container and cloud-native security control (from SAST / DAST / SCA tooling))\n- secure-sdlc_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Container and cloud-native security\",\n  \"domain\": \"Secure Software Development\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ssd_",
         "/evidence/secure-sdlc_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Product engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Container and cloud-native security\" control must cover\n# fragment: container_cloudnative_security_",
         "/evidence/secure-sdlc_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -2792,7 +2800,7 @@ export const secureSdlcStages: StageConfig[] = [
           "id": "ssd-08-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Container and cloud-native security\" sub-process of Secure Software Dev?",
+          "text": "What is the primary audit objective for the \"Container and cloud-native security\" sub-process of Secure Software Development?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -2806,11 +2814,11 @@ export const secureSdlcStages: StageConfig[] = [
           "id": "ssd-08-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Container and cloud-native security\" matter to the broader Secure Software Dev posture?",
+          "text": "Why does a weakness in \"Container and cloud-native security\" matter to the broader Secure Software Development posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Secure Software Dev controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Secure Software Development controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -2823,7 +2831,7 @@ export const secureSdlcStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Container and cloud-native security\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Container and cloud-native security evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the container and cloud-native security control (from SAST / DAST / SCA tooling) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -2889,16 +2897,16 @@ export const secureSdlcStages: StageConfig[] = [
         {
           "id": "ssd-08-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Container and cloud-native security\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Container and cloud-native security\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the container and cloud-native security control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the container and cloud-native security control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "ssd-08-q9",
@@ -2943,8 +2951,8 @@ export const secureSdlcStages: StageConfig[] = [
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Vulnerability management\" control for Secure Software Dev is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Secure Software Dev source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Vulnerability management\" control for Secure Software Development is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"Vulnerability management\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Secure Software Development systems of record (SAST / DAST / SCA tooling; Issue tracker (Jira); CI security gates) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the vulnerability management control (from SAST / DAST / SCA tooling)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -2965,34 +2973,34 @@ export const secureSdlcStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 7/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 9/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Secure Software Dev controls."
+        "value": "VALUE 9/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Secure Software Development controls."
       }
     },
     "badge": {
       "id": "ssd-09-badge",
-      "name": "Secure Software Dev Auditor",
+      "name": "Secure Software Development Auditor",
       "emoji": "🛡️"
     },
     "wonder": {
       "name": "Vulnerability management",
-      "location": "Secure Software Dev",
+      "location": "Secure Software Development",
       "era": "Present Day",
       "emoji": "🛡️"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Vulnerability management\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Secure Software Dev control.",
+      "tagline": "Auditing \"Vulnerability management\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the vulnerability management control (from SAST / DAST / SCA tooling)) with read-only agents, run the test against policy, and issue a defensible opinion on the Secure Software Development control.",
       "year": 2025,
       "overview": [
-        "The \"Vulnerability management\" sub-process is one of the controls an auditor must verify for Secure Software Dev. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that vulnerability management is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically SAST / DAST / SCA tooling, Issue tracker (Jira), CI security gates — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Vulnerability management\" sub-process is one of the controls an auditor must verify for Secure Software Development. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the vulnerability management control (from SAST / DAST / SCA tooling), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here SAST / DAST / SCA tooling, Issue tracker (Jira), CI security gates — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"Vulnerability management\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `09_vulnerability_management_mcp.py` exposes read-only tools that turn each Secure Software Dev source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `09_vulnerability_management_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from SAST / DAST / SCA tooling and Issue tracker (Jira) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 09_vulnerability_management_mcp.py` to expose it to your agent — or `python 09_vulnerability_management_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -3014,7 +3022,7 @@ export const secureSdlcStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Secure Software Dev scope + policy",
+            "sub": "define Secure Software Development scope + policy",
             "type": "attacker"
           },
           {
@@ -3050,12 +3058,13 @@ export const secureSdlcStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Vulnerability management\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the vulnerability management control (from SAST / DAST / SCA tooling).",
+        "The test: Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"Vulnerability management\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (SAST / DAST / SCA tooling, Issue tracker (Jira), CI security gates) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the vulnerability management control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -3079,21 +3088,21 @@ export const secureSdlcStages: StageConfig[] = [
         {
           "name": "09_vulnerability_management_mcp.py",
           "url": "/audit-code/secure-sdlc/09_vulnerability_management_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Secure Software Dev evidence for \"Vulnerability management\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Secure Software Development evidence for \"Vulnerability management\" (in-scope inventory for the vulnerability management control (from sast / dast / sca tooling)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Vulnerability management\" control for Secure Software Dev at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Vulnerability management\" control for Secure Software Development at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"Vulnerability management\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the vulnerability management control (from SAST / DAST / SCA tooling) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live SAST / DAST / SCA tooling APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. SAST / DAST / SCA tooling gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. SAST / DAST / SCA tooling is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from SAST / DAST / SCA tooling; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Secure Software Dev: \"Vulnerability management\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- secure-sdlc_inventory.json   (in-scope items from SAST / DAST / SCA tooling)\n- secure-sdlc_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Vulnerability management\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Vulnerability management\",\n  \"domain\": \"Secure Software Dev\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ssd_",
+        "/evidence/README.md": "# AcmeCorp — Secure Software Development: \"Vulnerability management\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"Vulnerability management\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- secure-sdlc_inventory.json   (in-scope items — In-scope inventory for the vulnerability management control (from SAST / DAST / SCA tooling))\n- secure-sdlc_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Vulnerability management\",\n  \"domain\": \"Secure Software Development\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ssd_",
         "/evidence/secure-sdlc_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Product engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Vulnerability management\" control must cover\n# fragment: vulnerability_management_",
         "/evidence/secure-sdlc_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -3157,7 +3166,7 @@ export const secureSdlcStages: StageConfig[] = [
           "id": "ssd-09-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Vulnerability management\" sub-process of Secure Software Dev?",
+          "text": "What is the primary audit objective for the \"Vulnerability management\" sub-process of Secure Software Development?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -3171,11 +3180,11 @@ export const secureSdlcStages: StageConfig[] = [
           "id": "ssd-09-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Vulnerability management\" matter to the broader Secure Software Dev posture?",
+          "text": "Why does a weakness in \"Vulnerability management\" matter to the broader Secure Software Development posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Secure Software Dev controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Secure Software Development controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -3188,7 +3197,7 @@ export const secureSdlcStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Vulnerability management\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Vulnerability management evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the vulnerability management control (from SAST / DAST / SCA tooling) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -3254,16 +3263,16 @@ export const secureSdlcStages: StageConfig[] = [
         {
           "id": "ssd-09-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Vulnerability management\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Vulnerability management\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the vulnerability management control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the vulnerability management control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "ssd-09-q9",
@@ -3308,8 +3317,8 @@ export const secureSdlcStages: StageConfig[] = [
     "valueScore": 6,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Developer security training\" control for Secure Software Dev is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Secure Software Dev source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Developer security training\" control for Secure Software Development is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"Developer security training\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Secure Software Development systems of record (SAST / DAST / SCA tooling; Issue tracker (Jira); CI security gates) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the developer security training control (from SAST / DAST / SCA tooling)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -3330,34 +3339,34 @@ export const secureSdlcStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 5/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 6/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Secure Software Dev controls."
+        "value": "VALUE 6/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Secure Software Development controls."
       }
     },
     "badge": {
       "id": "ssd-10-badge",
-      "name": "Secure Software Dev Auditor",
+      "name": "Secure Software Development Auditor",
       "emoji": "🛡️"
     },
     "wonder": {
       "name": "Developer security training",
-      "location": "Secure Software Dev",
+      "location": "Secure Software Development",
       "era": "Present Day",
       "emoji": "🛡️"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Developer security training\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Secure Software Dev control.",
+      "tagline": "Auditing \"Developer security training\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the developer security training control (from SAST / DAST / SCA tooling)) with read-only agents, run the test against policy, and issue a defensible opinion on the Secure Software Development control.",
       "year": 2025,
       "overview": [
-        "The \"Developer security training\" sub-process is one of the controls an auditor must verify for Secure Software Dev. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that developer security training is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically SAST / DAST / SCA tooling, Issue tracker (Jira), CI security gates — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Developer security training\" sub-process is one of the controls an auditor must verify for Secure Software Development. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the developer security training control (from SAST / DAST / SCA tooling), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here SAST / DAST / SCA tooling, Issue tracker (Jira), CI security gates — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"Developer security training\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `10_developer_security_training_mcp.py` exposes read-only tools that turn each Secure Software Dev source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `10_developer_security_training_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from SAST / DAST / SCA tooling and Issue tracker (Jira) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 10_developer_security_training_mcp.py` to expose it to your agent — or `python 10_developer_security_training_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -3379,7 +3388,7 @@ export const secureSdlcStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Secure Software Dev scope + policy",
+            "sub": "define Secure Software Development scope + policy",
             "type": "attacker"
           },
           {
@@ -3415,12 +3424,13 @@ export const secureSdlcStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Developer security training\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the developer security training control (from SAST / DAST / SCA tooling).",
+        "The test: Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"Developer security training\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (SAST / DAST / SCA tooling, Issue tracker (Jira), CI security gates) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the developer security training control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -3444,21 +3454,21 @@ export const secureSdlcStages: StageConfig[] = [
         {
           "name": "10_developer_security_training_mcp.py",
           "url": "/audit-code/secure-sdlc/10_developer_security_training_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Secure Software Dev evidence for \"Developer security training\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Secure Software Development evidence for \"Developer security training\" (in-scope inventory for the developer security training control (from sast / dast / sca tooling)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Developer security training\" control for Secure Software Dev at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Developer security training\" control for Secure Software Development at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"Developer security training\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the developer security training control (from SAST / DAST / SCA tooling) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live SAST / DAST / SCA tooling APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. SAST / DAST / SCA tooling gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. SAST / DAST / SCA tooling is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from SAST / DAST / SCA tooling; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Secure Software Dev: \"Developer security training\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- secure-sdlc_inventory.json   (in-scope items from SAST / DAST / SCA tooling)\n- secure-sdlc_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Developer security training\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Developer security training\",\n  \"domain\": \"Secure Software Dev\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ssd_",
+        "/evidence/README.md": "# AcmeCorp — Secure Software Development: \"Developer security training\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"Developer security training\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- secure-sdlc_inventory.json   (in-scope items — In-scope inventory for the developer security training control (from SAST / DAST / SCA tooling))\n- secure-sdlc_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Developer security training\",\n  \"domain\": \"Secure Software Development\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ssd_",
         "/evidence/secure-sdlc_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Product engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Developer security training\" control must cover\n# fragment: developer_security_training_",
         "/evidence/secure-sdlc_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"EXCEPTIONS\"\n}\n# fragment: exceptions}"
@@ -3522,7 +3532,7 @@ export const secureSdlcStages: StageConfig[] = [
           "id": "ssd-10-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Developer security training\" sub-process of Secure Software Dev?",
+          "text": "What is the primary audit objective for the \"Developer security training\" sub-process of Secure Software Development?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -3536,11 +3546,11 @@ export const secureSdlcStages: StageConfig[] = [
           "id": "ssd-10-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Developer security training\" matter to the broader Secure Software Dev posture?",
+          "text": "Why does a weakness in \"Developer security training\" matter to the broader Secure Software Development posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Secure Software Dev controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Secure Software Development controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -3553,7 +3563,7 @@ export const secureSdlcStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Developer security training\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Developer security training evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the developer security training control (from SAST / DAST / SCA tooling) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -3619,16 +3629,16 @@ export const secureSdlcStages: StageConfig[] = [
         {
           "id": "ssd-10-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Developer security training\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Developer security training\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the developer security training control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the developer security training control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "ssd-10-q9",
@@ -3673,8 +3683,8 @@ export const secureSdlcStages: StageConfig[] = [
     "valueScore": 6,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Metrics, reporting, auditability\" control for Secure Software Dev is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Secure Software Dev source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Metrics, reporting, auditability\" control for Secure Software Development is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"Metrics, reporting, auditability\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Secure Software Development systems of record (SAST / DAST / SCA tooling; Issue tracker (Jira); CI security gates) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the metrics, reporting, auditability control (from SAST / DAST / SCA tooling)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -3695,34 +3705,34 @@ export const secureSdlcStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 7/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 6/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Secure Software Dev controls."
+        "value": "VALUE 6/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Secure Software Development controls."
       }
     },
     "badge": {
       "id": "ssd-11-badge",
-      "name": "Secure Software Dev Auditor",
+      "name": "Secure Software Development Auditor",
       "emoji": "🛡️"
     },
     "wonder": {
       "name": "Metrics, reporting, auditability",
-      "location": "Secure Software Dev",
+      "location": "Secure Software Development",
       "era": "Present Day",
       "emoji": "🛡️"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Metrics, reporting, auditability\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Secure Software Dev control.",
+      "tagline": "Auditing \"Metrics, reporting, auditability\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the metrics, reporting, auditability control (from SAST / DAST / SCA tooling)) with read-only agents, run the test against policy, and issue a defensible opinion on the Secure Software Development control.",
       "year": 2025,
       "overview": [
-        "The \"Metrics, reporting, auditability\" sub-process is one of the controls an auditor must verify for Secure Software Dev. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that metrics, reporting, auditability is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically SAST / DAST / SCA tooling, Issue tracker (Jira), CI security gates — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Metrics, reporting, auditability\" sub-process is one of the controls an auditor must verify for Secure Software Development. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the metrics, reporting, auditability control (from SAST / DAST / SCA tooling), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here SAST / DAST / SCA tooling, Issue tracker (Jira), CI security gates — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"Metrics, reporting, auditability\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `11_metrics_reporting_auditability_mcp.py` exposes read-only tools that turn each Secure Software Dev source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `11_metrics_reporting_auditability_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from SAST / DAST / SCA tooling and Issue tracker (Jira) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 11_metrics_reporting_auditability_mcp.py` to expose it to your agent — or `python 11_metrics_reporting_auditability_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -3744,7 +3754,7 @@ export const secureSdlcStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Secure Software Dev scope + policy",
+            "sub": "define Secure Software Development scope + policy",
             "type": "attacker"
           },
           {
@@ -3780,12 +3790,13 @@ export const secureSdlcStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Metrics, reporting, auditability\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the metrics, reporting, auditability control (from SAST / DAST / SCA tooling).",
+        "The test: Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"Metrics, reporting, auditability\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (SAST / DAST / SCA tooling, Issue tracker (Jira), CI security gates) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the metrics, reporting, auditability control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -3809,21 +3820,21 @@ export const secureSdlcStages: StageConfig[] = [
         {
           "name": "11_metrics_reporting_auditability_mcp.py",
           "url": "/audit-code/secure-sdlc/11_metrics_reporting_auditability_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Secure Software Dev evidence for \"Metrics, reporting, auditability\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Secure Software Development evidence for \"Metrics, reporting, auditability\" (in-scope inventory for the metrics, reporting, auditability control (from sast / dast / sca tooling)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Metrics, reporting, auditability\" control for Secure Software Dev at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Metrics, reporting, auditability\" control for Secure Software Development at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"Metrics, reporting, auditability\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the metrics, reporting, auditability control (from SAST / DAST / SCA tooling) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live SAST / DAST / SCA tooling APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. SAST / DAST / SCA tooling gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. SAST / DAST / SCA tooling is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from SAST / DAST / SCA tooling; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Secure Software Dev: \"Metrics, reporting, auditability\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- secure-sdlc_inventory.json   (in-scope items from SAST / DAST / SCA tooling)\n- secure-sdlc_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Metrics, reporting, auditability\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Metrics, reporting, auditability\",\n  \"domain\": \"Secure Software Dev\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ssd_",
+        "/evidence/README.md": "# AcmeCorp — Secure Software Development: \"Metrics, reporting, auditability\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"Metrics, reporting, auditability\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- secure-sdlc_inventory.json   (in-scope items — In-scope inventory for the metrics, reporting, auditability control (from SAST / DAST / SCA tooling))\n- secure-sdlc_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Metrics, reporting, auditability\",\n  \"domain\": \"Secure Software Development\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ssd_",
         "/evidence/secure-sdlc_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Product engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Metrics, reporting, auditability\" control must cover\n# fragment: metrics_reporting_auditability_",
         "/evidence/secure-sdlc_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -3887,7 +3898,7 @@ export const secureSdlcStages: StageConfig[] = [
           "id": "ssd-11-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Metrics, reporting, auditability\" sub-process of Secure Software Dev?",
+          "text": "What is the primary audit objective for the \"Metrics, reporting, auditability\" sub-process of Secure Software Development?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -3901,11 +3912,11 @@ export const secureSdlcStages: StageConfig[] = [
           "id": "ssd-11-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Metrics, reporting, auditability\" matter to the broader Secure Software Dev posture?",
+          "text": "Why does a weakness in \"Metrics, reporting, auditability\" matter to the broader Secure Software Development posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Secure Software Dev controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Secure Software Development controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -3918,7 +3929,7 @@ export const secureSdlcStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Metrics, reporting, auditability\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Metrics, reporting, auditability evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the metrics, reporting, auditability control (from SAST / DAST / SCA tooling) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -3984,16 +3995,16 @@ export const secureSdlcStages: StageConfig[] = [
         {
           "id": "ssd-11-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Metrics, reporting, auditability\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Metrics, reporting, auditability\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the metrics, reporting, auditability control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the metrics, reporting, auditability control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "ssd-11-q9",
@@ -4038,8 +4049,8 @@ export const secureSdlcStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Post-quantum protection support\" control for Secure Software Dev is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Secure Software Dev source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Post-quantum protection support\" control for Secure Software Development is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"Post-quantum protection support\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Secure Software Development systems of record (SAST / DAST / SCA tooling; Issue tracker (Jira); CI security gates) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the post-quantum protection support control (from SAST / DAST / SCA tooling)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -4060,34 +4071,34 @@ export const secureSdlcStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 7/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Secure Software Dev controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Secure Software Development controls."
       }
     },
     "badge": {
       "id": "ssd-12-badge",
-      "name": "Secure Software Dev Auditor",
+      "name": "Secure Software Development Auditor",
       "emoji": "🛡️"
     },
     "wonder": {
       "name": "Post-quantum protection support",
-      "location": "Secure Software Dev",
+      "location": "Secure Software Development",
       "era": "Present Day",
       "emoji": "🛡️"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Post-quantum protection support\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Secure Software Dev control.",
+      "tagline": "Auditing \"Post-quantum protection support\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the post-quantum protection support control (from SAST / DAST / SCA tooling)) with read-only agents, run the test against policy, and issue a defensible opinion on the Secure Software Development control.",
       "year": 2025,
       "overview": [
-        "The \"Post-quantum protection support\" sub-process is one of the controls an auditor must verify for Secure Software Dev. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that post-quantum protection support is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically SAST / DAST / SCA tooling, Issue tracker (Jira), CI security gates — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Post-quantum protection support\" sub-process is one of the controls an auditor must verify for Secure Software Development. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the post-quantum protection support control (from SAST / DAST / SCA tooling), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here SAST / DAST / SCA tooling, Issue tracker (Jira), CI security gates — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"Post-quantum protection support\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `12_post_quantum_protection_support_mcp.py` exposes read-only tools that turn each Secure Software Dev source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `12_post_quantum_protection_support_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from SAST / DAST / SCA tooling and Issue tracker (Jira) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 12_post_quantum_protection_support_mcp.py` to expose it to your agent — or `python 12_post_quantum_protection_support_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -4109,7 +4120,7 @@ export const secureSdlcStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Secure Software Dev scope + policy",
+            "sub": "define Secure Software Development scope + policy",
             "type": "attacker"
           },
           {
@@ -4145,12 +4156,13 @@ export const secureSdlcStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Post-quantum protection support\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the post-quantum protection support control (from SAST / DAST / SCA tooling).",
+        "The test: Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"Post-quantum protection support\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (SAST / DAST / SCA tooling, Issue tracker (Jira), CI security gates) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the post-quantum protection support control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -4174,21 +4186,21 @@ export const secureSdlcStages: StageConfig[] = [
         {
           "name": "12_post_quantum_protection_support_mcp.py",
           "url": "/audit-code/secure-sdlc/12_post_quantum_protection_support_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Secure Software Dev evidence for \"Post-quantum protection support\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Secure Software Development evidence for \"Post-quantum protection support\" (in-scope inventory for the post-quantum protection support control (from sast / dast / sca tooling)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Post-quantum protection support\" control for Secure Software Dev at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Post-quantum protection support\" control for Secure Software Development at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"Post-quantum protection support\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the post-quantum protection support control (from SAST / DAST / SCA tooling) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live SAST / DAST / SCA tooling APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. SAST / DAST / SCA tooling gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. SAST / DAST / SCA tooling is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from SAST / DAST / SCA tooling; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Secure Software Dev: \"Post-quantum protection support\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- secure-sdlc_inventory.json   (in-scope items from SAST / DAST / SCA tooling)\n- secure-sdlc_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Post-quantum protection support\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Post-quantum protection support\",\n  \"domain\": \"Secure Software Dev\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ssd_",
+        "/evidence/README.md": "# AcmeCorp — Secure Software Development: \"Post-quantum protection support\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"Post-quantum protection support\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- secure-sdlc_inventory.json   (in-scope items — In-scope inventory for the post-quantum protection support control (from SAST / DAST / SCA tooling))\n- secure-sdlc_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Post-quantum protection support\",\n  \"domain\": \"Secure Software Development\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ssd_",
         "/evidence/secure-sdlc_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Product engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Post-quantum protection support\" control must cover\n# fragment: postquantum_protection_support_",
         "/evidence/secure-sdlc_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -4252,7 +4264,7 @@ export const secureSdlcStages: StageConfig[] = [
           "id": "ssd-12-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Post-quantum protection support\" sub-process of Secure Software Dev?",
+          "text": "What is the primary audit objective for the \"Post-quantum protection support\" sub-process of Secure Software Development?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -4266,11 +4278,11 @@ export const secureSdlcStages: StageConfig[] = [
           "id": "ssd-12-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Post-quantum protection support\" matter to the broader Secure Software Dev posture?",
+          "text": "Why does a weakness in \"Post-quantum protection support\" matter to the broader Secure Software Development posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Secure Software Dev controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Secure Software Development controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -4283,7 +4295,7 @@ export const secureSdlcStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Post-quantum protection support\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Post-quantum protection support evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the post-quantum protection support control (from SAST / DAST / SCA tooling) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -4349,16 +4361,16 @@ export const secureSdlcStages: StageConfig[] = [
         {
           "id": "ssd-12-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Post-quantum protection support\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Post-quantum protection support\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the post-quantum protection support control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the post-quantum protection support control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "ssd-12-q9",
@@ -4403,8 +4415,8 @@ export const secureSdlcStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"AI model and system development and testing\" control for Secure Software Dev is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each Secure Software Dev source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"AI model and system development and testing\" control for Secure Software Development is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"AI model and system development and testing\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Secure Software Development systems of record (SAST / DAST / SCA tooling; Issue tracker (Jira); CI security gates) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the ai model and system development and testing control (from SAST / DAST / SCA tooling)",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -4425,34 +4437,34 @@ export const secureSdlcStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 5/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Secure Software Dev controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream Secure Software Development controls."
       }
     },
     "badge": {
       "id": "ssd-13-badge",
-      "name": "Secure Software Dev Auditor",
+      "name": "Secure Software Development Auditor",
       "emoji": "🛡️"
     },
     "wonder": {
       "name": "AI model and system development and testing",
-      "location": "Secure Software Dev",
+      "location": "Secure Software Development",
       "era": "Present Day",
       "emoji": "🛡️"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"AI model and system development and testing\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the Secure Software Dev control.",
+      "tagline": "Auditing \"AI model and system development and testing\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the ai model and system development and testing control (from SAST / DAST / SCA tooling)) with read-only agents, run the test against policy, and issue a defensible opinion on the Secure Software Development control.",
       "year": 2025,
       "overview": [
-        "The \"AI model and system development and testing\" sub-process is one of the controls an auditor must verify for Secure Software Dev. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that ai model and system development and testing is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically SAST / DAST / SCA tooling, Issue tracker (Jira), CI security gates — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"AI model and system development and testing\" sub-process is one of the controls an auditor must verify for Secure Software Development. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the ai model and system development and testing control (from SAST / DAST / SCA tooling), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here SAST / DAST / SCA tooling, Issue tracker (Jira), CI security gates — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"AI model and system development and testing\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `13_ai_model_and_system_development_and_testing_mcp.py` exposes read-only tools that turn each Secure Software Dev source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `13_ai_model_and_system_development_and_testing_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from SAST / DAST / SCA tooling and Issue tracker (Jira) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 13_ai_model_and_system_development_and_testing_mcp.py` to expose it to your agent — or `python 13_ai_model_and_system_development_and_testing_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -4474,7 +4486,7 @@ export const secureSdlcStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define Secure Software Dev scope + policy",
+            "sub": "define Secure Software Development scope + policy",
             "type": "attacker"
           },
           {
@@ -4510,12 +4522,13 @@ export const secureSdlcStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"AI model and system development and testing\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the ai model and system development and testing control (from SAST / DAST / SCA tooling).",
+        "The test: Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"AI model and system development and testing\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (SAST / DAST / SCA tooling, Issue tracker (Jira), CI security gates) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the ai model and system development and testing control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -4539,21 +4552,21 @@ export const secureSdlcStages: StageConfig[] = [
         {
           "name": "13_ai_model_and_system_development_and_testing_mcp.py",
           "url": "/audit-code/secure-sdlc/13_ai_model_and_system_development_and_testing_mcp.py",
-          "description": "Runnable read-only MCP server: gathers Secure Software Dev evidence for \"AI model and system development and testing\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Secure Software Development evidence for \"AI model and system development and testing\" (in-scope inventory for the ai model and system development and testing control (from sast / dast / sca tooling)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"AI model and system development and testing\" control for Secure Software Dev at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"AI model and system development and testing\" control for Secure Software Development at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"AI model and system development and testing\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the ai model and system development and testing control (from SAST / DAST / SCA tooling) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live SAST / DAST / SCA tooling APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. SAST / DAST / SCA tooling gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. SAST / DAST / SCA tooling is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from SAST / DAST / SCA tooling; the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Secure Software Dev: \"AI model and system development and testing\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- secure-sdlc_inventory.json   (in-scope items from SAST / DAST / SCA tooling)\n- secure-sdlc_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"AI model and system development and testing\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"AI model and system development and testing\",\n  \"domain\": \"Secure Software Dev\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ssd_",
+        "/evidence/README.md": "# AcmeCorp — Secure Software Development: \"AI model and system development and testing\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the \"AI model and system development and testing\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- secure-sdlc_inventory.json   (in-scope items — In-scope inventory for the ai model and system development and testing control (from SAST / DAST / SCA tooling))\n- secure-sdlc_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"AI model and system development and testing\",\n  \"domain\": \"Secure Software Development\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ssd_",
         "/evidence/secure-sdlc_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Product engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"AI model and system development and testing\" control must cover\n# fragment: ai_model_system_",
         "/evidence/secure-sdlc_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -4617,7 +4630,7 @@ export const secureSdlcStages: StageConfig[] = [
           "id": "ssd-13-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"AI model and system development and testing\" sub-process of Secure Software Dev?",
+          "text": "What is the primary audit objective for the \"AI model and system development and testing\" sub-process of Secure Software Development?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -4631,11 +4644,11 @@ export const secureSdlcStages: StageConfig[] = [
           "id": "ssd-13-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"AI model and system development and testing\" matter to the broader Secure Software Dev posture?",
+          "text": "Why does a weakness in \"AI model and system development and testing\" matter to the broader Secure Software Development posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other Secure Software Dev controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other Secure Software Development controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -4648,7 +4661,7 @@ export const secureSdlcStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"AI model and system development and testing\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The AI model and system development and testing evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the ai model and system development and testing control (from SAST / DAST / SCA tooling) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -4714,16 +4727,16 @@ export const secureSdlcStages: StageConfig[] = [
         {
           "id": "ssd-13-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"AI model and system development and testing\"?",
+          "challenge": "Typical finding",
+          "text": "For \"AI model and system development and testing\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the ai model and system development and testing control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the ai model and system development and testing control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "ssd-13-q9",

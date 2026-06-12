@@ -1,17 +1,26 @@
 #!/usr/bin/env python3
-"""Read-only MCP server — Identity & Access Mgmt: "Joiner-mover-leaver" audit evidence.
+"""Read-only MCP server — Identity & Access Management (IAM): "Joiner-mover-leaver" audit evidence.
 
-Gathers the in-scope inventory and the observed control state from this domain's
-systems of record, evaluates each item against policy, and reports the exceptions
-with a PASS / EXCEPTIONS / MATERIAL-GAP opinion. READ-ONLY: it lists and reports,
-never changes state — the hard requirement for audit tooling.
+THE TEST
+For every MOVER (role/department change) in the period, diff the worker's entitlements before and after. PASS: birthright access updated to the NEW role AND prior-role entitlements removed (no accumulation); joiners got only their role's birthright access; leavers were fully deprovisioned within SLA. Exceptions: 'privilege creep' — movers who kept old-role access on top of new; leavers with residual access; joiners over-provisioned beyond their role.
+
+ARTIFACT (what _gather() pulls)
+    The joiner-mover-leaver (JML) event log from HR — hires, role/department changes, and terminations in the period
+
+REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
+    IGA:   SailPoint identity-cube entitlement history, or Saviynt 'identity entitlement' export, before vs after the move date
+    Entra: Get-MgUserMemberOf for each mover at two points in time, then diff the group sets
+    Okta:  group-membership snapshots (/api/v1/users/{id}/groups) diffed across the move
+    HR:    JML event extract (effective-dated hires / transfers / terminations)
+
+This server gathers the in-scope inventory and the observed control state, evaluates
+each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /
+MATERIAL-GAP opinion. READ-ONLY: it lists and reports, never changes state — the hard
+requirement for audit tooling.
 
   pip install "mcp[cli]"
   mcp run 02_joiner_mover_leaver_mcp.py                 # expose to an agent
   python 02_joiner_mover_leaver_mcp.py --selftest       # reproduce findings against fixtures, offline
-
-Wire real sources by replacing the _gather() fixtures with read-only API calls to
-IdP (Okta / Entra ID / Ping), PAM (CyberArk / Delinea), IGA / access-review platform, Directory (AD / LDAP).
 """
 from __future__ import annotations
 import json, sys
@@ -68,7 +77,7 @@ def coverage_report() -> dict:
                else "EXCEPTIONS" if len(exceptions) <= EXCEPTION_THRESHOLD
                else "MATERIAL GAP")
     return {
-        "domain": "Identity & Access Mgmt",
+        "domain": "Identity & Access Management (IAM)",
         "control": "Joiner-mover-leaver",
         "in_scope": len(rows),
         "compliant": len(rows) - len(exceptions),

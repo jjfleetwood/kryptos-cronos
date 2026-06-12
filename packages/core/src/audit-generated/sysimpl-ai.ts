@@ -2,9 +2,9 @@ import type { EpochConfig, StageConfig } from "../types";
 
 export const sysimplAiEpoch: EpochConfig = {
   "id": "sysimpl-ai",
-  "name": "System Implementation — AI",
-  "subtitle": "Agentic technical & privacy audit — System Implementation — AI",
-  "description": "Audit System Implementation — AI end to end with a read-only agent fleet: each sub-process is a module that teaches the control as a repeatable agentic workflow with downloadable MCP tooling, a CTF, and a 10-question quiz.",
+  "name": "System Implementation — AI (Artificial Intelligence)",
+  "subtitle": "Agentic technical & privacy audit — System Implementation — AI (Artificial Intelligence)",
+  "description": "Audit System Implementation — AI (Artificial Intelligence) end to end with a read-only agent fleet: each sub-process is a module that teaches the control as a repeatable agentic workflow with downloadable MCP tooling, a CTF, and a 10-question quiz.",
   "emoji": "🤖",
   "color": "Fuchsia",
   "unlocked": true
@@ -23,8 +23,8 @@ export const sysimplAiStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"AI use case definition\" control for System Implementation — AI is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each System Implementation — AI source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"AI use case definition\" control for System Implementation — AI (Artificial Intelligence) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"AI use case definition\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the System Implementation — AI (Artificial Intelligence) systems of record (ML platform (SageMaker/Vertex/Azure ML); Feature + data store; Model registry + eval harness) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the ai use case definition control (from ML platform (SageMaker/Vertex/Azure ML))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -45,34 +45,34 @@ export const sysimplAiStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 5/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream System Implementation — AI controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream System Implementation — AI (Artificial Intelligence) controls."
       }
     },
     "badge": {
       "id": "sia-01-badge",
-      "name": "System Implementation — AI Auditor",
+      "name": "System Implementation — AI (Artificial Intelligence) Auditor",
       "emoji": "🤖"
     },
     "wonder": {
       "name": "AI use case definition",
-      "location": "System Implementation — AI",
+      "location": "System Implementation — AI (Artificial Intelligence)",
       "era": "Present Day",
       "emoji": "🤖"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"AI use case definition\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the System Implementation — AI control.",
+      "tagline": "Auditing \"AI use case definition\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the ai use case definition control (from ML platform (SageMaker/Vertex/Azure ML))) with read-only agents, run the test against policy, and issue a defensible opinion on the System Implementation — AI (Artificial Intelligence) control.",
       "year": 2025,
       "overview": [
-        "The \"AI use case definition\" sub-process is one of the controls an auditor must verify for System Implementation — AI. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that ai use case definition is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically ML platform (SageMaker/Vertex/Azure ML), Feature + data store, Model registry + eval harness — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"AI use case definition\" sub-process is one of the controls an auditor must verify for System Implementation — AI (Artificial Intelligence). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the ai use case definition control (from ML platform (SageMaker/Vertex/Azure ML)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here ML platform (SageMaker/Vertex/Azure ML), Feature + data store, Model registry + eval harness — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"AI use case definition\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `01_ai_use_case_definition_mcp.py` exposes read-only tools that turn each System Implementation — AI source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `01_ai_use_case_definition_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from ML platform (SageMaker/Vertex/Azure ML) and Feature + data store (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 01_ai_use_case_definition_mcp.py` to expose it to your agent — or `python 01_ai_use_case_definition_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -94,7 +94,7 @@ export const sysimplAiStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define System Implementation — AI scope + policy",
+            "sub": "define System Implementation — AI (Artificial Intelligence) scope + policy",
             "type": "attacker"
           },
           {
@@ -130,12 +130,13 @@ export const sysimplAiStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"AI use case definition\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the ai use case definition control (from ML platform (SageMaker/Vertex/Azure ML)).",
+        "The test: Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"AI use case definition\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (ML platform (SageMaker/Vertex/Azure ML), Feature + data store, Model registry + eval harness) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the ai use case definition control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -159,21 +160,21 @@ export const sysimplAiStages: StageConfig[] = [
         {
           "name": "01_ai_use_case_definition_mcp.py",
           "url": "/audit-code/sysimpl-ai/01_ai_use_case_definition_mcp.py",
-          "description": "Runnable read-only MCP server: gathers System Implementation — AI evidence for \"AI use case definition\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the System Implementation — AI (Artificial Intelligence) evidence for \"AI use case definition\" (in-scope inventory for the ai use case definition control (from ml platform (sagemaker/vertex/azure ml))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"AI use case definition\" control for System Implementation — AI at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"AI use case definition\" control for System Implementation — AI (Artificial Intelligence) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"AI use case definition\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the ai use case definition control (from ML platform (SageMaker/Vertex/Azure ML)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live ML platform (SageMaker/Vertex/Azure ML) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. ML platform (SageMaker/Vertex/Azure ML) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. ML platform (SageMaker/Vertex/Azure ML) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from ML platform (SageMaker/Vertex/Azure ML); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — System Implementation — AI: \"AI use case definition\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-ai_inventory.json   (in-scope items from ML platform (SageMaker/Vertex/Azure ML))\n- sysimpl-ai_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"AI use case definition\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"AI use case definition\",\n  \"domain\": \"System Implementation — AI\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{sia_",
+        "/evidence/README.md": "# AcmeCorp — System Implementation — AI (Artificial Intelligence): \"AI use case definition\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"AI use case definition\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-ai_inventory.json   (in-scope items — In-scope inventory for the ai use case definition control (from ML platform (SageMaker/Vertex/Azure ML)))\n- sysimpl-ai_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"AI use case definition\",\n  \"domain\": \"System Implementation — AI (Artificial Intelligence)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{sia_",
         "/evidence/sysimpl-ai_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Data science / ML engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"AI use case definition\" control must cover\n# fragment: ai_use_case_",
         "/evidence/sysimpl-ai_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -237,7 +238,7 @@ export const sysimplAiStages: StageConfig[] = [
           "id": "sia-01-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"AI use case definition\" sub-process of System Implementation — AI?",
+          "text": "What is the primary audit objective for the \"AI use case definition\" sub-process of System Implementation — AI (Artificial Intelligence)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -251,11 +252,11 @@ export const sysimplAiStages: StageConfig[] = [
           "id": "sia-01-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"AI use case definition\" matter to the broader System Implementation — AI posture?",
+          "text": "Why does a weakness in \"AI use case definition\" matter to the broader System Implementation — AI (Artificial Intelligence) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other System Implementation — AI controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other System Implementation — AI (Artificial Intelligence) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -268,7 +269,7 @@ export const sysimplAiStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"AI use case definition\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The AI use case definition evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the ai use case definition control (from ML platform (SageMaker/Vertex/Azure ML)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -334,16 +335,16 @@ export const sysimplAiStages: StageConfig[] = [
         {
           "id": "sia-01-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"AI use case definition\"?",
+          "challenge": "Typical finding",
+          "text": "For \"AI use case definition\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the ai use case definition control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the ai use case definition control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "sia-01-q9",
@@ -388,8 +389,8 @@ export const sysimplAiStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Data governance and quality for AI\" control for System Implementation — AI is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each System Implementation — AI source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Data governance and quality for AI\" control for System Implementation — AI (Artificial Intelligence) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"Data governance and quality for AI\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the System Implementation — AI (Artificial Intelligence) systems of record (ML platform (SageMaker/Vertex/Azure ML); Feature + data store; Model registry + eval harness) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the data governance and quality for ai control (from ML platform (SageMaker/Vertex/Azure ML))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -410,34 +411,34 @@ export const sysimplAiStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 6/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream System Implementation — AI controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream System Implementation — AI (Artificial Intelligence) controls."
       }
     },
     "badge": {
       "id": "sia-02-badge",
-      "name": "System Implementation — AI Auditor",
+      "name": "System Implementation — AI (Artificial Intelligence) Auditor",
       "emoji": "🤖"
     },
     "wonder": {
       "name": "Data governance and quality for AI",
-      "location": "System Implementation — AI",
+      "location": "System Implementation — AI (Artificial Intelligence)",
       "era": "Present Day",
       "emoji": "🤖"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Data governance and quality for AI\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the System Implementation — AI control.",
+      "tagline": "Auditing \"Data governance and quality for AI\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the data governance and quality for ai control (from ML platform (SageMaker/Vertex/Azure ML))) with read-only agents, run the test against policy, and issue a defensible opinion on the System Implementation — AI (Artificial Intelligence) control.",
       "year": 2025,
       "overview": [
-        "The \"Data governance and quality for AI\" sub-process is one of the controls an auditor must verify for System Implementation — AI. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that data governance and quality for ai is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically ML platform (SageMaker/Vertex/Azure ML), Feature + data store, Model registry + eval harness — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Data governance and quality for AI\" sub-process is one of the controls an auditor must verify for System Implementation — AI (Artificial Intelligence). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the data governance and quality for ai control (from ML platform (SageMaker/Vertex/Azure ML)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here ML platform (SageMaker/Vertex/Azure ML), Feature + data store, Model registry + eval harness — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"Data governance and quality for AI\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `02_data_governance_and_quality_for_ai_mcp.py` exposes read-only tools that turn each System Implementation — AI source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `02_data_governance_and_quality_for_ai_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from ML platform (SageMaker/Vertex/Azure ML) and Feature + data store (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 02_data_governance_and_quality_for_ai_mcp.py` to expose it to your agent — or `python 02_data_governance_and_quality_for_ai_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -459,7 +460,7 @@ export const sysimplAiStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define System Implementation — AI scope + policy",
+            "sub": "define System Implementation — AI (Artificial Intelligence) scope + policy",
             "type": "attacker"
           },
           {
@@ -495,12 +496,13 @@ export const sysimplAiStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Data governance and quality for AI\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the data governance and quality for ai control (from ML platform (SageMaker/Vertex/Azure ML)).",
+        "The test: Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"Data governance and quality for AI\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (ML platform (SageMaker/Vertex/Azure ML), Feature + data store, Model registry + eval harness) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the data governance and quality for ai control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -524,21 +526,21 @@ export const sysimplAiStages: StageConfig[] = [
         {
           "name": "02_data_governance_and_quality_for_ai_mcp.py",
           "url": "/audit-code/sysimpl-ai/02_data_governance_and_quality_for_ai_mcp.py",
-          "description": "Runnable read-only MCP server: gathers System Implementation — AI evidence for \"Data governance and quality for AI\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the System Implementation — AI (Artificial Intelligence) evidence for \"Data governance and quality for AI\" (in-scope inventory for the data governance and quality for ai control (from ml platform (sagemaker/vertex/azure ml))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Data governance and quality for AI\" control for System Implementation — AI at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Data governance and quality for AI\" control for System Implementation — AI (Artificial Intelligence) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"Data governance and quality for AI\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the data governance and quality for ai control (from ML platform (SageMaker/Vertex/Azure ML)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live ML platform (SageMaker/Vertex/Azure ML) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. ML platform (SageMaker/Vertex/Azure ML) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. ML platform (SageMaker/Vertex/Azure ML) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from ML platform (SageMaker/Vertex/Azure ML); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — System Implementation — AI: \"Data governance and quality for AI\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-ai_inventory.json   (in-scope items from ML platform (SageMaker/Vertex/Azure ML))\n- sysimpl-ai_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Data governance and quality for AI\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Data governance and quality for AI\",\n  \"domain\": \"System Implementation — AI\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{sia_",
+        "/evidence/README.md": "# AcmeCorp — System Implementation — AI (Artificial Intelligence): \"Data governance and quality for AI\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"Data governance and quality for AI\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-ai_inventory.json   (in-scope items — In-scope inventory for the data governance and quality for ai control (from ML platform (SageMaker/Vertex/Azure ML)))\n- sysimpl-ai_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Data governance and quality for AI\",\n  \"domain\": \"System Implementation — AI (Artificial Intelligence)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{sia_",
         "/evidence/sysimpl-ai_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Data science / ML engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Data governance and quality for AI\" control must cover\n# fragment: data_governance_quality_",
         "/evidence/sysimpl-ai_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -602,7 +604,7 @@ export const sysimplAiStages: StageConfig[] = [
           "id": "sia-02-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Data governance and quality for AI\" sub-process of System Implementation — AI?",
+          "text": "What is the primary audit objective for the \"Data governance and quality for AI\" sub-process of System Implementation — AI (Artificial Intelligence)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -616,11 +618,11 @@ export const sysimplAiStages: StageConfig[] = [
           "id": "sia-02-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Data governance and quality for AI\" matter to the broader System Implementation — AI posture?",
+          "text": "Why does a weakness in \"Data governance and quality for AI\" matter to the broader System Implementation — AI (Artificial Intelligence) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other System Implementation — AI controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other System Implementation — AI (Artificial Intelligence) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -633,7 +635,7 @@ export const sysimplAiStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Data governance and quality for AI\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Data governance and quality for AI evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the data governance and quality for ai control (from ML platform (SageMaker/Vertex/Azure ML)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -699,16 +701,16 @@ export const sysimplAiStages: StageConfig[] = [
         {
           "id": "sia-02-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Data governance and quality for AI\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Data governance and quality for AI\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the data governance and quality for ai control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the data governance and quality for ai control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "sia-02-q9",
@@ -753,8 +755,8 @@ export const sysimplAiStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Model development and validation\" control for System Implementation — AI is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each System Implementation — AI source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Model development and validation\" control for System Implementation — AI (Artificial Intelligence) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"Model development and validation\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the System Implementation — AI (Artificial Intelligence) systems of record (ML platform (SageMaker/Vertex/Azure ML); Feature + data store; Model registry + eval harness) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the model development and validation control (from ML platform (SageMaker/Vertex/Azure ML))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -775,34 +777,34 @@ export const sysimplAiStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 7/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream System Implementation — AI controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream System Implementation — AI (Artificial Intelligence) controls."
       }
     },
     "badge": {
       "id": "sia-03-badge",
-      "name": "System Implementation — AI Auditor",
+      "name": "System Implementation — AI (Artificial Intelligence) Auditor",
       "emoji": "🤖"
     },
     "wonder": {
       "name": "Model development and validation",
-      "location": "System Implementation — AI",
+      "location": "System Implementation — AI (Artificial Intelligence)",
       "era": "Present Day",
       "emoji": "🤖"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Model development and validation\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the System Implementation — AI control.",
+      "tagline": "Auditing \"Model development and validation\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the model development and validation control (from ML platform (SageMaker/Vertex/Azure ML))) with read-only agents, run the test against policy, and issue a defensible opinion on the System Implementation — AI (Artificial Intelligence) control.",
       "year": 2025,
       "overview": [
-        "The \"Model development and validation\" sub-process is one of the controls an auditor must verify for System Implementation — AI. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that model development and validation is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically ML platform (SageMaker/Vertex/Azure ML), Feature + data store, Model registry + eval harness — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Model development and validation\" sub-process is one of the controls an auditor must verify for System Implementation — AI (Artificial Intelligence). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the model development and validation control (from ML platform (SageMaker/Vertex/Azure ML)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here ML platform (SageMaker/Vertex/Azure ML), Feature + data store, Model registry + eval harness — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"Model development and validation\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `03_model_development_and_validation_mcp.py` exposes read-only tools that turn each System Implementation — AI source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `03_model_development_and_validation_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from ML platform (SageMaker/Vertex/Azure ML) and Feature + data store (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 03_model_development_and_validation_mcp.py` to expose it to your agent — or `python 03_model_development_and_validation_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -824,7 +826,7 @@ export const sysimplAiStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define System Implementation — AI scope + policy",
+            "sub": "define System Implementation — AI (Artificial Intelligence) scope + policy",
             "type": "attacker"
           },
           {
@@ -860,12 +862,13 @@ export const sysimplAiStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Model development and validation\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the model development and validation control (from ML platform (SageMaker/Vertex/Azure ML)).",
+        "The test: Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"Model development and validation\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (ML platform (SageMaker/Vertex/Azure ML), Feature + data store, Model registry + eval harness) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the model development and validation control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -889,21 +892,21 @@ export const sysimplAiStages: StageConfig[] = [
         {
           "name": "03_model_development_and_validation_mcp.py",
           "url": "/audit-code/sysimpl-ai/03_model_development_and_validation_mcp.py",
-          "description": "Runnable read-only MCP server: gathers System Implementation — AI evidence for \"Model development and validation\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the System Implementation — AI (Artificial Intelligence) evidence for \"Model development and validation\" (in-scope inventory for the model development and validation control (from ml platform (sagemaker/vertex/azure ml))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Model development and validation\" control for System Implementation — AI at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Model development and validation\" control for System Implementation — AI (Artificial Intelligence) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"Model development and validation\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the model development and validation control (from ML platform (SageMaker/Vertex/Azure ML)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live ML platform (SageMaker/Vertex/Azure ML) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. ML platform (SageMaker/Vertex/Azure ML) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. ML platform (SageMaker/Vertex/Azure ML) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from ML platform (SageMaker/Vertex/Azure ML); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — System Implementation — AI: \"Model development and validation\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-ai_inventory.json   (in-scope items from ML platform (SageMaker/Vertex/Azure ML))\n- sysimpl-ai_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Model development and validation\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Model development and validation\",\n  \"domain\": \"System Implementation — AI\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{sia_",
+        "/evidence/README.md": "# AcmeCorp — System Implementation — AI (Artificial Intelligence): \"Model development and validation\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"Model development and validation\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-ai_inventory.json   (in-scope items — In-scope inventory for the model development and validation control (from ML platform (SageMaker/Vertex/Azure ML)))\n- sysimpl-ai_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Model development and validation\",\n  \"domain\": \"System Implementation — AI (Artificial Intelligence)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{sia_",
         "/evidence/sysimpl-ai_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Data science / ML engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Model development and validation\" control must cover\n# fragment: model_development_validation_",
         "/evidence/sysimpl-ai_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -967,7 +970,7 @@ export const sysimplAiStages: StageConfig[] = [
           "id": "sia-03-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Model development and validation\" sub-process of System Implementation — AI?",
+          "text": "What is the primary audit objective for the \"Model development and validation\" sub-process of System Implementation — AI (Artificial Intelligence)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -981,11 +984,11 @@ export const sysimplAiStages: StageConfig[] = [
           "id": "sia-03-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Model development and validation\" matter to the broader System Implementation — AI posture?",
+          "text": "Why does a weakness in \"Model development and validation\" matter to the broader System Implementation — AI (Artificial Intelligence) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other System Implementation — AI controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other System Implementation — AI (Artificial Intelligence) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -998,7 +1001,7 @@ export const sysimplAiStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Model development and validation\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Model development and validation evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the model development and validation control (from ML platform (SageMaker/Vertex/Azure ML)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -1064,16 +1067,16 @@ export const sysimplAiStages: StageConfig[] = [
         {
           "id": "sia-03-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Model development and validation\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Model development and validation\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the model development and validation control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the model development and validation control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "sia-03-q9",
@@ -1118,8 +1121,8 @@ export const sysimplAiStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"AI ethics, fairness, responsible AI\" control for System Implementation — AI is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each System Implementation — AI source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"AI ethics, fairness, responsible AI\" control for System Implementation — AI (Artificial Intelligence) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"AI ethics, fairness, responsible AI\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the System Implementation — AI (Artificial Intelligence) systems of record (ML platform (SageMaker/Vertex/Azure ML); Feature + data store; Model registry + eval harness) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the ai ethics, fairness, responsible ai control (from ML platform (SageMaker/Vertex/Azure ML))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -1140,34 +1143,34 @@ export const sysimplAiStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 5/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream System Implementation — AI controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream System Implementation — AI (Artificial Intelligence) controls."
       }
     },
     "badge": {
       "id": "sia-04-badge",
-      "name": "System Implementation — AI Auditor",
+      "name": "System Implementation — AI (Artificial Intelligence) Auditor",
       "emoji": "🤖"
     },
     "wonder": {
       "name": "AI ethics, fairness, responsible AI",
-      "location": "System Implementation — AI",
+      "location": "System Implementation — AI (Artificial Intelligence)",
       "era": "Present Day",
       "emoji": "🤖"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"AI ethics, fairness, responsible AI\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the System Implementation — AI control.",
+      "tagline": "Auditing \"AI ethics, fairness, responsible AI\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the ai ethics, fairness, responsible ai control (from ML platform (SageMaker/Vertex/Azure ML))) with read-only agents, run the test against policy, and issue a defensible opinion on the System Implementation — AI (Artificial Intelligence) control.",
       "year": 2025,
       "overview": [
-        "The \"AI ethics, fairness, responsible AI\" sub-process is one of the controls an auditor must verify for System Implementation — AI. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that ai ethics, fairness, responsible ai is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically ML platform (SageMaker/Vertex/Azure ML), Feature + data store, Model registry + eval harness — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"AI ethics, fairness, responsible AI\" sub-process is one of the controls an auditor must verify for System Implementation — AI (Artificial Intelligence). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the ai ethics, fairness, responsible ai control (from ML platform (SageMaker/Vertex/Azure ML)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here ML platform (SageMaker/Vertex/Azure ML), Feature + data store, Model registry + eval harness — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"AI ethics, fairness, responsible AI\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `04_ai_ethics_fairness_responsible_ai_mcp.py` exposes read-only tools that turn each System Implementation — AI source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `04_ai_ethics_fairness_responsible_ai_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from ML platform (SageMaker/Vertex/Azure ML) and Feature + data store (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 04_ai_ethics_fairness_responsible_ai_mcp.py` to expose it to your agent — or `python 04_ai_ethics_fairness_responsible_ai_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -1189,7 +1192,7 @@ export const sysimplAiStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define System Implementation — AI scope + policy",
+            "sub": "define System Implementation — AI (Artificial Intelligence) scope + policy",
             "type": "attacker"
           },
           {
@@ -1225,12 +1228,13 @@ export const sysimplAiStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"AI ethics, fairness, responsible AI\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the ai ethics, fairness, responsible ai control (from ML platform (SageMaker/Vertex/Azure ML)).",
+        "The test: Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"AI ethics, fairness, responsible AI\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (ML platform (SageMaker/Vertex/Azure ML), Feature + data store, Model registry + eval harness) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the ai ethics, fairness, responsible ai control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -1254,21 +1258,21 @@ export const sysimplAiStages: StageConfig[] = [
         {
           "name": "04_ai_ethics_fairness_responsible_ai_mcp.py",
           "url": "/audit-code/sysimpl-ai/04_ai_ethics_fairness_responsible_ai_mcp.py",
-          "description": "Runnable read-only MCP server: gathers System Implementation — AI evidence for \"AI ethics, fairness, responsible AI\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the System Implementation — AI (Artificial Intelligence) evidence for \"AI ethics, fairness, responsible AI\" (in-scope inventory for the ai ethics, fairness, responsible ai control (from ml platform (sagemaker/vertex/azure ml))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"AI ethics, fairness, responsible AI\" control for System Implementation — AI at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"AI ethics, fairness, responsible AI\" control for System Implementation — AI (Artificial Intelligence) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"AI ethics, fairness, responsible AI\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the ai ethics, fairness, responsible ai control (from ML platform (SageMaker/Vertex/Azure ML)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live ML platform (SageMaker/Vertex/Azure ML) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. ML platform (SageMaker/Vertex/Azure ML) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. ML platform (SageMaker/Vertex/Azure ML) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from ML platform (SageMaker/Vertex/Azure ML); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — System Implementation — AI: \"AI ethics, fairness, responsible AI\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-ai_inventory.json   (in-scope items from ML platform (SageMaker/Vertex/Azure ML))\n- sysimpl-ai_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"AI ethics, fairness, responsible AI\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"AI ethics, fairness, responsible AI\",\n  \"domain\": \"System Implementation — AI\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{sia_",
+        "/evidence/README.md": "# AcmeCorp — System Implementation — AI (Artificial Intelligence): \"AI ethics, fairness, responsible AI\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"AI ethics, fairness, responsible AI\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-ai_inventory.json   (in-scope items — In-scope inventory for the ai ethics, fairness, responsible ai control (from ML platform (SageMaker/Vertex/Azure ML)))\n- sysimpl-ai_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"AI ethics, fairness, responsible AI\",\n  \"domain\": \"System Implementation — AI (Artificial Intelligence)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{sia_",
         "/evidence/sysimpl-ai_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Data science / ML engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"AI ethics, fairness, responsible AI\" control must cover\n# fragment: ai_ethics_fairness_",
         "/evidence/sysimpl-ai_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -1332,7 +1336,7 @@ export const sysimplAiStages: StageConfig[] = [
           "id": "sia-04-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"AI ethics, fairness, responsible AI\" sub-process of System Implementation — AI?",
+          "text": "What is the primary audit objective for the \"AI ethics, fairness, responsible AI\" sub-process of System Implementation — AI (Artificial Intelligence)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -1346,11 +1350,11 @@ export const sysimplAiStages: StageConfig[] = [
           "id": "sia-04-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"AI ethics, fairness, responsible AI\" matter to the broader System Implementation — AI posture?",
+          "text": "Why does a weakness in \"AI ethics, fairness, responsible AI\" matter to the broader System Implementation — AI (Artificial Intelligence) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other System Implementation — AI controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other System Implementation — AI (Artificial Intelligence) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -1363,7 +1367,7 @@ export const sysimplAiStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"AI ethics, fairness, responsible AI\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The AI ethics, fairness, responsible AI evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the ai ethics, fairness, responsible ai control (from ML platform (SageMaker/Vertex/Azure ML)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -1429,16 +1433,16 @@ export const sysimplAiStages: StageConfig[] = [
         {
           "id": "sia-04-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"AI ethics, fairness, responsible AI\"?",
+          "challenge": "Typical finding",
+          "text": "For \"AI ethics, fairness, responsible AI\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the ai ethics, fairness, responsible ai control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the ai ethics, fairness, responsible ai control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "sia-04-q9",
@@ -1483,8 +1487,8 @@ export const sysimplAiStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"AI-specific testing and assurance\" control for System Implementation — AI is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each System Implementation — AI source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"AI-specific testing and assurance\" control for System Implementation — AI (Artificial Intelligence) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"AI-specific testing and assurance\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the System Implementation — AI (Artificial Intelligence) systems of record (ML platform (SageMaker/Vertex/Azure ML); Feature + data store; Model registry + eval harness) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the ai-specific testing and assurance control (from ML platform (SageMaker/Vertex/Azure ML))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -1505,34 +1509,34 @@ export const sysimplAiStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 6/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream System Implementation — AI controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream System Implementation — AI (Artificial Intelligence) controls."
       }
     },
     "badge": {
       "id": "sia-05-badge",
-      "name": "System Implementation — AI Auditor",
+      "name": "System Implementation — AI (Artificial Intelligence) Auditor",
       "emoji": "🤖"
     },
     "wonder": {
       "name": "AI-specific testing and assurance",
-      "location": "System Implementation — AI",
+      "location": "System Implementation — AI (Artificial Intelligence)",
       "era": "Present Day",
       "emoji": "🤖"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"AI-specific testing and assurance\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the System Implementation — AI control.",
+      "tagline": "Auditing \"AI-specific testing and assurance\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the ai-specific testing and assurance control (from ML platform (SageMaker/Vertex/Azure ML))) with read-only agents, run the test against policy, and issue a defensible opinion on the System Implementation — AI (Artificial Intelligence) control.",
       "year": 2025,
       "overview": [
-        "The \"AI-specific testing and assurance\" sub-process is one of the controls an auditor must verify for System Implementation — AI. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that ai-specific testing and assurance is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically ML platform (SageMaker/Vertex/Azure ML), Feature + data store, Model registry + eval harness — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"AI-specific testing and assurance\" sub-process is one of the controls an auditor must verify for System Implementation — AI (Artificial Intelligence). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the ai-specific testing and assurance control (from ML platform (SageMaker/Vertex/Azure ML)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here ML platform (SageMaker/Vertex/Azure ML), Feature + data store, Model registry + eval harness — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"AI-specific testing and assurance\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `05_ai_specific_testing_and_assurance_mcp.py` exposes read-only tools that turn each System Implementation — AI source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `05_ai_specific_testing_and_assurance_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from ML platform (SageMaker/Vertex/Azure ML) and Feature + data store (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 05_ai_specific_testing_and_assurance_mcp.py` to expose it to your agent — or `python 05_ai_specific_testing_and_assurance_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -1554,7 +1558,7 @@ export const sysimplAiStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define System Implementation — AI scope + policy",
+            "sub": "define System Implementation — AI (Artificial Intelligence) scope + policy",
             "type": "attacker"
           },
           {
@@ -1590,12 +1594,13 @@ export const sysimplAiStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"AI-specific testing and assurance\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the ai-specific testing and assurance control (from ML platform (SageMaker/Vertex/Azure ML)).",
+        "The test: Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"AI-specific testing and assurance\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (ML platform (SageMaker/Vertex/Azure ML), Feature + data store, Model registry + eval harness) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the ai-specific testing and assurance control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -1619,21 +1624,21 @@ export const sysimplAiStages: StageConfig[] = [
         {
           "name": "05_ai_specific_testing_and_assurance_mcp.py",
           "url": "/audit-code/sysimpl-ai/05_ai_specific_testing_and_assurance_mcp.py",
-          "description": "Runnable read-only MCP server: gathers System Implementation — AI evidence for \"AI-specific testing and assurance\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the System Implementation — AI (Artificial Intelligence) evidence for \"AI-specific testing and assurance\" (in-scope inventory for the ai-specific testing and assurance control (from ml platform (sagemaker/vertex/azure ml))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"AI-specific testing and assurance\" control for System Implementation — AI at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"AI-specific testing and assurance\" control for System Implementation — AI (Artificial Intelligence) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"AI-specific testing and assurance\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the ai-specific testing and assurance control (from ML platform (SageMaker/Vertex/Azure ML)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live ML platform (SageMaker/Vertex/Azure ML) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. ML platform (SageMaker/Vertex/Azure ML) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. ML platform (SageMaker/Vertex/Azure ML) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from ML platform (SageMaker/Vertex/Azure ML); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — System Implementation — AI: \"AI-specific testing and assurance\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-ai_inventory.json   (in-scope items from ML platform (SageMaker/Vertex/Azure ML))\n- sysimpl-ai_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"AI-specific testing and assurance\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"AI-specific testing and assurance\",\n  \"domain\": \"System Implementation — AI\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{sia_",
+        "/evidence/README.md": "# AcmeCorp — System Implementation — AI (Artificial Intelligence): \"AI-specific testing and assurance\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"AI-specific testing and assurance\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-ai_inventory.json   (in-scope items — In-scope inventory for the ai-specific testing and assurance control (from ML platform (SageMaker/Vertex/Azure ML)))\n- sysimpl-ai_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"AI-specific testing and assurance\",\n  \"domain\": \"System Implementation — AI (Artificial Intelligence)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{sia_",
         "/evidence/sysimpl-ai_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Data science / ML engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"AI-specific testing and assurance\" control must cover\n# fragment: aispecific_testing_assurance_",
         "/evidence/sysimpl-ai_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"EXCEPTIONS\"\n}\n# fragment: exceptions}"
@@ -1697,7 +1702,7 @@ export const sysimplAiStages: StageConfig[] = [
           "id": "sia-05-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"AI-specific testing and assurance\" sub-process of System Implementation — AI?",
+          "text": "What is the primary audit objective for the \"AI-specific testing and assurance\" sub-process of System Implementation — AI (Artificial Intelligence)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -1711,11 +1716,11 @@ export const sysimplAiStages: StageConfig[] = [
           "id": "sia-05-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"AI-specific testing and assurance\" matter to the broader System Implementation — AI posture?",
+          "text": "Why does a weakness in \"AI-specific testing and assurance\" matter to the broader System Implementation — AI (Artificial Intelligence) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other System Implementation — AI controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other System Implementation — AI (Artificial Intelligence) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -1728,7 +1733,7 @@ export const sysimplAiStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"AI-specific testing and assurance\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The AI-specific testing and assurance evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the ai-specific testing and assurance control (from ML platform (SageMaker/Vertex/Azure ML)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -1794,16 +1799,16 @@ export const sysimplAiStages: StageConfig[] = [
         {
           "id": "sia-05-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"AI-specific testing and assurance\"?",
+          "challenge": "Typical finding",
+          "text": "For \"AI-specific testing and assurance\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the ai-specific testing and assurance control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the ai-specific testing and assurance control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "sia-05-q9",
@@ -1848,8 +1853,8 @@ export const sysimplAiStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"AI model deployment and infra\" control for System Implementation — AI is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each System Implementation — AI source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"AI model deployment and infra\" control for System Implementation — AI (Artificial Intelligence) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"AI model deployment and infra\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the System Implementation — AI (Artificial Intelligence) systems of record (ML platform (SageMaker/Vertex/Azure ML); Feature + data store; Model registry + eval harness) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the ai model deployment and infra control (from ML platform (SageMaker/Vertex/Azure ML))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -1870,34 +1875,34 @@ export const sysimplAiStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 7/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream System Implementation — AI controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream System Implementation — AI (Artificial Intelligence) controls."
       }
     },
     "badge": {
       "id": "sia-06-badge",
-      "name": "System Implementation — AI Auditor",
+      "name": "System Implementation — AI (Artificial Intelligence) Auditor",
       "emoji": "🤖"
     },
     "wonder": {
       "name": "AI model deployment and infra",
-      "location": "System Implementation — AI",
+      "location": "System Implementation — AI (Artificial Intelligence)",
       "era": "Present Day",
       "emoji": "🤖"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"AI model deployment and infra\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the System Implementation — AI control.",
+      "tagline": "Auditing \"AI model deployment and infra\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the ai model deployment and infra control (from ML platform (SageMaker/Vertex/Azure ML))) with read-only agents, run the test against policy, and issue a defensible opinion on the System Implementation — AI (Artificial Intelligence) control.",
       "year": 2025,
       "overview": [
-        "The \"AI model deployment and infra\" sub-process is one of the controls an auditor must verify for System Implementation — AI. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that ai model deployment and infra is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically ML platform (SageMaker/Vertex/Azure ML), Feature + data store, Model registry + eval harness — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"AI model deployment and infra\" sub-process is one of the controls an auditor must verify for System Implementation — AI (Artificial Intelligence). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the ai model deployment and infra control (from ML platform (SageMaker/Vertex/Azure ML)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here ML platform (SageMaker/Vertex/Azure ML), Feature + data store, Model registry + eval harness — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"AI model deployment and infra\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `06_ai_model_deployment_and_infra_mcp.py` exposes read-only tools that turn each System Implementation — AI source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `06_ai_model_deployment_and_infra_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from ML platform (SageMaker/Vertex/Azure ML) and Feature + data store (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 06_ai_model_deployment_and_infra_mcp.py` to expose it to your agent — or `python 06_ai_model_deployment_and_infra_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -1919,7 +1924,7 @@ export const sysimplAiStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define System Implementation — AI scope + policy",
+            "sub": "define System Implementation — AI (Artificial Intelligence) scope + policy",
             "type": "attacker"
           },
           {
@@ -1955,12 +1960,13 @@ export const sysimplAiStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"AI model deployment and infra\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the ai model deployment and infra control (from ML platform (SageMaker/Vertex/Azure ML)).",
+        "The test: Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"AI model deployment and infra\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (ML platform (SageMaker/Vertex/Azure ML), Feature + data store, Model registry + eval harness) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the ai model deployment and infra control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -1984,21 +1990,21 @@ export const sysimplAiStages: StageConfig[] = [
         {
           "name": "06_ai_model_deployment_and_infra_mcp.py",
           "url": "/audit-code/sysimpl-ai/06_ai_model_deployment_and_infra_mcp.py",
-          "description": "Runnable read-only MCP server: gathers System Implementation — AI evidence for \"AI model deployment and infra\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the System Implementation — AI (Artificial Intelligence) evidence for \"AI model deployment and infra\" (in-scope inventory for the ai model deployment and infra control (from ml platform (sagemaker/vertex/azure ml))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"AI model deployment and infra\" control for System Implementation — AI at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"AI model deployment and infra\" control for System Implementation — AI (Artificial Intelligence) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"AI model deployment and infra\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the ai model deployment and infra control (from ML platform (SageMaker/Vertex/Azure ML)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live ML platform (SageMaker/Vertex/Azure ML) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. ML platform (SageMaker/Vertex/Azure ML) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. ML platform (SageMaker/Vertex/Azure ML) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from ML platform (SageMaker/Vertex/Azure ML); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — System Implementation — AI: \"AI model deployment and infra\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-ai_inventory.json   (in-scope items from ML platform (SageMaker/Vertex/Azure ML))\n- sysimpl-ai_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"AI model deployment and infra\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"AI model deployment and infra\",\n  \"domain\": \"System Implementation — AI\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{sia_",
+        "/evidence/README.md": "# AcmeCorp — System Implementation — AI (Artificial Intelligence): \"AI model deployment and infra\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"AI model deployment and infra\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-ai_inventory.json   (in-scope items — In-scope inventory for the ai model deployment and infra control (from ML platform (SageMaker/Vertex/Azure ML)))\n- sysimpl-ai_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"AI model deployment and infra\",\n  \"domain\": \"System Implementation — AI (Artificial Intelligence)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{sia_",
         "/evidence/sysimpl-ai_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Data science / ML engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"AI model deployment and infra\" control must cover\n# fragment: ai_model_deployment_",
         "/evidence/sysimpl-ai_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -2062,7 +2068,7 @@ export const sysimplAiStages: StageConfig[] = [
           "id": "sia-06-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"AI model deployment and infra\" sub-process of System Implementation — AI?",
+          "text": "What is the primary audit objective for the \"AI model deployment and infra\" sub-process of System Implementation — AI (Artificial Intelligence)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -2076,11 +2082,11 @@ export const sysimplAiStages: StageConfig[] = [
           "id": "sia-06-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"AI model deployment and infra\" matter to the broader System Implementation — AI posture?",
+          "text": "Why does a weakness in \"AI model deployment and infra\" matter to the broader System Implementation — AI (Artificial Intelligence) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other System Implementation — AI controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other System Implementation — AI (Artificial Intelligence) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -2093,7 +2099,7 @@ export const sysimplAiStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"AI model deployment and infra\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The AI model deployment and infra evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the ai model deployment and infra control (from ML platform (SageMaker/Vertex/Azure ML)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -2159,16 +2165,16 @@ export const sysimplAiStages: StageConfig[] = [
         {
           "id": "sia-06-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"AI model deployment and infra\"?",
+          "challenge": "Typical finding",
+          "text": "For \"AI model deployment and infra\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the ai model deployment and infra control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the ai model deployment and infra control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "sia-06-q9",
@@ -2213,8 +2219,8 @@ export const sysimplAiStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Model lifecycle and drift mgmt\" control for System Implementation — AI is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each System Implementation — AI source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Model lifecycle and drift mgmt\" control for System Implementation — AI (Artificial Intelligence) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"Model lifecycle and drift mgmt\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the System Implementation — AI (Artificial Intelligence) systems of record (ML platform (SageMaker/Vertex/Azure ML); Feature + data store; Model registry + eval harness) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the model lifecycle and drift mgmt control (from ML platform (SageMaker/Vertex/Azure ML))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -2235,34 +2241,34 @@ export const sysimplAiStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 5/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream System Implementation — AI controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream System Implementation — AI (Artificial Intelligence) controls."
       }
     },
     "badge": {
       "id": "sia-07-badge",
-      "name": "System Implementation — AI Auditor",
+      "name": "System Implementation — AI (Artificial Intelligence) Auditor",
       "emoji": "🤖"
     },
     "wonder": {
       "name": "Model lifecycle and drift mgmt",
-      "location": "System Implementation — AI",
+      "location": "System Implementation — AI (Artificial Intelligence)",
       "era": "Present Day",
       "emoji": "🤖"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Model lifecycle and drift mgmt\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the System Implementation — AI control.",
+      "tagline": "Auditing \"Model lifecycle and drift mgmt\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the model lifecycle and drift mgmt control (from ML platform (SageMaker/Vertex/Azure ML))) with read-only agents, run the test against policy, and issue a defensible opinion on the System Implementation — AI (Artificial Intelligence) control.",
       "year": 2025,
       "overview": [
-        "The \"Model lifecycle and drift mgmt\" sub-process is one of the controls an auditor must verify for System Implementation — AI. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that model lifecycle and drift mgmt is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically ML platform (SageMaker/Vertex/Azure ML), Feature + data store, Model registry + eval harness — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Model lifecycle and drift mgmt\" sub-process is one of the controls an auditor must verify for System Implementation — AI (Artificial Intelligence). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the model lifecycle and drift mgmt control (from ML platform (SageMaker/Vertex/Azure ML)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here ML platform (SageMaker/Vertex/Azure ML), Feature + data store, Model registry + eval harness — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"Model lifecycle and drift mgmt\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `07_model_lifecycle_and_drift_mgmt_mcp.py` exposes read-only tools that turn each System Implementation — AI source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `07_model_lifecycle_and_drift_mgmt_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from ML platform (SageMaker/Vertex/Azure ML) and Feature + data store (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 07_model_lifecycle_and_drift_mgmt_mcp.py` to expose it to your agent — or `python 07_model_lifecycle_and_drift_mgmt_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -2284,7 +2290,7 @@ export const sysimplAiStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define System Implementation — AI scope + policy",
+            "sub": "define System Implementation — AI (Artificial Intelligence) scope + policy",
             "type": "attacker"
           },
           {
@@ -2320,12 +2326,13 @@ export const sysimplAiStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Model lifecycle and drift mgmt\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the model lifecycle and drift mgmt control (from ML platform (SageMaker/Vertex/Azure ML)).",
+        "The test: Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"Model lifecycle and drift mgmt\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (ML platform (SageMaker/Vertex/Azure ML), Feature + data store, Model registry + eval harness) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the model lifecycle and drift mgmt control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -2349,21 +2356,21 @@ export const sysimplAiStages: StageConfig[] = [
         {
           "name": "07_model_lifecycle_and_drift_mgmt_mcp.py",
           "url": "/audit-code/sysimpl-ai/07_model_lifecycle_and_drift_mgmt_mcp.py",
-          "description": "Runnable read-only MCP server: gathers System Implementation — AI evidence for \"Model lifecycle and drift mgmt\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the System Implementation — AI (Artificial Intelligence) evidence for \"Model lifecycle and drift mgmt\" (in-scope inventory for the model lifecycle and drift mgmt control (from ml platform (sagemaker/vertex/azure ml))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Model lifecycle and drift mgmt\" control for System Implementation — AI at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Model lifecycle and drift mgmt\" control for System Implementation — AI (Artificial Intelligence) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"Model lifecycle and drift mgmt\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the model lifecycle and drift mgmt control (from ML platform (SageMaker/Vertex/Azure ML)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live ML platform (SageMaker/Vertex/Azure ML) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. ML platform (SageMaker/Vertex/Azure ML) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. ML platform (SageMaker/Vertex/Azure ML) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from ML platform (SageMaker/Vertex/Azure ML); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — System Implementation — AI: \"Model lifecycle and drift mgmt\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-ai_inventory.json   (in-scope items from ML platform (SageMaker/Vertex/Azure ML))\n- sysimpl-ai_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Model lifecycle and drift mgmt\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Model lifecycle and drift mgmt\",\n  \"domain\": \"System Implementation — AI\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{sia_",
+        "/evidence/README.md": "# AcmeCorp — System Implementation — AI (Artificial Intelligence): \"Model lifecycle and drift mgmt\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"Model lifecycle and drift mgmt\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-ai_inventory.json   (in-scope items — In-scope inventory for the model lifecycle and drift mgmt control (from ML platform (SageMaker/Vertex/Azure ML)))\n- sysimpl-ai_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Model lifecycle and drift mgmt\",\n  \"domain\": \"System Implementation — AI (Artificial Intelligence)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{sia_",
         "/evidence/sysimpl-ai_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Data science / ML engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Model lifecycle and drift mgmt\" control must cover\n# fragment: model_lifecycle_drift_",
         "/evidence/sysimpl-ai_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -2427,7 +2434,7 @@ export const sysimplAiStages: StageConfig[] = [
           "id": "sia-07-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Model lifecycle and drift mgmt\" sub-process of System Implementation — AI?",
+          "text": "What is the primary audit objective for the \"Model lifecycle and drift mgmt\" sub-process of System Implementation — AI (Artificial Intelligence)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -2441,11 +2448,11 @@ export const sysimplAiStages: StageConfig[] = [
           "id": "sia-07-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Model lifecycle and drift mgmt\" matter to the broader System Implementation — AI posture?",
+          "text": "Why does a weakness in \"Model lifecycle and drift mgmt\" matter to the broader System Implementation — AI (Artificial Intelligence) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other System Implementation — AI controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other System Implementation — AI (Artificial Intelligence) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -2458,7 +2465,7 @@ export const sysimplAiStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Model lifecycle and drift mgmt\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Model lifecycle and drift mgmt evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the model lifecycle and drift mgmt control (from ML platform (SageMaker/Vertex/Azure ML)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -2524,16 +2531,16 @@ export const sysimplAiStages: StageConfig[] = [
         {
           "id": "sia-07-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Model lifecycle and drift mgmt\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Model lifecycle and drift mgmt\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the model lifecycle and drift mgmt control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the model lifecycle and drift mgmt control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "sia-07-q9",
@@ -2578,8 +2585,8 @@ export const sysimplAiStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"AI security and adversarial testing\" control for System Implementation — AI is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each System Implementation — AI source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"AI security and adversarial testing\" control for System Implementation — AI (Artificial Intelligence) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"AI security and adversarial testing\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the System Implementation — AI (Artificial Intelligence) systems of record (ML platform (SageMaker/Vertex/Azure ML); Feature + data store; Model registry + eval harness) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the ai security and adversarial testing control (from ML platform (SageMaker/Vertex/Azure ML))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -2600,34 +2607,34 @@ export const sysimplAiStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 4/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream System Implementation — AI controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream System Implementation — AI (Artificial Intelligence) controls."
       }
     },
     "badge": {
       "id": "sia-08-badge",
-      "name": "System Implementation — AI Auditor",
+      "name": "System Implementation — AI (Artificial Intelligence) Auditor",
       "emoji": "🤖"
     },
     "wonder": {
       "name": "AI security and adversarial testing",
-      "location": "System Implementation — AI",
+      "location": "System Implementation — AI (Artificial Intelligence)",
       "era": "Present Day",
       "emoji": "🤖"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"AI security and adversarial testing\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the System Implementation — AI control.",
+      "tagline": "Auditing \"AI security and adversarial testing\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the ai security and adversarial testing control (from ML platform (SageMaker/Vertex/Azure ML))) with read-only agents, run the test against policy, and issue a defensible opinion on the System Implementation — AI (Artificial Intelligence) control.",
       "year": 2025,
       "overview": [
-        "The \"AI security and adversarial testing\" sub-process is one of the controls an auditor must verify for System Implementation — AI. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that ai security and adversarial testing is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically ML platform (SageMaker/Vertex/Azure ML), Feature + data store, Model registry + eval harness — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"AI security and adversarial testing\" sub-process is one of the controls an auditor must verify for System Implementation — AI (Artificial Intelligence). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the ai security and adversarial testing control (from ML platform (SageMaker/Vertex/Azure ML)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here ML platform (SageMaker/Vertex/Azure ML), Feature + data store, Model registry + eval harness — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"AI security and adversarial testing\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `08_ai_security_and_adversarial_testing_mcp.py` exposes read-only tools that turn each System Implementation — AI source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `08_ai_security_and_adversarial_testing_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from ML platform (SageMaker/Vertex/Azure ML) and Feature + data store (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 08_ai_security_and_adversarial_testing_mcp.py` to expose it to your agent — or `python 08_ai_security_and_adversarial_testing_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -2649,7 +2656,7 @@ export const sysimplAiStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define System Implementation — AI scope + policy",
+            "sub": "define System Implementation — AI (Artificial Intelligence) scope + policy",
             "type": "attacker"
           },
           {
@@ -2685,12 +2692,13 @@ export const sysimplAiStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"AI security and adversarial testing\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the ai security and adversarial testing control (from ML platform (SageMaker/Vertex/Azure ML)).",
+        "The test: Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"AI security and adversarial testing\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (ML platform (SageMaker/Vertex/Azure ML), Feature + data store, Model registry + eval harness) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the ai security and adversarial testing control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -2714,21 +2722,21 @@ export const sysimplAiStages: StageConfig[] = [
         {
           "name": "08_ai_security_and_adversarial_testing_mcp.py",
           "url": "/audit-code/sysimpl-ai/08_ai_security_and_adversarial_testing_mcp.py",
-          "description": "Runnable read-only MCP server: gathers System Implementation — AI evidence for \"AI security and adversarial testing\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the System Implementation — AI (Artificial Intelligence) evidence for \"AI security and adversarial testing\" (in-scope inventory for the ai security and adversarial testing control (from ml platform (sagemaker/vertex/azure ml))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"AI security and adversarial testing\" control for System Implementation — AI at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"AI security and adversarial testing\" control for System Implementation — AI (Artificial Intelligence) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"AI security and adversarial testing\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the ai security and adversarial testing control (from ML platform (SageMaker/Vertex/Azure ML)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live ML platform (SageMaker/Vertex/Azure ML) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. ML platform (SageMaker/Vertex/Azure ML) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. ML platform (SageMaker/Vertex/Azure ML) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from ML platform (SageMaker/Vertex/Azure ML); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — System Implementation — AI: \"AI security and adversarial testing\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-ai_inventory.json   (in-scope items from ML platform (SageMaker/Vertex/Azure ML))\n- sysimpl-ai_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"AI security and adversarial testing\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"AI security and adversarial testing\",\n  \"domain\": \"System Implementation — AI\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{sia_",
+        "/evidence/README.md": "# AcmeCorp — System Implementation — AI (Artificial Intelligence): \"AI security and adversarial testing\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"AI security and adversarial testing\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-ai_inventory.json   (in-scope items — In-scope inventory for the ai security and adversarial testing control (from ML platform (SageMaker/Vertex/Azure ML)))\n- sysimpl-ai_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"AI security and adversarial testing\",\n  \"domain\": \"System Implementation — AI (Artificial Intelligence)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{sia_",
         "/evidence/sysimpl-ai_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Data science / ML engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"AI security and adversarial testing\" control must cover\n# fragment: ai_security_adversarial_",
         "/evidence/sysimpl-ai_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -2792,7 +2800,7 @@ export const sysimplAiStages: StageConfig[] = [
           "id": "sia-08-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"AI security and adversarial testing\" sub-process of System Implementation — AI?",
+          "text": "What is the primary audit objective for the \"AI security and adversarial testing\" sub-process of System Implementation — AI (Artificial Intelligence)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -2806,11 +2814,11 @@ export const sysimplAiStages: StageConfig[] = [
           "id": "sia-08-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"AI security and adversarial testing\" matter to the broader System Implementation — AI posture?",
+          "text": "Why does a weakness in \"AI security and adversarial testing\" matter to the broader System Implementation — AI (Artificial Intelligence) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other System Implementation — AI controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other System Implementation — AI (Artificial Intelligence) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -2823,7 +2831,7 @@ export const sysimplAiStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"AI security and adversarial testing\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The AI security and adversarial testing evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the ai security and adversarial testing control (from ML platform (SageMaker/Vertex/Azure ML)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -2889,16 +2897,16 @@ export const sysimplAiStages: StageConfig[] = [
         {
           "id": "sia-08-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"AI security and adversarial testing\"?",
+          "challenge": "Typical finding",
+          "text": "For \"AI security and adversarial testing\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the ai security and adversarial testing control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the ai security and adversarial testing control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "sia-08-q9",
@@ -2943,8 +2951,8 @@ export const sysimplAiStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Regulatory and legal compliance for AI\" control for System Implementation — AI is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each System Implementation — AI source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Regulatory and legal compliance for AI\" control for System Implementation — AI (Artificial Intelligence) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"Regulatory and legal compliance for AI\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the System Implementation — AI (Artificial Intelligence) systems of record (ML platform (SageMaker/Vertex/Azure ML); Feature + data store; Model registry + eval harness) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the regulatory and legal compliance for ai control (from ML platform (SageMaker/Vertex/Azure ML))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -2965,34 +2973,34 @@ export const sysimplAiStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 7/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream System Implementation — AI controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream System Implementation — AI (Artificial Intelligence) controls."
       }
     },
     "badge": {
       "id": "sia-09-badge",
-      "name": "System Implementation — AI Auditor",
+      "name": "System Implementation — AI (Artificial Intelligence) Auditor",
       "emoji": "🤖"
     },
     "wonder": {
       "name": "Regulatory and legal compliance for AI",
-      "location": "System Implementation — AI",
+      "location": "System Implementation — AI (Artificial Intelligence)",
       "era": "Present Day",
       "emoji": "🤖"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Regulatory and legal compliance for AI\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the System Implementation — AI control.",
+      "tagline": "Auditing \"Regulatory and legal compliance for AI\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the regulatory and legal compliance for ai control (from ML platform (SageMaker/Vertex/Azure ML))) with read-only agents, run the test against policy, and issue a defensible opinion on the System Implementation — AI (Artificial Intelligence) control.",
       "year": 2025,
       "overview": [
-        "The \"Regulatory and legal compliance for AI\" sub-process is one of the controls an auditor must verify for System Implementation — AI. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that regulatory and legal compliance for ai is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically ML platform (SageMaker/Vertex/Azure ML), Feature + data store, Model registry + eval harness — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Regulatory and legal compliance for AI\" sub-process is one of the controls an auditor must verify for System Implementation — AI (Artificial Intelligence). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the regulatory and legal compliance for ai control (from ML platform (SageMaker/Vertex/Azure ML)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here ML platform (SageMaker/Vertex/Azure ML), Feature + data store, Model registry + eval harness — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"Regulatory and legal compliance for AI\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `09_regulatory_and_legal_compliance_for_ai_mcp.py` exposes read-only tools that turn each System Implementation — AI source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `09_regulatory_and_legal_compliance_for_ai_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from ML platform (SageMaker/Vertex/Azure ML) and Feature + data store (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 09_regulatory_and_legal_compliance_for_ai_mcp.py` to expose it to your agent — or `python 09_regulatory_and_legal_compliance_for_ai_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -3014,7 +3022,7 @@ export const sysimplAiStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define System Implementation — AI scope + policy",
+            "sub": "define System Implementation — AI (Artificial Intelligence) scope + policy",
             "type": "attacker"
           },
           {
@@ -3050,12 +3058,13 @@ export const sysimplAiStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Regulatory and legal compliance for AI\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the regulatory and legal compliance for ai control (from ML platform (SageMaker/Vertex/Azure ML)).",
+        "The test: Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"Regulatory and legal compliance for AI\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (ML platform (SageMaker/Vertex/Azure ML), Feature + data store, Model registry + eval harness) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the regulatory and legal compliance for ai control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -3079,21 +3088,21 @@ export const sysimplAiStages: StageConfig[] = [
         {
           "name": "09_regulatory_and_legal_compliance_for_ai_mcp.py",
           "url": "/audit-code/sysimpl-ai/09_regulatory_and_legal_compliance_for_ai_mcp.py",
-          "description": "Runnable read-only MCP server: gathers System Implementation — AI evidence for \"Regulatory and legal compliance for AI\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the System Implementation — AI (Artificial Intelligence) evidence for \"Regulatory and legal compliance for AI\" (in-scope inventory for the regulatory and legal compliance for ai control (from ml platform (sagemaker/vertex/azure ml))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Regulatory and legal compliance for AI\" control for System Implementation — AI at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Regulatory and legal compliance for AI\" control for System Implementation — AI (Artificial Intelligence) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"Regulatory and legal compliance for AI\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the regulatory and legal compliance for ai control (from ML platform (SageMaker/Vertex/Azure ML)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live ML platform (SageMaker/Vertex/Azure ML) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. ML platform (SageMaker/Vertex/Azure ML) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. ML platform (SageMaker/Vertex/Azure ML) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from ML platform (SageMaker/Vertex/Azure ML); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — System Implementation — AI: \"Regulatory and legal compliance for AI\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-ai_inventory.json   (in-scope items from ML platform (SageMaker/Vertex/Azure ML))\n- sysimpl-ai_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Regulatory and legal compliance for AI\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Regulatory and legal compliance for AI\",\n  \"domain\": \"System Implementation — AI\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{sia_",
+        "/evidence/README.md": "# AcmeCorp — System Implementation — AI (Artificial Intelligence): \"Regulatory and legal compliance for AI\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"Regulatory and legal compliance for AI\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-ai_inventory.json   (in-scope items — In-scope inventory for the regulatory and legal compliance for ai control (from ML platform (SageMaker/Vertex/Azure ML)))\n- sysimpl-ai_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Regulatory and legal compliance for AI\",\n  \"domain\": \"System Implementation — AI (Artificial Intelligence)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{sia_",
         "/evidence/sysimpl-ai_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Data science / ML engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Regulatory and legal compliance for AI\" control must cover\n# fragment: regulatory_legal_compliance_",
         "/evidence/sysimpl-ai_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -3157,7 +3166,7 @@ export const sysimplAiStages: StageConfig[] = [
           "id": "sia-09-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Regulatory and legal compliance for AI\" sub-process of System Implementation — AI?",
+          "text": "What is the primary audit objective for the \"Regulatory and legal compliance for AI\" sub-process of System Implementation — AI (Artificial Intelligence)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -3171,11 +3180,11 @@ export const sysimplAiStages: StageConfig[] = [
           "id": "sia-09-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Regulatory and legal compliance for AI\" matter to the broader System Implementation — AI posture?",
+          "text": "Why does a weakness in \"Regulatory and legal compliance for AI\" matter to the broader System Implementation — AI (Artificial Intelligence) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other System Implementation — AI controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other System Implementation — AI (Artificial Intelligence) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -3188,7 +3197,7 @@ export const sysimplAiStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Regulatory and legal compliance for AI\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Regulatory and legal compliance for AI evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the regulatory and legal compliance for ai control (from ML platform (SageMaker/Vertex/Azure ML)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -3254,16 +3263,16 @@ export const sysimplAiStages: StageConfig[] = [
         {
           "id": "sia-09-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Regulatory and legal compliance for AI\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Regulatory and legal compliance for AI\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the regulatory and legal compliance for ai control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the regulatory and legal compliance for ai control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "sia-09-q9",
@@ -3308,8 +3317,8 @@ export const sysimplAiStages: StageConfig[] = [
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Third-party AI / foundation model gov\" control for System Implementation — AI is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each System Implementation — AI source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Third-party AI / foundation model gov\" control for System Implementation — AI (Artificial Intelligence) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"Third-party AI / foundation model gov\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the System Implementation — AI (Artificial Intelligence) systems of record (ML platform (SageMaker/Vertex/Azure ML); Feature + data store; Model registry + eval harness) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the third-party ai / foundation model gov control (from ML platform (SageMaker/Vertex/Azure ML))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -3330,34 +3339,34 @@ export const sysimplAiStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 5/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 9/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream System Implementation — AI controls."
+        "value": "VALUE 9/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream System Implementation — AI (Artificial Intelligence) controls."
       }
     },
     "badge": {
       "id": "sia-10-badge",
-      "name": "System Implementation — AI Auditor",
+      "name": "System Implementation — AI (Artificial Intelligence) Auditor",
       "emoji": "🤖"
     },
     "wonder": {
       "name": "Third-party AI / foundation model gov",
-      "location": "System Implementation — AI",
+      "location": "System Implementation — AI (Artificial Intelligence)",
       "era": "Present Day",
       "emoji": "🤖"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Third-party AI / foundation model gov\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the System Implementation — AI control.",
+      "tagline": "Auditing \"Third-party AI / foundation model gov\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the third-party ai / foundation model gov control (from ML platform (SageMaker/Vertex/Azure ML))) with read-only agents, run the test against policy, and issue a defensible opinion on the System Implementation — AI (Artificial Intelligence) control.",
       "year": 2025,
       "overview": [
-        "The \"Third-party AI / foundation model gov\" sub-process is one of the controls an auditor must verify for System Implementation — AI. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that third-party ai / foundation model gov is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically ML platform (SageMaker/Vertex/Azure ML), Feature + data store, Model registry + eval harness — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Third-party AI / foundation model gov\" sub-process is one of the controls an auditor must verify for System Implementation — AI (Artificial Intelligence). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the third-party ai / foundation model gov control (from ML platform (SageMaker/Vertex/Azure ML)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here ML platform (SageMaker/Vertex/Azure ML), Feature + data store, Model registry + eval harness — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"Third-party AI / foundation model gov\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `10_third_party_ai_foundation_model_gov_mcp.py` exposes read-only tools that turn each System Implementation — AI source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `10_third_party_ai_foundation_model_gov_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from ML platform (SageMaker/Vertex/Azure ML) and Feature + data store (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 10_third_party_ai_foundation_model_gov_mcp.py` to expose it to your agent — or `python 10_third_party_ai_foundation_model_gov_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -3379,7 +3388,7 @@ export const sysimplAiStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define System Implementation — AI scope + policy",
+            "sub": "define System Implementation — AI (Artificial Intelligence) scope + policy",
             "type": "attacker"
           },
           {
@@ -3415,12 +3424,13 @@ export const sysimplAiStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Third-party AI / foundation model gov\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the third-party ai / foundation model gov control (from ML platform (SageMaker/Vertex/Azure ML)).",
+        "The test: Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"Third-party AI / foundation model gov\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (ML platform (SageMaker/Vertex/Azure ML), Feature + data store, Model registry + eval harness) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the third-party ai / foundation model gov control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -3444,21 +3454,21 @@ export const sysimplAiStages: StageConfig[] = [
         {
           "name": "10_third_party_ai_foundation_model_gov_mcp.py",
           "url": "/audit-code/sysimpl-ai/10_third_party_ai_foundation_model_gov_mcp.py",
-          "description": "Runnable read-only MCP server: gathers System Implementation — AI evidence for \"Third-party AI / foundation model gov\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the System Implementation — AI (Artificial Intelligence) evidence for \"Third-party AI / foundation model gov\" (in-scope inventory for the third-party ai / foundation model gov control (from ml platform (sagemaker/vertex/azure ml))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Third-party AI / foundation model gov\" control for System Implementation — AI at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Third-party AI / foundation model gov\" control for System Implementation — AI (Artificial Intelligence) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"Third-party AI / foundation model gov\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the third-party ai / foundation model gov control (from ML platform (SageMaker/Vertex/Azure ML)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live ML platform (SageMaker/Vertex/Azure ML) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. ML platform (SageMaker/Vertex/Azure ML) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. ML platform (SageMaker/Vertex/Azure ML) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from ML platform (SageMaker/Vertex/Azure ML); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — System Implementation — AI: \"Third-party AI / foundation model gov\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-ai_inventory.json   (in-scope items from ML platform (SageMaker/Vertex/Azure ML))\n- sysimpl-ai_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Third-party AI / foundation model gov\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Third-party AI / foundation model gov\",\n  \"domain\": \"System Implementation — AI\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{sia_",
+        "/evidence/README.md": "# AcmeCorp — System Implementation — AI (Artificial Intelligence): \"Third-party AI / foundation model gov\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"Third-party AI / foundation model gov\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-ai_inventory.json   (in-scope items — In-scope inventory for the third-party ai / foundation model gov control (from ML platform (SageMaker/Vertex/Azure ML)))\n- sysimpl-ai_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Third-party AI / foundation model gov\",\n  \"domain\": \"System Implementation — AI (Artificial Intelligence)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{sia_",
         "/evidence/sysimpl-ai_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Data science / ML engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Third-party AI / foundation model gov\" control must cover\n# fragment: thirdparty_ai_foundation_",
         "/evidence/sysimpl-ai_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"EXCEPTIONS\"\n}\n# fragment: exceptions}"
@@ -3522,7 +3532,7 @@ export const sysimplAiStages: StageConfig[] = [
           "id": "sia-10-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Third-party AI / foundation model gov\" sub-process of System Implementation — AI?",
+          "text": "What is the primary audit objective for the \"Third-party AI / foundation model gov\" sub-process of System Implementation — AI (Artificial Intelligence)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -3536,11 +3546,11 @@ export const sysimplAiStages: StageConfig[] = [
           "id": "sia-10-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Third-party AI / foundation model gov\" matter to the broader System Implementation — AI posture?",
+          "text": "Why does a weakness in \"Third-party AI / foundation model gov\" matter to the broader System Implementation — AI (Artificial Intelligence) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other System Implementation — AI controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other System Implementation — AI (Artificial Intelligence) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -3553,7 +3563,7 @@ export const sysimplAiStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Third-party AI / foundation model gov\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Third-party AI / foundation model gov evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the third-party ai / foundation model gov control (from ML platform (SageMaker/Vertex/Azure ML)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -3619,16 +3629,16 @@ export const sysimplAiStages: StageConfig[] = [
         {
           "id": "sia-10-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Third-party AI / foundation model gov\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Third-party AI / foundation model gov\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the third-party ai / foundation model gov control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the third-party ai / foundation model gov control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "sia-10-q9",
@@ -3673,8 +3683,8 @@ export const sysimplAiStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Human oversight and accountability\" control for System Implementation — AI is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each System Implementation — AI source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Human oversight and accountability\" control for System Implementation — AI (Artificial Intelligence) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"Human oversight and accountability\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the System Implementation — AI (Artificial Intelligence) systems of record (ML platform (SageMaker/Vertex/Azure ML); Feature + data store; Model registry + eval harness) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the human oversight and accountability control (from ML platform (SageMaker/Vertex/Azure ML))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -3695,34 +3705,34 @@ export const sysimplAiStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 6/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream System Implementation — AI controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream System Implementation — AI (Artificial Intelligence) controls."
       }
     },
     "badge": {
       "id": "sia-11-badge",
-      "name": "System Implementation — AI Auditor",
+      "name": "System Implementation — AI (Artificial Intelligence) Auditor",
       "emoji": "🤖"
     },
     "wonder": {
       "name": "Human oversight and accountability",
-      "location": "System Implementation — AI",
+      "location": "System Implementation — AI (Artificial Intelligence)",
       "era": "Present Day",
       "emoji": "🤖"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Human oversight and accountability\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the System Implementation — AI control.",
+      "tagline": "Auditing \"Human oversight and accountability\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the human oversight and accountability control (from ML platform (SageMaker/Vertex/Azure ML))) with read-only agents, run the test against policy, and issue a defensible opinion on the System Implementation — AI (Artificial Intelligence) control.",
       "year": 2025,
       "overview": [
-        "The \"Human oversight and accountability\" sub-process is one of the controls an auditor must verify for System Implementation — AI. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that human oversight and accountability is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically ML platform (SageMaker/Vertex/Azure ML), Feature + data store, Model registry + eval harness — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"Human oversight and accountability\" sub-process is one of the controls an auditor must verify for System Implementation — AI (Artificial Intelligence). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the human oversight and accountability control (from ML platform (SageMaker/Vertex/Azure ML)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here ML platform (SageMaker/Vertex/Azure ML), Feature + data store, Model registry + eval harness — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"Human oversight and accountability\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `11_human_oversight_and_accountability_mcp.py` exposes read-only tools that turn each System Implementation — AI source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `11_human_oversight_and_accountability_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from ML platform (SageMaker/Vertex/Azure ML) and Feature + data store (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 11_human_oversight_and_accountability_mcp.py` to expose it to your agent — or `python 11_human_oversight_and_accountability_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -3744,7 +3754,7 @@ export const sysimplAiStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define System Implementation — AI scope + policy",
+            "sub": "define System Implementation — AI (Artificial Intelligence) scope + policy",
             "type": "attacker"
           },
           {
@@ -3780,12 +3790,13 @@ export const sysimplAiStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"Human oversight and accountability\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the human oversight and accountability control (from ML platform (SageMaker/Vertex/Azure ML)).",
+        "The test: Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"Human oversight and accountability\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (ML platform (SageMaker/Vertex/Azure ML), Feature + data store, Model registry + eval harness) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the human oversight and accountability control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -3809,21 +3820,21 @@ export const sysimplAiStages: StageConfig[] = [
         {
           "name": "11_human_oversight_and_accountability_mcp.py",
           "url": "/audit-code/sysimpl-ai/11_human_oversight_and_accountability_mcp.py",
-          "description": "Runnable read-only MCP server: gathers System Implementation — AI evidence for \"Human oversight and accountability\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the System Implementation — AI (Artificial Intelligence) evidence for \"Human oversight and accountability\" (in-scope inventory for the human oversight and accountability control (from ml platform (sagemaker/vertex/azure ml))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Human oversight and accountability\" control for System Implementation — AI at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"Human oversight and accountability\" control for System Implementation — AI (Artificial Intelligence) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"Human oversight and accountability\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the human oversight and accountability control (from ML platform (SageMaker/Vertex/Azure ML)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live ML platform (SageMaker/Vertex/Azure ML) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. ML platform (SageMaker/Vertex/Azure ML) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. ML platform (SageMaker/Vertex/Azure ML) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from ML platform (SageMaker/Vertex/Azure ML); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — System Implementation — AI: \"Human oversight and accountability\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-ai_inventory.json   (in-scope items from ML platform (SageMaker/Vertex/Azure ML))\n- sysimpl-ai_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Human oversight and accountability\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Human oversight and accountability\",\n  \"domain\": \"System Implementation — AI\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{sia_",
+        "/evidence/README.md": "# AcmeCorp — System Implementation — AI (Artificial Intelligence): \"Human oversight and accountability\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"Human oversight and accountability\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-ai_inventory.json   (in-scope items — In-scope inventory for the human oversight and accountability control (from ML platform (SageMaker/Vertex/Azure ML)))\n- sysimpl-ai_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Human oversight and accountability\",\n  \"domain\": \"System Implementation — AI (Artificial Intelligence)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{sia_",
         "/evidence/sysimpl-ai_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Data science / ML engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Human oversight and accountability\" control must cover\n# fragment: human_oversight_accountability_",
         "/evidence/sysimpl-ai_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -3887,7 +3898,7 @@ export const sysimplAiStages: StageConfig[] = [
           "id": "sia-11-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Human oversight and accountability\" sub-process of System Implementation — AI?",
+          "text": "What is the primary audit objective for the \"Human oversight and accountability\" sub-process of System Implementation — AI (Artificial Intelligence)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -3901,11 +3912,11 @@ export const sysimplAiStages: StageConfig[] = [
           "id": "sia-11-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Human oversight and accountability\" matter to the broader System Implementation — AI posture?",
+          "text": "Why does a weakness in \"Human oversight and accountability\" matter to the broader System Implementation — AI (Artificial Intelligence) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other System Implementation — AI controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other System Implementation — AI (Artificial Intelligence) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -3918,7 +3929,7 @@ export const sysimplAiStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Human oversight and accountability\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The Human oversight and accountability evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the human oversight and accountability control (from ML platform (SageMaker/Vertex/Azure ML)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -3984,16 +3995,16 @@ export const sysimplAiStages: StageConfig[] = [
         {
           "id": "sia-11-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"Human oversight and accountability\"?",
+          "challenge": "Typical finding",
+          "text": "For \"Human oversight and accountability\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the human oversight and accountability control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the human oversight and accountability control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "sia-11-q9",
@@ -4038,8 +4049,8 @@ export const sysimplAiStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"AI performance / post-deployment\" control for System Implementation — AI is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
-      "approach": "An audit agent calls a read-only MCP server that wraps each System Implementation — AI source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"AI performance / post-deployment\" control for System Implementation — AI (Artificial Intelligence) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"AI performance / post-deployment\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the System Implementation — AI (Artificial Intelligence) systems of record (ML platform (SageMaker/Vertex/Azure ML); Feature + data store; Model registry + eval harness) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "In-scope inventory for the ai performance / post-deployment control (from ML platform (SageMaker/Vertex/Azure ML))",
         "Observed configuration/state evidence showing whether the control is applied and operating",
@@ -4060,34 +4071,34 @@ export const sysimplAiStages: StageConfig[] = [
       ],
       "scoring": {
         "ease": "EASE 7/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
-        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream System Implementation — AI controls."
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream System Implementation — AI (Artificial Intelligence) controls."
       }
     },
     "badge": {
       "id": "sia-12-badge",
-      "name": "System Implementation — AI Auditor",
+      "name": "System Implementation — AI (Artificial Intelligence) Auditor",
       "emoji": "🤖"
     },
     "wonder": {
       "name": "AI performance / post-deployment",
-      "location": "System Implementation — AI",
+      "location": "System Implementation — AI (Artificial Intelligence)",
       "era": "Present Day",
       "emoji": "🤖"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"AI performance / post-deployment\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the System Implementation — AI control.",
+      "tagline": "Auditing \"AI performance / post-deployment\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the ai performance / post-deployment control (from ML platform (SageMaker/Vertex/Azure ML))) with read-only agents, run the test against policy, and issue a defensible opinion on the System Implementation — AI (Artificial Intelligence) control.",
       "year": 2025,
       "overview": [
-        "The \"AI performance / post-deployment\" sub-process is one of the controls an auditor must verify for System Implementation — AI. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that ai performance / post-deployment is in place and working, for everything in scope.\"",
-        "It is hard because the truth lives across systems that were never reconciled — typically ML platform (SageMaker/Vertex/Azure ML), Feature + data store, Model registry + eval harness — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+        "The \"AI performance / post-deployment\" sub-process is one of the controls an auditor must verify for System Implementation — AI (Artificial Intelligence). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the ai performance / post-deployment control (from ML platform (SageMaker/Vertex/Azure ML)), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here ML platform (SageMaker/Vertex/Azure ML), Feature + data store, Model registry + eval harness — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The test itself is specific. Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"AI performance / post-deployment\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `12_ai_performance_post_deployment_mcp.py` exposes read-only tools that turn each System Implementation — AI source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
-          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "The included `12_ai_performance_post_deployment_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from ML platform (SageMaker/Vertex/Azure ML) and Feature + data store (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 12_ai_performance_post_deployment_mcp.py` to expose it to your agent — or `python 12_ai_performance_post_deployment_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
@@ -4109,7 +4120,7 @@ export const sysimplAiStages: StageConfig[] = [
         "nodes": [
           {
             "label": "Scope",
-            "sub": "define System Implementation — AI scope + policy",
+            "sub": "define System Implementation — AI (Artificial Intelligence) scope + policy",
             "type": "attacker"
           },
           {
@@ -4145,12 +4156,13 @@ export const sysimplAiStages: StageConfig[] = [
           "highlight": true
         }
       ],
+      "examples": [],
       "keyTakeaways": [
-        "Audit \"AI performance / post-deployment\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
-        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
-        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
-        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+        "The artifact to pull: In-scope inventory for the ai performance / post-deployment control (from ML platform (SageMaker/Vertex/Azure ML)).",
+        "The test: Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"AI performance / post-deployment\" control is missing, mis-scoped, or not operating.",
+        "Reconcile the systems of record (ML platform (SageMaker/Vertex/Azure ML), Feature + data store, Model registry + eval harness) — anything the control never reached is the highest-value finding.",
+        "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the ai performance / post-deployment control is not applied, mis-scoped, or has drifted from the approved baseline"
       ],
       "references": [
         {
@@ -4174,21 +4186,21 @@ export const sysimplAiStages: StageConfig[] = [
         {
           "name": "12_ai_performance_post_deployment_mcp.py",
           "url": "/audit-code/sysimpl-ai/12_ai_performance_post_deployment_mcp.py",
-          "description": "Runnable read-only MCP server: gathers System Implementation — AI evidence for \"AI performance / post-deployment\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the System Implementation — AI (Artificial Intelligence) evidence for \"AI performance / post-deployment\" (in-scope inventory for the ai performance / post-deployment control (from ml platform (sagemaker/vertex/azure ml))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"AI performance / post-deployment\" control for System Implementation — AI at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
-      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "scenario": "You're the auditor testing the \"AI performance / post-deployment\" control for System Implementation — AI (Artificial Intelligence) at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"AI performance / post-deployment\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the ai performance / post-deployment control (from ML platform (SageMaker/Vertex/Azure ML)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live ML platform (SageMaker/Vertex/Azure ML) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. ML platform (SageMaker/Vertex/Azure ML) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. ML platform (SageMaker/Vertex/Azure ML) is the system of record; the others show what is actually configured/running.",
-        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "cat each file in /evidence. The inventory comes from ML platform (SageMaker/Vertex/Azure ML); the state file shows what is actually configured/running.",
+        "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — System Implementation — AI: \"AI performance / post-deployment\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-ai_inventory.json   (in-scope items from ML platform (SageMaker/Vertex/Azure ML))\n- sysimpl-ai_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"AI performance / post-deployment\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"AI performance / post-deployment\",\n  \"domain\": \"System Implementation — AI\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{sia_",
+        "/evidence/README.md": "# AcmeCorp — System Implementation — AI (Artificial Intelligence): \"AI performance / post-deployment\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the \"AI performance / post-deployment\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-ai_inventory.json   (in-scope items — In-scope inventory for the ai performance / post-deployment control (from ML platform (SageMaker/Vertex/Azure ML)))\n- sysimpl-ai_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"AI performance / post-deployment\",\n  \"domain\": \"System Implementation — AI (Artificial Intelligence)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{sia_",
         "/evidence/sysimpl-ai_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Data science / ML engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"AI performance / post-deployment\" control must cover\n# fragment: ai_performance_postdeployment_",
         "/evidence/sysimpl-ai_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
@@ -4252,7 +4264,7 @@ export const sysimplAiStages: StageConfig[] = [
           "id": "sia-12-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"AI performance / post-deployment\" sub-process of System Implementation — AI?",
+          "text": "What is the primary audit objective for the \"AI performance / post-deployment\" sub-process of System Implementation — AI (Artificial Intelligence)?",
           "options": [
             "Re-implement the control on the auditor's behalf",
             "Increase the number of tools the team uses",
@@ -4266,11 +4278,11 @@ export const sysimplAiStages: StageConfig[] = [
           "id": "sia-12-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"AI performance / post-deployment\" matter to the broader System Implementation — AI posture?",
+          "text": "Why does a weakness in \"AI performance / post-deployment\" matter to the broader System Implementation — AI (Artificial Intelligence) posture?",
           "options": [
             "It is relevant solely for marketing",
             "It has no effect once a firewall exists",
-            "It is a control other System Implementation — AI controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It is a control other System Implementation — AI (Artificial Intelligence) controls depend on, so a gap here propagates risk into everything scoped to it",
             "It only affects documentation aesthetics"
           ],
           "correctIndex": 2,
@@ -4283,7 +4295,7 @@ export const sysimplAiStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"AI performance / post-deployment\" control?",
           "options": [
             "The vendor's marketing datasheet",
-            "The AI performance / post-deployment evidence export reconciled against policy, plus the resulting findings working paper",
+            "The In-scope inventory for the ai performance / post-deployment control (from ML platform (SageMaker/Vertex/Azure ML)) reconciled against policy, plus the resulting findings working paper",
             "A verbal assurance from the team lead",
             "A screenshot of the login page"
           ],
@@ -4349,16 +4361,16 @@ export const sysimplAiStages: StageConfig[] = [
         {
           "id": "sia-12-q8",
           "type": "Findings",
-          "challenge": "What is a finding",
-          "text": "Which observation is a reportable finding for \"AI performance / post-deployment\"?",
+          "challenge": "Typical finding",
+          "text": "For \"AI performance / post-deployment\", which is a realistic reportable finding?",
           "options": [
-            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
-            "The team uses a popular vendor",
-            "The control exists and operates as designed",
-            "A new feature shipped on time"
+            "In-scope items where the ai performance / post-deployment control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The control exists and operates as designed for every in-scope item",
+            "The team uses a popular commercial vendor",
+            "A new feature shipped on schedule"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the ai performance / post-deployment control is not applied, mis-scoped, or has drifted from the approved baseline"
         },
         {
           "id": "sia-12-q9",
