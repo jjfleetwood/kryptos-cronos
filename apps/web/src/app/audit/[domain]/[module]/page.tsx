@@ -94,20 +94,10 @@ export default async function AuditModulePage({
             <div className="mt-4 space-y-4 text-sm leading-relaxed">
               <Field label="Objective" body={meta.objective} />
               <Field label="Approach" body={meta.approach} />
-              <div>
-                <p className="mb-1.5 text-xs font-semibold uppercase tracking-wide text-gray-500">Artifacts (evidence)</p>
-                <ul className="space-y-1.5">
-                  {meta.artifacts.map((a, i) => (
-                    <li key={i} className="flex gap-2 text-gray-300">
-                      <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-violet-400/70" />
-                      <span>{a}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <BulletField label="Artifacts (evidence)" items={meta.artifacts} />
               <div className="grid gap-4 sm:grid-cols-2">
-                <Field label="System (source of evidence)" body={meta.system} />
-                <Field label="Data owner" body={meta.dataOwner} />
+                <BulletField label="System (source of evidence)" items={meta.system} />
+                <BulletField label="Data owner" items={meta.dataOwner} />
               </div>
             </div>
           </div>
@@ -186,6 +176,22 @@ function Field({ label, body }: { label: string; body: string }) {
     <div>
       <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-gray-500">{label}</p>
       <p className="text-gray-300">{body}</p>
+    </div>
+  );
+}
+
+function BulletField({ label, items }: { label: string; items: string[] }) {
+  return (
+    <div>
+      <p className="mb-1.5 text-xs font-semibold uppercase tracking-wide text-gray-500">{label}</p>
+      <ul className="space-y-1.5">
+        {items.map((item, i) => (
+          <li key={i} className="flex gap-2 text-gray-300">
+            <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-violet-400/70" />
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

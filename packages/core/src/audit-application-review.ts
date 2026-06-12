@@ -43,10 +43,18 @@ export const auditApplicationReviewStages: StageConfig[] = [
         "Cloud internet-facing service list (load balancers / app services + scheme)",
         "The reconciled tiered inventory + the untiered and shadow finding lists (the working paper)",
       ],
-      system:
-        "ServiceNow CMDB (cmdb_ci_appl) · Okta/Entra SSO app catalog · AWS/Azure cloud asset plane (ELBv2 / App Service). One read-only credential per source.",
-      dataOwner:
-        "IT Asset Management / CMDB owner (the inventory), Identity & Access Management (the SSO catalog), and Cloud Platform / FinOps (the cloud asset plane); application owners attest criticality and data classification.",
+      system: [
+        "ServiceNow CMDB (cmdb_ci_appl) — the application inventory of record",
+        "Okta / Entra SSO application catalog — what users can actually sign into",
+        "AWS / Azure cloud asset plane (ELBv2 / App Service) — internet-facing services",
+        "One read-only credential per source (no write scopes)",
+      ],
+      dataOwner: [
+        "IT Asset Management / CMDB owner — the application inventory",
+        "Identity & Access Management — the SSO application catalog",
+        "Cloud Platform / FinOps — the cloud asset plane",
+        "Application owners — attest business criticality & data classification",
+      ],
       scoring: {
         ease:
           "EASE 6/10 — the source APIs (ServiceNow, Okta, cloud) are well-documented and read-only, so the agent integration is straightforward; the friction is non-technical: getting read credentials to three teams' systems and agreeing the tiering policy.",

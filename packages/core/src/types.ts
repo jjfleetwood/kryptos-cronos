@@ -135,8 +135,8 @@ export type AuditMeta = {
   objective: string;      // objective of the test + the example code
   approach: string;       // the simple architecture of the agentic workflow
   artifacts: string[];    // evidence to extract to show control efficacy
-  system: string;         // the system(s) the artifacts come from
-  dataOwner: string;      // the role/function likely to own the data we need
+  system: string[];       // the system(s) the artifacts come from
+  dataOwner: string[];    // the role(s)/function(s) likely to own the data we need
   scoring: {
     ease: string;         // what drives the ease-of-implementation score
     value: string;        // what drives the audit/analytics value score
