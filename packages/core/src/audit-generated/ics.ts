@@ -18,7 +18,7 @@ export const icsStages: StageConfig[] = [
     "title": "ICS asset inventory",
     "subtitle": "Agentic technical & privacy audit of the ics asset inventory control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 6,
     "valueScore": 7,
     "rank": 0,
@@ -240,13 +240,13 @@ export const icsStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"ICS asset inventory\" sub-process of Industrial Control Systems (ICS)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the ics asset inventory control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the ics asset inventory control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for ics asset inventory against comparable organisations in the sector",
             "Obtain evidence that the ics asset inventory control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "ics-01-q2",
@@ -254,13 +254,13 @@ export const icsStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"ICS asset inventory\" matter to the broader Industrial Control Systems (ICS) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Industrial Control Systems (ICS)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Industrial Control Systems (ICS) estate",
             "It is a control other Industrial Control Systems (ICS) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Industrial Control Systems (ICS) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "ics-01-q3",
@@ -268,27 +268,27 @@ export const icsStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"ICS asset inventory\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the ics asset inventory control (from ICS/SCADA + PLC/RTU/HMI) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's ics asset inventory settings, captured during the walkthrough",
+            "The In-scope inventory for the ics asset inventory control (from ICS/SCADA + PLC/RTU/HMI), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the ics asset inventory control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's ics asset inventory capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "ics-01-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"ICS asset inventory\"?",
+          "text": "Where should an auditor pull the evidence for \"ICS asset inventory\"?",
           "options": [
-            "ICS/SCADA + PLC/RTU/HMI (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From ICS/SCADA + PLC/RTU/HMI and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how ics asset inventory works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., ICS/SCADA + PLC/RTU/HMI) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. ICS/SCADA + PLC/RTU/HMI) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "ics-01-q5",
@@ -296,13 +296,13 @@ export const icsStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"ICS asset inventory\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "OT / plant engineering (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the ics asset inventory control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the ics asset inventory data is shared, so the accountability sits with no one in particular",
+            "OT / plant engineering, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "OT / plant engineering owns the control data; the auditor independently verifies it."
+          "explanation": "OT / plant engineering owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "ics-01-q6",
@@ -310,55 +310,55 @@ export const icsStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"ICS asset inventory\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "ics-01-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "ics-01-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"ICS asset inventory\", which is a realistic reportable finding?",
+          "text": "For \"ICS asset inventory\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the ics asset inventory control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the ics asset inventory control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the ics asset inventory control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "ics-01-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "ics-01-q10",
@@ -366,13 +366,13 @@ export const icsStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"ICS asset inventory\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind ics asset inventory, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -384,7 +384,7 @@ export const icsStages: StageConfig[] = [
     "title": "Network segmentation",
     "subtitle": "Agentic technical & privacy audit of the network segmentation control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 6,
     "valueScore": 9,
     "rank": 0,
@@ -606,13 +606,13 @@ export const icsStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Network segmentation\" sub-process of Industrial Control Systems (ICS)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the network segmentation control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the network segmentation control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for network segmentation against comparable organisations in the sector",
             "Obtain evidence that the network segmentation control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "ics-02-q2",
@@ -620,13 +620,13 @@ export const icsStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Network segmentation\" matter to the broader Industrial Control Systems (ICS) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Industrial Control Systems (ICS)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Industrial Control Systems (ICS) estate",
             "It is a control other Industrial Control Systems (ICS) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Industrial Control Systems (ICS) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "ics-02-q3",
@@ -634,27 +634,27 @@ export const icsStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Network segmentation\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the network segmentation control (from ICS/SCADA + PLC/RTU/HMI) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's network segmentation settings, captured during the walkthrough",
+            "The In-scope inventory for the network segmentation control (from ICS/SCADA + PLC/RTU/HMI), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the network segmentation control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's network segmentation capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "ics-02-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Network segmentation\"?",
+          "text": "Where should an auditor pull the evidence for \"Network segmentation\"?",
           "options": [
-            "ICS/SCADA + PLC/RTU/HMI (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From ICS/SCADA + PLC/RTU/HMI and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how network segmentation works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., ICS/SCADA + PLC/RTU/HMI) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. ICS/SCADA + PLC/RTU/HMI) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "ics-02-q5",
@@ -662,13 +662,13 @@ export const icsStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Network segmentation\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "OT / plant engineering (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the network segmentation control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the network segmentation data is shared, so the accountability sits with no one in particular",
+            "OT / plant engineering, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "OT / plant engineering owns the control data; the auditor independently verifies it."
+          "explanation": "OT / plant engineering owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "ics-02-q6",
@@ -676,55 +676,55 @@ export const icsStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Network segmentation\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "ics-02-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "ics-02-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Network segmentation\", which is a realistic reportable finding?",
+          "text": "For \"Network segmentation\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the network segmentation control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the network segmentation control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the network segmentation control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "ics-02-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "ics-02-q10",
@@ -732,13 +732,13 @@ export const icsStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Network segmentation\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind network segmentation, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -750,7 +750,7 @@ export const icsStages: StageConfig[] = [
     "title": "IT/OT asset boundary",
     "subtitle": "Agentic technical & privacy audit of the it/ot asset boundary control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 7,
     "valueScore": 7,
     "rank": 0,
@@ -972,13 +972,13 @@ export const icsStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"IT/OT asset boundary\" sub-process of Industrial Control Systems (ICS)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the it/ot asset boundary control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the it/ot asset boundary control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for it/ot asset boundary against comparable organisations in the sector",
             "Obtain evidence that the it/ot asset boundary control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "ics-03-q2",
@@ -986,13 +986,13 @@ export const icsStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"IT/OT asset boundary\" matter to the broader Industrial Control Systems (ICS) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Industrial Control Systems (ICS)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Industrial Control Systems (ICS) estate",
             "It is a control other Industrial Control Systems (ICS) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Industrial Control Systems (ICS) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "ics-03-q3",
@@ -1000,27 +1000,27 @@ export const icsStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"IT/OT asset boundary\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the it/ot asset boundary control (from ICS/SCADA + PLC/RTU/HMI) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's it/ot asset boundary settings, captured during the walkthrough",
+            "The In-scope inventory for the it/ot asset boundary control (from ICS/SCADA + PLC/RTU/HMI), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the it/ot asset boundary control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's it/ot asset boundary capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "ics-03-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"IT/OT asset boundary\"?",
+          "text": "Where should an auditor pull the evidence for \"IT/OT asset boundary\"?",
           "options": [
-            "ICS/SCADA + PLC/RTU/HMI (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From ICS/SCADA + PLC/RTU/HMI and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how it/ot asset boundary works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., ICS/SCADA + PLC/RTU/HMI) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. ICS/SCADA + PLC/RTU/HMI) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "ics-03-q5",
@@ -1028,13 +1028,13 @@ export const icsStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"IT/OT asset boundary\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "OT / plant engineering (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the it/ot asset boundary control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the it/ot asset boundary data is shared, so the accountability sits with no one in particular",
+            "OT / plant engineering, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "OT / plant engineering owns the control data; the auditor independently verifies it."
+          "explanation": "OT / plant engineering owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "ics-03-q6",
@@ -1042,55 +1042,55 @@ export const icsStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"IT/OT asset boundary\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "ics-03-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "ics-03-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"IT/OT asset boundary\", which is a realistic reportable finding?",
+          "text": "For \"IT/OT asset boundary\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the it/ot asset boundary control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the it/ot asset boundary control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the it/ot asset boundary control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "ics-03-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "ics-03-q10",
@@ -1098,13 +1098,13 @@ export const icsStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"IT/OT asset boundary\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind it/ot asset boundary, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1116,7 +1116,7 @@ export const icsStages: StageConfig[] = [
     "title": "IAM (ICS)",
     "subtitle": "Agentic technical & privacy audit of the iam (ics) control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 5,
     "valueScore": 9,
     "rank": 0,
@@ -1338,13 +1338,13 @@ export const icsStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"IAM (ICS)\" sub-process of Industrial Control Systems (ICS)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the iam (ics) control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the iam (ics) control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for iam (ics) against comparable organisations in the sector",
             "Obtain evidence that the iam (ics) control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "ics-04-q2",
@@ -1352,13 +1352,13 @@ export const icsStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"IAM (ICS)\" matter to the broader Industrial Control Systems (ICS) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Industrial Control Systems (ICS)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Industrial Control Systems (ICS) estate",
             "It is a control other Industrial Control Systems (ICS) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Industrial Control Systems (ICS) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "ics-04-q3",
@@ -1366,27 +1366,27 @@ export const icsStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"IAM (ICS)\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the iam (ics) control (from ICS/SCADA + PLC/RTU/HMI) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's iam (ics) settings, captured during the walkthrough",
+            "The In-scope inventory for the iam (ics) control (from ICS/SCADA + PLC/RTU/HMI), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the iam (ics) control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's iam (ics) capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "ics-04-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"IAM (ICS)\"?",
+          "text": "Where should an auditor pull the evidence for \"IAM (ICS)\"?",
           "options": [
-            "ICS/SCADA + PLC/RTU/HMI (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From ICS/SCADA + PLC/RTU/HMI and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how iam (ics) works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., ICS/SCADA + PLC/RTU/HMI) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. ICS/SCADA + PLC/RTU/HMI) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "ics-04-q5",
@@ -1394,13 +1394,13 @@ export const icsStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"IAM (ICS)\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "OT / plant engineering (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the iam (ics) control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the iam (ics) data is shared, so the accountability sits with no one in particular",
+            "OT / plant engineering, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "OT / plant engineering owns the control data; the auditor independently verifies it."
+          "explanation": "OT / plant engineering owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "ics-04-q6",
@@ -1408,55 +1408,55 @@ export const icsStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"IAM (ICS)\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "ics-04-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "ics-04-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"IAM (ICS)\", which is a realistic reportable finding?",
+          "text": "For \"IAM (ICS)\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the iam (ics) control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the iam (ics) control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the iam (ics) control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "ics-04-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "ics-04-q10",
@@ -1464,13 +1464,13 @@ export const icsStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"IAM (ICS)\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind iam (ics), so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1482,7 +1482,7 @@ export const icsStages: StageConfig[] = [
     "title": "Patch and vuln mgmt (ICS)",
     "subtitle": "Agentic technical & privacy audit of the patch and vuln mgmt (ics) control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 6,
     "valueScore": 9,
     "rank": 0,
@@ -1704,13 +1704,13 @@ export const icsStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Patch and vuln mgmt (ICS)\" sub-process of Industrial Control Systems (ICS)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the patch and vuln mgmt (ics) control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the patch and vuln mgmt (ics) control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for patch and vuln mgmt (ics) against comparable organisations in the sector",
             "Obtain evidence that the patch and vuln mgmt (ics) control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "ics-05-q2",
@@ -1718,13 +1718,13 @@ export const icsStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Patch and vuln mgmt (ICS)\" matter to the broader Industrial Control Systems (ICS) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Industrial Control Systems (ICS)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Industrial Control Systems (ICS) estate",
             "It is a control other Industrial Control Systems (ICS) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Industrial Control Systems (ICS) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "ics-05-q3",
@@ -1732,27 +1732,27 @@ export const icsStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Patch and vuln mgmt (ICS)\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the patch and vuln mgmt (ics) control (from ICS/SCADA + PLC/RTU/HMI) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's patch and vuln mgmt (ics) settings, captured during the walkthrough",
+            "The In-scope inventory for the patch and vuln mgmt (ics) control (from ICS/SCADA + PLC/RTU/HMI), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the patch and vuln mgmt (ics) control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's patch and vuln mgmt (ics) capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "ics-05-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Patch and vuln mgmt (ICS)\"?",
+          "text": "Where should an auditor pull the evidence for \"Patch and vuln mgmt (ICS)\"?",
           "options": [
-            "ICS/SCADA + PLC/RTU/HMI (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From ICS/SCADA + PLC/RTU/HMI and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how patch and vuln mgmt (ics) works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., ICS/SCADA + PLC/RTU/HMI) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. ICS/SCADA + PLC/RTU/HMI) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "ics-05-q5",
@@ -1760,13 +1760,13 @@ export const icsStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Patch and vuln mgmt (ICS)\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "OT / plant engineering (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the patch and vuln mgmt (ics) control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the patch and vuln mgmt (ics) data is shared, so the accountability sits with no one in particular",
+            "OT / plant engineering, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "OT / plant engineering owns the control data; the auditor independently verifies it."
+          "explanation": "OT / plant engineering owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "ics-05-q6",
@@ -1774,55 +1774,55 @@ export const icsStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Patch and vuln mgmt (ICS)\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "ics-05-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "ics-05-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Patch and vuln mgmt (ICS)\", which is a realistic reportable finding?",
+          "text": "For \"Patch and vuln mgmt (ICS)\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the patch and vuln mgmt (ics) control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the patch and vuln mgmt (ics) control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the patch and vuln mgmt (ics) control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "ics-05-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "ics-05-q10",
@@ -1830,13 +1830,13 @@ export const icsStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Patch and vuln mgmt (ICS)\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind patch and vuln mgmt (ics), so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1848,7 +1848,7 @@ export const icsStages: StageConfig[] = [
     "title": "ICS security governance",
     "subtitle": "Agentic technical & privacy audit of the ics security governance control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 7,
     "valueScore": 7,
     "rank": 0,
@@ -2070,13 +2070,13 @@ export const icsStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"ICS security governance\" sub-process of Industrial Control Systems (ICS)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the ics security governance control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the ics security governance control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for ics security governance against comparable organisations in the sector",
             "Obtain evidence that the ics security governance control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "ics-06-q2",
@@ -2084,13 +2084,13 @@ export const icsStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"ICS security governance\" matter to the broader Industrial Control Systems (ICS) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Industrial Control Systems (ICS)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Industrial Control Systems (ICS) estate",
             "It is a control other Industrial Control Systems (ICS) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Industrial Control Systems (ICS) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "ics-06-q3",
@@ -2098,27 +2098,27 @@ export const icsStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"ICS security governance\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the ics security governance control (from ICS/SCADA + PLC/RTU/HMI) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's ics security governance settings, captured during the walkthrough",
+            "The In-scope inventory for the ics security governance control (from ICS/SCADA + PLC/RTU/HMI), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the ics security governance control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's ics security governance capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "ics-06-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"ICS security governance\"?",
+          "text": "Where should an auditor pull the evidence for \"ICS security governance\"?",
           "options": [
-            "ICS/SCADA + PLC/RTU/HMI (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From ICS/SCADA + PLC/RTU/HMI and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how ics security governance works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., ICS/SCADA + PLC/RTU/HMI) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. ICS/SCADA + PLC/RTU/HMI) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "ics-06-q5",
@@ -2126,13 +2126,13 @@ export const icsStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"ICS security governance\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "OT / plant engineering (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the ics security governance control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the ics security governance data is shared, so the accountability sits with no one in particular",
+            "OT / plant engineering, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "OT / plant engineering owns the control data; the auditor independently verifies it."
+          "explanation": "OT / plant engineering owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "ics-06-q6",
@@ -2140,55 +2140,55 @@ export const icsStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"ICS security governance\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "ics-06-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "ics-06-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"ICS security governance\", which is a realistic reportable finding?",
+          "text": "For \"ICS security governance\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the ics security governance control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the ics security governance control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the ics security governance control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "ics-06-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "ics-06-q10",
@@ -2196,13 +2196,13 @@ export const icsStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"ICS security governance\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind ics security governance, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -2214,7 +2214,7 @@ export const icsStages: StageConfig[] = [
     "title": "ICS monitoring and IR",
     "subtitle": "Agentic technical & privacy audit of the ics monitoring and ir control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 6,
     "valueScore": 7,
     "rank": 0,
@@ -2436,13 +2436,13 @@ export const icsStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"ICS monitoring and IR\" sub-process of Industrial Control Systems (ICS)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the ics monitoring and ir control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the ics monitoring and ir control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for ics monitoring and ir against comparable organisations in the sector",
             "Obtain evidence that the ics monitoring and ir control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "ics-07-q2",
@@ -2450,13 +2450,13 @@ export const icsStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"ICS monitoring and IR\" matter to the broader Industrial Control Systems (ICS) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Industrial Control Systems (ICS)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Industrial Control Systems (ICS) estate",
             "It is a control other Industrial Control Systems (ICS) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Industrial Control Systems (ICS) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "ics-07-q3",
@@ -2464,27 +2464,27 @@ export const icsStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"ICS monitoring and IR\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the ics monitoring and ir control (from ICS/SCADA + PLC/RTU/HMI) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's ics monitoring and ir settings, captured during the walkthrough",
+            "The In-scope inventory for the ics monitoring and ir control (from ICS/SCADA + PLC/RTU/HMI), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the ics monitoring and ir control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's ics monitoring and ir capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "ics-07-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"ICS monitoring and IR\"?",
+          "text": "Where should an auditor pull the evidence for \"ICS monitoring and IR\"?",
           "options": [
-            "ICS/SCADA + PLC/RTU/HMI (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From ICS/SCADA + PLC/RTU/HMI and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how ics monitoring and ir works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., ICS/SCADA + PLC/RTU/HMI) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. ICS/SCADA + PLC/RTU/HMI) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "ics-07-q5",
@@ -2492,13 +2492,13 @@ export const icsStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"ICS monitoring and IR\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "OT / plant engineering (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the ics monitoring and ir control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the ics monitoring and ir data is shared, so the accountability sits with no one in particular",
+            "OT / plant engineering, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "OT / plant engineering owns the control data; the auditor independently verifies it."
+          "explanation": "OT / plant engineering owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "ics-07-q6",
@@ -2506,55 +2506,55 @@ export const icsStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"ICS monitoring and IR\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "ics-07-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "ics-07-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"ICS monitoring and IR\", which is a realistic reportable finding?",
+          "text": "For \"ICS monitoring and IR\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the ics monitoring and ir control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the ics monitoring and ir control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the ics monitoring and ir control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "ics-07-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "ics-07-q10",
@@ -2562,13 +2562,13 @@ export const icsStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"ICS monitoring and IR\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind ics monitoring and ir, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -2580,7 +2580,7 @@ export const icsStages: StageConfig[] = [
     "title": "Physical access and security",
     "subtitle": "Agentic technical & privacy audit of the physical access and security control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 6,
     "valueScore": 9,
     "rank": 0,
@@ -2802,13 +2802,13 @@ export const icsStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Physical access and security\" sub-process of Industrial Control Systems (ICS)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the physical access and security control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the physical access and security control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for physical access and security against comparable organisations in the sector",
             "Obtain evidence that the physical access and security control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "ics-08-q2",
@@ -2816,13 +2816,13 @@ export const icsStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Physical access and security\" matter to the broader Industrial Control Systems (ICS) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Industrial Control Systems (ICS)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Industrial Control Systems (ICS) estate",
             "It is a control other Industrial Control Systems (ICS) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Industrial Control Systems (ICS) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "ics-08-q3",
@@ -2830,27 +2830,27 @@ export const icsStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Physical access and security\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the physical access and security control (from ICS/SCADA + PLC/RTU/HMI) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's physical access and security settings, captured during the walkthrough",
+            "The In-scope inventory for the physical access and security control (from ICS/SCADA + PLC/RTU/HMI), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the physical access and security control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's physical access and security capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "ics-08-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Physical access and security\"?",
+          "text": "Where should an auditor pull the evidence for \"Physical access and security\"?",
           "options": [
-            "ICS/SCADA + PLC/RTU/HMI (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From ICS/SCADA + PLC/RTU/HMI and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how physical access and security works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., ICS/SCADA + PLC/RTU/HMI) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. ICS/SCADA + PLC/RTU/HMI) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "ics-08-q5",
@@ -2858,13 +2858,13 @@ export const icsStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Physical access and security\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "OT / plant engineering (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the physical access and security control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the physical access and security data is shared, so the accountability sits with no one in particular",
+            "OT / plant engineering, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "OT / plant engineering owns the control data; the auditor independently verifies it."
+          "explanation": "OT / plant engineering owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "ics-08-q6",
@@ -2872,55 +2872,55 @@ export const icsStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Physical access and security\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "ics-08-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "ics-08-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Physical access and security\", which is a realistic reportable finding?",
+          "text": "For \"Physical access and security\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the physical access and security control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the physical access and security control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the physical access and security control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "ics-08-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "ics-08-q10",
@@ -2928,13 +2928,13 @@ export const icsStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Physical access and security\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind physical access and security, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -2946,7 +2946,7 @@ export const icsStages: StageConfig[] = [
     "title": "Vendor physical and remote access",
     "subtitle": "Agentic technical & privacy audit of the vendor physical and remote access control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 7,
     "valueScore": 9,
     "rank": 0,
@@ -3168,13 +3168,13 @@ export const icsStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Vendor physical and remote access\" sub-process of Industrial Control Systems (ICS)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the vendor physical and remote access control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the vendor physical and remote access control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for vendor physical and remote access against comparable organisations in the sector",
             "Obtain evidence that the vendor physical and remote access control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "ics-09-q2",
@@ -3182,13 +3182,13 @@ export const icsStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Vendor physical and remote access\" matter to the broader Industrial Control Systems (ICS) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Industrial Control Systems (ICS)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Industrial Control Systems (ICS) estate",
             "It is a control other Industrial Control Systems (ICS) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Industrial Control Systems (ICS) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "ics-09-q3",
@@ -3196,27 +3196,27 @@ export const icsStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Vendor physical and remote access\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the vendor physical and remote access control (from ICS/SCADA + PLC/RTU/HMI) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's vendor physical and remote access settings, captured during the walkthrough",
+            "The In-scope inventory for the vendor physical and remote access control (from ICS/SCADA + PLC/RTU/HMI), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the vendor physical and remote access control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's vendor physical and remote access capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "ics-09-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Vendor physical and remote access\"?",
+          "text": "Where should an auditor pull the evidence for \"Vendor physical and remote access\"?",
           "options": [
-            "ICS/SCADA + PLC/RTU/HMI (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From ICS/SCADA + PLC/RTU/HMI and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how vendor physical and remote access works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., ICS/SCADA + PLC/RTU/HMI) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. ICS/SCADA + PLC/RTU/HMI) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "ics-09-q5",
@@ -3224,13 +3224,13 @@ export const icsStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Vendor physical and remote access\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "OT / plant engineering (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the vendor physical and remote access control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the vendor physical and remote access data is shared, so the accountability sits with no one in particular",
+            "OT / plant engineering, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "OT / plant engineering owns the control data; the auditor independently verifies it."
+          "explanation": "OT / plant engineering owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "ics-09-q6",
@@ -3238,55 +3238,55 @@ export const icsStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Vendor physical and remote access\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "ics-09-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "ics-09-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Vendor physical and remote access\", which is a realistic reportable finding?",
+          "text": "For \"Vendor physical and remote access\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the vendor physical and remote access control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the vendor physical and remote access control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the vendor physical and remote access control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "ics-09-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "ics-09-q10",
@@ -3294,13 +3294,13 @@ export const icsStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Vendor physical and remote access\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind vendor physical and remote access, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -3312,7 +3312,7 @@ export const icsStages: StageConfig[] = [
     "title": "Supply chain integrity",
     "subtitle": "Agentic technical & privacy audit of the supply chain integrity control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 5,
     "valueScore": 9,
     "rank": 0,
@@ -3534,13 +3534,13 @@ export const icsStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Supply chain integrity\" sub-process of Industrial Control Systems (ICS)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the supply chain integrity control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the supply chain integrity control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for supply chain integrity against comparable organisations in the sector",
             "Obtain evidence that the supply chain integrity control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "ics-10-q2",
@@ -3548,13 +3548,13 @@ export const icsStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Supply chain integrity\" matter to the broader Industrial Control Systems (ICS) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Industrial Control Systems (ICS)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Industrial Control Systems (ICS) estate",
             "It is a control other Industrial Control Systems (ICS) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Industrial Control Systems (ICS) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "ics-10-q3",
@@ -3562,27 +3562,27 @@ export const icsStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Supply chain integrity\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the supply chain integrity control (from ICS/SCADA + PLC/RTU/HMI) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's supply chain integrity settings, captured during the walkthrough",
+            "The In-scope inventory for the supply chain integrity control (from ICS/SCADA + PLC/RTU/HMI), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the supply chain integrity control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's supply chain integrity capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "ics-10-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Supply chain integrity\"?",
+          "text": "Where should an auditor pull the evidence for \"Supply chain integrity\"?",
           "options": [
-            "ICS/SCADA + PLC/RTU/HMI (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From ICS/SCADA + PLC/RTU/HMI and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how supply chain integrity works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., ICS/SCADA + PLC/RTU/HMI) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. ICS/SCADA + PLC/RTU/HMI) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "ics-10-q5",
@@ -3590,13 +3590,13 @@ export const icsStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Supply chain integrity\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "OT / plant engineering (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the supply chain integrity control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the supply chain integrity data is shared, so the accountability sits with no one in particular",
+            "OT / plant engineering, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "OT / plant engineering owns the control data; the auditor independently verifies it."
+          "explanation": "OT / plant engineering owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "ics-10-q6",
@@ -3604,55 +3604,55 @@ export const icsStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Supply chain integrity\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "ics-10-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "ics-10-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Supply chain integrity\", which is a realistic reportable finding?",
+          "text": "For \"Supply chain integrity\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the supply chain integrity control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the supply chain integrity control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the supply chain integrity control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "ics-10-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "ics-10-q10",
@@ -3660,13 +3660,13 @@ export const icsStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Supply chain integrity\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind supply chain integrity, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }

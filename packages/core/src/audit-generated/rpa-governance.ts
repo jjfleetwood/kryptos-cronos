@@ -18,7 +18,7 @@ export const rpaGovernanceStages: StageConfig[] = [
     "title": "RPA strategy and governance",
     "subtitle": "Agentic technical & privacy audit of the rpa strategy and governance control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
@@ -240,13 +240,13 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"RPA strategy and governance\" sub-process of Robotic Process Automation (RPA) Governance?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the rpa strategy and governance control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the rpa strategy and governance control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for rpa strategy and governance against comparable organisations in the sector",
             "Obtain evidence that the rpa strategy and governance control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "rpa-01-q2",
@@ -254,13 +254,13 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"RPA strategy and governance\" matter to the broader Robotic Process Automation (RPA) Governance posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Robotic Process Automation (RPA) Governance",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Robotic Process Automation (RPA) Governance estate",
             "It is a control other Robotic Process Automation (RPA) Governance controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Robotic Process Automation (RPA) Governance controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "rpa-01-q3",
@@ -268,27 +268,27 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"RPA strategy and governance\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the rpa strategy and governance control (from RPA platform (UiPath/Automation Anywhere/Power Automate)) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's rpa strategy and governance settings, captured during the walkthrough",
+            "The In-scope inventory for the rpa strategy and governance control (from RPA platform (UiPath/Automation Anywhere/Power Automate)), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the rpa strategy and governance control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's rpa strategy and governance capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "rpa-01-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"RPA strategy and governance\"?",
+          "text": "Where should an auditor pull the evidence for \"RPA strategy and governance\"?",
           "options": [
-            "RPA platform (UiPath/Automation Anywhere/Power Automate) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From RPA platform (UiPath/Automation Anywhere/Power Automate) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how rpa strategy and governance works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., RPA platform (UiPath/Automation Anywhere/Power Automate)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. RPA platform (UiPath/Automation Anywhere/Power Automate)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "rpa-01-q5",
@@ -296,13 +296,13 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"RPA strategy and governance\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Automation CoE (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the rpa strategy and governance control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the rpa strategy and governance data is shared, so the accountability sits with no one in particular",
+            "Automation CoE, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Automation CoE owns the control data; the auditor independently verifies it."
+          "explanation": "Automation CoE owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "rpa-01-q6",
@@ -310,55 +310,55 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"RPA strategy and governance\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "rpa-01-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "rpa-01-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"RPA strategy and governance\", which is a realistic reportable finding?",
+          "text": "For \"RPA strategy and governance\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the rpa strategy and governance control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the rpa strategy and governance control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the rpa strategy and governance control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "rpa-01-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "rpa-01-q10",
@@ -366,13 +366,13 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"RPA strategy and governance\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind rpa strategy and governance, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -384,7 +384,7 @@ export const rpaGovernanceStages: StageConfig[] = [
     "title": "Legal and regulatory compliance",
     "subtitle": "Agentic technical & privacy audit of the legal and regulatory compliance control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 6,
     "valueScore": 7,
     "rank": 0,
@@ -606,13 +606,13 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Legal and regulatory compliance\" sub-process of Robotic Process Automation (RPA) Governance?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the legal and regulatory compliance control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the legal and regulatory compliance control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for legal and regulatory compliance against comparable organisations in the sector",
             "Obtain evidence that the legal and regulatory compliance control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "rpa-02-q2",
@@ -620,13 +620,13 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Legal and regulatory compliance\" matter to the broader Robotic Process Automation (RPA) Governance posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Robotic Process Automation (RPA) Governance",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Robotic Process Automation (RPA) Governance estate",
             "It is a control other Robotic Process Automation (RPA) Governance controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Robotic Process Automation (RPA) Governance controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "rpa-02-q3",
@@ -634,27 +634,27 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Legal and regulatory compliance\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the legal and regulatory compliance control (from RPA platform (UiPath/Automation Anywhere/Power Automate)) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's legal and regulatory compliance settings, captured during the walkthrough",
+            "The In-scope inventory for the legal and regulatory compliance control (from RPA platform (UiPath/Automation Anywhere/Power Automate)), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the legal and regulatory compliance control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's legal and regulatory compliance capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "rpa-02-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Legal and regulatory compliance\"?",
+          "text": "Where should an auditor pull the evidence for \"Legal and regulatory compliance\"?",
           "options": [
-            "RPA platform (UiPath/Automation Anywhere/Power Automate) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From RPA platform (UiPath/Automation Anywhere/Power Automate) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how legal and regulatory compliance works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., RPA platform (UiPath/Automation Anywhere/Power Automate)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. RPA platform (UiPath/Automation Anywhere/Power Automate)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "rpa-02-q5",
@@ -662,13 +662,13 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Legal and regulatory compliance\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Automation CoE (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the legal and regulatory compliance control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the legal and regulatory compliance data is shared, so the accountability sits with no one in particular",
+            "Automation CoE, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Automation CoE owns the control data; the auditor independently verifies it."
+          "explanation": "Automation CoE owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "rpa-02-q6",
@@ -676,55 +676,55 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Legal and regulatory compliance\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "rpa-02-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "rpa-02-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Legal and regulatory compliance\", which is a realistic reportable finding?",
+          "text": "For \"Legal and regulatory compliance\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the legal and regulatory compliance control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the legal and regulatory compliance control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the legal and regulatory compliance control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "rpa-02-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "rpa-02-q10",
@@ -732,13 +732,13 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Legal and regulatory compliance\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind legal and regulatory compliance, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -750,7 +750,7 @@ export const rpaGovernanceStages: StageConfig[] = [
     "title": "Dev, test, deploy cycle",
     "subtitle": "Agentic technical & privacy audit of the dev, test, deploy cycle control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 7,
     "valueScore": 7,
     "rank": 0,
@@ -972,13 +972,13 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Dev, test, deploy cycle\" sub-process of Robotic Process Automation (RPA) Governance?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the dev, test, deploy cycle control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the dev, test, deploy cycle control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for dev, test, deploy cycle against comparable organisations in the sector",
             "Obtain evidence that the dev, test, deploy cycle control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "rpa-03-q2",
@@ -986,13 +986,13 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Dev, test, deploy cycle\" matter to the broader Robotic Process Automation (RPA) Governance posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Robotic Process Automation (RPA) Governance",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Robotic Process Automation (RPA) Governance estate",
             "It is a control other Robotic Process Automation (RPA) Governance controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Robotic Process Automation (RPA) Governance controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "rpa-03-q3",
@@ -1000,27 +1000,27 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Dev, test, deploy cycle\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the dev, test, deploy cycle control (from RPA platform (UiPath/Automation Anywhere/Power Automate)) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's dev, test, deploy cycle settings, captured during the walkthrough",
+            "The In-scope inventory for the dev, test, deploy cycle control (from RPA platform (UiPath/Automation Anywhere/Power Automate)), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the dev, test, deploy cycle control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's dev, test, deploy cycle capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "rpa-03-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Dev, test, deploy cycle\"?",
+          "text": "Where should an auditor pull the evidence for \"Dev, test, deploy cycle\"?",
           "options": [
-            "RPA platform (UiPath/Automation Anywhere/Power Automate) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From RPA platform (UiPath/Automation Anywhere/Power Automate) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how dev, test, deploy cycle works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., RPA platform (UiPath/Automation Anywhere/Power Automate)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. RPA platform (UiPath/Automation Anywhere/Power Automate)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "rpa-03-q5",
@@ -1028,13 +1028,13 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Dev, test, deploy cycle\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Automation CoE (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the dev, test, deploy cycle control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the dev, test, deploy cycle data is shared, so the accountability sits with no one in particular",
+            "Automation CoE, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Automation CoE owns the control data; the auditor independently verifies it."
+          "explanation": "Automation CoE owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "rpa-03-q6",
@@ -1042,55 +1042,55 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Dev, test, deploy cycle\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "rpa-03-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "rpa-03-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Dev, test, deploy cycle\", which is a realistic reportable finding?",
+          "text": "For \"Dev, test, deploy cycle\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the dev, test, deploy cycle control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the dev, test, deploy cycle control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the dev, test, deploy cycle control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "rpa-03-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "rpa-03-q10",
@@ -1098,13 +1098,13 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Dev, test, deploy cycle\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind dev, test, deploy cycle, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1116,7 +1116,7 @@ export const rpaGovernanceStages: StageConfig[] = [
     "title": "Change mgmt and version control",
     "subtitle": "Agentic technical & privacy audit of the change mgmt and version control control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
@@ -1338,13 +1338,13 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Change mgmt and version control\" sub-process of Robotic Process Automation (RPA) Governance?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the change mgmt and version control control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the change mgmt and version control control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for change mgmt and version control against comparable organisations in the sector",
             "Obtain evidence that the change mgmt and version control control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "rpa-04-q2",
@@ -1352,13 +1352,13 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Change mgmt and version control\" matter to the broader Robotic Process Automation (RPA) Governance posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Robotic Process Automation (RPA) Governance",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Robotic Process Automation (RPA) Governance estate",
             "It is a control other Robotic Process Automation (RPA) Governance controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Robotic Process Automation (RPA) Governance controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "rpa-04-q3",
@@ -1366,27 +1366,27 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Change mgmt and version control\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the change mgmt and version control control (from RPA platform (UiPath/Automation Anywhere/Power Automate)) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's change mgmt and version control settings, captured during the walkthrough",
+            "The In-scope inventory for the change mgmt and version control control (from RPA platform (UiPath/Automation Anywhere/Power Automate)), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the change mgmt and version control control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's change mgmt and version control capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "rpa-04-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Change mgmt and version control\"?",
+          "text": "Where should an auditor pull the evidence for \"Change mgmt and version control\"?",
           "options": [
-            "RPA platform (UiPath/Automation Anywhere/Power Automate) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From RPA platform (UiPath/Automation Anywhere/Power Automate) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how change mgmt and version control works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., RPA platform (UiPath/Automation Anywhere/Power Automate)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. RPA platform (UiPath/Automation Anywhere/Power Automate)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "rpa-04-q5",
@@ -1394,13 +1394,13 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Change mgmt and version control\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Automation CoE (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the change mgmt and version control control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the change mgmt and version control data is shared, so the accountability sits with no one in particular",
+            "Automation CoE, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Automation CoE owns the control data; the auditor independently verifies it."
+          "explanation": "Automation CoE owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "rpa-04-q6",
@@ -1408,55 +1408,55 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Change mgmt and version control\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "rpa-04-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "rpa-04-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Change mgmt and version control\", which is a realistic reportable finding?",
+          "text": "For \"Change mgmt and version control\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the change mgmt and version control control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the change mgmt and version control control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the change mgmt and version control control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "rpa-04-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "rpa-04-q10",
@@ -1464,13 +1464,13 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Change mgmt and version control\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind change mgmt and version control, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1482,7 +1482,7 @@ export const rpaGovernanceStages: StageConfig[] = [
     "title": "Access management",
     "subtitle": "Agentic technical & privacy audit of the access management control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 6,
     "valueScore": 9,
     "rank": 0,
@@ -1704,13 +1704,13 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Access management\" sub-process of Robotic Process Automation (RPA) Governance?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the access management control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the access management control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for access management against comparable organisations in the sector",
             "Obtain evidence that the access management control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "rpa-05-q2",
@@ -1718,13 +1718,13 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Access management\" matter to the broader Robotic Process Automation (RPA) Governance posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Robotic Process Automation (RPA) Governance",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Robotic Process Automation (RPA) Governance estate",
             "It is a control other Robotic Process Automation (RPA) Governance controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Robotic Process Automation (RPA) Governance controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "rpa-05-q3",
@@ -1732,27 +1732,27 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Access management\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the access management control (from RPA platform (UiPath/Automation Anywhere/Power Automate)) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's access management settings, captured during the walkthrough",
+            "The In-scope inventory for the access management control (from RPA platform (UiPath/Automation Anywhere/Power Automate)), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the access management control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's access management capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "rpa-05-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Access management\"?",
+          "text": "Where should an auditor pull the evidence for \"Access management\"?",
           "options": [
-            "RPA platform (UiPath/Automation Anywhere/Power Automate) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From RPA platform (UiPath/Automation Anywhere/Power Automate) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how access management works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., RPA platform (UiPath/Automation Anywhere/Power Automate)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. RPA platform (UiPath/Automation Anywhere/Power Automate)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "rpa-05-q5",
@@ -1760,13 +1760,13 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Access management\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Automation CoE (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the access management control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the access management data is shared, so the accountability sits with no one in particular",
+            "Automation CoE, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Automation CoE owns the control data; the auditor independently verifies it."
+          "explanation": "Automation CoE owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "rpa-05-q6",
@@ -1774,55 +1774,55 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Access management\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "rpa-05-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "rpa-05-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Access management\", which is a realistic reportable finding?",
+          "text": "For \"Access management\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the access management control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the access management control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the access management control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "rpa-05-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "rpa-05-q10",
@@ -1830,13 +1830,13 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Access management\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind access management, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1848,7 +1848,7 @@ export const rpaGovernanceStages: StageConfig[] = [
     "title": "Data handling and encryption",
     "subtitle": "Agentic technical & privacy audit of the data handling and encryption control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 7,
     "valueScore": 9,
     "rank": 0,
@@ -2070,13 +2070,13 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Data handling and encryption\" sub-process of Robotic Process Automation (RPA) Governance?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the data handling and encryption control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the data handling and encryption control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for data handling and encryption against comparable organisations in the sector",
             "Obtain evidence that the data handling and encryption control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "rpa-06-q2",
@@ -2084,13 +2084,13 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Data handling and encryption\" matter to the broader Robotic Process Automation (RPA) Governance posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Robotic Process Automation (RPA) Governance",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Robotic Process Automation (RPA) Governance estate",
             "It is a control other Robotic Process Automation (RPA) Governance controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Robotic Process Automation (RPA) Governance controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "rpa-06-q3",
@@ -2098,27 +2098,27 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Data handling and encryption\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the data handling and encryption control (from RPA platform (UiPath/Automation Anywhere/Power Automate)) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's data handling and encryption settings, captured during the walkthrough",
+            "The In-scope inventory for the data handling and encryption control (from RPA platform (UiPath/Automation Anywhere/Power Automate)), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the data handling and encryption control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's data handling and encryption capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "rpa-06-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Data handling and encryption\"?",
+          "text": "Where should an auditor pull the evidence for \"Data handling and encryption\"?",
           "options": [
-            "RPA platform (UiPath/Automation Anywhere/Power Automate) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From RPA platform (UiPath/Automation Anywhere/Power Automate) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how data handling and encryption works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., RPA platform (UiPath/Automation Anywhere/Power Automate)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. RPA platform (UiPath/Automation Anywhere/Power Automate)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "rpa-06-q5",
@@ -2126,13 +2126,13 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Data handling and encryption\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Automation CoE (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the data handling and encryption control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the data handling and encryption data is shared, so the accountability sits with no one in particular",
+            "Automation CoE, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Automation CoE owns the control data; the auditor independently verifies it."
+          "explanation": "Automation CoE owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "rpa-06-q6",
@@ -2140,55 +2140,55 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Data handling and encryption\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "rpa-06-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "rpa-06-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Data handling and encryption\", which is a realistic reportable finding?",
+          "text": "For \"Data handling and encryption\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the data handling and encryption control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the data handling and encryption control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the data handling and encryption control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "rpa-06-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "rpa-06-q10",
@@ -2196,13 +2196,13 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Data handling and encryption\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind data handling and encryption, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -2214,7 +2214,7 @@ export const rpaGovernanceStages: StageConfig[] = [
     "title": "Infra hardening and vuln mgmt",
     "subtitle": "Agentic technical & privacy audit of the infra hardening and vuln mgmt control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 5,
     "valueScore": 9,
     "rank": 0,
@@ -2436,13 +2436,13 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Infra hardening and vuln mgmt\" sub-process of Robotic Process Automation (RPA) Governance?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the infra hardening and vuln mgmt control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the infra hardening and vuln mgmt control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for infra hardening and vuln mgmt against comparable organisations in the sector",
             "Obtain evidence that the infra hardening and vuln mgmt control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "rpa-07-q2",
@@ -2450,13 +2450,13 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Infra hardening and vuln mgmt\" matter to the broader Robotic Process Automation (RPA) Governance posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Robotic Process Automation (RPA) Governance",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Robotic Process Automation (RPA) Governance estate",
             "It is a control other Robotic Process Automation (RPA) Governance controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Robotic Process Automation (RPA) Governance controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "rpa-07-q3",
@@ -2464,27 +2464,27 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Infra hardening and vuln mgmt\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the infra hardening and vuln mgmt control (from RPA platform (UiPath/Automation Anywhere/Power Automate)) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's infra hardening and vuln mgmt settings, captured during the walkthrough",
+            "The In-scope inventory for the infra hardening and vuln mgmt control (from RPA platform (UiPath/Automation Anywhere/Power Automate)), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the infra hardening and vuln mgmt control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's infra hardening and vuln mgmt capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "rpa-07-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Infra hardening and vuln mgmt\"?",
+          "text": "Where should an auditor pull the evidence for \"Infra hardening and vuln mgmt\"?",
           "options": [
-            "RPA platform (UiPath/Automation Anywhere/Power Automate) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From RPA platform (UiPath/Automation Anywhere/Power Automate) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how infra hardening and vuln mgmt works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., RPA platform (UiPath/Automation Anywhere/Power Automate)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. RPA platform (UiPath/Automation Anywhere/Power Automate)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "rpa-07-q5",
@@ -2492,13 +2492,13 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Infra hardening and vuln mgmt\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Automation CoE (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the infra hardening and vuln mgmt control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the infra hardening and vuln mgmt data is shared, so the accountability sits with no one in particular",
+            "Automation CoE, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Automation CoE owns the control data; the auditor independently verifies it."
+          "explanation": "Automation CoE owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "rpa-07-q6",
@@ -2506,55 +2506,55 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Infra hardening and vuln mgmt\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "rpa-07-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "rpa-07-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Infra hardening and vuln mgmt\", which is a realistic reportable finding?",
+          "text": "For \"Infra hardening and vuln mgmt\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the infra hardening and vuln mgmt control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the infra hardening and vuln mgmt control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the infra hardening and vuln mgmt control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "rpa-07-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "rpa-07-q10",
@@ -2562,13 +2562,13 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Infra hardening and vuln mgmt\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind infra hardening and vuln mgmt, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -2580,7 +2580,7 @@ export const rpaGovernanceStages: StageConfig[] = [
     "title": "Business Continuity (RPA)",
     "subtitle": "Agentic technical & privacy audit of the business continuity (rpa) control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 6,
     "valueScore": 7,
     "rank": 0,
@@ -2802,13 +2802,13 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Business Continuity (RPA)\" sub-process of Robotic Process Automation (RPA) Governance?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the business continuity (rpa) control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the business continuity (rpa) control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for business continuity (rpa) against comparable organisations in the sector",
             "Obtain evidence that the business continuity (rpa) control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "rpa-08-q2",
@@ -2816,13 +2816,13 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Business Continuity (RPA)\" matter to the broader Robotic Process Automation (RPA) Governance posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Robotic Process Automation (RPA) Governance",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Robotic Process Automation (RPA) Governance estate",
             "It is a control other Robotic Process Automation (RPA) Governance controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Robotic Process Automation (RPA) Governance controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "rpa-08-q3",
@@ -2830,27 +2830,27 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Business Continuity (RPA)\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the business continuity (rpa) control (from RPA platform (UiPath/Automation Anywhere/Power Automate)) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's business continuity (rpa) settings, captured during the walkthrough",
+            "The In-scope inventory for the business continuity (rpa) control (from RPA platform (UiPath/Automation Anywhere/Power Automate)), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the business continuity (rpa) control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's business continuity (rpa) capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "rpa-08-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Business Continuity (RPA)\"?",
+          "text": "Where should an auditor pull the evidence for \"Business Continuity (RPA)\"?",
           "options": [
-            "RPA platform (UiPath/Automation Anywhere/Power Automate) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From RPA platform (UiPath/Automation Anywhere/Power Automate) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how business continuity (rpa) works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., RPA platform (UiPath/Automation Anywhere/Power Automate)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. RPA platform (UiPath/Automation Anywhere/Power Automate)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "rpa-08-q5",
@@ -2858,13 +2858,13 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Business Continuity (RPA)\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Automation CoE (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the business continuity (rpa) control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the business continuity (rpa) data is shared, so the accountability sits with no one in particular",
+            "Automation CoE, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Automation CoE owns the control data; the auditor independently verifies it."
+          "explanation": "Automation CoE owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "rpa-08-q6",
@@ -2872,55 +2872,55 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Business Continuity (RPA)\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "rpa-08-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "rpa-08-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Business Continuity (RPA)\", which is a realistic reportable finding?",
+          "text": "For \"Business Continuity (RPA)\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the business continuity (rpa) control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the business continuity (rpa) control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the business continuity (rpa) control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "rpa-08-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "rpa-08-q10",
@@ -2928,13 +2928,13 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Business Continuity (RPA)\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind business continuity (rpa), so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -2946,7 +2946,7 @@ export const rpaGovernanceStages: StageConfig[] = [
     "title": "Third-party / OSS contribution",
     "subtitle": "Agentic technical & privacy audit of the third-party / oss contribution control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 7,
     "valueScore": 9,
     "rank": 0,
@@ -3168,13 +3168,13 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Third-party / OSS contribution\" sub-process of Robotic Process Automation (RPA) Governance?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the third-party / oss contribution control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the third-party / oss contribution control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for third-party / oss contribution against comparable organisations in the sector",
             "Obtain evidence that the third-party / oss contribution control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "rpa-09-q2",
@@ -3182,13 +3182,13 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Third-party / OSS contribution\" matter to the broader Robotic Process Automation (RPA) Governance posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Robotic Process Automation (RPA) Governance",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Robotic Process Automation (RPA) Governance estate",
             "It is a control other Robotic Process Automation (RPA) Governance controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Robotic Process Automation (RPA) Governance controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "rpa-09-q3",
@@ -3196,27 +3196,27 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Third-party / OSS contribution\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the third-party / oss contribution control (from RPA platform (UiPath/Automation Anywhere/Power Automate)) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's third-party / oss contribution settings, captured during the walkthrough",
+            "The In-scope inventory for the third-party / oss contribution control (from RPA platform (UiPath/Automation Anywhere/Power Automate)), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the third-party / oss contribution control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's third-party / oss contribution capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "rpa-09-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Third-party / OSS contribution\"?",
+          "text": "Where should an auditor pull the evidence for \"Third-party / OSS contribution\"?",
           "options": [
-            "RPA platform (UiPath/Automation Anywhere/Power Automate) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From RPA platform (UiPath/Automation Anywhere/Power Automate) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how third-party / oss contribution works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., RPA platform (UiPath/Automation Anywhere/Power Automate)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. RPA platform (UiPath/Automation Anywhere/Power Automate)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "rpa-09-q5",
@@ -3224,13 +3224,13 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Third-party / OSS contribution\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Automation CoE (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the third-party / oss contribution control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the third-party / oss contribution data is shared, so the accountability sits with no one in particular",
+            "Automation CoE, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Automation CoE owns the control data; the auditor independently verifies it."
+          "explanation": "Automation CoE owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "rpa-09-q6",
@@ -3238,55 +3238,55 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Third-party / OSS contribution\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "rpa-09-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "rpa-09-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Third-party / OSS contribution\", which is a realistic reportable finding?",
+          "text": "For \"Third-party / OSS contribution\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the third-party / oss contribution control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the third-party / oss contribution control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the third-party / oss contribution control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "rpa-09-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "rpa-09-q10",
@@ -3294,13 +3294,13 @@ export const rpaGovernanceStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Third-party / OSS contribution\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind third-party / oss contribution, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }

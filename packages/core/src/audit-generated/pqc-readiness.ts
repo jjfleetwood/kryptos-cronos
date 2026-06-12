@@ -18,7 +18,7 @@ export const pqcReadinessStages: StageConfig[] = [
     "title": "Cryptographic inventory and visibility",
     "subtitle": "Agentic technical & privacy audit of the cryptographic inventory and visibility control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 6,
     "valueScore": 9,
     "rank": 0,
@@ -240,13 +240,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Cryptographic inventory and visibility\" sub-process of Post-Quantum Readiness?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the cryptographic inventory and visibility control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the cryptographic inventory and visibility control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for cryptographic inventory and visibility against comparable organisations in the sector",
             "Obtain evidence that the cryptographic inventory and visibility control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "pqc-01-q2",
@@ -254,13 +254,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Cryptographic inventory and visibility\" matter to the broader Post-Quantum Readiness posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Post-Quantum Readiness",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Post-Quantum Readiness estate",
             "It is a control other Post-Quantum Readiness controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Post-Quantum Readiness controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "pqc-01-q3",
@@ -268,27 +268,27 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Cryptographic inventory and visibility\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the cryptographic inventory and visibility control (from Cryptographic inventory / CBOM tooling) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's cryptographic inventory and visibility settings, captured during the walkthrough",
+            "The In-scope inventory for the cryptographic inventory and visibility control (from Cryptographic inventory / CBOM tooling), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the cryptographic inventory and visibility control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's cryptographic inventory and visibility capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "pqc-01-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Cryptographic inventory and visibility\"?",
+          "text": "Where should an auditor pull the evidence for \"Cryptographic inventory and visibility\"?",
           "options": [
-            "Cryptographic inventory / CBOM tooling (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Cryptographic inventory / CBOM tooling and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how cryptographic inventory and visibility works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Cryptographic inventory / CBOM tooling) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Cryptographic inventory / CBOM tooling) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "pqc-01-q5",
@@ -296,13 +296,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Cryptographic inventory and visibility\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Crypto / PKI team (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the cryptographic inventory and visibility control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the cryptographic inventory and visibility data is shared, so the accountability sits with no one in particular",
+            "Crypto / PKI team, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Crypto / PKI team owns the control data; the auditor independently verifies it."
+          "explanation": "Crypto / PKI team owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "pqc-01-q6",
@@ -310,55 +310,55 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Cryptographic inventory and visibility\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "pqc-01-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "pqc-01-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Cryptographic inventory and visibility\", which is a realistic reportable finding?",
+          "text": "For \"Cryptographic inventory and visibility\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the cryptographic inventory and visibility control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the cryptographic inventory and visibility control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the cryptographic inventory and visibility control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "pqc-01-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "pqc-01-q10",
@@ -366,13 +366,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Cryptographic inventory and visibility\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind cryptographic inventory and visibility, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -384,7 +384,7 @@ export const pqcReadinessStages: StageConfig[] = [
     "title": "Crypto Bill of Materials (CBOM)",
     "subtitle": "Agentic technical & privacy audit of the crypto bill of materials (cbom) control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 6,
     "valueScore": 9,
     "rank": 0,
@@ -606,13 +606,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Crypto Bill of Materials (CBOM)\" sub-process of Post-Quantum Readiness?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the crypto bill of materials (cbom) control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the crypto bill of materials (cbom) control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for crypto bill of materials (cbom) against comparable organisations in the sector",
             "Obtain evidence that the crypto bill of materials (cbom) control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "pqc-02-q2",
@@ -620,13 +620,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Crypto Bill of Materials (CBOM)\" matter to the broader Post-Quantum Readiness posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Post-Quantum Readiness",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Post-Quantum Readiness estate",
             "It is a control other Post-Quantum Readiness controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Post-Quantum Readiness controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "pqc-02-q3",
@@ -634,27 +634,27 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Crypto Bill of Materials (CBOM)\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the crypto bill of materials (cbom) control (from Cryptographic inventory / CBOM tooling) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's crypto bill of materials (cbom) settings, captured during the walkthrough",
+            "The In-scope inventory for the crypto bill of materials (cbom) control (from Cryptographic inventory / CBOM tooling), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the crypto bill of materials (cbom) control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's crypto bill of materials (cbom) capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "pqc-02-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Crypto Bill of Materials (CBOM)\"?",
+          "text": "Where should an auditor pull the evidence for \"Crypto Bill of Materials (CBOM)\"?",
           "options": [
-            "Cryptographic inventory / CBOM tooling (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Cryptographic inventory / CBOM tooling and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how crypto bill of materials (cbom) works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Cryptographic inventory / CBOM tooling) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Cryptographic inventory / CBOM tooling) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "pqc-02-q5",
@@ -662,13 +662,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Crypto Bill of Materials (CBOM)\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Crypto / PKI team (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the crypto bill of materials (cbom) control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the crypto bill of materials (cbom) data is shared, so the accountability sits with no one in particular",
+            "Crypto / PKI team, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Crypto / PKI team owns the control data; the auditor independently verifies it."
+          "explanation": "Crypto / PKI team owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "pqc-02-q6",
@@ -676,55 +676,55 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Crypto Bill of Materials (CBOM)\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "pqc-02-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "pqc-02-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Crypto Bill of Materials (CBOM)\", which is a realistic reportable finding?",
+          "text": "For \"Crypto Bill of Materials (CBOM)\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the crypto bill of materials (cbom) control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the crypto bill of materials (cbom) control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the crypto bill of materials (cbom) control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "pqc-02-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "pqc-02-q10",
@@ -732,13 +732,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Crypto Bill of Materials (CBOM)\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind crypto bill of materials (cbom), so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -750,7 +750,7 @@ export const pqcReadinessStages: StageConfig[] = [
     "title": "Long-lived data identification",
     "subtitle": "Agentic technical & privacy audit of the long-lived data identification control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 7,
     "valueScore": 7,
     "rank": 0,
@@ -972,13 +972,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Long-lived data identification\" sub-process of Post-Quantum Readiness?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the long-lived data identification control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the long-lived data identification control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for long-lived data identification against comparable organisations in the sector",
             "Obtain evidence that the long-lived data identification control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "pqc-03-q2",
@@ -986,13 +986,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Long-lived data identification\" matter to the broader Post-Quantum Readiness posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Post-Quantum Readiness",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Post-Quantum Readiness estate",
             "It is a control other Post-Quantum Readiness controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Post-Quantum Readiness controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "pqc-03-q3",
@@ -1000,27 +1000,27 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Long-lived data identification\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the long-lived data identification control (from Cryptographic inventory / CBOM tooling) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's long-lived data identification settings, captured during the walkthrough",
+            "The In-scope inventory for the long-lived data identification control (from Cryptographic inventory / CBOM tooling), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the long-lived data identification control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's long-lived data identification capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "pqc-03-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Long-lived data identification\"?",
+          "text": "Where should an auditor pull the evidence for \"Long-lived data identification\"?",
           "options": [
-            "Cryptographic inventory / CBOM tooling (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Cryptographic inventory / CBOM tooling and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how long-lived data identification works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Cryptographic inventory / CBOM tooling) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Cryptographic inventory / CBOM tooling) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "pqc-03-q5",
@@ -1028,13 +1028,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Long-lived data identification\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Crypto / PKI team (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the long-lived data identification control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the long-lived data identification data is shared, so the accountability sits with no one in particular",
+            "Crypto / PKI team, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Crypto / PKI team owns the control data; the auditor independently verifies it."
+          "explanation": "Crypto / PKI team owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "pqc-03-q6",
@@ -1042,55 +1042,55 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Long-lived data identification\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "pqc-03-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "pqc-03-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Long-lived data identification\", which is a realistic reportable finding?",
+          "text": "For \"Long-lived data identification\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the long-lived data identification control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the long-lived data identification control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the long-lived data identification control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "pqc-03-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "pqc-03-q10",
@@ -1098,13 +1098,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Long-lived data identification\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind long-lived data identification, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1116,7 +1116,7 @@ export const pqcReadinessStages: StageConfig[] = [
     "title": "Network traffic exposure",
     "subtitle": "Agentic technical & privacy audit of the network traffic exposure control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
@@ -1338,13 +1338,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Network traffic exposure\" sub-process of Post-Quantum Readiness?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the network traffic exposure control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the network traffic exposure control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for network traffic exposure against comparable organisations in the sector",
             "Obtain evidence that the network traffic exposure control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "pqc-04-q2",
@@ -1352,13 +1352,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Network traffic exposure\" matter to the broader Post-Quantum Readiness posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Post-Quantum Readiness",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Post-Quantum Readiness estate",
             "It is a control other Post-Quantum Readiness controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Post-Quantum Readiness controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "pqc-04-q3",
@@ -1366,27 +1366,27 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Network traffic exposure\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the network traffic exposure control (from Cryptographic inventory / CBOM tooling) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's network traffic exposure settings, captured during the walkthrough",
+            "The In-scope inventory for the network traffic exposure control (from Cryptographic inventory / CBOM tooling), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the network traffic exposure control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's network traffic exposure capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "pqc-04-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Network traffic exposure\"?",
+          "text": "Where should an auditor pull the evidence for \"Network traffic exposure\"?",
           "options": [
-            "Cryptographic inventory / CBOM tooling (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Cryptographic inventory / CBOM tooling and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how network traffic exposure works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Cryptographic inventory / CBOM tooling) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Cryptographic inventory / CBOM tooling) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "pqc-04-q5",
@@ -1394,13 +1394,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Network traffic exposure\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Crypto / PKI team (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the network traffic exposure control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the network traffic exposure data is shared, so the accountability sits with no one in particular",
+            "Crypto / PKI team, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Crypto / PKI team owns the control data; the auditor independently verifies it."
+          "explanation": "Crypto / PKI team owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "pqc-04-q6",
@@ -1408,55 +1408,55 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Network traffic exposure\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "pqc-04-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "pqc-04-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Network traffic exposure\", which is a realistic reportable finding?",
+          "text": "For \"Network traffic exposure\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the network traffic exposure control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the network traffic exposure control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the network traffic exposure control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "pqc-04-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "pqc-04-q10",
@@ -1464,13 +1464,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Network traffic exposure\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind network traffic exposure, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1482,7 +1482,7 @@ export const pqcReadinessStages: StageConfig[] = [
     "title": "Historical encryption assessment",
     "subtitle": "Agentic technical & privacy audit of the historical encryption assessment control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 6,
     "valueScore": 9,
     "rank": 0,
@@ -1704,13 +1704,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Historical encryption assessment\" sub-process of Post-Quantum Readiness?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the historical encryption assessment control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the historical encryption assessment control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for historical encryption assessment against comparable organisations in the sector",
             "Obtain evidence that the historical encryption assessment control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "pqc-05-q2",
@@ -1718,13 +1718,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Historical encryption assessment\" matter to the broader Post-Quantum Readiness posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Post-Quantum Readiness",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Post-Quantum Readiness estate",
             "It is a control other Post-Quantum Readiness controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Post-Quantum Readiness controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "pqc-05-q3",
@@ -1732,27 +1732,27 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Historical encryption assessment\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the historical encryption assessment control (from Cryptographic inventory / CBOM tooling) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's historical encryption assessment settings, captured during the walkthrough",
+            "The In-scope inventory for the historical encryption assessment control (from Cryptographic inventory / CBOM tooling), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the historical encryption assessment control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's historical encryption assessment capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "pqc-05-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Historical encryption assessment\"?",
+          "text": "Where should an auditor pull the evidence for \"Historical encryption assessment\"?",
           "options": [
-            "Cryptographic inventory / CBOM tooling (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Cryptographic inventory / CBOM tooling and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how historical encryption assessment works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Cryptographic inventory / CBOM tooling) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Cryptographic inventory / CBOM tooling) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "pqc-05-q5",
@@ -1760,13 +1760,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Historical encryption assessment\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Crypto / PKI team (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the historical encryption assessment control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the historical encryption assessment data is shared, so the accountability sits with no one in particular",
+            "Crypto / PKI team, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Crypto / PKI team owns the control data; the auditor independently verifies it."
+          "explanation": "Crypto / PKI team owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "pqc-05-q6",
@@ -1774,55 +1774,55 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Historical encryption assessment\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "pqc-05-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "pqc-05-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Historical encryption assessment\", which is a realistic reportable finding?",
+          "text": "For \"Historical encryption assessment\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the historical encryption assessment control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the historical encryption assessment control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the historical encryption assessment control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "pqc-05-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "pqc-05-q10",
@@ -1830,13 +1830,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Historical encryption assessment\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind historical encryption assessment, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1848,7 +1848,7 @@ export const pqcReadinessStages: StageConfig[] = [
     "title": "PQC regulatory compliance",
     "subtitle": "Agentic technical & privacy audit of the pqc regulatory compliance control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 7,
     "valueScore": 7,
     "rank": 0,
@@ -2070,13 +2070,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"PQC regulatory compliance\" sub-process of Post-Quantum Readiness?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the pqc regulatory compliance control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the pqc regulatory compliance control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for pqc regulatory compliance against comparable organisations in the sector",
             "Obtain evidence that the pqc regulatory compliance control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "pqc-06-q2",
@@ -2084,13 +2084,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"PQC regulatory compliance\" matter to the broader Post-Quantum Readiness posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Post-Quantum Readiness",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Post-Quantum Readiness estate",
             "It is a control other Post-Quantum Readiness controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Post-Quantum Readiness controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "pqc-06-q3",
@@ -2098,27 +2098,27 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"PQC regulatory compliance\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the pqc regulatory compliance control (from Cryptographic inventory / CBOM tooling) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's pqc regulatory compliance settings, captured during the walkthrough",
+            "The In-scope inventory for the pqc regulatory compliance control (from Cryptographic inventory / CBOM tooling), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the pqc regulatory compliance control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's pqc regulatory compliance capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "pqc-06-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"PQC regulatory compliance\"?",
+          "text": "Where should an auditor pull the evidence for \"PQC regulatory compliance\"?",
           "options": [
-            "Cryptographic inventory / CBOM tooling (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Cryptographic inventory / CBOM tooling and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how pqc regulatory compliance works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Cryptographic inventory / CBOM tooling) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Cryptographic inventory / CBOM tooling) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "pqc-06-q5",
@@ -2126,13 +2126,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"PQC regulatory compliance\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Crypto / PKI team (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the pqc regulatory compliance control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the pqc regulatory compliance data is shared, so the accountability sits with no one in particular",
+            "Crypto / PKI team, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Crypto / PKI team owns the control data; the auditor independently verifies it."
+          "explanation": "Crypto / PKI team owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "pqc-06-q6",
@@ -2140,55 +2140,55 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"PQC regulatory compliance\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "pqc-06-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "pqc-06-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"PQC regulatory compliance\", which is a realistic reportable finding?",
+          "text": "For \"PQC regulatory compliance\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the pqc regulatory compliance control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the pqc regulatory compliance control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the pqc regulatory compliance control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "pqc-06-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "pqc-06-q10",
@@ -2196,13 +2196,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"PQC regulatory compliance\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind pqc regulatory compliance, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -2214,7 +2214,7 @@ export const pqcReadinessStages: StageConfig[] = [
     "title": "Active HNDL threat intel",
     "subtitle": "Agentic technical & privacy audit of the active hndl threat intel control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
@@ -2436,13 +2436,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Active HNDL threat intel\" sub-process of Post-Quantum Readiness?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the active hndl threat intel control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the active hndl threat intel control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for active hndl threat intel against comparable organisations in the sector",
             "Obtain evidence that the active hndl threat intel control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "pqc-07-q2",
@@ -2450,13 +2450,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Active HNDL threat intel\" matter to the broader Post-Quantum Readiness posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Post-Quantum Readiness",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Post-Quantum Readiness estate",
             "It is a control other Post-Quantum Readiness controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Post-Quantum Readiness controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "pqc-07-q3",
@@ -2464,27 +2464,27 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Active HNDL threat intel\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the active hndl threat intel control (from Cryptographic inventory / CBOM tooling) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's active hndl threat intel settings, captured during the walkthrough",
+            "The In-scope inventory for the active hndl threat intel control (from Cryptographic inventory / CBOM tooling), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the active hndl threat intel control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's active hndl threat intel capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "pqc-07-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Active HNDL threat intel\"?",
+          "text": "Where should an auditor pull the evidence for \"Active HNDL threat intel\"?",
           "options": [
-            "Cryptographic inventory / CBOM tooling (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Cryptographic inventory / CBOM tooling and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how active hndl threat intel works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Cryptographic inventory / CBOM tooling) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Cryptographic inventory / CBOM tooling) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "pqc-07-q5",
@@ -2492,13 +2492,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Active HNDL threat intel\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Crypto / PKI team (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the active hndl threat intel control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the active hndl threat intel data is shared, so the accountability sits with no one in particular",
+            "Crypto / PKI team, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Crypto / PKI team owns the control data; the auditor independently verifies it."
+          "explanation": "Crypto / PKI team owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "pqc-07-q6",
@@ -2506,55 +2506,55 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Active HNDL threat intel\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "pqc-07-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "pqc-07-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Active HNDL threat intel\", which is a realistic reportable finding?",
+          "text": "For \"Active HNDL threat intel\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the active hndl threat intel control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the active hndl threat intel control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the active hndl threat intel control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "pqc-07-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "pqc-07-q10",
@@ -2562,13 +2562,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Active HNDL threat intel\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind active hndl threat intel, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -2580,7 +2580,7 @@ export const pqcReadinessStages: StageConfig[] = [
     "title": "Crypto, protocol, hardware agility",
     "subtitle": "Agentic technical & privacy audit of the crypto, protocol, hardware agility control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 6,
     "valueScore": 9,
     "rank": 0,
@@ -2802,13 +2802,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Crypto, protocol, hardware agility\" sub-process of Post-Quantum Readiness?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the crypto, protocol, hardware agility control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the crypto, protocol, hardware agility control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for crypto, protocol, hardware agility against comparable organisations in the sector",
             "Obtain evidence that the crypto, protocol, hardware agility control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "pqc-08-q2",
@@ -2816,13 +2816,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Crypto, protocol, hardware agility\" matter to the broader Post-Quantum Readiness posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Post-Quantum Readiness",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Post-Quantum Readiness estate",
             "It is a control other Post-Quantum Readiness controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Post-Quantum Readiness controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "pqc-08-q3",
@@ -2830,27 +2830,27 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Crypto, protocol, hardware agility\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the crypto, protocol, hardware agility control (from Cryptographic inventory / CBOM tooling) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's crypto, protocol, hardware agility settings, captured during the walkthrough",
+            "The In-scope inventory for the crypto, protocol, hardware agility control (from Cryptographic inventory / CBOM tooling), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the crypto, protocol, hardware agility control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's crypto, protocol, hardware agility capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "pqc-08-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Crypto, protocol, hardware agility\"?",
+          "text": "Where should an auditor pull the evidence for \"Crypto, protocol, hardware agility\"?",
           "options": [
-            "Cryptographic inventory / CBOM tooling (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Cryptographic inventory / CBOM tooling and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how crypto, protocol, hardware agility works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Cryptographic inventory / CBOM tooling) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Cryptographic inventory / CBOM tooling) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "pqc-08-q5",
@@ -2858,13 +2858,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Crypto, protocol, hardware agility\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Crypto / PKI team (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the crypto, protocol, hardware agility control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the crypto, protocol, hardware agility data is shared, so the accountability sits with no one in particular",
+            "Crypto / PKI team, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Crypto / PKI team owns the control data; the auditor independently verifies it."
+          "explanation": "Crypto / PKI team owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "pqc-08-q6",
@@ -2872,55 +2872,55 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Crypto, protocol, hardware agility\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "pqc-08-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "pqc-08-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Crypto, protocol, hardware agility\", which is a realistic reportable finding?",
+          "text": "For \"Crypto, protocol, hardware agility\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the crypto, protocol, hardware agility control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the crypto, protocol, hardware agility control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the crypto, protocol, hardware agility control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "pqc-08-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "pqc-08-q10",
@@ -2928,13 +2928,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Crypto, protocol, hardware agility\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind crypto, protocol, hardware agility, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -2946,7 +2946,7 @@ export const pqcReadinessStages: StageConfig[] = [
     "title": "Secure communications PQC migration",
     "subtitle": "Agentic technical & privacy audit of the secure communications pqc migration control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
@@ -3168,13 +3168,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Secure communications PQC migration\" sub-process of Post-Quantum Readiness?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the secure communications pqc migration control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the secure communications pqc migration control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for secure communications pqc migration against comparable organisations in the sector",
             "Obtain evidence that the secure communications pqc migration control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "pqc-09-q2",
@@ -3182,13 +3182,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Secure communications PQC migration\" matter to the broader Post-Quantum Readiness posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Post-Quantum Readiness",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Post-Quantum Readiness estate",
             "It is a control other Post-Quantum Readiness controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Post-Quantum Readiness controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "pqc-09-q3",
@@ -3196,27 +3196,27 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Secure communications PQC migration\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the secure communications pqc migration control (from Cryptographic inventory / CBOM tooling) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's secure communications pqc migration settings, captured during the walkthrough",
+            "The In-scope inventory for the secure communications pqc migration control (from Cryptographic inventory / CBOM tooling), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the secure communications pqc migration control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's secure communications pqc migration capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "pqc-09-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Secure communications PQC migration\"?",
+          "text": "Where should an auditor pull the evidence for \"Secure communications PQC migration\"?",
           "options": [
-            "Cryptographic inventory / CBOM tooling (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Cryptographic inventory / CBOM tooling and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how secure communications pqc migration works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Cryptographic inventory / CBOM tooling) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Cryptographic inventory / CBOM tooling) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "pqc-09-q5",
@@ -3224,13 +3224,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Secure communications PQC migration\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Crypto / PKI team (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the secure communications pqc migration control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the secure communications pqc migration data is shared, so the accountability sits with no one in particular",
+            "Crypto / PKI team, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Crypto / PKI team owns the control data; the auditor independently verifies it."
+          "explanation": "Crypto / PKI team owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "pqc-09-q6",
@@ -3238,55 +3238,55 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Secure communications PQC migration\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "pqc-09-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "pqc-09-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Secure communications PQC migration\", which is a realistic reportable finding?",
+          "text": "For \"Secure communications PQC migration\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the secure communications pqc migration control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the secure communications pqc migration control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the secure communications pqc migration control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "pqc-09-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "pqc-09-q10",
@@ -3294,13 +3294,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Secure communications PQC migration\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind secure communications pqc migration, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -3312,7 +3312,7 @@ export const pqcReadinessStages: StageConfig[] = [
     "title": "RFC 9881 alignment",
     "subtitle": "Agentic technical & privacy audit of the rfc 9881 alignment control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
@@ -3534,13 +3534,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"RFC 9881 alignment\" sub-process of Post-Quantum Readiness?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the rfc 9881 alignment control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the rfc 9881 alignment control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for rfc 9881 alignment against comparable organisations in the sector",
             "Obtain evidence that the rfc 9881 alignment control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "pqc-10-q2",
@@ -3548,13 +3548,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"RFC 9881 alignment\" matter to the broader Post-Quantum Readiness posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Post-Quantum Readiness",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Post-Quantum Readiness estate",
             "It is a control other Post-Quantum Readiness controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Post-Quantum Readiness controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "pqc-10-q3",
@@ -3562,27 +3562,27 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"RFC 9881 alignment\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the rfc 9881 alignment control (from Cryptographic inventory / CBOM tooling) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's rfc 9881 alignment settings, captured during the walkthrough",
+            "The In-scope inventory for the rfc 9881 alignment control (from Cryptographic inventory / CBOM tooling), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the rfc 9881 alignment control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's rfc 9881 alignment capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "pqc-10-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"RFC 9881 alignment\"?",
+          "text": "Where should an auditor pull the evidence for \"RFC 9881 alignment\"?",
           "options": [
-            "Cryptographic inventory / CBOM tooling (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Cryptographic inventory / CBOM tooling and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how rfc 9881 alignment works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Cryptographic inventory / CBOM tooling) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Cryptographic inventory / CBOM tooling) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "pqc-10-q5",
@@ -3590,13 +3590,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"RFC 9881 alignment\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Crypto / PKI team (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the rfc 9881 alignment control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the rfc 9881 alignment data is shared, so the accountability sits with no one in particular",
+            "Crypto / PKI team, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Crypto / PKI team owns the control data; the auditor independently verifies it."
+          "explanation": "Crypto / PKI team owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "pqc-10-q6",
@@ -3604,55 +3604,55 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"RFC 9881 alignment\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "pqc-10-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "pqc-10-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"RFC 9881 alignment\", which is a realistic reportable finding?",
+          "text": "For \"RFC 9881 alignment\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the rfc 9881 alignment control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the rfc 9881 alignment control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the rfc 9881 alignment control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "pqc-10-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "pqc-10-q10",
@@ -3660,13 +3660,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"RFC 9881 alignment\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind rfc 9881 alignment, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -3678,7 +3678,7 @@ export const pqcReadinessStages: StageConfig[] = [
     "title": "CNSA 2.0 compliance planning",
     "subtitle": "Agentic technical & privacy audit of the cnsa 2.0 compliance planning control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 6,
     "valueScore": 7,
     "rank": 0,
@@ -3900,13 +3900,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"CNSA 2.0 compliance planning\" sub-process of Post-Quantum Readiness?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the cnsa 2.0 compliance planning control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the cnsa 2.0 compliance planning control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for cnsa 2.0 compliance planning against comparable organisations in the sector",
             "Obtain evidence that the cnsa 2.0 compliance planning control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "pqc-11-q2",
@@ -3914,13 +3914,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"CNSA 2.0 compliance planning\" matter to the broader Post-Quantum Readiness posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Post-Quantum Readiness",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Post-Quantum Readiness estate",
             "It is a control other Post-Quantum Readiness controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Post-Quantum Readiness controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "pqc-11-q3",
@@ -3928,27 +3928,27 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"CNSA 2.0 compliance planning\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the cnsa 2.0 compliance planning control (from Cryptographic inventory / CBOM tooling) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's cnsa 2.0 compliance planning settings, captured during the walkthrough",
+            "The In-scope inventory for the cnsa 2.0 compliance planning control (from Cryptographic inventory / CBOM tooling), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the cnsa 2.0 compliance planning control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's cnsa 2.0 compliance planning capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "pqc-11-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"CNSA 2.0 compliance planning\"?",
+          "text": "Where should an auditor pull the evidence for \"CNSA 2.0 compliance planning\"?",
           "options": [
-            "Cryptographic inventory / CBOM tooling (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Cryptographic inventory / CBOM tooling and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how cnsa 2.0 compliance planning works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Cryptographic inventory / CBOM tooling) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Cryptographic inventory / CBOM tooling) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "pqc-11-q5",
@@ -3956,13 +3956,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"CNSA 2.0 compliance planning\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Crypto / PKI team (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the cnsa 2.0 compliance planning control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the cnsa 2.0 compliance planning data is shared, so the accountability sits with no one in particular",
+            "Crypto / PKI team, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Crypto / PKI team owns the control data; the auditor independently verifies it."
+          "explanation": "Crypto / PKI team owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "pqc-11-q6",
@@ -3970,55 +3970,55 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"CNSA 2.0 compliance planning\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "pqc-11-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "pqc-11-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"CNSA 2.0 compliance planning\", which is a realistic reportable finding?",
+          "text": "For \"CNSA 2.0 compliance planning\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the cnsa 2.0 compliance planning control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the cnsa 2.0 compliance planning control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the cnsa 2.0 compliance planning control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "pqc-11-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "pqc-11-q10",
@@ -4026,13 +4026,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"CNSA 2.0 compliance planning\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind cnsa 2.0 compliance planning, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -4044,7 +4044,7 @@ export const pqcReadinessStages: StageConfig[] = [
     "title": "Standards monitoring (IETF, NIST)",
     "subtitle": "Agentic technical & privacy audit of the standards monitoring (ietf, nist) control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 8,
     "valueScore": 7,
     "rank": 0,
@@ -4266,13 +4266,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Standards monitoring (IETF, NIST)\" sub-process of Post-Quantum Readiness?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the standards monitoring (ietf, nist) control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the standards monitoring (ietf, nist) control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for standards monitoring (ietf, nist) against comparable organisations in the sector",
             "Obtain evidence that the standards monitoring (ietf, nist) control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "pqc-12-q2",
@@ -4280,13 +4280,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Standards monitoring (IETF, NIST)\" matter to the broader Post-Quantum Readiness posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Post-Quantum Readiness",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Post-Quantum Readiness estate",
             "It is a control other Post-Quantum Readiness controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Post-Quantum Readiness controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "pqc-12-q3",
@@ -4294,27 +4294,27 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Standards monitoring (IETF, NIST)\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the standards monitoring (ietf, nist) control (from Cryptographic inventory / CBOM tooling) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's standards monitoring (ietf, nist) settings, captured during the walkthrough",
+            "The In-scope inventory for the standards monitoring (ietf, nist) control (from Cryptographic inventory / CBOM tooling), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the standards monitoring (ietf, nist) control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's standards monitoring (ietf, nist) capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "pqc-12-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Standards monitoring (IETF, NIST)\"?",
+          "text": "Where should an auditor pull the evidence for \"Standards monitoring (IETF, NIST)\"?",
           "options": [
-            "Cryptographic inventory / CBOM tooling (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Cryptographic inventory / CBOM tooling and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how standards monitoring (ietf, nist) works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Cryptographic inventory / CBOM tooling) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Cryptographic inventory / CBOM tooling) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "pqc-12-q5",
@@ -4322,13 +4322,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Standards monitoring (IETF, NIST)\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Crypto / PKI team (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the standards monitoring (ietf, nist) control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the standards monitoring (ietf, nist) data is shared, so the accountability sits with no one in particular",
+            "Crypto / PKI team, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Crypto / PKI team owns the control data; the auditor independently verifies it."
+          "explanation": "Crypto / PKI team owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "pqc-12-q6",
@@ -4336,55 +4336,55 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Standards monitoring (IETF, NIST)\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "pqc-12-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "pqc-12-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Standards monitoring (IETF, NIST)\", which is a realistic reportable finding?",
+          "text": "For \"Standards monitoring (IETF, NIST)\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the standards monitoring (ietf, nist) control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the standards monitoring (ietf, nist) control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the standards monitoring (ietf, nist) control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "pqc-12-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "pqc-12-q10",
@@ -4392,13 +4392,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Standards monitoring (IETF, NIST)\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind standards monitoring (ietf, nist), so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -4410,7 +4410,7 @@ export const pqcReadinessStages: StageConfig[] = [
     "title": "Regional standards alignment",
     "subtitle": "Agentic technical & privacy audit of the regional standards alignment control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
@@ -4632,13 +4632,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Regional standards alignment\" sub-process of Post-Quantum Readiness?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the regional standards alignment control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the regional standards alignment control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for regional standards alignment against comparable organisations in the sector",
             "Obtain evidence that the regional standards alignment control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "pqc-13-q2",
@@ -4646,13 +4646,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Regional standards alignment\" matter to the broader Post-Quantum Readiness posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Post-Quantum Readiness",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Post-Quantum Readiness estate",
             "It is a control other Post-Quantum Readiness controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Post-Quantum Readiness controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "pqc-13-q3",
@@ -4660,27 +4660,27 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Regional standards alignment\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the regional standards alignment control (from Cryptographic inventory / CBOM tooling) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's regional standards alignment settings, captured during the walkthrough",
+            "The In-scope inventory for the regional standards alignment control (from Cryptographic inventory / CBOM tooling), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the regional standards alignment control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's regional standards alignment capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "pqc-13-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Regional standards alignment\"?",
+          "text": "Where should an auditor pull the evidence for \"Regional standards alignment\"?",
           "options": [
-            "Cryptographic inventory / CBOM tooling (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Cryptographic inventory / CBOM tooling and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how regional standards alignment works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Cryptographic inventory / CBOM tooling) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Cryptographic inventory / CBOM tooling) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "pqc-13-q5",
@@ -4688,13 +4688,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Regional standards alignment\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Crypto / PKI team (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the regional standards alignment control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the regional standards alignment data is shared, so the accountability sits with no one in particular",
+            "Crypto / PKI team, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Crypto / PKI team owns the control data; the auditor independently verifies it."
+          "explanation": "Crypto / PKI team owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "pqc-13-q6",
@@ -4702,55 +4702,55 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Regional standards alignment\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "pqc-13-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "pqc-13-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Regional standards alignment\", which is a realistic reportable finding?",
+          "text": "For \"Regional standards alignment\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the regional standards alignment control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the regional standards alignment control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the regional standards alignment control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "pqc-13-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "pqc-13-q10",
@@ -4758,13 +4758,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Regional standards alignment\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind regional standards alignment, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -4776,7 +4776,7 @@ export const pqcReadinessStages: StageConfig[] = [
     "title": "Trust store updates",
     "subtitle": "Agentic technical & privacy audit of the trust store updates control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 6,
     "valueScore": 7,
     "rank": 0,
@@ -4998,13 +4998,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Trust store updates\" sub-process of Post-Quantum Readiness?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the trust store updates control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the trust store updates control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for trust store updates against comparable organisations in the sector",
             "Obtain evidence that the trust store updates control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "pqc-14-q2",
@@ -5012,13 +5012,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Trust store updates\" matter to the broader Post-Quantum Readiness posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Post-Quantum Readiness",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Post-Quantum Readiness estate",
             "It is a control other Post-Quantum Readiness controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Post-Quantum Readiness controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "pqc-14-q3",
@@ -5026,27 +5026,27 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Trust store updates\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the trust store updates control (from Cryptographic inventory / CBOM tooling) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's trust store updates settings, captured during the walkthrough",
+            "The In-scope inventory for the trust store updates control (from Cryptographic inventory / CBOM tooling), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the trust store updates control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's trust store updates capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "pqc-14-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Trust store updates\"?",
+          "text": "Where should an auditor pull the evidence for \"Trust store updates\"?",
           "options": [
-            "Cryptographic inventory / CBOM tooling (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Cryptographic inventory / CBOM tooling and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how trust store updates works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Cryptographic inventory / CBOM tooling) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Cryptographic inventory / CBOM tooling) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "pqc-14-q5",
@@ -5054,13 +5054,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Trust store updates\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Crypto / PKI team (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the trust store updates control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the trust store updates data is shared, so the accountability sits with no one in particular",
+            "Crypto / PKI team, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Crypto / PKI team owns the control data; the auditor independently verifies it."
+          "explanation": "Crypto / PKI team owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "pqc-14-q6",
@@ -5068,55 +5068,55 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Trust store updates\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "pqc-14-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "pqc-14-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Trust store updates\", which is a realistic reportable finding?",
+          "text": "For \"Trust store updates\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the trust store updates control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the trust store updates control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the trust store updates control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "pqc-14-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "pqc-14-q10",
@@ -5124,13 +5124,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Trust store updates\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind trust store updates, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -5142,7 +5142,7 @@ export const pqcReadinessStages: StageConfig[] = [
     "title": "Vendor PQC roadmap",
     "subtitle": "Agentic technical & privacy audit of the vendor pqc roadmap control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 7,
     "valueScore": 7,
     "rank": 0,
@@ -5364,13 +5364,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Vendor PQC roadmap\" sub-process of Post-Quantum Readiness?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the vendor pqc roadmap control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the vendor pqc roadmap control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for vendor pqc roadmap against comparable organisations in the sector",
             "Obtain evidence that the vendor pqc roadmap control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "pqc-15-q2",
@@ -5378,13 +5378,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Vendor PQC roadmap\" matter to the broader Post-Quantum Readiness posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Post-Quantum Readiness",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Post-Quantum Readiness estate",
             "It is a control other Post-Quantum Readiness controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Post-Quantum Readiness controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "pqc-15-q3",
@@ -5392,27 +5392,27 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Vendor PQC roadmap\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the vendor pqc roadmap control (from Cryptographic inventory / CBOM tooling) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's vendor pqc roadmap settings, captured during the walkthrough",
+            "The In-scope inventory for the vendor pqc roadmap control (from Cryptographic inventory / CBOM tooling), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the vendor pqc roadmap control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's vendor pqc roadmap capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "pqc-15-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Vendor PQC roadmap\"?",
+          "text": "Where should an auditor pull the evidence for \"Vendor PQC roadmap\"?",
           "options": [
-            "Cryptographic inventory / CBOM tooling (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Cryptographic inventory / CBOM tooling and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how vendor pqc roadmap works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Cryptographic inventory / CBOM tooling) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Cryptographic inventory / CBOM tooling) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "pqc-15-q5",
@@ -5420,13 +5420,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Vendor PQC roadmap\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Crypto / PKI team (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the vendor pqc roadmap control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the vendor pqc roadmap data is shared, so the accountability sits with no one in particular",
+            "Crypto / PKI team, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Crypto / PKI team owns the control data; the auditor independently verifies it."
+          "explanation": "Crypto / PKI team owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "pqc-15-q6",
@@ -5434,55 +5434,55 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Vendor PQC roadmap\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "pqc-15-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "pqc-15-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Vendor PQC roadmap\", which is a realistic reportable finding?",
+          "text": "For \"Vendor PQC roadmap\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the vendor pqc roadmap control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the vendor pqc roadmap control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the vendor pqc roadmap control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "pqc-15-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "pqc-15-q10",
@@ -5490,13 +5490,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Vendor PQC roadmap\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind vendor pqc roadmap, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -5508,7 +5508,7 @@ export const pqcReadinessStages: StageConfig[] = [
     "title": "Third-party PKI dependency",
     "subtitle": "Agentic technical & privacy audit of the third-party pki dependency control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 5,
     "valueScore": 9,
     "rank": 0,
@@ -5730,13 +5730,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Third-party PKI dependency\" sub-process of Post-Quantum Readiness?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the third-party pki dependency control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the third-party pki dependency control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for third-party pki dependency against comparable organisations in the sector",
             "Obtain evidence that the third-party pki dependency control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "pqc-16-q2",
@@ -5744,13 +5744,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Third-party PKI dependency\" matter to the broader Post-Quantum Readiness posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Post-Quantum Readiness",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Post-Quantum Readiness estate",
             "It is a control other Post-Quantum Readiness controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Post-Quantum Readiness controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "pqc-16-q3",
@@ -5758,27 +5758,27 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Third-party PKI dependency\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the third-party pki dependency control (from Cryptographic inventory / CBOM tooling) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's third-party pki dependency settings, captured during the walkthrough",
+            "The In-scope inventory for the third-party pki dependency control (from Cryptographic inventory / CBOM tooling), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the third-party pki dependency control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's third-party pki dependency capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "pqc-16-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Third-party PKI dependency\"?",
+          "text": "Where should an auditor pull the evidence for \"Third-party PKI dependency\"?",
           "options": [
-            "Cryptographic inventory / CBOM tooling (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Cryptographic inventory / CBOM tooling and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how third-party pki dependency works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Cryptographic inventory / CBOM tooling) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Cryptographic inventory / CBOM tooling) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "pqc-16-q5",
@@ -5786,13 +5786,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Third-party PKI dependency\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Crypto / PKI team (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the third-party pki dependency control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the third-party pki dependency data is shared, so the accountability sits with no one in particular",
+            "Crypto / PKI team, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Crypto / PKI team owns the control data; the auditor independently verifies it."
+          "explanation": "Crypto / PKI team owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "pqc-16-q6",
@@ -5800,55 +5800,55 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Third-party PKI dependency\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "pqc-16-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "pqc-16-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Third-party PKI dependency\", which is a realistic reportable finding?",
+          "text": "For \"Third-party PKI dependency\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the third-party pki dependency control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the third-party pki dependency control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the third-party pki dependency control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "pqc-16-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "pqc-16-q10",
@@ -5856,13 +5856,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Third-party PKI dependency\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind third-party pki dependency, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -5874,7 +5874,7 @@ export const pqcReadinessStages: StageConfig[] = [
     "title": "Secure product PQC readiness",
     "subtitle": "Agentic technical & privacy audit of the secure product pqc readiness control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 6,
     "valueScore": 7,
     "rank": 0,
@@ -6096,13 +6096,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Secure product PQC readiness\" sub-process of Post-Quantum Readiness?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the secure product pqc readiness control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the secure product pqc readiness control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for secure product pqc readiness against comparable organisations in the sector",
             "Obtain evidence that the secure product pqc readiness control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "pqc-17-q2",
@@ -6110,13 +6110,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Secure product PQC readiness\" matter to the broader Post-Quantum Readiness posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Post-Quantum Readiness",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Post-Quantum Readiness estate",
             "It is a control other Post-Quantum Readiness controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Post-Quantum Readiness controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "pqc-17-q3",
@@ -6124,27 +6124,27 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Secure product PQC readiness\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the secure product pqc readiness control (from Cryptographic inventory / CBOM tooling) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's secure product pqc readiness settings, captured during the walkthrough",
+            "The In-scope inventory for the secure product pqc readiness control (from Cryptographic inventory / CBOM tooling), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the secure product pqc readiness control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's secure product pqc readiness capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "pqc-17-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Secure product PQC readiness\"?",
+          "text": "Where should an auditor pull the evidence for \"Secure product PQC readiness\"?",
           "options": [
-            "Cryptographic inventory / CBOM tooling (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Cryptographic inventory / CBOM tooling and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how secure product pqc readiness works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Cryptographic inventory / CBOM tooling) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Cryptographic inventory / CBOM tooling) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "pqc-17-q5",
@@ -6152,13 +6152,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Secure product PQC readiness\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Crypto / PKI team (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the secure product pqc readiness control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the secure product pqc readiness data is shared, so the accountability sits with no one in particular",
+            "Crypto / PKI team, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Crypto / PKI team owns the control data; the auditor independently verifies it."
+          "explanation": "Crypto / PKI team owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "pqc-17-q6",
@@ -6166,55 +6166,55 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Secure product PQC readiness\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "pqc-17-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "pqc-17-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Secure product PQC readiness\", which is a realistic reportable finding?",
+          "text": "For \"Secure product PQC readiness\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the secure product pqc readiness control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the secure product pqc readiness control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the secure product pqc readiness control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "pqc-17-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "pqc-17-q10",
@@ -6222,13 +6222,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Secure product PQC readiness\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind secure product pqc readiness, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -6240,7 +6240,7 @@ export const pqcReadinessStages: StageConfig[] = [
     "title": "Industry interop testing",
     "subtitle": "Agentic technical & privacy audit of the industry interop testing control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 7,
     "valueScore": 7,
     "rank": 0,
@@ -6462,13 +6462,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Industry interop testing\" sub-process of Post-Quantum Readiness?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the industry interop testing control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the industry interop testing control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for industry interop testing against comparable organisations in the sector",
             "Obtain evidence that the industry interop testing control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "pqc-18-q2",
@@ -6476,13 +6476,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Industry interop testing\" matter to the broader Post-Quantum Readiness posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Post-Quantum Readiness",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Post-Quantum Readiness estate",
             "It is a control other Post-Quantum Readiness controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Post-Quantum Readiness controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "pqc-18-q3",
@@ -6490,27 +6490,27 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Industry interop testing\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the industry interop testing control (from Cryptographic inventory / CBOM tooling) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's industry interop testing settings, captured during the walkthrough",
+            "The In-scope inventory for the industry interop testing control (from Cryptographic inventory / CBOM tooling), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the industry interop testing control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's industry interop testing capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "pqc-18-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Industry interop testing\"?",
+          "text": "Where should an auditor pull the evidence for \"Industry interop testing\"?",
           "options": [
-            "Cryptographic inventory / CBOM tooling (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Cryptographic inventory / CBOM tooling and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how industry interop testing works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Cryptographic inventory / CBOM tooling) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Cryptographic inventory / CBOM tooling) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "pqc-18-q5",
@@ -6518,13 +6518,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Industry interop testing\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Crypto / PKI team (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the industry interop testing control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the industry interop testing data is shared, so the accountability sits with no one in particular",
+            "Crypto / PKI team, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Crypto / PKI team owns the control data; the auditor independently verifies it."
+          "explanation": "Crypto / PKI team owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "pqc-18-q6",
@@ -6532,55 +6532,55 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Industry interop testing\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "pqc-18-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "pqc-18-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Industry interop testing\", which is a realistic reportable finding?",
+          "text": "For \"Industry interop testing\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the industry interop testing control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the industry interop testing control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the industry interop testing control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "pqc-18-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "pqc-18-q10",
@@ -6588,13 +6588,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Industry interop testing\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind industry interop testing, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -6606,7 +6606,7 @@ export const pqcReadinessStages: StageConfig[] = [
     "title": "PQC pen testing",
     "subtitle": "Agentic technical & privacy audit of the pqc pen testing control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
@@ -6828,13 +6828,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"PQC pen testing\" sub-process of Post-Quantum Readiness?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the pqc pen testing control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the pqc pen testing control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for pqc pen testing against comparable organisations in the sector",
             "Obtain evidence that the pqc pen testing control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "pqc-19-q2",
@@ -6842,13 +6842,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"PQC pen testing\" matter to the broader Post-Quantum Readiness posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Post-Quantum Readiness",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Post-Quantum Readiness estate",
             "It is a control other Post-Quantum Readiness controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Post-Quantum Readiness controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "pqc-19-q3",
@@ -6856,27 +6856,27 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"PQC pen testing\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the pqc pen testing control (from Cryptographic inventory / CBOM tooling) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's pqc pen testing settings, captured during the walkthrough",
+            "The In-scope inventory for the pqc pen testing control (from Cryptographic inventory / CBOM tooling), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the pqc pen testing control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's pqc pen testing capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "pqc-19-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"PQC pen testing\"?",
+          "text": "Where should an auditor pull the evidence for \"PQC pen testing\"?",
           "options": [
-            "Cryptographic inventory / CBOM tooling (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Cryptographic inventory / CBOM tooling and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how pqc pen testing works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Cryptographic inventory / CBOM tooling) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Cryptographic inventory / CBOM tooling) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "pqc-19-q5",
@@ -6884,13 +6884,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"PQC pen testing\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Crypto / PKI team (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the pqc pen testing control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the pqc pen testing data is shared, so the accountability sits with no one in particular",
+            "Crypto / PKI team, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Crypto / PKI team owns the control data; the auditor independently verifies it."
+          "explanation": "Crypto / PKI team owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "pqc-19-q6",
@@ -6898,55 +6898,55 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"PQC pen testing\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "pqc-19-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "pqc-19-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"PQC pen testing\", which is a realistic reportable finding?",
+          "text": "For \"PQC pen testing\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the pqc pen testing control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the pqc pen testing control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the pqc pen testing control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "pqc-19-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "pqc-19-q10",
@@ -6954,13 +6954,13 @@ export const pqcReadinessStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"PQC pen testing\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind pqc pen testing, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }

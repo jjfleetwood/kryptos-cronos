@@ -18,7 +18,7 @@ export const datacenterStages: StageConfig[] = [
     "title": "Physical security controls",
     "subtitle": "Agentic technical & privacy audit of the physical security controls control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
@@ -240,13 +240,13 @@ export const datacenterStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Physical security controls\" sub-process of Datacenter / Lab / Colocation (CoLo)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the physical security controls control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the physical security controls control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for physical security controls against comparable organisations in the sector",
             "Obtain evidence that the physical security controls control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "dcr-01-q2",
@@ -254,13 +254,13 @@ export const datacenterStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Physical security controls\" matter to the broader Datacenter / Lab / Colocation (CoLo) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Datacenter / Lab / Colocation (CoLo)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Datacenter / Lab / Colocation (CoLo) estate",
             "It is a control other Datacenter / Lab / Colocation (CoLo) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Datacenter / Lab / Colocation (CoLo) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "dcr-01-q3",
@@ -268,27 +268,27 @@ export const datacenterStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Physical security controls\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the physical security controls control (from Badge / PACS access system) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's physical security controls settings, captured during the walkthrough",
+            "The In-scope inventory for the physical security controls control (from Badge / PACS access system), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the physical security controls control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's physical security controls capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "dcr-01-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Physical security controls\"?",
+          "text": "Where should an auditor pull the evidence for \"Physical security controls\"?",
           "options": [
-            "Badge / PACS access system (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Badge / PACS access system and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how physical security controls works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Badge / PACS access system) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Badge / PACS access system) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "dcr-01-q5",
@@ -296,13 +296,13 @@ export const datacenterStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Physical security controls\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Facilities / Datacenter operations (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the physical security controls control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the physical security controls data is shared, so the accountability sits with no one in particular",
+            "Facilities / Datacenter operations, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Facilities / Datacenter operations owns the control data; the auditor independently verifies it."
+          "explanation": "Facilities / Datacenter operations owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "dcr-01-q6",
@@ -310,55 +310,55 @@ export const datacenterStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Physical security controls\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "dcr-01-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "dcr-01-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Physical security controls\", which is a realistic reportable finding?",
+          "text": "For \"Physical security controls\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the physical security controls control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the physical security controls control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the physical security controls control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "dcr-01-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "dcr-01-q10",
@@ -366,13 +366,13 @@ export const datacenterStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Physical security controls\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind physical security controls, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -384,7 +384,7 @@ export const datacenterStages: StageConfig[] = [
     "title": "Environmental controls",
     "subtitle": "Agentic technical & privacy audit of the environmental controls control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 6,
     "valueScore": 7,
     "rank": 0,
@@ -606,13 +606,13 @@ export const datacenterStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Environmental controls\" sub-process of Datacenter / Lab / Colocation (CoLo)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the environmental controls control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the environmental controls control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for environmental controls against comparable organisations in the sector",
             "Obtain evidence that the environmental controls control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "dcr-02-q2",
@@ -620,13 +620,13 @@ export const datacenterStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Environmental controls\" matter to the broader Datacenter / Lab / Colocation (CoLo) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Datacenter / Lab / Colocation (CoLo)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Datacenter / Lab / Colocation (CoLo) estate",
             "It is a control other Datacenter / Lab / Colocation (CoLo) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Datacenter / Lab / Colocation (CoLo) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "dcr-02-q3",
@@ -634,27 +634,27 @@ export const datacenterStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Environmental controls\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the environmental controls control (from Badge / PACS access system) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's environmental controls settings, captured during the walkthrough",
+            "The In-scope inventory for the environmental controls control (from Badge / PACS access system), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the environmental controls control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's environmental controls capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "dcr-02-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Environmental controls\"?",
+          "text": "Where should an auditor pull the evidence for \"Environmental controls\"?",
           "options": [
-            "Badge / PACS access system (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Badge / PACS access system and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how environmental controls works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Badge / PACS access system) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Badge / PACS access system) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "dcr-02-q5",
@@ -662,13 +662,13 @@ export const datacenterStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Environmental controls\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Facilities / Datacenter operations (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the environmental controls control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the environmental controls data is shared, so the accountability sits with no one in particular",
+            "Facilities / Datacenter operations, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Facilities / Datacenter operations owns the control data; the auditor independently verifies it."
+          "explanation": "Facilities / Datacenter operations owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "dcr-02-q6",
@@ -676,55 +676,55 @@ export const datacenterStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Environmental controls\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "dcr-02-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "dcr-02-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Environmental controls\", which is a realistic reportable finding?",
+          "text": "For \"Environmental controls\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the environmental controls control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the environmental controls control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the environmental controls control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "dcr-02-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "dcr-02-q10",
@@ -732,13 +732,13 @@ export const datacenterStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Environmental controls\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind environmental controls, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -750,7 +750,7 @@ export const datacenterStages: StageConfig[] = [
     "title": "Safety controls",
     "subtitle": "Agentic technical & privacy audit of the safety controls control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 7,
     "valueScore": 7,
     "rank": 0,
@@ -972,13 +972,13 @@ export const datacenterStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Safety controls\" sub-process of Datacenter / Lab / Colocation (CoLo)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the safety controls control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the safety controls control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for safety controls against comparable organisations in the sector",
             "Obtain evidence that the safety controls control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "dcr-03-q2",
@@ -986,13 +986,13 @@ export const datacenterStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Safety controls\" matter to the broader Datacenter / Lab / Colocation (CoLo) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Datacenter / Lab / Colocation (CoLo)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Datacenter / Lab / Colocation (CoLo) estate",
             "It is a control other Datacenter / Lab / Colocation (CoLo) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Datacenter / Lab / Colocation (CoLo) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "dcr-03-q3",
@@ -1000,27 +1000,27 @@ export const datacenterStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Safety controls\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the safety controls control (from Badge / PACS access system) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's safety controls settings, captured during the walkthrough",
+            "The In-scope inventory for the safety controls control (from Badge / PACS access system), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the safety controls control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's safety controls capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "dcr-03-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Safety controls\"?",
+          "text": "Where should an auditor pull the evidence for \"Safety controls\"?",
           "options": [
-            "Badge / PACS access system (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Badge / PACS access system and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how safety controls works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Badge / PACS access system) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Badge / PACS access system) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "dcr-03-q5",
@@ -1028,13 +1028,13 @@ export const datacenterStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Safety controls\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Facilities / Datacenter operations (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the safety controls control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the safety controls data is shared, so the accountability sits with no one in particular",
+            "Facilities / Datacenter operations, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Facilities / Datacenter operations owns the control data; the auditor independently verifies it."
+          "explanation": "Facilities / Datacenter operations owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "dcr-03-q6",
@@ -1042,55 +1042,55 @@ export const datacenterStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Safety controls\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "dcr-03-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "dcr-03-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Safety controls\", which is a realistic reportable finding?",
+          "text": "For \"Safety controls\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the safety controls control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the safety controls control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the safety controls control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "dcr-03-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "dcr-03-q10",
@@ -1098,13 +1098,13 @@ export const datacenterStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Safety controls\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind safety controls, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1116,7 +1116,7 @@ export const datacenterStages: StageConfig[] = [
     "title": "Asset inventory mgmt",
     "subtitle": "Agentic technical & privacy audit of the asset inventory mgmt control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 6,
     "valueScore": 7,
     "rank": 0,
@@ -1338,13 +1338,13 @@ export const datacenterStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Asset inventory mgmt\" sub-process of Datacenter / Lab / Colocation (CoLo)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the asset inventory mgmt control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the asset inventory mgmt control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for asset inventory mgmt against comparable organisations in the sector",
             "Obtain evidence that the asset inventory mgmt control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "dcr-04-q2",
@@ -1352,13 +1352,13 @@ export const datacenterStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Asset inventory mgmt\" matter to the broader Datacenter / Lab / Colocation (CoLo) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Datacenter / Lab / Colocation (CoLo)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Datacenter / Lab / Colocation (CoLo) estate",
             "It is a control other Datacenter / Lab / Colocation (CoLo) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Datacenter / Lab / Colocation (CoLo) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "dcr-04-q3",
@@ -1366,27 +1366,27 @@ export const datacenterStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Asset inventory mgmt\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the asset inventory mgmt control (from Badge / PACS access system) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's asset inventory mgmt settings, captured during the walkthrough",
+            "The In-scope inventory for the asset inventory mgmt control (from Badge / PACS access system), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the asset inventory mgmt control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's asset inventory mgmt capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "dcr-04-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Asset inventory mgmt\"?",
+          "text": "Where should an auditor pull the evidence for \"Asset inventory mgmt\"?",
           "options": [
-            "Badge / PACS access system (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Badge / PACS access system and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how asset inventory mgmt works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Badge / PACS access system) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Badge / PACS access system) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "dcr-04-q5",
@@ -1394,13 +1394,13 @@ export const datacenterStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Asset inventory mgmt\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Facilities / Datacenter operations (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the asset inventory mgmt control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the asset inventory mgmt data is shared, so the accountability sits with no one in particular",
+            "Facilities / Datacenter operations, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Facilities / Datacenter operations owns the control data; the auditor independently verifies it."
+          "explanation": "Facilities / Datacenter operations owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "dcr-04-q6",
@@ -1408,55 +1408,55 @@ export const datacenterStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Asset inventory mgmt\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "dcr-04-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "dcr-04-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Asset inventory mgmt\", which is a realistic reportable finding?",
+          "text": "For \"Asset inventory mgmt\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the asset inventory mgmt control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the asset inventory mgmt control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the asset inventory mgmt control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "dcr-04-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "dcr-04-q10",
@@ -1464,13 +1464,13 @@ export const datacenterStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Asset inventory mgmt\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind asset inventory mgmt, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1482,7 +1482,7 @@ export const datacenterStages: StageConfig[] = [
     "title": "Maintenance and vendor mgmt",
     "subtitle": "Agentic technical & privacy audit of the maintenance and vendor mgmt control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 6,
     "valueScore": 7,
     "rank": 0,
@@ -1704,13 +1704,13 @@ export const datacenterStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Maintenance and vendor mgmt\" sub-process of Datacenter / Lab / Colocation (CoLo)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the maintenance and vendor mgmt control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the maintenance and vendor mgmt control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for maintenance and vendor mgmt against comparable organisations in the sector",
             "Obtain evidence that the maintenance and vendor mgmt control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "dcr-05-q2",
@@ -1718,13 +1718,13 @@ export const datacenterStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Maintenance and vendor mgmt\" matter to the broader Datacenter / Lab / Colocation (CoLo) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Datacenter / Lab / Colocation (CoLo)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Datacenter / Lab / Colocation (CoLo) estate",
             "It is a control other Datacenter / Lab / Colocation (CoLo) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Datacenter / Lab / Colocation (CoLo) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "dcr-05-q3",
@@ -1732,27 +1732,27 @@ export const datacenterStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Maintenance and vendor mgmt\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the maintenance and vendor mgmt control (from Badge / PACS access system) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's maintenance and vendor mgmt settings, captured during the walkthrough",
+            "The In-scope inventory for the maintenance and vendor mgmt control (from Badge / PACS access system), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the maintenance and vendor mgmt control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's maintenance and vendor mgmt capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "dcr-05-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Maintenance and vendor mgmt\"?",
+          "text": "Where should an auditor pull the evidence for \"Maintenance and vendor mgmt\"?",
           "options": [
-            "Badge / PACS access system (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Badge / PACS access system and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how maintenance and vendor mgmt works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Badge / PACS access system) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Badge / PACS access system) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "dcr-05-q5",
@@ -1760,13 +1760,13 @@ export const datacenterStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Maintenance and vendor mgmt\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Facilities / Datacenter operations (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the maintenance and vendor mgmt control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the maintenance and vendor mgmt data is shared, so the accountability sits with no one in particular",
+            "Facilities / Datacenter operations, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Facilities / Datacenter operations owns the control data; the auditor independently verifies it."
+          "explanation": "Facilities / Datacenter operations owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "dcr-05-q6",
@@ -1774,55 +1774,55 @@ export const datacenterStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Maintenance and vendor mgmt\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "dcr-05-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "dcr-05-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Maintenance and vendor mgmt\", which is a realistic reportable finding?",
+          "text": "For \"Maintenance and vendor mgmt\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the maintenance and vendor mgmt control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the maintenance and vendor mgmt control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the maintenance and vendor mgmt control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "dcr-05-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "dcr-05-q10",
@@ -1830,13 +1830,13 @@ export const datacenterStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Maintenance and vendor mgmt\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind maintenance and vendor mgmt, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1848,7 +1848,7 @@ export const datacenterStages: StageConfig[] = [
     "title": "Business continuity planning",
     "subtitle": "Agentic technical & privacy audit of the business continuity planning control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 7,
     "valueScore": 7,
     "rank": 0,
@@ -2070,13 +2070,13 @@ export const datacenterStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Business continuity planning\" sub-process of Datacenter / Lab / Colocation (CoLo)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the business continuity planning control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the business continuity planning control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for business continuity planning against comparable organisations in the sector",
             "Obtain evidence that the business continuity planning control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "dcr-06-q2",
@@ -2084,13 +2084,13 @@ export const datacenterStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Business continuity planning\" matter to the broader Datacenter / Lab / Colocation (CoLo) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Datacenter / Lab / Colocation (CoLo)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Datacenter / Lab / Colocation (CoLo) estate",
             "It is a control other Datacenter / Lab / Colocation (CoLo) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Datacenter / Lab / Colocation (CoLo) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "dcr-06-q3",
@@ -2098,27 +2098,27 @@ export const datacenterStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Business continuity planning\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the business continuity planning control (from Badge / PACS access system) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's business continuity planning settings, captured during the walkthrough",
+            "The In-scope inventory for the business continuity planning control (from Badge / PACS access system), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the business continuity planning control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's business continuity planning capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "dcr-06-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Business continuity planning\"?",
+          "text": "Where should an auditor pull the evidence for \"Business continuity planning\"?",
           "options": [
-            "Badge / PACS access system (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Badge / PACS access system and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how business continuity planning works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Badge / PACS access system) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Badge / PACS access system) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "dcr-06-q5",
@@ -2126,13 +2126,13 @@ export const datacenterStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Business continuity planning\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Facilities / Datacenter operations (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the business continuity planning control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the business continuity planning data is shared, so the accountability sits with no one in particular",
+            "Facilities / Datacenter operations, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Facilities / Datacenter operations owns the control data; the auditor independently verifies it."
+          "explanation": "Facilities / Datacenter operations owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "dcr-06-q6",
@@ -2140,55 +2140,55 @@ export const datacenterStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Business continuity planning\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "dcr-06-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "dcr-06-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Business continuity planning\", which is a realistic reportable finding?",
+          "text": "For \"Business continuity planning\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the business continuity planning control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the business continuity planning control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the business continuity planning control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "dcr-06-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "dcr-06-q10",
@@ -2196,13 +2196,13 @@ export const datacenterStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Business continuity planning\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind business continuity planning, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }

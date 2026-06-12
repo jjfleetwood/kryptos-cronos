@@ -18,7 +18,7 @@ export const repositoryMgmtStages: StageConfig[] = [
     "title": "Access control and authentication",
     "subtitle": "Agentic technical & privacy audit of the access control and authentication control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 5,
     "valueScore": 9,
     "rank": 0,
@@ -240,13 +240,13 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Access control and authentication\" sub-process of Repository Management?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the access control and authentication control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the access control and authentication control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for access control and authentication against comparable organisations in the sector",
             "Obtain evidence that the access control and authentication control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "repo-01-q2",
@@ -254,13 +254,13 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Access control and authentication\" matter to the broader Repository Management posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Repository Management",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Repository Management estate",
             "It is a control other Repository Management controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Repository Management controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "repo-01-q3",
@@ -268,27 +268,27 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Access control and authentication\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the access control and authentication control (from GitHub / GitLab / Bitbucket) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's access control and authentication settings, captured during the walkthrough",
+            "The In-scope inventory for the access control and authentication control (from GitHub / GitLab / Bitbucket), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the access control and authentication control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's access control and authentication capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "repo-01-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Access control and authentication\"?",
+          "text": "Where should an auditor pull the evidence for \"Access control and authentication\"?",
           "options": [
-            "GitHub / GitLab / Bitbucket (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From GitHub / GitLab / Bitbucket and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how access control and authentication works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., GitHub / GitLab / Bitbucket) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. GitHub / GitLab / Bitbucket) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "repo-01-q5",
@@ -296,13 +296,13 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Access control and authentication\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Engineering org owners (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the access control and authentication control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the access control and authentication data is shared, so the accountability sits with no one in particular",
+            "Engineering org owners, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Engineering org owners owns the control data; the auditor independently verifies it."
+          "explanation": "Engineering org owners owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "repo-01-q6",
@@ -310,55 +310,55 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Access control and authentication\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "repo-01-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "repo-01-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Access control and authentication\", which is a realistic reportable finding?",
+          "text": "For \"Access control and authentication\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the access control and authentication control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the access control and authentication control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the access control and authentication control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "repo-01-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "repo-01-q10",
@@ -366,13 +366,13 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Access control and authentication\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind access control and authentication, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -384,7 +384,7 @@ export const repositoryMgmtStages: StageConfig[] = [
     "title": "Branch management and protection",
     "subtitle": "Agentic technical & privacy audit of the branch management and protection control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 6,
     "valueScore": 7,
     "rank": 0,
@@ -606,13 +606,13 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Branch management and protection\" sub-process of Repository Management?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the branch management and protection control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the branch management and protection control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for branch management and protection against comparable organisations in the sector",
             "Obtain evidence that the branch management and protection control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "repo-02-q2",
@@ -620,13 +620,13 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Branch management and protection\" matter to the broader Repository Management posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Repository Management",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Repository Management estate",
             "It is a control other Repository Management controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Repository Management controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "repo-02-q3",
@@ -634,27 +634,27 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Branch management and protection\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the branch management and protection control (from GitHub / GitLab / Bitbucket) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's branch management and protection settings, captured during the walkthrough",
+            "The In-scope inventory for the branch management and protection control (from GitHub / GitLab / Bitbucket), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the branch management and protection control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's branch management and protection capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "repo-02-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Branch management and protection\"?",
+          "text": "Where should an auditor pull the evidence for \"Branch management and protection\"?",
           "options": [
-            "GitHub / GitLab / Bitbucket (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From GitHub / GitLab / Bitbucket and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how branch management and protection works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., GitHub / GitLab / Bitbucket) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. GitHub / GitLab / Bitbucket) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "repo-02-q5",
@@ -662,13 +662,13 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Branch management and protection\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Engineering org owners (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the branch management and protection control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the branch management and protection data is shared, so the accountability sits with no one in particular",
+            "Engineering org owners, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Engineering org owners owns the control data; the auditor independently verifies it."
+          "explanation": "Engineering org owners owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "repo-02-q6",
@@ -676,55 +676,55 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Branch management and protection\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "repo-02-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "repo-02-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Branch management and protection\", which is a realistic reportable finding?",
+          "text": "For \"Branch management and protection\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the branch management and protection control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the branch management and protection control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the branch management and protection control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "repo-02-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "repo-02-q10",
@@ -732,13 +732,13 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Branch management and protection\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind branch management and protection, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -750,7 +750,7 @@ export const repositoryMgmtStages: StageConfig[] = [
     "title": "Commit integrity and code review",
     "subtitle": "Agentic technical & privacy audit of the commit integrity and code review control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 8,
     "valueScore": 7,
     "rank": 0,
@@ -972,13 +972,13 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Commit integrity and code review\" sub-process of Repository Management?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the commit integrity and code review control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the commit integrity and code review control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for commit integrity and code review against comparable organisations in the sector",
             "Obtain evidence that the commit integrity and code review control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "repo-03-q2",
@@ -986,13 +986,13 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Commit integrity and code review\" matter to the broader Repository Management posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Repository Management",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Repository Management estate",
             "It is a control other Repository Management controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Repository Management controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "repo-03-q3",
@@ -1000,27 +1000,27 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Commit integrity and code review\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the commit integrity and code review control (from GitHub / GitLab / Bitbucket) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's commit integrity and code review settings, captured during the walkthrough",
+            "The In-scope inventory for the commit integrity and code review control (from GitHub / GitLab / Bitbucket), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the commit integrity and code review control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's commit integrity and code review capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "repo-03-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Commit integrity and code review\"?",
+          "text": "Where should an auditor pull the evidence for \"Commit integrity and code review\"?",
           "options": [
-            "GitHub / GitLab / Bitbucket (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From GitHub / GitLab / Bitbucket and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how commit integrity and code review works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., GitHub / GitLab / Bitbucket) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. GitHub / GitLab / Bitbucket) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "repo-03-q5",
@@ -1028,13 +1028,13 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Commit integrity and code review\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Engineering org owners (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the commit integrity and code review control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the commit integrity and code review data is shared, so the accountability sits with no one in particular",
+            "Engineering org owners, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Engineering org owners owns the control data; the auditor independently verifies it."
+          "explanation": "Engineering org owners owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "repo-03-q6",
@@ -1042,55 +1042,55 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Commit integrity and code review\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "repo-03-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "repo-03-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Commit integrity and code review\", which is a realistic reportable finding?",
+          "text": "For \"Commit integrity and code review\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the commit integrity and code review control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the commit integrity and code review control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the commit integrity and code review control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "repo-03-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "repo-03-q10",
@@ -1098,13 +1098,13 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Commit integrity and code review\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind commit integrity and code review, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1116,7 +1116,7 @@ export const repositoryMgmtStages: StageConfig[] = [
     "title": "Secrets and credential management",
     "subtitle": "Agentic technical & privacy audit of the secrets and credential management control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 5,
     "valueScore": 9,
     "rank": 0,
@@ -1338,13 +1338,13 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Secrets and credential management\" sub-process of Repository Management?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the secrets and credential management control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the secrets and credential management control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for secrets and credential management against comparable organisations in the sector",
             "Obtain evidence that the secrets and credential management control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "repo-04-q2",
@@ -1352,13 +1352,13 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Secrets and credential management\" matter to the broader Repository Management posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Repository Management",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Repository Management estate",
             "It is a control other Repository Management controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Repository Management controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "repo-04-q3",
@@ -1366,27 +1366,27 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Secrets and credential management\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the secrets and credential management control (from GitHub / GitLab / Bitbucket) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's secrets and credential management settings, captured during the walkthrough",
+            "The In-scope inventory for the secrets and credential management control (from GitHub / GitLab / Bitbucket), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the secrets and credential management control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's secrets and credential management capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "repo-04-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Secrets and credential management\"?",
+          "text": "Where should an auditor pull the evidence for \"Secrets and credential management\"?",
           "options": [
-            "GitHub / GitLab / Bitbucket (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From GitHub / GitLab / Bitbucket and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how secrets and credential management works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., GitHub / GitLab / Bitbucket) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. GitHub / GitLab / Bitbucket) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "repo-04-q5",
@@ -1394,13 +1394,13 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Secrets and credential management\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Engineering org owners (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the secrets and credential management control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the secrets and credential management data is shared, so the accountability sits with no one in particular",
+            "Engineering org owners, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Engineering org owners owns the control data; the auditor independently verifies it."
+          "explanation": "Engineering org owners owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "repo-04-q6",
@@ -1408,55 +1408,55 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Secrets and credential management\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "repo-04-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "repo-04-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Secrets and credential management\", which is a realistic reportable finding?",
+          "text": "For \"Secrets and credential management\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the secrets and credential management control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the secrets and credential management control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the secrets and credential management control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "repo-04-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "repo-04-q10",
@@ -1464,13 +1464,13 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Secrets and credential management\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind secrets and credential management, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1482,7 +1482,7 @@ export const repositoryMgmtStages: StageConfig[] = [
     "title": "Repository configuration and hardening",
     "subtitle": "Agentic technical & privacy audit of the repository configuration and hardening control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 7,
     "valueScore": 7,
     "rank": 0,
@@ -1704,13 +1704,13 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Repository configuration and hardening\" sub-process of Repository Management?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the repository configuration and hardening control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the repository configuration and hardening control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for repository configuration and hardening against comparable organisations in the sector",
             "Obtain evidence that the repository configuration and hardening control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "repo-05-q2",
@@ -1718,13 +1718,13 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Repository configuration and hardening\" matter to the broader Repository Management posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Repository Management",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Repository Management estate",
             "It is a control other Repository Management controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Repository Management controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "repo-05-q3",
@@ -1732,27 +1732,27 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Repository configuration and hardening\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the repository configuration and hardening control (from GitHub / GitLab / Bitbucket) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's repository configuration and hardening settings, captured during the walkthrough",
+            "The In-scope inventory for the repository configuration and hardening control (from GitHub / GitLab / Bitbucket), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the repository configuration and hardening control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's repository configuration and hardening capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "repo-05-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Repository configuration and hardening\"?",
+          "text": "Where should an auditor pull the evidence for \"Repository configuration and hardening\"?",
           "options": [
-            "GitHub / GitLab / Bitbucket (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From GitHub / GitLab / Bitbucket and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how repository configuration and hardening works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., GitHub / GitLab / Bitbucket) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. GitHub / GitLab / Bitbucket) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "repo-05-q5",
@@ -1760,13 +1760,13 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Repository configuration and hardening\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Engineering org owners (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the repository configuration and hardening control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the repository configuration and hardening data is shared, so the accountability sits with no one in particular",
+            "Engineering org owners, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Engineering org owners owns the control data; the auditor independently verifies it."
+          "explanation": "Engineering org owners owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "repo-05-q6",
@@ -1774,55 +1774,55 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Repository configuration and hardening\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "repo-05-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "repo-05-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Repository configuration and hardening\", which is a realistic reportable finding?",
+          "text": "For \"Repository configuration and hardening\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the repository configuration and hardening control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the repository configuration and hardening control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the repository configuration and hardening control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "repo-05-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "repo-05-q10",
@@ -1830,13 +1830,13 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Repository configuration and hardening\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind repository configuration and hardening, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1848,7 +1848,7 @@ export const repositoryMgmtStages: StageConfig[] = [
     "title": "Dependency and package management",
     "subtitle": "Agentic technical & privacy audit of the dependency and package management control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 7,
     "valueScore": 7,
     "rank": 0,
@@ -2070,13 +2070,13 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Dependency and package management\" sub-process of Repository Management?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the dependency and package management control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the dependency and package management control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for dependency and package management against comparable organisations in the sector",
             "Obtain evidence that the dependency and package management control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "repo-06-q2",
@@ -2084,13 +2084,13 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Dependency and package management\" matter to the broader Repository Management posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Repository Management",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Repository Management estate",
             "It is a control other Repository Management controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Repository Management controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "repo-06-q3",
@@ -2098,27 +2098,27 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Dependency and package management\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the dependency and package management control (from GitHub / GitLab / Bitbucket) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's dependency and package management settings, captured during the walkthrough",
+            "The In-scope inventory for the dependency and package management control (from GitHub / GitLab / Bitbucket), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the dependency and package management control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's dependency and package management capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "repo-06-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Dependency and package management\"?",
+          "text": "Where should an auditor pull the evidence for \"Dependency and package management\"?",
           "options": [
-            "GitHub / GitLab / Bitbucket (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From GitHub / GitLab / Bitbucket and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how dependency and package management works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., GitHub / GitLab / Bitbucket) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. GitHub / GitLab / Bitbucket) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "repo-06-q5",
@@ -2126,13 +2126,13 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Dependency and package management\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Engineering org owners (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the dependency and package management control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the dependency and package management data is shared, so the accountability sits with no one in particular",
+            "Engineering org owners, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Engineering org owners owns the control data; the auditor independently verifies it."
+          "explanation": "Engineering org owners owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "repo-06-q6",
@@ -2140,55 +2140,55 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Dependency and package management\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "repo-06-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "repo-06-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Dependency and package management\", which is a realistic reportable finding?",
+          "text": "For \"Dependency and package management\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the dependency and package management control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the dependency and package management control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the dependency and package management control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "repo-06-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "repo-06-q10",
@@ -2196,13 +2196,13 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Dependency and package management\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind dependency and package management, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -2214,7 +2214,7 @@ export const repositoryMgmtStages: StageConfig[] = [
     "title": "Audit logging and monitoring",
     "subtitle": "Agentic technical & privacy audit of the audit logging and monitoring control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 6,
     "valueScore": 7,
     "rank": 0,
@@ -2436,13 +2436,13 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Audit logging and monitoring\" sub-process of Repository Management?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the audit logging and monitoring control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the audit logging and monitoring control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for audit logging and monitoring against comparable organisations in the sector",
             "Obtain evidence that the audit logging and monitoring control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "repo-07-q2",
@@ -2450,13 +2450,13 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Audit logging and monitoring\" matter to the broader Repository Management posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Repository Management",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Repository Management estate",
             "It is a control other Repository Management controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Repository Management controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "repo-07-q3",
@@ -2464,27 +2464,27 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Audit logging and monitoring\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the audit logging and monitoring control (from GitHub / GitLab / Bitbucket) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's audit logging and monitoring settings, captured during the walkthrough",
+            "The In-scope inventory for the audit logging and monitoring control (from GitHub / GitLab / Bitbucket), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the audit logging and monitoring control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's audit logging and monitoring capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "repo-07-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Audit logging and monitoring\"?",
+          "text": "Where should an auditor pull the evidence for \"Audit logging and monitoring\"?",
           "options": [
-            "GitHub / GitLab / Bitbucket (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From GitHub / GitLab / Bitbucket and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how audit logging and monitoring works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., GitHub / GitLab / Bitbucket) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. GitHub / GitLab / Bitbucket) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "repo-07-q5",
@@ -2492,13 +2492,13 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Audit logging and monitoring\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Engineering org owners (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the audit logging and monitoring control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the audit logging and monitoring data is shared, so the accountability sits with no one in particular",
+            "Engineering org owners, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Engineering org owners owns the control data; the auditor independently verifies it."
+          "explanation": "Engineering org owners owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "repo-07-q6",
@@ -2506,55 +2506,55 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Audit logging and monitoring\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "repo-07-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "repo-07-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Audit logging and monitoring\", which is a realistic reportable finding?",
+          "text": "For \"Audit logging and monitoring\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the audit logging and monitoring control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the audit logging and monitoring control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the audit logging and monitoring control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "repo-07-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "repo-07-q10",
@@ -2562,13 +2562,13 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Audit logging and monitoring\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind audit logging and monitoring, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -2580,7 +2580,7 @@ export const repositoryMgmtStages: StageConfig[] = [
     "title": "Repository governance and lifecycle",
     "subtitle": "Agentic technical & privacy audit of the repository governance and lifecycle control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 6,
     "valueScore": 7,
     "rank": 0,
@@ -2802,13 +2802,13 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Repository governance and lifecycle\" sub-process of Repository Management?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the repository governance and lifecycle control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the repository governance and lifecycle control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for repository governance and lifecycle against comparable organisations in the sector",
             "Obtain evidence that the repository governance and lifecycle control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "repo-08-q2",
@@ -2816,13 +2816,13 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Repository governance and lifecycle\" matter to the broader Repository Management posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Repository Management",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Repository Management estate",
             "It is a control other Repository Management controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Repository Management controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "repo-08-q3",
@@ -2830,27 +2830,27 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Repository governance and lifecycle\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the repository governance and lifecycle control (from GitHub / GitLab / Bitbucket) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's repository governance and lifecycle settings, captured during the walkthrough",
+            "The In-scope inventory for the repository governance and lifecycle control (from GitHub / GitLab / Bitbucket), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the repository governance and lifecycle control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's repository governance and lifecycle capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "repo-08-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Repository governance and lifecycle\"?",
+          "text": "Where should an auditor pull the evidence for \"Repository governance and lifecycle\"?",
           "options": [
-            "GitHub / GitLab / Bitbucket (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From GitHub / GitLab / Bitbucket and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how repository governance and lifecycle works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., GitHub / GitLab / Bitbucket) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. GitHub / GitLab / Bitbucket) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "repo-08-q5",
@@ -2858,13 +2858,13 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Repository governance and lifecycle\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Engineering org owners (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the repository governance and lifecycle control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the repository governance and lifecycle data is shared, so the accountability sits with no one in particular",
+            "Engineering org owners, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Engineering org owners owns the control data; the auditor independently verifies it."
+          "explanation": "Engineering org owners owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "repo-08-q6",
@@ -2872,55 +2872,55 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Repository governance and lifecycle\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "repo-08-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "repo-08-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Repository governance and lifecycle\", which is a realistic reportable finding?",
+          "text": "For \"Repository governance and lifecycle\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the repository governance and lifecycle control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the repository governance and lifecycle control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the repository governance and lifecycle control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "repo-08-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "repo-08-q10",
@@ -2928,13 +2928,13 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Repository governance and lifecycle\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind repository governance and lifecycle, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -2946,7 +2946,7 @@ export const repositoryMgmtStages: StageConfig[] = [
     "title": "Backup and recovery",
     "subtitle": "Agentic technical & privacy audit of the backup and recovery control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 7,
     "valueScore": 9,
     "rank": 0,
@@ -3168,13 +3168,13 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Backup and recovery\" sub-process of Repository Management?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the backup and recovery control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the backup and recovery control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for backup and recovery against comparable organisations in the sector",
             "Obtain evidence that the backup and recovery control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "repo-09-q2",
@@ -3182,13 +3182,13 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Backup and recovery\" matter to the broader Repository Management posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Repository Management",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Repository Management estate",
             "It is a control other Repository Management controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Repository Management controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "repo-09-q3",
@@ -3196,27 +3196,27 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Backup and recovery\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the backup and recovery control (from GitHub / GitLab / Bitbucket) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's backup and recovery settings, captured during the walkthrough",
+            "The In-scope inventory for the backup and recovery control (from GitHub / GitLab / Bitbucket), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the backup and recovery control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's backup and recovery capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "repo-09-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Backup and recovery\"?",
+          "text": "Where should an auditor pull the evidence for \"Backup and recovery\"?",
           "options": [
-            "GitHub / GitLab / Bitbucket (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From GitHub / GitLab / Bitbucket and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how backup and recovery works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., GitHub / GitLab / Bitbucket) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. GitHub / GitLab / Bitbucket) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "repo-09-q5",
@@ -3224,13 +3224,13 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Backup and recovery\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Engineering org owners (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the backup and recovery control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the backup and recovery data is shared, so the accountability sits with no one in particular",
+            "Engineering org owners, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Engineering org owners owns the control data; the auditor independently verifies it."
+          "explanation": "Engineering org owners owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "repo-09-q6",
@@ -3238,55 +3238,55 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Backup and recovery\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "repo-09-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "repo-09-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Backup and recovery\", which is a realistic reportable finding?",
+          "text": "For \"Backup and recovery\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the backup and recovery control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the backup and recovery control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the backup and recovery control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "repo-09-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "repo-09-q10",
@@ -3294,13 +3294,13 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Backup and recovery\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind backup and recovery, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -3312,7 +3312,7 @@ export const repositoryMgmtStages: StageConfig[] = [
     "title": "Platform and infrastructure security",
     "subtitle": "Agentic technical & privacy audit of the platform and infrastructure security control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
@@ -3534,13 +3534,13 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Platform and infrastructure security\" sub-process of Repository Management?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the platform and infrastructure security control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the platform and infrastructure security control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for platform and infrastructure security against comparable organisations in the sector",
             "Obtain evidence that the platform and infrastructure security control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "repo-10-q2",
@@ -3548,13 +3548,13 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Platform and infrastructure security\" matter to the broader Repository Management posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Repository Management",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Repository Management estate",
             "It is a control other Repository Management controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Repository Management controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "repo-10-q3",
@@ -3562,27 +3562,27 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Platform and infrastructure security\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the platform and infrastructure security control (from GitHub / GitLab / Bitbucket) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's platform and infrastructure security settings, captured during the walkthrough",
+            "The In-scope inventory for the platform and infrastructure security control (from GitHub / GitLab / Bitbucket), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the platform and infrastructure security control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's platform and infrastructure security capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "repo-10-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Platform and infrastructure security\"?",
+          "text": "Where should an auditor pull the evidence for \"Platform and infrastructure security\"?",
           "options": [
-            "GitHub / GitLab / Bitbucket (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From GitHub / GitLab / Bitbucket and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how platform and infrastructure security works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., GitHub / GitLab / Bitbucket) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. GitHub / GitLab / Bitbucket) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "repo-10-q5",
@@ -3590,13 +3590,13 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Platform and infrastructure security\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Engineering org owners (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the platform and infrastructure security control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the platform and infrastructure security data is shared, so the accountability sits with no one in particular",
+            "Engineering org owners, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Engineering org owners owns the control data; the auditor independently verifies it."
+          "explanation": "Engineering org owners owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "repo-10-q6",
@@ -3604,55 +3604,55 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Platform and infrastructure security\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "repo-10-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "repo-10-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Platform and infrastructure security\", which is a realistic reportable finding?",
+          "text": "For \"Platform and infrastructure security\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the platform and infrastructure security control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the platform and infrastructure security control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the platform and infrastructure security control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "repo-10-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "repo-10-q10",
@@ -3660,13 +3660,13 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Platform and infrastructure security\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind platform and infrastructure security, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -3678,7 +3678,7 @@ export const repositoryMgmtStages: StageConfig[] = [
     "title": "Third-party and open source contribution",
     "subtitle": "Agentic technical & privacy audit of the third-party and open source contribution control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 6,
     "valueScore": 9,
     "rank": 0,
@@ -3900,13 +3900,13 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Third-party and open source contribution\" sub-process of Repository Management?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the third-party and open source contribution control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the third-party and open source contribution control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for third-party and open source contribution against comparable organisations in the sector",
             "Obtain evidence that the third-party and open source contribution control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "repo-11-q2",
@@ -3914,13 +3914,13 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Third-party and open source contribution\" matter to the broader Repository Management posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Repository Management",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Repository Management estate",
             "It is a control other Repository Management controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Repository Management controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "repo-11-q3",
@@ -3928,27 +3928,27 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Third-party and open source contribution\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the third-party and open source contribution control (from GitHub / GitLab / Bitbucket) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's third-party and open source contribution settings, captured during the walkthrough",
+            "The In-scope inventory for the third-party and open source contribution control (from GitHub / GitLab / Bitbucket), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the third-party and open source contribution control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's third-party and open source contribution capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "repo-11-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Third-party and open source contribution\"?",
+          "text": "Where should an auditor pull the evidence for \"Third-party and open source contribution\"?",
           "options": [
-            "GitHub / GitLab / Bitbucket (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From GitHub / GitLab / Bitbucket and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how third-party and open source contribution works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., GitHub / GitLab / Bitbucket) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. GitHub / GitLab / Bitbucket) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "repo-11-q5",
@@ -3956,13 +3956,13 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Third-party and open source contribution\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Engineering org owners (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the third-party and open source contribution control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the third-party and open source contribution data is shared, so the accountability sits with no one in particular",
+            "Engineering org owners, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Engineering org owners owns the control data; the auditor independently verifies it."
+          "explanation": "Engineering org owners owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "repo-11-q6",
@@ -3970,55 +3970,55 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Third-party and open source contribution\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "repo-11-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "repo-11-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Third-party and open source contribution\", which is a realistic reportable finding?",
+          "text": "For \"Third-party and open source contribution\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the third-party and open source contribution control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the third-party and open source contribution control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the third-party and open source contribution control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "repo-11-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "repo-11-q10",
@@ -4026,13 +4026,13 @@ export const repositoryMgmtStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Third-party and open source contribution\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind third-party and open source contribution, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }

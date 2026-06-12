@@ -18,7 +18,7 @@ export const iacStages: StageConfig[] = [
     "title": "Change management and peer review",
     "subtitle": "Agentic technical & privacy audit of the change management and peer review control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 6,
     "valueScore": 7,
     "rank": 0,
@@ -240,13 +240,13 @@ export const iacStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Change management and peer review\" sub-process of Infrastructure as Code (IaC)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the change management and peer review control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the change management and peer review control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for change management and peer review against comparable organisations in the sector",
             "Obtain evidence that the change management and peer review control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "iac-01-q2",
@@ -254,13 +254,13 @@ export const iacStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Change management and peer review\" matter to the broader Infrastructure as Code (IaC) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Infrastructure as Code (IaC)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Infrastructure as Code (IaC) estate",
             "It is a control other Infrastructure as Code (IaC) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Infrastructure as Code (IaC) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "iac-01-q3",
@@ -268,27 +268,27 @@ export const iacStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Change management and peer review\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the change management and peer review control (from Terraform / CloudFormation / Bicep) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's change management and peer review settings, captured during the walkthrough",
+            "The In-scope inventory for the change management and peer review control (from Terraform / CloudFormation / Bicep), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the change management and peer review control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's change management and peer review capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "iac-01-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Change management and peer review\"?",
+          "text": "Where should an auditor pull the evidence for \"Change management and peer review\"?",
           "options": [
-            "Terraform / CloudFormation / Bicep (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Terraform / CloudFormation / Bicep and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how change management and peer review works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Terraform / CloudFormation / Bicep) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Terraform / CloudFormation / Bicep) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "iac-01-q5",
@@ -296,13 +296,13 @@ export const iacStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Change management and peer review\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Platform / Cloud engineering (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the change management and peer review control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the change management and peer review data is shared, so the accountability sits with no one in particular",
+            "Platform / Cloud engineering, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Platform / Cloud engineering owns the control data; the auditor independently verifies it."
+          "explanation": "Platform / Cloud engineering owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "iac-01-q6",
@@ -310,55 +310,55 @@ export const iacStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Change management and peer review\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "iac-01-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "iac-01-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Change management and peer review\", which is a realistic reportable finding?",
+          "text": "For \"Change management and peer review\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the change management and peer review control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the change management and peer review control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the change management and peer review control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "iac-01-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "iac-01-q10",
@@ -366,13 +366,13 @@ export const iacStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Change management and peer review\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind change management and peer review, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -384,7 +384,7 @@ export const iacStages: StageConfig[] = [
     "title": "Scanning and security testing",
     "subtitle": "Agentic technical & privacy audit of the scanning and security testing control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 7,
     "valueScore": 7,
     "rank": 0,
@@ -606,13 +606,13 @@ export const iacStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Scanning and security testing\" sub-process of Infrastructure as Code (IaC)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the scanning and security testing control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the scanning and security testing control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for scanning and security testing against comparable organisations in the sector",
             "Obtain evidence that the scanning and security testing control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "iac-02-q2",
@@ -620,13 +620,13 @@ export const iacStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Scanning and security testing\" matter to the broader Infrastructure as Code (IaC) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Infrastructure as Code (IaC)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Infrastructure as Code (IaC) estate",
             "It is a control other Infrastructure as Code (IaC) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Infrastructure as Code (IaC) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "iac-02-q3",
@@ -634,27 +634,27 @@ export const iacStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Scanning and security testing\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the scanning and security testing control (from Terraform / CloudFormation / Bicep) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's scanning and security testing settings, captured during the walkthrough",
+            "The In-scope inventory for the scanning and security testing control (from Terraform / CloudFormation / Bicep), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the scanning and security testing control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's scanning and security testing capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "iac-02-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Scanning and security testing\"?",
+          "text": "Where should an auditor pull the evidence for \"Scanning and security testing\"?",
           "options": [
-            "Terraform / CloudFormation / Bicep (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Terraform / CloudFormation / Bicep and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how scanning and security testing works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Terraform / CloudFormation / Bicep) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Terraform / CloudFormation / Bicep) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "iac-02-q5",
@@ -662,13 +662,13 @@ export const iacStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Scanning and security testing\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Platform / Cloud engineering (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the scanning and security testing control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the scanning and security testing data is shared, so the accountability sits with no one in particular",
+            "Platform / Cloud engineering, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Platform / Cloud engineering owns the control data; the auditor independently verifies it."
+          "explanation": "Platform / Cloud engineering owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "iac-02-q6",
@@ -676,55 +676,55 @@ export const iacStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Scanning and security testing\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "iac-02-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "iac-02-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Scanning and security testing\", which is a realistic reportable finding?",
+          "text": "For \"Scanning and security testing\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the scanning and security testing control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the scanning and security testing control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the scanning and security testing control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "iac-02-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "iac-02-q10",
@@ -732,13 +732,13 @@ export const iacStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Scanning and security testing\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind scanning and security testing, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -750,7 +750,7 @@ export const iacStages: StageConfig[] = [
     "title": "Cloud resource misconfig via IaC",
     "subtitle": "Agentic technical & privacy audit of the cloud resource misconfig via iac control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 8,
     "valueScore": 7,
     "rank": 0,
@@ -972,13 +972,13 @@ export const iacStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Cloud resource misconfig via IaC\" sub-process of Infrastructure as Code (IaC)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the cloud resource misconfig via iac control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the cloud resource misconfig via iac control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for cloud resource misconfig via iac against comparable organisations in the sector",
             "Obtain evidence that the cloud resource misconfig via iac control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "iac-03-q2",
@@ -986,13 +986,13 @@ export const iacStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Cloud resource misconfig via IaC\" matter to the broader Infrastructure as Code (IaC) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Infrastructure as Code (IaC)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Infrastructure as Code (IaC) estate",
             "It is a control other Infrastructure as Code (IaC) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Infrastructure as Code (IaC) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "iac-03-q3",
@@ -1000,27 +1000,27 @@ export const iacStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Cloud resource misconfig via IaC\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the cloud resource misconfig via iac control (from Terraform / CloudFormation / Bicep) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's cloud resource misconfig via iac settings, captured during the walkthrough",
+            "The In-scope inventory for the cloud resource misconfig via iac control (from Terraform / CloudFormation / Bicep), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the cloud resource misconfig via iac control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's cloud resource misconfig via iac capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "iac-03-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Cloud resource misconfig via IaC\"?",
+          "text": "Where should an auditor pull the evidence for \"Cloud resource misconfig via IaC\"?",
           "options": [
-            "Terraform / CloudFormation / Bicep (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Terraform / CloudFormation / Bicep and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how cloud resource misconfig via iac works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Terraform / CloudFormation / Bicep) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Terraform / CloudFormation / Bicep) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "iac-03-q5",
@@ -1028,13 +1028,13 @@ export const iacStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Cloud resource misconfig via IaC\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Platform / Cloud engineering (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the cloud resource misconfig via iac control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the cloud resource misconfig via iac data is shared, so the accountability sits with no one in particular",
+            "Platform / Cloud engineering, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Platform / Cloud engineering owns the control data; the auditor independently verifies it."
+          "explanation": "Platform / Cloud engineering owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "iac-03-q6",
@@ -1042,55 +1042,55 @@ export const iacStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Cloud resource misconfig via IaC\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "iac-03-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "iac-03-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Cloud resource misconfig via IaC\", which is a realistic reportable finding?",
+          "text": "For \"Cloud resource misconfig via IaC\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the cloud resource misconfig via iac control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the cloud resource misconfig via iac control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the cloud resource misconfig via iac control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "iac-03-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "iac-03-q10",
@@ -1098,13 +1098,13 @@ export const iacStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Cloud resource misconfig via IaC\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind cloud resource misconfig via iac, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1116,7 +1116,7 @@ export const iacStages: StageConfig[] = [
     "title": "Policy/compliance as code",
     "subtitle": "Agentic technical & privacy audit of the policy/compliance as code control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
@@ -1338,13 +1338,13 @@ export const iacStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Policy/compliance as code\" sub-process of Infrastructure as Code (IaC)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the policy/compliance as code control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the policy/compliance as code control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for policy/compliance as code against comparable organisations in the sector",
             "Obtain evidence that the policy/compliance as code control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "iac-04-q2",
@@ -1352,13 +1352,13 @@ export const iacStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Policy/compliance as code\" matter to the broader Infrastructure as Code (IaC) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Infrastructure as Code (IaC)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Infrastructure as Code (IaC) estate",
             "It is a control other Infrastructure as Code (IaC) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Infrastructure as Code (IaC) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "iac-04-q3",
@@ -1366,27 +1366,27 @@ export const iacStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Policy/compliance as code\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the policy/compliance as code control (from Terraform / CloudFormation / Bicep) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's policy/compliance as code settings, captured during the walkthrough",
+            "The In-scope inventory for the policy/compliance as code control (from Terraform / CloudFormation / Bicep), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the policy/compliance as code control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's policy/compliance as code capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "iac-04-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Policy/compliance as code\"?",
+          "text": "Where should an auditor pull the evidence for \"Policy/compliance as code\"?",
           "options": [
-            "Terraform / CloudFormation / Bicep (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Terraform / CloudFormation / Bicep and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how policy/compliance as code works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Terraform / CloudFormation / Bicep) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Terraform / CloudFormation / Bicep) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "iac-04-q5",
@@ -1394,13 +1394,13 @@ export const iacStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Policy/compliance as code\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Platform / Cloud engineering (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the policy/compliance as code control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the policy/compliance as code data is shared, so the accountability sits with no one in particular",
+            "Platform / Cloud engineering, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Platform / Cloud engineering owns the control data; the auditor independently verifies it."
+          "explanation": "Platform / Cloud engineering owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "iac-04-q6",
@@ -1408,55 +1408,55 @@ export const iacStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Policy/compliance as code\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "iac-04-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "iac-04-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Policy/compliance as code\", which is a realistic reportable finding?",
+          "text": "For \"Policy/compliance as code\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the policy/compliance as code control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the policy/compliance as code control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the policy/compliance as code control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "iac-04-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "iac-04-q10",
@@ -1464,13 +1464,13 @@ export const iacStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Policy/compliance as code\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind policy/compliance as code, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1482,7 +1482,7 @@ export const iacStages: StageConfig[] = [
     "title": "Module and template governance",
     "subtitle": "Agentic technical & privacy audit of the module and template governance control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 6,
     "valueScore": 7,
     "rank": 0,
@@ -1704,13 +1704,13 @@ export const iacStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Module and template governance\" sub-process of Infrastructure as Code (IaC)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the module and template governance control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the module and template governance control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for module and template governance against comparable organisations in the sector",
             "Obtain evidence that the module and template governance control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "iac-05-q2",
@@ -1718,13 +1718,13 @@ export const iacStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Module and template governance\" matter to the broader Infrastructure as Code (IaC) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Infrastructure as Code (IaC)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Infrastructure as Code (IaC) estate",
             "It is a control other Infrastructure as Code (IaC) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Infrastructure as Code (IaC) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "iac-05-q3",
@@ -1732,27 +1732,27 @@ export const iacStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Module and template governance\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the module and template governance control (from Terraform / CloudFormation / Bicep) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's module and template governance settings, captured during the walkthrough",
+            "The In-scope inventory for the module and template governance control (from Terraform / CloudFormation / Bicep), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the module and template governance control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's module and template governance capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "iac-05-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Module and template governance\"?",
+          "text": "Where should an auditor pull the evidence for \"Module and template governance\"?",
           "options": [
-            "Terraform / CloudFormation / Bicep (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Terraform / CloudFormation / Bicep and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how module and template governance works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Terraform / CloudFormation / Bicep) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Terraform / CloudFormation / Bicep) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "iac-05-q5",
@@ -1760,13 +1760,13 @@ export const iacStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Module and template governance\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Platform / Cloud engineering (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the module and template governance control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the module and template governance data is shared, so the accountability sits with no one in particular",
+            "Platform / Cloud engineering, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Platform / Cloud engineering owns the control data; the auditor independently verifies it."
+          "explanation": "Platform / Cloud engineering owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "iac-05-q6",
@@ -1774,55 +1774,55 @@ export const iacStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Module and template governance\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "iac-05-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "iac-05-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Module and template governance\", which is a realistic reportable finding?",
+          "text": "For \"Module and template governance\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the module and template governance control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the module and template governance control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the module and template governance control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "iac-05-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "iac-05-q10",
@@ -1830,13 +1830,13 @@ export const iacStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Module and template governance\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind module and template governance, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1848,7 +1848,7 @@ export const iacStages: StageConfig[] = [
     "title": "Configuration drift detection",
     "subtitle": "Agentic technical & privacy audit of the configuration drift detection control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 8,
     "valueScore": 7,
     "rank": 0,
@@ -2070,13 +2070,13 @@ export const iacStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Configuration drift detection\" sub-process of Infrastructure as Code (IaC)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the configuration drift detection control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the configuration drift detection control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for configuration drift detection against comparable organisations in the sector",
             "Obtain evidence that the configuration drift detection control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "iac-06-q2",
@@ -2084,13 +2084,13 @@ export const iacStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Configuration drift detection\" matter to the broader Infrastructure as Code (IaC) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Infrastructure as Code (IaC)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Infrastructure as Code (IaC) estate",
             "It is a control other Infrastructure as Code (IaC) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Infrastructure as Code (IaC) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "iac-06-q3",
@@ -2098,27 +2098,27 @@ export const iacStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Configuration drift detection\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the configuration drift detection control (from Terraform / CloudFormation / Bicep) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's configuration drift detection settings, captured during the walkthrough",
+            "The In-scope inventory for the configuration drift detection control (from Terraform / CloudFormation / Bicep), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the configuration drift detection control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's configuration drift detection capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "iac-06-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Configuration drift detection\"?",
+          "text": "Where should an auditor pull the evidence for \"Configuration drift detection\"?",
           "options": [
-            "Terraform / CloudFormation / Bicep (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Terraform / CloudFormation / Bicep and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how configuration drift detection works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Terraform / CloudFormation / Bicep) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Terraform / CloudFormation / Bicep) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "iac-06-q5",
@@ -2126,13 +2126,13 @@ export const iacStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Configuration drift detection\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Platform / Cloud engineering (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the configuration drift detection control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the configuration drift detection data is shared, so the accountability sits with no one in particular",
+            "Platform / Cloud engineering, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Platform / Cloud engineering owns the control data; the auditor independently verifies it."
+          "explanation": "Platform / Cloud engineering owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "iac-06-q6",
@@ -2140,55 +2140,55 @@ export const iacStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Configuration drift detection\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "iac-06-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "iac-06-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Configuration drift detection\", which is a realistic reportable finding?",
+          "text": "For \"Configuration drift detection\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the configuration drift detection control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the configuration drift detection control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the configuration drift detection control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "iac-06-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "iac-06-q10",
@@ -2196,13 +2196,13 @@ export const iacStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Configuration drift detection\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind configuration drift detection, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -2214,7 +2214,7 @@ export const iacStages: StageConfig[] = [
     "title": "Secrets and credential handling",
     "subtitle": "Agentic technical & privacy audit of the secrets and credential handling control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 5,
     "valueScore": 9,
     "rank": 0,
@@ -2436,13 +2436,13 @@ export const iacStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Secrets and credential handling\" sub-process of Infrastructure as Code (IaC)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the secrets and credential handling control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the secrets and credential handling control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for secrets and credential handling against comparable organisations in the sector",
             "Obtain evidence that the secrets and credential handling control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "iac-07-q2",
@@ -2450,13 +2450,13 @@ export const iacStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Secrets and credential handling\" matter to the broader Infrastructure as Code (IaC) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Infrastructure as Code (IaC)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Infrastructure as Code (IaC) estate",
             "It is a control other Infrastructure as Code (IaC) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Infrastructure as Code (IaC) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "iac-07-q3",
@@ -2464,27 +2464,27 @@ export const iacStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Secrets and credential handling\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the secrets and credential handling control (from Terraform / CloudFormation / Bicep) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's secrets and credential handling settings, captured during the walkthrough",
+            "The In-scope inventory for the secrets and credential handling control (from Terraform / CloudFormation / Bicep), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the secrets and credential handling control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's secrets and credential handling capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "iac-07-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Secrets and credential handling\"?",
+          "text": "Where should an auditor pull the evidence for \"Secrets and credential handling\"?",
           "options": [
-            "Terraform / CloudFormation / Bicep (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Terraform / CloudFormation / Bicep and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how secrets and credential handling works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Terraform / CloudFormation / Bicep) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Terraform / CloudFormation / Bicep) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "iac-07-q5",
@@ -2492,13 +2492,13 @@ export const iacStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Secrets and credential handling\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Platform / Cloud engineering (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the secrets and credential handling control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the secrets and credential handling data is shared, so the accountability sits with no one in particular",
+            "Platform / Cloud engineering, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Platform / Cloud engineering owns the control data; the auditor independently verifies it."
+          "explanation": "Platform / Cloud engineering owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "iac-07-q6",
@@ -2506,55 +2506,55 @@ export const iacStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Secrets and credential handling\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "iac-07-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "iac-07-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Secrets and credential handling\", which is a realistic reportable finding?",
+          "text": "For \"Secrets and credential handling\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the secrets and credential handling control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the secrets and credential handling control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the secrets and credential handling control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "iac-07-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "iac-07-q10",
@@ -2562,13 +2562,13 @@ export const iacStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Secrets and credential handling\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind secrets and credential handling, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -2580,7 +2580,7 @@ export const iacStages: StageConfig[] = [
     "title": "Pipeline integration",
     "subtitle": "Agentic technical & privacy audit of the pipeline integration control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 6,
     "valueScore": 7,
     "rank": 0,
@@ -2802,13 +2802,13 @@ export const iacStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Pipeline integration\" sub-process of Infrastructure as Code (IaC)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the pipeline integration control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the pipeline integration control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for pipeline integration against comparable organisations in the sector",
             "Obtain evidence that the pipeline integration control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "iac-08-q2",
@@ -2816,13 +2816,13 @@ export const iacStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Pipeline integration\" matter to the broader Infrastructure as Code (IaC) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Infrastructure as Code (IaC)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Infrastructure as Code (IaC) estate",
             "It is a control other Infrastructure as Code (IaC) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Infrastructure as Code (IaC) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "iac-08-q3",
@@ -2830,27 +2830,27 @@ export const iacStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Pipeline integration\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the pipeline integration control (from Terraform / CloudFormation / Bicep) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's pipeline integration settings, captured during the walkthrough",
+            "The In-scope inventory for the pipeline integration control (from Terraform / CloudFormation / Bicep), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the pipeline integration control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's pipeline integration capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "iac-08-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Pipeline integration\"?",
+          "text": "Where should an auditor pull the evidence for \"Pipeline integration\"?",
           "options": [
-            "Terraform / CloudFormation / Bicep (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Terraform / CloudFormation / Bicep and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how pipeline integration works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Terraform / CloudFormation / Bicep) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Terraform / CloudFormation / Bicep) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "iac-08-q5",
@@ -2858,13 +2858,13 @@ export const iacStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Pipeline integration\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Platform / Cloud engineering (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the pipeline integration control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the pipeline integration data is shared, so the accountability sits with no one in particular",
+            "Platform / Cloud engineering, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Platform / Cloud engineering owns the control data; the auditor independently verifies it."
+          "explanation": "Platform / Cloud engineering owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "iac-08-q6",
@@ -2872,55 +2872,55 @@ export const iacStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Pipeline integration\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "iac-08-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "iac-08-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Pipeline integration\", which is a realistic reportable finding?",
+          "text": "For \"Pipeline integration\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the pipeline integration control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the pipeline integration control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the pipeline integration control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "iac-08-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "iac-08-q10",
@@ -2928,13 +2928,13 @@ export const iacStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Pipeline integration\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind pipeline integration, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -2946,7 +2946,7 @@ export const iacStages: StageConfig[] = [
     "title": "GitOps security controls",
     "subtitle": "Agentic technical & privacy audit of the gitops security controls control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 7,
     "valueScore": 7,
     "rank": 0,
@@ -3168,13 +3168,13 @@ export const iacStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"GitOps security controls\" sub-process of Infrastructure as Code (IaC)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the gitops security controls control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the gitops security controls control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for gitops security controls against comparable organisations in the sector",
             "Obtain evidence that the gitops security controls control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "iac-09-q2",
@@ -3182,13 +3182,13 @@ export const iacStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"GitOps security controls\" matter to the broader Infrastructure as Code (IaC) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Infrastructure as Code (IaC)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Infrastructure as Code (IaC) estate",
             "It is a control other Infrastructure as Code (IaC) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Infrastructure as Code (IaC) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "iac-09-q3",
@@ -3196,27 +3196,27 @@ export const iacStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"GitOps security controls\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the gitops security controls control (from Terraform / CloudFormation / Bicep) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's gitops security controls settings, captured during the walkthrough",
+            "The In-scope inventory for the gitops security controls control (from Terraform / CloudFormation / Bicep), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the gitops security controls control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's gitops security controls capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "iac-09-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"GitOps security controls\"?",
+          "text": "Where should an auditor pull the evidence for \"GitOps security controls\"?",
           "options": [
-            "Terraform / CloudFormation / Bicep (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Terraform / CloudFormation / Bicep and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how gitops security controls works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Terraform / CloudFormation / Bicep) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Terraform / CloudFormation / Bicep) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "iac-09-q5",
@@ -3224,13 +3224,13 @@ export const iacStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"GitOps security controls\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Platform / Cloud engineering (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the gitops security controls control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the gitops security controls data is shared, so the accountability sits with no one in particular",
+            "Platform / Cloud engineering, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Platform / Cloud engineering owns the control data; the auditor independently verifies it."
+          "explanation": "Platform / Cloud engineering owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "iac-09-q6",
@@ -3238,55 +3238,55 @@ export const iacStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"GitOps security controls\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "iac-09-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "iac-09-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"GitOps security controls\", which is a realistic reportable finding?",
+          "text": "For \"GitOps security controls\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the gitops security controls control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the gitops security controls control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the gitops security controls control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "iac-09-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "iac-09-q10",
@@ -3294,13 +3294,13 @@ export const iacStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"GitOps security controls\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind gitops security controls, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }

@@ -18,7 +18,7 @@ export const iamStages: StageConfig[] = [
     "title": "User provisioning and deprovisioning",
     "subtitle": "Agentic technical & privacy audit of the user provisioning and deprovisioning control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
@@ -239,13 +239,13 @@ export const iamStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"User provisioning and deprovisioning\" sub-process of Identity & Access Management (IAM)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the user provisioning and deprovisioning control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the user provisioning and deprovisioning control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for user provisioning and deprovisioning against comparable organisations in the sector",
             "Obtain evidence that the user provisioning and deprovisioning control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "iam-01-q2",
@@ -253,13 +253,13 @@ export const iamStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"User provisioning and deprovisioning\" matter to the broader Identity & Access Management (IAM) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Identity & Access Management (IAM)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Identity & Access Management (IAM) estate",
             "It is a control other Identity & Access Management (IAM) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Identity & Access Management (IAM) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "iam-01-q3",
@@ -267,27 +267,27 @@ export const iamStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"User provisioning and deprovisioning\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The IdP user export — every account with status, creation date, last-login, and licence/role assignments reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's user provisioning and deprovisioning settings, captured during the walkthrough",
+            "The The IdP user export — every account with status, creation date, last-login, and licence/role assignments, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the user provisioning and deprovisioning control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's user provisioning and deprovisioning capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "iam-01-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"User provisioning and deprovisioning\"?",
+          "text": "Where should an auditor pull the evidence for \"User provisioning and deprovisioning\"?",
           "options": [
-            "Okta / Microsoft Entra ID (the identity provider) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Okta / Microsoft Entra ID (the identity provider) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how user provisioning and deprovisioning works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Okta / Microsoft Entra ID (the identity provider)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Okta / Microsoft Entra ID (the identity provider)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "iam-01-q5",
@@ -295,13 +295,13 @@ export const iamStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"User provisioning and deprovisioning\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Identity & Access Management — runs provisioning operations (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the user provisioning and deprovisioning control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the user provisioning and deprovisioning data is shared, so the accountability sits with no one in particular",
+            "Identity & Access Management — runs provisioning operations, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Identity & Access Management — runs provisioning operations owns the control data; the auditor independently verifies it."
+          "explanation": "Identity & Access Management — runs provisioning operations owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "iam-01-q6",
@@ -309,55 +309,55 @@ export const iamStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"User provisioning and deprovisioning\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "iam-01-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "iam-01-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"User provisioning and deprovisioning\", which is a realistic reportable finding?",
+          "text": "For \"User provisioning and deprovisioning\", which of these is a realistic reportable finding?",
           "options": [
             "Orphaned accounts with no active worker, and terminated employees whose accounts stayed enabled for days or weeks past their termination date — each named with account id, worker id, and the gap in days.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. Orphaned accounts with no active worker, and terminated employees whose accounts stayed enabled for days or weeks past their termination date — each named with account id, worker id, and the gap in days."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. Orphaned accounts with no active worker, and terminated employees whose accounts stayed enabled for days or weeks past their termination date — each named with account id, worker id, and the gap in days. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "iam-01-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "iam-01-q10",
@@ -365,13 +365,13 @@ export const iamStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"User provisioning and deprovisioning\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind user provisioning and deprovisioning, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -383,7 +383,7 @@ export const iamStages: StageConfig[] = [
     "title": "Joiner-mover-leaver",
     "subtitle": "Agentic technical & privacy audit of the joiner-mover-leaver control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 6,
     "valueScore": 7,
     "rank": 0,
@@ -604,13 +604,13 @@ export const iamStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Joiner-mover-leaver\" sub-process of Identity & Access Management (IAM)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the joiner-mover-leaver control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the joiner-mover-leaver control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for joiner-mover-leaver against comparable organisations in the sector",
             "Obtain evidence that the joiner-mover-leaver control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "iam-02-q2",
@@ -618,13 +618,13 @@ export const iamStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Joiner-mover-leaver\" matter to the broader Identity & Access Management (IAM) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Identity & Access Management (IAM)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Identity & Access Management (IAM) estate",
             "It is a control other Identity & Access Management (IAM) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Identity & Access Management (IAM) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "iam-02-q3",
@@ -632,27 +632,27 @@ export const iamStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Joiner-mover-leaver\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The joiner-mover-leaver (JML) event log from HR — hires, role/department changes, and terminations in the period reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's joiner-mover-leaver settings, captured during the walkthrough",
+            "The The joiner-mover-leaver (JML) event log from HR — hires, role/department changes, and terminations in the period, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the joiner-mover-leaver control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's joiner-mover-leaver capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "iam-02-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Joiner-mover-leaver\"?",
+          "text": "Where should an auditor pull the evidence for \"Joiner-mover-leaver\"?",
           "options": [
-            "HR / HRIS (the JML event source) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From HR / HRIS (the JML event source) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how joiner-mover-leaver works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., HR / HRIS (the JML event source)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. HR / HRIS (the JML event source)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "iam-02-q5",
@@ -660,13 +660,13 @@ export const iamStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Joiner-mover-leaver\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "IAM / Identity Governance — owns the JML automation (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the joiner-mover-leaver control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the joiner-mover-leaver data is shared, so the accountability sits with no one in particular",
+            "IAM / Identity Governance — owns the JML automation, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "IAM / Identity Governance — owns the JML automation owns the control data; the auditor independently verifies it."
+          "explanation": "IAM / Identity Governance — owns the JML automation owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "iam-02-q6",
@@ -674,55 +674,55 @@ export const iamStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Joiner-mover-leaver\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "iam-02-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "iam-02-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Joiner-mover-leaver\", which is a realistic reportable finding?",
+          "text": "For \"Joiner-mover-leaver\", which of these is a realistic reportable finding?",
           "options": [
             "Movers who accumulated entitlements across two or three past roles (named, with the stale entitlements listed), and a handful of leavers whose access was removed late.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. Movers who accumulated entitlements across two or three past roles (named, with the stale entitlements listed), and a handful of leavers whose access was removed late."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. Movers who accumulated entitlements across two or three past roles (named, with the stale entitlements listed), and a handful of leavers whose access was removed late. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "iam-02-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "iam-02-q10",
@@ -730,13 +730,13 @@ export const iamStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Joiner-mover-leaver\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind joiner-mover-leaver, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -748,7 +748,7 @@ export const iamStages: StageConfig[] = [
     "title": "MFA coverage",
     "subtitle": "Agentic technical & privacy audit of the mfa coverage control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 7,
     "valueScore": 9,
     "rank": 0,
@@ -969,13 +969,13 @@ export const iamStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"MFA coverage\" sub-process of Identity & Access Management (IAM)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the mfa coverage control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the mfa coverage control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for mfa coverage against comparable organisations in the sector",
             "Obtain evidence that the mfa coverage control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "iam-03-q2",
@@ -983,13 +983,13 @@ export const iamStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"MFA coverage\" matter to the broader Identity & Access Management (IAM) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Identity & Access Management (IAM)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Identity & Access Management (IAM) estate",
             "It is a control other Identity & Access Management (IAM) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Identity & Access Management (IAM) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "iam-03-q3",
@@ -997,27 +997,27 @@ export const iamStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"MFA coverage\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The A CSV of every active user joined to their enrolled authentication factors (factor type + enrolment date) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's mfa coverage settings, captured during the walkthrough",
+            "The A CSV of every active user joined to their enrolled authentication factors (factor type + enrolment date), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the mfa coverage control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's mfa coverage capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "iam-03-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"MFA coverage\"?",
+          "text": "Where should an auditor pull the evidence for \"MFA coverage\"?",
           "options": [
-            "Okta (Universal Directory + Authentication Policies) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Okta (Universal Directory + Authentication Policies) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how mfa coverage works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Okta (Universal Directory + Authentication Policies)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Okta (Universal Directory + Authentication Policies)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "iam-03-q5",
@@ -1025,13 +1025,13 @@ export const iamStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"MFA coverage\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "IAM — owns the IdP and the authentication policies (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the mfa coverage control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the mfa coverage data is shared, so the accountability sits with no one in particular",
+            "IAM — owns the IdP and the authentication policies, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "IAM — owns the IdP and the authentication policies owns the control data; the auditor independently verifies it."
+          "explanation": "IAM — owns the IdP and the authentication policies owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "iam-03-q6",
@@ -1039,55 +1039,55 @@ export const iamStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"MFA coverage\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "iam-03-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "iam-03-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"MFA coverage\", which is a realistic reportable finding?",
+          "text": "For \"MFA coverage\", which of these is a realistic reportable finding?",
           "options": [
             "Typically 3–8% of active accounts have no MFA or are SMS-only, and one or two sensitive apps have MFA set to 'optional' — each named with the user or app id.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. Typically 3–8% of active accounts have no MFA or are SMS-only, and one or two sensitive apps have MFA set to 'optional' — each named with the user or app id."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. Typically 3–8% of active accounts have no MFA or are SMS-only, and one or two sensitive apps have MFA set to 'optional' — each named with the user or app id. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "iam-03-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "iam-03-q10",
@@ -1095,13 +1095,13 @@ export const iamStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"MFA coverage\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind mfa coverage, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1113,7 +1113,7 @@ export const iamStages: StageConfig[] = [
     "title": "Privileged access mgmt",
     "subtitle": "Agentic technical & privacy audit of the privileged access mgmt control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 5,
     "valueScore": 9,
     "rank": 0,
@@ -1334,13 +1334,13 @@ export const iamStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Privileged access mgmt\" sub-process of Identity & Access Management (IAM)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the privileged access mgmt control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the privileged access mgmt control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for privileged access mgmt against comparable organisations in the sector",
             "Obtain evidence that the privileged access mgmt control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "iam-04-q2",
@@ -1348,13 +1348,13 @@ export const iamStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Privileged access mgmt\" matter to the broader Identity & Access Management (IAM) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Identity & Access Management (IAM)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Identity & Access Management (IAM) estate",
             "It is a control other Identity & Access Management (IAM) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Identity & Access Management (IAM) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "iam-04-q3",
@@ -1362,27 +1362,27 @@ export const iamStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Privileged access mgmt\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The privileged-principal inventory — Domain/Enterprise Admins, cloud admin roles, root, local admins, and application super-users reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's privileged access mgmt settings, captured during the walkthrough",
+            "The The privileged-principal inventory — Domain/Enterprise Admins, cloud admin roles, root, local admins, and application super-users, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the privileged access mgmt control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's privileged access mgmt capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "iam-04-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Privileged access mgmt\"?",
+          "text": "Where should an auditor pull the evidence for \"Privileged access mgmt\"?",
           "options": [
-            "CyberArk / Delinea / BeyondTrust (PAM) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From CyberArk / Delinea / BeyondTrust (PAM) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how privileged access mgmt works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., CyberArk / Delinea / BeyondTrust (PAM)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. CyberArk / Delinea / BeyondTrust (PAM)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "iam-04-q5",
@@ -1390,13 +1390,13 @@ export const iamStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Privileged access mgmt\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Privileged Access Management team — owns the vault and policy (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the privileged access mgmt control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the privileged access mgmt data is shared, so the accountability sits with no one in particular",
+            "Privileged Access Management team — owns the vault and policy, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Privileged Access Management team — owns the vault and policy owns the control data; the auditor independently verifies it."
+          "explanation": "Privileged Access Management team — owns the vault and policy owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "iam-04-q6",
@@ -1404,55 +1404,55 @@ export const iamStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Privileged access mgmt\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "iam-04-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "iam-04-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Privileged access mgmt\", which is a realistic reportable finding?",
+          "text": "For \"Privileged access mgmt\", which of these is a realistic reportable finding?",
           "options": [
             "Privileged accounts discovered on hosts and in cloud that are not vaulted, plus standing Domain Admin members beyond the approved break-glass set — each named.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. Privileged accounts discovered on hosts and in cloud that are not vaulted, plus standing Domain Admin members beyond the approved break-glass set — each named."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. Privileged accounts discovered on hosts and in cloud that are not vaulted, plus standing Domain Admin members beyond the approved break-glass set — each named. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "iam-04-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "iam-04-q10",
@@ -1460,13 +1460,13 @@ export const iamStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Privileged access mgmt\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind privileged access mgmt, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1478,7 +1478,7 @@ export const iamStages: StageConfig[] = [
     "title": "Session controls",
     "subtitle": "Agentic technical & privacy audit of the session controls control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 6,
     "valueScore": 7,
     "rank": 0,
@@ -1699,13 +1699,13 @@ export const iamStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Session controls\" sub-process of Identity & Access Management (IAM)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the session controls control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the session controls control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for session controls against comparable organisations in the sector",
             "Obtain evidence that the session controls control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "iam-05-q2",
@@ -1713,13 +1713,13 @@ export const iamStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Session controls\" matter to the broader Identity & Access Management (IAM) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Identity & Access Management (IAM)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Identity & Access Management (IAM) estate",
             "It is a control other Identity & Access Management (IAM) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Identity & Access Management (IAM) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "iam-05-q3",
@@ -1727,27 +1727,27 @@ export const iamStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Session controls\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The IdP session/token policy export — idle timeout, absolute lifetime, refresh-token lifetime + rotation, reauthentication rules reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's session controls settings, captured during the walkthrough",
+            "The The IdP session/token policy export — idle timeout, absolute lifetime, refresh-token lifetime + rotation, reauthentication rules, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the session controls control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's session controls capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "iam-05-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Session controls\"?",
+          "text": "Where should an auditor pull the evidence for \"Session controls\"?",
           "options": [
-            "Okta / Microsoft Entra ID (session + token policies) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Okta / Microsoft Entra ID (session + token policies) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how session controls works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Okta / Microsoft Entra ID (session + token policies)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Okta / Microsoft Entra ID (session + token policies)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "iam-05-q5",
@@ -1755,13 +1755,13 @@ export const iamStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Session controls\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "IAM — owns IdP session policy (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the session controls control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the session controls data is shared, so the accountability sits with no one in particular",
+            "IAM — owns IdP session policy, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "IAM — owns IdP session policy owns the control data; the auditor independently verifies it."
+          "explanation": "IAM — owns IdP session policy owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "iam-05-q6",
@@ -1769,55 +1769,55 @@ export const iamStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Session controls\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "iam-05-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "iam-05-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Session controls\", which is a realistic reportable finding?",
+          "text": "For \"Session controls\", which of these is a realistic reportable finding?",
           "options": [
             "An admin application with a 12-hour idle session and refresh tokens that never rotate, so a stolen token stays valid far beyond the user's presence.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. An admin application with a 12-hour idle session and refresh tokens that never rotate, so a stolen token stays valid far beyond the user's presence."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. An admin application with a 12-hour idle session and refresh tokens that never rotate, so a stolen token stays valid far beyond the user's presence. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "iam-05-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "iam-05-q10",
@@ -1825,13 +1825,13 @@ export const iamStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Session controls\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind session controls, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1843,7 +1843,7 @@ export const iamStages: StageConfig[] = [
     "title": "Access reviews and recertifications",
     "subtitle": "Agentic technical & privacy audit of the access reviews and recertifications control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 8,
     "valueScore": 9,
     "rank": 0,
@@ -2064,13 +2064,13 @@ export const iamStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Access reviews and recertifications\" sub-process of Identity & Access Management (IAM)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the access reviews and recertifications control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the access reviews and recertifications control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for access reviews and recertifications against comparable organisations in the sector",
             "Obtain evidence that the access reviews and recertifications control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "iam-06-q2",
@@ -2078,13 +2078,13 @@ export const iamStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Access reviews and recertifications\" matter to the broader Identity & Access Management (IAM) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Identity & Access Management (IAM)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Identity & Access Management (IAM) estate",
             "It is a control other Identity & Access Management (IAM) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Identity & Access Management (IAM) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "iam-06-q3",
@@ -2092,27 +2092,27 @@ export const iamStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Access reviews and recertifications\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The access-certification campaign records — reviewer, items reviewed, approve/revoke decisions, and timestamps reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's access reviews and recertifications settings, captured during the walkthrough",
+            "The The access-certification campaign records — reviewer, items reviewed, approve/revoke decisions, and timestamps, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the access reviews and recertifications control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's access reviews and recertifications capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "iam-06-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Access reviews and recertifications\"?",
+          "text": "Where should an auditor pull the evidence for \"Access reviews and recertifications\"?",
           "options": [
-            "SailPoint / Saviynt / Microsoft Entra ID Access Reviews (the IGA campaign engine) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From SailPoint / Saviynt / Microsoft Entra ID Access Reviews (the IGA campaign engine) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how access reviews and recertifications works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., SailPoint / Saviynt / Microsoft Entra ID Access Reviews (the IGA campaign engine)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. SailPoint / Saviynt / Microsoft Entra ID Access Reviews (the IGA campaign engine)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "iam-06-q5",
@@ -2120,13 +2120,13 @@ export const iamStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Access reviews and recertifications\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "IAM / Identity Governance — runs the campaigns (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the access reviews and recertifications control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the access reviews and recertifications data is shared, so the accountability sits with no one in particular",
+            "IAM / Identity Governance — runs the campaigns, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "IAM / Identity Governance — runs the campaigns owns the control data; the auditor independently verifies it."
+          "explanation": "IAM / Identity Governance — runs the campaigns owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "iam-06-q6",
@@ -2134,55 +2134,55 @@ export const iamStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Access reviews and recertifications\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "iam-06-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "iam-06-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Access reviews and recertifications\", which is a realistic reportable finding?",
+          "text": "For \"Access reviews and recertifications\", which of these is a realistic reportable finding?",
           "options": [
             "A privileged group that appears in no certification campaign, and 'revoke' decisions with no corresponding removal 60+ days later — the review happened on paper but changed nothing.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. A privileged group that appears in no certification campaign, and 'revoke' decisions with no corresponding removal 60+ days later — the review happened on paper but changed nothing."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. A privileged group that appears in no certification campaign, and 'revoke' decisions with no corresponding removal 60+ days later — the review happened on paper but changed nothing. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "iam-06-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "iam-06-q10",
@@ -2190,13 +2190,13 @@ export const iamStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Access reviews and recertifications\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind access reviews and recertifications, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -2208,7 +2208,7 @@ export const iamStages: StageConfig[] = [
     "title": "Service / generic / local accounts",
     "subtitle": "Agentic technical & privacy audit of the service / generic / local accounts control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
@@ -2430,13 +2430,13 @@ export const iamStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Service / generic / local accounts\" sub-process of Identity & Access Management (IAM)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the service / generic / local accounts control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the service / generic / local accounts control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for service / generic / local accounts against comparable organisations in the sector",
             "Obtain evidence that the service / generic / local accounts control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "iam-07-q2",
@@ -2444,13 +2444,13 @@ export const iamStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Service / generic / local accounts\" matter to the broader Identity & Access Management (IAM) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Identity & Access Management (IAM)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Identity & Access Management (IAM) estate",
             "It is a control other Identity & Access Management (IAM) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Identity & Access Management (IAM) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "iam-07-q3",
@@ -2458,27 +2458,27 @@ export const iamStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Service / generic / local accounts\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The non-human / service-account inventory — each account with a named human owner and documented purpose reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's service / generic / local accounts settings, captured during the walkthrough",
+            "The The non-human / service-account inventory — each account with a named human owner and documented purpose, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the service / generic / local accounts control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's service / generic / local accounts capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "iam-07-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Service / generic / local accounts\"?",
+          "text": "Where should an auditor pull the evidence for \"Service / generic / local accounts\"?",
           "options": [
-            "Active Directory (service accounts, gMSA, adminCount) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Active Directory (service accounts, gMSA, adminCount) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how service / generic / local accounts works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Active Directory (service accounts, gMSA, adminCount)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Active Directory (service accounts, gMSA, adminCount)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "iam-07-q5",
@@ -2486,13 +2486,13 @@ export const iamStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Service / generic / local accounts\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "IAM — owns the account standard (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the service / generic / local accounts control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the service / generic / local accounts data is shared, so the accountability sits with no one in particular",
+            "IAM — owns the account standard, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "IAM — owns the account standard owns the control data; the auditor independently verifies it."
+          "explanation": "IAM — owns the account standard owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "iam-07-q6",
@@ -2500,55 +2500,55 @@ export const iamStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Service / generic / local accounts\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "iam-07-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "iam-07-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Service / generic / local accounts\", which is a realistic reportable finding?",
+          "text": "For \"Service / generic / local accounts\", which of these is a realistic reportable finding?",
           "options": [
             "A service account with a 5-year-old password sitting in Domain Admins, and a single local-admin password reused across 400 workstations (one cracked hash = lateral movement everywhere).",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. A service account with a 5-year-old password sitting in Domain Admins, and a single local-admin password reused across 400 workstations (one cracked hash = lateral movement everywhere)."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. A service account with a 5-year-old password sitting in Domain Admins, and a single local-admin password reused across 400 workstations (one cracked hash = lateral movement everywhere). A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "iam-07-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "iam-07-q10",
@@ -2556,13 +2556,13 @@ export const iamStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Service / generic / local accounts\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind service / generic / local accounts, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -2574,7 +2574,7 @@ export const iamStages: StageConfig[] = [
     "title": "Least privilege and SoD",
     "subtitle": "Agentic technical & privacy audit of the least privilege and sod control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 6,
     "valueScore": 7,
     "rank": 0,
@@ -2795,13 +2795,13 @@ export const iamStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Least privilege and SoD\" sub-process of Identity & Access Management (IAM)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the least privilege and sod control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the least privilege and sod control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for least privilege and sod against comparable organisations in the sector",
             "Obtain evidence that the least privilege and sod control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "iam-08-q2",
@@ -2809,13 +2809,13 @@ export const iamStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Least privilege and SoD\" matter to the broader Identity & Access Management (IAM) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Identity & Access Management (IAM)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Identity & Access Management (IAM) estate",
             "It is a control other Identity & Access Management (IAM) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Identity & Access Management (IAM) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "iam-08-q3",
@@ -2823,27 +2823,27 @@ export const iamStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Least privilege and SoD\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The entitlement-to-user assignment export (who holds what, across apps and cloud) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's least privilege and sod settings, captured during the walkthrough",
+            "The The entitlement-to-user assignment export (who holds what, across apps and cloud), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the least privilege and sod control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's least privilege and sod capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "iam-08-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Least privilege and SoD\"?",
+          "text": "Where should an auditor pull the evidence for \"Least privilege and SoD\"?",
           "options": [
-            "ERP GRC — SAP GRC Access Control / Oracle Risk Management (financial SoD) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From ERP GRC — SAP GRC Access Control / Oracle Risk Management (financial SoD) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how least privilege and sod works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., ERP GRC — SAP GRC Access Control / Oracle Risk Management (financial SoD)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. ERP GRC — SAP GRC Access Control / Oracle Risk Management (financial SoD)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "iam-08-q5",
@@ -2851,13 +2851,13 @@ export const iamStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Least privilege and SoD\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "IAM / GRC — owns the ruleset (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the least privilege and sod control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the least privilege and sod data is shared, so the accountability sits with no one in particular",
+            "IAM / GRC — owns the ruleset, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "IAM / GRC — owns the ruleset owns the control data; the auditor independently verifies it."
+          "explanation": "IAM / GRC — owns the ruleset owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "iam-08-q6",
@@ -2865,55 +2865,55 @@ export const iamStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Least privilege and SoD\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "iam-08-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "iam-08-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Least privilege and SoD\", which is a realistic reportable finding?",
+          "text": "For \"Least privilege and SoD\", which of these is a realistic reportable finding?",
           "options": [
             "A dozen users who can both create and approve vendor payments with no compensating control, and cloud roles granting wildcard '*' actions far beyond what the workload uses.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. A dozen users who can both create and approve vendor payments with no compensating control, and cloud roles granting wildcard '*' actions far beyond what the workload uses."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. A dozen users who can both create and approve vendor payments with no compensating control, and cloud roles granting wildcard '*' actions far beyond what the workload uses. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "iam-08-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "iam-08-q10",
@@ -2921,13 +2921,13 @@ export const iamStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Least privilege and SoD\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind least privilege and sod, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -2939,7 +2939,7 @@ export const iamStages: StageConfig[] = [
     "title": "Certificate management",
     "subtitle": "Agentic technical & privacy audit of the certificate management control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 7,
     "valueScore": 7,
     "rank": 0,
@@ -3159,13 +3159,13 @@ export const iamStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Certificate management\" sub-process of Identity & Access Management (IAM)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the certificate management control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the certificate management control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for certificate management against comparable organisations in the sector",
             "Obtain evidence that the certificate management control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "iam-09-q2",
@@ -3173,13 +3173,13 @@ export const iamStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Certificate management\" matter to the broader Identity & Access Management (IAM) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Identity & Access Management (IAM)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Identity & Access Management (IAM) estate",
             "It is a control other Identity & Access Management (IAM) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Identity & Access Management (IAM) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "iam-09-q3",
@@ -3187,27 +3187,27 @@ export const iamStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Certificate management\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The certificate inventory — CN/SAN, issuer, key type/size, signature algorithm, expiry, and where each cert is deployed reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's certificate management settings, captured during the walkthrough",
+            "The The certificate inventory — CN/SAN, issuer, key type/size, signature algorithm, expiry, and where each cert is deployed, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the certificate management control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's certificate management capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "iam-09-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Certificate management\"?",
+          "text": "Where should an auditor pull the evidence for \"Certificate management\"?",
           "options": [
-            "Venafi / Keyfactor / AWS Certificate Manager / internal PKI (AD CS) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Venafi / Keyfactor / AWS Certificate Manager / internal PKI (AD CS) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how certificate management works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Venafi / Keyfactor / AWS Certificate Manager / internal PKI (AD CS)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Venafi / Keyfactor / AWS Certificate Manager / internal PKI (AD CS)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "iam-09-q5",
@@ -3215,13 +3215,13 @@ export const iamStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Certificate management\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "PKI / Cryptography team — owns the CA and policy (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the certificate management control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the certificate management data is shared, so the accountability sits with no one in particular",
+            "PKI / Cryptography team — owns the CA and policy, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "PKI / Cryptography team — owns the CA and policy owns the control data; the auditor independently verifies it."
+          "explanation": "PKI / Cryptography team — owns the CA and policy owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "iam-09-q6",
@@ -3229,55 +3229,55 @@ export const iamStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Certificate management\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "iam-09-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "iam-09-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Certificate management\", which is a realistic reportable finding?",
+          "text": "For \"Certificate management\", which of these is a realistic reportable finding?",
           "options": [
             "Three expired certificates still serving production, several RSA-1024/SHA-1 certificates, and a wildcard certificate whose private key sits unprotected in a web root.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. Three expired certificates still serving production, several RSA-1024/SHA-1 certificates, and a wildcard certificate whose private key sits unprotected in a web root."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. Three expired certificates still serving production, several RSA-1024/SHA-1 certificates, and a wildcard certificate whose private key sits unprotected in a web root. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "iam-09-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "iam-09-q10",
@@ -3285,13 +3285,13 @@ export const iamStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Certificate management\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind certificate management, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -3303,7 +3303,7 @@ export const iamStages: StageConfig[] = [
     "title": "Zero trust",
     "subtitle": "Agentic technical & privacy audit of the zero trust control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
@@ -3525,13 +3525,13 @@ export const iamStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Zero trust\" sub-process of Identity & Access Management (IAM)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the zero trust control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the zero trust control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for zero trust against comparable organisations in the sector",
             "Obtain evidence that the zero trust control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "iam-10-q2",
@@ -3539,13 +3539,13 @@ export const iamStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Zero trust\" matter to the broader Identity & Access Management (IAM) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Identity & Access Management (IAM)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Identity & Access Management (IAM) estate",
             "It is a control other Identity & Access Management (IAM) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Identity & Access Management (IAM) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "iam-10-q3",
@@ -3553,27 +3553,27 @@ export const iamStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Zero trust\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The access-policy matrix — for each sensitive resource, what identity + device posture + context is required reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's zero trust settings, captured during the walkthrough",
+            "The The access-policy matrix — for each sensitive resource, what identity + device posture + context is required, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the zero trust control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's zero trust capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "iam-10-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Zero trust\"?",
+          "text": "Where should an auditor pull the evidence for \"Zero trust\"?",
           "options": [
-            "Microsoft Entra Conditional Access / Okta + device trust (Intune / Jamf) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Microsoft Entra Conditional Access / Okta + device trust (Intune / Jamf) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how zero trust works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Microsoft Entra Conditional Access / Okta + device trust (Intune / Jamf)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Microsoft Entra Conditional Access / Okta + device trust (Intune / Jamf)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "iam-10-q5",
@@ -3581,13 +3581,13 @@ export const iamStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Zero trust\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "IAM — owns identity-based access policy (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the zero trust control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the zero trust data is shared, so the accountability sits with no one in particular",
+            "IAM — owns identity-based access policy, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "IAM — owns identity-based access policy owns the control data; the auditor independently verifies it."
+          "explanation": "IAM — owns identity-based access policy owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "iam-10-q6",
@@ -3595,55 +3595,55 @@ export const iamStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Zero trust\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "iam-10-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "iam-10-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Zero trust\", which is a realistic reportable finding?",
+          "text": "For \"Zero trust\", which of these is a realistic reportable finding?",
           "options": [
             "An administrative console reachable on the corporate LAN with no device-posture requirement, and a VPN that drops users onto a flat subnet with broad reachability — classic implicit network trust.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. An administrative console reachable on the corporate LAN with no device-posture requirement, and a VPN that drops users onto a flat subnet with broad reachability — classic implicit network trust."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. An administrative console reachable on the corporate LAN with no device-posture requirement, and a VPN that drops users onto a flat subnet with broad reachability — classic implicit network trust. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "iam-10-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "iam-10-q10",
@@ -3651,13 +3651,13 @@ export const iamStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Zero trust\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind zero trust, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -3669,7 +3669,7 @@ export const iamStages: StageConfig[] = [
     "title": "PQC-ready certificate lifecycle",
     "subtitle": "Agentic technical & privacy audit of the pqc-ready certificate lifecycle control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 6,
     "valueScore": 7,
     "rank": 0,
@@ -3891,13 +3891,13 @@ export const iamStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"PQC-ready certificate lifecycle\" sub-process of Identity & Access Management (IAM)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the pqc-ready certificate lifecycle control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the pqc-ready certificate lifecycle control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for pqc-ready certificate lifecycle against comparable organisations in the sector",
             "Obtain evidence that the pqc-ready certificate lifecycle control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "iam-11-q2",
@@ -3905,13 +3905,13 @@ export const iamStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"PQC-ready certificate lifecycle\" matter to the broader Identity & Access Management (IAM) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Identity & Access Management (IAM)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Identity & Access Management (IAM) estate",
             "It is a control other Identity & Access Management (IAM) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Identity & Access Management (IAM) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "iam-11-q3",
@@ -3919,27 +3919,27 @@ export const iamStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"PQC-ready certificate lifecycle\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The cryptographic inventory / CBOM (Cryptographic Bill of Materials) for certificates and key-exchange — algorithms, key sizes, and where each is used reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's pqc-ready certificate lifecycle settings, captured during the walkthrough",
+            "The The cryptographic inventory / CBOM (Cryptographic Bill of Materials) for certificates and key-exchange — algorithms, key sizes, and where each is used, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the pqc-ready certificate lifecycle control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's pqc-ready certificate lifecycle capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "iam-11-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"PQC-ready certificate lifecycle\"?",
+          "text": "Where should an auditor pull the evidence for \"PQC-ready certificate lifecycle\"?",
           "options": [
-            "PKI with CBOM support — Venafi / Keyfactor (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From PKI with CBOM support — Venafi / Keyfactor and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how pqc-ready certificate lifecycle works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., PKI with CBOM support — Venafi / Keyfactor) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. PKI with CBOM support — Venafi / Keyfactor) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "iam-11-q5",
@@ -3947,13 +3947,13 @@ export const iamStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"PQC-ready certificate lifecycle\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Cryptography / PKI team — owns the CBOM and migration (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the pqc-ready certificate lifecycle control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the pqc-ready certificate lifecycle data is shared, so the accountability sits with no one in particular",
+            "Cryptography / PKI team — owns the CBOM and migration, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Cryptography / PKI team — owns the CBOM and migration owns the control data; the auditor independently verifies it."
+          "explanation": "Cryptography / PKI team — owns the CBOM and migration owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "iam-11-q6",
@@ -3961,55 +3961,55 @@ export const iamStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"PQC-ready certificate lifecycle\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "iam-11-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "iam-11-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"PQC-ready certificate lifecycle\", which is a realistic reportable finding?",
+          "text": "For \"PQC-ready certificate lifecycle\", which of these is a realistic reportable finding?",
           "options": [
             "No CBOM exists; long-lived RSA-2048 certificates protect records with a 25-year retention requirement (squarely in HNDL range); and no key vendor has a published PQC timeline.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. No CBOM exists; long-lived RSA-2048 certificates protect records with a 25-year retention requirement (squarely in HNDL range); and no key vendor has a published PQC timeline."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. No CBOM exists; long-lived RSA-2048 certificates protect records with a 25-year retention requirement (squarely in HNDL range); and no key vendor has a published PQC timeline. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "iam-11-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "iam-11-q10",
@@ -4017,13 +4017,13 @@ export const iamStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"PQC-ready certificate lifecycle\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind pqc-ready certificate lifecycle, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }

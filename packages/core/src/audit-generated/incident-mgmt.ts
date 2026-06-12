@@ -18,7 +18,7 @@ export const incidentMgmtStages: StageConfig[] = [
     "title": "IR plan, playbooks, tabletop",
     "subtitle": "Agentic technical & privacy audit of the ir plan, playbooks, tabletop control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
@@ -240,13 +240,13 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"IR plan, playbooks, tabletop\" sub-process of Incident Management?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the ir plan, playbooks, tabletop control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the ir plan, playbooks, tabletop control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for ir plan, playbooks, tabletop against comparable organisations in the sector",
             "Obtain evidence that the ir plan, playbooks, tabletop control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "inc-01-q2",
@@ -254,13 +254,13 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"IR plan, playbooks, tabletop\" matter to the broader Incident Management posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Incident Management",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Incident Management estate",
             "It is a control other Incident Management controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Incident Management controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "inc-01-q3",
@@ -268,27 +268,27 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"IR plan, playbooks, tabletop\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the ir plan, playbooks, tabletop control (from SIEM / SOAR (Sentinel/Splunk)) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's ir plan, playbooks, tabletop settings, captured during the walkthrough",
+            "The In-scope inventory for the ir plan, playbooks, tabletop control (from SIEM / SOAR (Sentinel/Splunk)), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the ir plan, playbooks, tabletop control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's ir plan, playbooks, tabletop capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "inc-01-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"IR plan, playbooks, tabletop\"?",
+          "text": "Where should an auditor pull the evidence for \"IR plan, playbooks, tabletop\"?",
           "options": [
-            "SIEM / SOAR (Sentinel/Splunk) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From SIEM / SOAR (Sentinel/Splunk) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how ir plan, playbooks, tabletop works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., SIEM / SOAR (Sentinel/Splunk)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. SIEM / SOAR (Sentinel/Splunk)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "inc-01-q5",
@@ -296,13 +296,13 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"IR plan, playbooks, tabletop\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Security operations / CSIRT (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the ir plan, playbooks, tabletop control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the ir plan, playbooks, tabletop data is shared, so the accountability sits with no one in particular",
+            "Security operations / CSIRT, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Security operations / CSIRT owns the control data; the auditor independently verifies it."
+          "explanation": "Security operations / CSIRT owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "inc-01-q6",
@@ -310,55 +310,55 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"IR plan, playbooks, tabletop\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "inc-01-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "inc-01-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"IR plan, playbooks, tabletop\", which is a realistic reportable finding?",
+          "text": "For \"IR plan, playbooks, tabletop\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the ir plan, playbooks, tabletop control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the ir plan, playbooks, tabletop control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the ir plan, playbooks, tabletop control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "inc-01-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "inc-01-q10",
@@ -366,13 +366,13 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"IR plan, playbooks, tabletop\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind ir plan, playbooks, tabletop, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -384,7 +384,7 @@ export const incidentMgmtStages: StageConfig[] = [
     "title": "Incident intake and triage",
     "subtitle": "Agentic technical & privacy audit of the incident intake and triage control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 6,
     "valueScore": 9,
     "rank": 0,
@@ -606,13 +606,13 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Incident intake and triage\" sub-process of Incident Management?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the incident intake and triage control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the incident intake and triage control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for incident intake and triage against comparable organisations in the sector",
             "Obtain evidence that the incident intake and triage control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "inc-02-q2",
@@ -620,13 +620,13 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Incident intake and triage\" matter to the broader Incident Management posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Incident Management",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Incident Management estate",
             "It is a control other Incident Management controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Incident Management controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "inc-02-q3",
@@ -634,27 +634,27 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Incident intake and triage\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the incident intake and triage control (from SIEM / SOAR (Sentinel/Splunk)) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's incident intake and triage settings, captured during the walkthrough",
+            "The In-scope inventory for the incident intake and triage control (from SIEM / SOAR (Sentinel/Splunk)), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the incident intake and triage control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's incident intake and triage capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "inc-02-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Incident intake and triage\"?",
+          "text": "Where should an auditor pull the evidence for \"Incident intake and triage\"?",
           "options": [
-            "SIEM / SOAR (Sentinel/Splunk) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From SIEM / SOAR (Sentinel/Splunk) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how incident intake and triage works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., SIEM / SOAR (Sentinel/Splunk)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. SIEM / SOAR (Sentinel/Splunk)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "inc-02-q5",
@@ -662,13 +662,13 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Incident intake and triage\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Security operations / CSIRT (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the incident intake and triage control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the incident intake and triage data is shared, so the accountability sits with no one in particular",
+            "Security operations / CSIRT, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Security operations / CSIRT owns the control data; the auditor independently verifies it."
+          "explanation": "Security operations / CSIRT owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "inc-02-q6",
@@ -676,55 +676,55 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Incident intake and triage\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "inc-02-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "inc-02-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Incident intake and triage\", which is a realistic reportable finding?",
+          "text": "For \"Incident intake and triage\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the incident intake and triage control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the incident intake and triage control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the incident intake and triage control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "inc-02-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "inc-02-q10",
@@ -732,13 +732,13 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Incident intake and triage\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind incident intake and triage, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -750,7 +750,7 @@ export const incidentMgmtStages: StageConfig[] = [
     "title": "Evidence handling and forensics",
     "subtitle": "Agentic technical & privacy audit of the evidence handling and forensics control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
@@ -972,13 +972,13 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Evidence handling and forensics\" sub-process of Incident Management?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the evidence handling and forensics control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the evidence handling and forensics control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for evidence handling and forensics against comparable organisations in the sector",
             "Obtain evidence that the evidence handling and forensics control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "inc-03-q2",
@@ -986,13 +986,13 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Evidence handling and forensics\" matter to the broader Incident Management posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Incident Management",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Incident Management estate",
             "It is a control other Incident Management controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Incident Management controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "inc-03-q3",
@@ -1000,27 +1000,27 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Evidence handling and forensics\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the evidence handling and forensics control (from SIEM / SOAR (Sentinel/Splunk)) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's evidence handling and forensics settings, captured during the walkthrough",
+            "The In-scope inventory for the evidence handling and forensics control (from SIEM / SOAR (Sentinel/Splunk)), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the evidence handling and forensics control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's evidence handling and forensics capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "inc-03-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Evidence handling and forensics\"?",
+          "text": "Where should an auditor pull the evidence for \"Evidence handling and forensics\"?",
           "options": [
-            "SIEM / SOAR (Sentinel/Splunk) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From SIEM / SOAR (Sentinel/Splunk) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how evidence handling and forensics works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., SIEM / SOAR (Sentinel/Splunk)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. SIEM / SOAR (Sentinel/Splunk)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "inc-03-q5",
@@ -1028,13 +1028,13 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Evidence handling and forensics\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Security operations / CSIRT (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the evidence handling and forensics control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the evidence handling and forensics data is shared, so the accountability sits with no one in particular",
+            "Security operations / CSIRT, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Security operations / CSIRT owns the control data; the auditor independently verifies it."
+          "explanation": "Security operations / CSIRT owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "inc-03-q6",
@@ -1042,55 +1042,55 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Evidence handling and forensics\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "inc-03-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "inc-03-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Evidence handling and forensics\", which is a realistic reportable finding?",
+          "text": "For \"Evidence handling and forensics\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the evidence handling and forensics control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the evidence handling and forensics control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the evidence handling and forensics control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "inc-03-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "inc-03-q10",
@@ -1098,13 +1098,13 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Evidence handling and forensics\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind evidence handling and forensics, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1116,7 +1116,7 @@ export const incidentMgmtStages: StageConfig[] = [
     "title": "Post-incident reviews / corrective",
     "subtitle": "Agentic technical & privacy audit of the post-incident reviews / corrective control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 6,
     "valueScore": 9,
     "rank": 0,
@@ -1338,13 +1338,13 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Post-incident reviews / corrective\" sub-process of Incident Management?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the post-incident reviews / corrective control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the post-incident reviews / corrective control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for post-incident reviews / corrective against comparable organisations in the sector",
             "Obtain evidence that the post-incident reviews / corrective control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "inc-04-q2",
@@ -1352,13 +1352,13 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Post-incident reviews / corrective\" matter to the broader Incident Management posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Incident Management",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Incident Management estate",
             "It is a control other Incident Management controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Incident Management controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "inc-04-q3",
@@ -1366,27 +1366,27 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Post-incident reviews / corrective\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the post-incident reviews / corrective control (from SIEM / SOAR (Sentinel/Splunk)) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's post-incident reviews / corrective settings, captured during the walkthrough",
+            "The In-scope inventory for the post-incident reviews / corrective control (from SIEM / SOAR (Sentinel/Splunk)), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the post-incident reviews / corrective control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's post-incident reviews / corrective capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "inc-04-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Post-incident reviews / corrective\"?",
+          "text": "Where should an auditor pull the evidence for \"Post-incident reviews / corrective\"?",
           "options": [
-            "SIEM / SOAR (Sentinel/Splunk) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From SIEM / SOAR (Sentinel/Splunk) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how post-incident reviews / corrective works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., SIEM / SOAR (Sentinel/Splunk)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. SIEM / SOAR (Sentinel/Splunk)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "inc-04-q5",
@@ -1394,13 +1394,13 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Post-incident reviews / corrective\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Security operations / CSIRT (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the post-incident reviews / corrective control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the post-incident reviews / corrective data is shared, so the accountability sits with no one in particular",
+            "Security operations / CSIRT, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Security operations / CSIRT owns the control data; the auditor independently verifies it."
+          "explanation": "Security operations / CSIRT owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "inc-04-q6",
@@ -1408,55 +1408,55 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Post-incident reviews / corrective\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "inc-04-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "inc-04-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Post-incident reviews / corrective\", which is a realistic reportable finding?",
+          "text": "For \"Post-incident reviews / corrective\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the post-incident reviews / corrective control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the post-incident reviews / corrective control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the post-incident reviews / corrective control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "inc-04-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "inc-04-q10",
@@ -1464,13 +1464,13 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Post-incident reviews / corrective\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind post-incident reviews / corrective, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1482,7 +1482,7 @@ export const incidentMgmtStages: StageConfig[] = [
     "title": "External notifications / breach comms",
     "subtitle": "Agentic technical & privacy audit of the external notifications / breach comms control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 6,
     "valueScore": 7,
     "rank": 0,
@@ -1704,13 +1704,13 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"External notifications / breach comms\" sub-process of Incident Management?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the external notifications / breach comms control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the external notifications / breach comms control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for external notifications / breach comms against comparable organisations in the sector",
             "Obtain evidence that the external notifications / breach comms control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "inc-05-q2",
@@ -1718,13 +1718,13 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"External notifications / breach comms\" matter to the broader Incident Management posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Incident Management",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Incident Management estate",
             "It is a control other Incident Management controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Incident Management controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "inc-05-q3",
@@ -1732,27 +1732,27 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"External notifications / breach comms\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the external notifications / breach comms control (from SIEM / SOAR (Sentinel/Splunk)) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's external notifications / breach comms settings, captured during the walkthrough",
+            "The In-scope inventory for the external notifications / breach comms control (from SIEM / SOAR (Sentinel/Splunk)), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the external notifications / breach comms control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's external notifications / breach comms capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "inc-05-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"External notifications / breach comms\"?",
+          "text": "Where should an auditor pull the evidence for \"External notifications / breach comms\"?",
           "options": [
-            "SIEM / SOAR (Sentinel/Splunk) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From SIEM / SOAR (Sentinel/Splunk) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how external notifications / breach comms works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., SIEM / SOAR (Sentinel/Splunk)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. SIEM / SOAR (Sentinel/Splunk)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "inc-05-q5",
@@ -1760,13 +1760,13 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"External notifications / breach comms\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Security operations / CSIRT (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the external notifications / breach comms control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the external notifications / breach comms data is shared, so the accountability sits with no one in particular",
+            "Security operations / CSIRT, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Security operations / CSIRT owns the control data; the auditor independently verifies it."
+          "explanation": "Security operations / CSIRT owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "inc-05-q6",
@@ -1774,55 +1774,55 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"External notifications / breach comms\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "inc-05-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "inc-05-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"External notifications / breach comms\", which is a realistic reportable finding?",
+          "text": "For \"External notifications / breach comms\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the external notifications / breach comms control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the external notifications / breach comms control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the external notifications / breach comms control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "inc-05-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "inc-05-q10",
@@ -1830,13 +1830,13 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"External notifications / breach comms\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind external notifications / breach comms, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1848,7 +1848,7 @@ export const incidentMgmtStages: StageConfig[] = [
     "title": "Incident logging and monitoring",
     "subtitle": "Agentic technical & privacy audit of the incident logging and monitoring control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 8,
     "valueScore": 9,
     "rank": 0,
@@ -2070,13 +2070,13 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Incident logging and monitoring\" sub-process of Incident Management?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the incident logging and monitoring control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the incident logging and monitoring control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for incident logging and monitoring against comparable organisations in the sector",
             "Obtain evidence that the incident logging and monitoring control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "inc-06-q2",
@@ -2084,13 +2084,13 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Incident logging and monitoring\" matter to the broader Incident Management posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Incident Management",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Incident Management estate",
             "It is a control other Incident Management controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Incident Management controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "inc-06-q3",
@@ -2098,27 +2098,27 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Incident logging and monitoring\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the incident logging and monitoring control (from SIEM / SOAR (Sentinel/Splunk)) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's incident logging and monitoring settings, captured during the walkthrough",
+            "The In-scope inventory for the incident logging and monitoring control (from SIEM / SOAR (Sentinel/Splunk)), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the incident logging and monitoring control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's incident logging and monitoring capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "inc-06-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Incident logging and monitoring\"?",
+          "text": "Where should an auditor pull the evidence for \"Incident logging and monitoring\"?",
           "options": [
-            "SIEM / SOAR (Sentinel/Splunk) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From SIEM / SOAR (Sentinel/Splunk) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how incident logging and monitoring works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., SIEM / SOAR (Sentinel/Splunk)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. SIEM / SOAR (Sentinel/Splunk)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "inc-06-q5",
@@ -2126,13 +2126,13 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Incident logging and monitoring\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Security operations / CSIRT (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the incident logging and monitoring control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the incident logging and monitoring data is shared, so the accountability sits with no one in particular",
+            "Security operations / CSIRT, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Security operations / CSIRT owns the control data; the auditor independently verifies it."
+          "explanation": "Security operations / CSIRT owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "inc-06-q6",
@@ -2140,55 +2140,55 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Incident logging and monitoring\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "inc-06-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "inc-06-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Incident logging and monitoring\", which is a realistic reportable finding?",
+          "text": "For \"Incident logging and monitoring\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the incident logging and monitoring control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the incident logging and monitoring control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the incident logging and monitoring control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "inc-06-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "inc-06-q10",
@@ -2196,13 +2196,13 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Incident logging and monitoring\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind incident logging and monitoring, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -2214,7 +2214,7 @@ export const incidentMgmtStages: StageConfig[] = [
     "title": "Incident escalation",
     "subtitle": "Agentic technical & privacy audit of the incident escalation control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 5,
     "valueScore": 9,
     "rank": 0,
@@ -2436,13 +2436,13 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Incident escalation\" sub-process of Incident Management?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the incident escalation control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the incident escalation control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for incident escalation against comparable organisations in the sector",
             "Obtain evidence that the incident escalation control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "inc-07-q2",
@@ -2450,13 +2450,13 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Incident escalation\" matter to the broader Incident Management posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Incident Management",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Incident Management estate",
             "It is a control other Incident Management controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Incident Management controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "inc-07-q3",
@@ -2464,27 +2464,27 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Incident escalation\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the incident escalation control (from SIEM / SOAR (Sentinel/Splunk)) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's incident escalation settings, captured during the walkthrough",
+            "The In-scope inventory for the incident escalation control (from SIEM / SOAR (Sentinel/Splunk)), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the incident escalation control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's incident escalation capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "inc-07-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Incident escalation\"?",
+          "text": "Where should an auditor pull the evidence for \"Incident escalation\"?",
           "options": [
-            "SIEM / SOAR (Sentinel/Splunk) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From SIEM / SOAR (Sentinel/Splunk) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how incident escalation works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., SIEM / SOAR (Sentinel/Splunk)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. SIEM / SOAR (Sentinel/Splunk)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "inc-07-q5",
@@ -2492,13 +2492,13 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Incident escalation\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Security operations / CSIRT (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the incident escalation control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the incident escalation data is shared, so the accountability sits with no one in particular",
+            "Security operations / CSIRT, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Security operations / CSIRT owns the control data; the auditor independently verifies it."
+          "explanation": "Security operations / CSIRT owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "inc-07-q6",
@@ -2506,55 +2506,55 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Incident escalation\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "inc-07-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "inc-07-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Incident escalation\", which is a realistic reportable finding?",
+          "text": "For \"Incident escalation\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the incident escalation control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the incident escalation control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the incident escalation control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "inc-07-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "inc-07-q10",
@@ -2562,13 +2562,13 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Incident escalation\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind incident escalation, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }

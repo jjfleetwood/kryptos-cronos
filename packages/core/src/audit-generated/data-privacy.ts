@@ -18,7 +18,7 @@ export const dataPrivacyStages: StageConfig[] = [
     "title": "Data classification and handling",
     "subtitle": "Agentic technical & privacy audit of the data classification and handling control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
@@ -243,13 +243,13 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Data classification and handling\" sub-process of Data Protection & Privacy?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the data classification and handling control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the data classification and handling control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for data classification and handling against comparable organisations in the sector",
             "Obtain evidence that the data classification and handling control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "dpp-01-q2",
@@ -257,13 +257,13 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Data classification and handling\" matter to the broader Data Protection & Privacy posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Data Protection & Privacy",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Data Protection & Privacy estate",
             "It is a control other Data Protection & Privacy controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Data Protection & Privacy controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "dpp-01-q3",
@@ -271,27 +271,27 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Data classification and handling\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The data-classification policy + scheme (e.g. Public / Internal / Confidential / Restricted) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's data classification and handling settings, captured during the walkthrough",
+            "The The data-classification policy + scheme (e.g. Public / Internal / Confidential / Restricted), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the data classification and handling control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's data classification and handling capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "dpp-01-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Data classification and handling\"?",
+          "text": "Where should an auditor pull the evidence for \"Data classification and handling\"?",
           "options": [
-            "Microsoft Purview Information Protection / Google DLP / BigID / Varonis (classification) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Microsoft Purview Information Protection / Google DLP / BigID / Varonis (classification) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how data classification and handling works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Microsoft Purview Information Protection / Google DLP / BigID / Varonis (classification)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Microsoft Purview Information Protection / Google DLP / BigID / Varonis (classification)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "dpp-01-q5",
@@ -299,13 +299,13 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Data classification and handling\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Data Protection Officer / Privacy — owns the scheme (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the data classification and handling control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the data classification and handling data is shared, so the accountability sits with no one in particular",
+            "Data Protection Officer / Privacy — owns the scheme, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Data Protection Officer / Privacy — owns the scheme owns the control data; the auditor independently verifies it."
+          "explanation": "Data Protection Officer / Privacy — owns the scheme owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "dpp-01-q6",
@@ -313,55 +313,55 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Data classification and handling\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "dpp-01-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "dpp-01-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Data classification and handling\", which is a realistic reportable finding?",
+          "text": "For \"Data classification and handling\", which of these is a realistic reportable finding?",
           "options": [
             "About 60% of SharePoint sites and most file shares are unlabelled; discovery finds unencrypted spreadsheets of customer SSNs in an open 'Public' share and PHI copied into a developer test database.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. About 60% of SharePoint sites and most file shares are unlabelled; discovery finds unencrypted spreadsheets of customer SSNs in an open 'Public' share and PHI copied into a developer test database."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. About 60% of SharePoint sites and most file shares are unlabelled; discovery finds unencrypted spreadsheets of customer SSNs in an open 'Public' share and PHI copied into a developer test database. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "dpp-01-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "dpp-01-q10",
@@ -369,13 +369,13 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Data classification and handling\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind data classification and handling, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -387,7 +387,7 @@ export const dataPrivacyStages: StageConfig[] = [
     "title": "Encryption in transit/at rest/in use",
     "subtitle": "Agentic technical & privacy audit of the encryption in transit/at rest/in use control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 6,
     "valueScore": 9,
     "rank": 0,
@@ -612,13 +612,13 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Encryption in transit/at rest/in use\" sub-process of Data Protection & Privacy?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the encryption in transit/at rest/in use control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the encryption in transit/at rest/in use control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for encryption in transit/at rest/in use against comparable organisations in the sector",
             "Obtain evidence that the encryption in transit/at rest/in use control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "dpp-02-q2",
@@ -626,13 +626,13 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Encryption in transit/at rest/in use\" matter to the broader Data Protection & Privacy posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Data Protection & Privacy",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Data Protection & Privacy estate",
             "It is a control other Data Protection & Privacy controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Data Protection & Privacy controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "dpp-02-q3",
@@ -640,27 +640,27 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Encryption in transit/at rest/in use\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The encryption inventory — which stores/links use what (algorithm, key source, TLS version) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's encryption in transit/at rest/in use settings, captured during the walkthrough",
+            "The The encryption inventory — which stores/links use what (algorithm, key source, TLS version), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the encryption in transit/at rest/in use control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's encryption in transit/at rest/in use capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "dpp-02-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Encryption in transit/at rest/in use\"?",
+          "text": "Where should an auditor pull the evidence for \"Encryption in transit/at rest/in use\"?",
           "options": [
-            "KMS/HSM — AWS KMS / Azure Key Vault / HashiCorp Vault (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From KMS/HSM — AWS KMS / Azure Key Vault / HashiCorp Vault and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how encryption in transit/at rest/in use works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., KMS/HSM — AWS KMS / Azure Key Vault / HashiCorp Vault) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. KMS/HSM — AWS KMS / Azure Key Vault / HashiCorp Vault) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "dpp-02-q5",
@@ -668,13 +668,13 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Encryption in transit/at rest/in use\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Cryptography/PKI + platform security — own encryption + keys (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the encryption in transit/at rest/in use control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the encryption in transit/at rest/in use data is shared, so the accountability sits with no one in particular",
+            "Cryptography/PKI + platform security — own encryption + keys, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Cryptography/PKI + platform security — own encryption + keys owns the control data; the auditor independently verifies it."
+          "explanation": "Cryptography/PKI + platform security — own encryption + keys owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "dpp-02-q6",
@@ -682,55 +682,55 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Encryption in transit/at rest/in use\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "dpp-02-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "dpp-02-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Encryption in transit/at rest/in use\", which is a realistic reportable finding?",
+          "text": "For \"Encryption in transit/at rest/in use\", which of these is a realistic reportable finding?",
           "options": [
             "Internal microservice traffic carrying PII runs over plaintext HTTP, two production databases have TDE off, several customer-data S3 buckets use no encryption, and the keys in use have rotation disabled.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. Internal microservice traffic carrying PII runs over plaintext HTTP, two production databases have TDE off, several customer-data S3 buckets use no encryption, and the keys in use have rotation disabled."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. Internal microservice traffic carrying PII runs over plaintext HTTP, two production databases have TDE off, several customer-data S3 buckets use no encryption, and the keys in use have rotation disabled. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "dpp-02-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "dpp-02-q10",
@@ -738,13 +738,13 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Encryption in transit/at rest/in use\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind encryption in transit/at rest/in use, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -756,7 +756,7 @@ export const dataPrivacyStages: StageConfig[] = [
     "title": "Data retention and disposal",
     "subtitle": "Agentic technical & privacy audit of the data retention and disposal control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 7,
     "valueScore": 7,
     "rank": 0,
@@ -977,13 +977,13 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Data retention and disposal\" sub-process of Data Protection & Privacy?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the data retention and disposal control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the data retention and disposal control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for data retention and disposal against comparable organisations in the sector",
             "Obtain evidence that the data retention and disposal control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "dpp-03-q2",
@@ -991,13 +991,13 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Data retention and disposal\" matter to the broader Data Protection & Privacy posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Data Protection & Privacy",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Data Protection & Privacy estate",
             "It is a control other Data Protection & Privacy controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Data Protection & Privacy controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "dpp-03-q3",
@@ -1005,27 +1005,27 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Data retention and disposal\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The data-retention schedule by data type (legal/regulatory minimums and maximums) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's data retention and disposal settings, captured during the walkthrough",
+            "The The data-retention schedule by data type (legal/regulatory minimums and maximums), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the data retention and disposal control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's data retention and disposal capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "dpp-03-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Data retention and disposal\"?",
+          "text": "Where should an auditor pull the evidence for \"Data retention and disposal\"?",
           "options": [
-            "Storage lifecycle — S3 Lifecycle / Azure Blob lifecycle; DB purge jobs (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Storage lifecycle — S3 Lifecycle / Azure Blob lifecycle; DB purge jobs and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how data retention and disposal works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Storage lifecycle — S3 Lifecycle / Azure Blob lifecycle; DB purge jobs) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Storage lifecycle — S3 Lifecycle / Azure Blob lifecycle; DB purge jobs) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "dpp-03-q5",
@@ -1033,13 +1033,13 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Data retention and disposal\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Records management / Legal — own the schedule (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the data retention and disposal control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the data retention and disposal data is shared, so the accountability sits with no one in particular",
+            "Records management / Legal — own the schedule, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Records management / Legal — own the schedule owns the control data; the auditor independently verifies it."
+          "explanation": "Records management / Legal — own the schedule owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "dpp-03-q6",
@@ -1047,55 +1047,55 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Data retention and disposal\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "dpp-03-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "dpp-03-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Data retention and disposal\", which is a realistic reportable finding?",
+          "text": "For \"Data retention and disposal\", which of these is a realistic reportable finding?",
           "options": [
             "PII from closed customer accounts is retained indefinitely — a schedule exists on paper but no lifecycle rule enforces it, so eight years of expired data sits in production, expanding breach and GDPR exposure.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. PII from closed customer accounts is retained indefinitely — a schedule exists on paper but no lifecycle rule enforces it, so eight years of expired data sits in production, expanding breach and GDPR exposure."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. PII from closed customer accounts is retained indefinitely — a schedule exists on paper but no lifecycle rule enforces it, so eight years of expired data sits in production, expanding breach and GDPR exposure. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "dpp-03-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "dpp-03-q10",
@@ -1103,13 +1103,13 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Data retention and disposal\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind data retention and disposal, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1121,7 +1121,7 @@ export const dataPrivacyStages: StageConfig[] = [
     "title": "Backup governance and restore testing",
     "subtitle": "Agentic technical & privacy audit of the backup governance and restore testing control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 5,
     "valueScore": 9,
     "rank": 0,
@@ -1342,13 +1342,13 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Backup governance and restore testing\" sub-process of Data Protection & Privacy?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the backup governance and restore testing control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the backup governance and restore testing control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for backup governance and restore testing against comparable organisations in the sector",
             "Obtain evidence that the backup governance and restore testing control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "dpp-04-q2",
@@ -1356,13 +1356,13 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Backup governance and restore testing\" matter to the broader Data Protection & Privacy posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Data Protection & Privacy",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Data Protection & Privacy estate",
             "It is a control other Data Protection & Privacy controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Data Protection & Privacy controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "dpp-04-q3",
@@ -1370,27 +1370,27 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Backup governance and restore testing\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The backup inventory + schedule per system (what's backed up, frequency, RPO) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's backup governance and restore testing settings, captured during the walkthrough",
+            "The The backup inventory + schedule per system (what's backed up, frequency, RPO), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the backup governance and restore testing control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's backup governance and restore testing capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "dpp-04-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Backup governance and restore testing\"?",
+          "text": "Where should an auditor pull the evidence for \"Backup governance and restore testing\"?",
           "options": [
-            "Backup platform — Veeam / Commvault / Rubrik / AWS Backup (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Backup platform — Veeam / Commvault / Rubrik / AWS Backup and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how backup governance and restore testing works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Backup platform — Veeam / Commvault / Rubrik / AWS Backup) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Backup platform — Veeam / Commvault / Rubrik / AWS Backup) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "dpp-04-q5",
@@ -1398,13 +1398,13 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Backup governance and restore testing\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Backup / Infrastructure operations — own backups (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the backup governance and restore testing control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the backup governance and restore testing data is shared, so the accountability sits with no one in particular",
+            "Backup / Infrastructure operations — own backups, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Backup / Infrastructure operations — own backups owns the control data; the auditor independently verifies it."
+          "explanation": "Backup / Infrastructure operations — own backups owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "dpp-04-q6",
@@ -1412,55 +1412,55 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Backup governance and restore testing\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "dpp-04-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "dpp-04-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Backup governance and restore testing\", which is a realistic reportable finding?",
+          "text": "For \"Backup governance and restore testing\", which of these is a realistic reportable finding?",
           "options": [
             "A third of production systems show silent backup failures for months, no restore has been tested this year, and backups sit on a share writable by the production domain-admin account — so one ransomware actor encrypts production and the backups together.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. A third of production systems show silent backup failures for months, no restore has been tested this year, and backups sit on a share writable by the production domain-admin account — so one ransomware actor encrypts production and the backups together."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. A third of production systems show silent backup failures for months, no restore has been tested this year, and backups sit on a share writable by the production domain-admin account — so one ransomware actor encrypts production and the backups together. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "dpp-04-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "dpp-04-q10",
@@ -1468,13 +1468,13 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Backup governance and restore testing\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind backup governance and restore testing, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1486,7 +1486,7 @@ export const dataPrivacyStages: StageConfig[] = [
     "title": "Data loss prevention",
     "subtitle": "Agentic technical & privacy audit of the data loss prevention control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 6,
     "valueScore": 7,
     "rank": 0,
@@ -1711,13 +1711,13 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Data loss prevention\" sub-process of Data Protection & Privacy?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the data loss prevention control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the data loss prevention control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for data loss prevention against comparable organisations in the sector",
             "Obtain evidence that the data loss prevention control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "dpp-05-q2",
@@ -1725,13 +1725,13 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Data loss prevention\" matter to the broader Data Protection & Privacy posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Data Protection & Privacy",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Data Protection & Privacy estate",
             "It is a control other Data Protection & Privacy controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Data Protection & Privacy controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "dpp-05-q3",
@@ -1739,27 +1739,27 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Data loss prevention\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The DLP policy set — sensitive data types detected, on which channels (email, web, endpoint, cloud) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's data loss prevention settings, captured during the walkthrough",
+            "The The DLP policy set — sensitive data types detected, on which channels (email, web, endpoint, cloud), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the data loss prevention control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's data loss prevention capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "dpp-05-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Data loss prevention\"?",
+          "text": "Where should an auditor pull the evidence for \"Data loss prevention\"?",
           "options": [
-            "DLP — Microsoft Purview DLP / Forcepoint / Symantec; CASB for cloud (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From DLP — Microsoft Purview DLP / Forcepoint / Symantec; CASB for cloud and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how data loss prevention works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., DLP — Microsoft Purview DLP / Forcepoint / Symantec; CASB for cloud) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. DLP — Microsoft Purview DLP / Forcepoint / Symantec; CASB for cloud) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "dpp-05-q5",
@@ -1767,13 +1767,13 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Data loss prevention\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Data protection / security operations — own DLP (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the data loss prevention control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the data loss prevention data is shared, so the accountability sits with no one in particular",
+            "Data protection / security operations — own DLP, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Data protection / security operations — own DLP owns the control data; the auditor independently verifies it."
+          "explanation": "Data protection / security operations — own DLP owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "dpp-05-q6",
@@ -1781,55 +1781,55 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Data loss prevention\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "dpp-05-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "dpp-05-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Data loss prevention\", which is a realistic reportable finding?",
+          "text": "For \"Data loss prevention\", which of these is a realistic reportable finding?",
           "options": [
             "DLP runs on email only; endpoint USB and personal cloud sync are uncovered, so a test file of customer records copies to USB and uploads to personal Google Drive undetected — and the email DLP alerts route to a queue no one reviews.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. DLP runs on email only; endpoint USB and personal cloud sync are uncovered, so a test file of customer records copies to USB and uploads to personal Google Drive undetected — and the email DLP alerts route to a queue no one reviews."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. DLP runs on email only; endpoint USB and personal cloud sync are uncovered, so a test file of customer records copies to USB and uploads to personal Google Drive undetected — and the email DLP alerts route to a queue no one reviews. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "dpp-05-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "dpp-05-q10",
@@ -1837,13 +1837,13 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Data loss prevention\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind data loss prevention, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1855,7 +1855,7 @@ export const dataPrivacyStages: StageConfig[] = [
     "title": "Alert handling",
     "subtitle": "Agentic technical & privacy audit of the alert handling control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 7,
     "valueScore": 7,
     "rank": 0,
@@ -2076,13 +2076,13 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Alert handling\" sub-process of Data Protection & Privacy?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the alert handling control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the alert handling control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for alert handling against comparable organisations in the sector",
             "Obtain evidence that the alert handling control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "dpp-06-q2",
@@ -2090,13 +2090,13 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Alert handling\" matter to the broader Data Protection & Privacy posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Data Protection & Privacy",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Data Protection & Privacy estate",
             "It is a control other Data Protection & Privacy controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Data Protection & Privacy controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "dpp-06-q3",
@@ -2104,27 +2104,27 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Alert handling\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The data-security alert inventory (DLP, classification, access-anomaly, exfil) and where each routes reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's alert handling settings, captured during the walkthrough",
+            "The The data-security alert inventory (DLP, classification, access-anomaly, exfil) and where each routes, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the alert handling control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's alert handling capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "dpp-06-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Alert handling\"?",
+          "text": "Where should an auditor pull the evidence for \"Alert handling\"?",
           "options": [
-            "SIEM / SOAR — Sentinel / Splunk + Cortex XSOAR (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From SIEM / SOAR — Sentinel / Splunk + Cortex XSOAR and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how alert handling works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., SIEM / SOAR — Sentinel / Splunk + Cortex XSOAR) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. SIEM / SOAR — Sentinel / Splunk + Cortex XSOAR) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "dpp-06-q5",
@@ -2132,13 +2132,13 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Alert handling\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Security operations / SOC — triage (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the alert handling control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the alert handling data is shared, so the accountability sits with no one in particular",
+            "Security operations / SOC — triage, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Security operations / SOC — triage owns the control data; the auditor independently verifies it."
+          "explanation": "Security operations / SOC — triage owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "dpp-06-q6",
@@ -2146,55 +2146,55 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Alert handling\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "dpp-06-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "dpp-06-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Alert handling\", which is a realistic reportable finding?",
+          "text": "For \"Alert handling\", which of these is a realistic reportable finding?",
           "options": [
             "DLP and access-anomaly alerts route to a shared mailbox no one owns; ~4,000 alerts sit un-triaged, and a confirmed large download by a departing employee was buried in the noise and never escalated.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. DLP and access-anomaly alerts route to a shared mailbox no one owns; ~4,000 alerts sit un-triaged, and a confirmed large download by a departing employee was buried in the noise and never escalated."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. DLP and access-anomaly alerts route to a shared mailbox no one owns; ~4,000 alerts sit un-triaged, and a confirmed large download by a departing employee was buried in the noise and never escalated. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "dpp-06-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "dpp-06-q10",
@@ -2202,13 +2202,13 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Alert handling\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind alert handling, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -2220,7 +2220,7 @@ export const dataPrivacyStages: StageConfig[] = [
     "title": "Privacy compliance and sovereignty",
     "subtitle": "Agentic technical & privacy audit of the privacy compliance and sovereignty control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
@@ -2445,13 +2445,13 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Privacy compliance and sovereignty\" sub-process of Data Protection & Privacy?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the privacy compliance and sovereignty control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the privacy compliance and sovereignty control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for privacy compliance and sovereignty against comparable organisations in the sector",
             "Obtain evidence that the privacy compliance and sovereignty control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "dpp-07-q2",
@@ -2459,13 +2459,13 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Privacy compliance and sovereignty\" matter to the broader Data Protection & Privacy posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Data Protection & Privacy",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Data Protection & Privacy estate",
             "It is a control other Data Protection & Privacy controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Data Protection & Privacy controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "dpp-07-q3",
@@ -2473,27 +2473,27 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Privacy compliance and sovereignty\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The Record of Processing Activities (RoPA) — what personal data is processed, why, the lawful basis, and recipients reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's privacy compliance and sovereignty settings, captured during the walkthrough",
+            "The The Record of Processing Activities (RoPA) — what personal data is processed, why, the lawful basis, and recipients, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the privacy compliance and sovereignty control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's privacy compliance and sovereignty capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "dpp-07-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Privacy compliance and sovereignty\"?",
+          "text": "Where should an auditor pull the evidence for \"Privacy compliance and sovereignty\"?",
           "options": [
-            "Privacy management — OneTrust / TrustArc (RoPA, DSAR, consent) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Privacy management — OneTrust / TrustArc (RoPA, DSAR, consent) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how privacy compliance and sovereignty works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Privacy management — OneTrust / TrustArc (RoPA, DSAR, consent)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Privacy management — OneTrust / TrustArc (RoPA, DSAR, consent)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "dpp-07-q5",
@@ -2501,13 +2501,13 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Privacy compliance and sovereignty\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Data Protection Officer / Privacy — owns compliance (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the privacy compliance and sovereignty control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the privacy compliance and sovereignty data is shared, so the accountability sits with no one in particular",
+            "Data Protection Officer / Privacy — owns compliance, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Data Protection Officer / Privacy — owns compliance owns the control data; the auditor independently verifies it."
+          "explanation": "Data Protection Officer / Privacy — owns compliance owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "dpp-07-q6",
@@ -2515,55 +2515,55 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Privacy compliance and sovereignty\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "dpp-07-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "dpp-07-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Privacy compliance and sovereignty\", which is a realistic reportable finding?",
+          "text": "For \"Privacy compliance and sovereignty\", which of these is a realistic reportable finding?",
           "options": [
             "EU customer data is replicated to a US analytics region with no valid transfer mechanism, the RoPA is two years stale, and ~30% of DSARs missed the 30-day GDPR deadline.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. EU customer data is replicated to a US analytics region with no valid transfer mechanism, the RoPA is two years stale, and ~30% of DSARs missed the 30-day GDPR deadline."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. EU customer data is replicated to a US analytics region with no valid transfer mechanism, the RoPA is two years stale, and ~30% of DSARs missed the 30-day GDPR deadline. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "dpp-07-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "dpp-07-q10",
@@ -2571,13 +2571,13 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Privacy compliance and sovereignty\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind privacy compliance and sovereignty, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -2589,7 +2589,7 @@ export const dataPrivacyStages: StageConfig[] = [
     "title": "Data inventorying, lineage, provenance",
     "subtitle": "Agentic technical & privacy audit of the data inventorying, lineage, provenance control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 7,
     "valueScore": 7,
     "rank": 0,
@@ -2810,13 +2810,13 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Data inventorying, lineage, provenance\" sub-process of Data Protection & Privacy?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the data inventorying, lineage, provenance control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the data inventorying, lineage, provenance control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for data inventorying, lineage, provenance against comparable organisations in the sector",
             "Obtain evidence that the data inventorying, lineage, provenance control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "dpp-08-q2",
@@ -2824,13 +2824,13 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Data inventorying, lineage, provenance\" matter to the broader Data Protection & Privacy posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Data Protection & Privacy",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Data Protection & Privacy estate",
             "It is a control other Data Protection & Privacy controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Data Protection & Privacy controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "dpp-08-q3",
@@ -2838,27 +2838,27 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Data inventorying, lineage, provenance\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The enterprise data inventory/catalogue — datasets with owner, classification, and location reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's data inventorying, lineage, provenance settings, captured during the walkthrough",
+            "The The enterprise data inventory/catalogue — datasets with owner, classification, and location, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the data inventorying, lineage, provenance control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's data inventorying, lineage, provenance capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "dpp-08-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Data inventorying, lineage, provenance\"?",
+          "text": "Where should an auditor pull the evidence for \"Data inventorying, lineage, provenance\"?",
           "options": [
-            "Data catalogue — Collibra / Alation / Microsoft Purview / DataHub (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Data catalogue — Collibra / Alation / Microsoft Purview / DataHub and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how data inventorying, lineage, provenance works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Data catalogue — Collibra / Alation / Microsoft Purview / DataHub) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Data catalogue — Collibra / Alation / Microsoft Purview / DataHub) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "dpp-08-q5",
@@ -2866,13 +2866,13 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Data inventorying, lineage, provenance\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Data governance / Chief Data Office — owns the catalogue (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the data inventorying, lineage, provenance control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the data inventorying, lineage, provenance data is shared, so the accountability sits with no one in particular",
+            "Data governance / Chief Data Office — owns the catalogue, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Data governance / Chief Data Office — owns the catalogue owns the control data; the auditor independently verifies it."
+          "explanation": "Data governance / Chief Data Office — owns the catalogue owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "dpp-08-q6",
@@ -2880,55 +2880,55 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Data inventorying, lineage, provenance\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "dpp-08-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "dpp-08-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Data inventorying, lineage, provenance\", which is a realistic reportable finding?",
+          "text": "For \"Data inventorying, lineage, provenance\", which of these is a realistic reportable finding?",
           "options": [
             "The catalogue covers the warehouse but misses dozens of shadow databases and extracts; a key regulatory report has no lineage, so when a figure was wrong no one could trace it to source — and the same gap means a breach's blast radius can't be scoped.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. The catalogue covers the warehouse but misses dozens of shadow databases and extracts; a key regulatory report has no lineage, so when a figure was wrong no one could trace it to source — and the same gap means a breach's blast radius can't be scoped."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. The catalogue covers the warehouse but misses dozens of shadow databases and extracts; a key regulatory report has no lineage, so when a figure was wrong no one could trace it to source — and the same gap means a breach's blast radius can't be scoped. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "dpp-08-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "dpp-08-q10",
@@ -2936,13 +2936,13 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Data inventorying, lineage, provenance\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind data inventorying, lineage, provenance, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -2954,7 +2954,7 @@ export const dataPrivacyStages: StageConfig[] = [
     "title": "Data monitoring",
     "subtitle": "Agentic technical & privacy audit of the data monitoring control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 8,
     "valueScore": 7,
     "rank": 0,
@@ -3175,13 +3175,13 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Data monitoring\" sub-process of Data Protection & Privacy?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the data monitoring control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the data monitoring control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for data monitoring against comparable organisations in the sector",
             "Obtain evidence that the data monitoring control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "dpp-09-q2",
@@ -3189,13 +3189,13 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Data monitoring\" matter to the broader Data Protection & Privacy posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Data Protection & Privacy",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Data Protection & Privacy estate",
             "It is a control other Data Protection & Privacy controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Data Protection & Privacy controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "dpp-09-q3",
@@ -3203,27 +3203,27 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Data monitoring\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The Database/data-store activity-monitoring (DAM) configuration — what access/queries are logged on sensitive stores reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's data monitoring settings, captured during the walkthrough",
+            "The Database/data-store activity-monitoring (DAM) configuration — what access/queries are logged on sensitive stores, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the data monitoring control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's data monitoring capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "dpp-09-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Data monitoring\"?",
+          "text": "Where should an auditor pull the evidence for \"Data monitoring\"?",
           "options": [
-            "DAM — Imperva / IBM Guardium / native (SQL Audit, RDS/Redshift logging) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From DAM — Imperva / IBM Guardium / native (SQL Audit, RDS/Redshift logging) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how data monitoring works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., DAM — Imperva / IBM Guardium / native (SQL Audit, RDS/Redshift logging)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. DAM — Imperva / IBM Guardium / native (SQL Audit, RDS/Redshift logging)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "dpp-09-q5",
@@ -3231,13 +3231,13 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Data monitoring\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Security operations / data security — own monitoring (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the data monitoring control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the data monitoring data is shared, so the accountability sits with no one in particular",
+            "Security operations / data security — own monitoring, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Security operations / data security — own monitoring owns the control data; the auditor independently verifies it."
+          "explanation": "Security operations / data security — own monitoring owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "dpp-09-q6",
@@ -3245,55 +3245,55 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Data monitoring\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "dpp-09-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "dpp-09-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Data monitoring\", which is a realistic reportable finding?",
+          "text": "For \"Data monitoring\", which of these is a realistic reportable finding?",
           "options": [
             "Production databases holding PII have no activity monitoring, DBAs query customer data freely with no log or review, and S3 data-event logging is off — so a bulk export of the customer table would leave no trace.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. Production databases holding PII have no activity monitoring, DBAs query customer data freely with no log or review, and S3 data-event logging is off — so a bulk export of the customer table would leave no trace."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. Production databases holding PII have no activity monitoring, DBAs query customer data freely with no log or review, and S3 data-event logging is off — so a bulk export of the customer table would leave no trace. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "dpp-09-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "dpp-09-q10",
@@ -3301,13 +3301,13 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Data monitoring\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind data monitoring, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -3319,7 +3319,7 @@ export const dataPrivacyStages: StageConfig[] = [
     "title": "Quantum-ready data protection",
     "subtitle": "Agentic technical & privacy audit of the quantum-ready data protection control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
@@ -3541,13 +3541,13 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Quantum-ready data protection\" sub-process of Data Protection & Privacy?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the quantum-ready data protection control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the quantum-ready data protection control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for quantum-ready data protection against comparable organisations in the sector",
             "Obtain evidence that the quantum-ready data protection control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "dpp-10-q2",
@@ -3555,13 +3555,13 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Quantum-ready data protection\" matter to the broader Data Protection & Privacy posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Data Protection & Privacy",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Data Protection & Privacy estate",
             "It is a control other Data Protection & Privacy controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Data Protection & Privacy controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "dpp-10-q3",
@@ -3569,27 +3569,27 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Quantum-ready data protection\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The inventory of long-lived sensitive data and the confidentiality lifetime each requires reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's quantum-ready data protection settings, captured during the walkthrough",
+            "The The inventory of long-lived sensitive data and the confidentiality lifetime each requires, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the quantum-ready data protection control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's quantum-ready data protection capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "dpp-10-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Quantum-ready data protection\"?",
+          "text": "Where should an auditor pull the evidence for \"Quantum-ready data protection\"?",
           "options": [
-            "Data inventory + retention schedule (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Data inventory + retention schedule and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how quantum-ready data protection works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Data inventory + retention schedule) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Data inventory + retention schedule) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "dpp-10-q5",
@@ -3597,13 +3597,13 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Quantum-ready data protection\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Cryptography/PKI + Privacy — own data-protection crypto (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the quantum-ready data protection control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the quantum-ready data protection data is shared, so the accountability sits with no one in particular",
+            "Cryptography/PKI + Privacy — own data-protection crypto, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Cryptography/PKI + Privacy — own data-protection crypto owns the control data; the auditor independently verifies it."
+          "explanation": "Cryptography/PKI + Privacy — own data-protection crypto owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "dpp-10-q6",
@@ -3611,55 +3611,55 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Quantum-ready data protection\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "dpp-10-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "dpp-10-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Quantum-ready data protection\", which is a realistic reportable finding?",
+          "text": "For \"Quantum-ready data protection\", which of these is a realistic reportable finding?",
           "options": [
             "Decades-retention health and financial records are protected only by classical RSA/ECC and traverse links an adversary could record today; there is no HNDL assessment and no PQC migration plan, so this data is already at risk.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. Decades-retention health and financial records are protected only by classical RSA/ECC and traverse links an adversary could record today; there is no HNDL assessment and no PQC migration plan, so this data is already at risk."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. Decades-retention health and financial records are protected only by classical RSA/ECC and traverse links an adversary could record today; there is no HNDL assessment and no PQC migration plan, so this data is already at risk. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "dpp-10-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "dpp-10-q10",
@@ -3667,13 +3667,13 @@ export const dataPrivacyStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Quantum-ready data protection\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind quantum-ready data protection, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }

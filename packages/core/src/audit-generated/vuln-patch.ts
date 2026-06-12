@@ -18,7 +18,7 @@ export const vulnPatchStages: StageConfig[] = [
     "title": "Server build standards and hardening",
     "subtitle": "Agentic technical & privacy audit of the server build standards and hardening control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
@@ -243,13 +243,13 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Server build standards and hardening\" sub-process of Vulnerability & Patch Management?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the server build standards and hardening control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the server build standards and hardening control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for server build standards and hardening against comparable organisations in the sector",
             "Obtain evidence that the server build standards and hardening control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "vpm-01-q2",
@@ -257,13 +257,13 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Server build standards and hardening\" matter to the broader Vulnerability & Patch Management posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Vulnerability & Patch Management",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Vulnerability & Patch Management estate",
             "It is a control other Vulnerability & Patch Management controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Vulnerability & Patch Management controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "vpm-01-q3",
@@ -271,27 +271,27 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Server build standards and hardening\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The approved hardening baseline per OS (the CIS Benchmark level or DISA STIG the org committed to) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's server build standards and hardening settings, captured during the walkthrough",
+            "The The approved hardening baseline per OS (the CIS Benchmark level or DISA STIG the org committed to), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the server build standards and hardening control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's server build standards and hardening capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "vpm-01-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Server build standards and hardening\"?",
+          "text": "Where should an auditor pull the evidence for \"Server build standards and hardening\"?",
           "options": [
-            "CIS-CAT / Tenable Policy Compliance / Qualys PC (configuration-compliance scanner) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From CIS-CAT / Tenable Policy Compliance / Qualys PC (configuration-compliance scanner) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how server build standards and hardening works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., CIS-CAT / Tenable Policy Compliance / Qualys PC (configuration-compliance scanner)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. CIS-CAT / Tenable Policy Compliance / Qualys PC (configuration-compliance scanner)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "vpm-01-q5",
@@ -299,13 +299,13 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Server build standards and hardening\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "IT Operations / Platform engineering — owns the build (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the server build standards and hardening control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the server build standards and hardening data is shared, so the accountability sits with no one in particular",
+            "IT Operations / Platform engineering — owns the build, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "IT Operations / Platform engineering — owns the build owns the control data; the auditor independently verifies it."
+          "explanation": "IT Operations / Platform engineering — owns the build owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "vpm-01-q6",
@@ -313,55 +313,55 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Server build standards and hardening\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "vpm-01-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "vpm-01-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Server build standards and hardening\", which is a realistic reportable finding?",
+          "text": "For \"Server build standards and hardening\", which of these is a realistic reportable finding?",
           "options": [
             "A subset of production servers built from a two-year-old image scoring ~60% against CIS Level 1 — SSH root login enabled, weak ciphers, and no host firewall.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. A subset of production servers built from a two-year-old image scoring ~60% against CIS Level 1 — SSH root login enabled, weak ciphers, and no host firewall."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. A subset of production servers built from a two-year-old image scoring ~60% against CIS Level 1 — SSH root login enabled, weak ciphers, and no host firewall. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "vpm-01-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "vpm-01-q10",
@@ -369,13 +369,13 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Server build standards and hardening\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind server build standards and hardening, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -387,7 +387,7 @@ export const vulnPatchStages: StageConfig[] = [
     "title": "Patch mgmt and exception handling",
     "subtitle": "Agentic technical & privacy audit of the patch mgmt and exception handling control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 6,
     "valueScore": 9,
     "rank": 0,
@@ -609,13 +609,13 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Patch mgmt and exception handling\" sub-process of Vulnerability & Patch Management?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the patch mgmt and exception handling control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the patch mgmt and exception handling control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for patch mgmt and exception handling against comparable organisations in the sector",
             "Obtain evidence that the patch mgmt and exception handling control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "vpm-02-q2",
@@ -623,13 +623,13 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Patch mgmt and exception handling\" matter to the broader Vulnerability & Patch Management posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Vulnerability & Patch Management",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Vulnerability & Patch Management estate",
             "It is a control other Vulnerability & Patch Management controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Vulnerability & Patch Management controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "vpm-02-q3",
@@ -637,27 +637,27 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Patch mgmt and exception handling\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The patch-compliance report by host — missing patches with severity and age reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's patch mgmt and exception handling settings, captured during the walkthrough",
+            "The The patch-compliance report by host — missing patches with severity and age, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the patch mgmt and exception handling control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's patch mgmt and exception handling capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "vpm-02-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Patch mgmt and exception handling\"?",
+          "text": "Where should an auditor pull the evidence for \"Patch mgmt and exception handling\"?",
           "options": [
-            "WSUS / SCCM / Intune (Windows) and Satellite / Ansible (Linux) patch state (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From WSUS / SCCM / Intune (Windows) and Satellite / Ansible (Linux) patch state and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how patch mgmt and exception handling works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., WSUS / SCCM / Intune (Windows) and Satellite / Ansible (Linux) patch state) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. WSUS / SCCM / Intune (Windows) and Satellite / Ansible (Linux) patch state) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "vpm-02-q5",
@@ -665,13 +665,13 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Patch mgmt and exception handling\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "IT Operations — applies the patches (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the patch mgmt and exception handling control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the patch mgmt and exception handling data is shared, so the accountability sits with no one in particular",
+            "IT Operations — applies the patches, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "IT Operations — applies the patches owns the control data; the auditor independently verifies it."
+          "explanation": "IT Operations — applies the patches owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "vpm-02-q6",
@@ -679,55 +679,55 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Patch mgmt and exception handling\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "vpm-02-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "vpm-02-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Patch mgmt and exception handling\", which is a realistic reportable finding?",
+          "text": "For \"Patch mgmt and exception handling\", which of these is a realistic reportable finding?",
           "options": [
             "Several internet-facing hosts missing a KEV-listed critical patch for 90+ days with no risk acceptance on file — exactly the pattern behind most breaches.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. Several internet-facing hosts missing a KEV-listed critical patch for 90+ days with no risk acceptance on file — exactly the pattern behind most breaches."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. Several internet-facing hosts missing a KEV-listed critical patch for 90+ days with no risk acceptance on file — exactly the pattern behind most breaches. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "vpm-02-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "vpm-02-q10",
@@ -735,13 +735,13 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Patch mgmt and exception handling\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind patch mgmt and exception handling, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -753,7 +753,7 @@ export const vulnPatchStages: StageConfig[] = [
     "title": "Configuration drift monitoring",
     "subtitle": "Agentic technical & privacy audit of the configuration drift monitoring control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 8,
     "valueScore": 7,
     "rank": 0,
@@ -974,13 +974,13 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Configuration drift monitoring\" sub-process of Vulnerability & Patch Management?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the configuration drift monitoring control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the configuration drift monitoring control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for configuration drift monitoring against comparable organisations in the sector",
             "Obtain evidence that the configuration drift monitoring control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "vpm-03-q2",
@@ -988,13 +988,13 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Configuration drift monitoring\" matter to the broader Vulnerability & Patch Management posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Vulnerability & Patch Management",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Vulnerability & Patch Management estate",
             "It is a control other Vulnerability & Patch Management controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Vulnerability & Patch Management controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "vpm-03-q3",
@@ -1002,27 +1002,27 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Configuration drift monitoring\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The desired-state configuration baseline held by the CM tool reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's configuration drift monitoring settings, captured during the walkthrough",
+            "The The desired-state configuration baseline held by the CM tool, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the configuration drift monitoring control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's configuration drift monitoring capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "vpm-03-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Configuration drift monitoring\"?",
+          "text": "Where should an auditor pull the evidence for \"Configuration drift monitoring\"?",
           "options": [
-            "Chef / Puppet / Ansible / AWS SSM State Manager (the desired-state engine) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Chef / Puppet / Ansible / AWS SSM State Manager (the desired-state engine) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how configuration drift monitoring works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Chef / Puppet / Ansible / AWS SSM State Manager (the desired-state engine)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Chef / Puppet / Ansible / AWS SSM State Manager (the desired-state engine)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "vpm-03-q5",
@@ -1030,13 +1030,13 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Configuration drift monitoring\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Platform / SRE — owns configuration management (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the configuration drift monitoring control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the configuration drift monitoring data is shared, so the accountability sits with no one in particular",
+            "Platform / SRE — owns configuration management, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Platform / SRE — owns configuration management owns the control data; the auditor independently verifies it."
+          "explanation": "Platform / SRE — owns configuration management owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "vpm-03-q6",
@@ -1044,55 +1044,55 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Configuration drift monitoring\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "vpm-03-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "vpm-03-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Configuration drift monitoring\", which is a realistic reportable finding?",
+          "text": "For \"Configuration drift monitoring\", which of these is a realistic reportable finding?",
           "options": [
             "About 20% of the fleet isn't enrolled in configuration management, so its drift is invisible; among enrolled hosts, several have firewall/security-group drift unremediated for weeks.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. About 20% of the fleet isn't enrolled in configuration management, so its drift is invisible; among enrolled hosts, several have firewall/security-group drift unremediated for weeks."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. About 20% of the fleet isn't enrolled in configuration management, so its drift is invisible; among enrolled hosts, several have firewall/security-group drift unremediated for weeks. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "vpm-03-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "vpm-03-q10",
@@ -1100,13 +1100,13 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Configuration drift monitoring\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind configuration drift monitoring, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1118,7 +1118,7 @@ export const vulnPatchStages: StageConfig[] = [
     "title": "Administrative access controls",
     "subtitle": "Agentic technical & privacy audit of the administrative access controls control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 5,
     "valueScore": 9,
     "rank": 0,
@@ -1339,13 +1339,13 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Administrative access controls\" sub-process of Vulnerability & Patch Management?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the administrative access controls control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the administrative access controls control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for administrative access controls against comparable organisations in the sector",
             "Obtain evidence that the administrative access controls control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "vpm-04-q2",
@@ -1353,13 +1353,13 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Administrative access controls\" matter to the broader Vulnerability & Patch Management posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Vulnerability & Patch Management",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Vulnerability & Patch Management estate",
             "It is a control other Vulnerability & Patch Management controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Vulnerability & Patch Management controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "vpm-04-q3",
@@ -1367,27 +1367,27 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Administrative access controls\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The local/privileged administrator membership per server (who can log on as admin) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's administrative access controls settings, captured during the walkthrough",
+            "The The local/privileged administrator membership per server (who can log on as admin), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the administrative access controls control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's administrative access controls capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "vpm-04-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Administrative access controls\"?",
+          "text": "Where should an auditor pull the evidence for \"Administrative access controls\"?",
           "options": [
-            "Active Directory / local groups (server admin membership) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Active Directory / local groups (server admin membership) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how administrative access controls works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Active Directory / local groups (server admin membership)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Active Directory / local groups (server admin membership)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "vpm-04-q5",
@@ -1395,13 +1395,13 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Administrative access controls\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Platform / infrastructure — owns server administration (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the administrative access controls control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the administrative access controls data is shared, so the accountability sits with no one in particular",
+            "Platform / infrastructure — owns server administration, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Platform / infrastructure — owns server administration owns the control data; the auditor independently verifies it."
+          "explanation": "Platform / infrastructure — owns server administration owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "vpm-04-q6",
@@ -1409,55 +1409,55 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Administrative access controls\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "vpm-04-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "vpm-04-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Administrative access controls\", which is a realistic reportable finding?",
+          "text": "For \"Administrative access controls\", which of these is a realistic reportable finding?",
           "options": [
             "A shared local 'admin' account used by 30 engineers with no MFA and direct RDP from workstations, bypassing the bastion entirely — one phished laptop owns every server.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. A shared local 'admin' account used by 30 engineers with no MFA and direct RDP from workstations, bypassing the bastion entirely — one phished laptop owns every server."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. A shared local 'admin' account used by 30 engineers with no MFA and direct RDP from workstations, bypassing the bastion entirely — one phished laptop owns every server. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "vpm-04-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "vpm-04-q10",
@@ -1465,13 +1465,13 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Administrative access controls\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind administrative access controls, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1483,7 +1483,7 @@ export const vulnPatchStages: StageConfig[] = [
     "title": "Vulnerability management",
     "subtitle": "Agentic technical & privacy audit of the vulnerability management control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 6,
     "valueScore": 9,
     "rank": 0,
@@ -1709,13 +1709,13 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Vulnerability management\" sub-process of Vulnerability & Patch Management?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the vulnerability management control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the vulnerability management control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for vulnerability management against comparable organisations in the sector",
             "Obtain evidence that the vulnerability management control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "vpm-05-q2",
@@ -1723,13 +1723,13 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Vulnerability management\" matter to the broader Vulnerability & Patch Management posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Vulnerability & Patch Management",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Vulnerability & Patch Management estate",
             "It is a control other Vulnerability & Patch Management controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Vulnerability & Patch Management controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "vpm-05-q3",
@@ -1737,27 +1737,27 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Vulnerability management\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The authenticated vulnerability-scan results across the asset estate reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's vulnerability management settings, captured during the walkthrough",
+            "The The authenticated vulnerability-scan results across the asset estate, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the vulnerability management control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's vulnerability management capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "vpm-05-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Vulnerability management\"?",
+          "text": "Where should an auditor pull the evidence for \"Vulnerability management\"?",
           "options": [
-            "Tenable / Qualys / Rapid7 (the scanner) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Tenable / Qualys / Rapid7 (the scanner) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how vulnerability management works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Tenable / Qualys / Rapid7 (the scanner)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Tenable / Qualys / Rapid7 (the scanner)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "vpm-05-q5",
@@ -1765,13 +1765,13 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Vulnerability management\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Security operations / Vulnerability management — owns the program (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the vulnerability management control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the vulnerability management data is shared, so the accountability sits with no one in particular",
+            "Security operations / Vulnerability management — owns the program, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Security operations / Vulnerability management — owns the program owns the control data; the auditor independently verifies it."
+          "explanation": "Security operations / Vulnerability management — owns the program owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "vpm-05-q6",
@@ -1779,55 +1779,55 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Vulnerability management\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "vpm-05-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "vpm-05-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Vulnerability management\", which is a realistic reportable finding?",
+          "text": "For \"Vulnerability management\", which of these is a realistic reportable finding?",
           "options": [
             "Scanner coverage is ~70% of the CMDB and ~40% of scans are unauthenticated (so they miss most host vulnerabilities); a backlog of KEV-listed criticals sits unremediated on the unscanned remainder.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. Scanner coverage is ~70% of the CMDB and ~40% of scans are unauthenticated (so they miss most host vulnerabilities); a backlog of KEV-listed criticals sits unremediated on the unscanned remainder."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. Scanner coverage is ~70% of the CMDB and ~40% of scans are unauthenticated (so they miss most host vulnerabilities); a backlog of KEV-listed criticals sits unremediated on the unscanned remainder. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "vpm-05-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "vpm-05-q10",
@@ -1835,13 +1835,13 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Vulnerability management\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind vulnerability management, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1853,7 +1853,7 @@ export const vulnPatchStages: StageConfig[] = [
     "title": "Host event logging and monitoring",
     "subtitle": "Agentic technical & privacy audit of the host event logging and monitoring control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 8,
     "valueScore": 7,
     "rank": 0,
@@ -2079,13 +2079,13 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Host event logging and monitoring\" sub-process of Vulnerability & Patch Management?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the host event logging and monitoring control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the host event logging and monitoring control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for host event logging and monitoring against comparable organisations in the sector",
             "Obtain evidence that the host event logging and monitoring control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "vpm-06-q2",
@@ -2093,13 +2093,13 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Host event logging and monitoring\" matter to the broader Vulnerability & Patch Management posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Vulnerability & Patch Management",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Vulnerability & Patch Management estate",
             "It is a control other Vulnerability & Patch Management controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Vulnerability & Patch Management controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "vpm-06-q3",
@@ -2107,27 +2107,27 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Host event logging and monitoring\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The host logging configuration (what's collected: authentication, process-creation, PowerShell script-block, Sysmon, EDR telemetry) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's host event logging and monitoring settings, captured during the walkthrough",
+            "The The host logging configuration (what's collected: authentication, process-creation, PowerShell script-block, Sysmon, EDR telemetry), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the host event logging and monitoring control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's host event logging and monitoring capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "vpm-06-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Host event logging and monitoring\"?",
+          "text": "Where should an auditor pull the evidence for \"Host event logging and monitoring\"?",
           "options": [
-            "Sysmon / Windows Event Log / auditd (host configuration) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Sysmon / Windows Event Log / auditd (host configuration) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how host event logging and monitoring works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Sysmon / Windows Event Log / auditd (host configuration)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Sysmon / Windows Event Log / auditd (host configuration)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "vpm-06-q5",
@@ -2135,13 +2135,13 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Host event logging and monitoring\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Security operations / detection engineering (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the host event logging and monitoring control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the host event logging and monitoring data is shared, so the accountability sits with no one in particular",
+            "Security operations / detection engineering, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Security operations / detection engineering owns the control data; the auditor independently verifies it."
+          "explanation": "Security operations / detection engineering owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "vpm-06-q6",
@@ -2149,55 +2149,55 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Host event logging and monitoring\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "vpm-06-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "vpm-06-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Host event logging and monitoring\", which is a realistic reportable finding?",
+          "text": "For \"Host event logging and monitoring\", which of these is a realistic reportable finding?",
           "options": [
             "About 15% of servers send no logs to the SIEM, and command-line process auditing (4688) is off fleet-wide — so the single most useful host telemetry for investigations is simply missing.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. About 15% of servers send no logs to the SIEM, and command-line process auditing (4688) is off fleet-wide — so the single most useful host telemetry for investigations is simply missing."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. About 15% of servers send no logs to the SIEM, and command-line process auditing (4688) is off fleet-wide — so the single most useful host telemetry for investigations is simply missing. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "vpm-06-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "vpm-06-q10",
@@ -2205,13 +2205,13 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Host event logging and monitoring\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind host event logging and monitoring, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -2223,7 +2223,7 @@ export const vulnPatchStages: StageConfig[] = [
     "title": "Red and blue teaming",
     "subtitle": "Agentic technical & privacy audit of the red and blue teaming control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
@@ -2445,13 +2445,13 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Red and blue teaming\" sub-process of Vulnerability & Patch Management?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the red and blue teaming control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the red and blue teaming control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for red and blue teaming against comparable organisations in the sector",
             "Obtain evidence that the red and blue teaming control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "vpm-07-q2",
@@ -2459,13 +2459,13 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Red and blue teaming\" matter to the broader Vulnerability & Patch Management posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Vulnerability & Patch Management",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Vulnerability & Patch Management estate",
             "It is a control other Vulnerability & Patch Management controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Vulnerability & Patch Management controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "vpm-07-q3",
@@ -2473,27 +2473,27 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Red and blue teaming\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The red-team engagement reports with scope and rules of engagement (RoE) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's red and blue teaming settings, captured during the walkthrough",
+            "The The red-team engagement reports with scope and rules of engagement (RoE), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the red and blue teaming control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's red and blue teaming capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "vpm-07-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Red and blue teaming\"?",
+          "text": "Where should an auditor pull the evidence for \"Red and blue teaming\"?",
           "options": [
-            "Adversary-emulation tooling — MITRE Caldera / Atomic Red Team / Cobalt Strike (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Adversary-emulation tooling — MITRE Caldera / Atomic Red Team / Cobalt Strike and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how red and blue teaming works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Adversary-emulation tooling — MITRE Caldera / Atomic Red Team / Cobalt Strike) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Adversary-emulation tooling — MITRE Caldera / Atomic Red Team / Cobalt Strike) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "vpm-07-q5",
@@ -2501,13 +2501,13 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Red and blue teaming\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Offensive security (red) (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the red and blue teaming control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the red and blue teaming data is shared, so the accountability sits with no one in particular",
+            "Offensive security (red), with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Offensive security (red) owns the control data; the auditor independently verifies it."
+          "explanation": "Offensive security (red) owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "vpm-07-q6",
@@ -2515,55 +2515,55 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Red and blue teaming\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "vpm-07-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "vpm-07-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Red and blue teaming\", which is a realistic reportable finding?",
+          "text": "For \"Red and blue teaming\", which of these is a realistic reportable finding?",
           "options": [
             "Adversary emulation covers only a handful of ATT&CK techniques; several executed techniques (e.g. LSASS credential dumping) produced no alert, and the detection gap was never remediated.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. Adversary emulation covers only a handful of ATT&CK techniques; several executed techniques (e.g. LSASS credential dumping) produced no alert, and the detection gap was never remediated."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. Adversary emulation covers only a handful of ATT&CK techniques; several executed techniques (e.g. LSASS credential dumping) produced no alert, and the detection gap was never remediated. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "vpm-07-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "vpm-07-q10",
@@ -2571,13 +2571,13 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Red and blue teaming\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind red and blue teaming, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -2589,7 +2589,7 @@ export const vulnPatchStages: StageConfig[] = [
     "title": "Malware analysis",
     "subtitle": "Agentic technical & privacy audit of the malware analysis control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 6,
     "valueScore": 7,
     "rank": 0,
@@ -2811,13 +2811,13 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Malware analysis\" sub-process of Vulnerability & Patch Management?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the malware analysis control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the malware analysis control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for malware analysis against comparable organisations in the sector",
             "Obtain evidence that the malware analysis control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "vpm-08-q2",
@@ -2825,13 +2825,13 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Malware analysis\" matter to the broader Vulnerability & Patch Management posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Vulnerability & Patch Management",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Vulnerability & Patch Management estate",
             "It is a control other Vulnerability & Patch Management controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Vulnerability & Patch Management controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "vpm-08-q3",
@@ -2839,27 +2839,27 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Malware analysis\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The malware triage/analysis procedure + sandbox detonation reports reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's malware analysis settings, captured during the walkthrough",
+            "The The malware triage/analysis procedure + sandbox detonation reports, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the malware analysis control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's malware analysis capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "vpm-08-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Malware analysis\"?",
+          "text": "Where should an auditor pull the evidence for \"Malware analysis\"?",
           "options": [
-            "Sandbox — Cuckoo / CAPE / Joe Sandbox, or EDR detonation (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Sandbox — Cuckoo / CAPE / Joe Sandbox, or EDR detonation and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how malware analysis works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Sandbox — Cuckoo / CAPE / Joe Sandbox, or EDR detonation) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Sandbox — Cuckoo / CAPE / Joe Sandbox, or EDR detonation) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "vpm-08-q5",
@@ -2867,13 +2867,13 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Malware analysis\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "SOC / threat analysis / DFIR (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the malware analysis control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the malware analysis data is shared, so the accountability sits with no one in particular",
+            "SOC / threat analysis / DFIR, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "SOC / threat analysis / DFIR owns the control data; the auditor independently verifies it."
+          "explanation": "SOC / threat analysis / DFIR owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "vpm-08-q6",
@@ -2881,55 +2881,55 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Malware analysis\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "vpm-08-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "vpm-08-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Malware analysis\", which is a realistic reportable finding?",
+          "text": "For \"Malware analysis\", which of these is a realistic reportable finding?",
           "options": [
             "Malware is analysed but the IOCs are never fed back into EDR/SIEM block lists, so the same indicators recur weeks later; no YARA/Sigma detections are produced from the work.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. Malware is analysed but the IOCs are never fed back into EDR/SIEM block lists, so the same indicators recur weeks later; no YARA/Sigma detections are produced from the work."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. Malware is analysed but the IOCs are never fed back into EDR/SIEM block lists, so the same indicators recur weeks later; no YARA/Sigma detections are produced from the work. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "vpm-08-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "vpm-08-q10",
@@ -2937,13 +2937,13 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Malware analysis\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind malware analysis, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -2955,7 +2955,7 @@ export const vulnPatchStages: StageConfig[] = [
     "title": "AI for red teaming",
     "subtitle": "Agentic technical & privacy audit of the ai for red teaming control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
@@ -3177,13 +3177,13 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"AI for red teaming\" sub-process of Vulnerability & Patch Management?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the ai for red teaming control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the ai for red teaming control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for ai for red teaming against comparable organisations in the sector",
             "Obtain evidence that the ai for red teaming control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "vpm-09-q2",
@@ -3191,13 +3191,13 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"AI for red teaming\" matter to the broader Vulnerability & Patch Management posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Vulnerability & Patch Management",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Vulnerability & Patch Management estate",
             "It is a control other Vulnerability & Patch Management controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Vulnerability & Patch Management controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "vpm-09-q3",
@@ -3205,27 +3205,27 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"AI for red teaming\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The inventory of AI-assisted offensive tooling in use, with its authorisation and guardrails reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's ai for red teaming settings, captured during the walkthrough",
+            "The The inventory of AI-assisted offensive tooling in use, with its authorisation and guardrails, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the ai for red teaming control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's ai for red teaming capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "vpm-09-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"AI for red teaming\"?",
+          "text": "Where should an auditor pull the evidence for \"AI for red teaming\"?",
           "options": [
-            "The AI/LLM tooling and its API/usage logs (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From The AI/LLM tooling and its API/usage logs and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how ai for red teaming works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., The AI/LLM tooling and its API/usage logs) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. The AI/LLM tooling and its API/usage logs) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "vpm-09-q5",
@@ -3233,13 +3233,13 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"AI for red teaming\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Offensive security (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the ai for red teaming control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the ai for red teaming data is shared, so the accountability sits with no one in particular",
+            "Offensive security, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Offensive security owns the control data; the auditor independently verifies it."
+          "explanation": "Offensive security owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "vpm-09-q6",
@@ -3247,55 +3247,55 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"AI for red teaming\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "vpm-09-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "vpm-09-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"AI for red teaming\", which is a realistic reportable finding?",
+          "text": "For \"AI for red teaming\", which of these is a realistic reportable finding?",
           "options": [
             "An engineer uses a public LLM to generate phishing pretexts with real client data pasted into the prompts — outside RoE, unlogged, and a data-leak in its own right.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. An engineer uses a public LLM to generate phishing pretexts with real client data pasted into the prompts — outside RoE, unlogged, and a data-leak in its own right."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. An engineer uses a public LLM to generate phishing pretexts with real client data pasted into the prompts — outside RoE, unlogged, and a data-leak in its own right. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "vpm-09-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "vpm-09-q10",
@@ -3303,13 +3303,13 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"AI for red teaming\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind ai for red teaming, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -3321,7 +3321,7 @@ export const vulnPatchStages: StageConfig[] = [
     "title": "STE — cloud infra vuln tickets",
     "subtitle": "Agentic technical & privacy audit of the ste — cloud infra vuln tickets control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 5,
     "valueScore": 9,
     "rank": 0,
@@ -3543,13 +3543,13 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"STE — cloud infra vuln tickets\" sub-process of Vulnerability & Patch Management?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the ste — cloud infra vuln tickets control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the ste — cloud infra vuln tickets control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for ste — cloud infra vuln tickets against comparable organisations in the sector",
             "Obtain evidence that the ste — cloud infra vuln tickets control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "vpm-10-q2",
@@ -3557,13 +3557,13 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"STE — cloud infra vuln tickets\" matter to the broader Vulnerability & Patch Management posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Vulnerability & Patch Management",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Vulnerability & Patch Management estate",
             "It is a control other Vulnerability & Patch Management controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Vulnerability & Patch Management controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "vpm-10-q3",
@@ -3571,27 +3571,27 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"STE — cloud infra vuln tickets\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The pipeline from cloud vulnerability finding (CSPM/scanner) to a ticket with an owner and SLA reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's ste — cloud infra vuln tickets settings, captured during the walkthrough",
+            "The The pipeline from cloud vulnerability finding (CSPM/scanner) to a ticket with an owner and SLA, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the ste — cloud infra vuln tickets control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's ste — cloud infra vuln tickets capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "vpm-10-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"STE — cloud infra vuln tickets\"?",
+          "text": "Where should an auditor pull the evidence for \"STE — cloud infra vuln tickets\"?",
           "options": [
-            "CSPM — Wiz / Prisma Cloud / Microsoft Defender for Cloud, or AWS Inspector + Security Hub (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From CSPM — Wiz / Prisma Cloud / Microsoft Defender for Cloud, or AWS Inspector + Security Hub and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how ste — cloud infra vuln tickets works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., CSPM — Wiz / Prisma Cloud / Microsoft Defender for Cloud, or AWS Inspector + Security Hub) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. CSPM — Wiz / Prisma Cloud / Microsoft Defender for Cloud, or AWS Inspector + Security Hub) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "vpm-10-q5",
@@ -3599,13 +3599,13 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"STE — cloud infra vuln tickets\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Cloud security — owns the engine (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the ste — cloud infra vuln tickets control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the ste — cloud infra vuln tickets data is shared, so the accountability sits with no one in particular",
+            "Cloud security — owns the engine, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Cloud security — owns the engine owns the control data; the auditor independently verifies it."
+          "explanation": "Cloud security — owns the engine owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "vpm-10-q6",
@@ -3613,55 +3613,55 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"STE — cloud infra vuln tickets\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "vpm-10-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "vpm-10-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"STE — cloud infra vuln tickets\", which is a realistic reportable finding?",
+          "text": "For \"STE — cloud infra vuln tickets\", which of these is a realistic reportable finding?",
           "options": [
             "About 30% of cloud findings sit on resources with no owner tag, so they generate orphaned tickets nobody actions; criticals on untagged resources age indefinitely.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. About 30% of cloud findings sit on resources with no owner tag, so they generate orphaned tickets nobody actions; criticals on untagged resources age indefinitely."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. About 30% of cloud findings sit on resources with no owner tag, so they generate orphaned tickets nobody actions; criticals on untagged resources age indefinitely. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "vpm-10-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "vpm-10-q10",
@@ -3669,13 +3669,13 @@ export const vulnPatchStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"STE — cloud infra vuln tickets\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind ste — cloud infra vuln tickets, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }

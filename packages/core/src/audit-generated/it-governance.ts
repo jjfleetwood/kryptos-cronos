@@ -18,7 +18,7 @@ export const itGovernanceStages: StageConfig[] = [
     "title": "Policy and standard lifecycle",
     "subtitle": "Agentic technical & privacy audit of the policy and standard lifecycle control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
@@ -240,13 +240,13 @@ export const itGovernanceStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Policy and standard lifecycle\" sub-process of Information Technology (IT) Governance?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the policy and standard lifecycle control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the policy and standard lifecycle control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for policy and standard lifecycle against comparable organisations in the sector",
             "Obtain evidence that the policy and standard lifecycle control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "gov-01-q2",
@@ -254,13 +254,13 @@ export const itGovernanceStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Policy and standard lifecycle\" matter to the broader Information Technology (IT) Governance posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Information Technology (IT) Governance",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Information Technology (IT) Governance estate",
             "It is a control other Information Technology (IT) Governance controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Information Technology (IT) Governance controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "gov-01-q3",
@@ -268,27 +268,27 @@ export const itGovernanceStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Policy and standard lifecycle\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the policy and standard lifecycle control (from GRC platform) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's policy and standard lifecycle settings, captured during the walkthrough",
+            "The In-scope inventory for the policy and standard lifecycle control (from GRC platform), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the policy and standard lifecycle control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's policy and standard lifecycle capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "gov-01-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Policy and standard lifecycle\"?",
+          "text": "Where should an auditor pull the evidence for \"Policy and standard lifecycle\"?",
           "options": [
-            "GRC platform (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From GRC platform and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how policy and standard lifecycle works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., GRC platform) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. GRC platform) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "gov-01-q5",
@@ -296,13 +296,13 @@ export const itGovernanceStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Policy and standard lifecycle\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "CISO / IT risk (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the policy and standard lifecycle control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the policy and standard lifecycle data is shared, so the accountability sits with no one in particular",
+            "CISO / IT risk, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "CISO / IT risk owns the control data; the auditor independently verifies it."
+          "explanation": "CISO / IT risk owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "gov-01-q6",
@@ -310,55 +310,55 @@ export const itGovernanceStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Policy and standard lifecycle\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "gov-01-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "gov-01-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Policy and standard lifecycle\", which is a realistic reportable finding?",
+          "text": "For \"Policy and standard lifecycle\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the policy and standard lifecycle control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the policy and standard lifecycle control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the policy and standard lifecycle control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "gov-01-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "gov-01-q10",
@@ -366,13 +366,13 @@ export const itGovernanceStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Policy and standard lifecycle\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind policy and standard lifecycle, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -384,7 +384,7 @@ export const itGovernanceStages: StageConfig[] = [
     "title": "Risk assessment and tracking",
     "subtitle": "Agentic technical & privacy audit of the risk assessment and tracking control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 6,
     "valueScore": 7,
     "rank": 0,
@@ -606,13 +606,13 @@ export const itGovernanceStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Risk assessment and tracking\" sub-process of Information Technology (IT) Governance?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the risk assessment and tracking control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the risk assessment and tracking control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for risk assessment and tracking against comparable organisations in the sector",
             "Obtain evidence that the risk assessment and tracking control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "gov-02-q2",
@@ -620,13 +620,13 @@ export const itGovernanceStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Risk assessment and tracking\" matter to the broader Information Technology (IT) Governance posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Information Technology (IT) Governance",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Information Technology (IT) Governance estate",
             "It is a control other Information Technology (IT) Governance controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Information Technology (IT) Governance controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "gov-02-q3",
@@ -634,27 +634,27 @@ export const itGovernanceStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Risk assessment and tracking\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the risk assessment and tracking control (from GRC platform) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's risk assessment and tracking settings, captured during the walkthrough",
+            "The In-scope inventory for the risk assessment and tracking control (from GRC platform), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the risk assessment and tracking control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's risk assessment and tracking capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "gov-02-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Risk assessment and tracking\"?",
+          "text": "Where should an auditor pull the evidence for \"Risk assessment and tracking\"?",
           "options": [
-            "GRC platform (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From GRC platform and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how risk assessment and tracking works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., GRC platform) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. GRC platform) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "gov-02-q5",
@@ -662,13 +662,13 @@ export const itGovernanceStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Risk assessment and tracking\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "CISO / IT risk (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the risk assessment and tracking control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the risk assessment and tracking data is shared, so the accountability sits with no one in particular",
+            "CISO / IT risk, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "CISO / IT risk owns the control data; the auditor independently verifies it."
+          "explanation": "CISO / IT risk owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "gov-02-q6",
@@ -676,55 +676,55 @@ export const itGovernanceStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Risk assessment and tracking\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "gov-02-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "gov-02-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Risk assessment and tracking\", which is a realistic reportable finding?",
+          "text": "For \"Risk assessment and tracking\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the risk assessment and tracking control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the risk assessment and tracking control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the risk assessment and tracking control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "gov-02-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "gov-02-q10",
@@ -732,13 +732,13 @@ export const itGovernanceStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Risk assessment and tracking\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind risk assessment and tracking, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -750,7 +750,7 @@ export const itGovernanceStages: StageConfig[] = [
     "title": "Security metrics and reporting",
     "subtitle": "Agentic technical & privacy audit of the security metrics and reporting control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 120,
     "easeScore": 8,
     "valueScore": 6,
     "rank": 0,
@@ -972,13 +972,13 @@ export const itGovernanceStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Security metrics and reporting\" sub-process of Information Technology (IT) Governance?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the security metrics and reporting control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the security metrics and reporting control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for security metrics and reporting against comparable organisations in the sector",
             "Obtain evidence that the security metrics and reporting control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "gov-03-q2",
@@ -986,13 +986,13 @@ export const itGovernanceStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Security metrics and reporting\" matter to the broader Information Technology (IT) Governance posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Information Technology (IT) Governance",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Information Technology (IT) Governance estate",
             "It is a control other Information Technology (IT) Governance controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Information Technology (IT) Governance controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "gov-03-q3",
@@ -1000,27 +1000,27 @@ export const itGovernanceStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Security metrics and reporting\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the security metrics and reporting control (from GRC platform) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's security metrics and reporting settings, captured during the walkthrough",
+            "The In-scope inventory for the security metrics and reporting control (from GRC platform), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the security metrics and reporting control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's security metrics and reporting capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "gov-03-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Security metrics and reporting\"?",
+          "text": "Where should an auditor pull the evidence for \"Security metrics and reporting\"?",
           "options": [
-            "GRC platform (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From GRC platform and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how security metrics and reporting works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., GRC platform) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. GRC platform) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "gov-03-q5",
@@ -1028,13 +1028,13 @@ export const itGovernanceStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Security metrics and reporting\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "CISO / IT risk (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the security metrics and reporting control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the security metrics and reporting data is shared, so the accountability sits with no one in particular",
+            "CISO / IT risk, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "CISO / IT risk owns the control data; the auditor independently verifies it."
+          "explanation": "CISO / IT risk owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "gov-03-q6",
@@ -1042,55 +1042,55 @@ export const itGovernanceStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Security metrics and reporting\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "gov-03-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "gov-03-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Security metrics and reporting\", which is a realistic reportable finding?",
+          "text": "For \"Security metrics and reporting\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the security metrics and reporting control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the security metrics and reporting control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the security metrics and reporting control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "gov-03-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "gov-03-q10",
@@ -1098,13 +1098,13 @@ export const itGovernanceStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Security metrics and reporting\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind security metrics and reporting, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1116,7 +1116,7 @@ export const itGovernanceStages: StageConfig[] = [
     "title": "Exception management",
     "subtitle": "Agentic technical & privacy audit of the exception management control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
@@ -1338,13 +1338,13 @@ export const itGovernanceStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Exception management\" sub-process of Information Technology (IT) Governance?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the exception management control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the exception management control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for exception management against comparable organisations in the sector",
             "Obtain evidence that the exception management control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "gov-04-q2",
@@ -1352,13 +1352,13 @@ export const itGovernanceStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Exception management\" matter to the broader Information Technology (IT) Governance posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Information Technology (IT) Governance",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Information Technology (IT) Governance estate",
             "It is a control other Information Technology (IT) Governance controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Information Technology (IT) Governance controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "gov-04-q3",
@@ -1366,27 +1366,27 @@ export const itGovernanceStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Exception management\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the exception management control (from GRC platform) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's exception management settings, captured during the walkthrough",
+            "The In-scope inventory for the exception management control (from GRC platform), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the exception management control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's exception management capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "gov-04-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Exception management\"?",
+          "text": "Where should an auditor pull the evidence for \"Exception management\"?",
           "options": [
-            "GRC platform (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From GRC platform and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how exception management works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., GRC platform) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. GRC platform) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "gov-04-q5",
@@ -1394,13 +1394,13 @@ export const itGovernanceStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Exception management\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "CISO / IT risk (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the exception management control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the exception management data is shared, so the accountability sits with no one in particular",
+            "CISO / IT risk, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "CISO / IT risk owns the control data; the auditor independently verifies it."
+          "explanation": "CISO / IT risk owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "gov-04-q6",
@@ -1408,55 +1408,55 @@ export const itGovernanceStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Exception management\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "gov-04-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "gov-04-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Exception management\", which is a realistic reportable finding?",
+          "text": "For \"Exception management\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the exception management control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the exception management control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the exception management control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "gov-04-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "gov-04-q10",
@@ -1464,13 +1464,13 @@ export const itGovernanceStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Exception management\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind exception management, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1482,7 +1482,7 @@ export const itGovernanceStages: StageConfig[] = [
     "title": "Security awareness program",
     "subtitle": "Agentic technical & privacy audit of the security awareness program control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 6,
     "valueScore": 7,
     "rank": 0,
@@ -1704,13 +1704,13 @@ export const itGovernanceStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Security awareness program\" sub-process of Information Technology (IT) Governance?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the security awareness program control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the security awareness program control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for security awareness program against comparable organisations in the sector",
             "Obtain evidence that the security awareness program control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "gov-05-q2",
@@ -1718,13 +1718,13 @@ export const itGovernanceStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Security awareness program\" matter to the broader Information Technology (IT) Governance posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Information Technology (IT) Governance",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Information Technology (IT) Governance estate",
             "It is a control other Information Technology (IT) Governance controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Information Technology (IT) Governance controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "gov-05-q3",
@@ -1732,27 +1732,27 @@ export const itGovernanceStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Security awareness program\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the security awareness program control (from GRC platform) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's security awareness program settings, captured during the walkthrough",
+            "The In-scope inventory for the security awareness program control (from GRC platform), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the security awareness program control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's security awareness program capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "gov-05-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Security awareness program\"?",
+          "text": "Where should an auditor pull the evidence for \"Security awareness program\"?",
           "options": [
-            "GRC platform (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From GRC platform and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how security awareness program works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., GRC platform) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. GRC platform) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "gov-05-q5",
@@ -1760,13 +1760,13 @@ export const itGovernanceStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Security awareness program\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "CISO / IT risk (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the security awareness program control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the security awareness program data is shared, so the accountability sits with no one in particular",
+            "CISO / IT risk, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "CISO / IT risk owns the control data; the auditor independently verifies it."
+          "explanation": "CISO / IT risk owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "gov-05-q6",
@@ -1774,55 +1774,55 @@ export const itGovernanceStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Security awareness program\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "gov-05-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "gov-05-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Security awareness program\", which is a realistic reportable finding?",
+          "text": "For \"Security awareness program\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the security awareness program control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the security awareness program control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the security awareness program control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "gov-05-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "gov-05-q10",
@@ -1830,13 +1830,13 @@ export const itGovernanceStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Security awareness program\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind security awareness program, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }

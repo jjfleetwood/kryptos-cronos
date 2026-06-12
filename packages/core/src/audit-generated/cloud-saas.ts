@@ -18,7 +18,7 @@ export const cloudSaasStages: StageConfig[] = [
     "title": "Cloud landing zone and guardrails",
     "subtitle": "Agentic technical & privacy audit of the cloud landing zone and guardrails control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
@@ -243,13 +243,13 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Cloud landing zone and guardrails\" sub-process of Cloud Platform & SaaS (Software-as-a-Service)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the cloud landing zone and guardrails control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the cloud landing zone and guardrails control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for cloud landing zone and guardrails against comparable organisations in the sector",
             "Obtain evidence that the cloud landing zone and guardrails control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "cld-01-q2",
@@ -257,13 +257,13 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Cloud landing zone and guardrails\" matter to the broader Cloud Platform & SaaS (Software-as-a-Service) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Cloud Platform & SaaS (Software-as-a-Service)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Cloud Platform & SaaS (Software-as-a-Service) estate",
             "It is a control other Cloud Platform & SaaS (Software-as-a-Service) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Cloud Platform & SaaS (Software-as-a-Service) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "cld-01-q3",
@@ -271,27 +271,27 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Cloud landing zone and guardrails\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The landing-zone definition (AWS Control Tower / Azure Landing Zone) + the org-level guardrails (SCPs / Azure Policy) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's cloud landing zone and guardrails settings, captured during the walkthrough",
+            "The The landing-zone definition (AWS Control Tower / Azure Landing Zone) + the org-level guardrails (SCPs / Azure Policy), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the cloud landing zone and guardrails control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's cloud landing zone and guardrails capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "cld-01-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Cloud landing zone and guardrails\"?",
+          "text": "Where should an auditor pull the evidence for \"Cloud landing zone and guardrails\"?",
           "options": [
-            "AWS Control Tower + Organizations SCPs / Azure Landing Zones + Policy / GCP Org Policy (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From AWS Control Tower + Organizations SCPs / Azure Landing Zones + Policy / GCP Org Policy and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how cloud landing zone and guardrails works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., AWS Control Tower + Organizations SCPs / Azure Landing Zones + Policy / GCP Org Policy) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. AWS Control Tower + Organizations SCPs / Azure Landing Zones + Policy / GCP Org Policy) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "cld-01-q5",
@@ -299,13 +299,13 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Cloud landing zone and guardrails\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Cloud platform / Cloud CoE — owns the landing zone (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the cloud landing zone and guardrails control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the cloud landing zone and guardrails data is shared, so the accountability sits with no one in particular",
+            "Cloud platform / Cloud CoE — owns the landing zone, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Cloud platform / Cloud CoE — owns the landing zone owns the control data; the auditor independently verifies it."
+          "explanation": "Cloud platform / Cloud CoE — owns the landing zone owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "cld-01-q6",
@@ -313,55 +313,55 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Cloud landing zone and guardrails\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "cld-01-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "cld-01-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Cloud landing zone and guardrails\", which is a realistic reportable finding?",
+          "text": "For \"Cloud landing zone and guardrails\", which of these is a realistic reportable finding?",
           "options": [
             "A dozen AWS accounts were created directly (not via Control Tower), so they carry no SCP guardrails — public S3 and root access keys are possible there, and CSPM shows several buckets already public.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. A dozen AWS accounts were created directly (not via Control Tower), so they carry no SCP guardrails — public S3 and root access keys are possible there, and CSPM shows several buckets already public."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. A dozen AWS accounts were created directly (not via Control Tower), so they carry no SCP guardrails — public S3 and root access keys are possible there, and CSPM shows several buckets already public. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "cld-01-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "cld-01-q10",
@@ -369,13 +369,13 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Cloud landing zone and guardrails\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind cloud landing zone and guardrails, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -387,7 +387,7 @@ export const cloudSaasStages: StageConfig[] = [
     "title": "Cloud IAM and privileged roles",
     "subtitle": "Agentic technical & privacy audit of the cloud iam and privileged roles control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 6,
     "valueScore": 9,
     "rank": 0,
@@ -612,13 +612,13 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Cloud IAM and privileged roles\" sub-process of Cloud Platform & SaaS (Software-as-a-Service)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the cloud iam and privileged roles control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the cloud iam and privileged roles control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for cloud iam and privileged roles against comparable organisations in the sector",
             "Obtain evidence that the cloud iam and privileged roles control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "cld-02-q2",
@@ -626,13 +626,13 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Cloud IAM and privileged roles\" matter to the broader Cloud Platform & SaaS (Software-as-a-Service) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Cloud Platform & SaaS (Software-as-a-Service)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Cloud Platform & SaaS (Software-as-a-Service) estate",
             "It is a control other Cloud Platform & SaaS (Software-as-a-Service) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Cloud Platform & SaaS (Software-as-a-Service) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "cld-02-q3",
@@ -640,27 +640,27 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Cloud IAM and privileged roles\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The cloud IAM principal inventory (users, roles, service principals) + their effective permissions reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's cloud iam and privileged roles settings, captured during the walkthrough",
+            "The The cloud IAM principal inventory (users, roles, service principals) + their effective permissions, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the cloud iam and privileged roles control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's cloud iam and privileged roles capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "cld-02-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Cloud IAM and privileged roles\"?",
+          "text": "Where should an auditor pull the evidence for \"Cloud IAM and privileged roles\"?",
           "options": [
-            "AWS IAM + IAM Identity Center / Azure Entra ID + PIM / GCP IAM (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From AWS IAM + IAM Identity Center / Azure Entra ID + PIM / GCP IAM and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how cloud iam and privileged roles works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., AWS IAM + IAM Identity Center / Azure Entra ID + PIM / GCP IAM) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. AWS IAM + IAM Identity Center / Azure Entra ID + PIM / GCP IAM) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "cld-02-q5",
@@ -668,13 +668,13 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Cloud IAM and privileged roles\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Cloud security / CIEM — owns cloud identity (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the cloud iam and privileged roles control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the cloud iam and privileged roles data is shared, so the accountability sits with no one in particular",
+            "Cloud security / CIEM — owns cloud identity, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Cloud security / CIEM — owns cloud identity owns the control data; the auditor independently verifies it."
+          "explanation": "Cloud security / CIEM — owns cloud identity owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "cld-02-q6",
@@ -682,55 +682,55 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Cloud IAM and privileged roles\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "cld-02-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "cld-02-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Cloud IAM and privileged roles\", which is a realistic reportable finding?",
+          "text": "For \"Cloud IAM and privileged roles\", which of these is a realistic reportable finding?",
           "options": [
             "Thirty long-lived IAM users with active access keys (several unused for a year), three custom policies granting `*:*`, and the root account has an active access key with no MFA.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. Thirty long-lived IAM users with active access keys (several unused for a year), three custom policies granting `*:*`, and the root account has an active access key with no MFA."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. Thirty long-lived IAM users with active access keys (several unused for a year), three custom policies granting `*:*`, and the root account has an active access key with no MFA. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "cld-02-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "cld-02-q10",
@@ -738,13 +738,13 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Cloud IAM and privileged roles\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind cloud iam and privileged roles, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -756,7 +756,7 @@ export const cloudSaasStages: StageConfig[] = [
     "title": "Logging and monitoring enablement",
     "subtitle": "Agentic technical & privacy audit of the logging and monitoring enablement control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 8,
     "valueScore": 7,
     "rank": 0,
@@ -981,13 +981,13 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Logging and monitoring enablement\" sub-process of Cloud Platform & SaaS (Software-as-a-Service)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the logging and monitoring enablement control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the logging and monitoring enablement control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for logging and monitoring enablement against comparable organisations in the sector",
             "Obtain evidence that the logging and monitoring enablement control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "cld-03-q2",
@@ -995,13 +995,13 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Logging and monitoring enablement\" matter to the broader Cloud Platform & SaaS (Software-as-a-Service) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Cloud Platform & SaaS (Software-as-a-Service)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Cloud Platform & SaaS (Software-as-a-Service) estate",
             "It is a control other Cloud Platform & SaaS (Software-as-a-Service) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Cloud Platform & SaaS (Software-as-a-Service) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "cld-03-q3",
@@ -1009,27 +1009,27 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Logging and monitoring enablement\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The CloudTrail/Activity Log + Config + VPC flow-log + threat-detection (GuardDuty/Defender) enablement status across every account and region reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's logging and monitoring enablement settings, captured during the walkthrough",
+            "The CloudTrail/Activity Log + Config + VPC flow-log + threat-detection (GuardDuty/Defender) enablement status across every account and region, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the logging and monitoring enablement control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's logging and monitoring enablement capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "cld-03-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Logging and monitoring enablement\"?",
+          "text": "Where should an auditor pull the evidence for \"Logging and monitoring enablement\"?",
           "options": [
-            "AWS CloudTrail / Config / GuardDuty / Security Hub — or Azure Monitor + Defender for Cloud (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From AWS CloudTrail / Config / GuardDuty / Security Hub — or Azure Monitor + Defender for Cloud and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how logging and monitoring enablement works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., AWS CloudTrail / Config / GuardDuty / Security Hub — or Azure Monitor + Defender for Cloud) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. AWS CloudTrail / Config / GuardDuty / Security Hub — or Azure Monitor + Defender for Cloud) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "cld-03-q5",
@@ -1037,13 +1037,13 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Logging and monitoring enablement\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Cloud security — owns detection (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the logging and monitoring enablement control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the logging and monitoring enablement data is shared, so the accountability sits with no one in particular",
+            "Cloud security — owns detection, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Cloud security — owns detection owns the control data; the auditor independently verifies it."
+          "explanation": "Cloud security — owns detection owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "cld-03-q6",
@@ -1051,55 +1051,55 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Logging and monitoring enablement\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "cld-03-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "cld-03-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Logging and monitoring enablement\", which is a realistic reportable finding?",
+          "text": "For \"Logging and monitoring enablement\", which of these is a realistic reportable finding?",
           "options": [
             "CloudTrail is off in three regions and two accounts entirely; the log bucket lives in the same workload account and is deletable by its admins; GuardDuty is disabled outside the primary region.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. CloudTrail is off in three regions and two accounts entirely; the log bucket lives in the same workload account and is deletable by its admins; GuardDuty is disabled outside the primary region."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. CloudTrail is off in three regions and two accounts entirely; the log bucket lives in the same workload account and is deletable by its admins; GuardDuty is disabled outside the primary region. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "cld-03-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "cld-03-q10",
@@ -1107,13 +1107,13 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Logging and monitoring enablement\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind logging and monitoring enablement, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1125,7 +1125,7 @@ export const cloudSaasStages: StageConfig[] = [
     "title": "Cloud network security (SG, NACL)",
     "subtitle": "Agentic technical & privacy audit of the cloud network security (sg, nacl) control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
@@ -1346,13 +1346,13 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Cloud network security (SG, NACL)\" sub-process of Cloud Platform & SaaS (Software-as-a-Service)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the cloud network security (sg, nacl) control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the cloud network security (sg, nacl) control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for cloud network security (sg, nacl) against comparable organisations in the sector",
             "Obtain evidence that the cloud network security (sg, nacl) control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "cld-04-q2",
@@ -1360,13 +1360,13 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Cloud network security (SG, NACL)\" matter to the broader Cloud Platform & SaaS (Software-as-a-Service) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Cloud Platform & SaaS (Software-as-a-Service)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Cloud Platform & SaaS (Software-as-a-Service) estate",
             "It is a control other Cloud Platform & SaaS (Software-as-a-Service) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Cloud Platform & SaaS (Software-as-a-Service) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "cld-04-q3",
@@ -1374,27 +1374,27 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Cloud network security (SG, NACL)\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The security-group + NACL (or NSG) rule export across the estate reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's cloud network security (sg, nacl) settings, captured during the walkthrough",
+            "The The security-group + NACL (or NSG) rule export across the estate, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the cloud network security (sg, nacl) control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's cloud network security (sg, nacl) capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "cld-04-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Cloud network security (SG, NACL)\"?",
+          "text": "Where should an auditor pull the evidence for \"Cloud network security (SG, NACL)\"?",
           "options": [
-            "AWS VPC SG/NACL / Azure NSG / GCP firewall rules (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From AWS VPC SG/NACL / Azure NSG / GCP firewall rules and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how cloud network security (sg, nacl) works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., AWS VPC SG/NACL / Azure NSG / GCP firewall rules) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. AWS VPC SG/NACL / Azure NSG / GCP firewall rules) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "cld-04-q5",
@@ -1402,13 +1402,13 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Cloud network security (SG, NACL)\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Cloud platform / network — own cloud networking (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the cloud network security (sg, nacl) control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the cloud network security (sg, nacl) data is shared, so the accountability sits with no one in particular",
+            "Cloud platform / network — own cloud networking, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Cloud platform / network — own cloud networking owns the control data; the auditor independently verifies it."
+          "explanation": "Cloud platform / network — own cloud networking owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "cld-04-q6",
@@ -1416,55 +1416,55 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Cloud network security (SG, NACL)\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "cld-04-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "cld-04-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Cloud network security (SG, NACL)\", which is a realistic reportable finding?",
+          "text": "For \"Cloud network security (SG, NACL)\", which of these is a realistic reportable finding?",
           "options": [
             "Several security groups allow SSH and RDP from 0.0.0.0/0, two RDS databases are publicly accessible, and the default VPC's allow-all security group is attached to production workloads.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. Several security groups allow SSH and RDP from 0.0.0.0/0, two RDS databases are publicly accessible, and the default VPC's allow-all security group is attached to production workloads."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. Several security groups allow SSH and RDP from 0.0.0.0/0, two RDS databases are publicly accessible, and the default VPC's allow-all security group is attached to production workloads. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "cld-04-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "cld-04-q10",
@@ -1472,13 +1472,13 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Cloud network security (SG, NACL)\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind cloud network security (sg, nacl), so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1490,7 +1490,7 @@ export const cloudSaasStages: StageConfig[] = [
     "title": "SaaS configuration",
     "subtitle": "Agentic technical & privacy audit of the saas configuration control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 7,
     "valueScore": 7,
     "rank": 0,
@@ -1715,13 +1715,13 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"SaaS configuration\" sub-process of Cloud Platform & SaaS (Software-as-a-Service)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the saas configuration control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the saas configuration control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for saas configuration against comparable organisations in the sector",
             "Obtain evidence that the saas configuration control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "cld-05-q2",
@@ -1729,13 +1729,13 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"SaaS configuration\" matter to the broader Cloud Platform & SaaS (Software-as-a-Service) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Cloud Platform & SaaS (Software-as-a-Service)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Cloud Platform & SaaS (Software-as-a-Service) estate",
             "It is a control other Cloud Platform & SaaS (Software-as-a-Service) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Cloud Platform & SaaS (Software-as-a-Service) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "cld-05-q3",
@@ -1743,27 +1743,27 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"SaaS configuration\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The SaaS application inventory (M365, Salesforce, Workday, ServiceNow, Slack) + each app's security-config baseline reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's saas configuration settings, captured during the walkthrough",
+            "The The SaaS application inventory (M365, Salesforce, Workday, ServiceNow, Slack) + each app's security-config baseline, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the saas configuration control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's saas configuration capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "cld-05-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"SaaS configuration\"?",
+          "text": "Where should an auditor pull the evidence for \"SaaS configuration\"?",
           "options": [
-            "SSPM — AppOmni / Adaptive Shield / Microsoft Secure Score (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From SSPM — AppOmni / Adaptive Shield / Microsoft Secure Score and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how saas configuration works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., SSPM — AppOmni / Adaptive Shield / Microsoft Secure Score) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. SSPM — AppOmni / Adaptive Shield / Microsoft Secure Score) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "cld-05-q5",
@@ -1771,13 +1771,13 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"SaaS configuration\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "SaaS application owners — own each tenant's config (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the saas configuration control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the saas configuration data is shared, so the accountability sits with no one in particular",
+            "SaaS application owners — own each tenant's config, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "SaaS application owners — own each tenant's config owns the control data; the auditor independently verifies it."
+          "explanation": "SaaS application owners — own each tenant's config owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "cld-05-q6",
@@ -1785,55 +1785,55 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"SaaS configuration\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "cld-05-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "cld-05-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"SaaS configuration\", which is a realistic reportable finding?",
+          "text": "For \"SaaS configuration\", which of these is a realistic reportable finding?",
           "options": [
             "Salesforce permits local password logins that bypass SSO/MFA, M365 has 14 global admins and open guest sharing, and a third-party OAuth app holds org-wide 'read all mail' that nobody remembers approving.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. Salesforce permits local password logins that bypass SSO/MFA, M365 has 14 global admins and open guest sharing, and a third-party OAuth app holds org-wide 'read all mail' that nobody remembers approving."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. Salesforce permits local password logins that bypass SSO/MFA, M365 has 14 global admins and open guest sharing, and a third-party OAuth app holds org-wide 'read all mail' that nobody remembers approving. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "cld-05-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "cld-05-q10",
@@ -1841,13 +1841,13 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"SaaS configuration\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind saas configuration, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1859,7 +1859,7 @@ export const cloudSaasStages: StageConfig[] = [
     "title": "Admin activity monitoring",
     "subtitle": "Agentic technical & privacy audit of the admin activity monitoring control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 8,
     "valueScore": 7,
     "rank": 0,
@@ -2080,13 +2080,13 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Admin activity monitoring\" sub-process of Cloud Platform & SaaS (Software-as-a-Service)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the admin activity monitoring control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the admin activity monitoring control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for admin activity monitoring against comparable organisations in the sector",
             "Obtain evidence that the admin activity monitoring control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "cld-06-q2",
@@ -2094,13 +2094,13 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Admin activity monitoring\" matter to the broader Cloud Platform & SaaS (Software-as-a-Service) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Cloud Platform & SaaS (Software-as-a-Service)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Cloud Platform & SaaS (Software-as-a-Service) estate",
             "It is a control other Cloud Platform & SaaS (Software-as-a-Service) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Cloud Platform & SaaS (Software-as-a-Service) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "cld-06-q3",
@@ -2108,27 +2108,27 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Admin activity monitoring\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The detection rules over cloud admin / control-plane activity (CloudTrail / Activity Log) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's admin activity monitoring settings, captured during the walkthrough",
+            "The The detection rules over cloud admin / control-plane activity (CloudTrail / Activity Log), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the admin activity monitoring control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's admin activity monitoring capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "cld-06-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Admin activity monitoring\"?",
+          "text": "Where should an auditor pull the evidence for \"Admin activity monitoring\"?",
           "options": [
-            "SIEM (Sentinel/Splunk) + cloud-native (GuardDuty, Defender, Security Hub) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From SIEM (Sentinel/Splunk) + cloud-native (GuardDuty, Defender, Security Hub) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how admin activity monitoring works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., SIEM (Sentinel/Splunk) + cloud-native (GuardDuty, Defender, Security Hub)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. SIEM (Sentinel/Splunk) + cloud-native (GuardDuty, Defender, Security Hub)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "cld-06-q5",
@@ -2136,13 +2136,13 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Admin activity monitoring\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Cloud security / detection engineering (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the admin activity monitoring control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the admin activity monitoring data is shared, so the accountability sits with no one in particular",
+            "Cloud security / detection engineering, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Cloud security / detection engineering owns the control data; the auditor independently verifies it."
+          "explanation": "Cloud security / detection engineering owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "cld-06-q6",
@@ -2150,55 +2150,55 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Admin activity monitoring\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "cld-06-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "cld-06-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Admin activity monitoring\", which is a realistic reportable finding?",
+          "text": "For \"Admin activity monitoring\", which of these is a realistic reportable finding?",
           "options": [
             "Disabling CloudTrail and creating new IAM access keys generate no alert; admin-activity monitoring exists only for the primary account, leaving the rest of the org's control plane unwatched.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. Disabling CloudTrail and creating new IAM access keys generate no alert; admin-activity monitoring exists only for the primary account, leaving the rest of the org's control plane unwatched."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. Disabling CloudTrail and creating new IAM access keys generate no alert; admin-activity monitoring exists only for the primary account, leaving the rest of the org's control plane unwatched. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "cld-06-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "cld-06-q10",
@@ -2206,13 +2206,13 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Admin activity monitoring\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind admin activity monitoring, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -2224,7 +2224,7 @@ export const cloudSaasStages: StageConfig[] = [
     "title": "Business and service resilience",
     "subtitle": "Agentic technical & privacy audit of the business and service resilience control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
@@ -2449,13 +2449,13 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Business and service resilience\" sub-process of Cloud Platform & SaaS (Software-as-a-Service)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the business and service resilience control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the business and service resilience control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for business and service resilience against comparable organisations in the sector",
             "Obtain evidence that the business and service resilience control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "cld-07-q2",
@@ -2463,13 +2463,13 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Business and service resilience\" matter to the broader Cloud Platform & SaaS (Software-as-a-Service) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Cloud Platform & SaaS (Software-as-a-Service)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Cloud Platform & SaaS (Software-as-a-Service) estate",
             "It is a control other Cloud Platform & SaaS (Software-as-a-Service) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Cloud Platform & SaaS (Software-as-a-Service) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "cld-07-q3",
@@ -2477,27 +2477,27 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Business and service resilience\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The cloud workloads' multi-AZ / multi-region design + documented RTO/RPO reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's business and service resilience settings, captured during the walkthrough",
+            "The The cloud workloads' multi-AZ / multi-region design + documented RTO/RPO, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the business and service resilience control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's business and service resilience capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "cld-07-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Business and service resilience\"?",
+          "text": "Where should an auditor pull the evidence for \"Business and service resilience\"?",
           "options": [
-            "The cloud workloads (compute, DB, storage) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From The cloud workloads (compute, DB, storage) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how business and service resilience works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., The cloud workloads (compute, DB, storage)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. The cloud workloads (compute, DB, storage)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "cld-07-q5",
@@ -2505,13 +2505,13 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Business and service resilience\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "SRE / platform — own resilience (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the business and service resilience control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the business and service resilience data is shared, so the accountability sits with no one in particular",
+            "SRE / platform — own resilience, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "SRE / platform — own resilience owns the control data; the auditor independently verifies it."
+          "explanation": "SRE / platform — own resilience owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "cld-07-q6",
@@ -2519,55 +2519,55 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Business and service resilience\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "cld-07-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "cld-07-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Business and service resilience\", which is a realistic reportable finding?",
+          "text": "For \"Business and service resilience\", which of these is a realistic reportable finding?",
           "options": [
             "The primary transaction database is single-AZ with no read replica or cross-region backup, and no cloud DR failover has ever been tested — the stated one-hour RTO is aspirational.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. The primary transaction database is single-AZ with no read replica or cross-region backup, and no cloud DR failover has ever been tested — the stated one-hour RTO is aspirational."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. The primary transaction database is single-AZ with no read replica or cross-region backup, and no cloud DR failover has ever been tested — the stated one-hour RTO is aspirational. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "cld-07-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "cld-07-q10",
@@ -2575,13 +2575,13 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Business and service resilience\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind business and service resilience, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -2593,7 +2593,7 @@ export const cloudSaasStages: StageConfig[] = [
     "title": "Cloud supply chain",
     "subtitle": "Agentic technical & privacy audit of the cloud supply chain control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 6,
     "valueScore": 9,
     "rank": 0,
@@ -2815,13 +2815,13 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Cloud supply chain\" sub-process of Cloud Platform & SaaS (Software-as-a-Service)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the cloud supply chain control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the cloud supply chain control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for cloud supply chain against comparable organisations in the sector",
             "Obtain evidence that the cloud supply chain control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "cld-08-q2",
@@ -2829,13 +2829,13 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Cloud supply chain\" matter to the broader Cloud Platform & SaaS (Software-as-a-Service) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Cloud Platform & SaaS (Software-as-a-Service)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Cloud Platform & SaaS (Software-as-a-Service) estate",
             "It is a control other Cloud Platform & SaaS (Software-as-a-Service) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Cloud Platform & SaaS (Software-as-a-Service) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "cld-08-q3",
@@ -2843,27 +2843,27 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Cloud supply chain\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The inventory of third-party code/components in cloud workloads (container base images, Lambda layers, marketplace AMIs/images, IaC modules) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's cloud supply chain settings, captured during the walkthrough",
+            "The The inventory of third-party code/components in cloud workloads (container base images, Lambda layers, marketplace AMIs/images, IaC modules), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the cloud supply chain control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's cloud supply chain capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "cld-08-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Cloud supply chain\"?",
+          "text": "Where should an auditor pull the evidence for \"Cloud supply chain\"?",
           "options": [
-            "Container registry (ECR/ACR) + image scanning (Trivy / Inspector) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Container registry (ECR/ACR) + image scanning (Trivy / Inspector) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how cloud supply chain works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Container registry (ECR/ACR) + image scanning (Trivy / Inspector)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Container registry (ECR/ACR) + image scanning (Trivy / Inspector)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "cld-08-q5",
@@ -2871,13 +2871,13 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Cloud supply chain\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Platform / DevOps — own the images (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the cloud supply chain control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the cloud supply chain data is shared, so the accountability sits with no one in particular",
+            "Platform / DevOps — own the images, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Platform / DevOps — own the images owns the control data; the auditor independently verifies it."
+          "explanation": "Platform / DevOps — own the images owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "cld-08-q6",
@@ -2885,55 +2885,55 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Cloud supply chain\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "cld-08-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "cld-08-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Cloud supply chain\", which is a realistic reportable finding?",
+          "text": "For \"Cloud supply chain\", which of these is a realistic reportable finding?",
           "options": [
             "Production runs several unsigned public Docker Hub images with critical CVEs, and a monitoring vendor holds a standing cross-account role with broad read on all data services and no ExternalId.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. Production runs several unsigned public Docker Hub images with critical CVEs, and a monitoring vendor holds a standing cross-account role with broad read on all data services and no ExternalId."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. Production runs several unsigned public Docker Hub images with critical CVEs, and a monitoring vendor holds a standing cross-account role with broad read on all data services and no ExternalId. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "cld-08-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "cld-08-q10",
@@ -2941,13 +2941,13 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Cloud supply chain\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind cloud supply chain, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -2959,7 +2959,7 @@ export const cloudSaasStages: StageConfig[] = [
     "title": "Cloud partner",
     "subtitle": "Agentic technical & privacy audit of the cloud partner control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 7,
     "valueScore": 7,
     "rank": 0,
@@ -3184,13 +3184,13 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Cloud partner\" sub-process of Cloud Platform & SaaS (Software-as-a-Service)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the cloud partner control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the cloud partner control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for cloud partner against comparable organisations in the sector",
             "Obtain evidence that the cloud partner control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "cld-09-q2",
@@ -3198,13 +3198,13 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Cloud partner\" matter to the broader Cloud Platform & SaaS (Software-as-a-Service) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Cloud Platform & SaaS (Software-as-a-Service)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Cloud Platform & SaaS (Software-as-a-Service) estate",
             "It is a control other Cloud Platform & SaaS (Software-as-a-Service) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Cloud Platform & SaaS (Software-as-a-Service) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "cld-09-q3",
@@ -3212,27 +3212,27 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Cloud partner\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The cloud-provider / managed-service-provider relationship docs — the shared-responsibility matrix per service reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's cloud partner settings, captured during the walkthrough",
+            "The The cloud-provider / managed-service-provider relationship docs — the shared-responsibility matrix per service, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the cloud partner control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's cloud partner capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "cld-09-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Cloud partner\"?",
+          "text": "Where should an auditor pull the evidence for \"Cloud partner\"?",
           "options": [
-            "CSP trust portals (AWS Artifact / Azure Trust Center) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From CSP trust portals (AWS Artifact / Azure Trust Center) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how cloud partner works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., CSP trust portals (AWS Artifact / Azure Trust Center)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. CSP trust portals (AWS Artifact / Azure Trust Center)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "cld-09-q5",
@@ -3240,13 +3240,13 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Cloud partner\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Vendor / third-party risk + Cloud security (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the cloud partner control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the cloud partner data is shared, so the accountability sits with no one in particular",
+            "Vendor / third-party risk + Cloud security, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Vendor / third-party risk + Cloud security owns the control data; the auditor independently verifies it."
+          "explanation": "Vendor / third-party risk + Cloud security owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "cld-09-q6",
@@ -3254,55 +3254,55 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Cloud partner\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "cld-09-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "cld-09-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Cloud partner\", which is a realistic reportable finding?",
+          "text": "For \"Cloud partner\", which of these is a realistic reportable finding?",
           "options": [
             "An MSP holds standing Owner via Azure Lighthouse across all subscriptions with no JIT or review, and the CSP SOC 2 on file is two years old and doesn't cover two services now in production.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. An MSP holds standing Owner via Azure Lighthouse across all subscriptions with no JIT or review, and the CSP SOC 2 on file is two years old and doesn't cover two services now in production."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. An MSP holds standing Owner via Azure Lighthouse across all subscriptions with no JIT or review, and the CSP SOC 2 on file is two years old and doesn't cover two services now in production. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "cld-09-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "cld-09-q10",
@@ -3310,13 +3310,13 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Cloud partner\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind cloud partner, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -3328,7 +3328,7 @@ export const cloudSaasStages: StageConfig[] = [
     "title": "Security assessments",
     "subtitle": "Agentic technical & privacy audit of the security assessments control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
@@ -3549,13 +3549,13 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Security assessments\" sub-process of Cloud Platform & SaaS (Software-as-a-Service)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the security assessments control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the security assessments control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for security assessments against comparable organisations in the sector",
             "Obtain evidence that the security assessments control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "cld-10-q2",
@@ -3563,13 +3563,13 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Security assessments\" matter to the broader Cloud Platform & SaaS (Software-as-a-Service) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Cloud Platform & SaaS (Software-as-a-Service)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Cloud Platform & SaaS (Software-as-a-Service) estate",
             "It is a control other Cloud Platform & SaaS (Software-as-a-Service) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Cloud Platform & SaaS (Software-as-a-Service) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "cld-10-q3",
@@ -3577,27 +3577,27 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Security assessments\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The cloud-assessment schedule + scope (continuous CSPM, periodic penetration test, config review) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's security assessments settings, captured during the walkthrough",
+            "The The cloud-assessment schedule + scope (continuous CSPM, periodic penetration test, config review), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the security assessments control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's security assessments capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "cld-10-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Security assessments\"?",
+          "text": "Where should an auditor pull the evidence for \"Security assessments\"?",
           "options": [
-            "CSPM — Wiz / Prisma / Defender for Cloud (continuous benchmark) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From CSPM — Wiz / Prisma / Defender for Cloud (continuous benchmark) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how security assessments works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., CSPM — Wiz / Prisma / Defender for Cloud (continuous benchmark)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. CSPM — Wiz / Prisma / Defender for Cloud (continuous benchmark)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "cld-10-q5",
@@ -3605,13 +3605,13 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Security assessments\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Cloud security — owns assessments (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the security assessments control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the security assessments data is shared, so the accountability sits with no one in particular",
+            "Cloud security — owns assessments, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Cloud security — owns assessments owns the control data; the auditor independently verifies it."
+          "explanation": "Cloud security — owns assessments owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "cld-10-q6",
@@ -3619,55 +3619,55 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Security assessments\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "cld-10-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "cld-10-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Security assessments\", which is a realistic reportable finding?",
+          "text": "For \"Security assessments\", which of these is a realistic reportable finding?",
           "options": [
             "CSPM covers 60% of accounts; the CIS Foundations score has been flat for a year (findings reported, not fixed), and the customer-facing cloud app hasn't had a penetration test in two years.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. CSPM covers 60% of accounts; the CIS Foundations score has been flat for a year (findings reported, not fixed), and the customer-facing cloud app hasn't had a penetration test in two years."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. CSPM covers 60% of accounts; the CIS Foundations score has been flat for a year (findings reported, not fixed), and the customer-facing cloud app hasn't had a penetration test in two years. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "cld-10-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "cld-10-q10",
@@ -3675,13 +3675,13 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Security assessments\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind security assessments, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -3693,7 +3693,7 @@ export const cloudSaasStages: StageConfig[] = [
     "title": "Data protection and lifecycle",
     "subtitle": "Agentic technical & privacy audit of the data protection and lifecycle control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 6,
     "valueScore": 7,
     "rank": 0,
@@ -3914,13 +3914,13 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Data protection and lifecycle\" sub-process of Cloud Platform & SaaS (Software-as-a-Service)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the data protection and lifecycle control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the data protection and lifecycle control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for data protection and lifecycle against comparable organisations in the sector",
             "Obtain evidence that the data protection and lifecycle control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "cld-11-q2",
@@ -3928,13 +3928,13 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Data protection and lifecycle\" matter to the broader Cloud Platform & SaaS (Software-as-a-Service) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Cloud Platform & SaaS (Software-as-a-Service)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Cloud Platform & SaaS (Software-as-a-Service) estate",
             "It is a control other Cloud Platform & SaaS (Software-as-a-Service) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Cloud Platform & SaaS (Software-as-a-Service) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "cld-11-q3",
@@ -3942,27 +3942,27 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Data protection and lifecycle\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The inventory of cloud data stores (S3/Blob/RDS/Redshift) with classification + encryption + public-access status reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's data protection and lifecycle settings, captured during the walkthrough",
+            "The The inventory of cloud data stores (S3/Blob/RDS/Redshift) with classification + encryption + public-access status, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the data protection and lifecycle control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's data protection and lifecycle capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "cld-11-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Data protection and lifecycle\"?",
+          "text": "Where should an auditor pull the evidence for \"Data protection and lifecycle\"?",
           "options": [
-            "S3 / Blob / object storage, RDS / Redshift / managed DBs (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From S3 / Blob / object storage, RDS / Redshift / managed DBs and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how data protection and lifecycle works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., S3 / Blob / object storage, RDS / Redshift / managed DBs) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. S3 / Blob / object storage, RDS / Redshift / managed DBs) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "cld-11-q5",
@@ -3970,13 +3970,13 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Data protection and lifecycle\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Data owners + cloud platform (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the data protection and lifecycle control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the data protection and lifecycle data is shared, so the accountability sits with no one in particular",
+            "Data owners + cloud platform, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Data owners + cloud platform owns the control data; the auditor independently verifies it."
+          "explanation": "Data owners + cloud platform owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "cld-11-q6",
@@ -3984,55 +3984,55 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Data protection and lifecycle\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "cld-11-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "cld-11-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Data protection and lifecycle\", which is a realistic reportable finding?",
+          "text": "For \"Data protection and lifecycle\", which of these is a realistic reportable finding?",
           "options": [
             "Two S3 buckets holding customer exports are public, several sensitive stores use the default AWS-managed key (no CMK control), and no bucket has versioning — so a ransomware overwrite is unrecoverable.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. Two S3 buckets holding customer exports are public, several sensitive stores use the default AWS-managed key (no CMK control), and no bucket has versioning — so a ransomware overwrite is unrecoverable."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. Two S3 buckets holding customer exports are public, several sensitive stores use the default AWS-managed key (no CMK control), and no bucket has versioning — so a ransomware overwrite is unrecoverable. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "cld-11-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "cld-11-q10",
@@ -4040,13 +4040,13 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Data protection and lifecycle\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind data protection and lifecycle, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -4058,7 +4058,7 @@ export const cloudSaasStages: StageConfig[] = [
     "title": "Data sovereignty",
     "subtitle": "Agentic technical & privacy audit of the data sovereignty control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 7,
     "valueScore": 7,
     "rank": 0,
@@ -4279,13 +4279,13 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Data sovereignty\" sub-process of Cloud Platform & SaaS (Software-as-a-Service)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the data sovereignty control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the data sovereignty control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for data sovereignty against comparable organisations in the sector",
             "Obtain evidence that the data sovereignty control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "cld-12-q2",
@@ -4293,13 +4293,13 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Data sovereignty\" matter to the broader Cloud Platform & SaaS (Software-as-a-Service) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Cloud Platform & SaaS (Software-as-a-Service)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Cloud Platform & SaaS (Software-as-a-Service) estate",
             "It is a control other Cloud Platform & SaaS (Software-as-a-Service) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Cloud Platform & SaaS (Software-as-a-Service) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "cld-12-q3",
@@ -4307,27 +4307,27 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Data sovereignty\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The data-residency requirement per data category (regulatory + contractual) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's data sovereignty settings, captured during the walkthrough",
+            "The The data-residency requirement per data category (regulatory + contractual), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the data sovereignty control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's data sovereignty capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "cld-12-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Data sovereignty\"?",
+          "text": "Where should an auditor pull the evidence for \"Data sovereignty\"?",
           "options": [
-            "Cloud region/policy config (SCP region-deny / Azure Policy 'allowed locations') (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Cloud region/policy config (SCP region-deny / Azure Policy 'allowed locations') and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how data sovereignty works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Cloud region/policy config (SCP region-deny / Azure Policy 'allowed locations')) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Cloud region/policy config (SCP region-deny / Azure Policy 'allowed locations')) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "cld-12-q5",
@@ -4335,13 +4335,13 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Data sovereignty\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Privacy / Legal — own residency requirements (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the data sovereignty control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the data sovereignty data is shared, so the accountability sits with no one in particular",
+            "Privacy / Legal — own residency requirements, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Privacy / Legal — own residency requirements owns the control data; the auditor independently verifies it."
+          "explanation": "Privacy / Legal — own residency requirements owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "cld-12-q6",
@@ -4349,55 +4349,55 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Data sovereignty\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "cld-12-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "cld-12-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Data sovereignty\", which is a realistic reportable finding?",
+          "text": "For \"Data sovereignty\", which of these is a realistic reportable finding?",
           "options": [
             "EU customer data is primary in eu-west-1 but its backups replicate to us-east-1 and CloudTrail logs land in a US bucket — and no region-deny SCP prevents deploying EU workloads to US regions.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. EU customer data is primary in eu-west-1 but its backups replicate to us-east-1 and CloudTrail logs land in a US bucket — and no region-deny SCP prevents deploying EU workloads to US regions."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. EU customer data is primary in eu-west-1 but its backups replicate to us-east-1 and CloudTrail logs land in a US bucket — and no region-deny SCP prevents deploying EU workloads to US regions. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "cld-12-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "cld-12-q10",
@@ -4405,13 +4405,13 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Data sovereignty\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind data sovereignty, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -4423,7 +4423,7 @@ export const cloudSaasStages: StageConfig[] = [
     "title": "Security Ticketing Engine (STE)",
     "subtitle": "Agentic technical & privacy audit of the security ticketing engine (ste) control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
@@ -4645,13 +4645,13 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Security Ticketing Engine (STE)\" sub-process of Cloud Platform & SaaS (Software-as-a-Service)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the security ticketing engine (ste) control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the security ticketing engine (ste) control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for security ticketing engine (ste) against comparable organisations in the sector",
             "Obtain evidence that the security ticketing engine (ste) control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "cld-13-q2",
@@ -4659,13 +4659,13 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Security Ticketing Engine (STE)\" matter to the broader Cloud Platform & SaaS (Software-as-a-Service) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Cloud Platform & SaaS (Software-as-a-Service)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Cloud Platform & SaaS (Software-as-a-Service) estate",
             "It is a control other Cloud Platform & SaaS (Software-as-a-Service) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Cloud Platform & SaaS (Software-as-a-Service) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "cld-13-q3",
@@ -4673,27 +4673,27 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Security Ticketing Engine (STE)\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The pipeline turning every cloud security finding (CSPM / GuardDuty / Inspector) into a ticket with an owner + SLA reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's security ticketing engine (ste) settings, captured during the walkthrough",
+            "The The pipeline turning every cloud security finding (CSPM / GuardDuty / Inspector) into a ticket with an owner + SLA, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the security ticketing engine (ste) control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's security ticketing engine (ste) capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "cld-13-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Security Ticketing Engine (STE)\"?",
+          "text": "Where should an auditor pull the evidence for \"Security Ticketing Engine (STE)\"?",
           "options": [
-            "CSPM / GuardDuty / Inspector / Security Hub (sources) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From CSPM / GuardDuty / Inspector / Security Hub (sources) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how security ticketing engine (ste) works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., CSPM / GuardDuty / Inspector / Security Hub (sources)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. CSPM / GuardDuty / Inspector / Security Hub (sources)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "cld-13-q5",
@@ -4701,13 +4701,13 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Security Ticketing Engine (STE)\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Cloud security — owns the engine (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the security ticketing engine (ste) control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the security ticketing engine (ste) data is shared, so the accountability sits with no one in particular",
+            "Cloud security — owns the engine, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Cloud security — owns the engine owns the control data; the auditor independently verifies it."
+          "explanation": "Cloud security — owns the engine owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "cld-13-q6",
@@ -4715,55 +4715,55 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Security Ticketing Engine (STE)\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "cld-13-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "cld-13-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Security Ticketing Engine (STE)\", which is a realistic reportable finding?",
+          "text": "For \"Security Ticketing Engine (STE)\", which of these is a realistic reportable finding?",
           "options": [
             "Only Security Hub criticals create tickets (GuardDuty + Inspector findings are dropped), ~30% of resources are untagged so their findings have no owner, and tickets auto-close on a timer without confirming remediation.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. Only Security Hub criticals create tickets (GuardDuty + Inspector findings are dropped), ~30% of resources are untagged so their findings have no owner, and tickets auto-close on a timer without confirming remediation."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. Only Security Hub criticals create tickets (GuardDuty + Inspector findings are dropped), ~30% of resources are untagged so their findings have no owner, and tickets auto-close on a timer without confirming remediation. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "cld-13-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "cld-13-q10",
@@ -4771,13 +4771,13 @@ export const cloudSaasStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Security Ticketing Engine (STE)\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind security ticketing engine (ste), so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }

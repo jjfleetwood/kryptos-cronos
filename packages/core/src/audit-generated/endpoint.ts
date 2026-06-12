@@ -18,7 +18,7 @@ export const endpointStages: StageConfig[] = [
     "title": "Device management platform",
     "subtitle": "Agentic technical & privacy audit of the device management platform control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
@@ -239,13 +239,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Device management platform\" sub-process of Endpoint Devices?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the device management platform control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the device management platform control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for device management platform against comparable organisations in the sector",
             "Obtain evidence that the device management platform control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "ept-01-q2",
@@ -253,13 +253,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Device management platform\" matter to the broader Endpoint Devices posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Endpoint Devices",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Endpoint Devices estate",
             "It is a control other Endpoint Devices controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Endpoint Devices controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "ept-01-q3",
@@ -267,27 +267,27 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Device management platform\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The MDM/UEM enrolment report — devices enrolled + managed vs the total known device population reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's device management platform settings, captured during the walkthrough",
+            "The The MDM/UEM enrolment report — devices enrolled + managed vs the total known device population, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the device management platform control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's device management platform capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "ept-01-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Device management platform\"?",
+          "text": "Where should an auditor pull the evidence for \"Device management platform\"?",
           "options": [
-            "Microsoft Intune / Jamf Pro / VMware Workspace ONE (MDM/UEM) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Microsoft Intune / Jamf Pro / VMware Workspace ONE (MDM/UEM) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how device management platform works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Microsoft Intune / Jamf Pro / VMware Workspace ONE (MDM/UEM)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Microsoft Intune / Jamf Pro / VMware Workspace ONE (MDM/UEM)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "ept-01-q5",
@@ -295,13 +295,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Device management platform\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "End-user computing / IT — owns the platform (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the device management platform control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the device management platform data is shared, so the accountability sits with no one in particular",
+            "End-user computing / IT — owns the platform, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "End-user computing / IT — owns the platform owns the control data; the auditor independently verifies it."
+          "explanation": "End-user computing / IT — owns the platform owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "ept-01-q6",
@@ -309,55 +309,55 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Device management platform\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "ept-01-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "ept-01-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Device management platform\", which is a realistic reportable finding?",
+          "text": "For \"Device management platform\", which of these is a realistic reportable finding?",
           "options": [
             "Intune covers Windows but 200 macOS and most personal mobiles accessing email are unmanaged; 15% of enrolled devices report non-compliant (encryption or patch) yet still have access.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. Intune covers Windows but 200 macOS and most personal mobiles accessing email are unmanaged; 15% of enrolled devices report non-compliant (encryption or patch) yet still have access."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. Intune covers Windows but 200 macOS and most personal mobiles accessing email are unmanaged; 15% of enrolled devices report non-compliant (encryption or patch) yet still have access. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "ept-01-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "ept-01-q10",
@@ -365,13 +365,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Device management platform\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind device management platform, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -383,7 +383,7 @@ export const endpointStages: StageConfig[] = [
     "title": "End point inventory and unauthorized devices",
     "subtitle": "Agentic technical & privacy audit of the end point inventory and unauthorized devices control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 7,
     "valueScore": 7,
     "rank": 0,
@@ -604,13 +604,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"End point inventory and unauthorized devices\" sub-process of Endpoint Devices?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the end point inventory and unauthorized devices control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the end point inventory and unauthorized devices control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for end point inventory and unauthorized devices against comparable organisations in the sector",
             "Obtain evidence that the end point inventory and unauthorized devices control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "ept-02-q2",
@@ -618,13 +618,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"End point inventory and unauthorized devices\" matter to the broader Endpoint Devices posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Endpoint Devices",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Endpoint Devices estate",
             "It is a control other Endpoint Devices controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Endpoint Devices controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "ept-02-q3",
@@ -632,27 +632,27 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"End point inventory and unauthorized devices\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The authoritative endpoint inventory reconciled from MDM + EDR + AD + DHCP/NAC reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's end point inventory and unauthorized devices settings, captured during the walkthrough",
+            "The The authoritative endpoint inventory reconciled from MDM + EDR + AD + DHCP/NAC, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the end point inventory and unauthorized devices control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's end point inventory and unauthorized devices capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "ept-02-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"End point inventory and unauthorized devices\"?",
+          "text": "Where should an auditor pull the evidence for \"End point inventory and unauthorized devices\"?",
           "options": [
-            "MDM + EDR + AD + DHCP/NAC (the sources) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From MDM + EDR + AD + DHCP/NAC (the sources) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how end point inventory and unauthorized devices works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., MDM + EDR + AD + DHCP/NAC (the sources)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. MDM + EDR + AD + DHCP/NAC (the sources)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "ept-02-q5",
@@ -660,13 +660,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"End point inventory and unauthorized devices\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "IT asset management — owns the inventory (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the end point inventory and unauthorized devices control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the end point inventory and unauthorized devices data is shared, so the accountability sits with no one in particular",
+            "IT asset management — owns the inventory, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "IT asset management — owns the inventory owns the control data; the auditor independently verifies it."
+          "explanation": "IT asset management — owns the inventory owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "ept-02-q6",
@@ -674,55 +674,55 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"End point inventory and unauthorized devices\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "ept-02-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "ept-02-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"End point inventory and unauthorized devices\", which is a realistic reportable finding?",
+          "text": "For \"End point inventory and unauthorized devices\", which of these is a realistic reportable finding?",
           "options": [
             "EDR sees 4,200 endpoints, MDM 3,600, AD 5,000 — none reconcile; network discovery finds 300 devices in no inventory, and there's no NAC to stop an unknown laptop from joining.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. EDR sees 4,200 endpoints, MDM 3,600, AD 5,000 — none reconcile; network discovery finds 300 devices in no inventory, and there's no NAC to stop an unknown laptop from joining."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. EDR sees 4,200 endpoints, MDM 3,600, AD 5,000 — none reconcile; network discovery finds 300 devices in no inventory, and there's no NAC to stop an unknown laptop from joining. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "ept-02-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "ept-02-q10",
@@ -730,13 +730,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"End point inventory and unauthorized devices\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind end point inventory and unauthorized devices, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -748,7 +748,7 @@ export const endpointStages: StageConfig[] = [
     "title": "Hardware lifecycle tracking",
     "subtitle": "Agentic technical & privacy audit of the hardware lifecycle tracking control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 7,
     "valueScore": 7,
     "rank": 0,
@@ -969,13 +969,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Hardware lifecycle tracking\" sub-process of Endpoint Devices?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the hardware lifecycle tracking control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the hardware lifecycle tracking control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for hardware lifecycle tracking against comparable organisations in the sector",
             "Obtain evidence that the hardware lifecycle tracking control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "ept-03-q2",
@@ -983,13 +983,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Hardware lifecycle tracking\" matter to the broader Endpoint Devices posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Endpoint Devices",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Endpoint Devices estate",
             "It is a control other Endpoint Devices controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Endpoint Devices controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "ept-03-q3",
@@ -997,27 +997,27 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Hardware lifecycle tracking\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The hardware asset register (procurement → deployment → refresh → disposal) with owner, location, status reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's hardware lifecycle tracking settings, captured during the walkthrough",
+            "The The hardware asset register (procurement → deployment → refresh → disposal) with owner, location, status, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the hardware lifecycle tracking control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's hardware lifecycle tracking capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "ept-03-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Hardware lifecycle tracking\"?",
+          "text": "Where should an auditor pull the evidence for \"Hardware lifecycle tracking\"?",
           "options": [
-            "ITAM — ServiceNow ITAM / Lansweeper / Snipe-IT (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From ITAM — ServiceNow ITAM / Lansweeper / Snipe-IT and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how hardware lifecycle tracking works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., ITAM — ServiceNow ITAM / Lansweeper / Snipe-IT) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. ITAM — ServiceNow ITAM / Lansweeper / Snipe-IT) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "ept-03-q5",
@@ -1025,13 +1025,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Hardware lifecycle tracking\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "IT asset management — owns the register (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the hardware lifecycle tracking control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the hardware lifecycle tracking data is shared, so the accountability sits with no one in particular",
+            "IT asset management — owns the register, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "IT asset management — owns the register owns the control data; the auditor independently verifies it."
+          "explanation": "IT asset management — owns the register owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "ept-03-q6",
@@ -1039,55 +1039,55 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Hardware lifecycle tracking\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "ept-03-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "ept-03-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Hardware lifecycle tracking\", which is a realistic reportable finding?",
+          "text": "For \"Hardware lifecycle tracking\", which of these is a realistic reportable finding?",
           "options": [
             "The asset register is ~70% accurate; 50 'disposed' laptops have no wipe certificate (data may have left on resold drives), and two reported-lost laptops were never remote-wiped.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. The asset register is ~70% accurate; 50 'disposed' laptops have no wipe certificate (data may have left on resold drives), and two reported-lost laptops were never remote-wiped."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. The asset register is ~70% accurate; 50 'disposed' laptops have no wipe certificate (data may have left on resold drives), and two reported-lost laptops were never remote-wiped. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "ept-03-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "ept-03-q10",
@@ -1095,13 +1095,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Hardware lifecycle tracking\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind hardware lifecycle tracking, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1113,7 +1113,7 @@ export const endpointStages: StageConfig[] = [
     "title": "Device image version mgmt",
     "subtitle": "Agentic technical & privacy audit of the device image version mgmt control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
@@ -1334,13 +1334,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Device image version mgmt\" sub-process of Endpoint Devices?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the device image version mgmt control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the device image version mgmt control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for device image version mgmt against comparable organisations in the sector",
             "Obtain evidence that the device image version mgmt control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "ept-04-q2",
@@ -1348,13 +1348,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Device image version mgmt\" matter to the broader Endpoint Devices posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Endpoint Devices",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Endpoint Devices estate",
             "It is a control other Endpoint Devices controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Endpoint Devices controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "ept-04-q3",
@@ -1362,27 +1362,27 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Device image version mgmt\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The approved gold-image/build definitions + versions per OS reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's device image version mgmt settings, captured during the walkthrough",
+            "The The approved gold-image/build definitions + versions per OS, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the device image version mgmt control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's device image version mgmt capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "ept-04-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Device image version mgmt\"?",
+          "text": "Where should an auditor pull the evidence for \"Device image version mgmt\"?",
           "options": [
-            "Imaging — Autopilot / MDT-SCCM / Jamf (the gold-image pipeline) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Imaging — Autopilot / MDT-SCCM / Jamf (the gold-image pipeline) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how device image version mgmt works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Imaging — Autopilot / MDT-SCCM / Jamf (the gold-image pipeline)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Imaging — Autopilot / MDT-SCCM / Jamf (the gold-image pipeline)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "ept-04-q5",
@@ -1390,13 +1390,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Device image version mgmt\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "End-user computing / engineering — owns images (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the device image version mgmt control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the device image version mgmt data is shared, so the accountability sits with no one in particular",
+            "End-user computing / engineering — owns images, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "End-user computing / engineering — owns images owns the control data; the auditor independently verifies it."
+          "explanation": "End-user computing / engineering — owns images owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "ept-04-q6",
@@ -1404,55 +1404,55 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Device image version mgmt\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "ept-04-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "ept-04-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Device image version mgmt\", which is a realistic reportable finding?",
+          "text": "For \"Device image version mgmt\", which of these is a realistic reportable finding?",
           "options": [
             "A third of the fleet runs a gold image from two years ago with known-unpatched components baked in, and several departments use their own unapproved, unhardened images.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. A third of the fleet runs a gold image from two years ago with known-unpatched components baked in, and several departments use their own unapproved, unhardened images."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. A third of the fleet runs a gold image from two years ago with known-unpatched components baked in, and several departments use their own unapproved, unhardened images. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "ept-04-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "ept-04-q10",
@@ -1460,13 +1460,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Device image version mgmt\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind device image version mgmt, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1478,7 +1478,7 @@ export const endpointStages: StageConfig[] = [
     "title": "EDR & antimalware",
     "subtitle": "Agentic technical & privacy audit of the edr & antimalware control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 6,
     "valueScore": 7,
     "rank": 0,
@@ -1699,13 +1699,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"EDR & antimalware\" sub-process of Endpoint Devices?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the edr & antimalware control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the edr & antimalware control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for edr & antimalware against comparable organisations in the sector",
             "Obtain evidence that the edr & antimalware control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "ept-05-q2",
@@ -1713,13 +1713,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"EDR & antimalware\" matter to the broader Endpoint Devices posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Endpoint Devices",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Endpoint Devices estate",
             "It is a control other Endpoint Devices controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Endpoint Devices controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "ept-05-q3",
@@ -1727,27 +1727,27 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"EDR & antimalware\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The EDR/AV deployment report — agents installed + healthy + reporting vs the device inventory reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's edr & antimalware settings, captured during the walkthrough",
+            "The The EDR/AV deployment report — agents installed + healthy + reporting vs the device inventory, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the edr & antimalware control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's edr & antimalware capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "ept-05-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"EDR & antimalware\"?",
+          "text": "Where should an auditor pull the evidence for \"EDR & antimalware\"?",
           "options": [
-            "EDR — CrowdStrike Falcon / Microsoft Defender for Endpoint / SentinelOne (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From EDR — CrowdStrike Falcon / Microsoft Defender for Endpoint / SentinelOne and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how edr & antimalware works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., EDR — CrowdStrike Falcon / Microsoft Defender for Endpoint / SentinelOne) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. EDR — CrowdStrike Falcon / Microsoft Defender for Endpoint / SentinelOne) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "ept-05-q5",
@@ -1755,13 +1755,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"EDR & antimalware\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Security operations — owns EDR (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the edr & antimalware control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the edr & antimalware data is shared, so the accountability sits with no one in particular",
+            "Security operations — owns EDR, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Security operations — owns EDR owns the control data; the auditor independently verifies it."
+          "explanation": "Security operations — owns EDR owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "ept-05-q6",
@@ -1769,55 +1769,55 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"EDR & antimalware\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "ept-05-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "ept-05-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"EDR & antimalware\", which is a realistic reportable finding?",
+          "text": "For \"EDR & antimalware\", which of these is a realistic reportable finding?",
           "options": [
             "EDR covers 85% of endpoints; 300 have no agent and 120 have it disabled or not reporting; and the server policy is detect-only, so malware would be seen but not blocked.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. EDR covers 85% of endpoints; 300 have no agent and 120 have it disabled or not reporting; and the server policy is detect-only, so malware would be seen but not blocked."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. EDR covers 85% of endpoints; 300 have no agent and 120 have it disabled or not reporting; and the server policy is detect-only, so malware would be seen but not blocked. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "ept-05-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "ept-05-q10",
@@ -1825,13 +1825,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"EDR & antimalware\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind edr & antimalware, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1843,7 +1843,7 @@ export const endpointStages: StageConfig[] = [
     "title": "Coverage gaps",
     "subtitle": "Agentic technical & privacy audit of the coverage gaps control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 7,
     "valueScore": 7,
     "rank": 0,
@@ -2064,13 +2064,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Coverage gaps\" sub-process of Endpoint Devices?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the coverage gaps control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the coverage gaps control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for coverage gaps against comparable organisations in the sector",
             "Obtain evidence that the coverage gaps control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "ept-06-q2",
@@ -2078,13 +2078,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Coverage gaps\" matter to the broader Endpoint Devices posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Endpoint Devices",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Endpoint Devices estate",
             "It is a control other Endpoint Devices controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Endpoint Devices controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "ept-06-q3",
@@ -2092,27 +2092,27 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Coverage gaps\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The cross-control coverage matrix per device (MDM, EDR, encryption, patch, logging — ✓/✗ each) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's coverage gaps settings, captured during the walkthrough",
+            "The The cross-control coverage matrix per device (MDM, EDR, encryption, patch, logging — ✓/✗ each), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the coverage gaps control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's coverage gaps capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "ept-06-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Coverage gaps\"?",
+          "text": "Where should an auditor pull the evidence for \"Coverage gaps\"?",
           "options": [
-            "MDM + EDR + encryption + patch + SIEM (joined) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From MDM + EDR + encryption + patch + SIEM (joined) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how coverage gaps works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., MDM + EDR + encryption + patch + SIEM (joined)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. MDM + EDR + encryption + patch + SIEM (joined)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "ept-06-q5",
@@ -2120,13 +2120,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Coverage gaps\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Security operations / endpoint security — owns coverage (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the coverage gaps control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the coverage gaps data is shared, so the accountability sits with no one in particular",
+            "Security operations / endpoint security — owns coverage, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Security operations / endpoint security — owns coverage owns the control data; the auditor independently verifies it."
+          "explanation": "Security operations / endpoint security — owns coverage owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "ept-06-q6",
@@ -2134,55 +2134,55 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Coverage gaps\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "ept-06-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "ept-06-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Coverage gaps\", which is a realistic reportable finding?",
+          "text": "For \"Coverage gaps\", which of these is a realistic reportable finding?",
           "options": [
             "When the controls are joined per device, only 62% have the full stack; a whole population of lab machines has EDR but no encryption or logging, and contractor laptops have none of it.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. When the controls are joined per device, only 62% have the full stack; a whole population of lab machines has EDR but no encryption or logging, and contractor laptops have none of it."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. When the controls are joined per device, only 62% have the full stack; a whole population of lab machines has EDR but no encryption or logging, and contractor laptops have none of it. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "ept-06-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "ept-06-q10",
@@ -2190,13 +2190,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Coverage gaps\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind coverage gaps, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -2208,7 +2208,7 @@ export const endpointStages: StageConfig[] = [
     "title": "OS patching cadence",
     "subtitle": "Agentic technical & privacy audit of the os patching cadence control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 5,
     "valueScore": 9,
     "rank": 0,
@@ -2429,13 +2429,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"OS patching cadence\" sub-process of Endpoint Devices?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the os patching cadence control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the os patching cadence control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for os patching cadence against comparable organisations in the sector",
             "Obtain evidence that the os patching cadence control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "ept-07-q2",
@@ -2443,13 +2443,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"OS patching cadence\" matter to the broader Endpoint Devices posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Endpoint Devices",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Endpoint Devices estate",
             "It is a control other Endpoint Devices controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Endpoint Devices controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "ept-07-q3",
@@ -2457,27 +2457,27 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"OS patching cadence\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The endpoint patch-compliance report (missing OS + third-party patches, severity, age) per device reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's os patching cadence settings, captured during the walkthrough",
+            "The The endpoint patch-compliance report (missing OS + third-party patches, severity, age) per device, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the os patching cadence control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's os patching cadence capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "ept-07-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"OS patching cadence\"?",
+          "text": "Where should an auditor pull the evidence for \"OS patching cadence\"?",
           "options": [
-            "Intune / WSUS-SCCM / Jamf + third-party patching (Patch My PC, Autopkg) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Intune / WSUS-SCCM / Jamf + third-party patching (Patch My PC, Autopkg) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how os patching cadence works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Intune / WSUS-SCCM / Jamf + third-party patching (Patch My PC, Autopkg)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Intune / WSUS-SCCM / Jamf + third-party patching (Patch My PC, Autopkg)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "ept-07-q5",
@@ -2485,13 +2485,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"OS patching cadence\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "End-user computing / IT operations — patch (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the os patching cadence control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the os patching cadence data is shared, so the accountability sits with no one in particular",
+            "End-user computing / IT operations — patch, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "End-user computing / IT operations — patch owns the control data; the auditor independently verifies it."
+          "explanation": "End-user computing / IT operations — patch owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "ept-07-q6",
@@ -2499,55 +2499,55 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"OS patching cadence\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "ept-07-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "ept-07-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"OS patching cadence\", which is a realistic reportable finding?",
+          "text": "For \"OS patching cadence\", which of these is a realistic reportable finding?",
           "options": [
             "OS patching is decent but third-party apps aren't managed at all — most endpoints run outdated Chrome/Acrobat with KEV-listed CVEs, and 8% of devices have updates paused indefinitely.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. OS patching is decent but third-party apps aren't managed at all — most endpoints run outdated Chrome/Acrobat with KEV-listed CVEs, and 8% of devices have updates paused indefinitely."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. OS patching is decent but third-party apps aren't managed at all — most endpoints run outdated Chrome/Acrobat with KEV-listed CVEs, and 8% of devices have updates paused indefinitely. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "ept-07-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "ept-07-q10",
@@ -2555,13 +2555,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"OS patching cadence\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind os patching cadence, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -2573,7 +2573,7 @@ export const endpointStages: StageConfig[] = [
     "title": "Vulnerability scanning",
     "subtitle": "Agentic technical & privacy audit of the vulnerability scanning control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 7,
     "valueScore": 9,
     "rank": 0,
@@ -2794,13 +2794,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Vulnerability scanning\" sub-process of Endpoint Devices?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the vulnerability scanning control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the vulnerability scanning control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for vulnerability scanning against comparable organisations in the sector",
             "Obtain evidence that the vulnerability scanning control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "ept-08-q2",
@@ -2808,13 +2808,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Vulnerability scanning\" matter to the broader Endpoint Devices posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Endpoint Devices",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Endpoint Devices estate",
             "It is a control other Endpoint Devices controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Endpoint Devices controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "ept-08-q3",
@@ -2822,27 +2822,27 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Vulnerability scanning\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The Authenticated endpoint vuln-scan results (or EDR-native vuln data) across the fleet reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's vulnerability scanning settings, captured during the walkthrough",
+            "The Authenticated endpoint vuln-scan results (or EDR-native vuln data) across the fleet, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the vulnerability scanning control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's vulnerability scanning capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "ept-08-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Vulnerability scanning\"?",
+          "text": "Where should an auditor pull the evidence for \"Vulnerability scanning\"?",
           "options": [
-            "Tenable/Qualys/Rapid7 or EDR-native (Defender Vulnerability Management, CrowdStrike Spotlight) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Tenable/Qualys/Rapid7 or EDR-native (Defender Vulnerability Management, CrowdStrike Spotlight) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how vulnerability scanning works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Tenable/Qualys/Rapid7 or EDR-native (Defender Vulnerability Management, CrowdStrike Spotlight)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Tenable/Qualys/Rapid7 or EDR-native (Defender Vulnerability Management, CrowdStrike Spotlight)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "ept-08-q5",
@@ -2850,13 +2850,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Vulnerability scanning\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Vulnerability management / endpoint security (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the vulnerability scanning control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the vulnerability scanning data is shared, so the accountability sits with no one in particular",
+            "Vulnerability management / endpoint security, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Vulnerability management / endpoint security owns the control data; the auditor independently verifies it."
+          "explanation": "Vulnerability management / endpoint security owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "ept-08-q6",
@@ -2864,55 +2864,55 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Vulnerability scanning\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "ept-08-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "ept-08-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Vulnerability scanning\", which is a realistic reportable finding?",
+          "text": "For \"Vulnerability scanning\", which of these is a realistic reportable finding?",
           "options": [
             "Network-based scanning misses all remote/roaming laptops (40% of the fleet), and where it does run it's unauthenticated — so most host vulnerabilities and all misconfigurations are invisible.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. Network-based scanning misses all remote/roaming laptops (40% of the fleet), and where it does run it's unauthenticated — so most host vulnerabilities and all misconfigurations are invisible."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. Network-based scanning misses all remote/roaming laptops (40% of the fleet), and where it does run it's unauthenticated — so most host vulnerabilities and all misconfigurations are invisible. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "ept-08-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "ept-08-q10",
@@ -2920,13 +2920,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Vulnerability scanning\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind vulnerability scanning, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -2938,7 +2938,7 @@ export const endpointStages: StageConfig[] = [
     "title": "End-of-life management",
     "subtitle": "Agentic technical & privacy audit of the end-of-life management control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 7,
     "valueScore": 7,
     "rank": 0,
@@ -3159,13 +3159,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"End-of-life management\" sub-process of Endpoint Devices?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the end-of-life management control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the end-of-life management control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for end-of-life management against comparable organisations in the sector",
             "Obtain evidence that the end-of-life management control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "ept-09-q2",
@@ -3173,13 +3173,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"End-of-life management\" matter to the broader Endpoint Devices posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Endpoint Devices",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Endpoint Devices estate",
             "It is a control other Endpoint Devices controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Endpoint Devices controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "ept-09-q3",
@@ -3187,27 +3187,27 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"End-of-life management\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The inventory of OS/hardware versions vs vendor end-of-support dates reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's end-of-life management settings, captured during the walkthrough",
+            "The The inventory of OS/hardware versions vs vendor end-of-support dates, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the end-of-life management control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's end-of-life management capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "ept-09-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"End-of-life management\"?",
+          "text": "Where should an auditor pull the evidence for \"End-of-life management\"?",
           "options": [
-            "MDM / inventory (OS + hardware versions) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From MDM / inventory (OS + hardware versions) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how end-of-life management works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., MDM / inventory (OS + hardware versions)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. MDM / inventory (OS + hardware versions)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "ept-09-q5",
@@ -3215,13 +3215,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"End-of-life management\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "End-user computing / IT — owns refresh (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the end-of-life management control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the end-of-life management data is shared, so the accountability sits with no one in particular",
+            "End-user computing / IT — owns refresh, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "End-user computing / IT — owns refresh owns the control data; the auditor independently verifies it."
+          "explanation": "End-user computing / IT — owns refresh owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "ept-09-q6",
@@ -3229,55 +3229,55 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"End-of-life management\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "ept-09-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "ept-09-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"End-of-life management\", which is a realistic reportable finding?",
+          "text": "For \"End-of-life management\", which of these is a realistic reportable finding?",
           "options": [
             "200 endpoints still run an EOL OS with no ESU (zero security patches), they sit on the general network with no isolation, and there's no funded refresh plan.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. 200 endpoints still run an EOL OS with no ESU (zero security patches), they sit on the general network with no isolation, and there's no funded refresh plan."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. 200 endpoints still run an EOL OS with no ESU (zero security patches), they sit on the general network with no isolation, and there's no funded refresh plan. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "ept-09-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "ept-09-q10",
@@ -3285,13 +3285,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"End-of-life management\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind end-of-life management, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -3303,7 +3303,7 @@ export const endpointStages: StageConfig[] = [
     "title": "Physical controls (USB, BT)",
     "subtitle": "Agentic technical & privacy audit of the physical controls (usb, bt) control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
@@ -3524,13 +3524,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Physical controls (USB, BT)\" sub-process of Endpoint Devices?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the physical controls (usb, bt) control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the physical controls (usb, bt) control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for physical controls (usb, bt) against comparable organisations in the sector",
             "Obtain evidence that the physical controls (usb, bt) control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "ept-10-q2",
@@ -3538,13 +3538,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Physical controls (USB, BT)\" matter to the broader Endpoint Devices posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Endpoint Devices",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Endpoint Devices estate",
             "It is a control other Endpoint Devices controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Endpoint Devices controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "ept-10-q3",
@@ -3552,27 +3552,27 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Physical controls (USB, BT)\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The removable-media + peripheral-control policy and its MDM enforcement (USB storage block/encrypt, Bluetooth restrictions) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's physical controls (usb, bt) settings, captured during the walkthrough",
+            "The The removable-media + peripheral-control policy and its MDM enforcement (USB storage block/encrypt, Bluetooth restrictions), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the physical controls (usb, bt) control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's physical controls (usb, bt) capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "ept-10-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Physical controls (USB, BT)\"?",
+          "text": "Where should an auditor pull the evidence for \"Physical controls (USB, BT)\"?",
           "options": [
-            "Intune/Jamf device control / Microsoft Defender device control / endpoint DLP (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Intune/Jamf device control / Microsoft Defender device control / endpoint DLP and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how physical controls (usb, bt) works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Intune/Jamf device control / Microsoft Defender device control / endpoint DLP) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Intune/Jamf device control / Microsoft Defender device control / endpoint DLP) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "ept-10-q5",
@@ -3580,13 +3580,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Physical controls (USB, BT)\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Endpoint security — owns device control (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the physical controls (usb, bt) control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the physical controls (usb, bt) data is shared, so the accountability sits with no one in particular",
+            "Endpoint security — owns device control, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Endpoint security — owns device control owns the control data; the auditor independently verifies it."
+          "explanation": "Endpoint security — owns device control owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "ept-10-q6",
@@ -3594,55 +3594,55 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Physical controls (USB, BT)\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "ept-10-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "ept-10-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Physical controls (USB, BT)\", which is a realistic reportable finding?",
+          "text": "For \"Physical controls (USB, BT)\", which of these is a realistic reportable finding?",
           "options": [
             "USB mass storage is fully open across the fleet with no encryption requirement and no logging — a contractor copied the customer database to a thumb drive and nothing recorded or blocked it; Bluetooth is unrestricted.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. USB mass storage is fully open across the fleet with no encryption requirement and no logging — a contractor copied the customer database to a thumb drive and nothing recorded or blocked it; Bluetooth is unrestricted."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. USB mass storage is fully open across the fleet with no encryption requirement and no logging — a contractor copied the customer database to a thumb drive and nothing recorded or blocked it; Bluetooth is unrestricted. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "ept-10-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "ept-10-q10",
@@ -3650,13 +3650,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Physical controls (USB, BT)\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind physical controls (usb, bt), so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -3668,7 +3668,7 @@ export const endpointStages: StageConfig[] = [
     "title": "Screen lock and timeout",
     "subtitle": "Agentic technical & privacy audit of the screen lock and timeout control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 6,
     "valueScore": 7,
     "rank": 0,
@@ -3888,13 +3888,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Screen lock and timeout\" sub-process of Endpoint Devices?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the screen lock and timeout control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the screen lock and timeout control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for screen lock and timeout against comparable organisations in the sector",
             "Obtain evidence that the screen lock and timeout control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "ept-11-q2",
@@ -3902,13 +3902,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Screen lock and timeout\" matter to the broader Endpoint Devices posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Endpoint Devices",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Endpoint Devices estate",
             "It is a control other Endpoint Devices controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Endpoint Devices controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "ept-11-q3",
@@ -3916,27 +3916,27 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Screen lock and timeout\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The screen-lock/timeout policy (inactivity timeout, password/biometric on resume) and its MDM enforcement reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's screen lock and timeout settings, captured during the walkthrough",
+            "The The screen-lock/timeout policy (inactivity timeout, password/biometric on resume) and its MDM enforcement, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the screen lock and timeout control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's screen lock and timeout capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "ept-11-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Screen lock and timeout\"?",
+          "text": "Where should an auditor pull the evidence for \"Screen lock and timeout\"?",
           "options": [
-            "Intune/Jamf configuration profiles (screen-lock policy) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Intune/Jamf configuration profiles (screen-lock policy) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how screen lock and timeout works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Intune/Jamf configuration profiles (screen-lock policy)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Intune/Jamf configuration profiles (screen-lock policy)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "ept-11-q5",
@@ -3944,13 +3944,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Screen lock and timeout\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Endpoint security / IT — owns the policy (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the screen lock and timeout control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the screen lock and timeout data is shared, so the accountability sits with no one in particular",
+            "Endpoint security / IT — owns the policy, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Endpoint security / IT — owns the policy owns the control data; the auditor independently verifies it."
+          "explanation": "Endpoint security / IT — owns the policy owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "ept-11-q6",
@@ -3958,55 +3958,55 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Screen lock and timeout\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "ept-11-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "ept-11-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Screen lock and timeout\", which is a realistic reportable finding?",
+          "text": "For \"Screen lock and timeout\", which of these is a realistic reportable finding?",
           "options": [
             "The inactivity-lock policy exists but isn't enforced via MDM, so many users set it to 'never'; privileged admin workstations use the same 30-minute timeout as everyone else.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. The inactivity-lock policy exists but isn't enforced via MDM, so many users set it to 'never'; privileged admin workstations use the same 30-minute timeout as everyone else."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. The inactivity-lock policy exists but isn't enforced via MDM, so many users set it to 'never'; privileged admin workstations use the same 30-minute timeout as everyone else. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "ept-11-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "ept-11-q10",
@@ -4014,13 +4014,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Screen lock and timeout\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind screen lock and timeout, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -4032,7 +4032,7 @@ export const endpointStages: StageConfig[] = [
     "title": "Full disk encryption",
     "subtitle": "Agentic technical & privacy audit of the full disk encryption control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 7,
     "valueScore": 9,
     "rank": 0,
@@ -4253,13 +4253,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Full disk encryption\" sub-process of Endpoint Devices?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the full disk encryption control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the full disk encryption control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for full disk encryption against comparable organisations in the sector",
             "Obtain evidence that the full disk encryption control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "ept-12-q2",
@@ -4267,13 +4267,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Full disk encryption\" matter to the broader Endpoint Devices posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Endpoint Devices",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Endpoint Devices estate",
             "It is a control other Endpoint Devices controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Endpoint Devices controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "ept-12-q3",
@@ -4281,27 +4281,27 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Full disk encryption\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The full-disk-encryption status per device (BitLocker/FileVault on, fully encrypted, correct cipher) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's full disk encryption settings, captured during the walkthrough",
+            "The The full-disk-encryption status per device (BitLocker/FileVault on, fully encrypted, correct cipher), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the full disk encryption control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's full disk encryption capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "ept-12-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Full disk encryption\"?",
+          "text": "Where should an auditor pull the evidence for \"Full disk encryption\"?",
           "options": [
-            "BitLocker (Windows) / FileVault (macOS) via MDM (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From BitLocker (Windows) / FileVault (macOS) via MDM and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how full disk encryption works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., BitLocker (Windows) / FileVault (macOS) via MDM) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. BitLocker (Windows) / FileVault (macOS) via MDM) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "ept-12-q5",
@@ -4309,13 +4309,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Full disk encryption\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Endpoint security / IT — owns encryption (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the full disk encryption control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the full disk encryption data is shared, so the accountability sits with no one in particular",
+            "Endpoint security / IT — owns encryption, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Endpoint security / IT — owns encryption owns the control data; the auditor independently verifies it."
+          "explanation": "Endpoint security / IT — owns encryption owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "ept-12-q6",
@@ -4323,55 +4323,55 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Full disk encryption\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "ept-12-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "ept-12-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Full disk encryption\", which is a realistic reportable finding?",
+          "text": "For \"Full disk encryption\", which of these is a realistic reportable finding?",
           "options": [
             "12% of laptops are unencrypted or have BitLocker suspended; for several encrypted devices the recovery key was never escrowed — so a lost laptop is both a breach and unrecoverable.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. 12% of laptops are unencrypted or have BitLocker suspended; for several encrypted devices the recovery key was never escrowed — so a lost laptop is both a breach and unrecoverable."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. 12% of laptops are unencrypted or have BitLocker suspended; for several encrypted devices the recovery key was never escrowed — so a lost laptop is both a breach and unrecoverable. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "ept-12-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "ept-12-q10",
@@ -4379,13 +4379,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Full disk encryption\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind full disk encryption, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -4397,7 +4397,7 @@ export const endpointStages: StageConfig[] = [
     "title": "Data loss prevention (endpoint)",
     "subtitle": "Agentic technical & privacy audit of the data loss prevention (endpoint) control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
@@ -4618,13 +4618,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Data loss prevention (endpoint)\" sub-process of Endpoint Devices?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the data loss prevention (endpoint) control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the data loss prevention (endpoint) control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for data loss prevention (endpoint) against comparable organisations in the sector",
             "Obtain evidence that the data loss prevention (endpoint) control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "ept-13-q2",
@@ -4632,13 +4632,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Data loss prevention (endpoint)\" matter to the broader Endpoint Devices posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Endpoint Devices",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Endpoint Devices estate",
             "It is a control other Endpoint Devices controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Endpoint Devices controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "ept-13-q3",
@@ -4646,27 +4646,27 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Data loss prevention (endpoint)\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The endpoint-DLP policy + coverage (sensitive-data detection on copy/print/upload/USB) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's data loss prevention (endpoint) settings, captured during the walkthrough",
+            "The The endpoint-DLP policy + coverage (sensitive-data detection on copy/print/upload/USB), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the data loss prevention (endpoint) control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's data loss prevention (endpoint) capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "ept-13-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Data loss prevention (endpoint)\"?",
+          "text": "Where should an auditor pull the evidence for \"Data loss prevention (endpoint)\"?",
           "options": [
-            "Microsoft Purview Endpoint DLP / Forcepoint / Digital Guardian (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Microsoft Purview Endpoint DLP / Forcepoint / Digital Guardian and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how data loss prevention (endpoint) works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Microsoft Purview Endpoint DLP / Forcepoint / Digital Guardian) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Microsoft Purview Endpoint DLP / Forcepoint / Digital Guardian) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "ept-13-q5",
@@ -4674,13 +4674,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Data loss prevention (endpoint)\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Data protection / endpoint security (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the data loss prevention (endpoint) control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the data loss prevention (endpoint) data is shared, so the accountability sits with no one in particular",
+            "Data protection / endpoint security, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Data protection / endpoint security owns the control data; the auditor independently verifies it."
+          "explanation": "Data protection / endpoint security owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "ept-13-q6",
@@ -4688,55 +4688,55 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Data loss prevention (endpoint)\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "ept-13-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "ept-13-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Data loss prevention (endpoint)\", which is a realistic reportable finding?",
+          "text": "For \"Data loss prevention (endpoint)\", which of these is a realistic reportable finding?",
           "options": [
             "Endpoint DLP runs on 40% of devices and doesn't cover personal cloud-sync clients, so customer files sync to a personal OneDrive uncaught; incidents that do fire go to an unmonitored queue.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. Endpoint DLP runs on 40% of devices and doesn't cover personal cloud-sync clients, so customer files sync to a personal OneDrive uncaught; incidents that do fire go to an unmonitored queue."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. Endpoint DLP runs on 40% of devices and doesn't cover personal cloud-sync clients, so customer files sync to a personal OneDrive uncaught; incidents that do fire go to an unmonitored queue. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "ept-13-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "ept-13-q10",
@@ -4744,13 +4744,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Data loss prevention (endpoint)\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind data loss prevention (endpoint), so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -4762,7 +4762,7 @@ export const endpointStages: StageConfig[] = [
     "title": "MDM and containerization",
     "subtitle": "Agentic technical & privacy audit of the mdm and containerization control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 6,
     "valueScore": 7,
     "rank": 0,
@@ -4983,13 +4983,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"MDM and containerization\" sub-process of Endpoint Devices?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the mdm and containerization control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the mdm and containerization control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for mdm and containerization against comparable organisations in the sector",
             "Obtain evidence that the mdm and containerization control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "ept-14-q2",
@@ -4997,13 +4997,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"MDM and containerization\" matter to the broader Endpoint Devices posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Endpoint Devices",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Endpoint Devices estate",
             "It is a control other Endpoint Devices controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Endpoint Devices controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "ept-14-q3",
@@ -5011,27 +5011,27 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"MDM and containerization\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The mobile-device + BYOD inventory and management model (MDM-managed vs MAM/containerised) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's mdm and containerization settings, captured during the walkthrough",
+            "The The mobile-device + BYOD inventory and management model (MDM-managed vs MAM/containerised), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the mdm and containerization control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's mdm and containerization capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "ept-14-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"MDM and containerization\"?",
+          "text": "Where should an auditor pull the evidence for \"MDM and containerization\"?",
           "options": [
-            "Intune (MDM + App Protection / MAM) / Jamf / Workspace ONE (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Intune (MDM + App Protection / MAM) / Jamf / Workspace ONE and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how mdm and containerization works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Intune (MDM + App Protection / MAM) / Jamf / Workspace ONE) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Intune (MDM + App Protection / MAM) / Jamf / Workspace ONE) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "ept-14-q5",
@@ -5039,13 +5039,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"MDM and containerization\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Endpoint security / mobility — owns MDM/MAM (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the mdm and containerization control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the mdm and containerization data is shared, so the accountability sits with no one in particular",
+            "Endpoint security / mobility — owns MDM/MAM, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Endpoint security / mobility — owns MDM/MAM owns the control data; the auditor independently verifies it."
+          "explanation": "Endpoint security / mobility — owns MDM/MAM owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "ept-14-q6",
@@ -5053,55 +5053,55 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"MDM and containerization\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "ept-14-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "ept-14-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"MDM and containerization\", which is a realistic reportable finding?",
+          "text": "For \"MDM and containerization\", which of these is a realistic reportable finding?",
           "options": [
             "Personal phones access corporate email with no app-protection policy, so customer data sits unencrypted in the native mail app and can be copied anywhere; jailbroken devices aren't detected or blocked.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. Personal phones access corporate email with no app-protection policy, so customer data sits unencrypted in the native mail app and can be copied anywhere; jailbroken devices aren't detected or blocked."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. Personal phones access corporate email with no app-protection policy, so customer data sits unencrypted in the native mail app and can be copied anywhere; jailbroken devices aren't detected or blocked. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "ept-14-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "ept-14-q10",
@@ -5109,13 +5109,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"MDM and containerization\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind mdm and containerization, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -5127,7 +5127,7 @@ export const endpointStages: StageConfig[] = [
     "title": "NAC, VPN, ZTNA",
     "subtitle": "Agentic technical & privacy audit of the nac, vpn, ztna control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 7,
     "valueScore": 7,
     "rank": 0,
@@ -5348,13 +5348,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"NAC, VPN, ZTNA\" sub-process of Endpoint Devices?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the nac, vpn, ztna control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the nac, vpn, ztna control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for nac, vpn, ztna against comparable organisations in the sector",
             "Obtain evidence that the nac, vpn, ztna control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "ept-15-q2",
@@ -5362,13 +5362,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"NAC, VPN, ZTNA\" matter to the broader Endpoint Devices posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Endpoint Devices",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Endpoint Devices estate",
             "It is a control other Endpoint Devices controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Endpoint Devices controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "ept-15-q3",
@@ -5376,27 +5376,27 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"NAC, VPN, ZTNA\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The network-access-control posture policy (device must be managed + compliant to reach the network/apps) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's nac, vpn, ztna settings, captured during the walkthrough",
+            "The The network-access-control posture policy (device must be managed + compliant to reach the network/apps), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the nac, vpn, ztna control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's nac, vpn, ztna capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "ept-15-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"NAC, VPN, ZTNA\"?",
+          "text": "Where should an auditor pull the evidence for \"NAC, VPN, ZTNA\"?",
           "options": [
-            "NAC — Cisco ISE / Aruba ClearPass (802.1X) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From NAC — Cisco ISE / Aruba ClearPass (802.1X) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how nac, vpn, ztna works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., NAC — Cisco ISE / Aruba ClearPass (802.1X)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. NAC — Cisco ISE / Aruba ClearPass (802.1X)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "ept-15-q5",
@@ -5404,13 +5404,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"NAC, VPN, ZTNA\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Network security (NAC/ZTNA) (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the nac, vpn, ztna control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the nac, vpn, ztna data is shared, so the accountability sits with no one in particular",
+            "Network security (NAC/ZTNA), with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Network security (NAC/ZTNA) owns the control data; the auditor independently verifies it."
+          "explanation": "Network security (NAC/ZTNA) owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "ept-15-q6",
@@ -5418,55 +5418,55 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"NAC, VPN, ZTNA\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "ept-15-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "ept-15-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"NAC, VPN, ZTNA\", which is a realistic reportable finding?",
+          "text": "For \"NAC, VPN, ZTNA\", which of these is a realistic reportable finding?",
           "options": [
             "Wired ports have no 802.1X, so any device that plugs in gets full network access; the VPN checks credentials but not device posture, and the MAB bypass list has grown to hundreds of un-reviewed entries.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. Wired ports have no 802.1X, so any device that plugs in gets full network access; the VPN checks credentials but not device posture, and the MAB bypass list has grown to hundreds of un-reviewed entries."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. Wired ports have no 802.1X, so any device that plugs in gets full network access; the VPN checks credentials but not device posture, and the MAB bypass list has grown to hundreds of un-reviewed entries. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "ept-15-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "ept-15-q10",
@@ -5474,13 +5474,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"NAC, VPN, ZTNA\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind nac, vpn, ztna, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -5492,7 +5492,7 @@ export const endpointStages: StageConfig[] = [
     "title": "GPS, log collection coverage",
     "subtitle": "Agentic technical & privacy audit of the gps, log collection coverage control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
@@ -5713,13 +5713,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"GPS, log collection coverage\" sub-process of Endpoint Devices?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the gps, log collection coverage control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the gps, log collection coverage control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for gps, log collection coverage against comparable organisations in the sector",
             "Obtain evidence that the gps, log collection coverage control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "ept-16-q2",
@@ -5727,13 +5727,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"GPS, log collection coverage\" matter to the broader Endpoint Devices posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Endpoint Devices",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Endpoint Devices estate",
             "It is a control other Endpoint Devices controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Endpoint Devices controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "ept-16-q3",
@@ -5741,27 +5741,27 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"GPS, log collection coverage\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The Endpoint log/telemetry forwarding coverage to the SIEM (which endpoints send security logs) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's gps, log collection coverage settings, captured during the walkthrough",
+            "The Endpoint log/telemetry forwarding coverage to the SIEM (which endpoints send security logs), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the gps, log collection coverage control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's gps, log collection coverage capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "ept-16-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"GPS, log collection coverage\"?",
+          "text": "Where should an auditor pull the evidence for \"GPS, log collection coverage\"?",
           "options": [
-            "SIEM + cloud log collectors (for roaming) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From SIEM + cloud log collectors (for roaming) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how gps, log collection coverage works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., SIEM + cloud log collectors (for roaming)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. SIEM + cloud log collectors (for roaming)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "ept-16-q5",
@@ -5769,13 +5769,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"GPS, log collection coverage\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Security operations / detection engineering (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the gps, log collection coverage control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the gps, log collection coverage data is shared, so the accountability sits with no one in particular",
+            "Security operations / detection engineering, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Security operations / detection engineering owns the control data; the auditor independently verifies it."
+          "explanation": "Security operations / detection engineering owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "ept-16-q6",
@@ -5783,55 +5783,55 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"GPS, log collection coverage\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "ept-16-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "ept-16-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"GPS, log collection coverage\", which is a realistic reportable finding?",
+          "text": "For \"GPS, log collection coverage\", which of these is a realistic reportable finding?",
           "options": [
             "Only on-LAN devices forward logs; the 40% of the fleet that's remote sends nothing, command-line auditing is off, and there's no device-location capability — a lost laptop can't be located or reliably wiped.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. Only on-LAN devices forward logs; the 40% of the fleet that's remote sends nothing, command-line auditing is off, and there's no device-location capability — a lost laptop can't be located or reliably wiped."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. Only on-LAN devices forward logs; the 40% of the fleet that's remote sends nothing, command-line auditing is off, and there's no device-location capability — a lost laptop can't be located or reliably wiped. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "ept-16-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "ept-16-q10",
@@ -5839,13 +5839,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"GPS, log collection coverage\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind gps, log collection coverage, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -5857,7 +5857,7 @@ export const endpointStages: StageConfig[] = [
     "title": "Forensic readiness",
     "subtitle": "Agentic technical & privacy audit of the forensic readiness control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 4,
     "valueScore": 7,
     "rank": 0,
@@ -6078,13 +6078,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Forensic readiness\" sub-process of Endpoint Devices?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the forensic readiness control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the forensic readiness control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for forensic readiness against comparable organisations in the sector",
             "Obtain evidence that the forensic readiness control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "ept-17-q2",
@@ -6092,13 +6092,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Forensic readiness\" matter to the broader Endpoint Devices posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Endpoint Devices",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Endpoint Devices estate",
             "It is a control other Endpoint Devices controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Endpoint Devices controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "ept-17-q3",
@@ -6106,27 +6106,27 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Forensic readiness\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The endpoint forensic-capability evidence (EDR retains process/file/network history; remote triage/collection available) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's forensic readiness settings, captured during the walkthrough",
+            "The The endpoint forensic-capability evidence (EDR retains process/file/network history; remote triage/collection available), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the forensic readiness control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's forensic readiness capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "ept-17-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Forensic readiness\"?",
+          "text": "Where should an auditor pull the evidence for \"Forensic readiness\"?",
           "options": [
-            "EDR (forensic timeline + remote response — CrowdStrike RTR / Defender Live Response) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From EDR (forensic timeline + remote response — CrowdStrike RTR / Defender Live Response) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how forensic readiness works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., EDR (forensic timeline + remote response — CrowdStrike RTR / Defender Live Response)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. EDR (forensic timeline + remote response — CrowdStrike RTR / Defender Live Response)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "ept-17-q5",
@@ -6134,13 +6134,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Forensic readiness\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "DFIR / security operations (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the forensic readiness control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the forensic readiness data is shared, so the accountability sits with no one in particular",
+            "DFIR / security operations, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "DFIR / security operations owns the control data; the auditor independently verifies it."
+          "explanation": "DFIR / security operations owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "ept-17-q6",
@@ -6148,55 +6148,55 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Forensic readiness\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "ept-17-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "ept-17-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Forensic readiness\", which is a realistic reportable finding?",
+          "text": "For \"Forensic readiness\", which of these is a realistic reportable finding?",
           "options": [
             "EDR retains only 7 days of telemetry, so a breach discovered weeks later can't be reconstructed; there's no remote-collection tooling, and analysts can't isolate a compromised host without physically retrieving it.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. EDR retains only 7 days of telemetry, so a breach discovered weeks later can't be reconstructed; there's no remote-collection tooling, and analysts can't isolate a compromised host without physically retrieving it."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. EDR retains only 7 days of telemetry, so a breach discovered weeks later can't be reconstructed; there's no remote-collection tooling, and analysts can't isolate a compromised host without physically retrieving it. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "ept-17-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "ept-17-q10",
@@ -6204,13 +6204,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Forensic readiness\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind forensic readiness, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -6222,7 +6222,7 @@ export const endpointStages: StageConfig[] = [
     "title": "Exception management",
     "subtitle": "Agentic technical & privacy audit of the exception management control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 7,
     "valueScore": 7,
     "rank": 0,
@@ -6443,13 +6443,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Exception management\" sub-process of Endpoint Devices?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the exception management control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the exception management control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for exception management against comparable organisations in the sector",
             "Obtain evidence that the exception management control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "ept-18-q2",
@@ -6457,13 +6457,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Exception management\" matter to the broader Endpoint Devices posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Endpoint Devices",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Endpoint Devices estate",
             "It is a control other Endpoint Devices controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Endpoint Devices controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "ept-18-q3",
@@ -6471,27 +6471,27 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Exception management\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The endpoint-control exception register (devices/users exempted from EDR, encryption, patch, USB, etc.) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's exception management settings, captured during the walkthrough",
+            "The The endpoint-control exception register (devices/users exempted from EDR, encryption, patch, USB, etc.), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the exception management control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's exception management capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "ept-18-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Exception management\"?",
+          "text": "Where should an auditor pull the evidence for \"Exception management\"?",
           "options": [
-            "GRC / exception register (ServiceNow GRC, Archer) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From GRC / exception register (ServiceNow GRC, Archer) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how exception management works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., GRC / exception register (ServiceNow GRC, Archer)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. GRC / exception register (ServiceNow GRC, Archer)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "ept-18-q5",
@@ -6499,13 +6499,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Exception management\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Security / GRC — owns the exception process (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the exception management control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the exception management data is shared, so the accountability sits with no one in particular",
+            "Security / GRC — owns the exception process, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Security / GRC — owns the exception process owns the control data; the auditor independently verifies it."
+          "explanation": "Security / GRC — owns the exception process owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "ept-18-q6",
@@ -6513,55 +6513,55 @@ export const endpointStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Exception management\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "ept-18-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "ept-18-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Exception management\", which is a realistic reportable finding?",
+          "text": "For \"Exception management\", which of these is a realistic reportable finding?",
           "options": [
             "The exception register lists 30 devices but EDR/MDM show 300 devices missing required controls — most exemptions are undocumented; of those recorded, half have no expiry and no compensating control.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. The exception register lists 30 devices but EDR/MDM show 300 devices missing required controls — most exemptions are undocumented; of those recorded, half have no expiry and no compensating control."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. The exception register lists 30 devices but EDR/MDM show 300 devices missing required controls — most exemptions are undocumented; of those recorded, half have no expiry and no compensating control. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "ept-18-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "ept-18-q10",
@@ -6569,13 +6569,13 @@ export const endpointStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Exception management\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind exception management, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }

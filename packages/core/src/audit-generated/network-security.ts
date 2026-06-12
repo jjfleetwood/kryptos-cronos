@@ -18,7 +18,7 @@ export const networkSecurityStages: StageConfig[] = [
     "title": "Network segmentation and trust zones",
     "subtitle": "Agentic technical & privacy audit of the network segmentation and trust zones control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 5,
     "valueScore": 9,
     "rank": 0,
@@ -244,13 +244,13 @@ export const networkSecurityStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Network segmentation and trust zones\" sub-process of Network Security?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the network segmentation and trust zones control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the network segmentation and trust zones control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for network segmentation and trust zones against comparable organisations in the sector",
             "Obtain evidence that the network segmentation and trust zones control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "net-01-q2",
@@ -258,13 +258,13 @@ export const networkSecurityStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Network segmentation and trust zones\" matter to the broader Network Security posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Network Security",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Network Security estate",
             "It is a control other Network Security controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Network Security controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "net-01-q3",
@@ -272,27 +272,27 @@ export const networkSecurityStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Network segmentation and trust zones\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The network segmentation diagram plus the authoritative VLAN/subnet-to-trust-zone mapping reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's network segmentation and trust zones settings, captured during the walkthrough",
+            "The The network segmentation diagram plus the authoritative VLAN/subnet-to-trust-zone mapping, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the network segmentation and trust zones control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's network segmentation and trust zones capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "net-01-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Network segmentation and trust zones\"?",
+          "text": "Where should an auditor pull the evidence for \"Network segmentation and trust zones\"?",
           "options": [
-            "NGFW — Palo Alto / Fortinet / Cisco (zone enforcement) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From NGFW — Palo Alto / Fortinet / Cisco (zone enforcement) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how network segmentation and trust zones works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., NGFW — Palo Alto / Fortinet / Cisco (zone enforcement)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. NGFW — Palo Alto / Fortinet / Cisco (zone enforcement)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "net-01-q5",
@@ -300,13 +300,13 @@ export const networkSecurityStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Network segmentation and trust zones\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Network engineering — owns the topology (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the network segmentation and trust zones control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the network segmentation and trust zones data is shared, so the accountability sits with no one in particular",
+            "Network engineering — owns the topology, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Network engineering — owns the topology owns the control data; the auditor independently verifies it."
+          "explanation": "Network engineering — owns the topology owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "net-01-q6",
@@ -314,55 +314,55 @@ export const networkSecurityStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Network segmentation and trust zones\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "net-01-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "net-01-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Network segmentation and trust zones\", which is a realistic reportable finding?",
+          "text": "For \"Network segmentation and trust zones\", which of these is a realistic reportable finding?",
           "options": [
             "The 'segmented' database VLAN is reachable from the entire user VLAN via a legacy permit-any rule, and NetFlow shows workstations talking straight to the database — the segmentation exists only on the diagram.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. The 'segmented' database VLAN is reachable from the entire user VLAN via a legacy permit-any rule, and NetFlow shows workstations talking straight to the database — the segmentation exists only on the diagram."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. The 'segmented' database VLAN is reachable from the entire user VLAN via a legacy permit-any rule, and NetFlow shows workstations talking straight to the database — the segmentation exists only on the diagram. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "net-01-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "net-01-q10",
@@ -370,13 +370,13 @@ export const networkSecurityStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Network segmentation and trust zones\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind network segmentation and trust zones, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -388,7 +388,7 @@ export const networkSecurityStages: StageConfig[] = [
     "title": "Firewall rule governance",
     "subtitle": "Agentic technical & privacy audit of the firewall rule governance control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 6,
     "valueScore": 7,
     "rank": 0,
@@ -613,13 +613,13 @@ export const networkSecurityStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Firewall rule governance\" sub-process of Network Security?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the firewall rule governance control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the firewall rule governance control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for firewall rule governance against comparable organisations in the sector",
             "Obtain evidence that the firewall rule governance control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "net-02-q2",
@@ -627,13 +627,13 @@ export const networkSecurityStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Firewall rule governance\" matter to the broader Network Security posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Network Security",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Network Security estate",
             "It is a control other Network Security controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Network Security controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "net-02-q3",
@@ -641,27 +641,27 @@ export const networkSecurityStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Firewall rule governance\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The full firewall rule base export — source, destination, service, action, hit-count, age, owner, last-modified reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's firewall rule governance settings, captured during the walkthrough",
+            "The The full firewall rule base export — source, destination, service, action, hit-count, age, owner, last-modified, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the firewall rule governance control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's firewall rule governance capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "net-02-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Firewall rule governance\"?",
+          "text": "Where should an auditor pull the evidence for \"Firewall rule governance\"?",
           "options": [
-            "Firewall management — Panorama / FortiManager / Cisco FMC (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Firewall management — Panorama / FortiManager / Cisco FMC and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how firewall rule governance works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Firewall management — Panorama / FortiManager / Cisco FMC) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Firewall management — Panorama / FortiManager / Cisco FMC) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "net-02-q5",
@@ -669,13 +669,13 @@ export const networkSecurityStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Firewall rule governance\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Network security / firewall team — owns the rulebase (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the firewall rule governance control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the firewall rule governance data is shared, so the accountability sits with no one in particular",
+            "Network security / firewall team — owns the rulebase, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Network security / firewall team — owns the rulebase owns the control data; the auditor independently verifies it."
+          "explanation": "Network security / firewall team — owns the rulebase owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "net-02-q6",
@@ -683,55 +683,55 @@ export const networkSecurityStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Firewall rule governance\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "net-02-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "net-02-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Firewall rule governance\", which is a realistic reportable finding?",
+          "text": "For \"Firewall rule governance\", which of these is a realistic reportable finding?",
           "options": [
             "Hundreds of zero-hit rules accreted over a decade, dozens of permit any-any rules with no owner, and rules whose 'temporary, 2019' justification never expired.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. Hundreds of zero-hit rules accreted over a decade, dozens of permit any-any rules with no owner, and rules whose 'temporary, 2019' justification never expired."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. Hundreds of zero-hit rules accreted over a decade, dozens of permit any-any rules with no owner, and rules whose 'temporary, 2019' justification never expired. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "net-02-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "net-02-q10",
@@ -739,13 +739,13 @@ export const networkSecurityStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Firewall rule governance\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind firewall rule governance, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -757,7 +757,7 @@ export const networkSecurityStages: StageConfig[] = [
     "title": "Remote access (VPN, ZTNA)",
     "subtitle": "Agentic technical & privacy audit of the remote access (vpn, ztna) control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 7,
     "valueScore": 9,
     "rank": 0,
@@ -982,13 +982,13 @@ export const networkSecurityStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Remote access (VPN, ZTNA)\" sub-process of Network Security?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the remote access (vpn, ztna) control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the remote access (vpn, ztna) control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for remote access (vpn, ztna) against comparable organisations in the sector",
             "Obtain evidence that the remote access (vpn, ztna) control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "net-03-q2",
@@ -996,13 +996,13 @@ export const networkSecurityStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Remote access (VPN, ZTNA)\" matter to the broader Network Security posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Network Security",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Network Security estate",
             "It is a control other Network Security controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Network Security controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "net-03-q3",
@@ -1010,27 +1010,27 @@ export const networkSecurityStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Remote access (VPN, ZTNA)\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The remote-access inventory — every VPN gateway and ZTNA application, and who is entitled to each reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's remote access (vpn, ztna) settings, captured during the walkthrough",
+            "The The remote-access inventory — every VPN gateway and ZTNA application, and who is entitled to each, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the remote access (vpn, ztna) control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's remote access (vpn, ztna) capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "net-03-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Remote access (VPN, ZTNA)\"?",
+          "text": "Where should an auditor pull the evidence for \"Remote access (VPN, ZTNA)\"?",
           "options": [
-            "VPN gateways — Cisco AnyConnect / Palo Alto GlobalProtect / Fortinet (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From VPN gateways — Cisco AnyConnect / Palo Alto GlobalProtect / Fortinet and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how remote access (vpn, ztna) works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., VPN gateways — Cisco AnyConnect / Palo Alto GlobalProtect / Fortinet) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. VPN gateways — Cisco AnyConnect / Palo Alto GlobalProtect / Fortinet) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "net-03-q5",
@@ -1038,13 +1038,13 @@ export const networkSecurityStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Remote access (VPN, ZTNA)\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Network security — owns VPN/ZTNA (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the remote access (vpn, ztna) control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the remote access (vpn, ztna) data is shared, so the accountability sits with no one in particular",
+            "Network security — owns VPN/ZTNA, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Network security — owns VPN/ZTNA owns the control data; the auditor independently verifies it."
+          "explanation": "Network security — owns VPN/ZTNA owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "net-03-q6",
@@ -1052,55 +1052,55 @@ export const networkSecurityStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Remote access (VPN, ZTNA)\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "net-03-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "net-03-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Remote access (VPN, ZTNA)\", which is a realistic reportable finding?",
+          "text": "For \"Remote access (VPN, ZTNA)\", which of these is a realistic reportable finding?",
           "options": [
             "A legacy SSL-VPN appliance, still internet-facing and unpatched, accepts username + password only (no MFA) and routes onto a flat /16 internal network — the textbook ransomware entry point.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. A legacy SSL-VPN appliance, still internet-facing and unpatched, accepts username + password only (no MFA) and routes onto a flat /16 internal network — the textbook ransomware entry point."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. A legacy SSL-VPN appliance, still internet-facing and unpatched, accepts username + password only (no MFA) and routes onto a flat /16 internal network — the textbook ransomware entry point. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "net-03-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "net-03-q10",
@@ -1108,13 +1108,13 @@ export const networkSecurityStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Remote access (VPN, ZTNA)\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind remote access (vpn, ztna), so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1126,7 +1126,7 @@ export const networkSecurityStages: StageConfig[] = [
     "title": "Logging and monitoring",
     "subtitle": "Agentic technical & privacy audit of the logging and monitoring control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 6,
     "valueScore": 7,
     "rank": 0,
@@ -1352,13 +1352,13 @@ export const networkSecurityStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Logging and monitoring\" sub-process of Network Security?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the logging and monitoring control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the logging and monitoring control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for logging and monitoring against comparable organisations in the sector",
             "Obtain evidence that the logging and monitoring control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "net-04-q2",
@@ -1366,13 +1366,13 @@ export const networkSecurityStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Logging and monitoring\" matter to the broader Network Security posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Network Security",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Network Security estate",
             "It is a control other Network Security controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Network Security controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "net-04-q3",
@@ -1380,27 +1380,27 @@ export const networkSecurityStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Logging and monitoring\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The list of network log sources sending to the SIEM (firewall, VPN, DNS, proxy, NetFlow, NDR) vs the device inventory reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's logging and monitoring settings, captured during the walkthrough",
+            "The The list of network log sources sending to the SIEM (firewall, VPN, DNS, proxy, NetFlow, NDR) vs the device inventory, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the logging and monitoring control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's logging and monitoring capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "net-04-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Logging and monitoring\"?",
+          "text": "Where should an auditor pull the evidence for \"Logging and monitoring\"?",
           "options": [
-            "SIEM — Splunk / Microsoft Sentinel (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From SIEM — Splunk / Microsoft Sentinel and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how logging and monitoring works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., SIEM — Splunk / Microsoft Sentinel) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. SIEM — Splunk / Microsoft Sentinel) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "net-04-q5",
@@ -1408,13 +1408,13 @@ export const networkSecurityStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Logging and monitoring\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Security operations / detection engineering (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the logging and monitoring control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the logging and monitoring data is shared, so the accountability sits with no one in particular",
+            "Security operations / detection engineering, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Security operations / detection engineering owns the control data; the auditor independently verifies it."
+          "explanation": "Security operations / detection engineering owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "net-04-q6",
@@ -1422,55 +1422,55 @@ export const networkSecurityStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Logging and monitoring\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "net-04-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "net-04-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Logging and monitoring\", which is a realistic reportable finding?",
+          "text": "For \"Logging and monitoring\", which of these is a realistic reportable finding?",
           "options": [
             "Perimeter firewall deny-logging is off, internal DNS isn't logged at all, and the NDR only sees north-south traffic — so lateral movement across the data-center east-west fabric is completely invisible.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. Perimeter firewall deny-logging is off, internal DNS isn't logged at all, and the NDR only sees north-south traffic — so lateral movement across the data-center east-west fabric is completely invisible."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. Perimeter firewall deny-logging is off, internal DNS isn't logged at all, and the NDR only sees north-south traffic — so lateral movement across the data-center east-west fabric is completely invisible. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "net-04-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "net-04-q10",
@@ -1478,13 +1478,13 @@ export const networkSecurityStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Logging and monitoring\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind logging and monitoring, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1496,7 +1496,7 @@ export const networkSecurityStages: StageConfig[] = [
     "title": "Secure network architecture",
     "subtitle": "Agentic technical & privacy audit of the secure network architecture control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 4,
     "valueScore": 7,
     "rank": 0,
@@ -1721,13 +1721,13 @@ export const networkSecurityStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Secure network architecture\" sub-process of Network Security?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the secure network architecture control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the secure network architecture control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for secure network architecture against comparable organisations in the sector",
             "Obtain evidence that the secure network architecture control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "net-05-q2",
@@ -1735,13 +1735,13 @@ export const networkSecurityStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Secure network architecture\" matter to the broader Network Security posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Network Security",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Network Security estate",
             "It is a control other Network Security controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Network Security controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "net-05-q3",
@@ -1749,27 +1749,27 @@ export const networkSecurityStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Secure network architecture\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The current-state network architecture diagram + data-flow diagrams for crown-jewel systems reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's secure network architecture settings, captured during the walkthrough",
+            "The The current-state network architecture diagram + data-flow diagrams for crown-jewel systems, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the secure network architecture control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's secure network architecture capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "net-05-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Secure network architecture\"?",
+          "text": "Where should an auditor pull the evidence for \"Secure network architecture\"?",
           "options": [
-            "Network design docs / enterprise-architecture repository (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Network design docs / enterprise-architecture repository and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how secure network architecture works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Network design docs / enterprise-architecture repository) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Network design docs / enterprise-architecture repository) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "net-05-q5",
@@ -1777,13 +1777,13 @@ export const networkSecurityStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Secure network architecture\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Network architecture / engineering (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the secure network architecture control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the secure network architecture data is shared, so the accountability sits with no one in particular",
+            "Network architecture / engineering, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Network architecture / engineering owns the control data; the auditor independently verifies it."
+          "explanation": "Network architecture / engineering owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "net-05-q6",
@@ -1791,55 +1791,55 @@ export const networkSecurityStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Secure network architecture\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "net-05-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "net-05-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Secure network architecture\", which is a realistic reportable finding?",
+          "text": "For \"Secure network architecture\", which of these is a realistic reportable finding?",
           "options": [
             "An internet-exposed RDP service and a server management interface (iLO/IPMI) reachable from the user VLAN, plus wide-open outbound egress that would let any compromised host beacon out unimpeded.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. An internet-exposed RDP service and a server management interface (iLO/IPMI) reachable from the user VLAN, plus wide-open outbound egress that would let any compromised host beacon out unimpeded."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. An internet-exposed RDP service and a server management interface (iLO/IPMI) reachable from the user VLAN, plus wide-open outbound egress that would let any compromised host beacon out unimpeded. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "net-05-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "net-05-q10",
@@ -1847,13 +1847,13 @@ export const networkSecurityStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Secure network architecture\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind secure network architecture, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1865,7 +1865,7 @@ export const networkSecurityStages: StageConfig[] = [
     "title": "Device config mgmt and backups",
     "subtitle": "Agentic technical & privacy audit of the device config mgmt and backups control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 8,
     "valueScore": 9,
     "rank": 0,
@@ -2091,13 +2091,13 @@ export const networkSecurityStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Device config mgmt and backups\" sub-process of Network Security?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the device config mgmt and backups control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the device config mgmt and backups control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for device config mgmt and backups against comparable organisations in the sector",
             "Obtain evidence that the device config mgmt and backups control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "net-06-q2",
@@ -2105,13 +2105,13 @@ export const networkSecurityStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Device config mgmt and backups\" matter to the broader Network Security posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Network Security",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Network Security estate",
             "It is a control other Network Security controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Network Security controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "net-06-q3",
@@ -2119,27 +2119,27 @@ export const networkSecurityStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Device config mgmt and backups\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The Each network device's running-config plus the approved hardened baseline to diff against reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's device config mgmt and backups settings, captured during the walkthrough",
+            "The Each network device's running-config plus the approved hardened baseline to diff against, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the device config mgmt and backups control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's device config mgmt and backups capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "net-06-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Device config mgmt and backups\"?",
+          "text": "Where should an auditor pull the evidence for \"Device config mgmt and backups\"?",
           "options": [
-            "NCCM — SolarWinds NCM / Oxidized / RANCID / Cisco DNA Center (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From NCCM — SolarWinds NCM / Oxidized / RANCID / Cisco DNA Center and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how device config mgmt and backups works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., NCCM — SolarWinds NCM / Oxidized / RANCID / Cisco DNA Center) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. NCCM — SolarWinds NCM / Oxidized / RANCID / Cisco DNA Center) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "net-06-q5",
@@ -2147,13 +2147,13 @@ export const networkSecurityStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Device config mgmt and backups\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Network engineering — owns device config (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the device config mgmt and backups control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the device config mgmt and backups data is shared, so the accountability sits with no one in particular",
+            "Network engineering — owns device config, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Network engineering — owns device config owns the control data; the auditor independently verifies it."
+          "explanation": "Network engineering — owns device config owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "net-06-q6",
@@ -2161,55 +2161,55 @@ export const networkSecurityStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Device config mgmt and backups\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "net-06-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "net-06-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Device config mgmt and backups\", which is a realistic reportable finding?",
+          "text": "For \"Device config mgmt and backups\", which of these is a realistic reportable finding?",
           "options": [
             "A dozen access switches still run telnet with a shared 'cisco' enable password, several core devices are past end-of-life with known CVEs, and three devices have no config backup at all — no recovery if they fail.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. A dozen access switches still run telnet with a shared 'cisco' enable password, several core devices are past end-of-life with known CVEs, and three devices have no config backup at all — no recovery if they fail."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. A dozen access switches still run telnet with a shared 'cisco' enable password, several core devices are past end-of-life with known CVEs, and three devices have no config backup at all — no recovery if they fail. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "net-06-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "net-06-q10",
@@ -2217,13 +2217,13 @@ export const networkSecurityStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Device config mgmt and backups\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind device config mgmt and backups, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -2235,7 +2235,7 @@ export const networkSecurityStages: StageConfig[] = [
     "title": "AIOps / AI-driven networking",
     "subtitle": "Agentic technical & privacy audit of the aiops / ai-driven networking control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
@@ -2457,13 +2457,13 @@ export const networkSecurityStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"AIOps / AI-driven networking\" sub-process of Network Security?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the aiops / ai-driven networking control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the aiops / ai-driven networking control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for aiops / ai-driven networking against comparable organisations in the sector",
             "Obtain evidence that the aiops / ai-driven networking control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "net-07-q2",
@@ -2471,13 +2471,13 @@ export const networkSecurityStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"AIOps / AI-driven networking\" matter to the broader Network Security posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Network Security",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Network Security estate",
             "It is a control other Network Security controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Network Security controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "net-07-q3",
@@ -2485,27 +2485,27 @@ export const networkSecurityStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"AIOps / AI-driven networking\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The inventory of AI/ML-driven networking systems (AIOps anomaly detection, intent-based networking, auto-remediation) and the actions each can take reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's aiops / ai-driven networking settings, captured during the walkthrough",
+            "The The inventory of AI/ML-driven networking systems (AIOps anomaly detection, intent-based networking, auto-remediation) and the actions each can take, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the aiops / ai-driven networking control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's aiops / ai-driven networking capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "net-07-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"AIOps / AI-driven networking\"?",
+          "text": "Where should an auditor pull the evidence for \"AIOps / AI-driven networking\"?",
           "options": [
-            "AIOps / AI networking — Cisco AI Network Analytics (DNA) / Juniper Mist AI / Arista CloudVision (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From AIOps / AI networking — Cisco AI Network Analytics (DNA) / Juniper Mist AI / Arista CloudVision and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how aiops / ai-driven networking works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., AIOps / AI networking — Cisco AI Network Analytics (DNA) / Juniper Mist AI / Arista CloudVision) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. AIOps / AI networking — Cisco AI Network Analytics (DNA) / Juniper Mist AI / Arista CloudVision) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "net-07-q5",
@@ -2513,13 +2513,13 @@ export const networkSecurityStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"AIOps / AI-driven networking\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Network engineering / NetOps — owns the AIOps platform (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the aiops / ai-driven networking control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the aiops / ai-driven networking data is shared, so the accountability sits with no one in particular",
+            "Network engineering / NetOps — owns the AIOps platform, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Network engineering / NetOps — owns the AIOps platform owns the control data; the auditor independently verifies it."
+          "explanation": "Network engineering / NetOps — owns the AIOps platform owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "net-07-q6",
@@ -2527,55 +2527,55 @@ export const networkSecurityStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"AIOps / AI-driven networking\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "net-07-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "net-07-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"AIOps / AI-driven networking\", which is a realistic reportable finding?",
+          "text": "For \"AIOps / AI-driven networking\", which of these is a realistic reportable finding?",
           "options": [
             "An AIOps platform can auto-apply ACL and routing changes fleet-wide with no human gate and no tested rollback — a single false-positive anomaly could black-hole production — while device telemetry streams to a vendor cloud with no data-handling review.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. An AIOps platform can auto-apply ACL and routing changes fleet-wide with no human gate and no tested rollback — a single false-positive anomaly could black-hole production — while device telemetry streams to a vendor cloud with no data-handling review."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. An AIOps platform can auto-apply ACL and routing changes fleet-wide with no human gate and no tested rollback — a single false-positive anomaly could black-hole production — while device telemetry streams to a vendor cloud with no data-handling review. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "net-07-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "net-07-q10",
@@ -2583,13 +2583,13 @@ export const networkSecurityStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"AIOps / AI-driven networking\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind aiops / ai-driven networking, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }

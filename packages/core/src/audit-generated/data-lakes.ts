@@ -18,7 +18,7 @@ export const dataLakesStages: StageConfig[] = [
     "title": "Data architecture and platform design",
     "subtitle": "Agentic technical & privacy audit of the data architecture and platform design control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 3,
     "valueScore": 7,
     "rank": 0,
@@ -240,13 +240,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Data architecture and platform design\" sub-process of Data Lakes & Warehouses?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the data architecture and platform design control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the data architecture and platform design control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for data architecture and platform design against comparable organisations in the sector",
             "Obtain evidence that the data architecture and platform design control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "dlw-01-q2",
@@ -254,13 +254,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Data architecture and platform design\" matter to the broader Data Lakes & Warehouses posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Data Lakes & Warehouses",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Data Lakes & Warehouses estate",
             "It is a control other Data Lakes & Warehouses controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Data Lakes & Warehouses controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "dlw-01-q3",
@@ -268,27 +268,27 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Data architecture and platform design\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the data architecture and platform design control (from Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's data architecture and platform design settings, captured during the walkthrough",
+            "The In-scope inventory for the data architecture and platform design control (from Lakehouse / warehouse (Snowflake/Databricks/BigQuery)), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the data architecture and platform design control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's data architecture and platform design capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "dlw-01-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Data architecture and platform design\"?",
+          "text": "Where should an auditor pull the evidence for \"Data architecture and platform design\"?",
           "options": [
-            "Lakehouse / warehouse (Snowflake/Databricks/BigQuery) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Lakehouse / warehouse (Snowflake/Databricks/BigQuery) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how data architecture and platform design works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "dlw-01-q5",
@@ -296,13 +296,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Data architecture and platform design\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Data engineering / platform (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the data architecture and platform design control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the data architecture and platform design data is shared, so the accountability sits with no one in particular",
+            "Data engineering / platform, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Data engineering / platform owns the control data; the auditor independently verifies it."
+          "explanation": "Data engineering / platform owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "dlw-01-q6",
@@ -310,55 +310,55 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Data architecture and platform design\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "dlw-01-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "dlw-01-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Data architecture and platform design\", which is a realistic reportable finding?",
+          "text": "For \"Data architecture and platform design\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the data architecture and platform design control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the data architecture and platform design control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the data architecture and platform design control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "dlw-01-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "dlw-01-q10",
@@ -366,13 +366,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Data architecture and platform design\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind data architecture and platform design, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -384,7 +384,7 @@ export const dataLakesStages: StageConfig[] = [
     "title": "Source onboarding and ingestion",
     "subtitle": "Agentic technical & privacy audit of the source onboarding and ingestion control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 6,
     "valueScore": 7,
     "rank": 0,
@@ -606,13 +606,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Source onboarding and ingestion\" sub-process of Data Lakes & Warehouses?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the source onboarding and ingestion control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the source onboarding and ingestion control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for source onboarding and ingestion against comparable organisations in the sector",
             "Obtain evidence that the source onboarding and ingestion control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "dlw-02-q2",
@@ -620,13 +620,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Source onboarding and ingestion\" matter to the broader Data Lakes & Warehouses posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Data Lakes & Warehouses",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Data Lakes & Warehouses estate",
             "It is a control other Data Lakes & Warehouses controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Data Lakes & Warehouses controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "dlw-02-q3",
@@ -634,27 +634,27 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Source onboarding and ingestion\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the source onboarding and ingestion control (from Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's source onboarding and ingestion settings, captured during the walkthrough",
+            "The In-scope inventory for the source onboarding and ingestion control (from Lakehouse / warehouse (Snowflake/Databricks/BigQuery)), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the source onboarding and ingestion control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's source onboarding and ingestion capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "dlw-02-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Source onboarding and ingestion\"?",
+          "text": "Where should an auditor pull the evidence for \"Source onboarding and ingestion\"?",
           "options": [
-            "Lakehouse / warehouse (Snowflake/Databricks/BigQuery) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Lakehouse / warehouse (Snowflake/Databricks/BigQuery) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how source onboarding and ingestion works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "dlw-02-q5",
@@ -662,13 +662,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Source onboarding and ingestion\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Data engineering / platform (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the source onboarding and ingestion control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the source onboarding and ingestion data is shared, so the accountability sits with no one in particular",
+            "Data engineering / platform, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Data engineering / platform owns the control data; the auditor independently verifies it."
+          "explanation": "Data engineering / platform owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "dlw-02-q6",
@@ -676,55 +676,55 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Source onboarding and ingestion\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "dlw-02-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "dlw-02-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Source onboarding and ingestion\", which is a realistic reportable finding?",
+          "text": "For \"Source onboarding and ingestion\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the source onboarding and ingestion control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the source onboarding and ingestion control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the source onboarding and ingestion control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "dlw-02-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "dlw-02-q10",
@@ -732,13 +732,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Source onboarding and ingestion\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind source onboarding and ingestion, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -750,7 +750,7 @@ export const dataLakesStages: StageConfig[] = [
     "title": "ETL/ELT transformation controls",
     "subtitle": "Agentic technical & privacy audit of the etl/elt transformation controls control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 7,
     "valueScore": 7,
     "rank": 0,
@@ -972,13 +972,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"ETL/ELT transformation controls\" sub-process of Data Lakes & Warehouses?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the etl/elt transformation controls control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the etl/elt transformation controls control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for etl/elt transformation controls against comparable organisations in the sector",
             "Obtain evidence that the etl/elt transformation controls control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "dlw-03-q2",
@@ -986,13 +986,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"ETL/ELT transformation controls\" matter to the broader Data Lakes & Warehouses posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Data Lakes & Warehouses",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Data Lakes & Warehouses estate",
             "It is a control other Data Lakes & Warehouses controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Data Lakes & Warehouses controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "dlw-03-q3",
@@ -1000,27 +1000,27 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"ETL/ELT transformation controls\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the etl/elt transformation controls control (from Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's etl/elt transformation controls settings, captured during the walkthrough",
+            "The In-scope inventory for the etl/elt transformation controls control (from Lakehouse / warehouse (Snowflake/Databricks/BigQuery)), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the etl/elt transformation controls control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's etl/elt transformation controls capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "dlw-03-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"ETL/ELT transformation controls\"?",
+          "text": "Where should an auditor pull the evidence for \"ETL/ELT transformation controls\"?",
           "options": [
-            "Lakehouse / warehouse (Snowflake/Databricks/BigQuery) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Lakehouse / warehouse (Snowflake/Databricks/BigQuery) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how etl/elt transformation controls works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "dlw-03-q5",
@@ -1028,13 +1028,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"ETL/ELT transformation controls\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Data engineering / platform (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the etl/elt transformation controls control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the etl/elt transformation controls data is shared, so the accountability sits with no one in particular",
+            "Data engineering / platform, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Data engineering / platform owns the control data; the auditor independently verifies it."
+          "explanation": "Data engineering / platform owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "dlw-03-q6",
@@ -1042,55 +1042,55 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"ETL/ELT transformation controls\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "dlw-03-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "dlw-03-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"ETL/ELT transformation controls\", which is a realistic reportable finding?",
+          "text": "For \"ETL/ELT transformation controls\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the etl/elt transformation controls control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the etl/elt transformation controls control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the etl/elt transformation controls control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "dlw-03-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "dlw-03-q10",
@@ -1098,13 +1098,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"ETL/ELT transformation controls\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind etl/elt transformation controls, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1116,7 +1116,7 @@ export const dataLakesStages: StageConfig[] = [
     "title": "Data quality management",
     "subtitle": "Agentic technical & privacy audit of the data quality management control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
@@ -1338,13 +1338,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Data quality management\" sub-process of Data Lakes & Warehouses?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the data quality management control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the data quality management control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for data quality management against comparable organisations in the sector",
             "Obtain evidence that the data quality management control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "dlw-04-q2",
@@ -1352,13 +1352,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Data quality management\" matter to the broader Data Lakes & Warehouses posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Data Lakes & Warehouses",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Data Lakes & Warehouses estate",
             "It is a control other Data Lakes & Warehouses controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Data Lakes & Warehouses controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "dlw-04-q3",
@@ -1366,27 +1366,27 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Data quality management\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the data quality management control (from Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's data quality management settings, captured during the walkthrough",
+            "The In-scope inventory for the data quality management control (from Lakehouse / warehouse (Snowflake/Databricks/BigQuery)), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the data quality management control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's data quality management capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "dlw-04-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Data quality management\"?",
+          "text": "Where should an auditor pull the evidence for \"Data quality management\"?",
           "options": [
-            "Lakehouse / warehouse (Snowflake/Databricks/BigQuery) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Lakehouse / warehouse (Snowflake/Databricks/BigQuery) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how data quality management works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "dlw-04-q5",
@@ -1394,13 +1394,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Data quality management\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Data engineering / platform (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the data quality management control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the data quality management data is shared, so the accountability sits with no one in particular",
+            "Data engineering / platform, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Data engineering / platform owns the control data; the auditor independently verifies it."
+          "explanation": "Data engineering / platform owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "dlw-04-q6",
@@ -1408,55 +1408,55 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Data quality management\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "dlw-04-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "dlw-04-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Data quality management\", which is a realistic reportable finding?",
+          "text": "For \"Data quality management\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the data quality management control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the data quality management control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the data quality management control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "dlw-04-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "dlw-04-q10",
@@ -1464,13 +1464,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Data quality management\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind data quality management, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1482,7 +1482,7 @@ export const dataLakesStages: StageConfig[] = [
     "title": "Metadata mgmt and catalog",
     "subtitle": "Agentic technical & privacy audit of the metadata mgmt and catalog control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 6,
     "valueScore": 7,
     "rank": 0,
@@ -1704,13 +1704,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Metadata mgmt and catalog\" sub-process of Data Lakes & Warehouses?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the metadata mgmt and catalog control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the metadata mgmt and catalog control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for metadata mgmt and catalog against comparable organisations in the sector",
             "Obtain evidence that the metadata mgmt and catalog control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "dlw-05-q2",
@@ -1718,13 +1718,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Metadata mgmt and catalog\" matter to the broader Data Lakes & Warehouses posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Data Lakes & Warehouses",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Data Lakes & Warehouses estate",
             "It is a control other Data Lakes & Warehouses controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Data Lakes & Warehouses controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "dlw-05-q3",
@@ -1732,27 +1732,27 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Metadata mgmt and catalog\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the metadata mgmt and catalog control (from Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's metadata mgmt and catalog settings, captured during the walkthrough",
+            "The In-scope inventory for the metadata mgmt and catalog control (from Lakehouse / warehouse (Snowflake/Databricks/BigQuery)), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the metadata mgmt and catalog control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's metadata mgmt and catalog capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "dlw-05-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Metadata mgmt and catalog\"?",
+          "text": "Where should an auditor pull the evidence for \"Metadata mgmt and catalog\"?",
           "options": [
-            "Lakehouse / warehouse (Snowflake/Databricks/BigQuery) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Lakehouse / warehouse (Snowflake/Databricks/BigQuery) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how metadata mgmt and catalog works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "dlw-05-q5",
@@ -1760,13 +1760,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Metadata mgmt and catalog\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Data engineering / platform (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the metadata mgmt and catalog control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the metadata mgmt and catalog data is shared, so the accountability sits with no one in particular",
+            "Data engineering / platform, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Data engineering / platform owns the control data; the auditor independently verifies it."
+          "explanation": "Data engineering / platform owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "dlw-05-q6",
@@ -1774,55 +1774,55 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Metadata mgmt and catalog\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "dlw-05-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "dlw-05-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Metadata mgmt and catalog\", which is a realistic reportable finding?",
+          "text": "For \"Metadata mgmt and catalog\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the metadata mgmt and catalog control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the metadata mgmt and catalog control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the metadata mgmt and catalog control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "dlw-05-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "dlw-05-q10",
@@ -1830,13 +1830,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Metadata mgmt and catalog\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind metadata mgmt and catalog, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1848,7 +1848,7 @@ export const dataLakesStages: StageConfig[] = [
     "title": "Data lineage and traceability",
     "subtitle": "Agentic technical & privacy audit of the data lineage and traceability control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 7,
     "valueScore": 7,
     "rank": 0,
@@ -2070,13 +2070,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Data lineage and traceability\" sub-process of Data Lakes & Warehouses?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the data lineage and traceability control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the data lineage and traceability control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for data lineage and traceability against comparable organisations in the sector",
             "Obtain evidence that the data lineage and traceability control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "dlw-06-q2",
@@ -2084,13 +2084,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Data lineage and traceability\" matter to the broader Data Lakes & Warehouses posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Data Lakes & Warehouses",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Data Lakes & Warehouses estate",
             "It is a control other Data Lakes & Warehouses controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Data Lakes & Warehouses controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "dlw-06-q3",
@@ -2098,27 +2098,27 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Data lineage and traceability\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the data lineage and traceability control (from Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's data lineage and traceability settings, captured during the walkthrough",
+            "The In-scope inventory for the data lineage and traceability control (from Lakehouse / warehouse (Snowflake/Databricks/BigQuery)), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the data lineage and traceability control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's data lineage and traceability capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "dlw-06-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Data lineage and traceability\"?",
+          "text": "Where should an auditor pull the evidence for \"Data lineage and traceability\"?",
           "options": [
-            "Lakehouse / warehouse (Snowflake/Databricks/BigQuery) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Lakehouse / warehouse (Snowflake/Databricks/BigQuery) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how data lineage and traceability works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "dlw-06-q5",
@@ -2126,13 +2126,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Data lineage and traceability\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Data engineering / platform (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the data lineage and traceability control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the data lineage and traceability data is shared, so the accountability sits with no one in particular",
+            "Data engineering / platform, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Data engineering / platform owns the control data; the auditor independently verifies it."
+          "explanation": "Data engineering / platform owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "dlw-06-q6",
@@ -2140,55 +2140,55 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Data lineage and traceability\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "dlw-06-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "dlw-06-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Data lineage and traceability\", which is a realistic reportable finding?",
+          "text": "For \"Data lineage and traceability\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the data lineage and traceability control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the data lineage and traceability control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the data lineage and traceability control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "dlw-06-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "dlw-06-q10",
@@ -2196,13 +2196,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Data lineage and traceability\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind data lineage and traceability, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -2214,7 +2214,7 @@ export const dataLakesStages: StageConfig[] = [
     "title": "IAM (data lake)",
     "subtitle": "Agentic technical & privacy audit of the iam (data lake) control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 5,
     "valueScore": 9,
     "rank": 0,
@@ -2436,13 +2436,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"IAM (data lake)\" sub-process of Data Lakes & Warehouses?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the iam (data lake) control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the iam (data lake) control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for iam (data lake) against comparable organisations in the sector",
             "Obtain evidence that the iam (data lake) control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "dlw-07-q2",
@@ -2450,13 +2450,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"IAM (data lake)\" matter to the broader Data Lakes & Warehouses posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Data Lakes & Warehouses",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Data Lakes & Warehouses estate",
             "It is a control other Data Lakes & Warehouses controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Data Lakes & Warehouses controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "dlw-07-q3",
@@ -2464,27 +2464,27 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"IAM (data lake)\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the iam (data lake) control (from Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's iam (data lake) settings, captured during the walkthrough",
+            "The In-scope inventory for the iam (data lake) control (from Lakehouse / warehouse (Snowflake/Databricks/BigQuery)), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the iam (data lake) control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's iam (data lake) capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "dlw-07-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"IAM (data lake)\"?",
+          "text": "Where should an auditor pull the evidence for \"IAM (data lake)\"?",
           "options": [
-            "Lakehouse / warehouse (Snowflake/Databricks/BigQuery) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Lakehouse / warehouse (Snowflake/Databricks/BigQuery) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how iam (data lake) works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "dlw-07-q5",
@@ -2492,13 +2492,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"IAM (data lake)\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Data engineering / platform (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the iam (data lake) control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the iam (data lake) data is shared, so the accountability sits with no one in particular",
+            "Data engineering / platform, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Data engineering / platform owns the control data; the auditor independently verifies it."
+          "explanation": "Data engineering / platform owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "dlw-07-q6",
@@ -2506,55 +2506,55 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"IAM (data lake)\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "dlw-07-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "dlw-07-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"IAM (data lake)\", which is a realistic reportable finding?",
+          "text": "For \"IAM (data lake)\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the iam (data lake) control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the iam (data lake) control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the iam (data lake) control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "dlw-07-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "dlw-07-q10",
@@ -2562,13 +2562,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"IAM (data lake)\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind iam (data lake), so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -2580,7 +2580,7 @@ export const dataLakesStages: StageConfig[] = [
     "title": "Sensitive data protection",
     "subtitle": "Agentic technical & privacy audit of the sensitive data protection control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 6,
     "valueScore": 7,
     "rank": 0,
@@ -2802,13 +2802,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Sensitive data protection\" sub-process of Data Lakes & Warehouses?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the sensitive data protection control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the sensitive data protection control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for sensitive data protection against comparable organisations in the sector",
             "Obtain evidence that the sensitive data protection control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "dlw-08-q2",
@@ -2816,13 +2816,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Sensitive data protection\" matter to the broader Data Lakes & Warehouses posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Data Lakes & Warehouses",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Data Lakes & Warehouses estate",
             "It is a control other Data Lakes & Warehouses controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Data Lakes & Warehouses controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "dlw-08-q3",
@@ -2830,27 +2830,27 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Sensitive data protection\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the sensitive data protection control (from Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's sensitive data protection settings, captured during the walkthrough",
+            "The In-scope inventory for the sensitive data protection control (from Lakehouse / warehouse (Snowflake/Databricks/BigQuery)), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the sensitive data protection control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's sensitive data protection capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "dlw-08-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Sensitive data protection\"?",
+          "text": "Where should an auditor pull the evidence for \"Sensitive data protection\"?",
           "options": [
-            "Lakehouse / warehouse (Snowflake/Databricks/BigQuery) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Lakehouse / warehouse (Snowflake/Databricks/BigQuery) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how sensitive data protection works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "dlw-08-q5",
@@ -2858,13 +2858,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Sensitive data protection\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Data engineering / platform (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the sensitive data protection control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the sensitive data protection data is shared, so the accountability sits with no one in particular",
+            "Data engineering / platform, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Data engineering / platform owns the control data; the auditor independently verifies it."
+          "explanation": "Data engineering / platform owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "dlw-08-q6",
@@ -2872,55 +2872,55 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Sensitive data protection\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "dlw-08-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "dlw-08-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Sensitive data protection\", which is a realistic reportable finding?",
+          "text": "For \"Sensitive data protection\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the sensitive data protection control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the sensitive data protection control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the sensitive data protection control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "dlw-08-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "dlw-08-q10",
@@ -2928,13 +2928,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Sensitive data protection\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind sensitive data protection, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -2946,7 +2946,7 @@ export const dataLakesStages: StageConfig[] = [
     "title": "Logging, monitoring, alerting",
     "subtitle": "Agentic technical & privacy audit of the logging, monitoring, alerting control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 8,
     "valueScore": 7,
     "rank": 0,
@@ -3168,13 +3168,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Logging, monitoring, alerting\" sub-process of Data Lakes & Warehouses?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the logging, monitoring, alerting control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the logging, monitoring, alerting control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for logging, monitoring, alerting against comparable organisations in the sector",
             "Obtain evidence that the logging, monitoring, alerting control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "dlw-09-q2",
@@ -3182,13 +3182,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Logging, monitoring, alerting\" matter to the broader Data Lakes & Warehouses posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Data Lakes & Warehouses",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Data Lakes & Warehouses estate",
             "It is a control other Data Lakes & Warehouses controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Data Lakes & Warehouses controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "dlw-09-q3",
@@ -3196,27 +3196,27 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Logging, monitoring, alerting\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the logging, monitoring, alerting control (from Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's logging, monitoring, alerting settings, captured during the walkthrough",
+            "The In-scope inventory for the logging, monitoring, alerting control (from Lakehouse / warehouse (Snowflake/Databricks/BigQuery)), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the logging, monitoring, alerting control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's logging, monitoring, alerting capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "dlw-09-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Logging, monitoring, alerting\"?",
+          "text": "Where should an auditor pull the evidence for \"Logging, monitoring, alerting\"?",
           "options": [
-            "Lakehouse / warehouse (Snowflake/Databricks/BigQuery) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Lakehouse / warehouse (Snowflake/Databricks/BigQuery) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how logging, monitoring, alerting works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "dlw-09-q5",
@@ -3224,13 +3224,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Logging, monitoring, alerting\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Data engineering / platform (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the logging, monitoring, alerting control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the logging, monitoring, alerting data is shared, so the accountability sits with no one in particular",
+            "Data engineering / platform, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Data engineering / platform owns the control data; the auditor independently verifies it."
+          "explanation": "Data engineering / platform owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "dlw-09-q6",
@@ -3238,55 +3238,55 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Logging, monitoring, alerting\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "dlw-09-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "dlw-09-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Logging, monitoring, alerting\", which is a realistic reportable finding?",
+          "text": "For \"Logging, monitoring, alerting\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the logging, monitoring, alerting control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the logging, monitoring, alerting control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the logging, monitoring, alerting control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "dlw-09-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "dlw-09-q10",
@@ -3294,13 +3294,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Logging, monitoring, alerting\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind logging, monitoring, alerting, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -3312,7 +3312,7 @@ export const dataLakesStages: StageConfig[] = [
     "title": "Backup, recovery, resilience",
     "subtitle": "Agentic technical & privacy audit of the backup, recovery, resilience control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 5,
     "valueScore": 9,
     "rank": 0,
@@ -3534,13 +3534,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Backup, recovery, resilience\" sub-process of Data Lakes & Warehouses?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the backup, recovery, resilience control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the backup, recovery, resilience control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for backup, recovery, resilience against comparable organisations in the sector",
             "Obtain evidence that the backup, recovery, resilience control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "dlw-10-q2",
@@ -3548,13 +3548,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Backup, recovery, resilience\" matter to the broader Data Lakes & Warehouses posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Data Lakes & Warehouses",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Data Lakes & Warehouses estate",
             "It is a control other Data Lakes & Warehouses controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Data Lakes & Warehouses controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "dlw-10-q3",
@@ -3562,27 +3562,27 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Backup, recovery, resilience\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the backup, recovery, resilience control (from Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's backup, recovery, resilience settings, captured during the walkthrough",
+            "The In-scope inventory for the backup, recovery, resilience control (from Lakehouse / warehouse (Snowflake/Databricks/BigQuery)), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the backup, recovery, resilience control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's backup, recovery, resilience capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "dlw-10-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Backup, recovery, resilience\"?",
+          "text": "Where should an auditor pull the evidence for \"Backup, recovery, resilience\"?",
           "options": [
-            "Lakehouse / warehouse (Snowflake/Databricks/BigQuery) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Lakehouse / warehouse (Snowflake/Databricks/BigQuery) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how backup, recovery, resilience works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "dlw-10-q5",
@@ -3590,13 +3590,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Backup, recovery, resilience\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Data engineering / platform (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the backup, recovery, resilience control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the backup, recovery, resilience data is shared, so the accountability sits with no one in particular",
+            "Data engineering / platform, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Data engineering / platform owns the control data; the auditor independently verifies it."
+          "explanation": "Data engineering / platform owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "dlw-10-q6",
@@ -3604,55 +3604,55 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Backup, recovery, resilience\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "dlw-10-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "dlw-10-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Backup, recovery, resilience\", which is a realistic reportable finding?",
+          "text": "For \"Backup, recovery, resilience\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the backup, recovery, resilience control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the backup, recovery, resilience control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the backup, recovery, resilience control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "dlw-10-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "dlw-10-q10",
@@ -3660,13 +3660,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Backup, recovery, resilience\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind backup, recovery, resilience, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -3678,7 +3678,7 @@ export const dataLakesStages: StageConfig[] = [
     "title": "Environment segregation",
     "subtitle": "Agentic technical & privacy audit of the environment segregation control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 6,
     "valueScore": 7,
     "rank": 0,
@@ -3900,13 +3900,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Environment segregation\" sub-process of Data Lakes & Warehouses?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the environment segregation control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the environment segregation control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for environment segregation against comparable organisations in the sector",
             "Obtain evidence that the environment segregation control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "dlw-11-q2",
@@ -3914,13 +3914,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Environment segregation\" matter to the broader Data Lakes & Warehouses posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Data Lakes & Warehouses",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Data Lakes & Warehouses estate",
             "It is a control other Data Lakes & Warehouses controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Data Lakes & Warehouses controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "dlw-11-q3",
@@ -3928,27 +3928,27 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Environment segregation\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the environment segregation control (from Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's environment segregation settings, captured during the walkthrough",
+            "The In-scope inventory for the environment segregation control (from Lakehouse / warehouse (Snowflake/Databricks/BigQuery)), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the environment segregation control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's environment segregation capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "dlw-11-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Environment segregation\"?",
+          "text": "Where should an auditor pull the evidence for \"Environment segregation\"?",
           "options": [
-            "Lakehouse / warehouse (Snowflake/Databricks/BigQuery) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Lakehouse / warehouse (Snowflake/Databricks/BigQuery) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how environment segregation works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "dlw-11-q5",
@@ -3956,13 +3956,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Environment segregation\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Data engineering / platform (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the environment segregation control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the environment segregation data is shared, so the accountability sits with no one in particular",
+            "Data engineering / platform, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Data engineering / platform owns the control data; the auditor independently verifies it."
+          "explanation": "Data engineering / platform owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "dlw-11-q6",
@@ -3970,55 +3970,55 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Environment segregation\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "dlw-11-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "dlw-11-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Environment segregation\", which is a realistic reportable finding?",
+          "text": "For \"Environment segregation\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the environment segregation control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the environment segregation control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the environment segregation control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "dlw-11-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "dlw-11-q10",
@@ -4026,13 +4026,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Environment segregation\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind environment segregation, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -4044,7 +4044,7 @@ export const dataLakesStages: StageConfig[] = [
     "title": "SDLC / DataOps / CI/CD",
     "subtitle": "Agentic technical & privacy audit of the sdlc / dataops / ci/cd control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 7,
     "valueScore": 7,
     "rank": 0,
@@ -4266,13 +4266,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"SDLC / DataOps / CI/CD\" sub-process of Data Lakes & Warehouses?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the sdlc / dataops / ci/cd control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the sdlc / dataops / ci/cd control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for sdlc / dataops / ci/cd against comparable organisations in the sector",
             "Obtain evidence that the sdlc / dataops / ci/cd control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "dlw-12-q2",
@@ -4280,13 +4280,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"SDLC / DataOps / CI/CD\" matter to the broader Data Lakes & Warehouses posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Data Lakes & Warehouses",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Data Lakes & Warehouses estate",
             "It is a control other Data Lakes & Warehouses controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Data Lakes & Warehouses controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "dlw-12-q3",
@@ -4294,27 +4294,27 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"SDLC / DataOps / CI/CD\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the sdlc / dataops / ci/cd control (from Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's sdlc / dataops / ci/cd settings, captured during the walkthrough",
+            "The In-scope inventory for the sdlc / dataops / ci/cd control (from Lakehouse / warehouse (Snowflake/Databricks/BigQuery)), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the sdlc / dataops / ci/cd control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's sdlc / dataops / ci/cd capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "dlw-12-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"SDLC / DataOps / CI/CD\"?",
+          "text": "Where should an auditor pull the evidence for \"SDLC / DataOps / CI/CD\"?",
           "options": [
-            "Lakehouse / warehouse (Snowflake/Databricks/BigQuery) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Lakehouse / warehouse (Snowflake/Databricks/BigQuery) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how sdlc / dataops / ci/cd works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "dlw-12-q5",
@@ -4322,13 +4322,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"SDLC / DataOps / CI/CD\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Data engineering / platform (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the sdlc / dataops / ci/cd control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the sdlc / dataops / ci/cd data is shared, so the accountability sits with no one in particular",
+            "Data engineering / platform, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Data engineering / platform owns the control data; the auditor independently verifies it."
+          "explanation": "Data engineering / platform owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "dlw-12-q6",
@@ -4336,55 +4336,55 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"SDLC / DataOps / CI/CD\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "dlw-12-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "dlw-12-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"SDLC / DataOps / CI/CD\", which is a realistic reportable finding?",
+          "text": "For \"SDLC / DataOps / CI/CD\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the sdlc / dataops / ci/cd control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the sdlc / dataops / ci/cd control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the sdlc / dataops / ci/cd control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "dlw-12-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "dlw-12-q10",
@@ -4392,13 +4392,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"SDLC / DataOps / CI/CD\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind sdlc / dataops / ci/cd, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -4410,7 +4410,7 @@ export const dataLakesStages: StageConfig[] = [
     "title": "Retention, archival, deletion",
     "subtitle": "Agentic technical & privacy audit of the retention, archival, deletion control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
@@ -4632,13 +4632,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Retention, archival, deletion\" sub-process of Data Lakes & Warehouses?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the retention, archival, deletion control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the retention, archival, deletion control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for retention, archival, deletion against comparable organisations in the sector",
             "Obtain evidence that the retention, archival, deletion control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "dlw-13-q2",
@@ -4646,13 +4646,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Retention, archival, deletion\" matter to the broader Data Lakes & Warehouses posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Data Lakes & Warehouses",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Data Lakes & Warehouses estate",
             "It is a control other Data Lakes & Warehouses controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Data Lakes & Warehouses controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "dlw-13-q3",
@@ -4660,27 +4660,27 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Retention, archival, deletion\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the retention, archival, deletion control (from Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's retention, archival, deletion settings, captured during the walkthrough",
+            "The In-scope inventory for the retention, archival, deletion control (from Lakehouse / warehouse (Snowflake/Databricks/BigQuery)), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the retention, archival, deletion control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's retention, archival, deletion capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "dlw-13-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Retention, archival, deletion\"?",
+          "text": "Where should an auditor pull the evidence for \"Retention, archival, deletion\"?",
           "options": [
-            "Lakehouse / warehouse (Snowflake/Databricks/BigQuery) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Lakehouse / warehouse (Snowflake/Databricks/BigQuery) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how retention, archival, deletion works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "dlw-13-q5",
@@ -4688,13 +4688,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Retention, archival, deletion\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Data engineering / platform (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the retention, archival, deletion control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the retention, archival, deletion data is shared, so the accountability sits with no one in particular",
+            "Data engineering / platform, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Data engineering / platform owns the control data; the auditor independently verifies it."
+          "explanation": "Data engineering / platform owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "dlw-13-q6",
@@ -4702,55 +4702,55 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Retention, archival, deletion\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "dlw-13-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "dlw-13-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Retention, archival, deletion\", which is a realistic reportable finding?",
+          "text": "For \"Retention, archival, deletion\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the retention, archival, deletion control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the retention, archival, deletion control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the retention, archival, deletion control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "dlw-13-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "dlw-13-q10",
@@ -4758,13 +4758,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Retention, archival, deletion\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind retention, archival, deletion, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -4776,7 +4776,7 @@ export const dataLakesStages: StageConfig[] = [
     "title": "Reporting / semantic layer",
     "subtitle": "Agentic technical & privacy audit of the reporting / semantic layer control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 120,
     "easeScore": 7,
     "valueScore": 6,
     "rank": 0,
@@ -4998,13 +4998,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Reporting / semantic layer\" sub-process of Data Lakes & Warehouses?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the reporting / semantic layer control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the reporting / semantic layer control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for reporting / semantic layer against comparable organisations in the sector",
             "Obtain evidence that the reporting / semantic layer control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "dlw-14-q2",
@@ -5012,13 +5012,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Reporting / semantic layer\" matter to the broader Data Lakes & Warehouses posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Data Lakes & Warehouses",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Data Lakes & Warehouses estate",
             "It is a control other Data Lakes & Warehouses controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Data Lakes & Warehouses controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "dlw-14-q3",
@@ -5026,27 +5026,27 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Reporting / semantic layer\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the reporting / semantic layer control (from Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's reporting / semantic layer settings, captured during the walkthrough",
+            "The In-scope inventory for the reporting / semantic layer control (from Lakehouse / warehouse (Snowflake/Databricks/BigQuery)), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the reporting / semantic layer control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's reporting / semantic layer capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "dlw-14-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Reporting / semantic layer\"?",
+          "text": "Where should an auditor pull the evidence for \"Reporting / semantic layer\"?",
           "options": [
-            "Lakehouse / warehouse (Snowflake/Databricks/BigQuery) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Lakehouse / warehouse (Snowflake/Databricks/BigQuery) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how reporting / semantic layer works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "dlw-14-q5",
@@ -5054,13 +5054,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Reporting / semantic layer\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Data engineering / platform (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the reporting / semantic layer control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the reporting / semantic layer data is shared, so the accountability sits with no one in particular",
+            "Data engineering / platform, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Data engineering / platform owns the control data; the auditor independently verifies it."
+          "explanation": "Data engineering / platform owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "dlw-14-q6",
@@ -5068,55 +5068,55 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Reporting / semantic layer\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "dlw-14-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "dlw-14-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Reporting / semantic layer\", which is a realistic reportable finding?",
+          "text": "For \"Reporting / semantic layer\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the reporting / semantic layer control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the reporting / semantic layer control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the reporting / semantic layer control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "dlw-14-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "dlw-14-q10",
@@ -5124,13 +5124,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Reporting / semantic layer\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind reporting / semantic layer, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -5142,7 +5142,7 @@ export const dataLakesStages: StageConfig[] = [
     "title": "End-user computing / extracts",
     "subtitle": "Agentic technical & privacy audit of the end-user computing / extracts control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 7,
     "valueScore": 7,
     "rank": 0,
@@ -5364,13 +5364,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"End-user computing / extracts\" sub-process of Data Lakes & Warehouses?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the end-user computing / extracts control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the end-user computing / extracts control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for end-user computing / extracts against comparable organisations in the sector",
             "Obtain evidence that the end-user computing / extracts control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "dlw-15-q2",
@@ -5378,13 +5378,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"End-user computing / extracts\" matter to the broader Data Lakes & Warehouses posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Data Lakes & Warehouses",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Data Lakes & Warehouses estate",
             "It is a control other Data Lakes & Warehouses controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Data Lakes & Warehouses controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "dlw-15-q3",
@@ -5392,27 +5392,27 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"End-user computing / extracts\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the end-user computing / extracts control (from Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's end-user computing / extracts settings, captured during the walkthrough",
+            "The In-scope inventory for the end-user computing / extracts control (from Lakehouse / warehouse (Snowflake/Databricks/BigQuery)), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the end-user computing / extracts control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's end-user computing / extracts capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "dlw-15-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"End-user computing / extracts\"?",
+          "text": "Where should an auditor pull the evidence for \"End-user computing / extracts\"?",
           "options": [
-            "Lakehouse / warehouse (Snowflake/Databricks/BigQuery) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Lakehouse / warehouse (Snowflake/Databricks/BigQuery) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how end-user computing / extracts works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "dlw-15-q5",
@@ -5420,13 +5420,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"End-user computing / extracts\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Data engineering / platform (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the end-user computing / extracts control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the end-user computing / extracts data is shared, so the accountability sits with no one in particular",
+            "Data engineering / platform, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Data engineering / platform owns the control data; the auditor independently verifies it."
+          "explanation": "Data engineering / platform owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "dlw-15-q6",
@@ -5434,55 +5434,55 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"End-user computing / extracts\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "dlw-15-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "dlw-15-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"End-user computing / extracts\", which is a realistic reportable finding?",
+          "text": "For \"End-user computing / extracts\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the end-user computing / extracts control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the end-user computing / extracts control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the end-user computing / extracts control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "dlw-15-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "dlw-15-q10",
@@ -5490,13 +5490,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"End-user computing / extracts\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind end-user computing / extracts, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -5508,7 +5508,7 @@ export const dataLakesStages: StageConfig[] = [
     "title": "Third-party / CSP mgmt",
     "subtitle": "Agentic technical & privacy audit of the third-party / csp mgmt control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 5,
     "valueScore": 9,
     "rank": 0,
@@ -5730,13 +5730,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Third-party / CSP mgmt\" sub-process of Data Lakes & Warehouses?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the third-party / csp mgmt control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the third-party / csp mgmt control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for third-party / csp mgmt against comparable organisations in the sector",
             "Obtain evidence that the third-party / csp mgmt control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "dlw-16-q2",
@@ -5744,13 +5744,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Third-party / CSP mgmt\" matter to the broader Data Lakes & Warehouses posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Data Lakes & Warehouses",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Data Lakes & Warehouses estate",
             "It is a control other Data Lakes & Warehouses controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Data Lakes & Warehouses controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "dlw-16-q3",
@@ -5758,27 +5758,27 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Third-party / CSP mgmt\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the third-party / csp mgmt control (from Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's third-party / csp mgmt settings, captured during the walkthrough",
+            "The In-scope inventory for the third-party / csp mgmt control (from Lakehouse / warehouse (Snowflake/Databricks/BigQuery)), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the third-party / csp mgmt control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's third-party / csp mgmt capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "dlw-16-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Third-party / CSP mgmt\"?",
+          "text": "Where should an auditor pull the evidence for \"Third-party / CSP mgmt\"?",
           "options": [
-            "Lakehouse / warehouse (Snowflake/Databricks/BigQuery) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Lakehouse / warehouse (Snowflake/Databricks/BigQuery) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how third-party / csp mgmt works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "dlw-16-q5",
@@ -5786,13 +5786,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Third-party / CSP mgmt\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Data engineering / platform (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the third-party / csp mgmt control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the third-party / csp mgmt data is shared, so the accountability sits with no one in particular",
+            "Data engineering / platform, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Data engineering / platform owns the control data; the auditor independently verifies it."
+          "explanation": "Data engineering / platform owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "dlw-16-q6",
@@ -5800,55 +5800,55 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Third-party / CSP mgmt\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "dlw-16-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "dlw-16-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Third-party / CSP mgmt\", which is a realistic reportable finding?",
+          "text": "For \"Third-party / CSP mgmt\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the third-party / csp mgmt control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the third-party / csp mgmt control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the third-party / csp mgmt control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "dlw-16-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "dlw-16-q10",
@@ -5856,13 +5856,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Third-party / CSP mgmt\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind third-party / csp mgmt, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -5874,7 +5874,7 @@ export const dataLakesStages: StageConfig[] = [
     "title": "Incident response / problem mgmt",
     "subtitle": "Agentic technical & privacy audit of the incident response / problem mgmt control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 6,
     "valueScore": 9,
     "rank": 0,
@@ -6096,13 +6096,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Incident response / problem mgmt\" sub-process of Data Lakes & Warehouses?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the incident response / problem mgmt control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the incident response / problem mgmt control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for incident response / problem mgmt against comparable organisations in the sector",
             "Obtain evidence that the incident response / problem mgmt control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "dlw-17-q2",
@@ -6110,13 +6110,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Incident response / problem mgmt\" matter to the broader Data Lakes & Warehouses posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Data Lakes & Warehouses",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Data Lakes & Warehouses estate",
             "It is a control other Data Lakes & Warehouses controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Data Lakes & Warehouses controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "dlw-17-q3",
@@ -6124,27 +6124,27 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Incident response / problem mgmt\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the incident response / problem mgmt control (from Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's incident response / problem mgmt settings, captured during the walkthrough",
+            "The In-scope inventory for the incident response / problem mgmt control (from Lakehouse / warehouse (Snowflake/Databricks/BigQuery)), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the incident response / problem mgmt control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's incident response / problem mgmt capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "dlw-17-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Incident response / problem mgmt\"?",
+          "text": "Where should an auditor pull the evidence for \"Incident response / problem mgmt\"?",
           "options": [
-            "Lakehouse / warehouse (Snowflake/Databricks/BigQuery) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Lakehouse / warehouse (Snowflake/Databricks/BigQuery) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how incident response / problem mgmt works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "dlw-17-q5",
@@ -6152,13 +6152,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Incident response / problem mgmt\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Data engineering / platform (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the incident response / problem mgmt control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the incident response / problem mgmt data is shared, so the accountability sits with no one in particular",
+            "Data engineering / platform, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Data engineering / platform owns the control data; the auditor independently verifies it."
+          "explanation": "Data engineering / platform owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "dlw-17-q6",
@@ -6166,55 +6166,55 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Incident response / problem mgmt\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "dlw-17-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "dlw-17-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Incident response / problem mgmt\", which is a realistic reportable finding?",
+          "text": "For \"Incident response / problem mgmt\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the incident response / problem mgmt control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the incident response / problem mgmt control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the incident response / problem mgmt control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "dlw-17-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "dlw-17-q10",
@@ -6222,13 +6222,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Incident response / problem mgmt\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind incident response / problem mgmt, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -6240,7 +6240,7 @@ export const dataLakesStages: StageConfig[] = [
     "title": "Capacity, performance, cost",
     "subtitle": "Agentic technical & privacy audit of the capacity, performance, cost control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 7,
     "valueScore": 7,
     "rank": 0,
@@ -6462,13 +6462,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Capacity, performance, cost\" sub-process of Data Lakes & Warehouses?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the capacity, performance, cost control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the capacity, performance, cost control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for capacity, performance, cost against comparable organisations in the sector",
             "Obtain evidence that the capacity, performance, cost control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "dlw-18-q2",
@@ -6476,13 +6476,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Capacity, performance, cost\" matter to the broader Data Lakes & Warehouses posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Data Lakes & Warehouses",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Data Lakes & Warehouses estate",
             "It is a control other Data Lakes & Warehouses controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Data Lakes & Warehouses controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "dlw-18-q3",
@@ -6490,27 +6490,27 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Capacity, performance, cost\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the capacity, performance, cost control (from Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's capacity, performance, cost settings, captured during the walkthrough",
+            "The In-scope inventory for the capacity, performance, cost control (from Lakehouse / warehouse (Snowflake/Databricks/BigQuery)), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the capacity, performance, cost control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's capacity, performance, cost capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "dlw-18-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Capacity, performance, cost\"?",
+          "text": "Where should an auditor pull the evidence for \"Capacity, performance, cost\"?",
           "options": [
-            "Lakehouse / warehouse (Snowflake/Databricks/BigQuery) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Lakehouse / warehouse (Snowflake/Databricks/BigQuery) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how capacity, performance, cost works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "dlw-18-q5",
@@ -6518,13 +6518,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Capacity, performance, cost\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Data engineering / platform (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the capacity, performance, cost control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the capacity, performance, cost data is shared, so the accountability sits with no one in particular",
+            "Data engineering / platform, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Data engineering / platform owns the control data; the auditor independently verifies it."
+          "explanation": "Data engineering / platform owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "dlw-18-q6",
@@ -6532,55 +6532,55 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Capacity, performance, cost\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "dlw-18-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "dlw-18-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Capacity, performance, cost\", which is a realistic reportable finding?",
+          "text": "For \"Capacity, performance, cost\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the capacity, performance, cost control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the capacity, performance, cost control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the capacity, performance, cost control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "dlw-18-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "dlw-18-q10",
@@ -6588,13 +6588,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Capacity, performance, cost\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind capacity, performance, cost, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -6606,7 +6606,7 @@ export const dataLakesStages: StageConfig[] = [
     "title": "Regulatory / contractual data req",
     "subtitle": "Agentic technical & privacy audit of the regulatory / contractual data req control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
@@ -6828,13 +6828,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Regulatory / contractual data req\" sub-process of Data Lakes & Warehouses?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the regulatory / contractual data req control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the regulatory / contractual data req control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for regulatory / contractual data req against comparable organisations in the sector",
             "Obtain evidence that the regulatory / contractual data req control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "dlw-19-q2",
@@ -6842,13 +6842,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Regulatory / contractual data req\" matter to the broader Data Lakes & Warehouses posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Data Lakes & Warehouses",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Data Lakes & Warehouses estate",
             "It is a control other Data Lakes & Warehouses controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Data Lakes & Warehouses controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "dlw-19-q3",
@@ -6856,27 +6856,27 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Regulatory / contractual data req\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the regulatory / contractual data req control (from Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's regulatory / contractual data req settings, captured during the walkthrough",
+            "The In-scope inventory for the regulatory / contractual data req control (from Lakehouse / warehouse (Snowflake/Databricks/BigQuery)), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the regulatory / contractual data req control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's regulatory / contractual data req capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "dlw-19-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Regulatory / contractual data req\"?",
+          "text": "Where should an auditor pull the evidence for \"Regulatory / contractual data req\"?",
           "options": [
-            "Lakehouse / warehouse (Snowflake/Databricks/BigQuery) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Lakehouse / warehouse (Snowflake/Databricks/BigQuery) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how regulatory / contractual data req works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Lakehouse / warehouse (Snowflake/Databricks/BigQuery)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "dlw-19-q5",
@@ -6884,13 +6884,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Regulatory / contractual data req\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Data engineering / platform (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the regulatory / contractual data req control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the regulatory / contractual data req data is shared, so the accountability sits with no one in particular",
+            "Data engineering / platform, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Data engineering / platform owns the control data; the auditor independently verifies it."
+          "explanation": "Data engineering / platform owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "dlw-19-q6",
@@ -6898,55 +6898,55 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Regulatory / contractual data req\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "dlw-19-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "dlw-19-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Regulatory / contractual data req\", which is a realistic reportable finding?",
+          "text": "For \"Regulatory / contractual data req\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the regulatory / contractual data req control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the regulatory / contractual data req control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the regulatory / contractual data req control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "dlw-19-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "dlw-19-q10",
@@ -6954,13 +6954,13 @@ export const dataLakesStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Regulatory / contractual data req\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind regulatory / contractual data req, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }

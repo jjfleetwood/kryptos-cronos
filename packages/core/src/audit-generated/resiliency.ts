@@ -18,7 +18,7 @@ export const resiliencyStages: StageConfig[] = [
     "title": "BCP, BIA, ITDR",
     "subtitle": "Agentic technical & privacy audit of the bcp, bia, itdr control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
@@ -240,13 +240,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"BCP, BIA, ITDR\" sub-process of Resiliency & Redundancy?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the bcp, bia, itdr control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the bcp, bia, itdr control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for bcp, bia, itdr against comparable organisations in the sector",
             "Obtain evidence that the bcp, bia, itdr control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "res-01-q2",
@@ -254,13 +254,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"BCP, BIA, ITDR\" matter to the broader Resiliency & Redundancy posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Resiliency & Redundancy",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Resiliency & Redundancy estate",
             "It is a control other Resiliency & Redundancy controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Resiliency & Redundancy controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "res-01-q3",
@@ -268,27 +268,27 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"BCP, BIA, ITDR\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the bcp, bia, itdr control (from Backup + replication platform) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's bcp, bia, itdr settings, captured during the walkthrough",
+            "The In-scope inventory for the bcp, bia, itdr control (from Backup + replication platform), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the bcp, bia, itdr control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's bcp, bia, itdr capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "res-01-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"BCP, BIA, ITDR\"?",
+          "text": "Where should an auditor pull the evidence for \"BCP, BIA, ITDR\"?",
           "options": [
-            "Backup + replication platform (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Backup + replication platform and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how bcp, bia, itdr works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Backup + replication platform) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Backup + replication platform) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "res-01-q5",
@@ -296,13 +296,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"BCP, BIA, ITDR\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Business Continuity / DR (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the bcp, bia, itdr control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the bcp, bia, itdr data is shared, so the accountability sits with no one in particular",
+            "Business Continuity / DR, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Business Continuity / DR owns the control data; the auditor independently verifies it."
+          "explanation": "Business Continuity / DR owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "res-01-q6",
@@ -310,55 +310,55 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"BCP, BIA, ITDR\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "res-01-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "res-01-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"BCP, BIA, ITDR\", which is a realistic reportable finding?",
+          "text": "For \"BCP, BIA, ITDR\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the bcp, bia, itdr control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the bcp, bia, itdr control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the bcp, bia, itdr control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "res-01-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "res-01-q10",
@@ -366,13 +366,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"BCP, BIA, ITDR\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind bcp, bia, itdr, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -384,7 +384,7 @@ export const resiliencyStages: StageConfig[] = [
     "title": "Supplier and vendor resilience",
     "subtitle": "Agentic technical & privacy audit of the supplier and vendor resilience control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 6,
     "valueScore": 7,
     "rank": 0,
@@ -606,13 +606,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Supplier and vendor resilience\" sub-process of Resiliency & Redundancy?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the supplier and vendor resilience control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the supplier and vendor resilience control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for supplier and vendor resilience against comparable organisations in the sector",
             "Obtain evidence that the supplier and vendor resilience control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "res-02-q2",
@@ -620,13 +620,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Supplier and vendor resilience\" matter to the broader Resiliency & Redundancy posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Resiliency & Redundancy",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Resiliency & Redundancy estate",
             "It is a control other Resiliency & Redundancy controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Resiliency & Redundancy controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "res-02-q3",
@@ -634,27 +634,27 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Supplier and vendor resilience\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the supplier and vendor resilience control (from Backup + replication platform) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's supplier and vendor resilience settings, captured during the walkthrough",
+            "The In-scope inventory for the supplier and vendor resilience control (from Backup + replication platform), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the supplier and vendor resilience control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's supplier and vendor resilience capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "res-02-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Supplier and vendor resilience\"?",
+          "text": "Where should an auditor pull the evidence for \"Supplier and vendor resilience\"?",
           "options": [
-            "Backup + replication platform (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Backup + replication platform and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how supplier and vendor resilience works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Backup + replication platform) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Backup + replication platform) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "res-02-q5",
@@ -662,13 +662,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Supplier and vendor resilience\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Business Continuity / DR (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the supplier and vendor resilience control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the supplier and vendor resilience data is shared, so the accountability sits with no one in particular",
+            "Business Continuity / DR, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Business Continuity / DR owns the control data; the auditor independently verifies it."
+          "explanation": "Business Continuity / DR owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "res-02-q6",
@@ -676,55 +676,55 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Supplier and vendor resilience\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "res-02-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "res-02-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Supplier and vendor resilience\", which is a realistic reportable finding?",
+          "text": "For \"Supplier and vendor resilience\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the supplier and vendor resilience control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the supplier and vendor resilience control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the supplier and vendor resilience control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "res-02-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "res-02-q10",
@@ -732,13 +732,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Supplier and vendor resilience\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind supplier and vendor resilience, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -750,7 +750,7 @@ export const resiliencyStages: StageConfig[] = [
     "title": "Tabletop and BCP/DR testing",
     "subtitle": "Agentic technical & privacy audit of the tabletop and bcp/dr testing control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 7,
     "valueScore": 7,
     "rank": 0,
@@ -972,13 +972,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Tabletop and BCP/DR testing\" sub-process of Resiliency & Redundancy?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the tabletop and bcp/dr testing control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the tabletop and bcp/dr testing control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for tabletop and bcp/dr testing against comparable organisations in the sector",
             "Obtain evidence that the tabletop and bcp/dr testing control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "res-03-q2",
@@ -986,13 +986,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Tabletop and BCP/DR testing\" matter to the broader Resiliency & Redundancy posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Resiliency & Redundancy",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Resiliency & Redundancy estate",
             "It is a control other Resiliency & Redundancy controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Resiliency & Redundancy controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "res-03-q3",
@@ -1000,27 +1000,27 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Tabletop and BCP/DR testing\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the tabletop and bcp/dr testing control (from Backup + replication platform) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's tabletop and bcp/dr testing settings, captured during the walkthrough",
+            "The In-scope inventory for the tabletop and bcp/dr testing control (from Backup + replication platform), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the tabletop and bcp/dr testing control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's tabletop and bcp/dr testing capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "res-03-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Tabletop and BCP/DR testing\"?",
+          "text": "Where should an auditor pull the evidence for \"Tabletop and BCP/DR testing\"?",
           "options": [
-            "Backup + replication platform (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Backup + replication platform and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how tabletop and bcp/dr testing works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Backup + replication platform) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Backup + replication platform) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "res-03-q5",
@@ -1028,13 +1028,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Tabletop and BCP/DR testing\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Business Continuity / DR (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the tabletop and bcp/dr testing control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the tabletop and bcp/dr testing data is shared, so the accountability sits with no one in particular",
+            "Business Continuity / DR, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Business Continuity / DR owns the control data; the auditor independently verifies it."
+          "explanation": "Business Continuity / DR owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "res-03-q6",
@@ -1042,55 +1042,55 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Tabletop and BCP/DR testing\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "res-03-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "res-03-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Tabletop and BCP/DR testing\", which is a realistic reportable finding?",
+          "text": "For \"Tabletop and BCP/DR testing\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the tabletop and bcp/dr testing control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the tabletop and bcp/dr testing control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the tabletop and bcp/dr testing control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "res-03-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "res-03-q10",
@@ -1098,13 +1098,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Tabletop and BCP/DR testing\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind tabletop and bcp/dr testing, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1116,7 +1116,7 @@ export const resiliencyStages: StageConfig[] = [
     "title": "DR site strategy",
     "subtitle": "Agentic technical & privacy audit of the dr site strategy control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
@@ -1338,13 +1338,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"DR site strategy\" sub-process of Resiliency & Redundancy?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the dr site strategy control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the dr site strategy control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for dr site strategy against comparable organisations in the sector",
             "Obtain evidence that the dr site strategy control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "res-04-q2",
@@ -1352,13 +1352,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"DR site strategy\" matter to the broader Resiliency & Redundancy posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Resiliency & Redundancy",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Resiliency & Redundancy estate",
             "It is a control other Resiliency & Redundancy controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Resiliency & Redundancy controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "res-04-q3",
@@ -1366,27 +1366,27 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"DR site strategy\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the dr site strategy control (from Backup + replication platform) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's dr site strategy settings, captured during the walkthrough",
+            "The In-scope inventory for the dr site strategy control (from Backup + replication platform), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the dr site strategy control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's dr site strategy capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "res-04-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"DR site strategy\"?",
+          "text": "Where should an auditor pull the evidence for \"DR site strategy\"?",
           "options": [
-            "Backup + replication platform (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Backup + replication platform and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how dr site strategy works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Backup + replication platform) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Backup + replication platform) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "res-04-q5",
@@ -1394,13 +1394,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"DR site strategy\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Business Continuity / DR (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the dr site strategy control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the dr site strategy data is shared, so the accountability sits with no one in particular",
+            "Business Continuity / DR, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Business Continuity / DR owns the control data; the auditor independently verifies it."
+          "explanation": "Business Continuity / DR owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "res-04-q6",
@@ -1408,55 +1408,55 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"DR site strategy\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "res-04-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "res-04-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"DR site strategy\", which is a realistic reportable finding?",
+          "text": "For \"DR site strategy\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the dr site strategy control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the dr site strategy control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the dr site strategy control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "res-04-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "res-04-q10",
@@ -1464,13 +1464,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"DR site strategy\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind dr site strategy, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1482,7 +1482,7 @@ export const resiliencyStages: StageConfig[] = [
     "title": "Failover and fallback procedures",
     "subtitle": "Agentic technical & privacy audit of the failover and fallback procedures control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 6,
     "valueScore": 7,
     "rank": 0,
@@ -1704,13 +1704,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Failover and fallback procedures\" sub-process of Resiliency & Redundancy?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the failover and fallback procedures control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the failover and fallback procedures control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for failover and fallback procedures against comparable organisations in the sector",
             "Obtain evidence that the failover and fallback procedures control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "res-05-q2",
@@ -1718,13 +1718,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Failover and fallback procedures\" matter to the broader Resiliency & Redundancy posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Resiliency & Redundancy",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Resiliency & Redundancy estate",
             "It is a control other Resiliency & Redundancy controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Resiliency & Redundancy controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "res-05-q3",
@@ -1732,27 +1732,27 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Failover and fallback procedures\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the failover and fallback procedures control (from Backup + replication platform) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's failover and fallback procedures settings, captured during the walkthrough",
+            "The In-scope inventory for the failover and fallback procedures control (from Backup + replication platform), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the failover and fallback procedures control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's failover and fallback procedures capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "res-05-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Failover and fallback procedures\"?",
+          "text": "Where should an auditor pull the evidence for \"Failover and fallback procedures\"?",
           "options": [
-            "Backup + replication platform (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Backup + replication platform and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how failover and fallback procedures works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Backup + replication platform) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Backup + replication platform) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "res-05-q5",
@@ -1760,13 +1760,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Failover and fallback procedures\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Business Continuity / DR (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the failover and fallback procedures control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the failover and fallback procedures data is shared, so the accountability sits with no one in particular",
+            "Business Continuity / DR, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Business Continuity / DR owns the control data; the auditor independently verifies it."
+          "explanation": "Business Continuity / DR owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "res-05-q6",
@@ -1774,55 +1774,55 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Failover and fallback procedures\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "res-05-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "res-05-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Failover and fallback procedures\", which is a realistic reportable finding?",
+          "text": "For \"Failover and fallback procedures\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the failover and fallback procedures control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the failover and fallback procedures control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the failover and fallback procedures control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "res-05-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "res-05-q10",
@@ -1830,13 +1830,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Failover and fallback procedures\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind failover and fallback procedures, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1848,7 +1848,7 @@ export const resiliencyStages: StageConfig[] = [
     "title": "Data and service replication",
     "subtitle": "Agentic technical & privacy audit of the data and service replication control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 7,
     "valueScore": 7,
     "rank": 0,
@@ -2070,13 +2070,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Data and service replication\" sub-process of Resiliency & Redundancy?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the data and service replication control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the data and service replication control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for data and service replication against comparable organisations in the sector",
             "Obtain evidence that the data and service replication control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "res-06-q2",
@@ -2084,13 +2084,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Data and service replication\" matter to the broader Resiliency & Redundancy posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Resiliency & Redundancy",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Resiliency & Redundancy estate",
             "It is a control other Resiliency & Redundancy controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Resiliency & Redundancy controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "res-06-q3",
@@ -2098,27 +2098,27 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Data and service replication\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the data and service replication control (from Backup + replication platform) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's data and service replication settings, captured during the walkthrough",
+            "The In-scope inventory for the data and service replication control (from Backup + replication platform), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the data and service replication control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's data and service replication capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "res-06-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Data and service replication\"?",
+          "text": "Where should an auditor pull the evidence for \"Data and service replication\"?",
           "options": [
-            "Backup + replication platform (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Backup + replication platform and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how data and service replication works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Backup + replication platform) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Backup + replication platform) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "res-06-q5",
@@ -2126,13 +2126,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Data and service replication\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Business Continuity / DR (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the data and service replication control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the data and service replication data is shared, so the accountability sits with no one in particular",
+            "Business Continuity / DR, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Business Continuity / DR owns the control data; the auditor independently verifies it."
+          "explanation": "Business Continuity / DR owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "res-06-q6",
@@ -2140,55 +2140,55 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Data and service replication\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "res-06-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "res-06-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Data and service replication\", which is a realistic reportable finding?",
+          "text": "For \"Data and service replication\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the data and service replication control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the data and service replication control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the data and service replication control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "res-06-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "res-06-q10",
@@ -2196,13 +2196,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Data and service replication\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind data and service replication, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -2214,7 +2214,7 @@ export const resiliencyStages: StageConfig[] = [
     "title": "Network redundancy",
     "subtitle": "Agentic technical & privacy audit of the network redundancy control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
@@ -2436,13 +2436,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Network redundancy\" sub-process of Resiliency & Redundancy?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the network redundancy control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the network redundancy control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for network redundancy against comparable organisations in the sector",
             "Obtain evidence that the network redundancy control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "res-07-q2",
@@ -2450,13 +2450,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Network redundancy\" matter to the broader Resiliency & Redundancy posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Resiliency & Redundancy",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Resiliency & Redundancy estate",
             "It is a control other Resiliency & Redundancy controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Resiliency & Redundancy controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "res-07-q3",
@@ -2464,27 +2464,27 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Network redundancy\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the network redundancy control (from Backup + replication platform) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's network redundancy settings, captured during the walkthrough",
+            "The In-scope inventory for the network redundancy control (from Backup + replication platform), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the network redundancy control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's network redundancy capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "res-07-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Network redundancy\"?",
+          "text": "Where should an auditor pull the evidence for \"Network redundancy\"?",
           "options": [
-            "Backup + replication platform (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Backup + replication platform and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how network redundancy works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Backup + replication platform) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Backup + replication platform) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "res-07-q5",
@@ -2492,13 +2492,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Network redundancy\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Business Continuity / DR (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the network redundancy control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the network redundancy data is shared, so the accountability sits with no one in particular",
+            "Business Continuity / DR, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Business Continuity / DR owns the control data; the auditor independently verifies it."
+          "explanation": "Business Continuity / DR owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "res-07-q6",
@@ -2506,55 +2506,55 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Network redundancy\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "res-07-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "res-07-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Network redundancy\", which is a realistic reportable finding?",
+          "text": "For \"Network redundancy\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the network redundancy control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the network redundancy control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the network redundancy control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "res-07-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "res-07-q10",
@@ -2562,13 +2562,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Network redundancy\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind network redundancy, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -2580,7 +2580,7 @@ export const resiliencyStages: StageConfig[] = [
     "title": "Multi-region / AZ deployment",
     "subtitle": "Agentic technical & privacy audit of the multi-region / az deployment control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 6,
     "valueScore": 7,
     "rank": 0,
@@ -2802,13 +2802,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Multi-region / AZ deployment\" sub-process of Resiliency & Redundancy?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the multi-region / az deployment control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the multi-region / az deployment control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for multi-region / az deployment against comparable organisations in the sector",
             "Obtain evidence that the multi-region / az deployment control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "res-08-q2",
@@ -2816,13 +2816,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Multi-region / AZ deployment\" matter to the broader Resiliency & Redundancy posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Resiliency & Redundancy",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Resiliency & Redundancy estate",
             "It is a control other Resiliency & Redundancy controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Resiliency & Redundancy controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "res-08-q3",
@@ -2830,27 +2830,27 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Multi-region / AZ deployment\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the multi-region / az deployment control (from Backup + replication platform) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's multi-region / az deployment settings, captured during the walkthrough",
+            "The In-scope inventory for the multi-region / az deployment control (from Backup + replication platform), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the multi-region / az deployment control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's multi-region / az deployment capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "res-08-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Multi-region / AZ deployment\"?",
+          "text": "Where should an auditor pull the evidence for \"Multi-region / AZ deployment\"?",
           "options": [
-            "Backup + replication platform (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Backup + replication platform and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how multi-region / az deployment works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Backup + replication platform) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Backup + replication platform) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "res-08-q5",
@@ -2858,13 +2858,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Multi-region / AZ deployment\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Business Continuity / DR (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the multi-region / az deployment control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the multi-region / az deployment data is shared, so the accountability sits with no one in particular",
+            "Business Continuity / DR, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Business Continuity / DR owns the control data; the auditor independently verifies it."
+          "explanation": "Business Continuity / DR owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "res-08-q6",
@@ -2872,55 +2872,55 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Multi-region / AZ deployment\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "res-08-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "res-08-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Multi-region / AZ deployment\", which is a realistic reportable finding?",
+          "text": "For \"Multi-region / AZ deployment\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the multi-region / az deployment control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the multi-region / az deployment control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the multi-region / az deployment control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "res-08-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "res-08-q10",
@@ -2928,13 +2928,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Multi-region / AZ deployment\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind multi-region / az deployment, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -2946,7 +2946,7 @@ export const resiliencyStages: StageConfig[] = [
     "title": "Infrastructure as code",
     "subtitle": "Agentic technical & privacy audit of the infrastructure as code control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 7,
     "valueScore": 7,
     "rank": 0,
@@ -3168,13 +3168,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Infrastructure as code\" sub-process of Resiliency & Redundancy?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the infrastructure as code control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the infrastructure as code control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for infrastructure as code against comparable organisations in the sector",
             "Obtain evidence that the infrastructure as code control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "res-09-q2",
@@ -3182,13 +3182,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Infrastructure as code\" matter to the broader Resiliency & Redundancy posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Resiliency & Redundancy",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Resiliency & Redundancy estate",
             "It is a control other Resiliency & Redundancy controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Resiliency & Redundancy controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "res-09-q3",
@@ -3196,27 +3196,27 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Infrastructure as code\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the infrastructure as code control (from Backup + replication platform) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's infrastructure as code settings, captured during the walkthrough",
+            "The In-scope inventory for the infrastructure as code control (from Backup + replication platform), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the infrastructure as code control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's infrastructure as code capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "res-09-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Infrastructure as code\"?",
+          "text": "Where should an auditor pull the evidence for \"Infrastructure as code\"?",
           "options": [
-            "Backup + replication platform (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Backup + replication platform and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how infrastructure as code works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Backup + replication platform) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Backup + replication platform) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "res-09-q5",
@@ -3224,13 +3224,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Infrastructure as code\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Business Continuity / DR (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the infrastructure as code control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the infrastructure as code data is shared, so the accountability sits with no one in particular",
+            "Business Continuity / DR, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Business Continuity / DR owns the control data; the auditor independently verifies it."
+          "explanation": "Business Continuity / DR owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "res-09-q6",
@@ -3238,55 +3238,55 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Infrastructure as code\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "res-09-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "res-09-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Infrastructure as code\", which is a realistic reportable finding?",
+          "text": "For \"Infrastructure as code\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the infrastructure as code control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the infrastructure as code control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the infrastructure as code control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "res-09-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "res-09-q10",
@@ -3294,13 +3294,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Infrastructure as code\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind infrastructure as code, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -3312,7 +3312,7 @@ export const resiliencyStages: StageConfig[] = [
     "title": "Vendor lock-in risk",
     "subtitle": "Agentic technical & privacy audit of the vendor lock-in risk control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
@@ -3534,13 +3534,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Vendor lock-in risk\" sub-process of Resiliency & Redundancy?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the vendor lock-in risk control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the vendor lock-in risk control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for vendor lock-in risk against comparable organisations in the sector",
             "Obtain evidence that the vendor lock-in risk control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "res-10-q2",
@@ -3548,13 +3548,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Vendor lock-in risk\" matter to the broader Resiliency & Redundancy posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Resiliency & Redundancy",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Resiliency & Redundancy estate",
             "It is a control other Resiliency & Redundancy controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Resiliency & Redundancy controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "res-10-q3",
@@ -3562,27 +3562,27 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Vendor lock-in risk\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the vendor lock-in risk control (from Backup + replication platform) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's vendor lock-in risk settings, captured during the walkthrough",
+            "The In-scope inventory for the vendor lock-in risk control (from Backup + replication platform), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the vendor lock-in risk control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's vendor lock-in risk capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "res-10-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Vendor lock-in risk\"?",
+          "text": "Where should an auditor pull the evidence for \"Vendor lock-in risk\"?",
           "options": [
-            "Backup + replication platform (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Backup + replication platform and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how vendor lock-in risk works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Backup + replication platform) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Backup + replication platform) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "res-10-q5",
@@ -3590,13 +3590,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Vendor lock-in risk\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Business Continuity / DR (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the vendor lock-in risk control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the vendor lock-in risk data is shared, so the accountability sits with no one in particular",
+            "Business Continuity / DR, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Business Continuity / DR owns the control data; the auditor independently verifies it."
+          "explanation": "Business Continuity / DR owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "res-10-q6",
@@ -3604,55 +3604,55 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Vendor lock-in risk\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "res-10-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "res-10-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Vendor lock-in risk\", which is a realistic reportable finding?",
+          "text": "For \"Vendor lock-in risk\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the vendor lock-in risk control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the vendor lock-in risk control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the vendor lock-in risk control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "res-10-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "res-10-q10",
@@ -3660,13 +3660,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Vendor lock-in risk\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind vendor lock-in risk, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -3678,7 +3678,7 @@ export const resiliencyStages: StageConfig[] = [
     "title": "Secret and certificate mgmt",
     "subtitle": "Agentic technical & privacy audit of the secret and certificate mgmt control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 6,
     "valueScore": 9,
     "rank": 0,
@@ -3900,13 +3900,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Secret and certificate mgmt\" sub-process of Resiliency & Redundancy?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the secret and certificate mgmt control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the secret and certificate mgmt control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for secret and certificate mgmt against comparable organisations in the sector",
             "Obtain evidence that the secret and certificate mgmt control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "res-11-q2",
@@ -3914,13 +3914,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Secret and certificate mgmt\" matter to the broader Resiliency & Redundancy posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Resiliency & Redundancy",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Resiliency & Redundancy estate",
             "It is a control other Resiliency & Redundancy controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Resiliency & Redundancy controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "res-11-q3",
@@ -3928,27 +3928,27 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Secret and certificate mgmt\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the secret and certificate mgmt control (from Backup + replication platform) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's secret and certificate mgmt settings, captured during the walkthrough",
+            "The In-scope inventory for the secret and certificate mgmt control (from Backup + replication platform), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the secret and certificate mgmt control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's secret and certificate mgmt capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "res-11-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Secret and certificate mgmt\"?",
+          "text": "Where should an auditor pull the evidence for \"Secret and certificate mgmt\"?",
           "options": [
-            "Backup + replication platform (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Backup + replication platform and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how secret and certificate mgmt works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Backup + replication platform) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Backup + replication platform) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "res-11-q5",
@@ -3956,13 +3956,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Secret and certificate mgmt\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Business Continuity / DR (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the secret and certificate mgmt control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the secret and certificate mgmt data is shared, so the accountability sits with no one in particular",
+            "Business Continuity / DR, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Business Continuity / DR owns the control data; the auditor independently verifies it."
+          "explanation": "Business Continuity / DR owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "res-11-q6",
@@ -3970,55 +3970,55 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Secret and certificate mgmt\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "res-11-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "res-11-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Secret and certificate mgmt\", which is a realistic reportable finding?",
+          "text": "For \"Secret and certificate mgmt\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the secret and certificate mgmt control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the secret and certificate mgmt control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the secret and certificate mgmt control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "res-11-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "res-11-q10",
@@ -4026,13 +4026,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Secret and certificate mgmt\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind secret and certificate mgmt, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -4044,7 +4044,7 @@ export const resiliencyStages: StageConfig[] = [
     "title": "High-availability architecture",
     "subtitle": "Agentic technical & privacy audit of the high-availability architecture control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
@@ -4266,13 +4266,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"High-availability architecture\" sub-process of Resiliency & Redundancy?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the high-availability architecture control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the high-availability architecture control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for high-availability architecture against comparable organisations in the sector",
             "Obtain evidence that the high-availability architecture control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "res-12-q2",
@@ -4280,13 +4280,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"High-availability architecture\" matter to the broader Resiliency & Redundancy posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Resiliency & Redundancy",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Resiliency & Redundancy estate",
             "It is a control other Resiliency & Redundancy controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Resiliency & Redundancy controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "res-12-q3",
@@ -4294,27 +4294,27 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"High-availability architecture\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the high-availability architecture control (from Backup + replication platform) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's high-availability architecture settings, captured during the walkthrough",
+            "The In-scope inventory for the high-availability architecture control (from Backup + replication platform), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the high-availability architecture control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's high-availability architecture capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "res-12-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"High-availability architecture\"?",
+          "text": "Where should an auditor pull the evidence for \"High-availability architecture\"?",
           "options": [
-            "Backup + replication platform (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Backup + replication platform and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how high-availability architecture works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Backup + replication platform) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Backup + replication platform) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "res-12-q5",
@@ -4322,13 +4322,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"High-availability architecture\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Business Continuity / DR (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the high-availability architecture control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the high-availability architecture data is shared, so the accountability sits with no one in particular",
+            "Business Continuity / DR, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Business Continuity / DR owns the control data; the auditor independently verifies it."
+          "explanation": "Business Continuity / DR owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "res-12-q6",
@@ -4336,55 +4336,55 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"High-availability architecture\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "res-12-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "res-12-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"High-availability architecture\", which is a realistic reportable finding?",
+          "text": "For \"High-availability architecture\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the high-availability architecture control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the high-availability architecture control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the high-availability architecture control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "res-12-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "res-12-q10",
@@ -4392,13 +4392,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"High-availability architecture\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind high-availability architecture, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -4410,7 +4410,7 @@ export const resiliencyStages: StageConfig[] = [
     "title": "Chaos engineering",
     "subtitle": "Agentic technical & privacy audit of the chaos engineering control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 3,
     "valueScore": 7,
     "rank": 0,
@@ -4632,13 +4632,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Chaos engineering\" sub-process of Resiliency & Redundancy?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the chaos engineering control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the chaos engineering control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for chaos engineering against comparable organisations in the sector",
             "Obtain evidence that the chaos engineering control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "res-13-q2",
@@ -4646,13 +4646,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Chaos engineering\" matter to the broader Resiliency & Redundancy posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Resiliency & Redundancy",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Resiliency & Redundancy estate",
             "It is a control other Resiliency & Redundancy controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Resiliency & Redundancy controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "res-13-q3",
@@ -4660,27 +4660,27 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Chaos engineering\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the chaos engineering control (from Backup + replication platform) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's chaos engineering settings, captured during the walkthrough",
+            "The In-scope inventory for the chaos engineering control (from Backup + replication platform), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the chaos engineering control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's chaos engineering capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "res-13-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Chaos engineering\"?",
+          "text": "Where should an auditor pull the evidence for \"Chaos engineering\"?",
           "options": [
-            "Backup + replication platform (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Backup + replication platform and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how chaos engineering works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Backup + replication platform) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Backup + replication platform) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "res-13-q5",
@@ -4688,13 +4688,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Chaos engineering\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Business Continuity / DR (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the chaos engineering control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the chaos engineering data is shared, so the accountability sits with no one in particular",
+            "Business Continuity / DR, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Business Continuity / DR owns the control data; the auditor independently verifies it."
+          "explanation": "Business Continuity / DR owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "res-13-q6",
@@ -4702,55 +4702,55 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Chaos engineering\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "res-13-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "res-13-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Chaos engineering\", which is a realistic reportable finding?",
+          "text": "For \"Chaos engineering\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the chaos engineering control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the chaos engineering control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the chaos engineering control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "res-13-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "res-13-q10",
@@ -4758,13 +4758,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Chaos engineering\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind chaos engineering, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -4776,7 +4776,7 @@ export const resiliencyStages: StageConfig[] = [
     "title": "SLA and SLO monitoring",
     "subtitle": "Agentic technical & privacy audit of the sla and slo monitoring control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 7,
     "valueScore": 7,
     "rank": 0,
@@ -4998,13 +4998,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"SLA and SLO monitoring\" sub-process of Resiliency & Redundancy?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the sla and slo monitoring control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the sla and slo monitoring control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for sla and slo monitoring against comparable organisations in the sector",
             "Obtain evidence that the sla and slo monitoring control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "res-14-q2",
@@ -5012,13 +5012,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"SLA and SLO monitoring\" matter to the broader Resiliency & Redundancy posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Resiliency & Redundancy",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Resiliency & Redundancy estate",
             "It is a control other Resiliency & Redundancy controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Resiliency & Redundancy controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "res-14-q3",
@@ -5026,27 +5026,27 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"SLA and SLO monitoring\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the sla and slo monitoring control (from Backup + replication platform) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's sla and slo monitoring settings, captured during the walkthrough",
+            "The In-scope inventory for the sla and slo monitoring control (from Backup + replication platform), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the sla and slo monitoring control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's sla and slo monitoring capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "res-14-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"SLA and SLO monitoring\"?",
+          "text": "Where should an auditor pull the evidence for \"SLA and SLO monitoring\"?",
           "options": [
-            "Backup + replication platform (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Backup + replication platform and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how sla and slo monitoring works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Backup + replication platform) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Backup + replication platform) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "res-14-q5",
@@ -5054,13 +5054,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"SLA and SLO monitoring\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Business Continuity / DR (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the sla and slo monitoring control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the sla and slo monitoring data is shared, so the accountability sits with no one in particular",
+            "Business Continuity / DR, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Business Continuity / DR owns the control data; the auditor independently verifies it."
+          "explanation": "Business Continuity / DR owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "res-14-q6",
@@ -5068,55 +5068,55 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"SLA and SLO monitoring\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "res-14-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "res-14-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"SLA and SLO monitoring\", which is a realistic reportable finding?",
+          "text": "For \"SLA and SLO monitoring\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the sla and slo monitoring control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the sla and slo monitoring control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the sla and slo monitoring control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "res-14-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "res-14-q10",
@@ -5124,13 +5124,13 @@ export const resiliencyStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"SLA and SLO monitoring\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind sla and slo monitoring, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }

@@ -18,7 +18,7 @@ export const cryptoSecretsStages: StageConfig[] = [
     "title": "Key Lifecycle Management",
     "subtitle": "Agentic technical & privacy audit of the key lifecycle management control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 5,
     "valueScore": 9,
     "rank": 0,
@@ -243,13 +243,13 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Key Lifecycle Management\" sub-process of Cryptographic Key & Secrets Management?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the key lifecycle management control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the key lifecycle management control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for key lifecycle management against comparable organisations in the sector",
             "Obtain evidence that the key lifecycle management control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "cks-01-q2",
@@ -257,13 +257,13 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Key Lifecycle Management\" matter to the broader Cryptographic Key & Secrets Management posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Cryptographic Key & Secrets Management",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Cryptographic Key & Secrets Management estate",
             "It is a control other Cryptographic Key & Secrets Management controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Cryptographic Key & Secrets Management controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "cks-01-q3",
@@ -271,27 +271,27 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Key Lifecycle Management\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The key inventory — every cryptographic key with type, algorithm, length, owner, creation date, crypto-period, and state (active/suspended/destroyed) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's key lifecycle management settings, captured during the walkthrough",
+            "The The key inventory — every cryptographic key with type, algorithm, length, owner, creation date, crypto-period, and state (active/suspended/destroyed), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the key lifecycle management control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's key lifecycle management capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "cks-01-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Key Lifecycle Management\"?",
+          "text": "Where should an auditor pull the evidence for \"Key Lifecycle Management\"?",
           "options": [
-            "KMS — AWS KMS / Azure Key Vault / HashiCorp Vault / Thales CipherTrust (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From KMS — AWS KMS / Azure Key Vault / HashiCorp Vault / Thales CipherTrust and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how key lifecycle management works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., KMS — AWS KMS / Azure Key Vault / HashiCorp Vault / Thales CipherTrust) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. KMS — AWS KMS / Azure Key Vault / HashiCorp Vault / Thales CipherTrust) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "cks-01-q5",
@@ -299,13 +299,13 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Key Lifecycle Management\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Cryptography / Key Management team — owns the lifecycle (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the key lifecycle management control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the key lifecycle management data is shared, so the accountability sits with no one in particular",
+            "Cryptography / Key Management team — owns the lifecycle, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Cryptography / Key Management team — owns the lifecycle owns the control data; the auditor independently verifies it."
+          "explanation": "Cryptography / Key Management team — owns the lifecycle owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "cks-01-q6",
@@ -313,55 +313,55 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Key Lifecycle Management\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "cks-01-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "cks-01-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Key Lifecycle Management\", which is a realistic reportable finding?",
+          "text": "For \"Key Lifecycle Management\", which of these is a realistic reportable finding?",
           "options": [
             "Dozens of KMS keys have rotation disabled and predate any crypto-period policy; several 'retired' keys are merely disabled (still re-enableable); and a set of data-encryption keys have no recorded owner.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. Dozens of KMS keys have rotation disabled and predate any crypto-period policy; several 'retired' keys are merely disabled (still re-enableable); and a set of data-encryption keys have no recorded owner."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. Dozens of KMS keys have rotation disabled and predate any crypto-period policy; several 'retired' keys are merely disabled (still re-enableable); and a set of data-encryption keys have no recorded owner. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "cks-01-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "cks-01-q10",
@@ -369,13 +369,13 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Key Lifecycle Management\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind key lifecycle management, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -387,7 +387,7 @@ export const cryptoSecretsStages: StageConfig[] = [
     "title": "Secrets Management",
     "subtitle": "Agentic technical & privacy audit of the secrets management control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 6,
     "valueScore": 9,
     "rank": 0,
@@ -612,13 +612,13 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Secrets Management\" sub-process of Cryptographic Key & Secrets Management?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the secrets management control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the secrets management control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for secrets management against comparable organisations in the sector",
             "Obtain evidence that the secrets management control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "cks-02-q2",
@@ -626,13 +626,13 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Secrets Management\" matter to the broader Cryptographic Key & Secrets Management posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Cryptographic Key & Secrets Management",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Cryptographic Key & Secrets Management estate",
             "It is a control other Cryptographic Key & Secrets Management controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Cryptographic Key & Secrets Management controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "cks-02-q3",
@@ -640,27 +640,27 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Secrets Management\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The secrets inventory in the vault (DB passwords, API keys, tokens, service-account creds) + owners + rotation status reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's secrets management settings, captured during the walkthrough",
+            "The The secrets inventory in the vault (DB passwords, API keys, tokens, service-account creds) + owners + rotation status, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the secrets management control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's secrets management capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "cks-02-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Secrets Management\"?",
+          "text": "Where should an auditor pull the evidence for \"Secrets Management\"?",
           "options": [
-            "HashiCorp Vault / AWS Secrets Manager / Azure Key Vault / CyberArk Conjur (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From HashiCorp Vault / AWS Secrets Manager / Azure Key Vault / CyberArk Conjur and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how secrets management works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., HashiCorp Vault / AWS Secrets Manager / Azure Key Vault / CyberArk Conjur) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. HashiCorp Vault / AWS Secrets Manager / Azure Key Vault / CyberArk Conjur) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "cks-02-q5",
@@ -668,13 +668,13 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Secrets Management\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Platform security / secrets team — owns the vault (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the secrets management control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the secrets management data is shared, so the accountability sits with no one in particular",
+            "Platform security / secrets team — owns the vault, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Platform security / secrets team — owns the vault owns the control data; the auditor independently verifies it."
+          "explanation": "Platform security / secrets team — owns the vault owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "cks-02-q6",
@@ -682,55 +682,55 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Secrets Management\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "cks-02-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "cks-02-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Secrets Management\", which is a realistic reportable finding?",
+          "text": "For \"Secrets Management\", which of these is a realistic reportable finding?",
           "options": [
             "A live database password and an AWS access key are committed in a repo's history; most vault secrets are static and years old; and one CI role can read every secret in the vault.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. A live database password and an AWS access key are committed in a repo's history; most vault secrets are static and years old; and one CI role can read every secret in the vault."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. A live database password and an AWS access key are committed in a repo's history; most vault secrets are static and years old; and one CI role can read every secret in the vault. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "cks-02-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "cks-02-q10",
@@ -738,13 +738,13 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Secrets Management\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind secrets management, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -756,7 +756,7 @@ export const cryptoSecretsStages: StageConfig[] = [
     "title": "Certificate Management",
     "subtitle": "Agentic technical & privacy audit of the certificate management control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 7,
     "valueScore": 7,
     "rank": 0,
@@ -982,13 +982,13 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Certificate Management\" sub-process of Cryptographic Key & Secrets Management?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the certificate management control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the certificate management control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for certificate management against comparable organisations in the sector",
             "Obtain evidence that the certificate management control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "cks-03-q2",
@@ -996,13 +996,13 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Certificate Management\" matter to the broader Cryptographic Key & Secrets Management posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Cryptographic Key & Secrets Management",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Cryptographic Key & Secrets Management estate",
             "It is a control other Cryptographic Key & Secrets Management controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Cryptographic Key & Secrets Management controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "cks-03-q3",
@@ -1010,27 +1010,27 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Certificate Management\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The enterprise certificate inventory (TLS, client, code-signing, device) across internal + external, with CA, key, expiry, deployment reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's certificate management settings, captured during the walkthrough",
+            "The The enterprise certificate inventory (TLS, client, code-signing, device) across internal + external, with CA, key, expiry, deployment, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the certificate management control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's certificate management capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "cks-03-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Certificate Management\"?",
+          "text": "Where should an auditor pull the evidence for \"Certificate Management\"?",
           "options": [
-            "Venafi / Keyfactor / Microsoft AD CS / AWS Private CA (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Venafi / Keyfactor / Microsoft AD CS / AWS Private CA and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how certificate management works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Venafi / Keyfactor / Microsoft AD CS / AWS Private CA) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Venafi / Keyfactor / Microsoft AD CS / AWS Private CA) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "cks-03-q5",
@@ -1038,13 +1038,13 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Certificate Management\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "PKI / Cryptography team — owns the CA (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the certificate management control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the certificate management data is shared, so the accountability sits with no one in particular",
+            "PKI / Cryptography team — owns the CA, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "PKI / Cryptography team — owns the CA owns the control data; the auditor independently verifies it."
+          "explanation": "PKI / Cryptography team — owns the CA owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "cks-03-q6",
@@ -1052,55 +1052,55 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Certificate Management\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "cks-03-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "cks-03-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Certificate Management\", which is a realistic reportable finding?",
+          "text": "For \"Certificate Management\", which of these is a realistic reportable finding?",
           "options": [
             "Several internet certificates are RSA-1024/SHA-1, the issuing CA's private key sits on a VM disk (not an HSM), code-signing keys are shared on a build server, and three production certs expired last quarter causing outages.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. Several internet certificates are RSA-1024/SHA-1, the issuing CA's private key sits on a VM disk (not an HSM), code-signing keys are shared on a build server, and three production certs expired last quarter causing outages."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. Several internet certificates are RSA-1024/SHA-1, the issuing CA's private key sits on a VM disk (not an HSM), code-signing keys are shared on a build server, and three production certs expired last quarter causing outages. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "cks-03-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "cks-03-q10",
@@ -1108,13 +1108,13 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Certificate Management\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind certificate management, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1126,7 +1126,7 @@ export const cryptoSecretsStages: StageConfig[] = [
     "title": "HSM controls",
     "subtitle": "Agentic technical & privacy audit of the hsm controls control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 3,
     "valueScore": 7,
     "rank": 0,
@@ -1351,13 +1351,13 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"HSM controls\" sub-process of Cryptographic Key & Secrets Management?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the hsm controls control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the hsm controls control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for hsm controls against comparable organisations in the sector",
             "Obtain evidence that the hsm controls control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "cks-04-q2",
@@ -1365,13 +1365,13 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"HSM controls\" matter to the broader Cryptographic Key & Secrets Management posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Cryptographic Key & Secrets Management",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Cryptographic Key & Secrets Management estate",
             "It is a control other Cryptographic Key & Secrets Management controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Cryptographic Key & Secrets Management controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "cks-04-q3",
@@ -1379,27 +1379,27 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"HSM controls\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The HSM inventory (model, FIPS 140-2/3 level, firmware) + which keys/operations each protects reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's hsm controls settings, captured during the walkthrough",
+            "The The HSM inventory (model, FIPS 140-2/3 level, firmware) + which keys/operations each protects, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the hsm controls control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's hsm controls capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "cks-04-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"HSM controls\"?",
+          "text": "Where should an auditor pull the evidence for \"HSM controls\"?",
           "options": [
-            "HSMs — Thales Luna / Entrust nShield / AWS CloudHSM / Azure Dedicated HSM (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From HSMs — Thales Luna / Entrust nShield / AWS CloudHSM / Azure Dedicated HSM and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how hsm controls works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., HSMs — Thales Luna / Entrust nShield / AWS CloudHSM / Azure Dedicated HSM) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. HSMs — Thales Luna / Entrust nShield / AWS CloudHSM / Azure Dedicated HSM) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "cks-04-q5",
@@ -1407,13 +1407,13 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"HSM controls\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Cryptography / Key Management team — owns the HSMs (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the hsm controls control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the hsm controls data is shared, so the accountability sits with no one in particular",
+            "Cryptography / Key Management team — owns the HSMs, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Cryptography / Key Management team — owns the HSMs owns the control data; the auditor independently verifies it."
+          "explanation": "Cryptography / Key Management team — owns the HSMs owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "cks-04-q6",
@@ -1421,55 +1421,55 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"HSM controls\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "cks-04-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "cks-04-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"HSM controls\", which is a realistic reportable finding?",
+          "text": "For \"HSM controls\", which of these is a realistic reportable finding?",
           "options": [
             "The root CA and code-signing keys live in a single HSM with no quorum (one operator can run admin operations), the firmware is two versions behind a security advisory, and HSM logs aren't sent anywhere.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. The root CA and code-signing keys live in a single HSM with no quorum (one operator can run admin operations), the firmware is two versions behind a security advisory, and HSM logs aren't sent anywhere."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. The root CA and code-signing keys live in a single HSM with no quorum (one operator can run admin operations), the firmware is two versions behind a security advisory, and HSM logs aren't sent anywhere. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "cks-04-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "cks-04-q10",
@@ -1477,13 +1477,13 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"HSM controls\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind hsm controls, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1495,7 +1495,7 @@ export const cryptoSecretsStages: StageConfig[] = [
     "title": "Cryptographic implementation",
     "subtitle": "Agentic technical & privacy audit of the cryptographic implementation control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 6,
     "valueScore": 9,
     "rank": 0,
@@ -1717,13 +1717,13 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Cryptographic implementation\" sub-process of Cryptographic Key & Secrets Management?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the cryptographic implementation control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the cryptographic implementation control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for cryptographic implementation against comparable organisations in the sector",
             "Obtain evidence that the cryptographic implementation control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "cks-05-q2",
@@ -1731,13 +1731,13 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Cryptographic implementation\" matter to the broader Cryptographic Key & Secrets Management posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Cryptographic Key & Secrets Management",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Cryptographic Key & Secrets Management estate",
             "It is a control other Cryptographic Key & Secrets Management controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Cryptographic Key & Secrets Management controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "cks-05-q3",
@@ -1745,27 +1745,27 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Cryptographic implementation\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The cryptographic standard the org mandates (approved algorithms, key sizes, modes, protocols) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's cryptographic implementation settings, captured during the walkthrough",
+            "The The cryptographic standard the org mandates (approved algorithms, key sizes, modes, protocols), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the cryptographic implementation control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's cryptographic implementation capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "cks-05-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Cryptographic implementation\"?",
+          "text": "Where should an auditor pull the evidence for \"Cryptographic implementation\"?",
           "options": [
-            "Source code + SAST (Semgrep / CodeQL crypto rules) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Source code + SAST (Semgrep / CodeQL crypto rules) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how cryptographic implementation works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Source code + SAST (Semgrep / CodeQL crypto rules)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Source code + SAST (Semgrep / CodeQL crypto rules)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "cks-05-q5",
@@ -1773,13 +1773,13 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Cryptographic implementation\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Application security / developers — implement crypto (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the cryptographic implementation control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the cryptographic implementation data is shared, so the accountability sits with no one in particular",
+            "Application security / developers — implement crypto, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Application security / developers — implement crypto owns the control data; the auditor independently verifies it."
+          "explanation": "Application security / developers — implement crypto owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "cks-05-q6",
@@ -1787,55 +1787,55 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Cryptographic implementation\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "cks-05-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "cks-05-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Cryptographic implementation\", which is a realistic reportable finding?",
+          "text": "For \"Cryptographic implementation\", which of these is a realistic reportable finding?",
           "options": [
             "Passwords are stored as unsalted SHA-1, an internal API encrypts tokens with 3DES in ECB mode under a hardcoded key, and two services generate session tokens with `Math.random()`.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. Passwords are stored as unsalted SHA-1, an internal API encrypts tokens with 3DES in ECB mode under a hardcoded key, and two services generate session tokens with `Math.random()`."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. Passwords are stored as unsalted SHA-1, an internal API encrypts tokens with 3DES in ECB mode under a hardcoded key, and two services generate session tokens with `Math.random()`. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "cks-05-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "cks-05-q10",
@@ -1843,13 +1843,13 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Cryptographic implementation\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind cryptographic implementation, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1861,7 +1861,7 @@ export const cryptoSecretsStages: StageConfig[] = [
     "title": "Post-quantum cryptography readiness",
     "subtitle": "Agentic technical & privacy audit of the post-quantum cryptography readiness control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 7,
     "valueScore": 9,
     "rank": 0,
@@ -2086,13 +2086,13 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Post-quantum cryptography readiness\" sub-process of Cryptographic Key & Secrets Management?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the post-quantum cryptography readiness control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the post-quantum cryptography readiness control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for post-quantum cryptography readiness against comparable organisations in the sector",
             "Obtain evidence that the post-quantum cryptography readiness control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "cks-06-q2",
@@ -2100,13 +2100,13 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Post-quantum cryptography readiness\" matter to the broader Cryptographic Key & Secrets Management posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Cryptographic Key & Secrets Management",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Cryptographic Key & Secrets Management estate",
             "It is a control other Cryptographic Key & Secrets Management controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Cryptographic Key & Secrets Management controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "cks-06-q3",
@@ -2114,27 +2114,27 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Post-quantum cryptography readiness\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The enterprise Cryptographic Bill of Materials (CBOM) — all algorithms, key sizes, protocols, and where used reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's post-quantum cryptography readiness settings, captured during the walkthrough",
+            "The The enterprise Cryptographic Bill of Materials (CBOM) — all algorithms, key sizes, protocols, and where used, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the post-quantum cryptography readiness control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's post-quantum cryptography readiness capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "cks-06-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Post-quantum cryptography readiness\"?",
+          "text": "Where should an auditor pull the evidence for \"Post-quantum cryptography readiness\"?",
           "options": [
-            "CBOM tooling (CycloneDX crypto-assets, Venafi/Keyfactor) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From CBOM tooling (CycloneDX crypto-assets, Venafi/Keyfactor) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how post-quantum cryptography readiness works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., CBOM tooling (CycloneDX crypto-assets, Venafi/Keyfactor)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. CBOM tooling (CycloneDX crypto-assets, Venafi/Keyfactor)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "cks-06-q5",
@@ -2142,13 +2142,13 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Post-quantum cryptography readiness\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Cryptography / PKI team — owns the migration (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the post-quantum cryptography readiness control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the post-quantum cryptography readiness data is shared, so the accountability sits with no one in particular",
+            "Cryptography / PKI team — owns the migration, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Cryptography / PKI team — owns the migration owns the control data; the auditor independently verifies it."
+          "explanation": "Cryptography / PKI team — owns the migration owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "cks-06-q6",
@@ -2156,55 +2156,55 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Post-quantum cryptography readiness\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "cks-06-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "cks-06-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Post-quantum cryptography readiness\", which is a realistic reportable finding?",
+          "text": "For \"Post-quantum cryptography readiness\", which of these is a realistic reportable finding?",
           "options": [
             "No CBOM exists; RSA-2048 and P-256 are everywhere with no central abstraction (each app hardcodes its crypto), long-secrecy data rides classical key-exchange, and no key vendor has published a PQC date.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. No CBOM exists; RSA-2048 and P-256 are everywhere with no central abstraction (each app hardcodes its crypto), long-secrecy data rides classical key-exchange, and no key vendor has published a PQC date."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. No CBOM exists; RSA-2048 and P-256 are everywhere with no central abstraction (each app hardcodes its crypto), long-secrecy data rides classical key-exchange, and no key vendor has published a PQC date. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "cks-06-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "cks-06-q10",
@@ -2212,13 +2212,13 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Post-quantum cryptography readiness\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind post-quantum cryptography readiness, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -2230,7 +2230,7 @@ export const cryptoSecretsStages: StageConfig[] = [
     "title": "Secrets detection and prevention",
     "subtitle": "Agentic technical & privacy audit of the secrets detection and prevention control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 5,
     "valueScore": 9,
     "rank": 0,
@@ -2451,13 +2451,13 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Secrets detection and prevention\" sub-process of Cryptographic Key & Secrets Management?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the secrets detection and prevention control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the secrets detection and prevention control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for secrets detection and prevention against comparable organisations in the sector",
             "Obtain evidence that the secrets detection and prevention control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "cks-07-q2",
@@ -2465,13 +2465,13 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Secrets detection and prevention\" matter to the broader Cryptographic Key & Secrets Management posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Cryptographic Key & Secrets Management",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Cryptographic Key & Secrets Management estate",
             "It is a control other Cryptographic Key & Secrets Management controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Cryptographic Key & Secrets Management controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "cks-07-q3",
@@ -2479,27 +2479,27 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Secrets detection and prevention\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The secret-scanning coverage across repos, CI/CD, container images, and IaC (which are scanned) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's secrets detection and prevention settings, captured during the walkthrough",
+            "The The secret-scanning coverage across repos, CI/CD, container images, and IaC (which are scanned), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the secrets detection and prevention control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's secrets detection and prevention capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "cks-07-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Secrets detection and prevention\"?",
+          "text": "Where should an auditor pull the evidence for \"Secrets detection and prevention\"?",
           "options": [
-            "GitHub Advanced Security / GitLab secret scanning / gitleaks / TruffleHog (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From GitHub Advanced Security / GitLab secret scanning / gitleaks / TruffleHog and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how secrets detection and prevention works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., GitHub Advanced Security / GitLab secret scanning / gitleaks / TruffleHog) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. GitHub Advanced Security / GitLab secret scanning / gitleaks / TruffleHog) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "cks-07-q5",
@@ -2507,13 +2507,13 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Secrets detection and prevention\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "AppSec / platform security — own scanning (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the secrets detection and prevention control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the secrets detection and prevention data is shared, so the accountability sits with no one in particular",
+            "AppSec / platform security — own scanning, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "AppSec / platform security — own scanning owns the control data; the auditor independently verifies it."
+          "explanation": "AppSec / platform security — own scanning owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "cks-07-q6",
@@ -2521,55 +2521,55 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Secrets detection and prevention\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "cks-07-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "cks-07-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Secrets detection and prevention\", which is a realistic reportable finding?",
+          "text": "For \"Secrets detection and prevention\", which of these is a realistic reportable finding?",
           "options": [
             "Push-protection is off, so secrets routinely land and get 'fixed' by a follow-up commit — but the credentials in history are still valid; a history scan surfaces 40 live keys nobody rotated.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. Push-protection is off, so secrets routinely land and get 'fixed' by a follow-up commit — but the credentials in history are still valid; a history scan surfaces 40 live keys nobody rotated."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. Push-protection is off, so secrets routinely land and get 'fixed' by a follow-up commit — but the credentials in history are still valid; a history scan surfaces 40 live keys nobody rotated. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "cks-07-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "cks-07-q10",
@@ -2577,13 +2577,13 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Secrets detection and prevention\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind secrets detection and prevention, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -2595,7 +2595,7 @@ export const cryptoSecretsStages: StageConfig[] = [
     "title": "Audit logging and monitoring",
     "subtitle": "Agentic technical & privacy audit of the audit logging and monitoring control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 7,
     "valueScore": 7,
     "rank": 0,
@@ -2816,13 +2816,13 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Audit logging and monitoring\" sub-process of Cryptographic Key & Secrets Management?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the audit logging and monitoring control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the audit logging and monitoring control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for audit logging and monitoring against comparable organisations in the sector",
             "Obtain evidence that the audit logging and monitoring control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "cks-08-q2",
@@ -2830,13 +2830,13 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Audit logging and monitoring\" matter to the broader Cryptographic Key & Secrets Management posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Cryptographic Key & Secrets Management",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Cryptographic Key & Secrets Management estate",
             "It is a control other Cryptographic Key & Secrets Management controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Cryptographic Key & Secrets Management controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "cks-08-q3",
@@ -2844,27 +2844,27 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Audit logging and monitoring\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The logging configuration for key/secret/certificate systems (KMS, Vault, HSM, CA) — what is logged reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's audit logging and monitoring settings, captured during the walkthrough",
+            "The The logging configuration for key/secret/certificate systems (KMS, Vault, HSM, CA) — what is logged, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the audit logging and monitoring control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's audit logging and monitoring capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "cks-08-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Audit logging and monitoring\"?",
+          "text": "Where should an auditor pull the evidence for \"Audit logging and monitoring\"?",
           "options": [
-            "KMS / Vault / HSM / CA log sources (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From KMS / Vault / HSM / CA log sources and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how audit logging and monitoring works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., KMS / Vault / HSM / CA log sources) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. KMS / Vault / HSM / CA log sources) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "cks-08-q5",
@@ -2872,13 +2872,13 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Audit logging and monitoring\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Cryptography team + security operations (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the audit logging and monitoring control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the audit logging and monitoring data is shared, so the accountability sits with no one in particular",
+            "Cryptography team + security operations, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Cryptography team + security operations owns the control data; the auditor independently verifies it."
+          "explanation": "Cryptography team + security operations owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "cks-08-q6",
@@ -2886,55 +2886,55 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Audit logging and monitoring\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "cks-08-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "cks-08-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Audit logging and monitoring\", which is a realistic reportable finding?",
+          "text": "For \"Audit logging and monitoring\", which of these is a realistic reportable finding?",
           "options": [
             "KMS Decrypt data-events aren't logged, the Vault audit device is disabled, and CA issuance has no monitoring — so an attacker minting certificates or bulk-decrypting data would be invisible.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. KMS Decrypt data-events aren't logged, the Vault audit device is disabled, and CA issuance has no monitoring — so an attacker minting certificates or bulk-decrypting data would be invisible."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. KMS Decrypt data-events aren't logged, the Vault audit device is disabled, and CA issuance has no monitoring — so an attacker minting certificates or bulk-decrypting data would be invisible. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "cks-08-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "cks-08-q10",
@@ -2942,13 +2942,13 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Audit logging and monitoring\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind audit logging and monitoring, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -2960,7 +2960,7 @@ export const cryptoSecretsStages: StageConfig[] = [
     "title": "Compliance and regulatory alignment",
     "subtitle": "Agentic technical & privacy audit of the compliance and regulatory alignment control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 7,
     "valueScore": 7,
     "rank": 0,
@@ -3185,13 +3185,13 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Compliance and regulatory alignment\" sub-process of Cryptographic Key & Secrets Management?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the compliance and regulatory alignment control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the compliance and regulatory alignment control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for compliance and regulatory alignment against comparable organisations in the sector",
             "Obtain evidence that the compliance and regulatory alignment control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "cks-09-q2",
@@ -3199,13 +3199,13 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Compliance and regulatory alignment\" matter to the broader Cryptographic Key & Secrets Management posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Cryptographic Key & Secrets Management",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Cryptographic Key & Secrets Management estate",
             "It is a control other Cryptographic Key & Secrets Management controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Cryptographic Key & Secrets Management controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "cks-09-q3",
@@ -3213,27 +3213,27 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Compliance and regulatory alignment\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The mapping of the org's cryptography to applicable mandates (FIPS 140-3, PCI DSS, GDPR, HIPAA, CNSA, eIDAS) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's compliance and regulatory alignment settings, captured during the walkthrough",
+            "The The mapping of the org's cryptography to applicable mandates (FIPS 140-3, PCI DSS, GDPR, HIPAA, CNSA, eIDAS), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the compliance and regulatory alignment control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's compliance and regulatory alignment capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "cks-09-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Compliance and regulatory alignment\"?",
+          "text": "Where should an auditor pull the evidence for \"Compliance and regulatory alignment\"?",
           "options": [
-            "The crypto inventory / CBOM (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From The crypto inventory / CBOM and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how compliance and regulatory alignment works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., The crypto inventory / CBOM) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. The crypto inventory / CBOM) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "cks-09-q5",
@@ -3241,13 +3241,13 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Compliance and regulatory alignment\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Cryptography team + Compliance / GRC (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the compliance and regulatory alignment control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the compliance and regulatory alignment data is shared, so the accountability sits with no one in particular",
+            "Cryptography team + Compliance / GRC, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Cryptography team + Compliance / GRC owns the control data; the auditor independently verifies it."
+          "explanation": "Cryptography team + Compliance / GRC owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "cks-09-q6",
@@ -3255,55 +3255,55 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Compliance and regulatory alignment\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "cks-09-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "cks-09-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Compliance and regulatory alignment\", which is a realistic reportable finding?",
+          "text": "For \"Compliance and regulatory alignment\", which of these is a realistic reportable finding?",
           "options": [
             "A FedRAMP system uses a non-FIPS-validated crypto library for data-at-rest (validation is mandatory there), and several PCI-scoped services still permit TLS 1.0 — both reportable compliance gaps with no remediation plan.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. A FedRAMP system uses a non-FIPS-validated crypto library for data-at-rest (validation is mandatory there), and several PCI-scoped services still permit TLS 1.0 — both reportable compliance gaps with no remediation plan."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. A FedRAMP system uses a non-FIPS-validated crypto library for data-at-rest (validation is mandatory there), and several PCI-scoped services still permit TLS 1.0 — both reportable compliance gaps with no remediation plan. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "cks-09-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "cks-09-q10",
@@ -3311,13 +3311,13 @@ export const cryptoSecretsStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Compliance and regulatory alignment\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind compliance and regulatory alignment, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }

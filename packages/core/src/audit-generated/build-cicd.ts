@@ -18,7 +18,7 @@ export const buildCicdStages: StageConfig[] = [
     "title": "Build environment security",
     "subtitle": "Agentic technical & privacy audit of the build environment security control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
@@ -239,13 +239,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Build environment security\" sub-process of Build Environment & CI/CD (Continuous Integration / Continuous Delivery)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the build environment security control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the build environment security control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for build environment security against comparable organisations in the sector",
             "Obtain evidence that the build environment security control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "bcd-01-q2",
@@ -253,13 +253,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Build environment security\" matter to the broader Build Environment & CI/CD (Continuous Integration / Continuous Delivery) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Build Environment & CI/CD (Continuous Integration / Continuous Delivery)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) estate",
             "It is a control other Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "bcd-01-q3",
@@ -267,27 +267,27 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Build environment security\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The inventory of build agents/runners (self-hosted + cloud) + their hardening + isolation reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's build environment security settings, captured during the walkthrough",
+            "The The inventory of build agents/runners (self-hosted + cloud) + their hardening + isolation, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the build environment security control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's build environment security capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "bcd-01-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Build environment security\"?",
+          "text": "Where should an auditor pull the evidence for \"Build environment security\"?",
           "options": [
-            "CI runners (GitHub Actions runners, GitLab runners, Jenkins agents) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From CI runners (GitHub Actions runners, GitLab runners, Jenkins agents) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how build environment security works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., CI runners (GitHub Actions runners, GitLab runners, Jenkins agents)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. CI runners (GitHub Actions runners, GitLab runners, Jenkins agents)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "bcd-01-q5",
@@ -295,13 +295,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Build environment security\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Platform / DevOps engineering — owns build infra (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the build environment security control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the build environment security data is shared, so the accountability sits with no one in particular",
+            "Platform / DevOps engineering — owns build infra, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Platform / DevOps engineering — owns build infra owns the control data; the auditor independently verifies it."
+          "explanation": "Platform / DevOps engineering — owns build infra owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "bcd-01-q6",
@@ -309,55 +309,55 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Build environment security\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "bcd-01-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "bcd-01-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Build environment security\", which is a realistic reportable finding?",
+          "text": "For \"Build environment security\", which of these is a realistic reportable finding?",
           "options": [
             "Self-hosted runners are persistent and shared across repos with broad egress, so a malicious PR can run on them and exfiltrate other repos' secrets — the SolarWinds-class build-injection risk.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. Self-hosted runners are persistent and shared across repos with broad egress, so a malicious PR can run on them and exfiltrate other repos' secrets — the SolarWinds-class build-injection risk."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. Self-hosted runners are persistent and shared across repos with broad egress, so a malicious PR can run on them and exfiltrate other repos' secrets — the SolarWinds-class build-injection risk. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "bcd-01-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "bcd-01-q10",
@@ -365,13 +365,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Build environment security\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind build environment security, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -383,7 +383,7 @@ export const buildCicdStages: StageConfig[] = [
     "title": "CI/CD pipeline security",
     "subtitle": "Agentic technical & privacy audit of the ci/cd pipeline security control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 6,
     "valueScore": 7,
     "rank": 0,
@@ -604,13 +604,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"CI/CD pipeline security\" sub-process of Build Environment & CI/CD (Continuous Integration / Continuous Delivery)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the ci/cd pipeline security control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the ci/cd pipeline security control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for ci/cd pipeline security against comparable organisations in the sector",
             "Obtain evidence that the ci/cd pipeline security control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "bcd-02-q2",
@@ -618,13 +618,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"CI/CD pipeline security\" matter to the broader Build Environment & CI/CD (Continuous Integration / Continuous Delivery) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Build Environment & CI/CD (Continuous Integration / Continuous Delivery)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) estate",
             "It is a control other Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "bcd-02-q3",
@@ -632,27 +632,27 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"CI/CD pipeline security\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The pipeline-definition inventory + who can edit pipeline config (pipeline-as-code permissions) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's ci/cd pipeline security settings, captured during the walkthrough",
+            "The The pipeline-definition inventory + who can edit pipeline config (pipeline-as-code permissions), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the ci/cd pipeline security control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's ci/cd pipeline security capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "bcd-02-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"CI/CD pipeline security\"?",
+          "text": "Where should an auditor pull the evidence for \"CI/CD pipeline security\"?",
           "options": [
-            "GitHub Actions / GitLab CI / Jenkins / Argo CD (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From GitHub Actions / GitLab CI / Jenkins / Argo CD and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how ci/cd pipeline security works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., GitHub Actions / GitLab CI / Jenkins / Argo CD) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. GitHub Actions / GitLab CI / Jenkins / Argo CD) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "bcd-02-q5",
@@ -660,13 +660,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"CI/CD pipeline security\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "DevOps / platform — owns pipelines (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the ci/cd pipeline security control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the ci/cd pipeline security data is shared, so the accountability sits with no one in particular",
+            "DevOps / platform — owns pipelines, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "DevOps / platform — owns pipelines owns the control data; the auditor independently verifies it."
+          "explanation": "DevOps / platform — owns pipelines owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "bcd-02-q6",
@@ -674,55 +674,55 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"CI/CD pipeline security\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "bcd-02-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "bcd-02-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"CI/CD pipeline security\", which is a realistic reportable finding?",
+          "text": "For \"CI/CD pipeline security\", which of these is a realistic reportable finding?",
           "options": [
             "Security scans run with continue-on-error (so they never block), any developer can edit the deploy workflow, and the pipeline holds a long-lived AWS admin key instead of OIDC — a compromised PR could deploy anything.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. Security scans run with continue-on-error (so they never block), any developer can edit the deploy workflow, and the pipeline holds a long-lived AWS admin key instead of OIDC — a compromised PR could deploy anything."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. Security scans run with continue-on-error (so they never block), any developer can edit the deploy workflow, and the pipeline holds a long-lived AWS admin key instead of OIDC — a compromised PR could deploy anything. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "bcd-02-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "bcd-02-q10",
@@ -730,13 +730,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"CI/CD pipeline security\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind ci/cd pipeline security, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -748,7 +748,7 @@ export const buildCicdStages: StageConfig[] = [
     "title": "Container image security",
     "subtitle": "Agentic technical & privacy audit of the container image security control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 7,
     "valueScore": 7,
     "rank": 0,
@@ -969,13 +969,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Container image security\" sub-process of Build Environment & CI/CD (Continuous Integration / Continuous Delivery)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the container image security control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the container image security control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for container image security against comparable organisations in the sector",
             "Obtain evidence that the container image security control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "bcd-03-q2",
@@ -983,13 +983,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Container image security\" matter to the broader Build Environment & CI/CD (Continuous Integration / Continuous Delivery) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Build Environment & CI/CD (Continuous Integration / Continuous Delivery)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) estate",
             "It is a control other Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "bcd-03-q3",
@@ -997,27 +997,27 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Container image security\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The image inventory in the registry + their vulnerability-scan results (base + app layers) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's container image security settings, captured during the walkthrough",
+            "The The image inventory in the registry + their vulnerability-scan results (base + app layers), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the container image security control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's container image security capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "bcd-03-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Container image security\"?",
+          "text": "Where should an auditor pull the evidence for \"Container image security\"?",
           "options": [
-            "Registry (ECR/ACR/Harbor) + scanner (Trivy/Grype/Inspector) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Registry (ECR/ACR/Harbor) + scanner (Trivy/Grype/Inspector) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how container image security works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Registry (ECR/ACR/Harbor) + scanner (Trivy/Grype/Inspector)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Registry (ECR/ACR/Harbor) + scanner (Trivy/Grype/Inspector)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "bcd-03-q5",
@@ -1025,13 +1025,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Container image security\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Platform / DevOps — own images (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the container image security control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the container image security data is shared, so the accountability sits with no one in particular",
+            "Platform / DevOps — own images, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Platform / DevOps — own images owns the control data; the auditor independently verifies it."
+          "explanation": "Platform / DevOps — own images owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "bcd-03-q6",
@@ -1039,55 +1039,55 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Container image security\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "bcd-03-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "bcd-03-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Container image security\", which is a realistic reportable finding?",
+          "text": "For \"Container image security\", which of these is a realistic reportable finding?",
           "options": [
             "Production images run as root off a full Ubuntu base with dozens of critical CVEs and an embedded API key in an early layer; nothing enforces signing, so any image can run.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. Production images run as root off a full Ubuntu base with dozens of critical CVEs and an embedded API key in an early layer; nothing enforces signing, so any image can run."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. Production images run as root off a full Ubuntu base with dozens of critical CVEs and an embedded API key in an early layer; nothing enforces signing, so any image can run. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "bcd-03-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "bcd-03-q10",
@@ -1095,13 +1095,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Container image security\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind container image security, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1113,7 +1113,7 @@ export const buildCicdStages: StageConfig[] = [
     "title": "Container runtime security",
     "subtitle": "Agentic technical & privacy audit of the container runtime security control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
@@ -1334,13 +1334,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Container runtime security\" sub-process of Build Environment & CI/CD (Continuous Integration / Continuous Delivery)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the container runtime security control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the container runtime security control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for container runtime security against comparable organisations in the sector",
             "Obtain evidence that the container runtime security control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "bcd-04-q2",
@@ -1348,13 +1348,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Container runtime security\" matter to the broader Build Environment & CI/CD (Continuous Integration / Continuous Delivery) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Build Environment & CI/CD (Continuous Integration / Continuous Delivery)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) estate",
             "It is a control other Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "bcd-04-q3",
@@ -1362,27 +1362,27 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Container runtime security\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The runtime security config (read-only root FS, dropped capabilities, no privileged containers, seccomp/AppArmor) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's container runtime security settings, captured during the walkthrough",
+            "The The runtime security config (read-only root FS, dropped capabilities, no privileged containers, seccomp/AppArmor), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the container runtime security control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's container runtime security capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "bcd-04-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Container runtime security\"?",
+          "text": "Where should an auditor pull the evidence for \"Container runtime security\"?",
           "options": [
-            "Kubernetes runtime (containerd) + Pod Security Standards / admission (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Kubernetes runtime (containerd) + Pod Security Standards / admission and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how container runtime security works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Kubernetes runtime (containerd) + Pod Security Standards / admission) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Kubernetes runtime (containerd) + Pod Security Standards / admission) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "bcd-04-q5",
@@ -1390,13 +1390,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Container runtime security\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Platform / SRE (Kubernetes) (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the container runtime security control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the container runtime security data is shared, so the accountability sits with no one in particular",
+            "Platform / SRE (Kubernetes), with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Platform / SRE (Kubernetes) owns the control data; the auditor independently verifies it."
+          "explanation": "Platform / SRE (Kubernetes) owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "bcd-04-q6",
@@ -1404,55 +1404,55 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Container runtime security\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "bcd-04-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "bcd-04-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Container runtime security\", which is a realistic reportable finding?",
+          "text": "For \"Container runtime security\", which of these is a realistic reportable finding?",
           "options": [
             "Several workloads run privileged with the Docker socket mounted (container escape to the node), no seccomp profiles are applied, there's no runtime detection, and any pod can reach any other pod.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. Several workloads run privileged with the Docker socket mounted (container escape to the node), no seccomp profiles are applied, there's no runtime detection, and any pod can reach any other pod."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. Several workloads run privileged with the Docker socket mounted (container escape to the node), no seccomp profiles are applied, there's no runtime detection, and any pod can reach any other pod. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "bcd-04-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "bcd-04-q10",
@@ -1460,13 +1460,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Container runtime security\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind container runtime security, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1478,7 +1478,7 @@ export const buildCicdStages: StageConfig[] = [
     "title": "Orchestration cluster security",
     "subtitle": "Agentic technical & privacy audit of the orchestration cluster security control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 6,
     "valueScore": 7,
     "rank": 0,
@@ -1699,13 +1699,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Orchestration cluster security\" sub-process of Build Environment & CI/CD (Continuous Integration / Continuous Delivery)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the orchestration cluster security control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the orchestration cluster security control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for orchestration cluster security against comparable organisations in the sector",
             "Obtain evidence that the orchestration cluster security control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "bcd-05-q2",
@@ -1713,13 +1713,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Orchestration cluster security\" matter to the broader Build Environment & CI/CD (Continuous Integration / Continuous Delivery) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Build Environment & CI/CD (Continuous Integration / Continuous Delivery)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) estate",
             "It is a control other Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "bcd-05-q3",
@@ -1727,27 +1727,27 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Orchestration cluster security\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The Kubernetes cluster config (API-server access, RBAC, etcd encryption, audit logging) vs the CIS benchmark reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's orchestration cluster security settings, captured during the walkthrough",
+            "The The Kubernetes cluster config (API-server access, RBAC, etcd encryption, audit logging) vs the CIS benchmark, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the orchestration cluster security control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's orchestration cluster security capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "bcd-05-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Orchestration cluster security\"?",
+          "text": "Where should an auditor pull the evidence for \"Orchestration cluster security\"?",
           "options": [
-            "Kubernetes (EKS / AKS / GKE / self-managed) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Kubernetes (EKS / AKS / GKE / self-managed) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how orchestration cluster security works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Kubernetes (EKS / AKS / GKE / self-managed)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Kubernetes (EKS / AKS / GKE / self-managed)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "bcd-05-q5",
@@ -1755,13 +1755,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Orchestration cluster security\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Platform / SRE — owns the cluster (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the orchestration cluster security control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the orchestration cluster security data is shared, so the accountability sits with no one in particular",
+            "Platform / SRE — owns the cluster, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Platform / SRE — owns the cluster owns the control data; the auditor independently verifies it."
+          "explanation": "Platform / SRE — owns the cluster owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "bcd-05-q6",
@@ -1769,55 +1769,55 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Orchestration cluster security\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "bcd-05-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "bcd-05-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Orchestration cluster security\", which is a realistic reportable finding?",
+          "text": "For \"Orchestration cluster security\", which of these is a realistic reportable finding?",
           "options": [
             "The cluster grants cluster-admin via a wildcard role to a CI service account, the API audit log is disabled, etcd isn't encrypted, and the cluster is two versions past end-of-life.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. The cluster grants cluster-admin via a wildcard role to a CI service account, the API audit log is disabled, etcd isn't encrypted, and the cluster is two versions past end-of-life."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. The cluster grants cluster-admin via a wildcard role to a CI service account, the API audit log is disabled, etcd isn't encrypted, and the cluster is two versions past end-of-life. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "bcd-05-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "bcd-05-q10",
@@ -1825,13 +1825,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Orchestration cluster security\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind orchestration cluster security, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1843,7 +1843,7 @@ export const buildCicdStages: StageConfig[] = [
     "title": "Workload security",
     "subtitle": "Agentic technical & privacy audit of the workload security control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 7,
     "valueScore": 7,
     "rank": 0,
@@ -2064,13 +2064,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Workload security\" sub-process of Build Environment & CI/CD (Continuous Integration / Continuous Delivery)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the workload security control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the workload security control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for workload security against comparable organisations in the sector",
             "Obtain evidence that the workload security control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "bcd-06-q2",
@@ -2078,13 +2078,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Workload security\" matter to the broader Build Environment & CI/CD (Continuous Integration / Continuous Delivery) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Build Environment & CI/CD (Continuous Integration / Continuous Delivery)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) estate",
             "It is a control other Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "bcd-06-q3",
@@ -2092,27 +2092,27 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Workload security\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The Per-workload security context + resource limits + the service-account/identity it runs as reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's workload security settings, captured during the walkthrough",
+            "The Per-workload security context + resource limits + the service-account/identity it runs as, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the workload security control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's workload security capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "bcd-06-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Workload security\"?",
+          "text": "Where should an auditor pull the evidence for \"Workload security\"?",
           "options": [
-            "Kubernetes workloads + ServiceAccounts (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Kubernetes workloads + ServiceAccounts and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how workload security works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Kubernetes workloads + ServiceAccounts) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Kubernetes workloads + ServiceAccounts) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "bcd-06-q5",
@@ -2120,13 +2120,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Workload security\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "App owners — own their workloads (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the workload security control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the workload security data is shared, so the accountability sits with no one in particular",
+            "App owners — own their workloads, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "App owners — own their workloads owns the control data; the auditor independently verifies it."
+          "explanation": "App owners — own their workloads owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "bcd-06-q6",
@@ -2134,55 +2134,55 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Workload security\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "bcd-06-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "bcd-06-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Workload security\", which is a realistic reportable finding?",
+          "text": "For \"Workload security\", which of these is a realistic reportable finding?",
           "options": [
             "Most pods use the default service account and inherit the node's broad IAM role (so a compromised pod has the node's cloud permissions), and database passwords are passed as plain environment variables.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. Most pods use the default service account and inherit the node's broad IAM role (so a compromised pod has the node's cloud permissions), and database passwords are passed as plain environment variables."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. Most pods use the default service account and inherit the node's broad IAM role (so a compromised pod has the node's cloud permissions), and database passwords are passed as plain environment variables. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "bcd-06-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "bcd-06-q10",
@@ -2190,13 +2190,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Workload security\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind workload security, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -2208,7 +2208,7 @@ export const buildCicdStages: StageConfig[] = [
     "title": "Supply chain in orchestration",
     "subtitle": "Agentic technical & privacy audit of the supply chain in orchestration control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 5,
     "valueScore": 9,
     "rank": 0,
@@ -2429,13 +2429,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Supply chain in orchestration\" sub-process of Build Environment & CI/CD (Continuous Integration / Continuous Delivery)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the supply chain in orchestration control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the supply chain in orchestration control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for supply chain in orchestration against comparable organisations in the sector",
             "Obtain evidence that the supply chain in orchestration control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "bcd-07-q2",
@@ -2443,13 +2443,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Supply chain in orchestration\" matter to the broader Build Environment & CI/CD (Continuous Integration / Continuous Delivery) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Build Environment & CI/CD (Continuous Integration / Continuous Delivery)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) estate",
             "It is a control other Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "bcd-07-q3",
@@ -2457,27 +2457,27 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Supply chain in orchestration\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The provenance + admission policy for what's allowed to run (signed images, trusted registries, SLSA level) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's supply chain in orchestration settings, captured during the walkthrough",
+            "The The provenance + admission policy for what's allowed to run (signed images, trusted registries, SLSA level), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the supply chain in orchestration control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's supply chain in orchestration capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "bcd-07-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Supply chain in orchestration\"?",
+          "text": "Where should an auditor pull the evidence for \"Supply chain in orchestration\"?",
           "options": [
-            "Admission control (Kyverno / OPA Gatekeeper / Sigstore policy-controller) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From Admission control (Kyverno / OPA Gatekeeper / Sigstore policy-controller) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how supply chain in orchestration works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., Admission control (Kyverno / OPA Gatekeeper / Sigstore policy-controller)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Admission control (Kyverno / OPA Gatekeeper / Sigstore policy-controller)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "bcd-07-q5",
@@ -2485,13 +2485,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Supply chain in orchestration\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Platform / SRE — owns admission (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the supply chain in orchestration control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the supply chain in orchestration data is shared, so the accountability sits with no one in particular",
+            "Platform / SRE — owns admission, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Platform / SRE — owns admission owns the control data; the auditor independently verifies it."
+          "explanation": "Platform / SRE — owns admission owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "bcd-07-q6",
@@ -2499,55 +2499,55 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Supply chain in orchestration\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "bcd-07-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "bcd-07-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Supply chain in orchestration\", which is a realistic reportable finding?",
+          "text": "For \"Supply chain in orchestration\", which of these is a realistic reportable finding?",
           "options": [
             "Admission control is in audit mode only, so unsigned images from public registries deploy freely, and a third-party logging operator holds cluster-admin-equivalent permissions.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. Admission control is in audit mode only, so unsigned images from public registries deploy freely, and a third-party logging operator holds cluster-admin-equivalent permissions."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. Admission control is in audit mode only, so unsigned images from public registries deploy freely, and a third-party logging operator holds cluster-admin-equivalent permissions. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "bcd-07-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "bcd-07-q10",
@@ -2555,13 +2555,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Supply chain in orchestration\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind supply chain in orchestration, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -2573,7 +2573,7 @@ export const buildCicdStages: StageConfig[] = [
     "title": "Code and repository security",
     "subtitle": "Agentic technical & privacy audit of the code and repository security control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 6,
     "valueScore": 7,
     "rank": 0,
@@ -2794,13 +2794,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Code and repository security\" sub-process of Build Environment & CI/CD (Continuous Integration / Continuous Delivery)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the code and repository security control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the code and repository security control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for code and repository security against comparable organisations in the sector",
             "Obtain evidence that the code and repository security control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "bcd-08-q2",
@@ -2808,13 +2808,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Code and repository security\" matter to the broader Build Environment & CI/CD (Continuous Integration / Continuous Delivery) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Build Environment & CI/CD (Continuous Integration / Continuous Delivery)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) estate",
             "It is a control other Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "bcd-08-q3",
@@ -2822,27 +2822,27 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Code and repository security\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The Branch-protection + required-review (CODEOWNERS) config on the default/release branches reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's code and repository security settings, captured during the walkthrough",
+            "The Branch-protection + required-review (CODEOWNERS) config on the default/release branches, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the code and repository security control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's code and repository security capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "bcd-08-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Code and repository security\"?",
+          "text": "Where should an auditor pull the evidence for \"Code and repository security\"?",
           "options": [
-            "GitHub/GitLab/Bitbucket branch protection + CODEOWNERS (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From GitHub/GitLab/Bitbucket branch protection + CODEOWNERS and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how code and repository security works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., GitHub/GitLab/Bitbucket branch protection + CODEOWNERS) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. GitHub/GitLab/Bitbucket branch protection + CODEOWNERS) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "bcd-08-q5",
@@ -2850,13 +2850,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Code and repository security\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Engineering org / repo admins (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the code and repository security control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the code and repository security data is shared, so the accountability sits with no one in particular",
+            "Engineering org / repo admins, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Engineering org / repo admins owns the control data; the auditor independently verifies it."
+          "explanation": "Engineering org / repo admins owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "bcd-08-q6",
@@ -2864,55 +2864,55 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Code and repository security\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "bcd-08-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "bcd-08-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Code and repository security\", which is a realistic reportable finding?",
+          "text": "For \"Code and repository security\", which of these is a realistic reportable finding?",
           "options": [
             "The release branch allows direct pushes with no required review, signed commits aren't required, and three outside collaborators have write access — unreviewed code can reach the build unchecked.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. The release branch allows direct pushes with no required review, signed commits aren't required, and three outside collaborators have write access — unreviewed code can reach the build unchecked."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. The release branch allows direct pushes with no required review, signed commits aren't required, and three outside collaborators have write access — unreviewed code can reach the build unchecked. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "bcd-08-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "bcd-08-q10",
@@ -2920,13 +2920,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Code and repository security\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind code and repository security, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -2938,7 +2938,7 @@ export const buildCicdStages: StageConfig[] = [
     "title": "Secrets and credential management",
     "subtitle": "Agentic technical & privacy audit of the secrets and credential management control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 7,
     "valueScore": 9,
     "rank": 0,
@@ -3159,13 +3159,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Secrets and credential management\" sub-process of Build Environment & CI/CD (Continuous Integration / Continuous Delivery)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the secrets and credential management control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the secrets and credential management control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for secrets and credential management against comparable organisations in the sector",
             "Obtain evidence that the secrets and credential management control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "bcd-09-q2",
@@ -3173,13 +3173,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Secrets and credential management\" matter to the broader Build Environment & CI/CD (Continuous Integration / Continuous Delivery) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Build Environment & CI/CD (Continuous Integration / Continuous Delivery)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) estate",
             "It is a control other Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "bcd-09-q3",
@@ -3187,27 +3187,27 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Secrets and credential management\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The inventory of secrets in CI/CD (repo/org/environment secrets, stored credentials) + their scope reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's secrets and credential management settings, captured during the walkthrough",
+            "The The inventory of secrets in CI/CD (repo/org/environment secrets, stored credentials) + their scope, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the secrets and credential management control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's secrets and credential management capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "bcd-09-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Secrets and credential management\"?",
+          "text": "Where should an auditor pull the evidence for \"Secrets and credential management\"?",
           "options": [
-            "CI secret stores (GitHub/GitLab secrets) + cloud OIDC (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From CI secret stores (GitHub/GitLab secrets) + cloud OIDC and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how secrets and credential management works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., CI secret stores (GitHub/GitLab secrets) + cloud OIDC) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. CI secret stores (GitHub/GitLab secrets) + cloud OIDC) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "bcd-09-q5",
@@ -3215,13 +3215,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Secrets and credential management\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "DevOps / platform security (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the secrets and credential management control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the secrets and credential management data is shared, so the accountability sits with no one in particular",
+            "DevOps / platform security, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "DevOps / platform security owns the control data; the auditor independently verifies it."
+          "explanation": "DevOps / platform security owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "bcd-09-q6",
@@ -3229,55 +3229,55 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Secrets and credential management\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "bcd-09-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "bcd-09-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Secrets and credential management\", which is a realistic reportable finding?",
+          "text": "For \"Secrets and credential management\", which of these is a realistic reportable finding?",
           "options": [
             "A long-lived AWS admin key is an org-wide secret readable by every workflow including fork PRs, and a recent build log printed it in plaintext — full cloud compromise from one contributor.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. A long-lived AWS admin key is an org-wide secret readable by every workflow including fork PRs, and a recent build log printed it in plaintext — full cloud compromise from one contributor."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. A long-lived AWS admin key is an org-wide secret readable by every workflow including fork PRs, and a recent build log printed it in plaintext — full cloud compromise from one contributor. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "bcd-09-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "bcd-09-q10",
@@ -3285,13 +3285,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Secrets and credential management\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind secrets and credential management, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -3303,7 +3303,7 @@ export const buildCicdStages: StageConfig[] = [
     "title": "Audit logging",
     "subtitle": "Agentic technical & privacy audit of the audit logging control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 6,
     "valueScore": 7,
     "rank": 0,
@@ -3524,13 +3524,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Audit logging\" sub-process of Build Environment & CI/CD (Continuous Integration / Continuous Delivery)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the audit logging control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the audit logging control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for audit logging against comparable organisations in the sector",
             "Obtain evidence that the audit logging control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "bcd-10-q2",
@@ -3538,13 +3538,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Audit logging\" matter to the broader Build Environment & CI/CD (Continuous Integration / Continuous Delivery) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Build Environment & CI/CD (Continuous Integration / Continuous Delivery)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) estate",
             "It is a control other Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "bcd-10-q3",
@@ -3552,27 +3552,27 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Audit logging\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The audit-log coverage for SCM, CI/CD, and registry (who did what: merges, pipeline edits, deploys, secret access, image pushes) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's audit logging settings, captured during the walkthrough",
+            "The The audit-log coverage for SCM, CI/CD, and registry (who did what: merges, pipeline edits, deploys, secret access, image pushes), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the audit logging control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's audit logging capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "bcd-10-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Audit logging\"?",
+          "text": "Where should an auditor pull the evidence for \"Audit logging\"?",
           "options": [
-            "GitHub/GitLab audit log, CI/CD logs, registry logs (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From GitHub/GitLab audit log, CI/CD logs, registry logs and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how audit logging works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., GitHub/GitLab audit log, CI/CD logs, registry logs) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. GitHub/GitLab audit log, CI/CD logs, registry logs) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "bcd-10-q5",
@@ -3580,13 +3580,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Audit logging\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Security operations / detection engineering (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the audit logging control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the audit logging data is shared, so the accountability sits with no one in particular",
+            "Security operations / detection engineering, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Security operations / detection engineering owns the control data; the auditor independently verifies it."
+          "explanation": "Security operations / detection engineering owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "bcd-10-q6",
@@ -3594,55 +3594,55 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Audit logging\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "bcd-10-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "bcd-10-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Audit logging\", which is a realistic reportable finding?",
+          "text": "For \"Audit logging\", which of these is a realistic reportable finding?",
           "options": [
             "GitHub audit-log streaming isn't enabled, so SCM events never reach the SIEM, and there are no detections for pipeline tampering or secret access — a malicious workflow edit would be invisible.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. GitHub audit-log streaming isn't enabled, so SCM events never reach the SIEM, and there are no detections for pipeline tampering or secret access — a malicious workflow edit would be invisible."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. GitHub audit-log streaming isn't enabled, so SCM events never reach the SIEM, and there are no detections for pipeline tampering or secret access — a malicious workflow edit would be invisible. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "bcd-10-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "bcd-10-q10",
@@ -3650,13 +3650,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Audit logging\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind audit logging, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -3668,7 +3668,7 @@ export const buildCicdStages: StageConfig[] = [
     "title": "Segregation of duties",
     "subtitle": "Agentic technical & privacy audit of the segregation of duties control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 6,
     "valueScore": 7,
     "rank": 0,
@@ -3889,13 +3889,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Segregation of duties\" sub-process of Build Environment & CI/CD (Continuous Integration / Continuous Delivery)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the segregation of duties control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the segregation of duties control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for segregation of duties against comparable organisations in the sector",
             "Obtain evidence that the segregation of duties control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "bcd-11-q2",
@@ -3903,13 +3903,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Segregation of duties\" matter to the broader Build Environment & CI/CD (Continuous Integration / Continuous Delivery) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Build Environment & CI/CD (Continuous Integration / Continuous Delivery)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) estate",
             "It is a control other Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "bcd-11-q3",
@@ -3917,27 +3917,27 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Segregation of duties\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The SoD matrix for the SDLC (who can code, who approves, who deploys to prod) + the actual role assignments reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's segregation of duties settings, captured during the walkthrough",
+            "The The SoD matrix for the SDLC (who can code, who approves, who deploys to prod) + the actual role assignments, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the segregation of duties control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's segregation of duties capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "bcd-11-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Segregation of duties\"?",
+          "text": "Where should an auditor pull the evidence for \"Segregation of duties\"?",
           "options": [
-            "SCM (review/merge rights) + CI/CD (deploy rights) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From SCM (review/merge rights) + CI/CD (deploy rights) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how segregation of duties works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., SCM (review/merge rights) + CI/CD (deploy rights)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. SCM (review/merge rights) + CI/CD (deploy rights)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "bcd-11-q5",
@@ -3945,13 +3945,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Segregation of duties\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Engineering leadership + AppSec (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the segregation of duties control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the segregation of duties data is shared, so the accountability sits with no one in particular",
+            "Engineering leadership + AppSec, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Engineering leadership + AppSec owns the control data; the auditor independently verifies it."
+          "explanation": "Engineering leadership + AppSec owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "bcd-11-q6",
@@ -3959,55 +3959,55 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Segregation of duties\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "bcd-11-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "bcd-11-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Segregation of duties\", which is a realistic reportable finding?",
+          "text": "For \"Segregation of duties\", which of these is a realistic reportable finding?",
           "options": [
             "Five engineers can author code, approve their own PR (admin bypass), and trigger production deploys — no separation of duties, so one person can ship unreviewed code to prod.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. Five engineers can author code, approve their own PR (admin bypass), and trigger production deploys — no separation of duties, so one person can ship unreviewed code to prod."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. Five engineers can author code, approve their own PR (admin bypass), and trigger production deploys — no separation of duties, so one person can ship unreviewed code to prod. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "bcd-11-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "bcd-11-q10",
@@ -4015,13 +4015,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Segregation of duties\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind segregation of duties, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -4033,7 +4033,7 @@ export const buildCicdStages: StageConfig[] = [
     "title": "AI-assisted dev / agentic workloads",
     "subtitle": "Agentic technical & privacy audit of the ai-assisted dev / agentic workloads control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 7,
     "valueScore": 7,
     "rank": 0,
@@ -4254,13 +4254,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"AI-assisted dev / agentic workloads\" sub-process of Build Environment & CI/CD (Continuous Integration / Continuous Delivery)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the ai-assisted dev / agentic workloads control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the ai-assisted dev / agentic workloads control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for ai-assisted dev / agentic workloads against comparable organisations in the sector",
             "Obtain evidence that the ai-assisted dev / agentic workloads control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "bcd-12-q2",
@@ -4268,13 +4268,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"AI-assisted dev / agentic workloads\" matter to the broader Build Environment & CI/CD (Continuous Integration / Continuous Delivery) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Build Environment & CI/CD (Continuous Integration / Continuous Delivery)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) estate",
             "It is a control other Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "bcd-12-q3",
@@ -4282,27 +4282,27 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"AI-assisted dev / agentic workloads\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The inventory of AI coding tools + agentic CI workloads in use (Copilot, AI review, autonomous build/fix agents) + their permissions reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's ai-assisted dev / agentic workloads settings, captured during the walkthrough",
+            "The The inventory of AI coding tools + agentic CI workloads in use (Copilot, AI review, autonomous build/fix agents) + their permissions, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the ai-assisted dev / agentic workloads control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's ai-assisted dev / agentic workloads capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "bcd-12-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"AI-assisted dev / agentic workloads\"?",
+          "text": "Where should an auditor pull the evidence for \"AI-assisted dev / agentic workloads\"?",
           "options": [
-            "GitHub Copilot / Cursor / AI review tools (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From GitHub Copilot / Cursor / AI review tools and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how ai-assisted dev / agentic workloads works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., GitHub Copilot / Cursor / AI review tools) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. GitHub Copilot / Cursor / AI review tools) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "bcd-12-q5",
@@ -4310,13 +4310,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"AI-assisted dev / agentic workloads\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Engineering + AppSec (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the ai-assisted dev / agentic workloads control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the ai-assisted dev / agentic workloads data is shared, so the accountability sits with no one in particular",
+            "Engineering + AppSec, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Engineering + AppSec owns the control data; the auditor independently verifies it."
+          "explanation": "Engineering + AppSec owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "bcd-12-q6",
@@ -4324,55 +4324,55 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"AI-assisted dev / agentic workloads\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "bcd-12-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "bcd-12-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"AI-assisted dev / agentic workloads\", which is a realistic reportable finding?",
+          "text": "For \"AI-assisted dev / agentic workloads\", which of these is a realistic reportable finding?",
           "options": [
             "An autonomous 'auto-fix' agent has write access to all repos and can merge its own PRs to protected branches with no human review, and developers use a personal AI tool that sends proprietary code to a public endpoint with training enabled.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. An autonomous 'auto-fix' agent has write access to all repos and can merge its own PRs to protected branches with no human review, and developers use a personal AI tool that sends proprietary code to a public endpoint with training enabled."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. An autonomous 'auto-fix' agent has write access to all repos and can merge its own PRs to protected branches with no human review, and developers use a personal AI tool that sends proprietary code to a public endpoint with training enabled. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "bcd-12-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "bcd-12-q10",
@@ -4380,13 +4380,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"AI-assisted dev / agentic workloads\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind ai-assisted dev / agentic workloads, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -4398,7 +4398,7 @@ export const buildCicdStages: StageConfig[] = [
     "title": "SBOM image provenance",
     "subtitle": "Agentic technical & privacy audit of the sbom image provenance control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
@@ -4619,13 +4619,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"SBOM image provenance\" sub-process of Build Environment & CI/CD (Continuous Integration / Continuous Delivery)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the sbom image provenance control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the sbom image provenance control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for sbom image provenance against comparable organisations in the sector",
             "Obtain evidence that the sbom image provenance control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "bcd-13-q2",
@@ -4633,13 +4633,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"SBOM image provenance\" matter to the broader Build Environment & CI/CD (Continuous Integration / Continuous Delivery) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Build Environment & CI/CD (Continuous Integration / Continuous Delivery)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) estate",
             "It is a control other Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "bcd-13-q3",
@@ -4647,27 +4647,27 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"SBOM image provenance\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The SBOM (Software Bill of Materials) generated for each build/image (CycloneDX/SPDX) + where stored reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's sbom image provenance settings, captured during the walkthrough",
+            "The The SBOM (Software Bill of Materials) generated for each build/image (CycloneDX/SPDX) + where stored, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the sbom image provenance control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's sbom image provenance capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "bcd-13-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"SBOM image provenance\"?",
+          "text": "Where should an auditor pull the evidence for \"SBOM image provenance\"?",
           "options": [
-            "SBOM tooling (Syft, cdxgen) + storage (registry referrers / Dependency-Track) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From SBOM tooling (Syft, cdxgen) + storage (registry referrers / Dependency-Track) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how sbom image provenance works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., SBOM tooling (Syft, cdxgen) + storage (registry referrers / Dependency-Track)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. SBOM tooling (Syft, cdxgen) + storage (registry referrers / Dependency-Track)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "bcd-13-q5",
@@ -4675,13 +4675,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"SBOM image provenance\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "AppSec / platform — own SBOM/provenance (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the sbom image provenance control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the sbom image provenance data is shared, so the accountability sits with no one in particular",
+            "AppSec / platform — own SBOM/provenance, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "AppSec / platform — own SBOM/provenance owns the control data; the auditor independently verifies it."
+          "explanation": "AppSec / platform — own SBOM/provenance owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "bcd-13-q6",
@@ -4689,55 +4689,55 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"SBOM image provenance\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "bcd-13-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "bcd-13-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"SBOM image provenance\", which is a realistic reportable finding?",
+          "text": "For \"SBOM image provenance\", which of these is a realistic reportable finding?",
           "options": [
             "Only a handful of images have SBOMs and none have build provenance, so when the next Log4Shell hits, there's no way to know which of the 400 production images are affected.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. Only a handful of images have SBOMs and none have build provenance, so when the next Log4Shell hits, there's no way to know which of the 400 production images are affected."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. Only a handful of images have SBOMs and none have build provenance, so when the next Log4Shell hits, there's no way to know which of the 400 production images are affected. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "bcd-13-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "bcd-13-q10",
@@ -4745,13 +4745,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"SBOM image provenance\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind sbom image provenance, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -4763,7 +4763,7 @@ export const buildCicdStages: StageConfig[] = [
     "title": "Vulnerability scanning and testing",
     "subtitle": "Agentic technical & privacy audit of the vulnerability scanning and testing control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 7,
     "valueScore": 9,
     "rank": 0,
@@ -4984,13 +4984,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Vulnerability scanning and testing\" sub-process of Build Environment & CI/CD (Continuous Integration / Continuous Delivery)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the vulnerability scanning and testing control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the vulnerability scanning and testing control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for vulnerability scanning and testing against comparable organisations in the sector",
             "Obtain evidence that the vulnerability scanning and testing control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "bcd-14-q2",
@@ -4998,13 +4998,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Vulnerability scanning and testing\" matter to the broader Build Environment & CI/CD (Continuous Integration / Continuous Delivery) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Build Environment & CI/CD (Continuous Integration / Continuous Delivery)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) estate",
             "It is a control other Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "bcd-14-q3",
@@ -5012,27 +5012,27 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Vulnerability scanning and testing\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The build-time security gates: SAST, SCA (dependencies), secret scan, image scan, IaC scan, DAST — and which are wired into the pipeline reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's vulnerability scanning and testing settings, captured during the walkthrough",
+            "The The build-time security gates: SAST, SCA (dependencies), secret scan, image scan, IaC scan, DAST — and which are wired into the pipeline, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the vulnerability scanning and testing control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's vulnerability scanning and testing capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "bcd-14-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Vulnerability scanning and testing\"?",
+          "text": "Where should an auditor pull the evidence for \"Vulnerability scanning and testing\"?",
           "options": [
-            "SAST (CodeQL/Semgrep/SonarQube), SCA (Snyk/Dependabot/Trivy), secret scan, image scan, IaC scan (Checkov), DAST (ZAP/Burp) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From SAST (CodeQL/Semgrep/SonarQube), SCA (Snyk/Dependabot/Trivy), secret scan, image scan, IaC scan (Checkov), DAST (ZAP/Burp) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how vulnerability scanning and testing works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., SAST (CodeQL/Semgrep/SonarQube), SCA (Snyk/Dependabot/Trivy), secret scan, image scan, IaC scan (Checkov), DAST (ZAP/Burp)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. SAST (CodeQL/Semgrep/SonarQube), SCA (Snyk/Dependabot/Trivy), secret scan, image scan, IaC scan (Checkov), DAST (ZAP/Burp)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "bcd-14-q5",
@@ -5040,13 +5040,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Vulnerability scanning and testing\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "AppSec — owns the testing program (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the vulnerability scanning and testing control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the vulnerability scanning and testing data is shared, so the accountability sits with no one in particular",
+            "AppSec — owns the testing program, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "AppSec — owns the testing program owns the control data; the auditor independently verifies it."
+          "explanation": "AppSec — owns the testing program owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "bcd-14-q6",
@@ -5054,55 +5054,55 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Vulnerability scanning and testing\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "bcd-14-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "bcd-14-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Vulnerability scanning and testing\", which is a realistic reportable finding?",
+          "text": "For \"Vulnerability scanning and testing\", which of these is a realistic reportable finding?",
           "options": [
             "Half the repos have no SCA (so vulnerable dependencies ship freely), SAST runs warn-only, there's no DAST, and a blanket suppression hides 200 'won't fix' findings including criticals.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. Half the repos have no SCA (so vulnerable dependencies ship freely), SAST runs warn-only, there's no DAST, and a blanket suppression hides 200 'won't fix' findings including criticals."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. Half the repos have no SCA (so vulnerable dependencies ship freely), SAST runs warn-only, there's no DAST, and a blanket suppression hides 200 'won't fix' findings including criticals. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "bcd-14-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "bcd-14-q10",
@@ -5110,13 +5110,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Vulnerability scanning and testing\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind vulnerability scanning and testing, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -5128,7 +5128,7 @@ export const buildCicdStages: StageConfig[] = [
     "title": "License scanning",
     "subtitle": "Agentic technical & privacy audit of the license scanning control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 8,
     "valueScore": 7,
     "rank": 0,
@@ -5349,13 +5349,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"License scanning\" sub-process of Build Environment & CI/CD (Continuous Integration / Continuous Delivery)?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the license scanning control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the license scanning control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for license scanning against comparable organisations in the sector",
             "Obtain evidence that the license scanning control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "bcd-15-q2",
@@ -5363,13 +5363,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"License scanning\" matter to the broader Build Environment & CI/CD (Continuous Integration / Continuous Delivery) posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to Build Environment & CI/CD (Continuous Integration / Continuous Delivery)",
+            "It stops mattering once a firewall and endpoint agent are deployed across the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) estate",
             "It is a control other Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other Build Environment & CI/CD (Continuous Integration / Continuous Delivery) controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "bcd-15-q3",
@@ -5377,27 +5377,27 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"License scanning\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The The open-source license inventory per application (from SCA/SBOM) + each component's license reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's license scanning settings, captured during the walkthrough",
+            "The The open-source license inventory per application (from SCA/SBOM) + each component's license, reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the license scanning control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's license scanning capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "bcd-15-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"License scanning\"?",
+          "text": "Where should an auditor pull the evidence for \"License scanning\"?",
           "options": [
-            "SCA / license tooling (Snyk / FOSSA / Black Duck / Trivy license) (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From SCA / license tooling (Snyk / FOSSA / Black Duck / Trivy license) and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how license scanning works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., SCA / license tooling (Snyk / FOSSA / Black Duck / Trivy license)) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. SCA / license tooling (Snyk / FOSSA / Black Duck / Trivy license)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "bcd-15-q5",
@@ -5405,13 +5405,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"License scanning\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "AppSec / Open-Source Program Office (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the license scanning control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the license scanning data is shared, so the accountability sits with no one in particular",
+            "AppSec / Open-Source Program Office, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "AppSec / Open-Source Program Office owns the control data; the auditor independently verifies it."
+          "explanation": "AppSec / Open-Source Program Office owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "bcd-15-q6",
@@ -5419,55 +5419,55 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"License scanning\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "bcd-15-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "bcd-15-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"License scanning\", which is a realistic reportable finding?",
+          "text": "For \"License scanning\", which of these is a realistic reportable finding?",
           "options": [
             "A distributed product bundles an AGPL component (triggering copyleft source-disclosure obligations the company isn't meeting), and dozens of dependencies have unknown or unvetted licenses with no NOTICE file.",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. A distributed product bundles an AGPL component (triggering copyleft source-disclosure obligations the company isn't meeting), and dozens of dependencies have unknown or unvetted licenses with no NOTICE file."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. A distributed product bundles an AGPL component (triggering copyleft source-disclosure obligations the company isn't meeting), and dozens of dependencies have unknown or unvetted licenses with no NOTICE file. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "bcd-15-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "bcd-15-q10",
@@ -5475,13 +5475,13 @@ export const buildCicdStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"License scanning\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind license scanning, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }

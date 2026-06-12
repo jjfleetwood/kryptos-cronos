@@ -18,7 +18,7 @@ export const sysimplEnterpriseStages: StageConfig[] = [
     "title": "Program & project mgmt (PMO)",
     "subtitle": "Agentic technical & privacy audit of the program & project mgmt (pmo) control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
@@ -240,13 +240,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Program & project mgmt (PMO)\" sub-process of System Implementation — Enterprise?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the program & project mgmt (pmo) control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the program & project mgmt (pmo) control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for program & project mgmt (pmo) against comparable organisations in the sector",
             "Obtain evidence that the program & project mgmt (pmo) control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "sie-01-q2",
@@ -254,13 +254,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Program & project mgmt (PMO)\" matter to the broader System Implementation — Enterprise posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to System Implementation — Enterprise",
+            "It stops mattering once a firewall and endpoint agent are deployed across the System Implementation — Enterprise estate",
             "It is a control other System Implementation — Enterprise controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other System Implementation — Enterprise controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "sie-01-q3",
@@ -268,27 +268,27 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Program & project mgmt (PMO)\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the program & project mgmt (pmo) control (from PPM / PMO tooling) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's program & project mgmt (pmo) settings, captured during the walkthrough",
+            "The In-scope inventory for the program & project mgmt (pmo) control (from PPM / PMO tooling), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the program & project mgmt (pmo) control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's program & project mgmt (pmo) capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "sie-01-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Program & project mgmt (PMO)\"?",
+          "text": "Where should an auditor pull the evidence for \"Program & project mgmt (PMO)\"?",
           "options": [
-            "PPM / PMO tooling (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From PPM / PMO tooling and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how program & project mgmt (pmo) works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., PPM / PMO tooling) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. PPM / PMO tooling) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "sie-01-q5",
@@ -296,13 +296,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Program & project mgmt (PMO)\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Program / PMO leadership (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the program & project mgmt (pmo) control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the program & project mgmt (pmo) data is shared, so the accountability sits with no one in particular",
+            "Program / PMO leadership, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Program / PMO leadership owns the control data; the auditor independently verifies it."
+          "explanation": "Program / PMO leadership owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "sie-01-q6",
@@ -310,55 +310,55 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Program & project mgmt (PMO)\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "sie-01-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "sie-01-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Program & project mgmt (PMO)\", which is a realistic reportable finding?",
+          "text": "For \"Program & project mgmt (PMO)\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the program & project mgmt (pmo) control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the program & project mgmt (pmo) control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the program & project mgmt (pmo) control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "sie-01-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "sie-01-q10",
@@ -366,13 +366,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Program & project mgmt (PMO)\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind program & project mgmt (pmo), so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -384,7 +384,7 @@ export const sysimplEnterpriseStages: StageConfig[] = [
     "title": "Enterprise architecture",
     "subtitle": "Agentic technical & privacy audit of the enterprise architecture control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 4,
     "valueScore": 7,
     "rank": 0,
@@ -606,13 +606,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Enterprise architecture\" sub-process of System Implementation — Enterprise?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the enterprise architecture control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the enterprise architecture control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for enterprise architecture against comparable organisations in the sector",
             "Obtain evidence that the enterprise architecture control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "sie-02-q2",
@@ -620,13 +620,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Enterprise architecture\" matter to the broader System Implementation — Enterprise posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to System Implementation — Enterprise",
+            "It stops mattering once a firewall and endpoint agent are deployed across the System Implementation — Enterprise estate",
             "It is a control other System Implementation — Enterprise controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other System Implementation — Enterprise controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "sie-02-q3",
@@ -634,27 +634,27 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Enterprise architecture\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the enterprise architecture control (from PPM / PMO tooling) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's enterprise architecture settings, captured during the walkthrough",
+            "The In-scope inventory for the enterprise architecture control (from PPM / PMO tooling), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the enterprise architecture control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's enterprise architecture capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "sie-02-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Enterprise architecture\"?",
+          "text": "Where should an auditor pull the evidence for \"Enterprise architecture\"?",
           "options": [
-            "PPM / PMO tooling (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From PPM / PMO tooling and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how enterprise architecture works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., PPM / PMO tooling) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. PPM / PMO tooling) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "sie-02-q5",
@@ -662,13 +662,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Enterprise architecture\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Program / PMO leadership (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the enterprise architecture control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the enterprise architecture data is shared, so the accountability sits with no one in particular",
+            "Program / PMO leadership, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Program / PMO leadership owns the control data; the auditor independently verifies it."
+          "explanation": "Program / PMO leadership owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "sie-02-q6",
@@ -676,55 +676,55 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Enterprise architecture\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "sie-02-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "sie-02-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Enterprise architecture\", which is a realistic reportable finding?",
+          "text": "For \"Enterprise architecture\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the enterprise architecture control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the enterprise architecture control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the enterprise architecture control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "sie-02-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "sie-02-q10",
@@ -732,13 +732,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Enterprise architecture\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind enterprise architecture, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -750,7 +750,7 @@ export const sysimplEnterpriseStages: StageConfig[] = [
     "title": "Development",
     "subtitle": "Agentic technical & privacy audit of the development control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 7,
     "valueScore": 7,
     "rank": 0,
@@ -972,13 +972,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Development\" sub-process of System Implementation — Enterprise?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the development control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the development control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for development against comparable organisations in the sector",
             "Obtain evidence that the development control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "sie-03-q2",
@@ -986,13 +986,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Development\" matter to the broader System Implementation — Enterprise posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to System Implementation — Enterprise",
+            "It stops mattering once a firewall and endpoint agent are deployed across the System Implementation — Enterprise estate",
             "It is a control other System Implementation — Enterprise controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other System Implementation — Enterprise controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "sie-03-q3",
@@ -1000,27 +1000,27 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Development\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the development control (from PPM / PMO tooling) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's development settings, captured during the walkthrough",
+            "The In-scope inventory for the development control (from PPM / PMO tooling), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the development control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's development capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "sie-03-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Development\"?",
+          "text": "Where should an auditor pull the evidence for \"Development\"?",
           "options": [
-            "PPM / PMO tooling (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From PPM / PMO tooling and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how development works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., PPM / PMO tooling) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. PPM / PMO tooling) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "sie-03-q5",
@@ -1028,13 +1028,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Development\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Program / PMO leadership (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the development control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the development data is shared, so the accountability sits with no one in particular",
+            "Program / PMO leadership, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Program / PMO leadership owns the control data; the auditor independently verifies it."
+          "explanation": "Program / PMO leadership owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "sie-03-q6",
@@ -1042,55 +1042,55 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Development\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "sie-03-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "sie-03-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Development\", which is a realistic reportable finding?",
+          "text": "For \"Development\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the development control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the development control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the development control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "sie-03-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "sie-03-q10",
@@ -1098,13 +1098,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Development\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind development, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1116,7 +1116,7 @@ export const sysimplEnterpriseStages: StageConfig[] = [
     "title": "Testing & QA (E2E)",
     "subtitle": "Agentic technical & privacy audit of the testing & qa (e2e) control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
@@ -1338,13 +1338,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Testing & QA (E2E)\" sub-process of System Implementation — Enterprise?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the testing & qa (e2e) control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the testing & qa (e2e) control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for testing & qa (e2e) against comparable organisations in the sector",
             "Obtain evidence that the testing & qa (e2e) control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "sie-04-q2",
@@ -1352,13 +1352,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Testing & QA (E2E)\" matter to the broader System Implementation — Enterprise posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to System Implementation — Enterprise",
+            "It stops mattering once a firewall and endpoint agent are deployed across the System Implementation — Enterprise estate",
             "It is a control other System Implementation — Enterprise controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other System Implementation — Enterprise controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "sie-04-q3",
@@ -1366,27 +1366,27 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Testing & QA (E2E)\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the testing & qa (e2e) control (from PPM / PMO tooling) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's testing & qa (e2e) settings, captured during the walkthrough",
+            "The In-scope inventory for the testing & qa (e2e) control (from PPM / PMO tooling), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the testing & qa (e2e) control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's testing & qa (e2e) capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "sie-04-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Testing & QA (E2E)\"?",
+          "text": "Where should an auditor pull the evidence for \"Testing & QA (E2E)\"?",
           "options": [
-            "PPM / PMO tooling (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From PPM / PMO tooling and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how testing & qa (e2e) works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., PPM / PMO tooling) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. PPM / PMO tooling) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "sie-04-q5",
@@ -1394,13 +1394,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Testing & QA (E2E)\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Program / PMO leadership (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the testing & qa (e2e) control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the testing & qa (e2e) data is shared, so the accountability sits with no one in particular",
+            "Program / PMO leadership, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Program / PMO leadership owns the control data; the auditor independently verifies it."
+          "explanation": "Program / PMO leadership owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "sie-04-q6",
@@ -1408,55 +1408,55 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Testing & QA (E2E)\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "sie-04-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "sie-04-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Testing & QA (E2E)\", which is a realistic reportable finding?",
+          "text": "For \"Testing & QA (E2E)\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the testing & qa (e2e) control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the testing & qa (e2e) control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the testing & qa (e2e) control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "sie-04-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "sie-04-q10",
@@ -1464,13 +1464,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Testing & QA (E2E)\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind testing & qa (e2e), so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1482,7 +1482,7 @@ export const sysimplEnterpriseStages: StageConfig[] = [
     "title": "Implement (go-live, phased)",
     "subtitle": "Agentic technical & privacy audit of the implement (go-live, phased) control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 6,
     "valueScore": 7,
     "rank": 0,
@@ -1704,13 +1704,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Implement (go-live, phased)\" sub-process of System Implementation — Enterprise?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the implement (go-live, phased) control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the implement (go-live, phased) control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for implement (go-live, phased) against comparable organisations in the sector",
             "Obtain evidence that the implement (go-live, phased) control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "sie-05-q2",
@@ -1718,13 +1718,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Implement (go-live, phased)\" matter to the broader System Implementation — Enterprise posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to System Implementation — Enterprise",
+            "It stops mattering once a firewall and endpoint agent are deployed across the System Implementation — Enterprise estate",
             "It is a control other System Implementation — Enterprise controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other System Implementation — Enterprise controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "sie-05-q3",
@@ -1732,27 +1732,27 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Implement (go-live, phased)\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the implement (go-live, phased) control (from PPM / PMO tooling) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's implement (go-live, phased) settings, captured during the walkthrough",
+            "The In-scope inventory for the implement (go-live, phased) control (from PPM / PMO tooling), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the implement (go-live, phased) control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's implement (go-live, phased) capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "sie-05-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Implement (go-live, phased)\"?",
+          "text": "Where should an auditor pull the evidence for \"Implement (go-live, phased)\"?",
           "options": [
-            "PPM / PMO tooling (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From PPM / PMO tooling and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how implement (go-live, phased) works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., PPM / PMO tooling) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. PPM / PMO tooling) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "sie-05-q5",
@@ -1760,13 +1760,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Implement (go-live, phased)\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Program / PMO leadership (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the implement (go-live, phased) control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the implement (go-live, phased) data is shared, so the accountability sits with no one in particular",
+            "Program / PMO leadership, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Program / PMO leadership owns the control data; the auditor independently verifies it."
+          "explanation": "Program / PMO leadership owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "sie-05-q6",
@@ -1774,55 +1774,55 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Implement (go-live, phased)\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "sie-05-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "sie-05-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Implement (go-live, phased)\", which is a realistic reportable finding?",
+          "text": "For \"Implement (go-live, phased)\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the implement (go-live, phased) control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the implement (go-live, phased) control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the implement (go-live, phased) control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "sie-05-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "sie-05-q10",
@@ -1830,13 +1830,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Implement (go-live, phased)\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind implement (go-live, phased), so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -1848,7 +1848,7 @@ export const sysimplEnterpriseStages: StageConfig[] = [
     "title": "Cutover",
     "subtitle": "Agentic technical & privacy audit of the cutover control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
@@ -2070,13 +2070,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Cutover\" sub-process of System Implementation — Enterprise?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the cutover control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the cutover control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for cutover against comparable organisations in the sector",
             "Obtain evidence that the cutover control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "sie-06-q2",
@@ -2084,13 +2084,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Cutover\" matter to the broader System Implementation — Enterprise posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to System Implementation — Enterprise",
+            "It stops mattering once a firewall and endpoint agent are deployed across the System Implementation — Enterprise estate",
             "It is a control other System Implementation — Enterprise controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other System Implementation — Enterprise controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "sie-06-q3",
@@ -2098,27 +2098,27 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Cutover\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the cutover control (from PPM / PMO tooling) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's cutover settings, captured during the walkthrough",
+            "The In-scope inventory for the cutover control (from PPM / PMO tooling), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the cutover control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's cutover capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "sie-06-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Cutover\"?",
+          "text": "Where should an auditor pull the evidence for \"Cutover\"?",
           "options": [
-            "PPM / PMO tooling (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From PPM / PMO tooling and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how cutover works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., PPM / PMO tooling) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. PPM / PMO tooling) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "sie-06-q5",
@@ -2126,13 +2126,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Cutover\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Program / PMO leadership (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the cutover control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the cutover data is shared, so the accountability sits with no one in particular",
+            "Program / PMO leadership, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Program / PMO leadership owns the control data; the auditor independently verifies it."
+          "explanation": "Program / PMO leadership owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "sie-06-q6",
@@ -2140,55 +2140,55 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Cutover\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "sie-06-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "sie-06-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Cutover\", which is a realistic reportable finding?",
+          "text": "For \"Cutover\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the cutover control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the cutover control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the cutover control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "sie-06-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "sie-06-q10",
@@ -2196,13 +2196,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Cutover\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind cutover, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -2214,7 +2214,7 @@ export const sysimplEnterpriseStages: StageConfig[] = [
     "title": "Data conversion and migration",
     "subtitle": "Agentic technical & privacy audit of the data conversion and migration control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 3,
     "valueScore": 7,
     "rank": 0,
@@ -2436,13 +2436,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Data conversion and migration\" sub-process of System Implementation — Enterprise?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the data conversion and migration control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the data conversion and migration control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for data conversion and migration against comparable organisations in the sector",
             "Obtain evidence that the data conversion and migration control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "sie-07-q2",
@@ -2450,13 +2450,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Data conversion and migration\" matter to the broader System Implementation — Enterprise posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to System Implementation — Enterprise",
+            "It stops mattering once a firewall and endpoint agent are deployed across the System Implementation — Enterprise estate",
             "It is a control other System Implementation — Enterprise controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other System Implementation — Enterprise controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "sie-07-q3",
@@ -2464,27 +2464,27 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Data conversion and migration\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the data conversion and migration control (from PPM / PMO tooling) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's data conversion and migration settings, captured during the walkthrough",
+            "The In-scope inventory for the data conversion and migration control (from PPM / PMO tooling), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the data conversion and migration control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's data conversion and migration capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "sie-07-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Data conversion and migration\"?",
+          "text": "Where should an auditor pull the evidence for \"Data conversion and migration\"?",
           "options": [
-            "PPM / PMO tooling (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From PPM / PMO tooling and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how data conversion and migration works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., PPM / PMO tooling) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. PPM / PMO tooling) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "sie-07-q5",
@@ -2492,13 +2492,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Data conversion and migration\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Program / PMO leadership (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the data conversion and migration control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the data conversion and migration data is shared, so the accountability sits with no one in particular",
+            "Program / PMO leadership, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Program / PMO leadership owns the control data; the auditor independently verifies it."
+          "explanation": "Program / PMO leadership owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "sie-07-q6",
@@ -2506,55 +2506,55 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Data conversion and migration\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "sie-07-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "sie-07-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Data conversion and migration\", which is a realistic reportable finding?",
+          "text": "For \"Data conversion and migration\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the data conversion and migration control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the data conversion and migration control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the data conversion and migration control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "sie-07-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "sie-07-q10",
@@ -2562,13 +2562,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Data conversion and migration\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind data conversion and migration, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -2580,7 +2580,7 @@ export const sysimplEnterpriseStages: StageConfig[] = [
     "title": "Post-implementation support / hypercare",
     "subtitle": "Agentic technical & privacy audit of the post-implementation support / hypercare control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 6,
     "valueScore": 7,
     "rank": 0,
@@ -2802,13 +2802,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Post-implementation support / hypercare\" sub-process of System Implementation — Enterprise?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the post-implementation support / hypercare control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the post-implementation support / hypercare control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for post-implementation support / hypercare against comparable organisations in the sector",
             "Obtain evidence that the post-implementation support / hypercare control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "sie-08-q2",
@@ -2816,13 +2816,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Post-implementation support / hypercare\" matter to the broader System Implementation — Enterprise posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to System Implementation — Enterprise",
+            "It stops mattering once a firewall and endpoint agent are deployed across the System Implementation — Enterprise estate",
             "It is a control other System Implementation — Enterprise controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other System Implementation — Enterprise controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "sie-08-q3",
@@ -2830,27 +2830,27 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Post-implementation support / hypercare\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the post-implementation support / hypercare control (from PPM / PMO tooling) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's post-implementation support / hypercare settings, captured during the walkthrough",
+            "The In-scope inventory for the post-implementation support / hypercare control (from PPM / PMO tooling), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the post-implementation support / hypercare control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's post-implementation support / hypercare capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "sie-08-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Post-implementation support / hypercare\"?",
+          "text": "Where should an auditor pull the evidence for \"Post-implementation support / hypercare\"?",
           "options": [
-            "PPM / PMO tooling (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From PPM / PMO tooling and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how post-implementation support / hypercare works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., PPM / PMO tooling) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. PPM / PMO tooling) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "sie-08-q5",
@@ -2858,13 +2858,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Post-implementation support / hypercare\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Program / PMO leadership (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the post-implementation support / hypercare control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the post-implementation support / hypercare data is shared, so the accountability sits with no one in particular",
+            "Program / PMO leadership, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Program / PMO leadership owns the control data; the auditor independently verifies it."
+          "explanation": "Program / PMO leadership owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "sie-08-q6",
@@ -2872,55 +2872,55 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Post-implementation support / hypercare\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "sie-08-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "sie-08-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Post-implementation support / hypercare\", which is a realistic reportable finding?",
+          "text": "For \"Post-implementation support / hypercare\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the post-implementation support / hypercare control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the post-implementation support / hypercare control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the post-implementation support / hypercare control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "sie-08-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "sie-08-q10",
@@ -2928,13 +2928,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Post-implementation support / hypercare\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind post-implementation support / hypercare, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -2946,7 +2946,7 @@ export const sysimplEnterpriseStages: StageConfig[] = [
     "title": "Executive governance / steering",
     "subtitle": "Agentic technical & privacy audit of the executive governance / steering control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 7,
     "valueScore": 7,
     "rank": 0,
@@ -3168,13 +3168,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Executive governance / steering\" sub-process of System Implementation — Enterprise?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the executive governance / steering control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the executive governance / steering control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for executive governance / steering against comparable organisations in the sector",
             "Obtain evidence that the executive governance / steering control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "sie-09-q2",
@@ -3182,13 +3182,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Executive governance / steering\" matter to the broader System Implementation — Enterprise posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to System Implementation — Enterprise",
+            "It stops mattering once a firewall and endpoint agent are deployed across the System Implementation — Enterprise estate",
             "It is a control other System Implementation — Enterprise controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other System Implementation — Enterprise controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "sie-09-q3",
@@ -3196,27 +3196,27 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Executive governance / steering\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the executive governance / steering control (from PPM / PMO tooling) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's executive governance / steering settings, captured during the walkthrough",
+            "The In-scope inventory for the executive governance / steering control (from PPM / PMO tooling), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the executive governance / steering control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's executive governance / steering capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "sie-09-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Executive governance / steering\"?",
+          "text": "Where should an auditor pull the evidence for \"Executive governance / steering\"?",
           "options": [
-            "PPM / PMO tooling (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From PPM / PMO tooling and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how executive governance / steering works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., PPM / PMO tooling) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. PPM / PMO tooling) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "sie-09-q5",
@@ -3224,13 +3224,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Executive governance / steering\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Program / PMO leadership (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the executive governance / steering control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the executive governance / steering data is shared, so the accountability sits with no one in particular",
+            "Program / PMO leadership, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Program / PMO leadership owns the control data; the auditor independently verifies it."
+          "explanation": "Program / PMO leadership owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "sie-09-q6",
@@ -3238,55 +3238,55 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Executive governance / steering\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "sie-09-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "sie-09-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Executive governance / steering\", which is a realistic reportable finding?",
+          "text": "For \"Executive governance / steering\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the executive governance / steering control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the executive governance / steering control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the executive governance / steering control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "sie-09-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "sie-09-q10",
@@ -3294,13 +3294,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Executive governance / steering\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind executive governance / steering, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -3312,7 +3312,7 @@ export const sysimplEnterpriseStages: StageConfig[] = [
     "title": "Audit and compliance involvement",
     "subtitle": "Agentic technical & privacy audit of the audit and compliance involvement control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
@@ -3534,13 +3534,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Audit and compliance involvement\" sub-process of System Implementation — Enterprise?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the audit and compliance involvement control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the audit and compliance involvement control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for audit and compliance involvement against comparable organisations in the sector",
             "Obtain evidence that the audit and compliance involvement control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "sie-10-q2",
@@ -3548,13 +3548,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Audit and compliance involvement\" matter to the broader System Implementation — Enterprise posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to System Implementation — Enterprise",
+            "It stops mattering once a firewall and endpoint agent are deployed across the System Implementation — Enterprise estate",
             "It is a control other System Implementation — Enterprise controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other System Implementation — Enterprise controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "sie-10-q3",
@@ -3562,27 +3562,27 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Audit and compliance involvement\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the audit and compliance involvement control (from PPM / PMO tooling) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's audit and compliance involvement settings, captured during the walkthrough",
+            "The In-scope inventory for the audit and compliance involvement control (from PPM / PMO tooling), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the audit and compliance involvement control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's audit and compliance involvement capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "sie-10-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Audit and compliance involvement\"?",
+          "text": "Where should an auditor pull the evidence for \"Audit and compliance involvement\"?",
           "options": [
-            "PPM / PMO tooling (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From PPM / PMO tooling and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how audit and compliance involvement works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., PPM / PMO tooling) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. PPM / PMO tooling) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "sie-10-q5",
@@ -3590,13 +3590,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Audit and compliance involvement\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Program / PMO leadership (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the audit and compliance involvement control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the audit and compliance involvement data is shared, so the accountability sits with no one in particular",
+            "Program / PMO leadership, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Program / PMO leadership owns the control data; the auditor independently verifies it."
+          "explanation": "Program / PMO leadership owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "sie-10-q6",
@@ -3604,55 +3604,55 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Audit and compliance involvement\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "sie-10-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "sie-10-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Audit and compliance involvement\", which is a realistic reportable finding?",
+          "text": "For \"Audit and compliance involvement\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the audit and compliance involvement control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the audit and compliance involvement control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the audit and compliance involvement control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "sie-10-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "sie-10-q10",
@@ -3660,13 +3660,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Audit and compliance involvement\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind audit and compliance involvement, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -3678,7 +3678,7 @@ export const sysimplEnterpriseStages: StageConfig[] = [
     "title": "Vendor selection",
     "subtitle": "Agentic technical & privacy audit of the vendor selection control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 6,
     "valueScore": 7,
     "rank": 0,
@@ -3900,13 +3900,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Vendor selection\" sub-process of System Implementation — Enterprise?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the vendor selection control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the vendor selection control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for vendor selection against comparable organisations in the sector",
             "Obtain evidence that the vendor selection control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "sie-11-q2",
@@ -3914,13 +3914,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Vendor selection\" matter to the broader System Implementation — Enterprise posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to System Implementation — Enterprise",
+            "It stops mattering once a firewall and endpoint agent are deployed across the System Implementation — Enterprise estate",
             "It is a control other System Implementation — Enterprise controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other System Implementation — Enterprise controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "sie-11-q3",
@@ -3928,27 +3928,27 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Vendor selection\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the vendor selection control (from PPM / PMO tooling) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's vendor selection settings, captured during the walkthrough",
+            "The In-scope inventory for the vendor selection control (from PPM / PMO tooling), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the vendor selection control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's vendor selection capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "sie-11-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Vendor selection\"?",
+          "text": "Where should an auditor pull the evidence for \"Vendor selection\"?",
           "options": [
-            "PPM / PMO tooling (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From PPM / PMO tooling and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how vendor selection works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., PPM / PMO tooling) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. PPM / PMO tooling) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "sie-11-q5",
@@ -3956,13 +3956,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Vendor selection\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Program / PMO leadership (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the vendor selection control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the vendor selection data is shared, so the accountability sits with no one in particular",
+            "Program / PMO leadership, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Program / PMO leadership owns the control data; the auditor independently verifies it."
+          "explanation": "Program / PMO leadership owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "sie-11-q6",
@@ -3970,55 +3970,55 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Vendor selection\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "sie-11-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "sie-11-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Vendor selection\", which is a realistic reportable finding?",
+          "text": "For \"Vendor selection\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the vendor selection control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the vendor selection control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the vendor selection control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "sie-11-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "sie-11-q10",
@@ -4026,13 +4026,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Vendor selection\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind vendor selection, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -4044,7 +4044,7 @@ export const sysimplEnterpriseStages: StageConfig[] = [
     "title": "Contract, SLA, commercial risk",
     "subtitle": "Agentic technical & privacy audit of the contract, sla, commercial risk control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 7,
     "valueScore": 7,
     "rank": 0,
@@ -4266,13 +4266,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Contract, SLA, commercial risk\" sub-process of System Implementation — Enterprise?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the contract, sla, commercial risk control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the contract, sla, commercial risk control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for contract, sla, commercial risk against comparable organisations in the sector",
             "Obtain evidence that the contract, sla, commercial risk control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "sie-12-q2",
@@ -4280,13 +4280,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Contract, SLA, commercial risk\" matter to the broader System Implementation — Enterprise posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to System Implementation — Enterprise",
+            "It stops mattering once a firewall and endpoint agent are deployed across the System Implementation — Enterprise estate",
             "It is a control other System Implementation — Enterprise controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other System Implementation — Enterprise controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "sie-12-q3",
@@ -4294,27 +4294,27 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Contract, SLA, commercial risk\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the contract, sla, commercial risk control (from PPM / PMO tooling) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's contract, sla, commercial risk settings, captured during the walkthrough",
+            "The In-scope inventory for the contract, sla, commercial risk control (from PPM / PMO tooling), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the contract, sla, commercial risk control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's contract, sla, commercial risk capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "sie-12-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Contract, SLA, commercial risk\"?",
+          "text": "Where should an auditor pull the evidence for \"Contract, SLA, commercial risk\"?",
           "options": [
-            "PPM / PMO tooling (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From PPM / PMO tooling and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how contract, sla, commercial risk works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., PPM / PMO tooling) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. PPM / PMO tooling) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "sie-12-q5",
@@ -4322,13 +4322,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Contract, SLA, commercial risk\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Program / PMO leadership (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the contract, sla, commercial risk control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the contract, sla, commercial risk data is shared, so the accountability sits with no one in particular",
+            "Program / PMO leadership, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Program / PMO leadership owns the control data; the auditor independently verifies it."
+          "explanation": "Program / PMO leadership owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "sie-12-q6",
@@ -4336,55 +4336,55 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Contract, SLA, commercial risk\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "sie-12-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "sie-12-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Contract, SLA, commercial risk\", which is a realistic reportable finding?",
+          "text": "For \"Contract, SLA, commercial risk\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the contract, sla, commercial risk control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the contract, sla, commercial risk control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the contract, sla, commercial risk control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "sie-12-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "sie-12-q10",
@@ -4392,13 +4392,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Contract, SLA, commercial risk\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind contract, sla, commercial risk, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -4410,7 +4410,7 @@ export const sysimplEnterpriseStages: StageConfig[] = [
     "title": "Escrow agreement for source code",
     "subtitle": "Agentic technical & privacy audit of the escrow agreement for source code control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
@@ -4632,13 +4632,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Escrow agreement for source code\" sub-process of System Implementation — Enterprise?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the escrow agreement for source code control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the escrow agreement for source code control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for escrow agreement for source code against comparable organisations in the sector",
             "Obtain evidence that the escrow agreement for source code control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "sie-13-q2",
@@ -4646,13 +4646,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Escrow agreement for source code\" matter to the broader System Implementation — Enterprise posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to System Implementation — Enterprise",
+            "It stops mattering once a firewall and endpoint agent are deployed across the System Implementation — Enterprise estate",
             "It is a control other System Implementation — Enterprise controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other System Implementation — Enterprise controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "sie-13-q3",
@@ -4660,27 +4660,27 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Escrow agreement for source code\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the escrow agreement for source code control (from PPM / PMO tooling) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's escrow agreement for source code settings, captured during the walkthrough",
+            "The In-scope inventory for the escrow agreement for source code control (from PPM / PMO tooling), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the escrow agreement for source code control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's escrow agreement for source code capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "sie-13-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Escrow agreement for source code\"?",
+          "text": "Where should an auditor pull the evidence for \"Escrow agreement for source code\"?",
           "options": [
-            "PPM / PMO tooling (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From PPM / PMO tooling and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how escrow agreement for source code works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., PPM / PMO tooling) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. PPM / PMO tooling) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "sie-13-q5",
@@ -4688,13 +4688,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Escrow agreement for source code\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Program / PMO leadership (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the escrow agreement for source code control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the escrow agreement for source code data is shared, so the accountability sits with no one in particular",
+            "Program / PMO leadership, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Program / PMO leadership owns the control data; the auditor independently verifies it."
+          "explanation": "Program / PMO leadership owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "sie-13-q6",
@@ -4702,55 +4702,55 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Escrow agreement for source code\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "sie-13-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "sie-13-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Escrow agreement for source code\", which is a realistic reportable finding?",
+          "text": "For \"Escrow agreement for source code\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the escrow agreement for source code control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the escrow agreement for source code control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the escrow agreement for source code control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "sie-13-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "sie-13-q10",
@@ -4758,13 +4758,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Escrow agreement for source code\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind escrow agreement for source code, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -4776,7 +4776,7 @@ export const sysimplEnterpriseStages: StageConfig[] = [
     "title": "Business case, ROI",
     "subtitle": "Agentic technical & privacy audit of the business case, roi control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 6,
     "valueScore": 7,
     "rank": 0,
@@ -4998,13 +4998,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Business case, ROI\" sub-process of System Implementation — Enterprise?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the business case, roi control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the business case, roi control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for business case, roi against comparable organisations in the sector",
             "Obtain evidence that the business case, roi control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "sie-14-q2",
@@ -5012,13 +5012,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Business case, ROI\" matter to the broader System Implementation — Enterprise posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to System Implementation — Enterprise",
+            "It stops mattering once a firewall and endpoint agent are deployed across the System Implementation — Enterprise estate",
             "It is a control other System Implementation — Enterprise controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other System Implementation — Enterprise controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "sie-14-q3",
@@ -5026,27 +5026,27 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Business case, ROI\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the business case, roi control (from PPM / PMO tooling) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's business case, roi settings, captured during the walkthrough",
+            "The In-scope inventory for the business case, roi control (from PPM / PMO tooling), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the business case, roi control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's business case, roi capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "sie-14-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Business case, ROI\"?",
+          "text": "Where should an auditor pull the evidence for \"Business case, ROI\"?",
           "options": [
-            "PPM / PMO tooling (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From PPM / PMO tooling and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how business case, roi works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., PPM / PMO tooling) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. PPM / PMO tooling) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "sie-14-q5",
@@ -5054,13 +5054,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Business case, ROI\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Program / PMO leadership (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the business case, roi control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the business case, roi data is shared, so the accountability sits with no one in particular",
+            "Program / PMO leadership, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Program / PMO leadership owns the control data; the auditor independently verifies it."
+          "explanation": "Program / PMO leadership owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "sie-14-q6",
@@ -5068,55 +5068,55 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Business case, ROI\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "sie-14-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "sie-14-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Business case, ROI\", which is a realistic reportable finding?",
+          "text": "For \"Business case, ROI\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the business case, roi control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the business case, roi control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the business case, roi control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "sie-14-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "sie-14-q10",
@@ -5124,13 +5124,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Business case, ROI\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind business case, roi, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -5142,7 +5142,7 @@ export const sysimplEnterpriseStages: StageConfig[] = [
     "title": "Training, change mgmt, knowledge transfer",
     "subtitle": "Agentic technical & privacy audit of the training, change mgmt, knowledge transfer control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 120,
     "easeScore": 7,
     "valueScore": 6,
     "rank": 0,
@@ -5364,13 +5364,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Training, change mgmt, knowledge transfer\" sub-process of System Implementation — Enterprise?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the training, change mgmt, knowledge transfer control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the training, change mgmt, knowledge transfer control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for training, change mgmt, knowledge transfer against comparable organisations in the sector",
             "Obtain evidence that the training, change mgmt, knowledge transfer control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "sie-15-q2",
@@ -5378,13 +5378,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Training, change mgmt, knowledge transfer\" matter to the broader System Implementation — Enterprise posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to System Implementation — Enterprise",
+            "It stops mattering once a firewall and endpoint agent are deployed across the System Implementation — Enterprise estate",
             "It is a control other System Implementation — Enterprise controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other System Implementation — Enterprise controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "sie-15-q3",
@@ -5392,27 +5392,27 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Training, change mgmt, knowledge transfer\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the training, change mgmt, knowledge transfer control (from PPM / PMO tooling) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's training, change mgmt, knowledge transfer settings, captured during the walkthrough",
+            "The In-scope inventory for the training, change mgmt, knowledge transfer control (from PPM / PMO tooling), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the training, change mgmt, knowledge transfer control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's training, change mgmt, knowledge transfer capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "sie-15-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Training, change mgmt, knowledge transfer\"?",
+          "text": "Where should an auditor pull the evidence for \"Training, change mgmt, knowledge transfer\"?",
           "options": [
-            "PPM / PMO tooling (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From PPM / PMO tooling and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how training, change mgmt, knowledge transfer works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., PPM / PMO tooling) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. PPM / PMO tooling) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "sie-15-q5",
@@ -5420,13 +5420,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Training, change mgmt, knowledge transfer\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Program / PMO leadership (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the training, change mgmt, knowledge transfer control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the training, change mgmt, knowledge transfer data is shared, so the accountability sits with no one in particular",
+            "Program / PMO leadership, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Program / PMO leadership owns the control data; the auditor independently verifies it."
+          "explanation": "Program / PMO leadership owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "sie-15-q6",
@@ -5434,55 +5434,55 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Training, change mgmt, knowledge transfer\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "sie-15-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "sie-15-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Training, change mgmt, knowledge transfer\", which is a realistic reportable finding?",
+          "text": "For \"Training, change mgmt, knowledge transfer\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the training, change mgmt, knowledge transfer control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the training, change mgmt, knowledge transfer control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the training, change mgmt, knowledge transfer control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "sie-15-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "sie-15-q10",
@@ -5490,13 +5490,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Training, change mgmt, knowledge transfer\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind training, change mgmt, knowledge transfer, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -5508,7 +5508,7 @@ export const sysimplEnterpriseStages: StageConfig[] = [
     "title": "Data governance and MDM",
     "subtitle": "Agentic technical & privacy audit of the data governance and mdm control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
@@ -5730,13 +5730,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Data governance and MDM\" sub-process of System Implementation — Enterprise?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the data governance and mdm control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the data governance and mdm control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for data governance and mdm against comparable organisations in the sector",
             "Obtain evidence that the data governance and mdm control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "sie-16-q2",
@@ -5744,13 +5744,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Data governance and MDM\" matter to the broader System Implementation — Enterprise posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to System Implementation — Enterprise",
+            "It stops mattering once a firewall and endpoint agent are deployed across the System Implementation — Enterprise estate",
             "It is a control other System Implementation — Enterprise controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other System Implementation — Enterprise controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "sie-16-q3",
@@ -5758,27 +5758,27 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Data governance and MDM\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the data governance and mdm control (from PPM / PMO tooling) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's data governance and mdm settings, captured during the walkthrough",
+            "The In-scope inventory for the data governance and mdm control (from PPM / PMO tooling), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the data governance and mdm control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's data governance and mdm capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "sie-16-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Data governance and MDM\"?",
+          "text": "Where should an auditor pull the evidence for \"Data governance and MDM\"?",
           "options": [
-            "PPM / PMO tooling (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From PPM / PMO tooling and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how data governance and mdm works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., PPM / PMO tooling) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. PPM / PMO tooling) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "sie-16-q5",
@@ -5786,13 +5786,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Data governance and MDM\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Program / PMO leadership (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the data governance and mdm control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the data governance and mdm data is shared, so the accountability sits with no one in particular",
+            "Program / PMO leadership, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Program / PMO leadership owns the control data; the auditor independently verifies it."
+          "explanation": "Program / PMO leadership owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "sie-16-q6",
@@ -5800,55 +5800,55 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Data governance and MDM\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "sie-16-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "sie-16-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Data governance and MDM\", which is a realistic reportable finding?",
+          "text": "For \"Data governance and MDM\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the data governance and mdm control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the data governance and mdm control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the data governance and mdm control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "sie-16-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "sie-16-q10",
@@ -5856,13 +5856,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Data governance and MDM\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind data governance and mdm, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -5874,7 +5874,7 @@ export const sysimplEnterpriseStages: StageConfig[] = [
     "title": "Security and access control design",
     "subtitle": "Agentic technical & privacy audit of the security and access control design control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 180,
     "easeScore": 6,
     "valueScore": 9,
     "rank": 0,
@@ -6096,13 +6096,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Security and access control design\" sub-process of System Implementation — Enterprise?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the security and access control design control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the security and access control design control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for security and access control design against comparable organisations in the sector",
             "Obtain evidence that the security and access control design control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "sie-17-q2",
@@ -6110,13 +6110,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Security and access control design\" matter to the broader System Implementation — Enterprise posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to System Implementation — Enterprise",
+            "It stops mattering once a firewall and endpoint agent are deployed across the System Implementation — Enterprise estate",
             "It is a control other System Implementation — Enterprise controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other System Implementation — Enterprise controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "sie-17-q3",
@@ -6124,27 +6124,27 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Security and access control design\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the security and access control design control (from PPM / PMO tooling) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's security and access control design settings, captured during the walkthrough",
+            "The In-scope inventory for the security and access control design control (from PPM / PMO tooling), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the security and access control design control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's security and access control design capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "sie-17-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Security and access control design\"?",
+          "text": "Where should an auditor pull the evidence for \"Security and access control design\"?",
           "options": [
-            "PPM / PMO tooling (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From PPM / PMO tooling and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how security and access control design works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., PPM / PMO tooling) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. PPM / PMO tooling) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "sie-17-q5",
@@ -6152,13 +6152,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Security and access control design\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Program / PMO leadership (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the security and access control design control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the security and access control design data is shared, so the accountability sits with no one in particular",
+            "Program / PMO leadership, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Program / PMO leadership owns the control data; the auditor independently verifies it."
+          "explanation": "Program / PMO leadership owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "sie-17-q6",
@@ -6166,55 +6166,55 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Security and access control design\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "sie-17-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "sie-17-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Security and access control design\", which is a realistic reportable finding?",
+          "text": "For \"Security and access control design\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the security and access control design control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the security and access control design control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the security and access control design control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "sie-17-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "sie-17-q10",
@@ -6222,13 +6222,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Security and access control design\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind security and access control design, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -6240,7 +6240,7 @@ export const sysimplEnterpriseStages: StageConfig[] = [
     "title": "Business continuity / resilience",
     "subtitle": "Agentic technical & privacy audit of the business continuity / resilience control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 7,
     "valueScore": 7,
     "rank": 0,
@@ -6462,13 +6462,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Business continuity / resilience\" sub-process of System Implementation — Enterprise?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the business continuity / resilience control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the business continuity / resilience control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for business continuity / resilience against comparable organisations in the sector",
             "Obtain evidence that the business continuity / resilience control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "sie-18-q2",
@@ -6476,13 +6476,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Business continuity / resilience\" matter to the broader System Implementation — Enterprise posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to System Implementation — Enterprise",
+            "It stops mattering once a firewall and endpoint agent are deployed across the System Implementation — Enterprise estate",
             "It is a control other System Implementation — Enterprise controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other System Implementation — Enterprise controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "sie-18-q3",
@@ -6490,27 +6490,27 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Business continuity / resilience\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the business continuity / resilience control (from PPM / PMO tooling) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's business continuity / resilience settings, captured during the walkthrough",
+            "The In-scope inventory for the business continuity / resilience control (from PPM / PMO tooling), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the business continuity / resilience control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's business continuity / resilience capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "sie-18-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Business continuity / resilience\"?",
+          "text": "Where should an auditor pull the evidence for \"Business continuity / resilience\"?",
           "options": [
-            "PPM / PMO tooling (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From PPM / PMO tooling and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how business continuity / resilience works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., PPM / PMO tooling) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. PPM / PMO tooling) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "sie-18-q5",
@@ -6518,13 +6518,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Business continuity / resilience\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Program / PMO leadership (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the business continuity / resilience control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the business continuity / resilience data is shared, so the accountability sits with no one in particular",
+            "Program / PMO leadership, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Program / PMO leadership owns the control data; the auditor independently verifies it."
+          "explanation": "Program / PMO leadership owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "sie-18-q6",
@@ -6532,55 +6532,55 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Business continuity / resilience\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "sie-18-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "sie-18-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Business continuity / resilience\", which is a realistic reportable finding?",
+          "text": "For \"Business continuity / resilience\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the business continuity / resilience control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the business continuity / resilience control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the business continuity / resilience control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "sie-18-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "sie-18-q10",
@@ -6588,13 +6588,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Business continuity / resilience\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind business continuity / resilience, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -6606,7 +6606,7 @@ export const sysimplEnterpriseStages: StageConfig[] = [
     "title": "Regulatory / compliance alignment",
     "subtitle": "Agentic technical & privacy audit of the regulatory / compliance alignment control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
@@ -6828,13 +6828,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Regulatory / compliance alignment\" sub-process of System Implementation — Enterprise?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the regulatory / compliance alignment control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the regulatory / compliance alignment control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for regulatory / compliance alignment against comparable organisations in the sector",
             "Obtain evidence that the regulatory / compliance alignment control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "sie-19-q2",
@@ -6842,13 +6842,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Regulatory / compliance alignment\" matter to the broader System Implementation — Enterprise posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to System Implementation — Enterprise",
+            "It stops mattering once a firewall and endpoint agent are deployed across the System Implementation — Enterprise estate",
             "It is a control other System Implementation — Enterprise controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other System Implementation — Enterprise controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "sie-19-q3",
@@ -6856,27 +6856,27 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Regulatory / compliance alignment\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the regulatory / compliance alignment control (from PPM / PMO tooling) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's regulatory / compliance alignment settings, captured during the walkthrough",
+            "The In-scope inventory for the regulatory / compliance alignment control (from PPM / PMO tooling), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the regulatory / compliance alignment control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's regulatory / compliance alignment capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "sie-19-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Regulatory / compliance alignment\"?",
+          "text": "Where should an auditor pull the evidence for \"Regulatory / compliance alignment\"?",
           "options": [
-            "PPM / PMO tooling (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From PPM / PMO tooling and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how regulatory / compliance alignment works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., PPM / PMO tooling) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. PPM / PMO tooling) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "sie-19-q5",
@@ -6884,13 +6884,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Regulatory / compliance alignment\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Program / PMO leadership (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the regulatory / compliance alignment control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the regulatory / compliance alignment data is shared, so the accountability sits with no one in particular",
+            "Program / PMO leadership, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Program / PMO leadership owns the control data; the auditor independently verifies it."
+          "explanation": "Program / PMO leadership owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "sie-19-q6",
@@ -6898,55 +6898,55 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Regulatory / compliance alignment\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "sie-19-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "sie-19-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Regulatory / compliance alignment\", which is a realistic reportable finding?",
+          "text": "For \"Regulatory / compliance alignment\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the regulatory / compliance alignment control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the regulatory / compliance alignment control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the regulatory / compliance alignment control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "sie-19-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "sie-19-q10",
@@ -6954,13 +6954,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Regulatory / compliance alignment\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind regulatory / compliance alignment, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -6972,7 +6972,7 @@ export const sysimplEnterpriseStages: StageConfig[] = [
     "title": "Infra and capacity planning",
     "subtitle": "Agentic technical & privacy audit of the infra and capacity planning control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 6,
     "valueScore": 7,
     "rank": 0,
@@ -7194,13 +7194,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"Infra and capacity planning\" sub-process of System Implementation — Enterprise?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the infra and capacity planning control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the infra and capacity planning control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for infra and capacity planning against comparable organisations in the sector",
             "Obtain evidence that the infra and capacity planning control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "sie-20-q2",
@@ -7208,13 +7208,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"Infra and capacity planning\" matter to the broader System Implementation — Enterprise posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to System Implementation — Enterprise",
+            "It stops mattering once a firewall and endpoint agent are deployed across the System Implementation — Enterprise estate",
             "It is a control other System Implementation — Enterprise controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other System Implementation — Enterprise controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "sie-20-q3",
@@ -7222,27 +7222,27 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"Infra and capacity planning\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the infra and capacity planning control (from PPM / PMO tooling) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's infra and capacity planning settings, captured during the walkthrough",
+            "The In-scope inventory for the infra and capacity planning control (from PPM / PMO tooling), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the infra and capacity planning control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's infra and capacity planning capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "sie-20-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"Infra and capacity planning\"?",
+          "text": "Where should an auditor pull the evidence for \"Infra and capacity planning\"?",
           "options": [
-            "PPM / PMO tooling (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From PPM / PMO tooling and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how infra and capacity planning works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., PPM / PMO tooling) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. PPM / PMO tooling) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "sie-20-q5",
@@ -7250,13 +7250,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"Infra and capacity planning\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Program / PMO leadership (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the infra and capacity planning control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the infra and capacity planning data is shared, so the accountability sits with no one in particular",
+            "Program / PMO leadership, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Program / PMO leadership owns the control data; the auditor independently verifies it."
+          "explanation": "Program / PMO leadership owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "sie-20-q6",
@@ -7264,55 +7264,55 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"Infra and capacity planning\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "sie-20-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "sie-20-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Infra and capacity planning\", which is a realistic reportable finding?",
+          "text": "For \"Infra and capacity planning\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the infra and capacity planning control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the infra and capacity planning control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the infra and capacity planning control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "sie-20-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "sie-20-q10",
@@ -7320,13 +7320,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"Infra and capacity planning\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind infra and capacity planning, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
@@ -7338,7 +7338,7 @@ export const sysimplEnterpriseStages: StageConfig[] = [
     "title": "PIR / lessons learned",
     "subtitle": "Agentic technical & privacy audit of the pir / lessons learned control",
     "category": "cybersecurity",
-    "xp": 100,
+    "xp": 140,
     "easeScore": 7,
     "valueScore": 7,
     "rank": 0,
@@ -7560,13 +7560,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Control objective",
           "text": "What is the primary audit objective for the \"PIR / lessons learned\" sub-process of System Implementation — Enterprise?",
           "options": [
-            "Re-implement the control on the auditor's behalf",
-            "Increase the number of tools the team uses",
-            "Replace the system owner's judgement entirely",
+            "Deploy and operate the pir / lessons learned control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the pir / lessons learned control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for pir / lessons learned against comparable organisations in the sector",
             "Obtain evidence that the pir / lessons learned control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
-          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
         },
         {
           "id": "sie-21-q2",
@@ -7574,13 +7574,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Materiality",
           "text": "Why does a weakness in \"PIR / lessons learned\" matter to the broader System Implementation — Enterprise posture?",
           "options": [
-            "It is relevant solely for marketing",
-            "It has no effect once a firewall exists",
+            "It mainly affects how the annual compliance report reads, rather than the actual risk to System Implementation — Enterprise",
+            "It stops mattering once a firewall and endpoint agent are deployed across the System Implementation — Enterprise estate",
             "It is a control other System Implementation — Enterprise controls depend on, so a gap here propagates risk into everything scoped to it",
-            "It only affects documentation aesthetics"
+            "It is a stand-alone control, so a gap stays contained and does not affect the other System Implementation — Enterprise controls"
           ],
           "correctIndex": 2,
-          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+          "explanation": "Foundational controls are load-bearing; their failure quietly undermines every control layered on top of them."
         },
         {
           "id": "sie-21-q3",
@@ -7588,27 +7588,27 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Evidence",
           "text": "Which artifact best evidences the \"PIR / lessons learned\" control?",
           "options": [
-            "The vendor's marketing datasheet",
-            "The In-scope inventory for the pir / lessons learned control (from PPM / PMO tooling) reconciled against policy, plus the resulting findings working paper",
-            "A verbal assurance from the team lead",
-            "A screenshot of the login page"
+            "A point-in-time screenshot of one system's pir / lessons learned settings, captured during the walkthrough",
+            "The In-scope inventory for the pir / lessons learned control (from PPM / PMO tooling), reconciled against policy, plus the resulting findings working paper",
+            "A signed management attestation that the pir / lessons learned control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's pir / lessons learned capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
-          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+          "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
         },
         {
           "id": "sie-21-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where would an auditor pull the evidence for \"PIR / lessons learned\"?",
+          "text": "Where should an auditor pull the evidence for \"PIR / lessons learned\"?",
           "options": [
-            "PPM / PMO tooling (and the other systems of record for this domain), accessed read-only",
-            "Only from a spreadsheet emailed by a manager",
-            "From social media",
-            "From the auditor's memory of last year"
+            "From PPM / PMO tooling and the other systems of record for this domain, accessed read-only",
+            "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
+            "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
+            "From an informal summary the team posted to the internal wiki describing how pir / lessons learned works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence comes from the authoritative systems (e.g., PPM / PMO tooling) via read-only access."
+          "explanation": "Evidence must come from the authoritative systems (e.g. PPM / PMO tooling) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "sie-21-q5",
@@ -7616,13 +7616,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Accountability",
           "text": "Who is most likely accountable for the data behind \"PIR / lessons learned\"?",
           "options": [
-            "The external auditor",
-            "No one — it is ownerless",
-            "The end customer",
-            "Program / PMO leadership (with related functions attesting their part)"
+            "The external audit firm, since it is the party examining the pir / lessons learned control this period",
+            "Whoever most recently changed the configuration, regardless of their role or formal accountability",
+            "No single function — the pir / lessons learned data is shared, so the accountability sits with no one in particular",
+            "Program / PMO leadership, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Program / PMO leadership owns the control data; the auditor independently verifies it."
+          "explanation": "Program / PMO leadership owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "sie-21-q6",
@@ -7630,55 +7630,55 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "Human vs agent",
           "text": "In the agentic workflow for \"PIR / lessons learned\", which part stays with the human auditor?",
           "options": [
-            "Nothing; the agent decides materiality",
-            "Only installing dependencies",
-            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
-            "Issuing the final audit opinion autonomously"
+            "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
+            "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
+            "Setting the policy and thresholds, reviewing the findings, and signing the opinion — the agent only gathers and correlates the evidence",
+            "Issuing the final audit opinion automatically as soon as the agent's evidence-gathering run completes"
           ],
           "correctIndex": 2,
-          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+          "explanation": "Agents gather and correlate evidence at machine speed; the human owns the policy, the judgement, and the signed opinion."
         },
         {
           "id": "sie-21-q7",
           "type": "Tooling",
           "challenge": "Read-only",
-          "text": "Why must the MCP server for this module be read-only?",
+          "text": "Why must the MCP server for this module be strictly read-only?",
           "options": [
-            "So it can run without any credentials",
-            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
-            "Read-only servers are simply faster",
-            "MCP cannot perform writes"
+            "The MCP protocol is technically incapable of performing any write operation against a target system",
+            "Audit tooling must never alter the audited environment, so read-only guarantees that running it cannot change any state",
+            "Read-only is simply the only access level the source-system owners were willing to grant the audit team",
+            "Write access would slow the evidence collection down, so read-only is chosen mainly for better performance"
           ],
           "correctIndex": 1,
-          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools — not a permissions accident, a speed choice, or a protocol limitation."
         },
         {
           "id": "sie-21-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"PIR / lessons learned\", which is a realistic reportable finding?",
+          "text": "For \"PIR / lessons learned\", which of these is a realistic reportable finding?",
           "options": [
             "In-scope items where the pir / lessons learned control is not applied, mis-scoped, or has drifted from the approved baseline",
-            "The control exists and operates as designed for every in-scope item",
-            "The team uses a popular commercial vendor",
-            "A new feature shipped on schedule"
+            "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
+            "The team has adopted a leading commercial platform that is widely used to support this control area",
+            "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the pir / lessons learned control is not applied, mis-scoped, or has drifted from the approved baseline"
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the pir / lessons learned control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "sie-21-q9",
           "type": "Deliverable",
           "challenge": "The opinion",
-          "text": "How does the coverage report escalate its opinion?",
+          "text": "How does the coverage report decide its overall opinion?",
           "options": [
-            "It is always PASS to avoid conflict",
-            "Randomly each run",
-            "Only the asset count is reported, never an opinion",
-            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+            "It returns PASS by default unless the system owner formally disputes the underlying evidence in writing",
+            "It assigns the opinion at random on each run, to avoid any bias in how the findings are presented",
+            "It reports only the total count of in-scope assets and deliberately never renders an overall opinion",
+            "It escalates PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of the in-scope gaps increase"
           ],
           "correctIndex": 3,
-          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+          "explanation": "The opinion is a deterministic function of how many in-scope items fail the test and how severely."
         },
         {
           "id": "sie-21-q10",
@@ -7686,13 +7686,13 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "challenge": "The data angle",
           "text": "Why does auditing \"PIR / lessons learned\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators never look at this domain",
-            "It only matters for public data",
-            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
-            "Privacy is unrelated to technical controls"
+            "Regulators review only written policy documents, never the technical controls behind pir / lessons learned, so there is no overlap",
+            "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
+            "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
+            "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
           ],
           "correctIndex": 2,
-          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+          "explanation": "Security and privacy ride on the same technical controls — a gap here is frequently a compliance and privacy gap as well."
         }
       ]
     }
