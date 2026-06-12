@@ -23,6 +23,18 @@ export default async function AuditLanding() {
   const tier = await getUserTier(username);
   if (tier === "free" && !isAdminUser(username)) return <AuditGate reason="pro" />;
 
+  // Each domain's score = the average of its modules' (ease + value). Domains are
+  // ranked by that average and listed best-first.
+  const domainStats = auditEpochs
+    .map((epoch) => {
+      const modules = auditStagesForEpoch(epoch.id);
+      const n = Math.max(modules.length, 1);
+      const avgEase = modules.reduce((s, m) => s + (m.easeScore ?? 0), 0) / n;
+      const avgValue = modules.reduce((s, m) => s + (m.valueScore ?? 0), 0) / n;
+      return { epoch, modules, avgEase, avgValue, avgCombined: avgEase + avgValue };
+    })
+    .sort((a, b) => b.avgCombined - a.avgCombined);
+
   return (
     <div
       className="min-h-screen px-4 py-12"
@@ -49,34 +61,55 @@ export default async function AuditLanding() {
           together by ease of implementation and audit value.
         </p>
 
-        <div className="mt-10 grid gap-4 sm:grid-cols-2">
-          {auditEpochs.map((epoch) => {
-            const modules = auditStagesForEpoch(epoch.id);
-            return (
-              <Link
-                key={epoch.id}
-                href={`/audit/${epoch.id}`}
-                className="group rounded-2xl border border-violet-500/25 bg-white/[0.03] p-6 transition-all hover:border-violet-400/60 hover:bg-violet-500/[0.06]"
-              >
-                <div className="flex items-start gap-4">
-                  <div className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-violet-500/15 text-2xl">
-                    {epoch.emoji}
-                  </div>
-                  <div className="min-w-0">
-                    <h2 className="text-lg font-bold text-white group-hover:text-violet-200">{epoch.name}</h2>
-                    <p className="mt-0.5 text-sm text-gray-400">{epoch.subtitle}</p>
-                  </div>
-                </div>
-                <p className="mt-4 text-sm leading-relaxed text-gray-400 line-clamp-3">{epoch.description}</p>
-                <div className="mt-4 flex items-center justify-between text-xs">
-                  <span className="rounded-full bg-violet-500/10 px-2.5 py-1 font-semibold text-violet-200">
-                    {modules.length} module{modules.length === 1 ? "" : "s"}
+        <div className="mt-8 mb-3 flex items-center justify-between gap-3">
+          <p className="text-xs font-semibold uppercase tracking-wider text-violet-300/70">
+            Domains, ranked by average module score (ease + value)
+          </p>
+          <Link
+            href="/audit/ranked"
+            className="shrink-0 rounded-lg border border-violet-400/40 bg-violet-500/10 px-2.5 py-1 text-[11px] font-semibold text-violet-200 transition-colors hover:bg-violet-500/20"
+          >
+            ↕ All modules ranked →
+          </Link>
+        </div>
+        <div className="grid gap-4 sm:grid-cols-2">
+          {domainStats.map(({ epoch, modules, avgEase, avgValue, avgCombined }, i) => (
+            <Link
+              key={epoch.id}
+              href={`/audit/${epoch.id}`}
+              className="group rounded-2xl border border-violet-500/25 bg-white/[0.03] p-6 transition-all hover:border-violet-400/60 hover:bg-violet-500/[0.06]"
+            >
+              <div className="flex items-start gap-4">
+                <div className="relative grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-violet-500/15 text-2xl">
+                  {epoch.emoji}
+                  <span className="absolute -left-2 -top-2 grid h-6 w-6 place-items-center rounded-full bg-violet-500 text-[11px] font-black text-white ring-2 ring-[#160f24]">
+                    {i + 1}
                   </span>
-                  <span className="text-violet-300 group-hover:translate-x-0.5 transition-transform">Open →</span>
                 </div>
-              </Link>
-            );
-          })}
+                <div className="min-w-0">
+                  <h2 className="text-lg font-bold text-white group-hover:text-violet-200">{epoch.name}</h2>
+                  <p className="mt-0.5 text-sm text-gray-400">{epoch.subtitle}</p>
+                </div>
+                <div className="ml-auto shrink-0 text-right">
+                  <div className="text-xl font-black text-violet-200">{avgCombined.toFixed(1)}</div>
+                  <div className="text-[10px] uppercase tracking-wide text-gray-500">avg /20</div>
+                </div>
+              </div>
+              <p className="mt-4 text-sm leading-relaxed text-gray-400 line-clamp-2">{epoch.description}</p>
+              <div className="mt-4 flex flex-wrap items-center gap-2 text-xs">
+                <span className="rounded-full bg-violet-500/10 px-2.5 py-1 font-semibold text-violet-200">
+                  {modules.length} module{modules.length === 1 ? "" : "s"}
+                </span>
+                <span className="rounded-md bg-emerald-500/10 px-2 py-1 font-semibold text-emerald-300">
+                  Ease {avgEase.toFixed(1)}
+                </span>
+                <span className="rounded-md bg-amber-500/10 px-2 py-1 font-semibold text-amber-300">
+                  Value {avgValue.toFixed(1)}
+                </span>
+                <span className="ml-auto text-violet-300 group-hover:translate-x-0.5 transition-transform">Open →</span>
+              </div>
+            </Link>
+          ))}
         </div>
 
         <p className="mt-10 text-xs text-gray-500">
