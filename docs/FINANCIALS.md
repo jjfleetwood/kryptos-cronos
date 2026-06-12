@@ -1,9 +1,9 @@
 # Kryptós CronOS — Company Financials
 **Entity:** Bolotin Enterprises, Inc. (Delaware C-Corp)  
-**EIN:** ✅ Received  
-**Founded:** May 26, 2026  
-**Platform version:** v1.19.1  
-**Last updated:** 2026-05-29
+**EIN:** 42-2792891  
+**Founded:** May 23, 2026  
+**Platform version:** v1.45.0  
+**Last reviewed:** 2026-06-12 &nbsp;·&nbsp; *headline facts (entity, EIN, version) reconciled to the live product; founder to confirm the cash figures below.*
 
 ---
 

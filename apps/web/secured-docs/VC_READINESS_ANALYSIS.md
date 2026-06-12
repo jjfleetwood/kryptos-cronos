@@ -2,8 +2,9 @@
 
 **Classification:** Internal — Founder Reference  
 **Date:** 2026-06-08  
+**Last reviewed:** 2026-06-12  
 **Version:** 4.1  
-**Prepared by:** Full codebase + business-document audit (fourth pass, post v1.43.0) — now incorporating the two-product strategy
+**Prepared by:** Full codebase + business-document audit (fourth pass, post v1.45.0) — now incorporating the two-product strategy and the gated Advanced Audit track
 
 > This is a harsh document. It is designed to simulate the questions a sharp partner at a cybersecurity-focused VC will ask in a first meeting. Every weakness listed here is something they will find. Better you find it first.
 

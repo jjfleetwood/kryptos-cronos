@@ -1,6 +1,6 @@
 # Kryptós CronOS
 ## Investor Briefing & Commercial Opportunity
-**Confidential — May 2026**
+**Confidential — May 2026** &nbsp;·&nbsp; **Last reviewed:** 2026-06-12
 
 ---
 

@@ -67,5 +67,35 @@ try {
   cleanup();
 }
 
+// ── 3. review-stamp freshness ────────────────────────────────────────────────────
+// Every current-facts doc must carry a recent `**Last reviewed:** YYYY-MM-DD` stamp
+// so the founder can trust they're reading current VC/business/technical data.
+// Report-only: staleness is judgement work (a human or the docs Claude subagent
+// re-verifies the figures and re-stamps) — we never auto-stamp an unreviewed doc.
+const STALE_DAYS = 45;
+const now = Date.now();
+let stale = 0, unstamped = 0;
+for (const f of mdFiles) {
+  if (HISTORY.has(f)) continue;
+  const txt = readFileSync(join(DOCS, f), "utf8");
+  // Newest date near a "reviewed/updated/date" label anywhere in the doc.
+  const dates = [...txt.matchAll(/(?:last reviewed|last updated|date)\b[^\n\d]{0,6}(\d{4}-\d{2}-\d{2})/gi)].map((m) => m[1]);
+  if (!dates.length) {
+    unstamped++;
+    c.add("medium", `docs/${f}`, "", "doc-no-review-stamp",
+      `docs/${f}: no "Last reviewed" date stamp`,
+      `docs/${f} carries no \`**Last reviewed:** YYYY-MM-DD\` stamp, so there's no signal whether its facts are current. Fix: re-verify the doc against the live product, then add/update the stamp at the top.`);
+    continue;
+  }
+  const newest = dates.sort().at(-1);
+  const ageDays = Math.floor((now - Date.parse(newest)) / 86400000);
+  if (ageDays > STALE_DAYS) {
+    stale++;
+    c.add("medium", `docs/${f}`, "", "doc-stale-review",
+      `docs/${f}: last reviewed ${ageDays} days ago (${newest})`,
+      `docs/${f} was last reviewed ${ageDays} days ago — past the ${STALE_DAYS}-day freshness window. Re-verify its figures (version, counts, financials, status) against the live product and re-stamp \`**Last reviewed:** <today>\`. Business/VC docs are highest priority.`);
+  }
+}
+
 if (FIX) console.log(`✓ Docs --fix: ${synced} file(s) re-synced + counts reconciled.`);
-await report({ agent: "docs", icon: "📚", label: "Docs", findings: c.findings, low: c.low, scope: { docs: mdFiles.length } });
+await report({ agent: "docs", icon: "📚", label: "Docs", findings: c.findings, low: c.low, scope: { docs: mdFiles.length, stale, unstamped } });
