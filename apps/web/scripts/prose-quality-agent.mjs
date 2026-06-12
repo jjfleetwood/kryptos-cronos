@@ -1,10 +1,14 @@
 #!/usr/bin/env node
-// Format Drift Agent — flags inline enumerations in stage prose that would read
-// better as "- " bullet lists (house style). Conservative: caps cards at the 8
-// worst offenders; everything else aggregates into the summary.
-//   Dry run:  node scripts/format-agent.mjs
-//   Report:   AGENT_REPORT_URL=… AGENT_REPORT_TOKEN=… node scripts/format-agent.mjs --report
-//   Fix:      node scripts/format-agent.mjs --fix   (supervised write-mode)
+// Prose Quality Agent — the merged stage-prose linter (former Format Drift +
+// Content Depth agents). Two checks over every stage's prose, one transpile, one
+// board label:
+//   1. FORMAT — inline enumerations ("Lead: a, b, c, and d") that read better as
+//      "- " bullet lists (house style). Supports a supervised --fix write-mode.
+//   2. DEPTH  — overviews still in the terse bulleted format, or too thin, rolled
+//      up per epoch so it points at the next epoch to deepen.
+//   Dry run:  node scripts/prose-quality-agent.mjs
+//   Report:   AGENT_REPORT_URL=… AGENT_REPORT_TOKEN=… node scripts/prose-quality-agent.mjs --report
+//   Fix:      node scripts/prose-quality-agent.mjs --fix   (supervised write-mode)
 //
 // --fix (Phase 2 write-mode, approved 2026-06-09): deterministically converts the
 // highest-confidence inline lists to bullets ON A BRANCH and opens a PR via gh.
@@ -18,15 +22,16 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { loadStages, makeCollector, report, walk, ROOT } from "./_agent-lib.mjs";
 
-// High-confidence signal only: a COLON followed by >=3 commas and an "and"/"or"
+const FIX = process.argv.includes("--fix");
+const MAX_FIXES = 10;
+const TECH = new Set(["cybersecurity", "ai", "owasp"]);
+
+// High-confidence FORMAT signal: a COLON followed by >=3 commas and an "and"/"or"
 // within one sentence — i.e. "X: a, b, c, and d". A colon is strong list-intent;
 // requiring it avoids flagging ordinary enumerative prose.
 const CUE = /:\s+[^.\n]*?,[^.\n]*?,[^.\n]*?,[^.\n]*?,[^.\n]*?\b(and|or)\b/i;
 
-const FIX = process.argv.includes("--fix");
-const MAX_FIXES = 10;
-
-const { stages, cleanup } = loadStages("format_agent");
+const { stages, cleanup } = loadStages("prose_quality");
 const c = makeCollector();
 
 function paragraphs(s) {
@@ -77,7 +82,7 @@ function applyFixes() {
   }
   const files = walk(resolve(ROOT, "packages/core/src"), [".ts"]);
   const sources = new Map(files.map((f) => [f, readFileSync(f, "utf8")]));
-  const fixes = []; // { file, stageId, oldLit, newLit }
+  const fixes = []; // { file, stageId }
   for (const s of stages) {
     for (const p of paragraphs(s)) {
       if (fixes.length >= MAX_FIXES) break;
@@ -112,18 +117,18 @@ function applyFixes() {
     process.exitCode = 1;
     return null;
   }
-  const branch = `agent/format-normalize-${new Date().toISOString().slice(0, 16).replace(/[-:T]/g, "")}`;
+  const branch = `agent/prose-normalize-${new Date().toISOString().slice(0, 16).replace(/[-:T]/g, "")}`;
   const stageList = [...new Set(fixes.map((x) => x.stageId))].join(", ");
   let prUrl = "";
   try {
     sh(`git checkout -b ${branch}`);
     sh("git add packages/core/src");
-    sh(`git commit -m "Format agent: bullet-normalize ${fixes.length} inline list(s) (${stageList})"`);
+    sh(`git commit -m "Prose Quality agent: bullet-normalize ${fixes.length} inline list(s) (${stageList})"`);
     sh(`git push -u origin ${branch}`);
     prUrl = sh(
       `gh pr create --base master --head ${branch} ` +
-      `--title "Format agent: bullet-normalize ${fixes.length} inline list(s)" ` +
-      `--body "Deterministic house-style normalization by the Format Drift Agent (supervised write-mode). Stages: ${stageList}. Core tsc passed before this PR was opened. Human review + merge required — the agent never merges."`,
+      `--title "Prose Quality agent: bullet-normalize ${fixes.length} inline list(s)" ` +
+      `--body "Deterministic house-style normalization by the Prose Quality Agent (supervised write-mode). Stages: ${stageList}. Core tsc passed before this PR was opened. Human review + merge required — the agent never merges."`,
     );
   } catch (e) {
     console.error(`✗ branch/PR step failed: ${e.message} — restoring master.`);
@@ -137,11 +142,12 @@ function applyFixes() {
 }
 
 try {
+  // ── Check 1: FORMAT — inline enumerations that should be bullets ──────────────
   const perStage = [];
-  let total = 0, affected = 0;
+  let totalLists = 0, affected = 0;
   for (const s of stages) {
     const n = countCandidates(s);
-    if (n > 0) { perStage.push([s, n]); total += n; affected++; }
+    if (n > 0) { perStage.push([s, n]); totalLists += n; affected++; }
   }
   perStage.sort((a, b) => b[1] - a[1]);
   perStage.slice(0, 8).forEach(([s, n]) =>
@@ -153,11 +159,37 @@ try {
   if (FIX) pr = applyFixes();
   if (pr) {
     c.add("medium", pr.branch, "", "normalization-pr",
-      `Format normalization PR: ${pr.count} paragraph(s) bulleted`,
+      `Prose normalization PR: ${pr.count} paragraph(s) bulleted`,
       `Supervised write-mode run. PR: ${pr.prUrl} (stages: ${pr.stageList}). Review + merge is a human action.`);
   }
 
-  await report({ agent: "format", icon: "🧹", label: "Format Drift", findings: c.findings, low: c.low, scope: { stages: stages.length, affected, total } });
+  // ── Check 2: DEPTH — terse/thin overviews, rolled up per epoch ────────────────
+  const byEpoch = {};
+  for (const s of stages) {
+    const ov = Array.isArray(s.info?.overview) ? s.info.overview.map(String) : [];
+    if (!ov.length) continue;
+    const bulletedParas = ov.filter((p) => p.includes("\n- ")).length;
+    const chars = ov.join(" ").replace(/\s+/g, " ").length;
+    const terse = bulletedParas >= 2;                 // 2+ bulleted paragraphs = old terse format
+    const thin = TECH.has(s.category) && chars < 600;
+    if (!terse && !thin) continue;
+    byEpoch[s.epochId] ??= { terse: 0, thin: 0 };
+    if (terse) byEpoch[s.epochId].terse++;
+    if (thin) byEpoch[s.epochId].thin++;
+    c.add("low", s.id, s.epochId, terse ? "overview-bulleted" : "overview-thin", "", "");
+  }
+  for (const [ep, v] of Object.entries(byEpoch)) {
+    if (v.terse + v.thin >= 4) {
+      c.add("medium", ep, ep, "prose-depth", `${ep}: ${v.terse} terse/bulleted + ${v.thin} thin overview(s)`,
+        `In ${ep}, ${v.terse} stage overview(s) are still in the terse bulleted format (2+ "\\n- " paragraphs) and ${v.thin} are thin (<600 chars). The house standard is sustained narrative prose that threads the epoch's argument (see the deepened quantum epochs). Fix: rewrite the flagged overviews into connected prose. Run \`node apps/web/scripts/prose-quality-agent.mjs\` (dry) for the per-stage list.`);
+    }
+  }
+
+  await report({
+    agent: "prose-quality", icon: "✍️", label: "Prose Quality",
+    findings: c.findings, low: c.low,
+    scope: { stages: stages.length, listsAffected: affected, inlineLists: totalLists, depthEpochs: Object.keys(byEpoch).length },
+  });
 } finally {
   cleanup();
 }

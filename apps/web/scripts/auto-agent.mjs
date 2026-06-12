@@ -60,7 +60,7 @@ const EXECUTORS = {
   "count-drift-epochs": { cmd: "node apps/web/scripts/drift-agent.mjs --fix", paths: "packages/core/src",                          slug: "count-epochs", title: "reconcile epoch-count drift" },
   "secured-docs-drift": { cmd: "node apps/web/scripts/docs-agent.mjs --fix",  paths: "docs apps/web/secured-docs",                 slug: "docs-sync",    title: "sync secured-docs" },
   "doc-count-drift":    { cmd: "node apps/web/scripts/docs-agent.mjs --fix",  paths: "docs apps/web/secured-docs",                 slug: "doc-counts",   title: "reconcile doc-count drift" },
-  "inline-list":        { selfPR: true, cmd: "node apps/web/scripts/format-agent.mjs --fix",                                       slug: "format",       title: "bullet-normalize inline lists" },
+  "inline-list":        { selfPR: true, cmd: "node apps/web/scripts/prose-quality-agent.mjs --fix",                                 slug: "prose-quality", title: "bullet-normalize inline lists" },
 };
 
 function executorFor(it) {

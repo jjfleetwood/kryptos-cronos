@@ -21,7 +21,7 @@ This is the **Generation / Integration / Amplification** discipline from the Aud
 
 ```
  nightly reporters ──▶ Development board ──▶ tier triage ──▶ hourly programming agent
- (11 deterministic     (scrum:items)         (AUTO vs HUMAN)   (clears the safe subset → PR)
+ (10 deterministic     (scrum:items)         (AUTO vs HUMAN)   (clears the safe subset → PR)
   + nightly Claude          │
   subagents) ───────────────┘ (judgement work → board findings / focused PRs)
 ```
@@ -30,29 +30,28 @@ The **Development scrum board** (admin page → "Development", Redis `scrum:item
 
 ---
 
-## 1. The nightly report-only fleet (11 deterministic agents)
+## 1. The nightly report-only fleet (10 deterministic agents)
 
-Runs every night at **07:00 UTC** via `.github/workflows/test-agent.yml`, posting findings to `/api/agent/report`. All eleven are read-only. Each scopes its own dedup / auto-resolve / sweep-summary by `initiator = agent:<name>`, so they never step on each other. Shared plumbing lives in `_agent-lib.mjs` (`loadStages` / `makeCollector` / `walk` / `report`).
+Runs every night at **07:00 UTC** via `.github/workflows/test-agent.yml`, posting findings to `/api/agent/report`. All ten are read-only. Each scopes its own dedup / auto-resolve / sweep-summary by `initiator = agent:<name>`, so they never step on each other. Shared plumbing lives in `_agent-lib.mjs` (`loadStages` / `makeCollector` / `walk` / `report`).
 
 | Agent | Script | What it checks |
 |---|---|---|
 | **🧪 Deep Testing** | `test-agent.mjs` | Every quiz (unanswerable `correctIndex`, ambiguous duplicate option text, missing fields, duplicate qids, thin banks) and every CTF (mirrors `validate-ctf`). |
 | **📝 Content Integrity** | `content-agent.mjs` | Duplicate stage/badge ids, missing badges, empty overview/takeaways, broken/missing references, quiz answer-length bias + thin pools. |
 | **🩺 Code Health** | `code-health-agent.mjs` | Oversized files, `TODO`/`FIXME` debt, stray `console.log`, `any`-casts. |
-| **🧹 Format Drift** | `format-agent.mjs` | Colon-led 5+ item inline lists that should be house-style bullets. (Also a write-mode — §3.) |
+| **✍️ Prose Quality** | `prose-quality-agent.mjs` | Two prose checks in one pass: colon-led 5+ item inline lists that should be house-style bullets (also a write-mode — §3), **and** overviews still in the terse bulleted format or too thin, rolled up per epoch to drive the prose-deepening work. (Merged from the former Format Drift + Content Depth agents.) |
 | **🌐 i18n Coverage** | `i18n-agent.mjs` | Missing / orphaned locale keys across the 7 locales vs. English. |
 | **🧭 Content Drift** | `drift-agent.mjs` | `stages-meta` freshness (the CI `check:meta` build-blocker) + headline stage/epoch count drift across the app + 7 locales. (`--fix` regenerates meta.) |
 | **📚 Docs** | `docs-agent.mjs` | Every `docs/*.md` vs. its `apps/web/secured-docs/` copy + stale headline counts (history files excluded). (`--fix` re-syncs.) |
 | **🗂️ Curriculum Structure** | `curriculum-agent.mjs` | Orphan epochs (in no track group → hidden from nav), CTF stages with no flag (→ unsolvable), epochs with `ctf.extraCommands` but no `LOADERS` entry (→ terminal commands silently fail), stale flags. |
 | **🖼️ Image Integrity** | `image-agent.mjs` | `STAGE_IMAGES` entries pointing at missing files (→ broken cover), oversized images, and the on-generated-cover coverage stat. |
 | **🔐 Security Hygiene** | `security-agent.mjs` | `npm audit` critical/high advisories, hardcoded-secret scan (Stripe/AWS/private-key/GitHub/Slack patterns), XSS surface (`dangerouslySetInnerHTML`), `console.*` in API routes. |
-| **✍️ Content Depth** | `prose-agent.mjs` | Overviews still in the terse bulleted format (vs. the narrative house standard) and thin overviews, rolled up per epoch — drives the prose-deepening work. |
 
 ## 2. The tier method (triage) + write-mode
 
 - **`board-ops.mjs`** — pulls the open board, ranks by risk (priority) then age, and classifies each item **AUTO** (a deterministic agent can fix it safely → branch+PR) vs **HUMAN** (judgement / product / feedback / destructive). Read-only triage; `--annotate` leaves an audit note on each card.
 - **`board-curator.mjs`** — moves / annotates cards in bulk (board housekeeping).
-- **`format-agent.mjs --fix`** — the proven write-mode template: requires a clean tree, applies the highest-confidence fixes, **gates on core `tsc`**, opens an `agent/format-normalize-*` branch + PR, returns to `master`. Never merges.
+- **`prose-quality-agent.mjs --fix`** — the proven write-mode template: requires a clean tree, applies the highest-confidence bullet-normalizations, **gates on core `tsc`**, opens an `agent/prose-normalize-*` branch + PR, returns to `master`. Never merges.
 
 ## 3. The hourly programming agent (the executor)
 

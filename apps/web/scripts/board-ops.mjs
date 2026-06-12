@@ -40,7 +40,7 @@ const AUTO = {
   "count-drift-epochs":"drift-agent --fix",
   "secured-docs-drift":"docs-agent --fix",
   "doc-count-drift":   "docs-agent --fix",
-  "inline-list":       "format-agent --fix",
+  "inline-list":       "prose-quality-agent --fix",
   "missing-keys":      "i18n-agent (translate)",
   "oversized-file":    "code-reviewer (extract on a branch)",
 };

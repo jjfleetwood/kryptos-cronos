@@ -58,9 +58,9 @@ jobs:
         continue-on-error: true
         run: node scripts/code-health-agent.mjs --report
 
-      - name: Format Drift Agent
+      - name: Prose Quality Agent (format + depth)
         continue-on-error: true
-        run: node scripts/format-agent.mjs --report
+        run: node scripts/prose-quality-agent.mjs --report
 
       - name: i18n Coverage Agent
         continue-on-error: true
@@ -85,7 +85,3 @@ jobs:
       - name: Security Hygiene Agent
         continue-on-error: true
         run: node scripts/security-agent.mjs --report
-
-      - name: Content Depth Agent
-        continue-on-error: true
-        run: node scripts/prose-agent.mjs --report
