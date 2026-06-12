@@ -2,13 +2,16 @@
 """Read-only MCP server — Secure Software Development: "Post-quantum protection support" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the "Post-quantum protection support" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the org's own software is on a path to post-quantum-safe cryptography. PASS: the crypto used in first-party software is inventoried (a code-level CBOM); crypto is agile (behind an abstraction, swappable, no hardcoded algorithms); a plan exists to move to PQC-capable libraries (ML-KEM/ML-DSA) and hybrid for long-lived protections; and library/vendor PQC readiness is tracked. Exceptions: no code-level crypto inventory, hardcoded/un-agile crypto, products protecting long-lived data with only classical algorithms, and no PQC adoption plan.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the post-quantum protection support control (from SAST / DAST / SCA tooling)
+    The code-level cryptographic inventory (CBOM) for first-party software — libraries, protocols, algorithms, key sizes, call-sites
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: SAST / DAST / SCA tooling, Issue tracker (Jira), CI security gates, Threat-model + design records)
+    code-level crypto inventory (CBOM): algorithms, key sizes, where called
+    assess crypto-agility: is crypto behind an interface or hardcoded per call-site?
+    check crypto-library versions for PQC support (e.g. OpenSSL 3.2+ ML-KEM)
+    plan to adopt PQC/hybrid for long-lived protections + track library readiness
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

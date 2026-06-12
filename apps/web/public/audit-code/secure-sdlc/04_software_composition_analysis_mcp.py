@@ -2,13 +2,16 @@
 """Read-only MCP server — Secure Software Development: "Software composition analysis" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the "Software composition analysis" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify third-party dependencies are inventoried and their vulnerabilities managed. PASS: SCA runs on every build, inventories all direct + transitive deps, flags known-vulnerable (CVE / KEV / EPSS-aware) and blocks criticals, and dependencies are upgraded within SLA. Exceptions: apps with no SCA, transitive deps unscanned, vulnerable/KEV-listed dependencies shipped, and a backlog of unpatched dependency CVEs.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the software composition analysis control (from SAST / DAST / SCA tooling)
+    The SCA inventory of third-party / open-source dependencies + their known vulnerabilities (per app, direct + transitive)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: SAST / DAST / SCA tooling, Issue tracker (Jira), CI security gates, Threat-model + design records)
+    SCA report per app: direct + transitive deps + known vulns
+    confirm SCA blocks on critical / KEV in the pipeline (not advisory)
+    patch-lag: dependencies behind their fixed version; join to KEV/EPSS
+    remediation SLA tracking + the accepted-risk register
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

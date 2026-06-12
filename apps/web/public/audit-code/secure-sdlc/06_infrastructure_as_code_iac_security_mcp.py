@@ -2,13 +2,16 @@
 """Read-only MCP server — Secure Software Development: "Infrastructure as code (IaC) security" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the "Infrastructure as code (IaC) security" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify IaC is security-scanned in the SDLC before it provisions anything. PASS: every IaC repo runs a scanner (Checkov/tfsec) in CI, blocking on high-severity misconfigurations (public storage, 0.0.0.0/0, unencrypted, wildcard IAM); policy-as-code gates insecure changes pre-merge; coverage is near-complete. Exceptions: IaC repos with no scanning, scans advisory, insecure templates merged, and no policy-as-code gate.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the infrastructure as code (iac) security control (from SAST / DAST / SCA tooling)
+    IaC security-scan results in the pipeline (Checkov / tfsec / KICS) per repo
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: SAST / DAST / SCA tooling, Issue tracker (Jira), CI security gates, Threat-model + design records)
+    per IaC repo: is Checkov/tfsec wired into CI + blocking on high?
+    coverage = scanned IaC repos ÷ total
+    sample findings: public buckets, open SGs, unencrypted, wildcard IAM in templates
+    policy-as-code (OPA/Sentinel) gate on plan / PR
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

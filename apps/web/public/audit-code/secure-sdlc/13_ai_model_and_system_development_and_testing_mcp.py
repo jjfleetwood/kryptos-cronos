@@ -2,13 +2,16 @@
 """Read-only MCP server — Secure Software Development: "AI model and system development and testing" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the "AI model and system development and testing" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify AI/ML built into the org's software is developed + tested with security + assurance. PASS: AI components are inventoried with an MLOps pipeline; models are validated (accuracy + bias/fairness + robustness) and security-tested (adversarial examples, prompt injection, data poisoning, model extraction) before release; an AI governance gate (NIST AI RMF / ISO 42001) signs off; and monitoring catches drift. Exceptions: AI shipped with no validation/eval, no AI-specific security testing, no governance gate, and no drift monitoring.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the ai model and system development and testing control (from SAST / DAST / SCA tooling)
+    The inventory of AI/ML components in the org's software + their MLOps dev/test pipeline
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: SAST / DAST / SCA tooling, Issue tracker (Jira), CI security gates, Threat-model + design records)
+    inventory AI/ML components + their MLOps dev/test pipeline
+    model validation: accuracy + bias/fairness + robustness eval results pre-deploy
+    AI security testing: adversarial examples, prompt-injection, data-poisoning, extraction
+    confirm an AI governance gate (NIST AI RMF / ISO 42001) before release + drift monitoring
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

@@ -2,13 +2,16 @@
 """Read-only MCP server — Secure Software Development: "API security" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the "API security" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify APIs are inventoried and tested against the OWASP API Security Top 10. PASS: a complete API inventory exists (no shadow APIs); APIs enforce authentication + object-level authorization (no BOLA), rate limiting, and schema/input validation at the gateway; they're security-tested; and findings are remediated. Exceptions: undocumented/shadow APIs, broken object-level authorization (the #1 API risk), missing auth/rate-limiting, no schema validation, and unremediated API findings.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the api security control (from SAST / DAST / SCA tooling)
+    The API inventory (incl. shadow/undocumented APIs) + their OpenAPI specs
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: SAST / DAST / SCA tooling, Issue tracker (Jira), CI security gates, Threat-model + design records)
+    API discovery scan vs the documented inventory (find shadow APIs)
+    test object-level authz (BOLA): can user A read user B's object by changing an id?
+    gateway policy: auth + rate-limit + schema validation coverage per API
+    API DAST / 42Crunch audit against the OpenAPI spec
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

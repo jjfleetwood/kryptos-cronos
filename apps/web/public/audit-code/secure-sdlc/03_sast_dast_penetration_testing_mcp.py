@@ -2,13 +2,16 @@
 """Read-only MCP server — Secure Software Development: "SAST, DAST, penetration testing" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the "SAST, DAST, penetration testing" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify apps are tested with SAST + DAST + periodic pen testing, and findings are fixed. PASS: SAST runs on every build (blocking on criticals), DAST runs against a deployed pre-prod build, internet-facing/high-risk apps get periodic third-party pen tests, findings have remediation SLAs, and pen-test findings are retested. Exceptions: apps with no SAST/DAST, scans non-blocking, no pen testing of exposed apps, and findings (incl. pen-test) never remediated or retested.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the sast, dast, penetration testing control (from SAST / DAST / SCA tooling)
+    The testing-coverage matrix — which apps get SAST, DAST, and pen testing, on what cadence
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: SAST / DAST / SCA tooling, Issue tracker (Jira), CI security gates, Threat-model + design records)
+    coverage matrix: apps × {SAST, DAST, pen test} + cadence
+    confirm SAST blocks on critical + DAST runs against a deployed pre-prod build
+    pen-test report inventory + remediation/retest status for exposed apps
+    findings aging by severity + the suppression register (justified?)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

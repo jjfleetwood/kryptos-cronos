@@ -2,13 +2,16 @@
 """Read-only MCP server — Secure Software Development: "Metrics, reporting, auditability" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the "Metrics, reporting, auditability" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the SDLC produces security metrics and an auditable record per release. PASS: AppSec metrics are tracked + reported to leadership on cadence; every release has a traceable record of the security gates it passed; risk acceptances are documented + time-boxed; and trends are reviewed. Exceptions: no metrics, no leadership reporting, releases with no recorded security evidence (can't prove the gates ran), and undocumented risk acceptances.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the metrics, reporting, auditability control (from SAST / DAST / SCA tooling)
+    The AppSec metrics / dashboard (tool coverage, finding density, MTTR by severity, escaped defects, gate pass-rate)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: SAST / DAST / SCA tooling, Issue tracker (Jira), CI security gates, Threat-model + design records)
+    the AppSec dashboard: coverage, finding density, MTTR by severity, gate pass-rate, escaped defects
+    for a sampled release, pull the recorded gate evidence (SAST/SCA/DAST/review passed)
+    leadership reporting cadence + the risk-acceptance register
+    trend the metrics over the last several quarters
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

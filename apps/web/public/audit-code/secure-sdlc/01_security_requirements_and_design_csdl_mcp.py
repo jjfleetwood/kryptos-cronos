@@ -2,13 +2,16 @@
 """Read-only MCP server — Secure Software Development: "Security requirements and design (CSDL)" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the "Security requirements and design (CSDL)" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify security is designed in, not bolted on. PASS: high-risk features carry explicit security requirements + abuse cases in the backlog; threat models exist for in-scope systems and are refreshed on significant change; a design-stage security review gates the build; and coverage spans the risky surface. Exceptions: features built with no security requirements, no threat model for sensitive systems, security first considered at pen-test, and stale threat models that no longer match the architecture.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the security requirements and design (csdl) control (from SAST / DAST / SCA tooling)
+    Security requirements per feature/epic (abuse cases + security acceptance criteria) captured in the backlog
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: SAST / DAST / SCA tooling, Issue tracker (Jira), CI security gates, Threat-model + design records)
+    sample high-risk epics: do they carry security acceptance criteria / abuse cases?
+    IriusRisk or the threat-model repo: which in-scope systems have a current model
+    confirm a design-stage security review gate before development starts
+    coverage = features with security requirements + a threat model ÷ in-scope features
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

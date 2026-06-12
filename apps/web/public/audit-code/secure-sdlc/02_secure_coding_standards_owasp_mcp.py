@@ -2,13 +2,16 @@
 """Read-only MCP server — Secure Software Development: "Secure coding standards (OWASP)" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the "Secure coding standards (OWASP)" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify a secure-coding standard exists and is enforced, not shelfware. PASS: a current secure-coding standard per stack maps to OWASP ASVS/Top 10; it's enforced through linters + SAST rules + a review checklist; and the vulnerability data shows the common classes (injection, XSS, broken auth) are declining. Exceptions: no standard or a stale one, standards not encoded in tooling, and the same OWASP-Top-10 classes recurring release after release.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the secure coding standards (owasp) control (from SAST / DAST / SCA tooling)
+    The documented secure-coding standard per language/framework (mapped to OWASP ASVS / Top 10)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: SAST / DAST / SCA tooling, Issue tracker (Jira), CI security gates, Threat-model + design records)
+    confirm the standard exists per stack + maps to OWASP ASVS
+    check SAST/linter rules encode the standard (not just tool defaults)
+    trend the recurring vulnerability classes over releases (is the standard working?)
+    review a sample of PRs for security-checklist adherence
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

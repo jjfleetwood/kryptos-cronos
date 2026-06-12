@@ -2,13 +2,16 @@
 """Read-only MCP server — Secure Software Development: "Developer security training" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Secure Software Development policy/standard and flag every item where the "Developer security training" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify developers are trained in secure development and it's effective. PASS: role-based secure-coding training is assigned, completed (near-100%) and current; a security-champions program embeds expertise per team; and there's a signal training is working (declining vuln classes, assessment scores). Exceptions: no developer security training, low completion, stale (one-time onboarding only), no champions program, and no effectiveness measure.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the developer security training control (from SAST / DAST / SCA tooling)
+    The role-based secure-development training program + curriculum + completion records
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: SAST / DAST / SCA tooling, Issue tracker (Jira), CI security gates, Threat-model + design records)
+    LMS: assigned vs completed secure-coding training per developer (coverage + currency)
+    confirm role-based (not generic) + annual refresh
+    the security-champions roster per team
+    correlate training with finding trends / Secure Code Warrior assessment scores
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /
