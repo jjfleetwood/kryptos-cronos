@@ -2,13 +2,16 @@
 """Read-only MCP server — Resiliency & Redundancy: "Supplier and vendor resilience" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the "Supplier and vendor resilience" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the org's resilience isn't undermined by its suppliers. PASS: recovery-critical suppliers are identified with their BCP/resilience evidence; contracts carry availability + recovery commitments + exit/escrow; concentration/single-supplier risk is assessed; and there's a contingency if a critical supplier fails (especially during a broader disaster). Exceptions: recovery depends on suppliers with no BCP evidence, no continuity/exit terms, unmitigated single-supplier concentration, and no contingency for supplier failure.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the supplier and vendor resilience control (from Backup + replication platform)
+    The critical-supplier dependency map (which vendors a recovery depends on) + their resilience/BCP attestations
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Backup + replication platform, DR orchestration / runbooks, Multi-AZ/region infrastructure, BCP / BIA documentation)
+    map recovery-critical suppliers + their BCP/resilience attestations + tested RTO/RPO
+    contractual continuity terms (availability, recovery, exit/escrow)
+    concentration: single-supplier dependence for recovery-critical services
+    contingency for losing a critical supplier during a disaster
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

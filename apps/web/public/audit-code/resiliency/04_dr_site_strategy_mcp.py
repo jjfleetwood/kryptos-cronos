@@ -2,13 +2,16 @@
 """Read-only MCP server — Resiliency & Redundancy: "DR site strategy" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the "DR site strategy" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the DR strategy matches the recovery objectives. PASS: each critical system has a DR-site strategy (hot/warm/cold/active-active) justified against its RTO/RPO; the DR site/region is independent (no shared dependency with primary), provisioned, and current; it has the capacity to run production load; and it's secured to the same standard. Exceptions: a DR strategy that can't meet RTO/RPO (cold site for a tier-1 system), a DR site sharing fate with primary (same region/power/dependency), insufficient DR capacity, and a weaker security posture at DR.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the dr site strategy control (from Backup + replication platform)
+    The DR-site strategy (hot/warm/cold, cloud DR, or active-active) per critical system + its rationale vs RTO/RPO
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Backup + replication platform, DR orchestration / runbooks, Multi-AZ/region infrastructure, BCP / BIA documentation)
+    per critical system: DR strategy (hot/warm/cold/active-active) vs its RTO/RPO
+    DR-site independence (different region/power/network/dependencies — no shared fate)
+    DR capacity: can it run full production load?
+    DR security posture (same controls as prod)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

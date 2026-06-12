@@ -2,13 +2,16 @@
 """Read-only MCP server — Resiliency & Redundancy: "Network redundancy" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the "Network redundancy" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the network has no single point of failure for critical connectivity. PASS: redundant ISPs/circuits over diverse physical paths, redundant edge/core devices, redundant + resilient DNS, and redundant connectivity to cloud/SaaS/DR; SPOFs are identified + mitigated; and path failover is tested. Exceptions: single ISP/circuit or single physical path, single edge/core device, single DNS provider, and untested failover (assumed redundancy that doesn't actually reroute).
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the network redundancy control (from Backup + replication platform)
+    The network-redundancy design (redundant ISPs/circuits, diverse physical paths, redundant edge/core devices, redundant DNS)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Backup + replication platform, DR orchestration / runbooks, Multi-AZ/region infrastructure, BCP / BIA documentation)
+    network design: redundant ISPs/circuits over DIVERSE physical paths + redundant edge/core
+    SPOF analysis: any single link/device/DNS that takes everything down?
+    DNS redundancy (multiple providers / resilient config)
+    test path failover (pull a circuit/device — does traffic reroute?)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

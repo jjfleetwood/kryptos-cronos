@@ -2,13 +2,16 @@
 """Read-only MCP server — Resiliency & Redundancy: "Vendor lock-in risk" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the "Vendor lock-in risk" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify critical vendor lock-in is assessed + mitigated. PASS: lock-in is assessed for critical vendors/platforms (proprietary coupling, data portability, switching feasibility); an exit/transition plan exists (with escrow where relevant); data + workloads are portable in a usable form; and there's a contingency for a vendor failure/acquisition/repricing. Exceptions: deep un-assessed lock-in to a single vendor, no exit/transition plan, data that can't be extracted in a usable form, and no contingency for losing or being repriced by a critical vendor.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the vendor lock-in risk control (from Backup + replication platform)
+    The lock-in assessment per critical vendor/platform (proprietary dependencies, data portability, switching cost/feasibility)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Backup + replication platform, DR orchestration / runbooks, Multi-AZ/region infrastructure, BCP / BIA documentation)
+    lock-in assessment per critical vendor: proprietary coupling, data portability, switching cost/feasibility
+    exit/transition plan + source/data escrow
+    data portability: can data + workloads be extracted in a usable form?
+    contingency for vendor failure / acquisition / drastic repricing
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

@@ -2,13 +2,16 @@
 """Read-only MCP server — Resiliency & Redundancy: "Chaos engineering" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the "Chaos engineering" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the org proactively validates resilience (chaos engineering). PASS: a resilience-testing/chaos program runs controlled fault-injection + game days against critical systems with safety controls (blast-radius limits, abort); experiments validate real failure modes (instance/AZ/dependency loss); and findings drive remediation. Exceptions: no proactive resilience testing (resilience assumed, never validated), chaos run with no safety controls, experiments that found weaknesses never fixed, and critical failure modes never tested.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the chaos engineering control (from Backup + replication platform)
+    The chaos-engineering / resilience-testing program (controlled fault injection, game days) + its scope
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Backup + replication platform, DR orchestration / runbooks, Multi-AZ/region infrastructure, BCP / BIA documentation)
+    the chaos/resilience-testing program + scope (instance / AZ / dependency / latency faults)
+    experiment records: hypothesis, fault, blast-radius control, findings
+    do findings drive remediation (fixes tracked)?
+    safety controls: blast-radius limits + abort + non-prod-first
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

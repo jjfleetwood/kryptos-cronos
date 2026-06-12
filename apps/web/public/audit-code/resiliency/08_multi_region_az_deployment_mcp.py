@@ -2,13 +2,16 @@
 """Read-only MCP server — Resiliency & Redundancy: "Multi-region / AZ deployment" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the "Multi-region / AZ deployment" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify critical cloud workloads are deployed for AZ/region resilience. PASS: tier-1 workloads are multi-AZ (and multi-region where RTO/RPO demands), including stateful data; they survive an AZ failure (tested via game-day); and no tier-1 service is a single-AZ/single-region SPOF. Exceptions: tier-1 workloads in a single AZ, stateful data not replicated across AZ/region, multi-AZ assumed but never tested (AZ-loss not survived), and single-region dependence where the RTO requires cross-region.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the multi-region / az deployment control (from Backup + replication platform)
+    The multi-AZ / multi-region posture per critical cloud workload + its rationale vs RTO/RPO
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Backup + replication platform, DR orchestration / runbooks, Multi-AZ/region infrastructure, BCP / BIA documentation)
+    per tier-1 workload: AZ/region spread (single-AZ SPOFs?)
+    stateful data: Multi-AZ + cross-region replica (RDS Multi-AZ, etc.)
+    AZ-loss game-day: does the workload survive losing an AZ?
+    single-region dependence vs the RTO requirement
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

@@ -2,13 +2,16 @@
 """Read-only MCP server — Resiliency & Redundancy: "Data and service replication" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the "Data and service replication" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify critical data + services are replicated to meet RPO. PASS: critical data/services are replicated (sync or async per the RPO) to an independent location; replication health + lag are monitored with alerting; replicas are integrity-verified + usable; and coverage spans critical assets. Exceptions: critical data not replicated (RPO unmet), replication lag exceeding RPO unnoticed, replicas that are corrupt/inconsistent (a failover would lose/corrupt data), and unmonitored replication.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the data and service replication control (from Backup + replication platform)
+    The replication config per critical dataset/service (sync/async, replication lag, target) vs the RPO
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Backup + replication platform, DR orchestration / runbooks, Multi-AZ/region infrastructure, BCP / BIA documentation)
+    per critical dataset/service: replication type (sync/async) + lag vs the RPO
+    replication health monitoring + alerting on lag/failure
+    replica integrity/consistency (usable in a failover?)
+    coverage: critical data/services replicated vs total
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

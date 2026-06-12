@@ -2,13 +2,16 @@
 """Read-only MCP server — Resiliency & Redundancy: "Tabletop and BCP/DR testing" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Resiliency & Redundancy policy/standard and flag every item where the "Tabletop and BCP/DR testing" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify continuity + DR are tested, not just documented. PASS: BCP/DR is tested on a defined cadence including realistic exercises (actual failover/restore, not only tabletops); tests measure actual RTO/RPO vs target; findings are remediated; and critical systems have been successfully recovered in a test. Exceptions: no DR testing, only paper tabletops (never an actual failover), tests that failed to meet RTO/RPO with no remediation, and critical systems never test-recovered.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the tabletop and bcp/dr testing control (from Backup + replication platform)
+    The DR/BCP test schedule + the test records (date, scope, type — tabletop vs full failover, participants, results)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Backup + replication platform, DR orchestration / runbooks, Multi-AZ/region infrastructure, BCP / BIA documentation)
+    DR/BCP test schedule + records: scope, type (tabletop vs full failover), participants, results
+    actual RTO/RPO achieved in tests vs target
+    test findings + remediation tracking
+    evidence of realistic tests (failover/restore actually performed)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /
