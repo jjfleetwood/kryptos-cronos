@@ -2,13 +2,16 @@
 """Read-only MCP server — Repository Management: "Repository governance and lifecycle" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Repository Management policy/standard and flag every item where the "Repository governance and lifecycle" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify repositories are governed across their lifecycle. PASS: every repo has an owner + classification; creation follows a standard (protection/scanning applied at birth); stale/abandoned repos are identified and archived/decommissioned; and required files exist per policy. Exceptions: ownerless repos, repos created with no security setup, abandoned repos still writable + holding secrets, and no archival process (sprawl).
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the repository governance and lifecycle control (from GitHub / GitLab / Bitbucket)
+    The repo inventory with owner, classification, status (active/archived/abandoned), and creation/last-activity
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: GitHub / GitLab / Bitbucket, Branch protection + CODEOWNERS, SCM audit log, Secret scanning service)
+    repo inventory: owner, last-activity, archived status, required-file presence
+    find stale repos (no commits in 12+ months) that are still writable
+    confirm repo-creation governance (templates / repos-as-code) applies protection + scanning at creation
+    ownerless / unclassified repos
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

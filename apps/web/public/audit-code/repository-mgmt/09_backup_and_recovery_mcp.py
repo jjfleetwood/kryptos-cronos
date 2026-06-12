@@ -2,13 +2,16 @@
 """Read-only MCP server — Repository Management: "Backup and recovery" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Repository Management policy/standard and flag every item where the "Backup and recovery" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify source code + SCM metadata are backed up and recoverable. PASS: repos (code + history) and critical metadata (issues, PRs, settings) are backed up on cadence to an independent location, restore is tested, coverage spans all repos, and there's a recovery plan for platform outage or malicious deletion. Exceptions: repos not backed up (relying solely on the SaaS platform), metadata not captured, backups never test-restored, and no recovery plan for a deleted-org / ransomware scenario.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the backup and recovery control (from GitHub / GitLab / Bitbucket)
+    The SCM backup configuration (repos, metadata, issues/PRs, settings) + frequency
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: GitHub / GitLab / Bitbucket, Branch protection + CODEOWNERS, SCM audit log, Secret scanning service)
+    confirm a backup of repos + metadata exists independent of the SaaS platform + its cadence
+    coverage = backed-up repos ÷ total
+    restore-test record (repo + full history restored + verified)
+    recovery plan for org-deletion / ransomware / platform outage
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

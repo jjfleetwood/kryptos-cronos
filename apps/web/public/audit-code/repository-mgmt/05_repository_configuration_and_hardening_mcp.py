@@ -2,13 +2,16 @@
 """Read-only MCP server — Repository Management: "Repository configuration and hardening" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Repository Management policy/standard and flag every item where the "Repository configuration and hardening" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify repos + the org are configured to a secure baseline. PASS: the org default member permission is least-privilege (read, not write); Actions is restricted (allow-listed actions, read-only default token, fork-PR approval required, OIDC for cloud); private repos aren't accidentally public; Dependabot + dependency graph are on; and settings match a documented baseline. Exceptions: org default = write/admin, unrestricted Actions + write-default token, fork PRs running with secrets, accidentally-public repos, and Dependabot off.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the repository configuration and hardening control (from GitHub / GitLab / Bitbucket)
+    The org/repo security-settings baseline (default permission, Actions permissions, fork policy, visibility, Dependabot)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: GitHub / GitLab / Bitbucket, Branch protection + CODEOWNERS, SCM audit log, Secret scanning service)
+    org settings: default member permission, Actions allowed-actions, default-token permissions, fork-PR approval
+    OpenSSF Scorecard across repos vs the baseline (drift)
+    list public repos (any that should be private?)
+    confirm Dependabot / dependency-graph enabled
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

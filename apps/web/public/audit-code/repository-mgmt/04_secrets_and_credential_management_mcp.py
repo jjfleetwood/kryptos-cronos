@@ -2,13 +2,16 @@
 """Read-only MCP server — Repository Management: "Secrets and credential management" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Repository Management policy/standard and flag every item where the "Secrets and credential management" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify secrets aren't committed and are detected/prevented. PASS: secret scanning runs across all repos including history, push-protection blocks new secrets pre-merge, found secrets are rotated (invalidated, not just deleted), and CI/repo secrets are scoped + rotated. Exceptions: repos not scanned, no push-protection, found secrets removed but never rotated (still valid in history), and over-broad/stale Actions secrets or deploy keys.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the secrets and credential management control (from GitHub / GitLab / Bitbucket)
+    Secret-scanning + push-protection status across all repos (history + new commits)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: GitHub / GitLab / Bitbucket, Branch protection + CODEOWNERS, SCM audit log, Secret scanning service)
+    confirm org-wide secret scanning + push protection enabled
+    gitleaks / TruffleHog over full history for repos not covered
+    for each historical finding, confirm ROTATION (credential invalidated)
+    Actions secrets + deploy keys inventory + scope + last-rotated
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

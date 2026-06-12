@@ -2,13 +2,16 @@
 """Read-only MCP server — Repository Management: "Platform and infrastructure security" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Repository Management policy/standard and flag every item where the "Platform and infrastructure security" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the SCM platform + its build infrastructure are secured. PASS: a self-hosted SCM server is patched, hardened, not over-exposed, and its admin/DB/SSH access is least-privilege + MFA; self-hosted CI runners are ephemeral, isolated, egress-restricted, and not usable by untrusted PRs; for SaaS, enterprise security settings (IP allow-list, SSO enforcement, policies) are set. Exceptions: an unpatched/exposed self-hosted SCM, persistent shared runners reachable by fork PRs, broad platform-admin access, and admin interfaces exposed to the internet.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the platform and infrastructure security control (from GitHub / GitLab / Bitbucket)
+    For self-hosted SCM: the server/cluster hardening + patch level + exposure; for SaaS: the enterprise platform-security settings
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: GitHub / GitLab / Bitbucket, Branch protection + CODEOWNERS, SCM audit log, Secret scanning service)
+    self-hosted: server patch level + CVEs + exposure; admin/DB/SSH access controls + MFA
+    runner inventory: ephemeral vs persistent, isolation, who/what can target them, fork-PR access
+    SaaS: enterprise security settings (IP allow-list, SSO enforcement, policies)
+    network exposure of the SCM + its admin console
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

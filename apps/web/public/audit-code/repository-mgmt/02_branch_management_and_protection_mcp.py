@@ -2,13 +2,16 @@
 """Read-only MCP server — Repository Management: "Branch management and protection" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Repository Management policy/standard and flag every item where the "Branch management and protection" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify protected branches enforce review + integrity. PASS: default + release branches require PR review (CODEOWNERS for sensitive paths), passing status checks, block force-push + deletion, and ideally require signed commits; admin bypass is restricted + logged; coverage spans all important repos. Exceptions: unprotected default branches, no required review, force-push/deletion allowed, admins routinely bypassing, and protection on only some repos.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the branch management and protection control (from GitHub / GitLab / Bitbucket)
+    Branch-protection rules per repo on default/release branches (required reviews, status checks, signed commits, no force-push, no deletion)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: GitHub / GitLab / Bitbucket, Branch protection + CODEOWNERS, SCM audit log, Secret scanning service)
+    GitHub: gh api repos/{o}/{r}/branches/{b}/protection per repo (reviews, checks, force-push, signatures)
+    find repos with no protection on the default branch
+    'enforce admins' / allow-bypass setting + bypass events from the audit log
+    merge method + require-linear-history
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

@@ -2,13 +2,16 @@
 """Read-only MCP server — Repository Management: "Commit integrity and code review" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Repository Management policy/standard and flag every item where the "Commit integrity and code review" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify code reaches the default branch only via reviewed, integrity-verified commits. PASS: protected branches require ≥1 (ideally 2) independent reviews, CODEOWNERS gates sensitive paths, no self-approval/merge of one's own PR, and commits are signed + verified; the review isn't a rubber stamp. Exceptions: PRs self-approved/merged, sensitive paths with no CODEOWNERS, unsigned commits on protected branches, and reviews that approve instantly without inspection.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the commit integrity and code review control (from GitHub / GitLab / Bitbucket)
+    Signed/verified-commit coverage (GPG / Sigstore gitsign) on protected branches
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: GitHub / GitLab / Bitbucket, Branch protection + CODEOWNERS, SCM audit log, Secret scanning service)
+    sample merged PRs: required approvals present + reviewer ≠ author (no self-merge)
+    verified-commit coverage on protected branches (the 'Verified' badge / require-signed)
+    CODEOWNERS coverage for sensitive directories
+    review metrics: median time-to-approve + approve-without-comment rate (rubber-stamp signal)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

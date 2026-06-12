@@ -2,13 +2,16 @@
 """Read-only MCP server — Repository Management: "Third-party and open source contribution" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Repository Management policy/standard and flag every item where the "Third-party and open source contribution" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify inbound + outbound external/OSS contributions are governed. PASS: fork/untrusted PRs run CI WITHOUT access to secrets or privileged workflows (require approval-to-run), maintainers review before merge; inbound contributions require CLA/DCO + a license check; and outbound OSS contributions follow an approval process that prevents leaking secrets/proprietary code. Exceptions: fork PRs that auto-run with secrets/privileged tokens, no review of external contributions, no CLA/DCO, and employees pushing to public OSS with no review (IP/secret-leak risk).
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the third-party and open source contribution control (from GitHub / GitLab / Bitbucket)
+    The policy + controls for inbound external contributions (fork PRs, outside collaborators) and outbound OSS contributions
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: GitHub / GitLab / Bitbucket, Branch protection + CODEOWNERS, SCM audit log, Secret scanning service)
+    confirm fork-PR workflows require approval-to-run + don't receive secrets (pull_request vs pull_request_target review)
+    CLA / DCO enforcement on inbound PRs
+    outbound: the approval/review process for employee contributions to public OSS
+    license check on inbound contributions
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

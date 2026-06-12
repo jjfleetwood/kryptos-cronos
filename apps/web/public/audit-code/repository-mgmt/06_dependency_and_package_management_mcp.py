@@ -2,13 +2,16 @@
 """Read-only MCP server — Repository Management: "Dependency and package management" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Repository Management policy/standard and flag every item where the "Dependency and package management" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify dependencies + internal packages are managed securely. PASS: internal packages publish to a controlled registry with scoping + immutability + publish-access control, protected against dependency confusion (scoped names, registry-priority/lockfile pinning); automated dependency updates (Dependabot/Renovate) run; and published packages carry provenance. Exceptions: anyone can publish, mutable/overwritable versions, dependency-confusion exposure (unscoped internal names resolvable from public), no automated updates, and unsigned published packages.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the dependency and package management control (from GitHub / GitLab / Bitbucket)
+    The internal package-registry config (who can publish, version immutability, scoping) + the dependency policy
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: GitHub / GitLab / Bitbucket, Branch protection + CODEOWNERS, SCM audit log, Secret scanning service)
+    registry: who can publish + version immutability + scope settings
+    check dependency-confusion exposure: are internal package names unscoped + resolvable from public registries?
+    Dependabot / Renovate coverage across repos
+    published-package provenance (npm provenance / SLSA)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /
