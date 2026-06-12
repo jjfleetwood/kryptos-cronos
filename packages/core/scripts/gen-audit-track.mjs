@@ -156,7 +156,7 @@ const D = {
     owners: ["IoT / product engineering", "Network security", "Security operations", "Facilities (for OT-adjacent IoT)"],
     refs: [["NIST SP 800-213 — IoT device cybersecurity", "https://csrc.nist.gov/pubs/sp/800/213/final"], ["OWASP IoT Top 10", "https://owasp.org/www-project-internet-of-things/"], ["ETSI EN 303 645 — Consumer IoT", "https://www.etsi.org/standards"]],
     incident: { title: "Default credentials, botnet at scale", when: "2016", where: "Internet-exposed IoT devices", impact: "Hundreds of thousands of IoT devices with default passwords were conscripted into a botnet that took down major internet services.", body: ["Mirai turned cheap cameras and routers with default credentials into a record DDoS — IoT's weak defaults and absent patching are systemic.", "Auditors verify security/privacy by design, attack-surface minimization, lightweight crypto, vuln management, gateway security, and shadow-IoT detection."], anchorYear: 2016, anchorEvent: "Mirai botnet: default-credential IoT powers record DDoS", secondYear: 2020, secondEvent: "Regulators mandate baseline IoT security (no default passwords)" } },
-  "ICS": { slug: "ics", prefix: "ics", emoji: "🏭", color: "Amber",
+  "ICS": { slug: "ics", prefix: "ics", emoji: "🏭", color: "Amber", displayName: "Industrial Control Systems (ICS)",
     systems: ["ICS/SCADA + PLC/RTU/HMI", "OT network monitoring (Dragos/Nozomi)", "IT/OT boundary firewalls (DMZ)", "OT asset inventory"],
     owners: ["OT / plant engineering", "OT security", "IT/OT network team", "Physical security / safety"],
     refs: [["NIST SP 800-82 — ICS Security", "https://csrc.nist.gov/pubs/sp/800/82/r3/final"], ["IEC 62443 — IACS security", "https://www.iec.ch/cyber-security"], ["CISA ICS advisories", "https://www.cisa.gov/topics/industrial-control-systems"]],
@@ -472,6 +472,7 @@ const camel = (slug) => slug.replace(/-([a-z])/g, (_, c) => c.toUpperCase());
 
 for (const [name, subs] of groups) {
   const meta = D[name];
+  const dn = meta.displayName ?? name; // display/content name (e.g. expand "ICS")
   const skip = meta.skipFirst || 0;
   const stages = [];
   subs.forEach((sub, i) => {
@@ -481,7 +482,7 @@ for (const [name, subs] of groups) {
     const opinion = opinionFor(order);
     const pyName = `${pad2(order)}_${slugify(sub).replace(/-/g, "_")}_mcp.py`;
     const { ease, value } = scores(sub, i);
-    const { flag, ctf } = ctfFor(id, name, sub, meta, opinion);
+    const { flag, ctf } = ctfFor(id, dn, sub, meta, opinion);
     flags[id] = flag;
     const stage = {
       epochId: meta.slug,
@@ -492,8 +493,8 @@ for (const [name, subs] of groups) {
       xp: 100,
       easeScore: ease, valueScore: value, rank: 0,
       auditMeta: {
-        objective: `Prove the "${sub}" control for ${name} is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.`,
-        approach: `An audit agent calls a read-only MCP server that wraps each ${name} source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)`,
+        objective: `Prove the "${sub}" control for ${dn} is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.`,
+        approach: `An audit agent calls a read-only MCP server that wraps each ${dn} source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)`,
         artifacts: [
           `In-scope inventory for the ${sub.toLowerCase()} control (from ${meta.systems[0]})`,
           `Observed configuration/state evidence showing whether the control is applied and operating`,
@@ -504,28 +505,28 @@ for (const [name, subs] of groups) {
         dataOwner: meta.owners.map((o) => `${o}`),
         scoring: {
           ease: `EASE ${ease}/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.`,
-          value: `VALUE ${value}/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream ${name} controls.`,
+          value: `VALUE ${value}/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream ${dn} controls.`,
         },
       },
-      badge: { id: `${id}-badge`, name: `${name} Auditor`, emoji: meta.emoji },
-      wonder: { name: `${sub}`, location: name, era: "Present Day", emoji: meta.emoji },
+      badge: { id: `${id}-badge`, name: `${dn} Auditor`, emoji: meta.emoji },
+      wonder: { name: `${sub}`, location: dn, era: "Present Day", emoji: meta.emoji },
       challengeType: "ctf",
-      info: infoFor(id, name, sub, meta, opinion, pyName),
+      info: infoFor(id, dn, sub, meta, opinion, pyName),
       ctf,
-      quiz: quizFor(id, name, sub, meta, opinion),
+      quiz: quizFor(id, dn, sub, meta, opinion),
     };
     stages.push(stage);
     totalModules++;
     // write python
     const pdir = path.join(PUBCODE, meta.slug);
     fs.mkdirSync(pdir, { recursive: true });
-    fs.writeFileSync(path.join(pdir, pyName), pyFor(name, sub, meta, pyName), "utf8");
+    fs.writeFileSync(path.join(pdir, pyName), pyFor(dn, sub, meta, pyName), "utf8");
   });
 
   const cml = camel(meta.slug);
   const epoch = {
-    id: meta.slug, name, subtitle: `Agentic technical & privacy audit — ${name}`,
-    description: `Audit ${name} end to end with a read-only agent fleet: each sub-process is a module that teaches the control as a repeatable agentic workflow with downloadable MCP tooling, a CTF, and a 10-question quiz.`,
+    id: meta.slug, name: dn, subtitle: `Agentic technical & privacy audit — ${dn}`,
+    description: `Audit ${dn} end to end with a read-only agent fleet: each sub-process is a module that teaches the control as a repeatable agentic workflow with downloadable MCP tooling, a CTF, and a 10-question quiz.`,
     emoji: meta.emoji, color: meta.color, unlocked: true,
   };
 

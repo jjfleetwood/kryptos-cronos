@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Read-only MCP server — ICS: "Vendor physical and remote access" audit evidence.
+"""Read-only MCP server — Industrial Control Systems (ICS): "Vendor physical and remote access" audit evidence.
 
 Gathers the in-scope inventory and the observed control state from this domain's
 systems of record, evaluates each item against policy, and reports the exceptions
@@ -68,7 +68,7 @@ def coverage_report() -> dict:
                else "EXCEPTIONS" if len(exceptions) <= EXCEPTION_THRESHOLD
                else "MATERIAL GAP")
     return {
-        "domain": "ICS",
+        "domain": "Industrial Control Systems (ICS)",
         "control": "Vendor physical and remote access",
         "in_scope": len(rows),
         "compliant": len(rows) - len(exceptions),
