@@ -2,13 +2,16 @@
 """Read-only MCP server — Build Environment & CI/CD (Continuous Integration / Continuous Delivery): "SBOM image provenance" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the "SBOM image provenance" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify every artifact has an SBOM and verifiable provenance. PASS: each build produces an SBOM (CycloneDX/SPDX) stored + associated with the image; SLSA provenance attests the artifact was built from the reviewed source on the trusted builder; SBOM coverage is near-complete; and SBOMs are queryable for vulnerability impact. Exceptions: images with no SBOM, no build provenance (can't prove what's inside or where it came from), and no way to answer 'which artifacts contain this vulnerable component'.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the sbom image provenance control (from GitHub Actions / GitLab CI / Jenkins)
+    The SBOM (Software Bill of Materials) generated for each build/image (CycloneDX/SPDX) + where stored
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration, Artifact + SBOM store)
+    confirm each build generates + stores an SBOM (Syft → CycloneDX) attached to the image
+    verify SLSA provenance attestation (cosign verify-attestation)
+    SBOM coverage: images with an SBOM vs total in the registry
+    test an impact query: 'which images contain component X' via Dependency-Track
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

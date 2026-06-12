@@ -2,13 +2,16 @@
 """Read-only MCP server — Build Environment & CI/CD (Continuous Integration / Continuous Delivery): "Segregation of duties" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the "Segregation of duties" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify duties are separated across the build-to-deploy flow. PASS: code authorship, review/approval, and production deployment are separated so no single person can push their own code to prod unreviewed; prod-deploy requires a distinct approver; emergency/break-glass deploys are logged + reviewed. Exceptions: a developer who can author, self-approve, and deploy to prod; shared deploy accounts that mask who deployed; and break-glass with no logging/review.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the segregation of duties control (from GitHub Actions / GitLab CI / Jenkins)
+    The SoD matrix for the SDLC (who can code, who approves, who deploys to prod) + the actual role assignments
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration, Artifact + SBOM store)
+    map who can: merge to the release branch vs approve vs trigger prod deploy (separated per person?)
+    find individuals holding all three (self-service to prod)
+    environment protection: required reviewers distinct from the PR author
+    break-glass deploy logging + review
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

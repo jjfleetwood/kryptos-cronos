@@ -2,13 +2,16 @@
 """Read-only MCP server — Build Environment & CI/CD (Continuous Integration / Continuous Delivery): "License scanning" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the "License scanning" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify open-source license obligations are identified and met. PASS: SCA/SBOM enumerates every component's license; a license policy classifies allowed/restricted/prohibited; the pipeline flags policy violations (e.g. AGPL in a distributed product) before release; and attribution/notice + copyleft obligations are met. Exceptions: unknown-license components shipped, prohibited/incompatible licenses (copyleft in proprietary distributed software), missing attribution/NOTICE, and no gate catching license risk.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the license scanning control (from GitHub Actions / GitLab CI / Jenkins)
+    The open-source license inventory per application (from SCA/SBOM) + each component's license
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration, Artifact + SBOM store)
+    SCA license report per app (FOSSA / Black Duck / Trivy --scanners license)
+    map components to the license policy (allowed / restricted / prohibited)
+    flag copyleft (GPL/AGPL) in distributed/proprietary products
+    confirm NOTICE/attribution files + source-offer obligations are met
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

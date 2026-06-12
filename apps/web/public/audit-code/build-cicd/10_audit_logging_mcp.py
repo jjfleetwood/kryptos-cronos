@@ -2,13 +2,16 @@
 """Read-only MCP server — Build Environment & CI/CD (Continuous Integration / Continuous Delivery): "Audit logging" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the "Audit logging" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify build/CI/CD/registry activity is logged, retained, and monitored. PASS: SCM + CI/CD + registry emit audit logs (merges, workflow changes, deploys, secret access, image pushes, admin actions); logs ship to the SIEM with retention; detections fire on high-risk events (pipeline tampering, secret access by a new actor, prod deploy outside the change window); and the trail is tamper-resistant. Exceptions: build systems not logging to the SIEM, no detections on pipeline/secret abuse, short retention, and logs editable by the same admins.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the audit logging control (from GitHub Actions / GitLab CI / Jenkins)
+    The audit-log coverage for SCM, CI/CD, and registry (who did what: merges, pipeline edits, deploys, secret access, image pushes)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration, Artifact + SBOM store)
+    confirm SCM/CI/registry audit logs forward to the SIEM (e.g. GitHub audit-log streaming)
+    retention check
+    detections for: workflow file changed, secret accessed, admin bypass, image push to a prod tag, new deploy credential
+    verify the build audit trail can't be edited by the dev admins
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

@@ -2,13 +2,16 @@
 """Read-only MCP server — Build Environment & CI/CD (Continuous Integration / Continuous Delivery): "Orchestration cluster security" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the "Orchestration cluster security" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify orchestration clusters are hardened and access-controlled. PASS: the API server isn't publicly exposed without auth; RBAC is least-privilege (few cluster-admins, no wildcard roles, no anonymous access); etcd is encrypted at rest; audit logging is on and shipped; admission control (Pod Security, OPA) is enforced; and the cluster + nodes are patched/supported. Exceptions: public API server, broad cluster-admin/wildcard RBAC, anonymous access, etcd unencrypted, audit logging off, and EOL cluster versions.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the orchestration cluster security control (from GitHub Actions / GitLab CI / Jenkins)
+    The Kubernetes cluster config (API-server access, RBAC, etcd encryption, audit logging) vs the CIS benchmark
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration, Artifact + SBOM store)
+    kube-bench (CIS Kubernetes Benchmark) on control plane + nodes
+    kubectl get clusterrolebindings → who has cluster-admin; find wildcard ClusterRoles + system:anonymous binding
+    confirm etcd encryption-at-rest + API audit logging enabled + shipped
+    check cluster version vs vendor EOL
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

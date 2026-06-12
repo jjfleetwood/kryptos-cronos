@@ -2,13 +2,16 @@
 """Read-only MCP server — Build Environment & CI/CD (Continuous Integration / Continuous Delivery): "Container runtime security" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the "Container runtime security" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify containers run with least privilege and runtime threats are detected. PASS: containers are non-privileged, drop Linux capabilities, use read-only root filesystems + seccomp/AppArmor, and don't mount the host or run as root; runtime threat detection (Falco) is deployed; and network policy restricts pod-to-pod. Exceptions: privileged containers, host-path/Docker-socket mounts, no seccomp, no runtime detection, and flat pod networking.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the container runtime security control (from GitHub Actions / GitLab CI / Jenkins)
+    The runtime security config (read-only root FS, dropped capabilities, no privileged containers, seccomp/AppArmor)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration, Artifact + SBOM store)
+    scan running pods for privileged:true, hostPID/hostNetwork, host-path/docker.sock mounts, runAsRoot
+    confirm Pod Security Standards (restricted) admission is enforced
+    Falco / Defender-for-Containers deployment + rule coverage
+    NetworkPolicy presence (default-deny pod-to-pod?)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

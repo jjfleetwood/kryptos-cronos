@@ -2,13 +2,16 @@
 """Read-only MCP server — Build Environment & CI/CD (Continuous Integration / Continuous Delivery): "CI/CD pipeline security" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the "CI/CD pipeline security" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the CI/CD pipeline enforces security and can't be subverted. PASS: pipeline definitions are protected (changes reviewed); security gates are blocking, not advisory; production deploys require approval and come only from protected branches; and deploy credentials are short-lived (OIDC federation), least-privilege. Exceptions: anyone can edit the pipeline, gates set to non-blocking, prod deploy with no approval, and long-lived powerful deploy credentials in CI.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the ci/cd pipeline security control (from GitHub Actions / GitLab CI / Jenkins)
+    The pipeline-definition inventory + who can edit pipeline config (pipeline-as-code permissions)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration, Artifact + SBOM store)
+    who can modify pipeline YAML / Jenkinsfiles (branch protection on the pipeline config itself)
+    confirm SAST/SCA/secret/image gates fail the build (not continue-on-error)
+    deploy stage: required approvals + environment protection rules
+    CI→cloud auth: OIDC short-lived vs stored long-lived keys
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

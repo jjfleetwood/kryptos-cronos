@@ -2,13 +2,16 @@
 """Read-only MCP server — Build Environment & CI/CD (Continuous Integration / Continuous Delivery): "Workload security" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the "Workload security" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify individual workloads run least-privilege with scoped identity. PASS: each workload uses a dedicated, least-privilege service account mapped to a scoped cloud identity (IRSA / workload identity, not the node role); has resource limits; restricts its network exposure with auth on anything external; and consumes secrets via a vault/CSI driver, not baked env vars. Exceptions: workloads using the node role or default SA (over-privileged), no resource limits, externally-exposed services with no auth, and secrets in plain env vars.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the workload security control (from GitHub Actions / GitLab CI / Jenkins)
+    Per-workload security context + resource limits + the service-account/identity it runs as
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration, Artifact + SBOM store)
+    per workload: serviceAccountName + its RBAC + the cloud identity it assumes (IRSA annotation)
+    find pods using the default SA or the node instance role (over-privileged)
+    list externally-exposed Services/Ingress + whether they require auth
+    how secrets reach pods: env vs mounted vs vault-injected
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

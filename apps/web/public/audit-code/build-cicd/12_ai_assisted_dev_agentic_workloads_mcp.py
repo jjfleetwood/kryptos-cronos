@@ -2,13 +2,16 @@
 """Read-only MCP server — Build Environment & CI/CD (Continuous Integration / Continuous Delivery): "AI-assisted dev / agentic workloads" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the "AI-assisted dev / agentic workloads" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Govern AI-assisted development and agentic workloads. PASS: AI coding tools are approved + inventoried; AI-generated code goes through the same review + security gates as human code (no auto-merge to protected branches); agentic build/fix workloads run least-privilege with a human-in-the-loop for merges/deploys and full logging; and proprietary code isn't sent to ungoverned model endpoints (training opt-out, approved tenancy). Exceptions: shadow AI dev tools, AI/agent code auto-merged without review, agents with broad commit/deploy authority, and source code leaking to public models.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the ai-assisted dev / agentic workloads control (from GitHub Actions / GitLab CI / Jenkins)
+    The inventory of AI coding tools + agentic CI workloads in use (Copilot, AI review, autonomous build/fix agents) + their permissions
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration, Artifact + SBOM store)
+    inventory AI dev tools + agentic CI agents and their repo/deploy permissions
+    confirm AI-generated PRs require human review + pass security gates (no auto-merge)
+    check agent service accounts are least-privilege + their actions logged/attributable
+    confirm source isn't sent to public model endpoints (enterprise tenancy + training opt-out)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

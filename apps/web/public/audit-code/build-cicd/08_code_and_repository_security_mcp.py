@@ -2,13 +2,16 @@
 """Read-only MCP server — Build Environment & CI/CD (Continuous Integration / Continuous Delivery): "Code and repository security" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Build Environment & CI/CD (Continuous Integration / Continuous Delivery) policy/standard and flag every item where the "Code and repository security" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify source-code integrity controls prevent unreviewed/malicious code reaching builds. PASS: protected branches require PR review (CODEOWNERS for sensitive paths), passing status checks, and (ideally) signed commits; direct push + force-push to protected branches are blocked; admin bypass is restricted + logged; and repo access is least-privilege. Exceptions: unprotected default branch, no required review, admins routinely bypassing checks, force-push allowed, and broad write/admin access.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the code and repository security control (from GitHub Actions / GitLab CI / Jenkins)
+    Branch-protection + required-review (CODEOWNERS) config on the default/release branches
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: GitHub Actions / GitLab CI / Jenkins, Container registry (ECR/GHCR), Kubernetes / orchestration, Artifact + SBOM store)
+    export branch-protection rules per repo: required reviews, CODEOWNERS, status checks, signed commits, no force-push
+    list who has admin/maintain/write; outside collaborators
+    check 'allow admins to bypass' + recent bypass events
+    confirm required CI checks can't be skipped
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /
