@@ -58,9 +58,21 @@ controls" blurb. Real artifacts, real tests, real systems, real commands.
    Commit the changed `audit-content.mjs` + regenerated `audit-generated/*` + `audit-code/*`
    on branch `agent/audit-content-<slug>-<YYYYMMDD>` and open a PR via `gh pr create`.
 
-If — and only if — every Advanced Audit domain is already authored, switch to the
-secondary task: take the epoch the Prose Quality agent flags most and rewrite its terse
-overviews into the narrative house standard (same branch+PR+gates discipline).
+**Secondary task — prose-depth (the planned board's bulk).** Do this *instead* of the
+audit work when **either** the run's `target` names a curriculum epoch id (e.g.
+`cisco-secops`, `cisco-enterprise`, `cisco-advanced`, `debate-3`) **or** every Advanced
+Audit domain is already authored. Take that epoch (or, with no target, the one the Prose
+Quality agent flags most) and rewrite its **terse, bulleted stage overviews** into the
+narrative house standard:
+- Stage content lives in `packages/core/src/<file>.ts` (find the file by `epochId` — e.g.
+  cisco-secops is split across `cisco-3.ts` + `cisco-4.ts`). The flagged stages have an
+  `overview` array with 2+ `"\n- "` bulleted paragraphs.
+- Rewrite each flagged overview into **sustained, connected narrative prose** that threads
+  the stage's argument (the deepened quantum epochs are the model). Security/tech epochs
+  get full HS/University depth; hidden extended tracks get a lighter de-bullet. Preserve
+  every fact; never touch `id`/`order`/quiz `correctIndex`/flags.
+- One epoch per run → branch `agent/prose-<epoch>-<date>` + PR. Gates before the PR:
+  `npm run gen:meta -w @kryptos/core` and `npx tsc --noEmit --skipLibCheck -p apps/web/tsconfig.json`.
 
 ## Hard guardrails (non-negotiable)
 
