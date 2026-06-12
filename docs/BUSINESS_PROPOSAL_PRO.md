@@ -142,6 +142,14 @@ At 50,000 free users with an average of 0.5 ad impressions per session, projecte
 - **Enterprise:** $8/seat/month (100+ seats) — SSO, compliance reporting, custom curriculum, dedicated success manager
 - Target: Fortune 500 security teams, defense contractors, financial services firms under SEC cybersecurity disclosure rules (effective 2024)
 
+### Advanced Audit & Service Delivery (Optional Third Surface)
+A gated Pro/Enterprise **Advanced Audit** track teaches technical & privacy auditing as repeatable agentic workflows — each control sub-process pairs a real evidence artifact and a defined test with a **downloadable, runnable read-only MCP server** that gathers the evidence and renders a PASS / EXCEPTIONS / MATERIAL-GAP opinion. Paired with the admin **deck generator** (any track or audit domain → an audience-lensed PowerPoint in one click), this opens revenue surfaces beyond per-seat training off the *same content asset*:
+- **Teaching & sales device:** generate a tailored "here's how we'd audit your IAM / cloud / CI-CD" deck for a prospect, or a workshop deck per module, at near-zero marginal cost.
+- **Enablement:** train a client's own audit/security team on the controls they'll be assessed against.
+- **Audit-as-a-service / tooling licensing:** run the agentic (read-only) audit against a client environment → the platform produces the findings → the deck generator produces the client-ready report deck. **Productized, tooling-leveraged delivery — not a consulting body shop.**
+
+This is positioned as **optional upside and a wedge into the enterprise audit/GRC budget** (higher ACV than the L&D line), explicitly secondary to the core training SaaS.
+
 ### Sponsor Integration (Ecosystem Revenue)
 Strategic sponsors — security tools vendors (CrowdStrike, Cisco, SentinelOne), cloud providers (AWS, Azure), and certification bodies (CompTIA, ISC²) — can:
 - Sponsor specific stage badges ("Powered by CrowdStrike — Threat Hunter Badge")
