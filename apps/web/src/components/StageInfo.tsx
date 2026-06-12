@@ -272,12 +272,14 @@ export default function StageInfo({
   isDual = false,
   translation = null,
   backHref,
+  hideCover = false,
 }: {
   stage: StageConfig;
   onStart: (mode?: "quiz" | "ctf") => void;
   isDual?: boolean;
   translation?: StageTranslation | null;
   backHref?: string;
+  hideCover?: boolean;
 }) {
   const { t } = useLocale();
   const { info } = stage;
@@ -461,7 +463,7 @@ export default function StageInfo({
               />
             ))}
           </div>
-          {(() => {
+          {!hideCover && (() => {
             const realImage = STAGE_IMAGES[stage.id] ?? stage.image ?? DEBATE_EPOCH_IMAGE[stage.epochId];
             return (
               <figure className="mt-6 group">

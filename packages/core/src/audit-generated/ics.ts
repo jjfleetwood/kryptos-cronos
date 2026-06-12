@@ -1,0 +1,3664 @@
+import type { EpochConfig, StageConfig } from "../types";
+
+export const icsEpoch: EpochConfig = {
+  "id": "ics",
+  "name": "ICS",
+  "subtitle": "Agentic technical & privacy audit — ICS",
+  "description": "Audit ICS end to end with a read-only agent fleet: each sub-process is a module that teaches the control as a repeatable agentic workflow with downloadable MCP tooling, a CTF, and a 10-question quiz.",
+  "emoji": "🏭",
+  "color": "Amber",
+  "unlocked": true
+};
+
+export const icsStages: StageConfig[] = [
+  {
+    "epochId": "ics",
+    "id": "ics-01",
+    "order": 1,
+    "title": "ICS asset inventory",
+    "subtitle": "Agentic technical & privacy audit of the ics asset inventory control",
+    "category": "cybersecurity",
+    "xp": 100,
+    "easeScore": 6,
+    "valueScore": 7,
+    "rank": 0,
+    "auditMeta": {
+      "objective": "Prove the \"ICS asset inventory\" control for ICS is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
+      "approach": "An audit agent calls a read-only MCP server that wraps each ICS source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "artifacts": [
+        "In-scope inventory for the ics asset inventory control (from ICS/SCADA + PLC/RTU/HMI)",
+        "Observed configuration/state evidence showing whether the control is applied and operating",
+        "The control policy / standard / threshold the evidence is judged against",
+        "The reconciled exceptions list + coverage report (the working paper)"
+      ],
+      "system": [
+        "ICS/SCADA + PLC/RTU/HMI",
+        "OT network monitoring (Dragos/Nozomi)",
+        "IT/OT boundary firewalls (DMZ)",
+        "OT asset inventory"
+      ],
+      "dataOwner": [
+        "OT / plant engineering",
+        "OT security",
+        "IT/OT network team",
+        "Physical security / safety"
+      ],
+      "scoring": {
+        "ease": "EASE 6/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream ICS controls."
+      }
+    },
+    "badge": {
+      "id": "ics-01-badge",
+      "name": "ICS Auditor",
+      "emoji": "🏭"
+    },
+    "wonder": {
+      "name": "ICS asset inventory",
+      "location": "ICS",
+      "era": "Present Day",
+      "emoji": "🏭"
+    },
+    "challengeType": "ctf",
+    "info": {
+      "tagline": "Auditing \"ICS asset inventory\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the ICS control.",
+      "year": 2025,
+      "overview": [
+        "The \"ICS asset inventory\" sub-process is one of the controls an auditor must verify for ICS. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that ics asset inventory is in place and working, for everything in scope.\"",
+        "It is hard because the truth lives across systems that were never reconciled — typically ICS/SCADA + PLC/RTU/HMI, OT network monitoring (Dragos/Nozomi), IT/OT boundary firewalls (DMZ) — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+      ],
+      "technical": {
+        "title": "The agentic workflow — automate the evidence, not the judgement",
+        "body": [
+          "The included `01_ics_asset_inventory_mcp.py` exposes read-only tools that turn each ICS source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
+          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 01_ics_asset_inventory_mcp.py` to expose it to your agent — or `python 01_ics_asset_inventory_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
+        ],
+        "codeExample": {
+          "label": "coverage_report() — the audit deliverable (excerpt)",
+          "code": "def coverage_report():\n    items = _evaluate(_gather())\n    exceptions = [i for i in items if not i[\"compliant\"]]\n    return {\n      \"in_scope\": len(items),\n      \"compliant\": len(items) - len(exceptions),\n      \"exceptions\": [i[\"id\"] for i in exceptions],\n      \"opinion\": \"PASS\" if not exceptions\n                 else \"EXCEPTIONS\" if len(exceptions) <= 3\n                 else \"MATERIAL GAP\",\n    }"
+        }
+      },
+      "incident": {
+        "title": "Ransomware crosses into operations",
+        "when": "2021",
+        "where": "Pipeline operational systems",
+        "impact": "An IT-side intrusion forced an operational shutdown, disrupting fuel supply across a region — IT/OT boundary failure with physical consequences.",
+        "body": [
+          "Colonial Pipeline halted operations after a billing-system intrusion because the IT/OT boundary and segmentation couldn't assure safe operation — and the consequences were physical.",
+          "Auditors verify ICS asset inventory, segmentation, the IT/OT boundary, OT IAM, patch/vuln handling, monitoring/IR, and vendor remote access."
+        ]
+      },
+      "diagram": {
+        "nodes": [
+          {
+            "label": "Scope",
+            "sub": "define ICS scope + policy",
+            "type": "attacker"
+          },
+          {
+            "label": "Agent + MCP",
+            "sub": "pull ICS/SCADA + PLC/RTU/HMI · OT network monitoring (Dragos/Nozomi)",
+            "type": "system"
+          },
+          {
+            "label": "Evaluate",
+            "sub": "reconcile vs policy, find gaps",
+            "type": "system"
+          },
+          {
+            "label": "Findings + opinion",
+            "sub": "exceptions · CAPA",
+            "type": "result"
+          }
+        ]
+      },
+      "timeline": [
+        {
+          "year": 2021,
+          "event": "Colonial Pipeline: IT intrusion forces OT shutdown",
+          "highlight": true
+        },
+        {
+          "year": 2015,
+          "event": "Ukraine grid attack: remote ICS manipulation cuts power"
+        },
+        {
+          "year": 2025,
+          "event": "Agentic evidence-gathering becomes the practical way to keep \"ICS asset inventory\" continuously assured",
+          "highlight": true
+        }
+      ],
+      "keyTakeaways": [
+        "Audit \"ICS asset inventory\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
+        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
+        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
+        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+      ],
+      "references": [
+        {
+          "title": "NIST SP 800-82 — ICS Security",
+          "url": "https://csrc.nist.gov/pubs/sp/800/82/r3/final"
+        },
+        {
+          "title": "IEC 62443 — IACS security",
+          "url": "https://www.iec.ch/cyber-security"
+        },
+        {
+          "title": "CISA ICS advisories",
+          "url": "https://www.cisa.gov/topics/industrial-control-systems"
+        },
+        {
+          "title": "Model Context Protocol — specification",
+          "url": "https://modelcontextprotocol.io/"
+        }
+      ],
+      "downloads": [
+        {
+          "name": "01_ics_asset_inventory_mcp.py",
+          "url": "/audit-code/ics/01_ics_asset_inventory_mcp.py",
+          "description": "Runnable read-only MCP server: gathers ICS evidence for \"ICS asset inventory\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+        }
+      ]
+    },
+    "ctf": {
+      "scenario": "You're the auditor testing the \"ICS asset inventory\" control for ICS at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
+      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "hints": [
+        "cat each file in /evidence. ICS/SCADA + PLC/RTU/HMI is the system of record; the others show what is actually configured/running.",
+        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
+      ],
+      "files": {
+        "/evidence/README.md": "# AcmeCorp — ICS: \"ICS asset inventory\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- ics_inventory.json   (in-scope items from ICS/SCADA + PLC/RTU/HMI)\n- ics_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"ICS asset inventory\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"ICS asset inventory\",\n  \"domain\": \"ICS\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ics_",
+        "/evidence/ics_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"OT / plant engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"ICS asset inventory\" control must cover\n# fragment: ics_asset_inventory_",
+        "/evidence/ics_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
+        "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
+      },
+      "dirs": {
+        "/": [
+          {
+            "name": "evidence",
+            "isDir": true
+          }
+        ],
+        "/evidence": [
+          {
+            "name": "README.md",
+            "isDir": false
+          },
+          {
+            "name": "policy.json",
+            "isDir": false
+          },
+          {
+            "name": "ics_inventory.json",
+            "isDir": false
+          },
+          {
+            "name": "ics_state.json",
+            "isDir": false
+          },
+          {
+            "name": "coverage_report.json",
+            "isDir": false
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "trigger": "/evidence/policy.json",
+          "value": "FLAG{ics_",
+          "label": "Policy — the control standard"
+        },
+        {
+          "trigger": "/evidence/ics_inventory.json",
+          "value": "ics_asset_inventory_",
+          "label": "Inventory — the in-scope items"
+        },
+        {
+          "trigger": "/evidence/ics_state.json",
+          "value": "gap_",
+          "label": "State — the items that fail the control"
+        },
+        {
+          "trigger": "/evidence/coverage_report.json",
+          "value": "material_gap}",
+          "label": "Coverage report — the audit opinion"
+        }
+      ]
+    },
+    "quiz": {
+      "questions": [
+        {
+          "id": "ics-01-q1",
+          "type": "Objective",
+          "challenge": "Control objective",
+          "text": "What is the primary audit objective for the \"ICS asset inventory\" sub-process of ICS?",
+          "options": [
+            "Re-implement the control on the auditor's behalf",
+            "Increase the number of tools the team uses",
+            "Replace the system owner's judgement entirely",
+            "Obtain evidence that the ics asset inventory control is designed and operating effectively, and quantify the gap where it is not"
+          ],
+          "correctIndex": 3,
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+        },
+        {
+          "id": "ics-01-q2",
+          "type": "Why it matters",
+          "challenge": "Materiality",
+          "text": "Why does a weakness in \"ICS asset inventory\" matter to the broader ICS posture?",
+          "options": [
+            "It is relevant solely for marketing",
+            "It has no effect once a firewall exists",
+            "It is a control other ICS controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It only affects documentation aesthetics"
+          ],
+          "correctIndex": 2,
+          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+        },
+        {
+          "id": "ics-01-q3",
+          "type": "Artifacts",
+          "challenge": "Evidence",
+          "text": "Which artifact best evidences the \"ICS asset inventory\" control?",
+          "options": [
+            "The vendor's marketing datasheet",
+            "The ICS asset inventory evidence export reconciled against policy, plus the resulting findings working paper",
+            "A verbal assurance from the team lead",
+            "A screenshot of the login page"
+          ],
+          "correctIndex": 1,
+          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+        },
+        {
+          "id": "ics-01-q4",
+          "type": "System",
+          "challenge": "Source of truth",
+          "text": "Where would an auditor pull the evidence for \"ICS asset inventory\"?",
+          "options": [
+            "ICS/SCADA + PLC/RTU/HMI (and the other systems of record for this domain), accessed read-only",
+            "Only from a spreadsheet emailed by a manager",
+            "From social media",
+            "From the auditor's memory of last year"
+          ],
+          "correctIndex": 0,
+          "explanation": "Evidence comes from the authoritative systems (e.g., ICS/SCADA + PLC/RTU/HMI) via read-only access."
+        },
+        {
+          "id": "ics-01-q5",
+          "type": "Data owner",
+          "challenge": "Accountability",
+          "text": "Who is most likely accountable for the data behind \"ICS asset inventory\"?",
+          "options": [
+            "The external auditor",
+            "No one — it is ownerless",
+            "The end customer",
+            "OT / plant engineering (with related functions attesting their part)"
+          ],
+          "correctIndex": 3,
+          "explanation": "OT / plant engineering owns the control data; the auditor independently verifies it."
+        },
+        {
+          "id": "ics-01-q6",
+          "type": "Agentic",
+          "challenge": "Human vs agent",
+          "text": "In the agentic workflow for \"ICS asset inventory\", which part stays with the human auditor?",
+          "options": [
+            "Nothing; the agent decides materiality",
+            "Only installing dependencies",
+            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
+            "Issuing the final audit opinion autonomously"
+          ],
+          "correctIndex": 2,
+          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+        },
+        {
+          "id": "ics-01-q7",
+          "type": "Tooling",
+          "challenge": "Read-only",
+          "text": "Why must the MCP server for this module be read-only?",
+          "options": [
+            "So it can run without any credentials",
+            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
+            "Read-only servers are simply faster",
+            "MCP cannot perform writes"
+          ],
+          "correctIndex": 1,
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+        },
+        {
+          "id": "ics-01-q8",
+          "type": "Findings",
+          "challenge": "What is a finding",
+          "text": "Which observation is a reportable finding for \"ICS asset inventory\"?",
+          "options": [
+            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
+            "The team uses a popular vendor",
+            "The control exists and operates as designed",
+            "A new feature shipped on time"
+          ],
+          "correctIndex": 0,
+          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+        },
+        {
+          "id": "ics-01-q9",
+          "type": "Deliverable",
+          "challenge": "The opinion",
+          "text": "How does the coverage report escalate its opinion?",
+          "options": [
+            "It is always PASS to avoid conflict",
+            "Randomly each run",
+            "Only the asset count is reported, never an opinion",
+            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+          ],
+          "correctIndex": 3,
+          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+        },
+        {
+          "id": "ics-01-q10",
+          "type": "Privacy/Risk",
+          "challenge": "The data angle",
+          "text": "Why does auditing \"ICS asset inventory\" also serve privacy and regulatory goals?",
+          "options": [
+            "Regulators never look at this domain",
+            "It only matters for public data",
+            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
+            "Privacy is unrelated to technical controls"
+          ],
+          "correctIndex": 2,
+          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+        }
+      ]
+    }
+  },
+  {
+    "epochId": "ics",
+    "id": "ics-02",
+    "order": 2,
+    "title": "Network segmentation",
+    "subtitle": "Agentic technical & privacy audit of the network segmentation control",
+    "category": "cybersecurity",
+    "xp": 100,
+    "easeScore": 6,
+    "valueScore": 9,
+    "rank": 0,
+    "auditMeta": {
+      "objective": "Prove the \"Network segmentation\" control for ICS is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
+      "approach": "An audit agent calls a read-only MCP server that wraps each ICS source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "artifacts": [
+        "In-scope inventory for the network segmentation control (from ICS/SCADA + PLC/RTU/HMI)",
+        "Observed configuration/state evidence showing whether the control is applied and operating",
+        "The control policy / standard / threshold the evidence is judged against",
+        "The reconciled exceptions list + coverage report (the working paper)"
+      ],
+      "system": [
+        "ICS/SCADA + PLC/RTU/HMI",
+        "OT network monitoring (Dragos/Nozomi)",
+        "IT/OT boundary firewalls (DMZ)",
+        "OT asset inventory"
+      ],
+      "dataOwner": [
+        "OT / plant engineering",
+        "OT security",
+        "IT/OT network team",
+        "Physical security / safety"
+      ],
+      "scoring": {
+        "ease": "EASE 6/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
+        "value": "VALUE 9/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream ICS controls."
+      }
+    },
+    "badge": {
+      "id": "ics-02-badge",
+      "name": "ICS Auditor",
+      "emoji": "🏭"
+    },
+    "wonder": {
+      "name": "Network segmentation",
+      "location": "ICS",
+      "era": "Present Day",
+      "emoji": "🏭"
+    },
+    "challengeType": "ctf",
+    "info": {
+      "tagline": "Auditing \"Network segmentation\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the ICS control.",
+      "year": 2025,
+      "overview": [
+        "The \"Network segmentation\" sub-process is one of the controls an auditor must verify for ICS. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that network segmentation is in place and working, for everything in scope.\"",
+        "It is hard because the truth lives across systems that were never reconciled — typically ICS/SCADA + PLC/RTU/HMI, OT network monitoring (Dragos/Nozomi), IT/OT boundary firewalls (DMZ) — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+      ],
+      "technical": {
+        "title": "The agentic workflow — automate the evidence, not the judgement",
+        "body": [
+          "The included `02_network_segmentation_mcp.py` exposes read-only tools that turn each ICS source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
+          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 02_network_segmentation_mcp.py` to expose it to your agent — or `python 02_network_segmentation_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
+        ],
+        "codeExample": {
+          "label": "coverage_report() — the audit deliverable (excerpt)",
+          "code": "def coverage_report():\n    items = _evaluate(_gather())\n    exceptions = [i for i in items if not i[\"compliant\"]]\n    return {\n      \"in_scope\": len(items),\n      \"compliant\": len(items) - len(exceptions),\n      \"exceptions\": [i[\"id\"] for i in exceptions],\n      \"opinion\": \"PASS\" if not exceptions\n                 else \"EXCEPTIONS\" if len(exceptions) <= 3\n                 else \"MATERIAL GAP\",\n    }"
+        }
+      },
+      "incident": {
+        "title": "Ransomware crosses into operations",
+        "when": "2021",
+        "where": "Pipeline operational systems",
+        "impact": "An IT-side intrusion forced an operational shutdown, disrupting fuel supply across a region — IT/OT boundary failure with physical consequences.",
+        "body": [
+          "Colonial Pipeline halted operations after a billing-system intrusion because the IT/OT boundary and segmentation couldn't assure safe operation — and the consequences were physical.",
+          "Auditors verify ICS asset inventory, segmentation, the IT/OT boundary, OT IAM, patch/vuln handling, monitoring/IR, and vendor remote access."
+        ]
+      },
+      "diagram": {
+        "nodes": [
+          {
+            "label": "Scope",
+            "sub": "define ICS scope + policy",
+            "type": "attacker"
+          },
+          {
+            "label": "Agent + MCP",
+            "sub": "pull ICS/SCADA + PLC/RTU/HMI · OT network monitoring (Dragos/Nozomi)",
+            "type": "system"
+          },
+          {
+            "label": "Evaluate",
+            "sub": "reconcile vs policy, find gaps",
+            "type": "system"
+          },
+          {
+            "label": "Findings + opinion",
+            "sub": "exceptions · CAPA",
+            "type": "result"
+          }
+        ]
+      },
+      "timeline": [
+        {
+          "year": 2021,
+          "event": "Colonial Pipeline: IT intrusion forces OT shutdown",
+          "highlight": true
+        },
+        {
+          "year": 2015,
+          "event": "Ukraine grid attack: remote ICS manipulation cuts power"
+        },
+        {
+          "year": 2025,
+          "event": "Agentic evidence-gathering becomes the practical way to keep \"Network segmentation\" continuously assured",
+          "highlight": true
+        }
+      ],
+      "keyTakeaways": [
+        "Audit \"Network segmentation\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
+        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
+        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
+        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+      ],
+      "references": [
+        {
+          "title": "NIST SP 800-82 — ICS Security",
+          "url": "https://csrc.nist.gov/pubs/sp/800/82/r3/final"
+        },
+        {
+          "title": "IEC 62443 — IACS security",
+          "url": "https://www.iec.ch/cyber-security"
+        },
+        {
+          "title": "CISA ICS advisories",
+          "url": "https://www.cisa.gov/topics/industrial-control-systems"
+        },
+        {
+          "title": "Model Context Protocol — specification",
+          "url": "https://modelcontextprotocol.io/"
+        }
+      ],
+      "downloads": [
+        {
+          "name": "02_network_segmentation_mcp.py",
+          "url": "/audit-code/ics/02_network_segmentation_mcp.py",
+          "description": "Runnable read-only MCP server: gathers ICS evidence for \"Network segmentation\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+        }
+      ]
+    },
+    "ctf": {
+      "scenario": "You're the auditor testing the \"Network segmentation\" control for ICS at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
+      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "hints": [
+        "cat each file in /evidence. ICS/SCADA + PLC/RTU/HMI is the system of record; the others show what is actually configured/running.",
+        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
+      ],
+      "files": {
+        "/evidence/README.md": "# AcmeCorp — ICS: \"Network segmentation\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- ics_inventory.json   (in-scope items from ICS/SCADA + PLC/RTU/HMI)\n- ics_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Network segmentation\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Network segmentation\",\n  \"domain\": \"ICS\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ics_",
+        "/evidence/ics_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"OT / plant engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Network segmentation\" control must cover\n# fragment: network_segmentation_",
+        "/evidence/ics_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
+        "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
+      },
+      "dirs": {
+        "/": [
+          {
+            "name": "evidence",
+            "isDir": true
+          }
+        ],
+        "/evidence": [
+          {
+            "name": "README.md",
+            "isDir": false
+          },
+          {
+            "name": "policy.json",
+            "isDir": false
+          },
+          {
+            "name": "ics_inventory.json",
+            "isDir": false
+          },
+          {
+            "name": "ics_state.json",
+            "isDir": false
+          },
+          {
+            "name": "coverage_report.json",
+            "isDir": false
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "trigger": "/evidence/policy.json",
+          "value": "FLAG{ics_",
+          "label": "Policy — the control standard"
+        },
+        {
+          "trigger": "/evidence/ics_inventory.json",
+          "value": "network_segmentation_",
+          "label": "Inventory — the in-scope items"
+        },
+        {
+          "trigger": "/evidence/ics_state.json",
+          "value": "gap_",
+          "label": "State — the items that fail the control"
+        },
+        {
+          "trigger": "/evidence/coverage_report.json",
+          "value": "material_gap}",
+          "label": "Coverage report — the audit opinion"
+        }
+      ]
+    },
+    "quiz": {
+      "questions": [
+        {
+          "id": "ics-02-q1",
+          "type": "Objective",
+          "challenge": "Control objective",
+          "text": "What is the primary audit objective for the \"Network segmentation\" sub-process of ICS?",
+          "options": [
+            "Re-implement the control on the auditor's behalf",
+            "Increase the number of tools the team uses",
+            "Replace the system owner's judgement entirely",
+            "Obtain evidence that the network segmentation control is designed and operating effectively, and quantify the gap where it is not"
+          ],
+          "correctIndex": 3,
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+        },
+        {
+          "id": "ics-02-q2",
+          "type": "Why it matters",
+          "challenge": "Materiality",
+          "text": "Why does a weakness in \"Network segmentation\" matter to the broader ICS posture?",
+          "options": [
+            "It is relevant solely for marketing",
+            "It has no effect once a firewall exists",
+            "It is a control other ICS controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It only affects documentation aesthetics"
+          ],
+          "correctIndex": 2,
+          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+        },
+        {
+          "id": "ics-02-q3",
+          "type": "Artifacts",
+          "challenge": "Evidence",
+          "text": "Which artifact best evidences the \"Network segmentation\" control?",
+          "options": [
+            "The vendor's marketing datasheet",
+            "The Network segmentation evidence export reconciled against policy, plus the resulting findings working paper",
+            "A verbal assurance from the team lead",
+            "A screenshot of the login page"
+          ],
+          "correctIndex": 1,
+          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+        },
+        {
+          "id": "ics-02-q4",
+          "type": "System",
+          "challenge": "Source of truth",
+          "text": "Where would an auditor pull the evidence for \"Network segmentation\"?",
+          "options": [
+            "ICS/SCADA + PLC/RTU/HMI (and the other systems of record for this domain), accessed read-only",
+            "Only from a spreadsheet emailed by a manager",
+            "From social media",
+            "From the auditor's memory of last year"
+          ],
+          "correctIndex": 0,
+          "explanation": "Evidence comes from the authoritative systems (e.g., ICS/SCADA + PLC/RTU/HMI) via read-only access."
+        },
+        {
+          "id": "ics-02-q5",
+          "type": "Data owner",
+          "challenge": "Accountability",
+          "text": "Who is most likely accountable for the data behind \"Network segmentation\"?",
+          "options": [
+            "The external auditor",
+            "No one — it is ownerless",
+            "The end customer",
+            "OT / plant engineering (with related functions attesting their part)"
+          ],
+          "correctIndex": 3,
+          "explanation": "OT / plant engineering owns the control data; the auditor independently verifies it."
+        },
+        {
+          "id": "ics-02-q6",
+          "type": "Agentic",
+          "challenge": "Human vs agent",
+          "text": "In the agentic workflow for \"Network segmentation\", which part stays with the human auditor?",
+          "options": [
+            "Nothing; the agent decides materiality",
+            "Only installing dependencies",
+            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
+            "Issuing the final audit opinion autonomously"
+          ],
+          "correctIndex": 2,
+          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+        },
+        {
+          "id": "ics-02-q7",
+          "type": "Tooling",
+          "challenge": "Read-only",
+          "text": "Why must the MCP server for this module be read-only?",
+          "options": [
+            "So it can run without any credentials",
+            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
+            "Read-only servers are simply faster",
+            "MCP cannot perform writes"
+          ],
+          "correctIndex": 1,
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+        },
+        {
+          "id": "ics-02-q8",
+          "type": "Findings",
+          "challenge": "What is a finding",
+          "text": "Which observation is a reportable finding for \"Network segmentation\"?",
+          "options": [
+            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
+            "The team uses a popular vendor",
+            "The control exists and operates as designed",
+            "A new feature shipped on time"
+          ],
+          "correctIndex": 0,
+          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+        },
+        {
+          "id": "ics-02-q9",
+          "type": "Deliverable",
+          "challenge": "The opinion",
+          "text": "How does the coverage report escalate its opinion?",
+          "options": [
+            "It is always PASS to avoid conflict",
+            "Randomly each run",
+            "Only the asset count is reported, never an opinion",
+            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+          ],
+          "correctIndex": 3,
+          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+        },
+        {
+          "id": "ics-02-q10",
+          "type": "Privacy/Risk",
+          "challenge": "The data angle",
+          "text": "Why does auditing \"Network segmentation\" also serve privacy and regulatory goals?",
+          "options": [
+            "Regulators never look at this domain",
+            "It only matters for public data",
+            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
+            "Privacy is unrelated to technical controls"
+          ],
+          "correctIndex": 2,
+          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+        }
+      ]
+    }
+  },
+  {
+    "epochId": "ics",
+    "id": "ics-03",
+    "order": 3,
+    "title": "IT/OT asset boundary",
+    "subtitle": "Agentic technical & privacy audit of the it/ot asset boundary control",
+    "category": "cybersecurity",
+    "xp": 100,
+    "easeScore": 7,
+    "valueScore": 7,
+    "rank": 0,
+    "auditMeta": {
+      "objective": "Prove the \"IT/OT asset boundary\" control for ICS is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
+      "approach": "An audit agent calls a read-only MCP server that wraps each ICS source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "artifacts": [
+        "In-scope inventory for the it/ot asset boundary control (from ICS/SCADA + PLC/RTU/HMI)",
+        "Observed configuration/state evidence showing whether the control is applied and operating",
+        "The control policy / standard / threshold the evidence is judged against",
+        "The reconciled exceptions list + coverage report (the working paper)"
+      ],
+      "system": [
+        "ICS/SCADA + PLC/RTU/HMI",
+        "OT network monitoring (Dragos/Nozomi)",
+        "IT/OT boundary firewalls (DMZ)",
+        "OT asset inventory"
+      ],
+      "dataOwner": [
+        "OT / plant engineering",
+        "OT security",
+        "IT/OT network team",
+        "Physical security / safety"
+      ],
+      "scoring": {
+        "ease": "EASE 7/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream ICS controls."
+      }
+    },
+    "badge": {
+      "id": "ics-03-badge",
+      "name": "ICS Auditor",
+      "emoji": "🏭"
+    },
+    "wonder": {
+      "name": "IT/OT asset boundary",
+      "location": "ICS",
+      "era": "Present Day",
+      "emoji": "🏭"
+    },
+    "challengeType": "ctf",
+    "info": {
+      "tagline": "Auditing \"IT/OT asset boundary\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the ICS control.",
+      "year": 2025,
+      "overview": [
+        "The \"IT/OT asset boundary\" sub-process is one of the controls an auditor must verify for ICS. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that it/ot asset boundary is in place and working, for everything in scope.\"",
+        "It is hard because the truth lives across systems that were never reconciled — typically ICS/SCADA + PLC/RTU/HMI, OT network monitoring (Dragos/Nozomi), IT/OT boundary firewalls (DMZ) — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+      ],
+      "technical": {
+        "title": "The agentic workflow — automate the evidence, not the judgement",
+        "body": [
+          "The included `03_it_ot_asset_boundary_mcp.py` exposes read-only tools that turn each ICS source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
+          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 03_it_ot_asset_boundary_mcp.py` to expose it to your agent — or `python 03_it_ot_asset_boundary_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
+        ],
+        "codeExample": {
+          "label": "coverage_report() — the audit deliverable (excerpt)",
+          "code": "def coverage_report():\n    items = _evaluate(_gather())\n    exceptions = [i for i in items if not i[\"compliant\"]]\n    return {\n      \"in_scope\": len(items),\n      \"compliant\": len(items) - len(exceptions),\n      \"exceptions\": [i[\"id\"] for i in exceptions],\n      \"opinion\": \"PASS\" if not exceptions\n                 else \"EXCEPTIONS\" if len(exceptions) <= 3\n                 else \"MATERIAL GAP\",\n    }"
+        }
+      },
+      "incident": {
+        "title": "Ransomware crosses into operations",
+        "when": "2021",
+        "where": "Pipeline operational systems",
+        "impact": "An IT-side intrusion forced an operational shutdown, disrupting fuel supply across a region — IT/OT boundary failure with physical consequences.",
+        "body": [
+          "Colonial Pipeline halted operations after a billing-system intrusion because the IT/OT boundary and segmentation couldn't assure safe operation — and the consequences were physical.",
+          "Auditors verify ICS asset inventory, segmentation, the IT/OT boundary, OT IAM, patch/vuln handling, monitoring/IR, and vendor remote access."
+        ]
+      },
+      "diagram": {
+        "nodes": [
+          {
+            "label": "Scope",
+            "sub": "define ICS scope + policy",
+            "type": "attacker"
+          },
+          {
+            "label": "Agent + MCP",
+            "sub": "pull ICS/SCADA + PLC/RTU/HMI · OT network monitoring (Dragos/Nozomi)",
+            "type": "system"
+          },
+          {
+            "label": "Evaluate",
+            "sub": "reconcile vs policy, find gaps",
+            "type": "system"
+          },
+          {
+            "label": "Findings + opinion",
+            "sub": "exceptions · CAPA",
+            "type": "result"
+          }
+        ]
+      },
+      "timeline": [
+        {
+          "year": 2021,
+          "event": "Colonial Pipeline: IT intrusion forces OT shutdown",
+          "highlight": true
+        },
+        {
+          "year": 2015,
+          "event": "Ukraine grid attack: remote ICS manipulation cuts power"
+        },
+        {
+          "year": 2025,
+          "event": "Agentic evidence-gathering becomes the practical way to keep \"IT/OT asset boundary\" continuously assured",
+          "highlight": true
+        }
+      ],
+      "keyTakeaways": [
+        "Audit \"IT/OT asset boundary\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
+        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
+        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
+        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+      ],
+      "references": [
+        {
+          "title": "NIST SP 800-82 — ICS Security",
+          "url": "https://csrc.nist.gov/pubs/sp/800/82/r3/final"
+        },
+        {
+          "title": "IEC 62443 — IACS security",
+          "url": "https://www.iec.ch/cyber-security"
+        },
+        {
+          "title": "CISA ICS advisories",
+          "url": "https://www.cisa.gov/topics/industrial-control-systems"
+        },
+        {
+          "title": "Model Context Protocol — specification",
+          "url": "https://modelcontextprotocol.io/"
+        }
+      ],
+      "downloads": [
+        {
+          "name": "03_it_ot_asset_boundary_mcp.py",
+          "url": "/audit-code/ics/03_it_ot_asset_boundary_mcp.py",
+          "description": "Runnable read-only MCP server: gathers ICS evidence for \"IT/OT asset boundary\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+        }
+      ]
+    },
+    "ctf": {
+      "scenario": "You're the auditor testing the \"IT/OT asset boundary\" control for ICS at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
+      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "hints": [
+        "cat each file in /evidence. ICS/SCADA + PLC/RTU/HMI is the system of record; the others show what is actually configured/running.",
+        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
+      ],
+      "files": {
+        "/evidence/README.md": "# AcmeCorp — ICS: \"IT/OT asset boundary\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- ics_inventory.json   (in-scope items from ICS/SCADA + PLC/RTU/HMI)\n- ics_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"IT/OT asset boundary\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"IT/OT asset boundary\",\n  \"domain\": \"ICS\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ics_",
+        "/evidence/ics_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"OT / plant engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"IT/OT asset boundary\" control must cover\n# fragment: itot_asset_boundary_",
+        "/evidence/ics_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
+        "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
+      },
+      "dirs": {
+        "/": [
+          {
+            "name": "evidence",
+            "isDir": true
+          }
+        ],
+        "/evidence": [
+          {
+            "name": "README.md",
+            "isDir": false
+          },
+          {
+            "name": "policy.json",
+            "isDir": false
+          },
+          {
+            "name": "ics_inventory.json",
+            "isDir": false
+          },
+          {
+            "name": "ics_state.json",
+            "isDir": false
+          },
+          {
+            "name": "coverage_report.json",
+            "isDir": false
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "trigger": "/evidence/policy.json",
+          "value": "FLAG{ics_",
+          "label": "Policy — the control standard"
+        },
+        {
+          "trigger": "/evidence/ics_inventory.json",
+          "value": "itot_asset_boundary_",
+          "label": "Inventory — the in-scope items"
+        },
+        {
+          "trigger": "/evidence/ics_state.json",
+          "value": "gap_",
+          "label": "State — the items that fail the control"
+        },
+        {
+          "trigger": "/evidence/coverage_report.json",
+          "value": "material_gap}",
+          "label": "Coverage report — the audit opinion"
+        }
+      ]
+    },
+    "quiz": {
+      "questions": [
+        {
+          "id": "ics-03-q1",
+          "type": "Objective",
+          "challenge": "Control objective",
+          "text": "What is the primary audit objective for the \"IT/OT asset boundary\" sub-process of ICS?",
+          "options": [
+            "Re-implement the control on the auditor's behalf",
+            "Increase the number of tools the team uses",
+            "Replace the system owner's judgement entirely",
+            "Obtain evidence that the it/ot asset boundary control is designed and operating effectively, and quantify the gap where it is not"
+          ],
+          "correctIndex": 3,
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+        },
+        {
+          "id": "ics-03-q2",
+          "type": "Why it matters",
+          "challenge": "Materiality",
+          "text": "Why does a weakness in \"IT/OT asset boundary\" matter to the broader ICS posture?",
+          "options": [
+            "It is relevant solely for marketing",
+            "It has no effect once a firewall exists",
+            "It is a control other ICS controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It only affects documentation aesthetics"
+          ],
+          "correctIndex": 2,
+          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+        },
+        {
+          "id": "ics-03-q3",
+          "type": "Artifacts",
+          "challenge": "Evidence",
+          "text": "Which artifact best evidences the \"IT/OT asset boundary\" control?",
+          "options": [
+            "The vendor's marketing datasheet",
+            "The IT/OT asset boundary evidence export reconciled against policy, plus the resulting findings working paper",
+            "A verbal assurance from the team lead",
+            "A screenshot of the login page"
+          ],
+          "correctIndex": 1,
+          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+        },
+        {
+          "id": "ics-03-q4",
+          "type": "System",
+          "challenge": "Source of truth",
+          "text": "Where would an auditor pull the evidence for \"IT/OT asset boundary\"?",
+          "options": [
+            "ICS/SCADA + PLC/RTU/HMI (and the other systems of record for this domain), accessed read-only",
+            "Only from a spreadsheet emailed by a manager",
+            "From social media",
+            "From the auditor's memory of last year"
+          ],
+          "correctIndex": 0,
+          "explanation": "Evidence comes from the authoritative systems (e.g., ICS/SCADA + PLC/RTU/HMI) via read-only access."
+        },
+        {
+          "id": "ics-03-q5",
+          "type": "Data owner",
+          "challenge": "Accountability",
+          "text": "Who is most likely accountable for the data behind \"IT/OT asset boundary\"?",
+          "options": [
+            "The external auditor",
+            "No one — it is ownerless",
+            "The end customer",
+            "OT / plant engineering (with related functions attesting their part)"
+          ],
+          "correctIndex": 3,
+          "explanation": "OT / plant engineering owns the control data; the auditor independently verifies it."
+        },
+        {
+          "id": "ics-03-q6",
+          "type": "Agentic",
+          "challenge": "Human vs agent",
+          "text": "In the agentic workflow for \"IT/OT asset boundary\", which part stays with the human auditor?",
+          "options": [
+            "Nothing; the agent decides materiality",
+            "Only installing dependencies",
+            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
+            "Issuing the final audit opinion autonomously"
+          ],
+          "correctIndex": 2,
+          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+        },
+        {
+          "id": "ics-03-q7",
+          "type": "Tooling",
+          "challenge": "Read-only",
+          "text": "Why must the MCP server for this module be read-only?",
+          "options": [
+            "So it can run without any credentials",
+            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
+            "Read-only servers are simply faster",
+            "MCP cannot perform writes"
+          ],
+          "correctIndex": 1,
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+        },
+        {
+          "id": "ics-03-q8",
+          "type": "Findings",
+          "challenge": "What is a finding",
+          "text": "Which observation is a reportable finding for \"IT/OT asset boundary\"?",
+          "options": [
+            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
+            "The team uses a popular vendor",
+            "The control exists and operates as designed",
+            "A new feature shipped on time"
+          ],
+          "correctIndex": 0,
+          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+        },
+        {
+          "id": "ics-03-q9",
+          "type": "Deliverable",
+          "challenge": "The opinion",
+          "text": "How does the coverage report escalate its opinion?",
+          "options": [
+            "It is always PASS to avoid conflict",
+            "Randomly each run",
+            "Only the asset count is reported, never an opinion",
+            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+          ],
+          "correctIndex": 3,
+          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+        },
+        {
+          "id": "ics-03-q10",
+          "type": "Privacy/Risk",
+          "challenge": "The data angle",
+          "text": "Why does auditing \"IT/OT asset boundary\" also serve privacy and regulatory goals?",
+          "options": [
+            "Regulators never look at this domain",
+            "It only matters for public data",
+            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
+            "Privacy is unrelated to technical controls"
+          ],
+          "correctIndex": 2,
+          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+        }
+      ]
+    }
+  },
+  {
+    "epochId": "ics",
+    "id": "ics-04",
+    "order": 4,
+    "title": "IAM (ICS)",
+    "subtitle": "Agentic technical & privacy audit of the iam (ics) control",
+    "category": "cybersecurity",
+    "xp": 100,
+    "easeScore": 5,
+    "valueScore": 9,
+    "rank": 0,
+    "auditMeta": {
+      "objective": "Prove the \"IAM (ICS)\" control for ICS is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
+      "approach": "An audit agent calls a read-only MCP server that wraps each ICS source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "artifacts": [
+        "In-scope inventory for the iam (ics) control (from ICS/SCADA + PLC/RTU/HMI)",
+        "Observed configuration/state evidence showing whether the control is applied and operating",
+        "The control policy / standard / threshold the evidence is judged against",
+        "The reconciled exceptions list + coverage report (the working paper)"
+      ],
+      "system": [
+        "ICS/SCADA + PLC/RTU/HMI",
+        "OT network monitoring (Dragos/Nozomi)",
+        "IT/OT boundary firewalls (DMZ)",
+        "OT asset inventory"
+      ],
+      "dataOwner": [
+        "OT / plant engineering",
+        "OT security",
+        "IT/OT network team",
+        "Physical security / safety"
+      ],
+      "scoring": {
+        "ease": "EASE 5/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
+        "value": "VALUE 9/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream ICS controls."
+      }
+    },
+    "badge": {
+      "id": "ics-04-badge",
+      "name": "ICS Auditor",
+      "emoji": "🏭"
+    },
+    "wonder": {
+      "name": "IAM (ICS)",
+      "location": "ICS",
+      "era": "Present Day",
+      "emoji": "🏭"
+    },
+    "challengeType": "ctf",
+    "info": {
+      "tagline": "Auditing \"IAM (ICS)\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the ICS control.",
+      "year": 2025,
+      "overview": [
+        "The \"IAM (ICS)\" sub-process is one of the controls an auditor must verify for ICS. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that iam (ics) is in place and working, for everything in scope.\"",
+        "It is hard because the truth lives across systems that were never reconciled — typically ICS/SCADA + PLC/RTU/HMI, OT network monitoring (Dragos/Nozomi), IT/OT boundary firewalls (DMZ) — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+      ],
+      "technical": {
+        "title": "The agentic workflow — automate the evidence, not the judgement",
+        "body": [
+          "The included `04_iam_ics_mcp.py` exposes read-only tools that turn each ICS source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
+          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 04_iam_ics_mcp.py` to expose it to your agent — or `python 04_iam_ics_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
+        ],
+        "codeExample": {
+          "label": "coverage_report() — the audit deliverable (excerpt)",
+          "code": "def coverage_report():\n    items = _evaluate(_gather())\n    exceptions = [i for i in items if not i[\"compliant\"]]\n    return {\n      \"in_scope\": len(items),\n      \"compliant\": len(items) - len(exceptions),\n      \"exceptions\": [i[\"id\"] for i in exceptions],\n      \"opinion\": \"PASS\" if not exceptions\n                 else \"EXCEPTIONS\" if len(exceptions) <= 3\n                 else \"MATERIAL GAP\",\n    }"
+        }
+      },
+      "incident": {
+        "title": "Ransomware crosses into operations",
+        "when": "2021",
+        "where": "Pipeline operational systems",
+        "impact": "An IT-side intrusion forced an operational shutdown, disrupting fuel supply across a region — IT/OT boundary failure with physical consequences.",
+        "body": [
+          "Colonial Pipeline halted operations after a billing-system intrusion because the IT/OT boundary and segmentation couldn't assure safe operation — and the consequences were physical.",
+          "Auditors verify ICS asset inventory, segmentation, the IT/OT boundary, OT IAM, patch/vuln handling, monitoring/IR, and vendor remote access."
+        ]
+      },
+      "diagram": {
+        "nodes": [
+          {
+            "label": "Scope",
+            "sub": "define ICS scope + policy",
+            "type": "attacker"
+          },
+          {
+            "label": "Agent + MCP",
+            "sub": "pull ICS/SCADA + PLC/RTU/HMI · OT network monitoring (Dragos/Nozomi)",
+            "type": "system"
+          },
+          {
+            "label": "Evaluate",
+            "sub": "reconcile vs policy, find gaps",
+            "type": "system"
+          },
+          {
+            "label": "Findings + opinion",
+            "sub": "exceptions · CAPA",
+            "type": "result"
+          }
+        ]
+      },
+      "timeline": [
+        {
+          "year": 2021,
+          "event": "Colonial Pipeline: IT intrusion forces OT shutdown",
+          "highlight": true
+        },
+        {
+          "year": 2015,
+          "event": "Ukraine grid attack: remote ICS manipulation cuts power"
+        },
+        {
+          "year": 2025,
+          "event": "Agentic evidence-gathering becomes the practical way to keep \"IAM (ICS)\" continuously assured",
+          "highlight": true
+        }
+      ],
+      "keyTakeaways": [
+        "Audit \"IAM (ICS)\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
+        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
+        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
+        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+      ],
+      "references": [
+        {
+          "title": "NIST SP 800-82 — ICS Security",
+          "url": "https://csrc.nist.gov/pubs/sp/800/82/r3/final"
+        },
+        {
+          "title": "IEC 62443 — IACS security",
+          "url": "https://www.iec.ch/cyber-security"
+        },
+        {
+          "title": "CISA ICS advisories",
+          "url": "https://www.cisa.gov/topics/industrial-control-systems"
+        },
+        {
+          "title": "Model Context Protocol — specification",
+          "url": "https://modelcontextprotocol.io/"
+        }
+      ],
+      "downloads": [
+        {
+          "name": "04_iam_ics_mcp.py",
+          "url": "/audit-code/ics/04_iam_ics_mcp.py",
+          "description": "Runnable read-only MCP server: gathers ICS evidence for \"IAM (ICS)\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+        }
+      ]
+    },
+    "ctf": {
+      "scenario": "You're the auditor testing the \"IAM (ICS)\" control for ICS at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
+      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "hints": [
+        "cat each file in /evidence. ICS/SCADA + PLC/RTU/HMI is the system of record; the others show what is actually configured/running.",
+        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
+      ],
+      "files": {
+        "/evidence/README.md": "# AcmeCorp — ICS: \"IAM (ICS)\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- ics_inventory.json   (in-scope items from ICS/SCADA + PLC/RTU/HMI)\n- ics_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"IAM (ICS)\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"IAM (ICS)\",\n  \"domain\": \"ICS\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ics_",
+        "/evidence/ics_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"OT / plant engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"IAM (ICS)\" control must cover\n# fragment: iam_ics_",
+        "/evidence/ics_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
+        "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
+      },
+      "dirs": {
+        "/": [
+          {
+            "name": "evidence",
+            "isDir": true
+          }
+        ],
+        "/evidence": [
+          {
+            "name": "README.md",
+            "isDir": false
+          },
+          {
+            "name": "policy.json",
+            "isDir": false
+          },
+          {
+            "name": "ics_inventory.json",
+            "isDir": false
+          },
+          {
+            "name": "ics_state.json",
+            "isDir": false
+          },
+          {
+            "name": "coverage_report.json",
+            "isDir": false
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "trigger": "/evidence/policy.json",
+          "value": "FLAG{ics_",
+          "label": "Policy — the control standard"
+        },
+        {
+          "trigger": "/evidence/ics_inventory.json",
+          "value": "iam_ics_",
+          "label": "Inventory — the in-scope items"
+        },
+        {
+          "trigger": "/evidence/ics_state.json",
+          "value": "gap_",
+          "label": "State — the items that fail the control"
+        },
+        {
+          "trigger": "/evidence/coverage_report.json",
+          "value": "material_gap}",
+          "label": "Coverage report — the audit opinion"
+        }
+      ]
+    },
+    "quiz": {
+      "questions": [
+        {
+          "id": "ics-04-q1",
+          "type": "Objective",
+          "challenge": "Control objective",
+          "text": "What is the primary audit objective for the \"IAM (ICS)\" sub-process of ICS?",
+          "options": [
+            "Re-implement the control on the auditor's behalf",
+            "Increase the number of tools the team uses",
+            "Replace the system owner's judgement entirely",
+            "Obtain evidence that the iam (ics) control is designed and operating effectively, and quantify the gap where it is not"
+          ],
+          "correctIndex": 3,
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+        },
+        {
+          "id": "ics-04-q2",
+          "type": "Why it matters",
+          "challenge": "Materiality",
+          "text": "Why does a weakness in \"IAM (ICS)\" matter to the broader ICS posture?",
+          "options": [
+            "It is relevant solely for marketing",
+            "It has no effect once a firewall exists",
+            "It is a control other ICS controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It only affects documentation aesthetics"
+          ],
+          "correctIndex": 2,
+          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+        },
+        {
+          "id": "ics-04-q3",
+          "type": "Artifacts",
+          "challenge": "Evidence",
+          "text": "Which artifact best evidences the \"IAM (ICS)\" control?",
+          "options": [
+            "The vendor's marketing datasheet",
+            "The IAM (ICS) evidence export reconciled against policy, plus the resulting findings working paper",
+            "A verbal assurance from the team lead",
+            "A screenshot of the login page"
+          ],
+          "correctIndex": 1,
+          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+        },
+        {
+          "id": "ics-04-q4",
+          "type": "System",
+          "challenge": "Source of truth",
+          "text": "Where would an auditor pull the evidence for \"IAM (ICS)\"?",
+          "options": [
+            "ICS/SCADA + PLC/RTU/HMI (and the other systems of record for this domain), accessed read-only",
+            "Only from a spreadsheet emailed by a manager",
+            "From social media",
+            "From the auditor's memory of last year"
+          ],
+          "correctIndex": 0,
+          "explanation": "Evidence comes from the authoritative systems (e.g., ICS/SCADA + PLC/RTU/HMI) via read-only access."
+        },
+        {
+          "id": "ics-04-q5",
+          "type": "Data owner",
+          "challenge": "Accountability",
+          "text": "Who is most likely accountable for the data behind \"IAM (ICS)\"?",
+          "options": [
+            "The external auditor",
+            "No one — it is ownerless",
+            "The end customer",
+            "OT / plant engineering (with related functions attesting their part)"
+          ],
+          "correctIndex": 3,
+          "explanation": "OT / plant engineering owns the control data; the auditor independently verifies it."
+        },
+        {
+          "id": "ics-04-q6",
+          "type": "Agentic",
+          "challenge": "Human vs agent",
+          "text": "In the agentic workflow for \"IAM (ICS)\", which part stays with the human auditor?",
+          "options": [
+            "Nothing; the agent decides materiality",
+            "Only installing dependencies",
+            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
+            "Issuing the final audit opinion autonomously"
+          ],
+          "correctIndex": 2,
+          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+        },
+        {
+          "id": "ics-04-q7",
+          "type": "Tooling",
+          "challenge": "Read-only",
+          "text": "Why must the MCP server for this module be read-only?",
+          "options": [
+            "So it can run without any credentials",
+            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
+            "Read-only servers are simply faster",
+            "MCP cannot perform writes"
+          ],
+          "correctIndex": 1,
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+        },
+        {
+          "id": "ics-04-q8",
+          "type": "Findings",
+          "challenge": "What is a finding",
+          "text": "Which observation is a reportable finding for \"IAM (ICS)\"?",
+          "options": [
+            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
+            "The team uses a popular vendor",
+            "The control exists and operates as designed",
+            "A new feature shipped on time"
+          ],
+          "correctIndex": 0,
+          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+        },
+        {
+          "id": "ics-04-q9",
+          "type": "Deliverable",
+          "challenge": "The opinion",
+          "text": "How does the coverage report escalate its opinion?",
+          "options": [
+            "It is always PASS to avoid conflict",
+            "Randomly each run",
+            "Only the asset count is reported, never an opinion",
+            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+          ],
+          "correctIndex": 3,
+          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+        },
+        {
+          "id": "ics-04-q10",
+          "type": "Privacy/Risk",
+          "challenge": "The data angle",
+          "text": "Why does auditing \"IAM (ICS)\" also serve privacy and regulatory goals?",
+          "options": [
+            "Regulators never look at this domain",
+            "It only matters for public data",
+            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
+            "Privacy is unrelated to technical controls"
+          ],
+          "correctIndex": 2,
+          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+        }
+      ]
+    }
+  },
+  {
+    "epochId": "ics",
+    "id": "ics-05",
+    "order": 5,
+    "title": "Patch and vuln mgmt (ICS)",
+    "subtitle": "Agentic technical & privacy audit of the patch and vuln mgmt (ics) control",
+    "category": "cybersecurity",
+    "xp": 100,
+    "easeScore": 6,
+    "valueScore": 9,
+    "rank": 0,
+    "auditMeta": {
+      "objective": "Prove the \"Patch and vuln mgmt (ICS)\" control for ICS is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
+      "approach": "An audit agent calls a read-only MCP server that wraps each ICS source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "artifacts": [
+        "In-scope inventory for the patch and vuln mgmt (ics) control (from ICS/SCADA + PLC/RTU/HMI)",
+        "Observed configuration/state evidence showing whether the control is applied and operating",
+        "The control policy / standard / threshold the evidence is judged against",
+        "The reconciled exceptions list + coverage report (the working paper)"
+      ],
+      "system": [
+        "ICS/SCADA + PLC/RTU/HMI",
+        "OT network monitoring (Dragos/Nozomi)",
+        "IT/OT boundary firewalls (DMZ)",
+        "OT asset inventory"
+      ],
+      "dataOwner": [
+        "OT / plant engineering",
+        "OT security",
+        "IT/OT network team",
+        "Physical security / safety"
+      ],
+      "scoring": {
+        "ease": "EASE 6/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
+        "value": "VALUE 9/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream ICS controls."
+      }
+    },
+    "badge": {
+      "id": "ics-05-badge",
+      "name": "ICS Auditor",
+      "emoji": "🏭"
+    },
+    "wonder": {
+      "name": "Patch and vuln mgmt (ICS)",
+      "location": "ICS",
+      "era": "Present Day",
+      "emoji": "🏭"
+    },
+    "challengeType": "ctf",
+    "info": {
+      "tagline": "Auditing \"Patch and vuln mgmt (ICS)\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the ICS control.",
+      "year": 2025,
+      "overview": [
+        "The \"Patch and vuln mgmt (ICS)\" sub-process is one of the controls an auditor must verify for ICS. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that patch and vuln mgmt (ics) is in place and working, for everything in scope.\"",
+        "It is hard because the truth lives across systems that were never reconciled — typically ICS/SCADA + PLC/RTU/HMI, OT network monitoring (Dragos/Nozomi), IT/OT boundary firewalls (DMZ) — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+      ],
+      "technical": {
+        "title": "The agentic workflow — automate the evidence, not the judgement",
+        "body": [
+          "The included `05_patch_and_vuln_mgmt_ics_mcp.py` exposes read-only tools that turn each ICS source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
+          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 05_patch_and_vuln_mgmt_ics_mcp.py` to expose it to your agent — or `python 05_patch_and_vuln_mgmt_ics_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
+        ],
+        "codeExample": {
+          "label": "coverage_report() — the audit deliverable (excerpt)",
+          "code": "def coverage_report():\n    items = _evaluate(_gather())\n    exceptions = [i for i in items if not i[\"compliant\"]]\n    return {\n      \"in_scope\": len(items),\n      \"compliant\": len(items) - len(exceptions),\n      \"exceptions\": [i[\"id\"] for i in exceptions],\n      \"opinion\": \"PASS\" if not exceptions\n                 else \"EXCEPTIONS\" if len(exceptions) <= 3\n                 else \"MATERIAL GAP\",\n    }"
+        }
+      },
+      "incident": {
+        "title": "Ransomware crosses into operations",
+        "when": "2021",
+        "where": "Pipeline operational systems",
+        "impact": "An IT-side intrusion forced an operational shutdown, disrupting fuel supply across a region — IT/OT boundary failure with physical consequences.",
+        "body": [
+          "Colonial Pipeline halted operations after a billing-system intrusion because the IT/OT boundary and segmentation couldn't assure safe operation — and the consequences were physical.",
+          "Auditors verify ICS asset inventory, segmentation, the IT/OT boundary, OT IAM, patch/vuln handling, monitoring/IR, and vendor remote access."
+        ]
+      },
+      "diagram": {
+        "nodes": [
+          {
+            "label": "Scope",
+            "sub": "define ICS scope + policy",
+            "type": "attacker"
+          },
+          {
+            "label": "Agent + MCP",
+            "sub": "pull ICS/SCADA + PLC/RTU/HMI · OT network monitoring (Dragos/Nozomi)",
+            "type": "system"
+          },
+          {
+            "label": "Evaluate",
+            "sub": "reconcile vs policy, find gaps",
+            "type": "system"
+          },
+          {
+            "label": "Findings + opinion",
+            "sub": "exceptions · CAPA",
+            "type": "result"
+          }
+        ]
+      },
+      "timeline": [
+        {
+          "year": 2021,
+          "event": "Colonial Pipeline: IT intrusion forces OT shutdown",
+          "highlight": true
+        },
+        {
+          "year": 2015,
+          "event": "Ukraine grid attack: remote ICS manipulation cuts power"
+        },
+        {
+          "year": 2025,
+          "event": "Agentic evidence-gathering becomes the practical way to keep \"Patch and vuln mgmt (ICS)\" continuously assured",
+          "highlight": true
+        }
+      ],
+      "keyTakeaways": [
+        "Audit \"Patch and vuln mgmt (ICS)\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
+        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
+        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
+        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+      ],
+      "references": [
+        {
+          "title": "NIST SP 800-82 — ICS Security",
+          "url": "https://csrc.nist.gov/pubs/sp/800/82/r3/final"
+        },
+        {
+          "title": "IEC 62443 — IACS security",
+          "url": "https://www.iec.ch/cyber-security"
+        },
+        {
+          "title": "CISA ICS advisories",
+          "url": "https://www.cisa.gov/topics/industrial-control-systems"
+        },
+        {
+          "title": "Model Context Protocol — specification",
+          "url": "https://modelcontextprotocol.io/"
+        }
+      ],
+      "downloads": [
+        {
+          "name": "05_patch_and_vuln_mgmt_ics_mcp.py",
+          "url": "/audit-code/ics/05_patch_and_vuln_mgmt_ics_mcp.py",
+          "description": "Runnable read-only MCP server: gathers ICS evidence for \"Patch and vuln mgmt (ICS)\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+        }
+      ]
+    },
+    "ctf": {
+      "scenario": "You're the auditor testing the \"Patch and vuln mgmt (ICS)\" control for ICS at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
+      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "hints": [
+        "cat each file in /evidence. ICS/SCADA + PLC/RTU/HMI is the system of record; the others show what is actually configured/running.",
+        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
+      ],
+      "files": {
+        "/evidence/README.md": "# AcmeCorp — ICS: \"Patch and vuln mgmt (ICS)\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- ics_inventory.json   (in-scope items from ICS/SCADA + PLC/RTU/HMI)\n- ics_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Patch and vuln mgmt (ICS)\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Patch and vuln mgmt (ICS)\",\n  \"domain\": \"ICS\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ics_",
+        "/evidence/ics_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"OT / plant engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Patch and vuln mgmt (ICS)\" control must cover\n# fragment: patch_vuln_mgmt_",
+        "/evidence/ics_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
+        "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"EXCEPTIONS\"\n}\n# fragment: exceptions}"
+      },
+      "dirs": {
+        "/": [
+          {
+            "name": "evidence",
+            "isDir": true
+          }
+        ],
+        "/evidence": [
+          {
+            "name": "README.md",
+            "isDir": false
+          },
+          {
+            "name": "policy.json",
+            "isDir": false
+          },
+          {
+            "name": "ics_inventory.json",
+            "isDir": false
+          },
+          {
+            "name": "ics_state.json",
+            "isDir": false
+          },
+          {
+            "name": "coverage_report.json",
+            "isDir": false
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "trigger": "/evidence/policy.json",
+          "value": "FLAG{ics_",
+          "label": "Policy — the control standard"
+        },
+        {
+          "trigger": "/evidence/ics_inventory.json",
+          "value": "patch_vuln_mgmt_",
+          "label": "Inventory — the in-scope items"
+        },
+        {
+          "trigger": "/evidence/ics_state.json",
+          "value": "gap_",
+          "label": "State — the items that fail the control"
+        },
+        {
+          "trigger": "/evidence/coverage_report.json",
+          "value": "exceptions}",
+          "label": "Coverage report — the audit opinion"
+        }
+      ]
+    },
+    "quiz": {
+      "questions": [
+        {
+          "id": "ics-05-q1",
+          "type": "Objective",
+          "challenge": "Control objective",
+          "text": "What is the primary audit objective for the \"Patch and vuln mgmt (ICS)\" sub-process of ICS?",
+          "options": [
+            "Re-implement the control on the auditor's behalf",
+            "Increase the number of tools the team uses",
+            "Replace the system owner's judgement entirely",
+            "Obtain evidence that the patch and vuln mgmt (ics) control is designed and operating effectively, and quantify the gap where it is not"
+          ],
+          "correctIndex": 3,
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+        },
+        {
+          "id": "ics-05-q2",
+          "type": "Why it matters",
+          "challenge": "Materiality",
+          "text": "Why does a weakness in \"Patch and vuln mgmt (ICS)\" matter to the broader ICS posture?",
+          "options": [
+            "It is relevant solely for marketing",
+            "It has no effect once a firewall exists",
+            "It is a control other ICS controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It only affects documentation aesthetics"
+          ],
+          "correctIndex": 2,
+          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+        },
+        {
+          "id": "ics-05-q3",
+          "type": "Artifacts",
+          "challenge": "Evidence",
+          "text": "Which artifact best evidences the \"Patch and vuln mgmt (ICS)\" control?",
+          "options": [
+            "The vendor's marketing datasheet",
+            "The Patch and vuln mgmt (ICS) evidence export reconciled against policy, plus the resulting findings working paper",
+            "A verbal assurance from the team lead",
+            "A screenshot of the login page"
+          ],
+          "correctIndex": 1,
+          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+        },
+        {
+          "id": "ics-05-q4",
+          "type": "System",
+          "challenge": "Source of truth",
+          "text": "Where would an auditor pull the evidence for \"Patch and vuln mgmt (ICS)\"?",
+          "options": [
+            "ICS/SCADA + PLC/RTU/HMI (and the other systems of record for this domain), accessed read-only",
+            "Only from a spreadsheet emailed by a manager",
+            "From social media",
+            "From the auditor's memory of last year"
+          ],
+          "correctIndex": 0,
+          "explanation": "Evidence comes from the authoritative systems (e.g., ICS/SCADA + PLC/RTU/HMI) via read-only access."
+        },
+        {
+          "id": "ics-05-q5",
+          "type": "Data owner",
+          "challenge": "Accountability",
+          "text": "Who is most likely accountable for the data behind \"Patch and vuln mgmt (ICS)\"?",
+          "options": [
+            "The external auditor",
+            "No one — it is ownerless",
+            "The end customer",
+            "OT / plant engineering (with related functions attesting their part)"
+          ],
+          "correctIndex": 3,
+          "explanation": "OT / plant engineering owns the control data; the auditor independently verifies it."
+        },
+        {
+          "id": "ics-05-q6",
+          "type": "Agentic",
+          "challenge": "Human vs agent",
+          "text": "In the agentic workflow for \"Patch and vuln mgmt (ICS)\", which part stays with the human auditor?",
+          "options": [
+            "Nothing; the agent decides materiality",
+            "Only installing dependencies",
+            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
+            "Issuing the final audit opinion autonomously"
+          ],
+          "correctIndex": 2,
+          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+        },
+        {
+          "id": "ics-05-q7",
+          "type": "Tooling",
+          "challenge": "Read-only",
+          "text": "Why must the MCP server for this module be read-only?",
+          "options": [
+            "So it can run without any credentials",
+            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
+            "Read-only servers are simply faster",
+            "MCP cannot perform writes"
+          ],
+          "correctIndex": 1,
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+        },
+        {
+          "id": "ics-05-q8",
+          "type": "Findings",
+          "challenge": "What is a finding",
+          "text": "Which observation is a reportable finding for \"Patch and vuln mgmt (ICS)\"?",
+          "options": [
+            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
+            "The team uses a popular vendor",
+            "The control exists and operates as designed",
+            "A new feature shipped on time"
+          ],
+          "correctIndex": 0,
+          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+        },
+        {
+          "id": "ics-05-q9",
+          "type": "Deliverable",
+          "challenge": "The opinion",
+          "text": "How does the coverage report escalate its opinion?",
+          "options": [
+            "It is always PASS to avoid conflict",
+            "Randomly each run",
+            "Only the asset count is reported, never an opinion",
+            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+          ],
+          "correctIndex": 3,
+          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+        },
+        {
+          "id": "ics-05-q10",
+          "type": "Privacy/Risk",
+          "challenge": "The data angle",
+          "text": "Why does auditing \"Patch and vuln mgmt (ICS)\" also serve privacy and regulatory goals?",
+          "options": [
+            "Regulators never look at this domain",
+            "It only matters for public data",
+            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
+            "Privacy is unrelated to technical controls"
+          ],
+          "correctIndex": 2,
+          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+        }
+      ]
+    }
+  },
+  {
+    "epochId": "ics",
+    "id": "ics-06",
+    "order": 6,
+    "title": "ICS security governance",
+    "subtitle": "Agentic technical & privacy audit of the ics security governance control",
+    "category": "cybersecurity",
+    "xp": 100,
+    "easeScore": 7,
+    "valueScore": 7,
+    "rank": 0,
+    "auditMeta": {
+      "objective": "Prove the \"ICS security governance\" control for ICS is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
+      "approach": "An audit agent calls a read-only MCP server that wraps each ICS source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "artifacts": [
+        "In-scope inventory for the ics security governance control (from ICS/SCADA + PLC/RTU/HMI)",
+        "Observed configuration/state evidence showing whether the control is applied and operating",
+        "The control policy / standard / threshold the evidence is judged against",
+        "The reconciled exceptions list + coverage report (the working paper)"
+      ],
+      "system": [
+        "ICS/SCADA + PLC/RTU/HMI",
+        "OT network monitoring (Dragos/Nozomi)",
+        "IT/OT boundary firewalls (DMZ)",
+        "OT asset inventory"
+      ],
+      "dataOwner": [
+        "OT / plant engineering",
+        "OT security",
+        "IT/OT network team",
+        "Physical security / safety"
+      ],
+      "scoring": {
+        "ease": "EASE 7/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream ICS controls."
+      }
+    },
+    "badge": {
+      "id": "ics-06-badge",
+      "name": "ICS Auditor",
+      "emoji": "🏭"
+    },
+    "wonder": {
+      "name": "ICS security governance",
+      "location": "ICS",
+      "era": "Present Day",
+      "emoji": "🏭"
+    },
+    "challengeType": "ctf",
+    "info": {
+      "tagline": "Auditing \"ICS security governance\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the ICS control.",
+      "year": 2025,
+      "overview": [
+        "The \"ICS security governance\" sub-process is one of the controls an auditor must verify for ICS. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that ics security governance is in place and working, for everything in scope.\"",
+        "It is hard because the truth lives across systems that were never reconciled — typically ICS/SCADA + PLC/RTU/HMI, OT network monitoring (Dragos/Nozomi), IT/OT boundary firewalls (DMZ) — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+      ],
+      "technical": {
+        "title": "The agentic workflow — automate the evidence, not the judgement",
+        "body": [
+          "The included `06_ics_security_governance_mcp.py` exposes read-only tools that turn each ICS source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
+          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 06_ics_security_governance_mcp.py` to expose it to your agent — or `python 06_ics_security_governance_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
+        ],
+        "codeExample": {
+          "label": "coverage_report() — the audit deliverable (excerpt)",
+          "code": "def coverage_report():\n    items = _evaluate(_gather())\n    exceptions = [i for i in items if not i[\"compliant\"]]\n    return {\n      \"in_scope\": len(items),\n      \"compliant\": len(items) - len(exceptions),\n      \"exceptions\": [i[\"id\"] for i in exceptions],\n      \"opinion\": \"PASS\" if not exceptions\n                 else \"EXCEPTIONS\" if len(exceptions) <= 3\n                 else \"MATERIAL GAP\",\n    }"
+        }
+      },
+      "incident": {
+        "title": "Ransomware crosses into operations",
+        "when": "2021",
+        "where": "Pipeline operational systems",
+        "impact": "An IT-side intrusion forced an operational shutdown, disrupting fuel supply across a region — IT/OT boundary failure with physical consequences.",
+        "body": [
+          "Colonial Pipeline halted operations after a billing-system intrusion because the IT/OT boundary and segmentation couldn't assure safe operation — and the consequences were physical.",
+          "Auditors verify ICS asset inventory, segmentation, the IT/OT boundary, OT IAM, patch/vuln handling, monitoring/IR, and vendor remote access."
+        ]
+      },
+      "diagram": {
+        "nodes": [
+          {
+            "label": "Scope",
+            "sub": "define ICS scope + policy",
+            "type": "attacker"
+          },
+          {
+            "label": "Agent + MCP",
+            "sub": "pull ICS/SCADA + PLC/RTU/HMI · OT network monitoring (Dragos/Nozomi)",
+            "type": "system"
+          },
+          {
+            "label": "Evaluate",
+            "sub": "reconcile vs policy, find gaps",
+            "type": "system"
+          },
+          {
+            "label": "Findings + opinion",
+            "sub": "exceptions · CAPA",
+            "type": "result"
+          }
+        ]
+      },
+      "timeline": [
+        {
+          "year": 2021,
+          "event": "Colonial Pipeline: IT intrusion forces OT shutdown",
+          "highlight": true
+        },
+        {
+          "year": 2015,
+          "event": "Ukraine grid attack: remote ICS manipulation cuts power"
+        },
+        {
+          "year": 2025,
+          "event": "Agentic evidence-gathering becomes the practical way to keep \"ICS security governance\" continuously assured",
+          "highlight": true
+        }
+      ],
+      "keyTakeaways": [
+        "Audit \"ICS security governance\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
+        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
+        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
+        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+      ],
+      "references": [
+        {
+          "title": "NIST SP 800-82 — ICS Security",
+          "url": "https://csrc.nist.gov/pubs/sp/800/82/r3/final"
+        },
+        {
+          "title": "IEC 62443 — IACS security",
+          "url": "https://www.iec.ch/cyber-security"
+        },
+        {
+          "title": "CISA ICS advisories",
+          "url": "https://www.cisa.gov/topics/industrial-control-systems"
+        },
+        {
+          "title": "Model Context Protocol — specification",
+          "url": "https://modelcontextprotocol.io/"
+        }
+      ],
+      "downloads": [
+        {
+          "name": "06_ics_security_governance_mcp.py",
+          "url": "/audit-code/ics/06_ics_security_governance_mcp.py",
+          "description": "Runnable read-only MCP server: gathers ICS evidence for \"ICS security governance\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+        }
+      ]
+    },
+    "ctf": {
+      "scenario": "You're the auditor testing the \"ICS security governance\" control for ICS at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
+      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "hints": [
+        "cat each file in /evidence. ICS/SCADA + PLC/RTU/HMI is the system of record; the others show what is actually configured/running.",
+        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
+      ],
+      "files": {
+        "/evidence/README.md": "# AcmeCorp — ICS: \"ICS security governance\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- ics_inventory.json   (in-scope items from ICS/SCADA + PLC/RTU/HMI)\n- ics_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"ICS security governance\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"ICS security governance\",\n  \"domain\": \"ICS\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ics_",
+        "/evidence/ics_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"OT / plant engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"ICS security governance\" control must cover\n# fragment: ics_security_governance_",
+        "/evidence/ics_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
+        "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
+      },
+      "dirs": {
+        "/": [
+          {
+            "name": "evidence",
+            "isDir": true
+          }
+        ],
+        "/evidence": [
+          {
+            "name": "README.md",
+            "isDir": false
+          },
+          {
+            "name": "policy.json",
+            "isDir": false
+          },
+          {
+            "name": "ics_inventory.json",
+            "isDir": false
+          },
+          {
+            "name": "ics_state.json",
+            "isDir": false
+          },
+          {
+            "name": "coverage_report.json",
+            "isDir": false
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "trigger": "/evidence/policy.json",
+          "value": "FLAG{ics_",
+          "label": "Policy — the control standard"
+        },
+        {
+          "trigger": "/evidence/ics_inventory.json",
+          "value": "ics_security_governance_",
+          "label": "Inventory — the in-scope items"
+        },
+        {
+          "trigger": "/evidence/ics_state.json",
+          "value": "gap_",
+          "label": "State — the items that fail the control"
+        },
+        {
+          "trigger": "/evidence/coverage_report.json",
+          "value": "material_gap}",
+          "label": "Coverage report — the audit opinion"
+        }
+      ]
+    },
+    "quiz": {
+      "questions": [
+        {
+          "id": "ics-06-q1",
+          "type": "Objective",
+          "challenge": "Control objective",
+          "text": "What is the primary audit objective for the \"ICS security governance\" sub-process of ICS?",
+          "options": [
+            "Re-implement the control on the auditor's behalf",
+            "Increase the number of tools the team uses",
+            "Replace the system owner's judgement entirely",
+            "Obtain evidence that the ics security governance control is designed and operating effectively, and quantify the gap where it is not"
+          ],
+          "correctIndex": 3,
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+        },
+        {
+          "id": "ics-06-q2",
+          "type": "Why it matters",
+          "challenge": "Materiality",
+          "text": "Why does a weakness in \"ICS security governance\" matter to the broader ICS posture?",
+          "options": [
+            "It is relevant solely for marketing",
+            "It has no effect once a firewall exists",
+            "It is a control other ICS controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It only affects documentation aesthetics"
+          ],
+          "correctIndex": 2,
+          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+        },
+        {
+          "id": "ics-06-q3",
+          "type": "Artifacts",
+          "challenge": "Evidence",
+          "text": "Which artifact best evidences the \"ICS security governance\" control?",
+          "options": [
+            "The vendor's marketing datasheet",
+            "The ICS security governance evidence export reconciled against policy, plus the resulting findings working paper",
+            "A verbal assurance from the team lead",
+            "A screenshot of the login page"
+          ],
+          "correctIndex": 1,
+          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+        },
+        {
+          "id": "ics-06-q4",
+          "type": "System",
+          "challenge": "Source of truth",
+          "text": "Where would an auditor pull the evidence for \"ICS security governance\"?",
+          "options": [
+            "ICS/SCADA + PLC/RTU/HMI (and the other systems of record for this domain), accessed read-only",
+            "Only from a spreadsheet emailed by a manager",
+            "From social media",
+            "From the auditor's memory of last year"
+          ],
+          "correctIndex": 0,
+          "explanation": "Evidence comes from the authoritative systems (e.g., ICS/SCADA + PLC/RTU/HMI) via read-only access."
+        },
+        {
+          "id": "ics-06-q5",
+          "type": "Data owner",
+          "challenge": "Accountability",
+          "text": "Who is most likely accountable for the data behind \"ICS security governance\"?",
+          "options": [
+            "The external auditor",
+            "No one — it is ownerless",
+            "The end customer",
+            "OT / plant engineering (with related functions attesting their part)"
+          ],
+          "correctIndex": 3,
+          "explanation": "OT / plant engineering owns the control data; the auditor independently verifies it."
+        },
+        {
+          "id": "ics-06-q6",
+          "type": "Agentic",
+          "challenge": "Human vs agent",
+          "text": "In the agentic workflow for \"ICS security governance\", which part stays with the human auditor?",
+          "options": [
+            "Nothing; the agent decides materiality",
+            "Only installing dependencies",
+            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
+            "Issuing the final audit opinion autonomously"
+          ],
+          "correctIndex": 2,
+          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+        },
+        {
+          "id": "ics-06-q7",
+          "type": "Tooling",
+          "challenge": "Read-only",
+          "text": "Why must the MCP server for this module be read-only?",
+          "options": [
+            "So it can run without any credentials",
+            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
+            "Read-only servers are simply faster",
+            "MCP cannot perform writes"
+          ],
+          "correctIndex": 1,
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+        },
+        {
+          "id": "ics-06-q8",
+          "type": "Findings",
+          "challenge": "What is a finding",
+          "text": "Which observation is a reportable finding for \"ICS security governance\"?",
+          "options": [
+            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
+            "The team uses a popular vendor",
+            "The control exists and operates as designed",
+            "A new feature shipped on time"
+          ],
+          "correctIndex": 0,
+          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+        },
+        {
+          "id": "ics-06-q9",
+          "type": "Deliverable",
+          "challenge": "The opinion",
+          "text": "How does the coverage report escalate its opinion?",
+          "options": [
+            "It is always PASS to avoid conflict",
+            "Randomly each run",
+            "Only the asset count is reported, never an opinion",
+            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+          ],
+          "correctIndex": 3,
+          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+        },
+        {
+          "id": "ics-06-q10",
+          "type": "Privacy/Risk",
+          "challenge": "The data angle",
+          "text": "Why does auditing \"ICS security governance\" also serve privacy and regulatory goals?",
+          "options": [
+            "Regulators never look at this domain",
+            "It only matters for public data",
+            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
+            "Privacy is unrelated to technical controls"
+          ],
+          "correctIndex": 2,
+          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+        }
+      ]
+    }
+  },
+  {
+    "epochId": "ics",
+    "id": "ics-07",
+    "order": 7,
+    "title": "ICS monitoring and IR",
+    "subtitle": "Agentic technical & privacy audit of the ics monitoring and ir control",
+    "category": "cybersecurity",
+    "xp": 100,
+    "easeScore": 6,
+    "valueScore": 7,
+    "rank": 0,
+    "auditMeta": {
+      "objective": "Prove the \"ICS monitoring and IR\" control for ICS is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
+      "approach": "An audit agent calls a read-only MCP server that wraps each ICS source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "artifacts": [
+        "In-scope inventory for the ics monitoring and ir control (from ICS/SCADA + PLC/RTU/HMI)",
+        "Observed configuration/state evidence showing whether the control is applied and operating",
+        "The control policy / standard / threshold the evidence is judged against",
+        "The reconciled exceptions list + coverage report (the working paper)"
+      ],
+      "system": [
+        "ICS/SCADA + PLC/RTU/HMI",
+        "OT network monitoring (Dragos/Nozomi)",
+        "IT/OT boundary firewalls (DMZ)",
+        "OT asset inventory"
+      ],
+      "dataOwner": [
+        "OT / plant engineering",
+        "OT security",
+        "IT/OT network team",
+        "Physical security / safety"
+      ],
+      "scoring": {
+        "ease": "EASE 6/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
+        "value": "VALUE 7/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream ICS controls."
+      }
+    },
+    "badge": {
+      "id": "ics-07-badge",
+      "name": "ICS Auditor",
+      "emoji": "🏭"
+    },
+    "wonder": {
+      "name": "ICS monitoring and IR",
+      "location": "ICS",
+      "era": "Present Day",
+      "emoji": "🏭"
+    },
+    "challengeType": "ctf",
+    "info": {
+      "tagline": "Auditing \"ICS monitoring and IR\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the ICS control.",
+      "year": 2025,
+      "overview": [
+        "The \"ICS monitoring and IR\" sub-process is one of the controls an auditor must verify for ICS. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that ics monitoring and ir is in place and working, for everything in scope.\"",
+        "It is hard because the truth lives across systems that were never reconciled — typically ICS/SCADA + PLC/RTU/HMI, OT network monitoring (Dragos/Nozomi), IT/OT boundary firewalls (DMZ) — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+      ],
+      "technical": {
+        "title": "The agentic workflow — automate the evidence, not the judgement",
+        "body": [
+          "The included `07_ics_monitoring_and_ir_mcp.py` exposes read-only tools that turn each ICS source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
+          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 07_ics_monitoring_and_ir_mcp.py` to expose it to your agent — or `python 07_ics_monitoring_and_ir_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
+        ],
+        "codeExample": {
+          "label": "coverage_report() — the audit deliverable (excerpt)",
+          "code": "def coverage_report():\n    items = _evaluate(_gather())\n    exceptions = [i for i in items if not i[\"compliant\"]]\n    return {\n      \"in_scope\": len(items),\n      \"compliant\": len(items) - len(exceptions),\n      \"exceptions\": [i[\"id\"] for i in exceptions],\n      \"opinion\": \"PASS\" if not exceptions\n                 else \"EXCEPTIONS\" if len(exceptions) <= 3\n                 else \"MATERIAL GAP\",\n    }"
+        }
+      },
+      "incident": {
+        "title": "Ransomware crosses into operations",
+        "when": "2021",
+        "where": "Pipeline operational systems",
+        "impact": "An IT-side intrusion forced an operational shutdown, disrupting fuel supply across a region — IT/OT boundary failure with physical consequences.",
+        "body": [
+          "Colonial Pipeline halted operations after a billing-system intrusion because the IT/OT boundary and segmentation couldn't assure safe operation — and the consequences were physical.",
+          "Auditors verify ICS asset inventory, segmentation, the IT/OT boundary, OT IAM, patch/vuln handling, monitoring/IR, and vendor remote access."
+        ]
+      },
+      "diagram": {
+        "nodes": [
+          {
+            "label": "Scope",
+            "sub": "define ICS scope + policy",
+            "type": "attacker"
+          },
+          {
+            "label": "Agent + MCP",
+            "sub": "pull ICS/SCADA + PLC/RTU/HMI · OT network monitoring (Dragos/Nozomi)",
+            "type": "system"
+          },
+          {
+            "label": "Evaluate",
+            "sub": "reconcile vs policy, find gaps",
+            "type": "system"
+          },
+          {
+            "label": "Findings + opinion",
+            "sub": "exceptions · CAPA",
+            "type": "result"
+          }
+        ]
+      },
+      "timeline": [
+        {
+          "year": 2021,
+          "event": "Colonial Pipeline: IT intrusion forces OT shutdown",
+          "highlight": true
+        },
+        {
+          "year": 2015,
+          "event": "Ukraine grid attack: remote ICS manipulation cuts power"
+        },
+        {
+          "year": 2025,
+          "event": "Agentic evidence-gathering becomes the practical way to keep \"ICS monitoring and IR\" continuously assured",
+          "highlight": true
+        }
+      ],
+      "keyTakeaways": [
+        "Audit \"ICS monitoring and IR\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
+        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
+        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
+        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+      ],
+      "references": [
+        {
+          "title": "NIST SP 800-82 — ICS Security",
+          "url": "https://csrc.nist.gov/pubs/sp/800/82/r3/final"
+        },
+        {
+          "title": "IEC 62443 — IACS security",
+          "url": "https://www.iec.ch/cyber-security"
+        },
+        {
+          "title": "CISA ICS advisories",
+          "url": "https://www.cisa.gov/topics/industrial-control-systems"
+        },
+        {
+          "title": "Model Context Protocol — specification",
+          "url": "https://modelcontextprotocol.io/"
+        }
+      ],
+      "downloads": [
+        {
+          "name": "07_ics_monitoring_and_ir_mcp.py",
+          "url": "/audit-code/ics/07_ics_monitoring_and_ir_mcp.py",
+          "description": "Runnable read-only MCP server: gathers ICS evidence for \"ICS monitoring and IR\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+        }
+      ]
+    },
+    "ctf": {
+      "scenario": "You're the auditor testing the \"ICS monitoring and IR\" control for ICS at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
+      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "hints": [
+        "cat each file in /evidence. ICS/SCADA + PLC/RTU/HMI is the system of record; the others show what is actually configured/running.",
+        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
+      ],
+      "files": {
+        "/evidence/README.md": "# AcmeCorp — ICS: \"ICS monitoring and IR\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- ics_inventory.json   (in-scope items from ICS/SCADA + PLC/RTU/HMI)\n- ics_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"ICS monitoring and IR\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"ICS monitoring and IR\",\n  \"domain\": \"ICS\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ics_",
+        "/evidence/ics_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"OT / plant engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"ICS monitoring and IR\" control must cover\n# fragment: ics_monitoring_ir_",
+        "/evidence/ics_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
+        "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
+      },
+      "dirs": {
+        "/": [
+          {
+            "name": "evidence",
+            "isDir": true
+          }
+        ],
+        "/evidence": [
+          {
+            "name": "README.md",
+            "isDir": false
+          },
+          {
+            "name": "policy.json",
+            "isDir": false
+          },
+          {
+            "name": "ics_inventory.json",
+            "isDir": false
+          },
+          {
+            "name": "ics_state.json",
+            "isDir": false
+          },
+          {
+            "name": "coverage_report.json",
+            "isDir": false
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "trigger": "/evidence/policy.json",
+          "value": "FLAG{ics_",
+          "label": "Policy — the control standard"
+        },
+        {
+          "trigger": "/evidence/ics_inventory.json",
+          "value": "ics_monitoring_ir_",
+          "label": "Inventory — the in-scope items"
+        },
+        {
+          "trigger": "/evidence/ics_state.json",
+          "value": "gap_",
+          "label": "State — the items that fail the control"
+        },
+        {
+          "trigger": "/evidence/coverage_report.json",
+          "value": "material_gap}",
+          "label": "Coverage report — the audit opinion"
+        }
+      ]
+    },
+    "quiz": {
+      "questions": [
+        {
+          "id": "ics-07-q1",
+          "type": "Objective",
+          "challenge": "Control objective",
+          "text": "What is the primary audit objective for the \"ICS monitoring and IR\" sub-process of ICS?",
+          "options": [
+            "Re-implement the control on the auditor's behalf",
+            "Increase the number of tools the team uses",
+            "Replace the system owner's judgement entirely",
+            "Obtain evidence that the ics monitoring and ir control is designed and operating effectively, and quantify the gap where it is not"
+          ],
+          "correctIndex": 3,
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+        },
+        {
+          "id": "ics-07-q2",
+          "type": "Why it matters",
+          "challenge": "Materiality",
+          "text": "Why does a weakness in \"ICS monitoring and IR\" matter to the broader ICS posture?",
+          "options": [
+            "It is relevant solely for marketing",
+            "It has no effect once a firewall exists",
+            "It is a control other ICS controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It only affects documentation aesthetics"
+          ],
+          "correctIndex": 2,
+          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+        },
+        {
+          "id": "ics-07-q3",
+          "type": "Artifacts",
+          "challenge": "Evidence",
+          "text": "Which artifact best evidences the \"ICS monitoring and IR\" control?",
+          "options": [
+            "The vendor's marketing datasheet",
+            "The ICS monitoring and IR evidence export reconciled against policy, plus the resulting findings working paper",
+            "A verbal assurance from the team lead",
+            "A screenshot of the login page"
+          ],
+          "correctIndex": 1,
+          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+        },
+        {
+          "id": "ics-07-q4",
+          "type": "System",
+          "challenge": "Source of truth",
+          "text": "Where would an auditor pull the evidence for \"ICS monitoring and IR\"?",
+          "options": [
+            "ICS/SCADA + PLC/RTU/HMI (and the other systems of record for this domain), accessed read-only",
+            "Only from a spreadsheet emailed by a manager",
+            "From social media",
+            "From the auditor's memory of last year"
+          ],
+          "correctIndex": 0,
+          "explanation": "Evidence comes from the authoritative systems (e.g., ICS/SCADA + PLC/RTU/HMI) via read-only access."
+        },
+        {
+          "id": "ics-07-q5",
+          "type": "Data owner",
+          "challenge": "Accountability",
+          "text": "Who is most likely accountable for the data behind \"ICS monitoring and IR\"?",
+          "options": [
+            "The external auditor",
+            "No one — it is ownerless",
+            "The end customer",
+            "OT / plant engineering (with related functions attesting their part)"
+          ],
+          "correctIndex": 3,
+          "explanation": "OT / plant engineering owns the control data; the auditor independently verifies it."
+        },
+        {
+          "id": "ics-07-q6",
+          "type": "Agentic",
+          "challenge": "Human vs agent",
+          "text": "In the agentic workflow for \"ICS monitoring and IR\", which part stays with the human auditor?",
+          "options": [
+            "Nothing; the agent decides materiality",
+            "Only installing dependencies",
+            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
+            "Issuing the final audit opinion autonomously"
+          ],
+          "correctIndex": 2,
+          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+        },
+        {
+          "id": "ics-07-q7",
+          "type": "Tooling",
+          "challenge": "Read-only",
+          "text": "Why must the MCP server for this module be read-only?",
+          "options": [
+            "So it can run without any credentials",
+            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
+            "Read-only servers are simply faster",
+            "MCP cannot perform writes"
+          ],
+          "correctIndex": 1,
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+        },
+        {
+          "id": "ics-07-q8",
+          "type": "Findings",
+          "challenge": "What is a finding",
+          "text": "Which observation is a reportable finding for \"ICS monitoring and IR\"?",
+          "options": [
+            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
+            "The team uses a popular vendor",
+            "The control exists and operates as designed",
+            "A new feature shipped on time"
+          ],
+          "correctIndex": 0,
+          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+        },
+        {
+          "id": "ics-07-q9",
+          "type": "Deliverable",
+          "challenge": "The opinion",
+          "text": "How does the coverage report escalate its opinion?",
+          "options": [
+            "It is always PASS to avoid conflict",
+            "Randomly each run",
+            "Only the asset count is reported, never an opinion",
+            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+          ],
+          "correctIndex": 3,
+          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+        },
+        {
+          "id": "ics-07-q10",
+          "type": "Privacy/Risk",
+          "challenge": "The data angle",
+          "text": "Why does auditing \"ICS monitoring and IR\" also serve privacy and regulatory goals?",
+          "options": [
+            "Regulators never look at this domain",
+            "It only matters for public data",
+            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
+            "Privacy is unrelated to technical controls"
+          ],
+          "correctIndex": 2,
+          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+        }
+      ]
+    }
+  },
+  {
+    "epochId": "ics",
+    "id": "ics-08",
+    "order": 8,
+    "title": "Physical access and security",
+    "subtitle": "Agentic technical & privacy audit of the physical access and security control",
+    "category": "cybersecurity",
+    "xp": 100,
+    "easeScore": 6,
+    "valueScore": 9,
+    "rank": 0,
+    "auditMeta": {
+      "objective": "Prove the \"Physical access and security\" control for ICS is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
+      "approach": "An audit agent calls a read-only MCP server that wraps each ICS source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "artifacts": [
+        "In-scope inventory for the physical access and security control (from ICS/SCADA + PLC/RTU/HMI)",
+        "Observed configuration/state evidence showing whether the control is applied and operating",
+        "The control policy / standard / threshold the evidence is judged against",
+        "The reconciled exceptions list + coverage report (the working paper)"
+      ],
+      "system": [
+        "ICS/SCADA + PLC/RTU/HMI",
+        "OT network monitoring (Dragos/Nozomi)",
+        "IT/OT boundary firewalls (DMZ)",
+        "OT asset inventory"
+      ],
+      "dataOwner": [
+        "OT / plant engineering",
+        "OT security",
+        "IT/OT network team",
+        "Physical security / safety"
+      ],
+      "scoring": {
+        "ease": "EASE 6/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
+        "value": "VALUE 9/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream ICS controls."
+      }
+    },
+    "badge": {
+      "id": "ics-08-badge",
+      "name": "ICS Auditor",
+      "emoji": "🏭"
+    },
+    "wonder": {
+      "name": "Physical access and security",
+      "location": "ICS",
+      "era": "Present Day",
+      "emoji": "🏭"
+    },
+    "challengeType": "ctf",
+    "info": {
+      "tagline": "Auditing \"Physical access and security\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the ICS control.",
+      "year": 2025,
+      "overview": [
+        "The \"Physical access and security\" sub-process is one of the controls an auditor must verify for ICS. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that physical access and security is in place and working, for everything in scope.\"",
+        "It is hard because the truth lives across systems that were never reconciled — typically ICS/SCADA + PLC/RTU/HMI, OT network monitoring (Dragos/Nozomi), IT/OT boundary firewalls (DMZ) — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+      ],
+      "technical": {
+        "title": "The agentic workflow — automate the evidence, not the judgement",
+        "body": [
+          "The included `08_physical_access_and_security_mcp.py` exposes read-only tools that turn each ICS source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
+          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 08_physical_access_and_security_mcp.py` to expose it to your agent — or `python 08_physical_access_and_security_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
+        ],
+        "codeExample": {
+          "label": "coverage_report() — the audit deliverable (excerpt)",
+          "code": "def coverage_report():\n    items = _evaluate(_gather())\n    exceptions = [i for i in items if not i[\"compliant\"]]\n    return {\n      \"in_scope\": len(items),\n      \"compliant\": len(items) - len(exceptions),\n      \"exceptions\": [i[\"id\"] for i in exceptions],\n      \"opinion\": \"PASS\" if not exceptions\n                 else \"EXCEPTIONS\" if len(exceptions) <= 3\n                 else \"MATERIAL GAP\",\n    }"
+        }
+      },
+      "incident": {
+        "title": "Ransomware crosses into operations",
+        "when": "2021",
+        "where": "Pipeline operational systems",
+        "impact": "An IT-side intrusion forced an operational shutdown, disrupting fuel supply across a region — IT/OT boundary failure with physical consequences.",
+        "body": [
+          "Colonial Pipeline halted operations after a billing-system intrusion because the IT/OT boundary and segmentation couldn't assure safe operation — and the consequences were physical.",
+          "Auditors verify ICS asset inventory, segmentation, the IT/OT boundary, OT IAM, patch/vuln handling, monitoring/IR, and vendor remote access."
+        ]
+      },
+      "diagram": {
+        "nodes": [
+          {
+            "label": "Scope",
+            "sub": "define ICS scope + policy",
+            "type": "attacker"
+          },
+          {
+            "label": "Agent + MCP",
+            "sub": "pull ICS/SCADA + PLC/RTU/HMI · OT network monitoring (Dragos/Nozomi)",
+            "type": "system"
+          },
+          {
+            "label": "Evaluate",
+            "sub": "reconcile vs policy, find gaps",
+            "type": "system"
+          },
+          {
+            "label": "Findings + opinion",
+            "sub": "exceptions · CAPA",
+            "type": "result"
+          }
+        ]
+      },
+      "timeline": [
+        {
+          "year": 2021,
+          "event": "Colonial Pipeline: IT intrusion forces OT shutdown",
+          "highlight": true
+        },
+        {
+          "year": 2015,
+          "event": "Ukraine grid attack: remote ICS manipulation cuts power"
+        },
+        {
+          "year": 2025,
+          "event": "Agentic evidence-gathering becomes the practical way to keep \"Physical access and security\" continuously assured",
+          "highlight": true
+        }
+      ],
+      "keyTakeaways": [
+        "Audit \"Physical access and security\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
+        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
+        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
+        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+      ],
+      "references": [
+        {
+          "title": "NIST SP 800-82 — ICS Security",
+          "url": "https://csrc.nist.gov/pubs/sp/800/82/r3/final"
+        },
+        {
+          "title": "IEC 62443 — IACS security",
+          "url": "https://www.iec.ch/cyber-security"
+        },
+        {
+          "title": "CISA ICS advisories",
+          "url": "https://www.cisa.gov/topics/industrial-control-systems"
+        },
+        {
+          "title": "Model Context Protocol — specification",
+          "url": "https://modelcontextprotocol.io/"
+        }
+      ],
+      "downloads": [
+        {
+          "name": "08_physical_access_and_security_mcp.py",
+          "url": "/audit-code/ics/08_physical_access_and_security_mcp.py",
+          "description": "Runnable read-only MCP server: gathers ICS evidence for \"Physical access and security\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+        }
+      ]
+    },
+    "ctf": {
+      "scenario": "You're the auditor testing the \"Physical access and security\" control for ICS at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
+      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "hints": [
+        "cat each file in /evidence. ICS/SCADA + PLC/RTU/HMI is the system of record; the others show what is actually configured/running.",
+        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
+      ],
+      "files": {
+        "/evidence/README.md": "# AcmeCorp — ICS: \"Physical access and security\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- ics_inventory.json   (in-scope items from ICS/SCADA + PLC/RTU/HMI)\n- ics_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Physical access and security\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Physical access and security\",\n  \"domain\": \"ICS\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ics_",
+        "/evidence/ics_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"OT / plant engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Physical access and security\" control must cover\n# fragment: physical_access_security_",
+        "/evidence/ics_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
+        "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
+      },
+      "dirs": {
+        "/": [
+          {
+            "name": "evidence",
+            "isDir": true
+          }
+        ],
+        "/evidence": [
+          {
+            "name": "README.md",
+            "isDir": false
+          },
+          {
+            "name": "policy.json",
+            "isDir": false
+          },
+          {
+            "name": "ics_inventory.json",
+            "isDir": false
+          },
+          {
+            "name": "ics_state.json",
+            "isDir": false
+          },
+          {
+            "name": "coverage_report.json",
+            "isDir": false
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "trigger": "/evidence/policy.json",
+          "value": "FLAG{ics_",
+          "label": "Policy — the control standard"
+        },
+        {
+          "trigger": "/evidence/ics_inventory.json",
+          "value": "physical_access_security_",
+          "label": "Inventory — the in-scope items"
+        },
+        {
+          "trigger": "/evidence/ics_state.json",
+          "value": "gap_",
+          "label": "State — the items that fail the control"
+        },
+        {
+          "trigger": "/evidence/coverage_report.json",
+          "value": "material_gap}",
+          "label": "Coverage report — the audit opinion"
+        }
+      ]
+    },
+    "quiz": {
+      "questions": [
+        {
+          "id": "ics-08-q1",
+          "type": "Objective",
+          "challenge": "Control objective",
+          "text": "What is the primary audit objective for the \"Physical access and security\" sub-process of ICS?",
+          "options": [
+            "Re-implement the control on the auditor's behalf",
+            "Increase the number of tools the team uses",
+            "Replace the system owner's judgement entirely",
+            "Obtain evidence that the physical access and security control is designed and operating effectively, and quantify the gap where it is not"
+          ],
+          "correctIndex": 3,
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+        },
+        {
+          "id": "ics-08-q2",
+          "type": "Why it matters",
+          "challenge": "Materiality",
+          "text": "Why does a weakness in \"Physical access and security\" matter to the broader ICS posture?",
+          "options": [
+            "It is relevant solely for marketing",
+            "It has no effect once a firewall exists",
+            "It is a control other ICS controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It only affects documentation aesthetics"
+          ],
+          "correctIndex": 2,
+          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+        },
+        {
+          "id": "ics-08-q3",
+          "type": "Artifacts",
+          "challenge": "Evidence",
+          "text": "Which artifact best evidences the \"Physical access and security\" control?",
+          "options": [
+            "The vendor's marketing datasheet",
+            "The Physical access and security evidence export reconciled against policy, plus the resulting findings working paper",
+            "A verbal assurance from the team lead",
+            "A screenshot of the login page"
+          ],
+          "correctIndex": 1,
+          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+        },
+        {
+          "id": "ics-08-q4",
+          "type": "System",
+          "challenge": "Source of truth",
+          "text": "Where would an auditor pull the evidence for \"Physical access and security\"?",
+          "options": [
+            "ICS/SCADA + PLC/RTU/HMI (and the other systems of record for this domain), accessed read-only",
+            "Only from a spreadsheet emailed by a manager",
+            "From social media",
+            "From the auditor's memory of last year"
+          ],
+          "correctIndex": 0,
+          "explanation": "Evidence comes from the authoritative systems (e.g., ICS/SCADA + PLC/RTU/HMI) via read-only access."
+        },
+        {
+          "id": "ics-08-q5",
+          "type": "Data owner",
+          "challenge": "Accountability",
+          "text": "Who is most likely accountable for the data behind \"Physical access and security\"?",
+          "options": [
+            "The external auditor",
+            "No one — it is ownerless",
+            "The end customer",
+            "OT / plant engineering (with related functions attesting their part)"
+          ],
+          "correctIndex": 3,
+          "explanation": "OT / plant engineering owns the control data; the auditor independently verifies it."
+        },
+        {
+          "id": "ics-08-q6",
+          "type": "Agentic",
+          "challenge": "Human vs agent",
+          "text": "In the agentic workflow for \"Physical access and security\", which part stays with the human auditor?",
+          "options": [
+            "Nothing; the agent decides materiality",
+            "Only installing dependencies",
+            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
+            "Issuing the final audit opinion autonomously"
+          ],
+          "correctIndex": 2,
+          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+        },
+        {
+          "id": "ics-08-q7",
+          "type": "Tooling",
+          "challenge": "Read-only",
+          "text": "Why must the MCP server for this module be read-only?",
+          "options": [
+            "So it can run without any credentials",
+            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
+            "Read-only servers are simply faster",
+            "MCP cannot perform writes"
+          ],
+          "correctIndex": 1,
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+        },
+        {
+          "id": "ics-08-q8",
+          "type": "Findings",
+          "challenge": "What is a finding",
+          "text": "Which observation is a reportable finding for \"Physical access and security\"?",
+          "options": [
+            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
+            "The team uses a popular vendor",
+            "The control exists and operates as designed",
+            "A new feature shipped on time"
+          ],
+          "correctIndex": 0,
+          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+        },
+        {
+          "id": "ics-08-q9",
+          "type": "Deliverable",
+          "challenge": "The opinion",
+          "text": "How does the coverage report escalate its opinion?",
+          "options": [
+            "It is always PASS to avoid conflict",
+            "Randomly each run",
+            "Only the asset count is reported, never an opinion",
+            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+          ],
+          "correctIndex": 3,
+          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+        },
+        {
+          "id": "ics-08-q10",
+          "type": "Privacy/Risk",
+          "challenge": "The data angle",
+          "text": "Why does auditing \"Physical access and security\" also serve privacy and regulatory goals?",
+          "options": [
+            "Regulators never look at this domain",
+            "It only matters for public data",
+            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
+            "Privacy is unrelated to technical controls"
+          ],
+          "correctIndex": 2,
+          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+        }
+      ]
+    }
+  },
+  {
+    "epochId": "ics",
+    "id": "ics-09",
+    "order": 9,
+    "title": "Vendor physical and remote access",
+    "subtitle": "Agentic technical & privacy audit of the vendor physical and remote access control",
+    "category": "cybersecurity",
+    "xp": 100,
+    "easeScore": 7,
+    "valueScore": 9,
+    "rank": 0,
+    "auditMeta": {
+      "objective": "Prove the \"Vendor physical and remote access\" control for ICS is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
+      "approach": "An audit agent calls a read-only MCP server that wraps each ICS source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "artifacts": [
+        "In-scope inventory for the vendor physical and remote access control (from ICS/SCADA + PLC/RTU/HMI)",
+        "Observed configuration/state evidence showing whether the control is applied and operating",
+        "The control policy / standard / threshold the evidence is judged against",
+        "The reconciled exceptions list + coverage report (the working paper)"
+      ],
+      "system": [
+        "ICS/SCADA + PLC/RTU/HMI",
+        "OT network monitoring (Dragos/Nozomi)",
+        "IT/OT boundary firewalls (DMZ)",
+        "OT asset inventory"
+      ],
+      "dataOwner": [
+        "OT / plant engineering",
+        "OT security",
+        "IT/OT network team",
+        "Physical security / safety"
+      ],
+      "scoring": {
+        "ease": "EASE 7/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
+        "value": "VALUE 9/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream ICS controls."
+      }
+    },
+    "badge": {
+      "id": "ics-09-badge",
+      "name": "ICS Auditor",
+      "emoji": "🏭"
+    },
+    "wonder": {
+      "name": "Vendor physical and remote access",
+      "location": "ICS",
+      "era": "Present Day",
+      "emoji": "🏭"
+    },
+    "challengeType": "ctf",
+    "info": {
+      "tagline": "Auditing \"Vendor physical and remote access\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the ICS control.",
+      "year": 2025,
+      "overview": [
+        "The \"Vendor physical and remote access\" sub-process is one of the controls an auditor must verify for ICS. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that vendor physical and remote access is in place and working, for everything in scope.\"",
+        "It is hard because the truth lives across systems that were never reconciled — typically ICS/SCADA + PLC/RTU/HMI, OT network monitoring (Dragos/Nozomi), IT/OT boundary firewalls (DMZ) — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+      ],
+      "technical": {
+        "title": "The agentic workflow — automate the evidence, not the judgement",
+        "body": [
+          "The included `09_vendor_physical_and_remote_access_mcp.py` exposes read-only tools that turn each ICS source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
+          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 09_vendor_physical_and_remote_access_mcp.py` to expose it to your agent — or `python 09_vendor_physical_and_remote_access_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
+        ],
+        "codeExample": {
+          "label": "coverage_report() — the audit deliverable (excerpt)",
+          "code": "def coverage_report():\n    items = _evaluate(_gather())\n    exceptions = [i for i in items if not i[\"compliant\"]]\n    return {\n      \"in_scope\": len(items),\n      \"compliant\": len(items) - len(exceptions),\n      \"exceptions\": [i[\"id\"] for i in exceptions],\n      \"opinion\": \"PASS\" if not exceptions\n                 else \"EXCEPTIONS\" if len(exceptions) <= 3\n                 else \"MATERIAL GAP\",\n    }"
+        }
+      },
+      "incident": {
+        "title": "Ransomware crosses into operations",
+        "when": "2021",
+        "where": "Pipeline operational systems",
+        "impact": "An IT-side intrusion forced an operational shutdown, disrupting fuel supply across a region — IT/OT boundary failure with physical consequences.",
+        "body": [
+          "Colonial Pipeline halted operations after a billing-system intrusion because the IT/OT boundary and segmentation couldn't assure safe operation — and the consequences were physical.",
+          "Auditors verify ICS asset inventory, segmentation, the IT/OT boundary, OT IAM, patch/vuln handling, monitoring/IR, and vendor remote access."
+        ]
+      },
+      "diagram": {
+        "nodes": [
+          {
+            "label": "Scope",
+            "sub": "define ICS scope + policy",
+            "type": "attacker"
+          },
+          {
+            "label": "Agent + MCP",
+            "sub": "pull ICS/SCADA + PLC/RTU/HMI · OT network monitoring (Dragos/Nozomi)",
+            "type": "system"
+          },
+          {
+            "label": "Evaluate",
+            "sub": "reconcile vs policy, find gaps",
+            "type": "system"
+          },
+          {
+            "label": "Findings + opinion",
+            "sub": "exceptions · CAPA",
+            "type": "result"
+          }
+        ]
+      },
+      "timeline": [
+        {
+          "year": 2021,
+          "event": "Colonial Pipeline: IT intrusion forces OT shutdown",
+          "highlight": true
+        },
+        {
+          "year": 2015,
+          "event": "Ukraine grid attack: remote ICS manipulation cuts power"
+        },
+        {
+          "year": 2025,
+          "event": "Agentic evidence-gathering becomes the practical way to keep \"Vendor physical and remote access\" continuously assured",
+          "highlight": true
+        }
+      ],
+      "keyTakeaways": [
+        "Audit \"Vendor physical and remote access\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
+        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
+        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
+        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+      ],
+      "references": [
+        {
+          "title": "NIST SP 800-82 — ICS Security",
+          "url": "https://csrc.nist.gov/pubs/sp/800/82/r3/final"
+        },
+        {
+          "title": "IEC 62443 — IACS security",
+          "url": "https://www.iec.ch/cyber-security"
+        },
+        {
+          "title": "CISA ICS advisories",
+          "url": "https://www.cisa.gov/topics/industrial-control-systems"
+        },
+        {
+          "title": "Model Context Protocol — specification",
+          "url": "https://modelcontextprotocol.io/"
+        }
+      ],
+      "downloads": [
+        {
+          "name": "09_vendor_physical_and_remote_access_mcp.py",
+          "url": "/audit-code/ics/09_vendor_physical_and_remote_access_mcp.py",
+          "description": "Runnable read-only MCP server: gathers ICS evidence for \"Vendor physical and remote access\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+        }
+      ]
+    },
+    "ctf": {
+      "scenario": "You're the auditor testing the \"Vendor physical and remote access\" control for ICS at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
+      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "hints": [
+        "cat each file in /evidence. ICS/SCADA + PLC/RTU/HMI is the system of record; the others show what is actually configured/running.",
+        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
+      ],
+      "files": {
+        "/evidence/README.md": "# AcmeCorp — ICS: \"Vendor physical and remote access\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- ics_inventory.json   (in-scope items from ICS/SCADA + PLC/RTU/HMI)\n- ics_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Vendor physical and remote access\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Vendor physical and remote access\",\n  \"domain\": \"ICS\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ics_",
+        "/evidence/ics_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"OT / plant engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Vendor physical and remote access\" control must cover\n# fragment: vendor_physical_remote_",
+        "/evidence/ics_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
+        "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
+      },
+      "dirs": {
+        "/": [
+          {
+            "name": "evidence",
+            "isDir": true
+          }
+        ],
+        "/evidence": [
+          {
+            "name": "README.md",
+            "isDir": false
+          },
+          {
+            "name": "policy.json",
+            "isDir": false
+          },
+          {
+            "name": "ics_inventory.json",
+            "isDir": false
+          },
+          {
+            "name": "ics_state.json",
+            "isDir": false
+          },
+          {
+            "name": "coverage_report.json",
+            "isDir": false
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "trigger": "/evidence/policy.json",
+          "value": "FLAG{ics_",
+          "label": "Policy — the control standard"
+        },
+        {
+          "trigger": "/evidence/ics_inventory.json",
+          "value": "vendor_physical_remote_",
+          "label": "Inventory — the in-scope items"
+        },
+        {
+          "trigger": "/evidence/ics_state.json",
+          "value": "gap_",
+          "label": "State — the items that fail the control"
+        },
+        {
+          "trigger": "/evidence/coverage_report.json",
+          "value": "material_gap}",
+          "label": "Coverage report — the audit opinion"
+        }
+      ]
+    },
+    "quiz": {
+      "questions": [
+        {
+          "id": "ics-09-q1",
+          "type": "Objective",
+          "challenge": "Control objective",
+          "text": "What is the primary audit objective for the \"Vendor physical and remote access\" sub-process of ICS?",
+          "options": [
+            "Re-implement the control on the auditor's behalf",
+            "Increase the number of tools the team uses",
+            "Replace the system owner's judgement entirely",
+            "Obtain evidence that the vendor physical and remote access control is designed and operating effectively, and quantify the gap where it is not"
+          ],
+          "correctIndex": 3,
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+        },
+        {
+          "id": "ics-09-q2",
+          "type": "Why it matters",
+          "challenge": "Materiality",
+          "text": "Why does a weakness in \"Vendor physical and remote access\" matter to the broader ICS posture?",
+          "options": [
+            "It is relevant solely for marketing",
+            "It has no effect once a firewall exists",
+            "It is a control other ICS controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It only affects documentation aesthetics"
+          ],
+          "correctIndex": 2,
+          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+        },
+        {
+          "id": "ics-09-q3",
+          "type": "Artifacts",
+          "challenge": "Evidence",
+          "text": "Which artifact best evidences the \"Vendor physical and remote access\" control?",
+          "options": [
+            "The vendor's marketing datasheet",
+            "The Vendor physical and remote access evidence export reconciled against policy, plus the resulting findings working paper",
+            "A verbal assurance from the team lead",
+            "A screenshot of the login page"
+          ],
+          "correctIndex": 1,
+          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+        },
+        {
+          "id": "ics-09-q4",
+          "type": "System",
+          "challenge": "Source of truth",
+          "text": "Where would an auditor pull the evidence for \"Vendor physical and remote access\"?",
+          "options": [
+            "ICS/SCADA + PLC/RTU/HMI (and the other systems of record for this domain), accessed read-only",
+            "Only from a spreadsheet emailed by a manager",
+            "From social media",
+            "From the auditor's memory of last year"
+          ],
+          "correctIndex": 0,
+          "explanation": "Evidence comes from the authoritative systems (e.g., ICS/SCADA + PLC/RTU/HMI) via read-only access."
+        },
+        {
+          "id": "ics-09-q5",
+          "type": "Data owner",
+          "challenge": "Accountability",
+          "text": "Who is most likely accountable for the data behind \"Vendor physical and remote access\"?",
+          "options": [
+            "The external auditor",
+            "No one — it is ownerless",
+            "The end customer",
+            "OT / plant engineering (with related functions attesting their part)"
+          ],
+          "correctIndex": 3,
+          "explanation": "OT / plant engineering owns the control data; the auditor independently verifies it."
+        },
+        {
+          "id": "ics-09-q6",
+          "type": "Agentic",
+          "challenge": "Human vs agent",
+          "text": "In the agentic workflow for \"Vendor physical and remote access\", which part stays with the human auditor?",
+          "options": [
+            "Nothing; the agent decides materiality",
+            "Only installing dependencies",
+            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
+            "Issuing the final audit opinion autonomously"
+          ],
+          "correctIndex": 2,
+          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+        },
+        {
+          "id": "ics-09-q7",
+          "type": "Tooling",
+          "challenge": "Read-only",
+          "text": "Why must the MCP server for this module be read-only?",
+          "options": [
+            "So it can run without any credentials",
+            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
+            "Read-only servers are simply faster",
+            "MCP cannot perform writes"
+          ],
+          "correctIndex": 1,
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+        },
+        {
+          "id": "ics-09-q8",
+          "type": "Findings",
+          "challenge": "What is a finding",
+          "text": "Which observation is a reportable finding for \"Vendor physical and remote access\"?",
+          "options": [
+            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
+            "The team uses a popular vendor",
+            "The control exists and operates as designed",
+            "A new feature shipped on time"
+          ],
+          "correctIndex": 0,
+          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+        },
+        {
+          "id": "ics-09-q9",
+          "type": "Deliverable",
+          "challenge": "The opinion",
+          "text": "How does the coverage report escalate its opinion?",
+          "options": [
+            "It is always PASS to avoid conflict",
+            "Randomly each run",
+            "Only the asset count is reported, never an opinion",
+            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+          ],
+          "correctIndex": 3,
+          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+        },
+        {
+          "id": "ics-09-q10",
+          "type": "Privacy/Risk",
+          "challenge": "The data angle",
+          "text": "Why does auditing \"Vendor physical and remote access\" also serve privacy and regulatory goals?",
+          "options": [
+            "Regulators never look at this domain",
+            "It only matters for public data",
+            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
+            "Privacy is unrelated to technical controls"
+          ],
+          "correctIndex": 2,
+          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+        }
+      ]
+    }
+  },
+  {
+    "epochId": "ics",
+    "id": "ics-10",
+    "order": 10,
+    "title": "Supply chain integrity",
+    "subtitle": "Agentic technical & privacy audit of the supply chain integrity control",
+    "category": "cybersecurity",
+    "xp": 100,
+    "easeScore": 5,
+    "valueScore": 9,
+    "rank": 0,
+    "auditMeta": {
+      "objective": "Prove the \"Supply chain integrity\" control for ICS is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The example MCP code gathers the evidence, evaluates it against policy, and returns a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the exceptions named.",
+      "approach": "An audit agent calls a read-only MCP server that wraps each ICS source system as a tool, pulls the inventory and observed state, reconciles them against the policy the auditor sets, and returns the exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "artifacts": [
+        "In-scope inventory for the supply chain integrity control (from ICS/SCADA + PLC/RTU/HMI)",
+        "Observed configuration/state evidence showing whether the control is applied and operating",
+        "The control policy / standard / threshold the evidence is judged against",
+        "The reconciled exceptions list + coverage report (the working paper)"
+      ],
+      "system": [
+        "ICS/SCADA + PLC/RTU/HMI",
+        "OT network monitoring (Dragos/Nozomi)",
+        "IT/OT boundary firewalls (DMZ)",
+        "OT asset inventory"
+      ],
+      "dataOwner": [
+        "OT / plant engineering",
+        "OT security",
+        "IT/OT network team",
+        "Physical security / safety"
+      ],
+      "scoring": {
+        "ease": "EASE 5/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
+        "value": "VALUE 9/10 — driven by how central the control is and how concrete the finding is; higher when a gap here exposes regulated data or undermines many downstream ICS controls."
+      }
+    },
+    "badge": {
+      "id": "ics-10-badge",
+      "name": "ICS Auditor",
+      "emoji": "🏭"
+    },
+    "wonder": {
+      "name": "Supply chain integrity",
+      "location": "ICS",
+      "era": "Present Day",
+      "emoji": "🏭"
+    },
+    "challengeType": "ctf",
+    "info": {
+      "tagline": "Auditing \"Supply chain integrity\" as a repeatable agentic workflow: gather the evidence with read-only agents, reconcile it against policy, and issue a defensible opinion on the ICS control.",
+      "year": 2025,
+      "overview": [
+        "The \"Supply chain integrity\" sub-process is one of the controls an auditor must verify for ICS. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is simple and usually revealing: \"show me the evidence that supply chain integrity is in place and working, for everything in scope.\"",
+        "It is hard because the truth lives across systems that were never reconciled — typically ICS/SCADA + PLC/RTU/HMI, OT network monitoring (Dragos/Nozomi), IT/OT boundary firewalls (DMZ) — each authoritative for part of the picture and blind to the rest. The gaps between those sources are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
+        "The agentic approach automates the reconciliation, not the judgement. An audit agent calls a read-only MCP server that wraps each source as a tool, pulls the evidence, evaluates it against the policy the auditor sets, and returns the findings with a clear PASS / EXCEPTIONS / MATERIAL-GAP opinion. The human sets the thresholds, reviews the findings, and signs — the control is verified at machine speed with a complete, logged evidence trail."
+      ],
+      "technical": {
+        "title": "The agentic workflow — automate the evidence, not the judgement",
+        "body": [
+          "The included `10_supply_chain_integrity_mcp.py` exposes read-only tools that turn each ICS source system into a callable for the agent: one to gather the raw evidence, one to evaluate it against policy and surface the exceptions, and a `coverage_report()` that produces the working-paper deliverable — totals, the exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion.",
+          "The pattern generalizes across the whole Advanced Audit track and is the point of agentic audit: the agent gathers and correlates evidence across 4 systems with a complete, logged trail, while the auditor owns the policy and the opinion. The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool.",
+          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 10_supply_chain_integrity_mcp.py` to expose it to your agent — or `python 10_supply_chain_integrity_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
+        ],
+        "codeExample": {
+          "label": "coverage_report() — the audit deliverable (excerpt)",
+          "code": "def coverage_report():\n    items = _evaluate(_gather())\n    exceptions = [i for i in items if not i[\"compliant\"]]\n    return {\n      \"in_scope\": len(items),\n      \"compliant\": len(items) - len(exceptions),\n      \"exceptions\": [i[\"id\"] for i in exceptions],\n      \"opinion\": \"PASS\" if not exceptions\n                 else \"EXCEPTIONS\" if len(exceptions) <= 3\n                 else \"MATERIAL GAP\",\n    }"
+        }
+      },
+      "incident": {
+        "title": "Ransomware crosses into operations",
+        "when": "2021",
+        "where": "Pipeline operational systems",
+        "impact": "An IT-side intrusion forced an operational shutdown, disrupting fuel supply across a region — IT/OT boundary failure with physical consequences.",
+        "body": [
+          "Colonial Pipeline halted operations after a billing-system intrusion because the IT/OT boundary and segmentation couldn't assure safe operation — and the consequences were physical.",
+          "Auditors verify ICS asset inventory, segmentation, the IT/OT boundary, OT IAM, patch/vuln handling, monitoring/IR, and vendor remote access."
+        ]
+      },
+      "diagram": {
+        "nodes": [
+          {
+            "label": "Scope",
+            "sub": "define ICS scope + policy",
+            "type": "attacker"
+          },
+          {
+            "label": "Agent + MCP",
+            "sub": "pull ICS/SCADA + PLC/RTU/HMI · OT network monitoring (Dragos/Nozomi)",
+            "type": "system"
+          },
+          {
+            "label": "Evaluate",
+            "sub": "reconcile vs policy, find gaps",
+            "type": "system"
+          },
+          {
+            "label": "Findings + opinion",
+            "sub": "exceptions · CAPA",
+            "type": "result"
+          }
+        ]
+      },
+      "timeline": [
+        {
+          "year": 2021,
+          "event": "Colonial Pipeline: IT intrusion forces OT shutdown",
+          "highlight": true
+        },
+        {
+          "year": 2015,
+          "event": "Ukraine grid attack: remote ICS manipulation cuts power"
+        },
+        {
+          "year": 2025,
+          "event": "Agentic evidence-gathering becomes the practical way to keep \"Supply chain integrity\" continuously assured",
+          "highlight": true
+        }
+      ],
+      "keyTakeaways": [
+        "Audit \"Supply chain integrity\" by evidence, not assertion: reconcile the systems of record and name the exceptions.",
+        "The control is scoped per item — anything the control was never applied to is the highest-value finding.",
+        "The agent gathers and correlates; the human sets policy, reviews findings, and signs the opinion.",
+        "Audit tooling must be read-only — verify the MCP server can list and report but never change state.",
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path."
+      ],
+      "references": [
+        {
+          "title": "NIST SP 800-82 — ICS Security",
+          "url": "https://csrc.nist.gov/pubs/sp/800/82/r3/final"
+        },
+        {
+          "title": "IEC 62443 — IACS security",
+          "url": "https://www.iec.ch/cyber-security"
+        },
+        {
+          "title": "CISA ICS advisories",
+          "url": "https://www.cisa.gov/topics/industrial-control-systems"
+        },
+        {
+          "title": "Model Context Protocol — specification",
+          "url": "https://modelcontextprotocol.io/"
+        }
+      ],
+      "downloads": [
+        {
+          "name": "10_supply_chain_integrity_mcp.py",
+          "url": "/audit-code/ics/10_supply_chain_integrity_mcp.py",
+          "description": "Runnable read-only MCP server: gathers ICS evidence for \"Supply chain integrity\", evaluates against policy, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+        }
+      ]
+    },
+    "ctf": {
+      "scenario": "You're the auditor testing the \"Supply chain integrity\" control for ICS at AcmeCorp. The evidence has been exported from the systems of record into /evidence. Reconcile the sources against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's MCP server against live APIs; here the same sources are exported to files.)",
+      "hint": "The systems of record disagree. Read every file in /evidence — the gaps between them, and the items the control never reached, are the finding.",
+      "hints": [
+        "cat each file in /evidence. ICS/SCADA + PLC/RTU/HMI is the system of record; the others show what is actually configured/running.",
+        "An in-scope item present in one source but missing the required control in another is an exception — that is your finding.",
+        "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
+      ],
+      "files": {
+        "/evidence/README.md": "# AcmeCorp — ICS: \"Supply chain integrity\" Audit Evidence\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- ics_inventory.json   (in-scope items from ICS/SCADA + PLC/RTU/HMI)\n- ics_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy. Find the items where the\n\"Supply chain integrity\" control is missing, mis-scoped, or not operating. Then read\ncoverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Supply chain integrity\",\n  \"domain\": \"ICS\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ics_",
+        "/evidence/ics_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"OT / plant engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Supply chain integrity\" control must cover\n# fragment: supply_chain_integrity_",
+        "/evidence/ics_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
+        "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"EXCEPTIONS\"\n}\n# fragment: exceptions}"
+      },
+      "dirs": {
+        "/": [
+          {
+            "name": "evidence",
+            "isDir": true
+          }
+        ],
+        "/evidence": [
+          {
+            "name": "README.md",
+            "isDir": false
+          },
+          {
+            "name": "policy.json",
+            "isDir": false
+          },
+          {
+            "name": "ics_inventory.json",
+            "isDir": false
+          },
+          {
+            "name": "ics_state.json",
+            "isDir": false
+          },
+          {
+            "name": "coverage_report.json",
+            "isDir": false
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "trigger": "/evidence/policy.json",
+          "value": "FLAG{ics_",
+          "label": "Policy — the control standard"
+        },
+        {
+          "trigger": "/evidence/ics_inventory.json",
+          "value": "supply_chain_integrity_",
+          "label": "Inventory — the in-scope items"
+        },
+        {
+          "trigger": "/evidence/ics_state.json",
+          "value": "gap_",
+          "label": "State — the items that fail the control"
+        },
+        {
+          "trigger": "/evidence/coverage_report.json",
+          "value": "exceptions}",
+          "label": "Coverage report — the audit opinion"
+        }
+      ]
+    },
+    "quiz": {
+      "questions": [
+        {
+          "id": "ics-10-q1",
+          "type": "Objective",
+          "challenge": "Control objective",
+          "text": "What is the primary audit objective for the \"Supply chain integrity\" sub-process of ICS?",
+          "options": [
+            "Re-implement the control on the auditor's behalf",
+            "Increase the number of tools the team uses",
+            "Replace the system owner's judgement entirely",
+            "Obtain evidence that the supply chain integrity control is designed and operating effectively, and quantify the gap where it is not"
+          ],
+          "correctIndex": 3,
+          "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run or own the control."
+        },
+        {
+          "id": "ics-10-q2",
+          "type": "Why it matters",
+          "challenge": "Materiality",
+          "text": "Why does a weakness in \"Supply chain integrity\" matter to the broader ICS posture?",
+          "options": [
+            "It is relevant solely for marketing",
+            "It has no effect once a firewall exists",
+            "It is a control other ICS controls depend on, so a gap here propagates risk into everything scoped to it",
+            "It only affects documentation aesthetics"
+          ],
+          "correctIndex": 2,
+          "explanation": "Foundational controls are load-bearing; their failure undermines the controls layered on top."
+        },
+        {
+          "id": "ics-10-q3",
+          "type": "Artifacts",
+          "challenge": "Evidence",
+          "text": "Which artifact best evidences the \"Supply chain integrity\" control?",
+          "options": [
+            "The vendor's marketing datasheet",
+            "The Supply chain integrity evidence export reconciled against policy, plus the resulting findings working paper",
+            "A verbal assurance from the team lead",
+            "A screenshot of the login page"
+          ],
+          "correctIndex": 1,
+          "explanation": "Evidence must be objective and reproducible — exports reconciled to policy, not assertions."
+        },
+        {
+          "id": "ics-10-q4",
+          "type": "System",
+          "challenge": "Source of truth",
+          "text": "Where would an auditor pull the evidence for \"Supply chain integrity\"?",
+          "options": [
+            "ICS/SCADA + PLC/RTU/HMI (and the other systems of record for this domain), accessed read-only",
+            "Only from a spreadsheet emailed by a manager",
+            "From social media",
+            "From the auditor's memory of last year"
+          ],
+          "correctIndex": 0,
+          "explanation": "Evidence comes from the authoritative systems (e.g., ICS/SCADA + PLC/RTU/HMI) via read-only access."
+        },
+        {
+          "id": "ics-10-q5",
+          "type": "Data owner",
+          "challenge": "Accountability",
+          "text": "Who is most likely accountable for the data behind \"Supply chain integrity\"?",
+          "options": [
+            "The external auditor",
+            "No one — it is ownerless",
+            "The end customer",
+            "OT / plant engineering (with related functions attesting their part)"
+          ],
+          "correctIndex": 3,
+          "explanation": "OT / plant engineering owns the control data; the auditor independently verifies it."
+        },
+        {
+          "id": "ics-10-q6",
+          "type": "Agentic",
+          "challenge": "Human vs agent",
+          "text": "In the agentic workflow for \"Supply chain integrity\", which part stays with the human auditor?",
+          "options": [
+            "Nothing; the agent decides materiality",
+            "Only installing dependencies",
+            "Setting policy/thresholds, reviewing findings, and signing the opinion — the agent gathers and correlates evidence",
+            "Issuing the final audit opinion autonomously"
+          ],
+          "correctIndex": 2,
+          "explanation": "Agents automate evidence gathering at machine speed; humans own policy and judgement."
+        },
+        {
+          "id": "ics-10-q7",
+          "type": "Tooling",
+          "challenge": "Read-only",
+          "text": "Why must the MCP server for this module be read-only?",
+          "options": [
+            "So it can run without any credentials",
+            "Audit tooling must never alter the audited environment; read-only guarantees running it cannot change state",
+            "Read-only servers are simply faster",
+            "MCP cannot perform writes"
+          ],
+          "correctIndex": 1,
+          "explanation": "Non-interference is a hard requirement for audit evidence-gathering tools."
+        },
+        {
+          "id": "ics-10-q8",
+          "type": "Findings",
+          "challenge": "What is a finding",
+          "text": "Which observation is a reportable finding for \"Supply chain integrity\"?",
+          "options": [
+            "Evidence shows the control is missing, mis-scoped, or not operating for in-scope items — a gap against policy",
+            "The team uses a popular vendor",
+            "The control exists and operates as designed",
+            "A new feature shipped on time"
+          ],
+          "correctIndex": 0,
+          "explanation": "A finding is a gap between the policy/standard and the observed evidence."
+        },
+        {
+          "id": "ics-10-q9",
+          "type": "Deliverable",
+          "challenge": "The opinion",
+          "text": "How does the coverage report escalate its opinion?",
+          "options": [
+            "It is always PASS to avoid conflict",
+            "Randomly each run",
+            "Only the asset count is reported, never an opinion",
+            "PASS → EXCEPTIONS → MATERIAL GAP as the count and severity of gaps increase"
+          ],
+          "correctIndex": 3,
+          "explanation": "The opinion is a function of how many in-scope items fail and how severely."
+        },
+        {
+          "id": "ics-10-q10",
+          "type": "Privacy/Risk",
+          "challenge": "The data angle",
+          "text": "Why does auditing \"Supply chain integrity\" also serve privacy and regulatory goals?",
+          "options": [
+            "Regulators never look at this domain",
+            "It only matters for public data",
+            "The control protects regulated/sensitive data or the systems that process it, so a gap carries compliance and privacy exposure",
+            "Privacy is unrelated to technical controls"
+          ],
+          "correctIndex": 2,
+          "explanation": "Security and privacy share the same controls; a technical gap is often also a compliance gap."
+        }
+      ]
+    }
+  }
+];

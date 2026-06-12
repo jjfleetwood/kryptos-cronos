@@ -138,7 +138,7 @@ export default async function AuditModulePage({
       </div>
 
       {/* Full briefing + CTF/quiz play experience (reuses the stage engine) */}
-      <StageContainer stage={safeStage} isPro backHref={backHref} />
+      <StageContainer stage={safeStage} isPro backHref={backHref} hideCover />
     </div>
   );
 }

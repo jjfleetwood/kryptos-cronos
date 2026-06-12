@@ -10,7 +10,7 @@ import { useLocale } from "@/contexts/LocaleContext";
 
 type TranslatedQuestion = { q: string; options: [string, string] };
 
-export default function StageContainer({ stage, isPro = false, translation = null, ctfQuiz, ctfQuizTranslation, auditQuiz, backHref: backHrefProp }: {
+export default function StageContainer({ stage, isPro = false, translation = null, ctfQuiz, ctfQuizTranslation, auditQuiz, backHref: backHrefProp, hideCover = false }: {
   stage: StageConfig | null;
   isPro?: boolean;
   translation?: StageTranslation | null;
@@ -18,6 +18,7 @@ export default function StageContainer({ stage, isPro = false, translation = nul
   ctfQuizTranslation?: TranslatedQuestion[];
   auditQuiz?: AuditQuizEntry;
   backHref?: string;
+  hideCover?: boolean;
 }) {
   const { t } = useLocale();
   const [phase, setPhase] = useState<"info" | "challenge">("info");
@@ -50,6 +51,7 @@ export default function StageContainer({ stage, isPro = false, translation = nul
         }}
         translation={translation}
         backHref={backHref}
+        hideCover={hideCover}
       />
     );
   }

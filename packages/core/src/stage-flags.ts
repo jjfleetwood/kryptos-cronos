@@ -1,6 +1,10 @@
 import "server-only";
+import { auditGeneratedFlags } from "./audit-flags.generated";
 
 export const stageFlags: Record<string, string> = {
+  // ── Advanced Audit · generated domain modules (gen-audit-track.mjs) ────────
+  ...auditGeneratedFlags,
+
   // ── Advanced Audit · Application Review (audit-application-review.ts) ──────
   "aar-01": "FLAG{app_inv_1shadow_saas_1shadow_cloud_1untiered_material_gap}",
 

@@ -1,0 +1,330 @@
+Domain    Sub-process
+Application Review    Application inventory and tiering
+Application Review    Authentication and authorization design
+Application Review    Secure configuration and OWASP controls
+Application Review    API security controls
+Application Review    Application logging and monitoring
+Application Review    Application functionality (auto controls, business rules)
+Application Review    Patch and vulnerability management
+Application Review    IAM including SoD
+Application Review    Application interfaces
+Application Review    Reports and data extracts
+Application Review    Cryptographic library and dependency mgmt (+PQC)
+Application Review    Application threat modeling
+Build Env / CI/CD    Build environment security
+Build Env / CI/CD    CI/CD pipeline security
+Build Env / CI/CD    Container image security
+Build Env / CI/CD    Container runtime security
+Build Env / CI/CD    Orchestration cluster security
+Build Env / CI/CD    Workload security
+Build Env / CI/CD    Supply chain in orchestration
+Build Env / CI/CD    Code and repository security
+Build Env / CI/CD    Secrets and credential management
+Build Env / CI/CD    Audit logging
+Build Env / CI/CD    Segregation of duties
+Build Env / CI/CD    AI-assisted dev / agentic workloads
+Build Env / CI/CD    SBOM image provenance
+Build Env / CI/CD    Vulnerability scanning and testing
+Build Env / CI/CD    License scanning
+Repository Mgmt    Access control and authentication
+Repository Mgmt    Branch management and protection
+Repository Mgmt    Commit integrity and code review
+Repository Mgmt    Secrets and credential management
+Repository Mgmt    Repository configuration and hardening
+Repository Mgmt    Dependency and package management
+Repository Mgmt    Audit logging and monitoring
+Repository Mgmt    Repository governance and lifecycle
+Repository Mgmt    Backup and recovery
+Repository Mgmt    Platform and infrastructure security
+Repository Mgmt    Third-party and open source contribution
+Crypto Key & Secrets    Key Lifecycle Management
+Crypto Key & Secrets    Secrets Management
+Crypto Key & Secrets    Certificate Management
+Crypto Key & Secrets    HSM controls
+Crypto Key & Secrets    Cryptographic implementation
+Crypto Key & Secrets    Post-quantum cryptography readiness
+Crypto Key & Secrets    Secrets detection and prevention
+Crypto Key & Secrets    Audit logging and monitoring
+Crypto Key & Secrets    Compliance and regulatory alignment
+Secure Software Dev    Security requirements and design (CSDL)
+Secure Software Dev    Secure coding standards (OWASP)
+Secure Software Dev    SAST, DAST, penetration testing
+Secure Software Dev    Software composition analysis
+Secure Software Dev    Open source security
+Secure Software Dev    Infrastructure as code (IaC) security
+Secure Software Dev    API security
+Secure Software Dev    Container and cloud-native security
+Secure Software Dev    Vulnerability management
+Secure Software Dev    Developer security training
+Secure Software Dev    Metrics, reporting, auditability
+Secure Software Dev    Post-quantum protection support
+Secure Software Dev    AI model and system development and testing
+IaC    Change management and peer review
+IaC    Scanning and security testing
+IaC    Cloud resource misconfig via IaC
+IaC    Policy/compliance as code
+IaC    Module and template governance
+IaC    Configuration drift detection
+IaC    Secrets and credential handling
+IaC    Pipeline integration
+IaC    GitOps security controls
+    
+PART 2 — Cloud, Network, Endpoint, Identity, Change, Implementation    
+Domain    Sub-process
+Cloud Platform & SaaS    Cloud landing zone and guardrails
+Cloud Platform & SaaS    Cloud IAM and privileged roles
+Cloud Platform & SaaS    Logging and monitoring enablement
+Cloud Platform & SaaS    Cloud network security (SG, NACL)
+Cloud Platform & SaaS    SaaS configuration
+Cloud Platform & SaaS    Admin activity monitoring
+Cloud Platform & SaaS    Business and service resilience
+Cloud Platform & SaaS    Cloud supply chain
+Cloud Platform & SaaS    Cloud partner
+Cloud Platform & SaaS    Security assessments
+Cloud Platform & SaaS    Data protection and lifecycle
+Cloud Platform & SaaS    Data sovereignty
+Cloud Platform & SaaS    Security Ticketing Engine (STE)
+Vuln & Patch Mgmt    Server build standards and hardening
+Vuln & Patch Mgmt    Patch mgmt and exception handling
+Vuln & Patch Mgmt    Configuration drift monitoring
+Vuln & Patch Mgmt    Administrative access controls
+Vuln & Patch Mgmt    Vulnerability management
+Vuln & Patch Mgmt    Host event logging and monitoring
+Vuln & Patch Mgmt    Red and blue teaming
+Vuln & Patch Mgmt    Malware analysis
+Vuln & Patch Mgmt    AI for red teaming
+Vuln & Patch Mgmt    STE — cloud infra vuln tickets
+Data Protection & Privacy    Data classification and handling
+Data Protection & Privacy    Encryption in transit/at rest/in use
+Data Protection & Privacy    Data retention and disposal
+Data Protection & Privacy    Backup governance and restore testing
+Data Protection & Privacy    Data loss prevention
+Data Protection & Privacy    Alert handling
+Data Protection & Privacy    Privacy compliance and sovereignty
+Data Protection & Privacy    Data inventorying, lineage, provenance
+Data Protection & Privacy    Data monitoring
+Data Protection & Privacy    Quantum-ready data protection
+Datacenter / Lab / CoLo    Physical security controls
+Datacenter / Lab / CoLo    Environmental controls
+Datacenter / Lab / CoLo    Safety controls
+Datacenter / Lab / CoLo    Asset inventory mgmt
+Datacenter / Lab / CoLo    Maintenance and vendor mgmt
+Datacenter / Lab / CoLo    Business continuity planning
+Endpoint Devices    Device management platform
+Endpoint Devices    End point inventory and unauthorized devices
+Endpoint Devices    Hardware lifecycle tracking
+Endpoint Devices    Device image version mgmt
+Endpoint Devices    EDR & antimalware
+Endpoint Devices    Coverage gaps
+Endpoint Devices    OS patching cadence
+Endpoint Devices    Vulnerability scanning
+Endpoint Devices    End-of-life management
+Endpoint Devices    Physical controls (USB, BT)
+Endpoint Devices    Screen lock and timeout
+Endpoint Devices    Full disk encryption
+Endpoint Devices    Data loss prevention (endpoint)
+Endpoint Devices    MDM and containerization
+Endpoint Devices    NAC, VPN, ZTNA
+Endpoint Devices    GPS, log collection coverage
+Endpoint Devices    Forensic readiness
+Endpoint Devices    Exception management
+Network Security    Network segmentation and trust zones
+Network Security    Firewall rule governance
+Network Security    Remote access (VPN, ZTNA)
+Network Security    Logging and monitoring
+Network Security    Secure network architecture
+Network Security    Device config mgmt and backups
+Network Security    AIOps / AI-driven networking
+Identity & Access Mgmt    User provisioning and deprovisioning
+Identity & Access Mgmt    Joiner-mover-leaver
+Identity & Access Mgmt    MFA coverage
+Identity & Access Mgmt    Privileged access mgmt
+Identity & Access Mgmt    Session controls
+Identity & Access Mgmt    Access reviews and recertifications
+Identity & Access Mgmt    Service / generic / local accounts
+Identity & Access Mgmt    Least privilege and SoD
+Identity & Access Mgmt    Certificate management
+Identity & Access Mgmt    Zero trust
+Identity & Access Mgmt    PQC-ready certificate lifecycle
+Change, Release & Config Mgmt    Change approvals and SoD
+Change, Release & Config Mgmt    Emergency change process
+Change, Release & Config Mgmt    Release planning & backout
+Change, Release & Config Mgmt    Configuration management
+Change, Release & Config Mgmt    Baseline enforcement
+Change, Release & Config Mgmt    Post-implementation review
+Change, Release & Config Mgmt    Business impact analysis
+Change, Release & Config Mgmt    Version control
+Change, Release & Config Mgmt    Roles and responsibilities
+System Implementation — Enterprise    Program & project mgmt (PMO)
+System Implementation — Enterprise    Enterprise architecture
+System Implementation — Enterprise    Development
+System Implementation — Enterprise    Testing & QA (E2E)
+System Implementation — Enterprise    Implement (go-live, phased)
+System Implementation — Enterprise    Cutover
+System Implementation — Enterprise    Data conversion and migration
+System Implementation — Enterprise    Post-implementation support / hypercare
+System Implementation — Enterprise    Executive governance / steering
+System Implementation — Enterprise    Audit and compliance involvement
+System Implementation — Enterprise    Vendor selection
+System Implementation — Enterprise    Contract, SLA, commercial risk
+System Implementation — Enterprise    Escrow agreement for source code
+System Implementation — Enterprise    Business case, ROI
+System Implementation — Enterprise    Training, change mgmt, knowledge transfer
+System Implementation — Enterprise    Data governance and MDM
+System Implementation — Enterprise    Security and access control design
+System Implementation — Enterprise    Business continuity / resilience
+System Implementation — Enterprise    Regulatory / compliance alignment
+System Implementation — Enterprise    Infra and capacity planning
+System Implementation — Enterprise    PIR / lessons learned
+System Implementation — Functional    Project management
+System Implementation — Functional    Design and requirements
+System Implementation — Functional    Development
+System Implementation — Functional    Testing
+System Implementation — Functional    Implement (go-live)
+System Implementation — Functional    Cutover
+System Implementation — Functional    Data conversion and migration
+System Implementation — Functional    Support and maintenance
+System Implementation — Functional    Steering committee
+System Implementation — Functional    Audit and compliance involvement
+System Implementation — Functional    Vendor due diligence
+System Implementation — Functional    Contract and SLA review
+System Implementation — Functional    Escrow agreement
+System Implementation — Functional    Return on investment
+System Implementation — Functional    Training and knowledge transfer
+    
+PART 3 — AI, Third Party, Resiliency, Incident, Governance, RPA, IoT, ICS, PQC, Data Lakes    
+Domain    Sub-process
+System Implementation — AI    AI use case definition
+System Implementation — AI    Data governance and quality for AI
+System Implementation — AI    Model development and validation
+System Implementation — AI    AI ethics, fairness, responsible AI
+System Implementation — AI    AI-specific testing and assurance
+System Implementation — AI    AI model deployment and infra
+System Implementation — AI    Model lifecycle and drift mgmt
+System Implementation — AI    AI security and adversarial testing
+System Implementation — AI    Regulatory and legal compliance for AI
+System Implementation — AI    Third-party AI / foundation model gov
+System Implementation — AI    Human oversight and accountability
+System Implementation — AI    AI performance / post-deployment
+Third Party Systems    Data security and privacy
+Third Party Systems    Integration and interface security
+Third Party Systems    Change and release mgmt (vendor)
+Third Party Systems    Incident and problem mgmt (vendor)
+Third Party Systems    Compliance and regulatory alignment
+Third Party Systems    BCP and resilience (vendor)
+Third Party Systems    Vulnerability and patch (vendor)
+Third Party Systems    Vendor governance and risk mgmt
+Third Party Systems    Data backup and recovery (vendor)
+Third Party Systems    Systems availability and capacity
+Third Party Systems    Audit and monitoring rights
+Third Party Systems    Subcontractor / nth party risk
+Third Party Systems    Identity federation and authentication
+Third Party Systems    Vendor AI supply chain
+Third Party Systems    Post-quantum protection support
+Resiliency & Redundancy    BCP, BIA, ITDR
+Resiliency & Redundancy    Supplier and vendor resilience
+Resiliency & Redundancy    Tabletop and BCP/DR testing
+Resiliency & Redundancy    DR site strategy
+Resiliency & Redundancy    Failover and fallback procedures
+Resiliency & Redundancy    Data and service replication
+Resiliency & Redundancy    Network redundancy
+Resiliency & Redundancy    Multi-region / AZ deployment
+Resiliency & Redundancy    Infrastructure as code
+Resiliency & Redundancy    Vendor lock-in risk
+Resiliency & Redundancy    Secret and certificate mgmt
+Resiliency & Redundancy    High-availability architecture
+Resiliency & Redundancy    Chaos engineering
+Resiliency & Redundancy    SLA and SLO monitoring
+Incident Management    IR plan, playbooks, tabletop
+Incident Management    Incident intake and triage
+Incident Management    Evidence handling and forensics
+Incident Management    Post-incident reviews / corrective
+Incident Management    External notifications / breach comms
+Incident Management    Incident logging and monitoring
+Incident Management    Incident escalation
+IT Governance    Policy and standard lifecycle
+IT Governance    Risk assessment and tracking
+IT Governance    Security metrics and reporting
+IT Governance    Exception management
+IT Governance    Security awareness program
+RPA Governance    RPA strategy and governance
+RPA Governance    Legal and regulatory compliance
+RPA Governance    Dev, test, deploy cycle
+RPA Governance    Change mgmt and version control
+RPA Governance    Access management
+RPA Governance    Data handling and encryption
+RPA Governance    Infra hardening and vuln mgmt
+RPA Governance    Business Continuity (RPA)
+RPA Governance    Third-party / OSS contribution
+AI    AI governance and strategic planning
+AI    Legal, ethics, compliance
+AI    AI system architecture and dev
+AI    Model testing and validation
+AI    Data governance and handling (AI)
+AI    Data privacy and security (AI)
+AI    AI infra and access security
+AI    Adversarial AI and threat defense
+AI    Incident management and reporting (AI)
+AI    Operational monitoring (AI)
+IoT    Security by design
+IoT    Privacy by design
+IoT    Attack surface minimization
+IoT    Threat modeling
+IoT    Third-party components
+IoT    Lightweight cryptography
+IoT    Vulnerability mgmt and pen test
+IoT    NAC
+IoT    IoT gateway security
+IoT    Out-of-band management
+IoT    Shadow IoT detection
+IoT    IoT monitoring and IR
+IoT    Physical access
+ICS    ICS asset inventory
+ICS    Network segmentation
+ICS    IT/OT asset boundary
+ICS    IAM (ICS)
+ICS    Patch and vuln mgmt (ICS)
+ICS    ICS security governance
+ICS    ICS monitoring and IR
+ICS    Physical access and security
+ICS    Vendor physical and remote access
+ICS    Supply chain integrity
+Post-Quantum Readiness    Cryptographic inventory and visibility
+Post-Quantum Readiness    Crypto Bill of Materials (CBOM)
+Post-Quantum Readiness    Long-lived data identification
+Post-Quantum Readiness    Network traffic exposure
+Post-Quantum Readiness    Historical encryption assessment
+Post-Quantum Readiness    PQC regulatory compliance
+Post-Quantum Readiness    Active HNDL threat intel
+Post-Quantum Readiness    Crypto, protocol, hardware agility
+Post-Quantum Readiness    Secure communications PQC migration
+Post-Quantum Readiness    RFC 9881 alignment
+Post-Quantum Readiness    CNSA 2.0 compliance planning
+Post-Quantum Readiness    Standards monitoring (IETF, NIST)
+Post-Quantum Readiness    Regional standards alignment
+Post-Quantum Readiness    Trust store updates
+Post-Quantum Readiness    Vendor PQC roadmap
+Post-Quantum Readiness    Third-party PKI dependency
+Post-Quantum Readiness    Secure product PQC readiness
+Post-Quantum Readiness    Industry interop testing
+Post-Quantum Readiness    PQC pen testing
+Data Lakes & Warehouses    Data architecture and platform design
+Data Lakes & Warehouses    Source onboarding and ingestion
+Data Lakes & Warehouses    ETL/ELT transformation controls
+Data Lakes & Warehouses    Data quality management
+Data Lakes & Warehouses    Metadata mgmt and catalog
+Data Lakes & Warehouses    Data lineage and traceability
+Data Lakes & Warehouses    IAM (data lake)
+Data Lakes & Warehouses    Sensitive data protection
+Data Lakes & Warehouses    Logging, monitoring, alerting
+Data Lakes & Warehouses    Backup, recovery, resilience
+Data Lakes & Warehouses    Environment segregation
+Data Lakes & Warehouses    SDLC / DataOps / CI/CD
+Data Lakes & Warehouses    Retention, archival, deletion
+Data Lakes & Warehouses    Reporting / semantic layer
+Data Lakes & Warehouses    End-user computing / extracts
+Data Lakes & Warehouses    Third-party / CSP mgmt
+Data Lakes & Warehouses    Incident response / problem mgmt
+Data Lakes & Warehouses    Capacity, performance, cost
+Data Lakes & Warehouses    Regulatory / contractual data req
+  for each domain i want an epoch with the subdomains as modules, but the focus is purely on detailed technical security and privacy audit using agentic workflow.  the module will teach the auditor how to leverage agents and MCP server components, you will provide as we have before.  these will be available via download but they will be reviewed thoroughly in teh CTF and 10 question quiz.  There will be workflow diagrams and helpful hints.  All this will be able to be downloaded into the PPT tool as well so think about the content that should be able to translate to ppt in an advanced technical corporate setting.
