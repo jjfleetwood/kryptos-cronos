@@ -32,6 +32,7 @@ The one thing that previously made the story *messy* — roughly half the curric
 | Content depth | ✅ 582→**831 stages**, 50→**75 epochs**, +292 CTFs, +5 deep-tech/analyst epochs (OT/ICS, SDV II, Robotics II, Space II, Threat Frameworks). |
 | **Positioning / non-security dilution** | ✅ **Resolved by the two-product split (Part 2.5)** — the cyber brand carves to security tracks only; diverse content moves to a separate consumer/licensing brand. |
 | Engineering maturity | ✅ Bundle-architecture pass (play route 10 MB → 0.9 MB) + 2-step account-deletion/retention flow. Ships, doesn't just accumulate. |
+| **New — Advanced Audit track + deck generator** | ✅ A gated `/audit` Pro/Enterprise track: a structured, agentic **technical + privacy audit** library (per sub-process: a real artifact, a runnable test, the source systems, a downloadable read-only MCP evidence-gathering server), ranked by ease × value with a Top-20 "prioritized opportunities" view. The admin **deck generator** turns *any* curriculum epoch **or** audit domain into an audience-framed PowerPoint. Together they open a **service-delivery** angle (Part 2.6) the original SaaS thesis didn't have. |
 
 **The OPEN_ACCESS reality (still the headline operational fact).** The codebase sets `OPEN_ACCESS = true`: `getUserTier()` returns `"pro"` for everyone and every stage is open. Sound *growth* logic (zero friction), but a direct fundraising consequence — **revenue is $0 by design, and free→paid conversion is unmeasurable until you flip it.** A VC respects the move only if you name the exact re-gating trigger and date. "We'll turn it on later" is not a plan.
 
@@ -146,6 +147,36 @@ The split does **not** require two deployments yet. The decision for now is: **o
 
 - **Engineering: near zero.** `epochGroups` vs `extendedGroups` and the `SECURITY_EPOCHS`/`NON_SECURITY_EPOCHS` sets already exist in `stages/page.tsx`. The carve is: render only `epochGroups` on `/stages`, move `extendedGroups` to a thin `/explore` route, drop the prominent "📚 Non-Security" divider. No content moves, nothing is deleted.
 - **Focus: the real cost.** Single founder. The discipline must be: **Product 2 is what you build and raise on now; Product 1 is dormant-but-alive (or licensed), not a second startup you actively market.** A 50/50 split loses both.
+
+---
+
+## Part 2.6 — A Third Angle: The Platform as a Service-Delivery Vehicle
+
+The Advanced Audit track and the deck generator quietly create an option the original B2C/B2B-SaaS thesis didn't have: **the platform can help *deliver* work, not just teach it.** This is upside, not the core pitch — frame it carefully.
+
+### The deck generator as an ad-hoc teaching + sales device
+
+The admin deck generator turns any epoch *or* audit domain into a polished PowerPoint through an audience **lens** — *Technology Audit*, *Executive / Board*, *Training Module*, or *Capability Overview* — in one click, server-side, at near-zero marginal cost. For an audit domain it builds the slides straight from the structured audit card (control objective + test → approach → artifacts to pull → systems of record → data owners). Concretely that means:
+
+- **Sales engineering:** generate a tailored *"here is exactly how we'd audit your IAM / cloud / CI-CD estate"* deck for a specific prospect in minutes, not a proposal-writing week.
+- **Teaching / enablement:** spin up a workshop or lunch-and-learn deck per module on demand; clients' own auditors can be trained off the same content they'll later be assessed against.
+- **Partner/channel collateral:** a capability-overview deck per domain, reusable and (eventually) co-brandable.
+
+It converts a large content library into **on-demand, customizable, audience-specific collateral** — the kind of asset that normally costs a marketing/SE team real hours per artifact.
+
+### Audit-as-a-service / productized consulting (the bigger idea)
+
+The audit modules are not just lessons. Each ships a **runnable, read-only MCP server** that gathers real evidence plus a **defined test and PASS / EXCEPTIONS / MATERIAL-GAP opinion**. That is the skeleton of an actual engagement. A services motion falls out almost for free:
+
+> Run the agentic audit (read-only) against a client environment → the platform produces the named findings → the deck generator produces the client-ready report deck.
+
+The **same content asset** then powers three revenue surfaces: (a) self-serve **training** (the SaaS), (b) **enablement** for a client's own audit/security team, and (c) **delivered audit engagements / tooling licensing**. One library, three GTM doors.
+
+### Why a VC should care — and the honest caveats
+
+- **Care:** it's a second, higher-ACV revenue surface (engagements + audit-tooling licensing) that **de-risks the still-unproven B2C conversion**, and it's defensible — the moat is the curated control library + the runnable agentic workflow + the report-generation pipeline, not any single lesson.
+- **Enterprise wedge:** it upgrades the B2B story from *"buy seats to train your audit team"* to *"…and use our agentic tooling + deck generator to actually run and report the audits."* That's a land-and-expand path with a real budget line (audit/GRC), not just an L&D line.
+- **Caveat (state it plainly):** services revenue carries a **lower multiple than SaaS, is people-intensive, and can distract a single founder**. The defensible framing is **"productized service / tooling-enabled delivery,"** not a consulting body shop — the platform does the heavy lifting (read-only evidence gathering + automated report decks), so delivery is **leveraged, not linear**. Position it as an **optional GTM accelerant and enterprise wedge**, explicitly *not* the core thesis. A VC will reward the optionality only if you keep Product 2 (the cyber SaaS) as the headline and treat services as a margin-accretive, demand-validating side door.
 
 ---
 
