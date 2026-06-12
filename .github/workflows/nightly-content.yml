@@ -76,22 +76,36 @@ jobs:
         if: steps.gate.outputs.run == 'true'
         run: npm i -g @anthropic-ai/claude-code
 
-      - name: Run content-author (headless, bounded tool allowlist)
+      - name: Run content-author (content edits only — the workflow opens the PR)
         if: steps.gate.outputs.run == 'true'
         continue-on-error: true
+        env:
+          TARGET: ${{ github.event.inputs.target }}
         run: |
-          TARGET="${{ github.event.inputs.target }}"
-          PROMPT="Run tonight's deep-content authoring sweep using the 'content-author' subagent defined in .claude/agents/content-author.md. Follow its definition exactly: author ONE un-authored Advanced Audit domain to the IAM/VPM quality bar (real artifacts, tests, systems, commands), regenerate, gate on the generator + tsc, and open ONE focused branch + PR. You must NEVER merge, never push to master, and stay inside the documented scope and forbidden zones (never edit aar-01, stage-flags, auth/payments/crypto/proxy). If a target is named, author that one. End with the PR URL on the final line."
-          if [ -n "$TARGET" ]; then
-            PROMPT="$PROMPT  Target for this run: $TARGET"
-          fi
-          # Explicit allowlist instead of --dangerously-skip-permissions: the agent can
-          # read, research, edit on a branch, run the generator + tsc, and open a PR — but
-          # Bash is scoped to git/gh/node/npm/npx and `gh pr merge` / push-to-master are
-          # denied, so it can never merge. Same human-merge gate as the rest of the fleet.
+          PROMPT="Run tonight's deep-content authoring sweep using the 'content-author' subagent defined in .claude/agents/content-author.md. Follow its definition for the CONTENT: author ONE un-authored Advanced Audit domain (or, if the target names a curriculum epoch, do that epoch's prose-depth rewrite) to the IAM/VPM quality bar, then REGENERATE (audit work: 'node packages/core/scripts/gen-audit-track.mjs'; prose work: 'npm run gen:meta -w @kryptos/core') and GATE on 'npx tsc --noEmit --skipLibCheck -p apps/web/tsconfig.json' — it must pass. Make all edits ON DISK only: do NOT git commit, branch, push, or open a PR — a later workflow step does that. Write a single concise PR title (<=120 chars) to a file named '.agent-pr-title' at the repo root. Stay inside scope + forbidden zones (never edit aar-01, stage-flags, auth/payments/crypto/proxy)."
+          if [ -n "$TARGET" ]; then PROMPT="$PROMPT  Target for this run: $TARGET"; fi
+          # Claude only edits content + runs the generator/tsc — NO git/gh in the allowlist.
+          # The deterministic step below owns commit + push + gh pr create, which is reliable
+          # in CI and preserves the never-merge gate (it only ever opens a PR).
           claude -p "$PROMPT" \
             --permission-mode acceptEdits \
-            --allowedTools "Read,Glob,Grep,Edit,Write,WebFetch,WebSearch,Bash(git add:*),Bash(git checkout:*),Bash(git commit:*),Bash(git push:*),Bash(git status:*),Bash(git branch:*),Bash(git diff:*),Bash(gh pr create:*),Bash(node:*),Bash(npx:*),Bash(npm run:*)" \
-            --disallowedTools "Bash(gh pr merge:*),Bash(git merge:*),Bash(git push origin master:*)" \
+            --allowedTools "Read,Glob,Grep,Edit,Write,WebFetch,WebSearch,Bash(node:*),Bash(npx:*),Bash(npm run:*)" \
             --max-turns 120 \
             2>&1 | tail -100
+
+      - name: Open a PR from the agent's changes
+        if: steps.gate.outputs.run == 'true'
+        env:
+          TARGET: ${{ github.event.inputs.target }}
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then echo "No changes — nothing to PR."; exit 0; fi
+          TITLE="$(head -1 .agent-pr-title 2>/dev/null | cut -c1-120)"
+          [ -z "$TITLE" ] && TITLE="Deep Content Author: automated update${TARGET:+ ($TARGET)}"
+          rm -f .agent-pr-title
+          BRANCH="agent/content-${TARGET:-auto}-$(date -u +%Y%m%d%H%M%S)"
+          git checkout -b "$BRANCH"
+          git add -A
+          git commit -m "$TITLE"
+          git push -u origin "$BRANCH"
+          gh pr create --base master --head "$BRANCH" --title "$TITLE" \
+            --body "Automated content-author run (target: ${TARGET:-next in priority}). Generator + tsc gated before this PR. Review + merge — the agent never merges."

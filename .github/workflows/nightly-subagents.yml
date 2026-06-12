@@ -102,19 +102,34 @@ jobs:
             echo "agent=$A" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Run subagent (headless, bounded tool allowlist)
+      - name: Run subagent (edits + board reports only — the workflow opens any PR)
         if: steps.gate.outputs.run == 'true'
         continue-on-error: true
         run: |
           A="${{ steps.pick.outputs.agent }}"
           echo "Running subagent: $A"
-          # Explicit allowlist instead of --dangerously-skip-permissions: the agent
-          # can read, analyze, edit on a branch, and open a PR via gh — but Bash is
-          # scoped to git/gh/node/npm/npx (no arbitrary shell) and `gh pr merge` is
-          # denied, so it can never merge. Same human-merge gate as the auto-agent.
-          claude -p "Run tonight's supervised sweep using the '$A' subagent defined in .claude/agents/$A.md. Follow its definition exactly. It is report-only or PR-only: file findings to the Development board and/or open ONE focused branch + PR. You must NEVER merge, never push to master, and stay inside the subagent's documented scope and forbidden zones. If there is nothing worth filing or fixing, say so and stop." \
+          # Claude edits files + files board findings (via fetch) only — NO git/gh in the
+          # allowlist. The deterministic step below turns any file changes into a branch + PR,
+          # which is reliable in CI and keeps the never-merge gate. Report-only runs leave no
+          # changes, so they simply produce no PR.
+          claude -p "Run tonight's supervised sweep using the '$A' subagent defined in .claude/agents/$A.md. Follow its definition for the WORK: file findings to the Development board and/or make the focused edits ON DISK. Do NOT git commit, branch, push, or open a PR — a later workflow step does that. If you make file edits, write a single concise PR title (<=120 chars) to '.agent-pr-title' at the repo root. NEVER merge, never push to master, stay inside the subagent's scope + forbidden zones. If there is nothing worth filing or fixing, say so and stop." \
             --permission-mode acceptEdits \
-            --allowedTools "Read,Glob,Grep,Edit,Write,WebFetch,Bash(git add:*),Bash(git checkout:*),Bash(git commit:*),Bash(git push:*),Bash(git status:*),Bash(git branch:*),Bash(git diff:*),Bash(gh pr create:*),Bash(node:*),Bash(npx:*),Bash(npm run:*)" \
-            --disallowedTools "Bash(gh pr merge:*),Bash(git merge:*),Bash(git push origin master:*)" \
+            --allowedTools "Read,Glob,Grep,Edit,Write,WebFetch,Bash(node:*),Bash(npx:*),Bash(npm run:*),Bash(cp:*)" \
             --max-turns 60 \
             2>&1 | tail -80
+
+      - name: Open a PR from the subagent's changes
+        if: steps.gate.outputs.run == 'true'
+        run: |
+          A="${{ steps.pick.outputs.agent }}"
+          if [ -z "$(git status --porcelain)" ]; then echo "No file changes (report-only or nothing to do) — no PR."; exit 0; fi
+          TITLE="$(head -1 .agent-pr-title 2>/dev/null | cut -c1-120)"
+          [ -z "$TITLE" ] && TITLE="$A subagent: automated update"
+          rm -f .agent-pr-title
+          BRANCH="agent/${A}-$(date -u +%Y%m%d%H%M%S)"
+          git checkout -b "$BRANCH"
+          git add -A
+          git commit -m "$TITLE"
+          git push -u origin "$BRANCH"
+          gh pr create --base master --head "$BRANCH" --title "$TITLE" \
+            --body "Automated $A subagent run. Review + merge — the agent never merges."
