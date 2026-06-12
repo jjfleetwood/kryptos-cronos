@@ -2,13 +2,16 @@
 """Read-only MCP server — Data Protection & Privacy: "Backup governance and restore testing" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Data Protection & Privacy policy/standard and flag every item where the "Backup governance and restore testing" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify backups exist, work, and would survive an attack. PASS: every in-scope system is backed up to its RPO; backups succeed (failures alerted and fixed); restores are tested on a schedule and meet RTO with verified integrity; and backups are immutable/air-gapped, encrypted, and access-restricted so a compromised production admin can't delete them. Exceptions: systems with no backup, silent backup failures, backups never test-restored, and backups reachable/deletable with the same credentials that run production (no ransomware resilience).
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the backup governance and restore testing control (from DLP (Purview / Symantec))
+    The backup inventory + schedule per system (what's backed up, frequency, RPO)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: DLP (Purview / Symantec), Data classification + catalog, KMS / encryption services, Backup + retention platform)
+    backup platform: success/failure report per system vs the CMDB (coverage + gaps)
+    pull restore-test records: date, system, RTO achieved, integrity check result
+    confirm object-lock/immutability + separate credentials / MFA-delete on the backup store
+    verify backups are encrypted and NOT reachable from the production domain
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

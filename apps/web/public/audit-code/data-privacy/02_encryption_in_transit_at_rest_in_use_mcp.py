@@ -2,13 +2,16 @@
 """Read-only MCP server — Data Protection & Privacy: "Encryption in transit/at rest/in use" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Data Protection & Privacy policy/standard and flag every item where the "Encryption in transit/at rest/in use" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify sensitive data is encrypted in transit, at rest, and (where required) in use, with managed keys. PASS: data-in-transit uses TLS 1.2+ with strong ciphers (no TLS 1.0/1.1, no weak suites); data-at-rest is encrypted on every store holding sensitive data (DB TDE, volume/object encryption, encrypted backups) with KMS/HSM-managed, rotated keys; and field-level / confidential-compute encryption is used where the data class demands it. Exceptions: cleartext internal links carrying sensitive data, unencrypted databases/volumes/backups, weak TLS, and keys that are provider-default or never rotated.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the encryption in transit/at rest/in use control (from DLP (Purview / Symantec))
+    The encryption inventory — which stores/links use what (algorithm, key source, TLS version)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: DLP (Purview / Symantec), Data classification + catalog, KMS / encryption services, Backup + retention platform)
+    testssl.sh / nmap --script ssl-enum-ciphers across internal AND external endpoints
+    cloud: list unencrypted volumes/buckets/DBs (aws ec2 describe-volumes 'Encrypted==false', S3 default-encryption, RDS StorageEncrypted)
+    confirm DB TDE / column-level encryption on tables holding sensitive data
+    KMS: rotation enabled + customer-managed vs provider-default keys for sensitive data
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

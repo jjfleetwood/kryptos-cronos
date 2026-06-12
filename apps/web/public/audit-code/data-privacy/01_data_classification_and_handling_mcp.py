@@ -2,13 +2,16 @@
 """Read-only MCP server — Data Protection & Privacy: "Data classification and handling" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Data Protection & Privacy policy/standard and flag every item where the "Data classification and handling" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify data is classified and handled per its sensitivity. PASS: a classification scheme exists and is applied (labels/tags) across structured and unstructured stores; a discovery scan finds no high-sensitivity data in unclassified or unmanaged locations; and handling rules (encryption, access, external sharing, retention) are enforced per class. Exceptions: large volumes of unlabelled data, PII/PHI/PCI discovered in unmanaged file shares or dev/test, and sensitive data shared externally against its class rule.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the data classification and handling control (from DLP (Purview / Symantec))
+    The data-classification policy + scheme (e.g. Public / Internal / Confidential / Restricted)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: DLP (Purview / Symantec), Data classification + catalog, KMS / encryption services, Backup + retention platform)
+    Microsoft Purview: sensitivity-label coverage report + auto-labelling scan results
+    BigID / Varonis sensitive-data discovery across file shares + databases
+    scan dev/test and unmanaged shares for PII/PHI/PCI patterns (SSNs, PANs, MRNs)
+    map each class to its handling rules and confirm enforcement (e.g. external-share block on Restricted)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

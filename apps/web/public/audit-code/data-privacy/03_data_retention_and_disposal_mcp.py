@@ -2,13 +2,16 @@
 """Read-only MCP server — Data Protection & Privacy: "Data retention and disposal" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Data Protection & Privacy policy/standard and flag every item where the "Data retention and disposal" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify data is kept only as long as needed and disposed of securely. PASS: a retention schedule exists per data type and is enforced automatically (storage lifecycle/TTL, DB purge jobs); data past retention is deleted; media/data disposal is secure (crypto-erase / NIST 800-88) with records; and legal holds override deletion correctly. Exceptions: data retained indefinitely with no schedule, retention rules defined but not enforced (data still present years past expiry), insecure disposal, and PII kept beyond its lawful basis.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the data retention and disposal control (from DLP (Purview / Symantec))
+    The data-retention schedule by data type (legal/regulatory minimums and maximums)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: DLP (Purview / Symantec), Data classification + catalog, KMS / encryption services, Backup + retention platform)
+    confirm S3 Lifecycle / Blob lifecycle rules + DB retention jobs exist and actually run
+    scan for objects/records older than their retention period (last-modified vs schedule)
+    Purview Data Lifecycle Management retention-label coverage report
+    disposal: certificates of destruction + crypto-erase logs per NIST 800-88
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

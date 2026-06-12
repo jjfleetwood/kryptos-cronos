@@ -2,13 +2,16 @@
 """Read-only MCP server — Data Protection & Privacy: "Alert handling" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Data Protection & Privacy policy/standard and flag every item where the "Alert handling" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify data-security alerts are actually worked, not just generated. PASS: alerts route to a named queue/owner with a triage SLA; true positives are escalated to incident response; the false-positive rate is managed by tuning (not ignored); playbooks exist for exfiltration/insider cases; and the aged-alert backlog is small. Exceptions: alerts firing into an unmonitored mailbox, no triage SLA, a large backlog of un-triaged alerts, no tuning (alert fatigue), and no playbook for confirmed data exfiltration.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the alert handling control (from DLP (Purview / Symantec))
+    The data-security alert inventory (DLP, classification, access-anomaly, exfil) and where each routes
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: DLP (Purview / Symantec), Data classification + catalog, KMS / encryption services, Backup + retention platform)
+    SIEM/SOAR: data-alert volume, time-to-triage, disposition mix, aged-backlog metrics
+    confirm each alert source routes to a monitored queue with an owner + SLA
+    review the exfil/insider playbook and a sample of recent cases for adherence
+    false-positive rate + tuning history (the alert-fatigue signal)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

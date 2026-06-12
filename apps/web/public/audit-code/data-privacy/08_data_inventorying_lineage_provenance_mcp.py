@@ -2,13 +2,16 @@
 """Read-only MCP server — Data Protection & Privacy: "Data inventorying, lineage, provenance" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Data Protection & Privacy policy/standard and flag every item where the "Data inventorying, lineage, provenance" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the organisation knows what data it has, where it came from, and where it flows. PASS: a data catalogue covers the in-scope estate with owner + classification + location; lineage is mapped for regulatory/critical datasets (so the impact of a change or breach is traceable); provenance is recorded for data used in regulatory reporting or AI training; and shadow/undocumented stores are minimal. Exceptions: large uncatalogued/shadow data, no lineage for regulated datasets (a breach's blast radius or a bad figure can't be traced to source), and missing provenance for reported or AI-training data.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the data inventorying, lineage, provenance control (from DLP (Purview / Symantec))
+    The enterprise data inventory/catalogue — datasets with owner, classification, and location
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: DLP (Purview / Symantec), Data classification + catalog, KMS / encryption services, Backup + retention platform)
+    catalogue coverage report: catalogued datasets vs discovered stores (the shadow-data gap)
+    trace lineage for a regulatory dataset end-to-end: source → ETL → report
+    Purview / Collibra scan to discover uncatalogued sources
+    provenance check on AI-training and regulatory-reporting datasets
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

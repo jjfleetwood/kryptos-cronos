@@ -2,13 +2,16 @@
 """Read-only MCP server — Data Protection & Privacy: "Data loss prevention" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Data Protection & Privacy policy/standard and flag every item where the "Data loss prevention" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify DLP detects and controls sensitive-data egress across channels. PASS: DLP covers the key sensitive types (PII/PHI/PCI/IP) across email, web/upload, endpoint (USB/print), and cloud (CASB); coverage is near-complete; incidents are triaged and trending down; high-risk channels are blocked or restricted; and policy override requires justification. Exceptions: major channels with no DLP (personal webmail, USB, unmanaged SaaS), large coverage gaps, incidents logged but never triaged, and trivial one-click override of blocks.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the data loss prevention control (from DLP (Purview / Symantec))
+    The DLP policy set — sensitive data types detected, on which channels (email, web, endpoint, cloud)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: DLP (Purview / Symantec), Data classification + catalog, KMS / encryption services, Backup + retention platform)
+    DLP console: policy inventory per channel + enrolled-endpoint coverage vs CMDB
+    incident export: detections / blocks / overrides + disposition + trend over time
+    test the exfil paths yourself — USB copy, personal webmail upload, unmanaged cloud sync — and see what's caught
+    CASB: sanctioned vs shadow SaaS data movement
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /
