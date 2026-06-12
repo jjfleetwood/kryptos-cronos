@@ -126,8 +126,26 @@ export type EpochConfig = {
   unlocked: boolean;
 };
 
+// Advanced Audit modules carry a structured "audit card" beyond the briefing:
+// what the test proves, how it's architected, the evidence to pull and from where,
+// who owns that data, and the rationale behind the ease/value scores (shown in a
+// small box next to the scores). Modules are ranked together by easeScore +
+// valueScore across the whole track.
+export type AuditMeta = {
+  objective: string;      // objective of the test + the example code
+  approach: string;       // the simple architecture of the agentic workflow
+  artifacts: string[];    // evidence to extract to show control efficacy
+  system: string;         // the system(s) the artifacts come from
+  dataOwner: string;      // the role/function likely to own the data we need
+  scoring: {
+    ease: string;         // what drives the ease-of-implementation score
+    value: string;        // what drives the audit/analytics value score
+  };
+};
+
 export type StageConfig = {
   epochId: string;
+  auditMeta?: AuditMeta;
   group?: "elementary" | "junior-hs" | "high-school" | "university" | "career" | "curious";
   wonder: Wonder;
   id: string;

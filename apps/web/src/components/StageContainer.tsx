@@ -10,13 +10,14 @@ import { useLocale } from "@/contexts/LocaleContext";
 
 type TranslatedQuestion = { q: string; options: [string, string] };
 
-export default function StageContainer({ stage, isPro = false, translation = null, ctfQuiz, ctfQuizTranslation, auditQuiz }: {
+export default function StageContainer({ stage, isPro = false, translation = null, ctfQuiz, ctfQuizTranslation, auditQuiz, backHref: backHrefProp }: {
   stage: StageConfig | null;
   isPro?: boolean;
   translation?: StageTranslation | null;
   ctfQuiz?: CtfQuizEntry;
   ctfQuizTranslation?: TranslatedQuestion[];
   auditQuiz?: AuditQuizEntry;
+  backHref?: string;
 }) {
   const { t } = useLocale();
   const [phase, setPhase] = useState<"info" | "challenge">("info");
@@ -30,7 +31,7 @@ export default function StageContainer({ stage, isPro = false, translation = nul
     );
   }
 
-  const backHref = `/stages/epoch/${stage.epochId}`;
+  const backHref = backHrefProp ?? `/stages/epoch/${stage.epochId}`;
 
   // A dual-mode stage offers both a CTF and a full quiz on the same topic.
   const hasQuiz = (stage.quiz?.questions?.length ?? 0) > 0;

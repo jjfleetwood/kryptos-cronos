@@ -32,6 +32,28 @@ export const auditApplicationReviewStages: StageConfig[] = [
     easeScore: 6,
     valueScore: 9,
     rank: 2,
+    auditMeta: {
+      objective:
+        "Prove that the organization maintains a complete, accurate, risk-tiered inventory of its applications — and quantify the gap where it doesn't. The example code reconciles the systems of record and produces a defensible PASS / EXCEPTIONS / MATERIAL-GAP opinion with the untiered and shadow apps named.",
+      approach:
+        "An audit agent calls a read-only MCP server that wraps each system of record as a tool. The agent pulls all three sources, the server reconciles them by app, computes each app's tier from policy, and returns the findings; the human auditor sets the tiering thresholds, reviews, and signs the opinion. (Sources → reconcile → tier → findings.)",
+      artifacts: [
+        "CMDB application export (name, owner, business criticality, data classification)",
+        "SSO/IdP active application catalog (what users can actually sign into)",
+        "Cloud internet-facing service list (load balancers / app services + scheme)",
+        "The reconciled tiered inventory + the untiered and shadow finding lists (the working paper)",
+      ],
+      system:
+        "ServiceNow CMDB (cmdb_ci_appl) · Okta/Entra SSO app catalog · AWS/Azure cloud asset plane (ELBv2 / App Service). One read-only credential per source.",
+      dataOwner:
+        "IT Asset Management / CMDB owner (the inventory), Identity & Access Management (the SSO catalog), and Cloud Platform / FinOps (the cloud asset plane); application owners attest criticality and data classification.",
+      scoring: {
+        ease:
+          "EASE 6/10 — the source APIs (ServiceNow, Okta, cloud) are well-documented and read-only, so the agent integration is straightforward; the friction is non-technical: getting read credentials to three teams' systems and agreeing the tiering policy.",
+        value:
+          "VALUE 9/10 — inventory is the control every other application control is scoped against, so a gap here invalidates the rest of the audit; the finding (named shadow/untiered apps) is concrete, actionable, and almost always present.",
+      },
+    },
     badge: { id: "aar-badge-01", name: "Estate Cartographer", emoji: "🗺️" },
     wonder: { name: "The CMDB of Record", location: "Enterprise IT", era: "Present Day", emoji: "🗃️" },
     info: {

@@ -109,8 +109,8 @@ export default function DecksPage() {
         </div>
 
         <p className="text-[11px] text-gray-600 mt-4 leading-relaxed">
-          The deck is built server-side from the epoch's module content (concept → real-world risk → audit controls).
-          It's a draft for review — check the slides before any external use.
+          The deck is built server-side from the epoch&rsquo;s module content (concept → real-world risk → audit controls).
+          It&rsquo;s a draft for review — check the slides before any external use.
         </p>
       </div>
     </div>
