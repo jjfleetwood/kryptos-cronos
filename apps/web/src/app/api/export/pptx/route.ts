@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { verifyAdminToken } from "@/lib/admin-token";
 import { stages as allStages, epochs } from "@kryptos/core/stages";
+import { getAuditEpoch, auditStagesForEpoch } from "@kryptos/core/audit-registry";
 import { buildDeck, LENSES } from "@/lib/pptx-lens";
 
 /** POST /api/export/pptx { epochId, lens } — generate a slide deck (.pptx) for an
@@ -12,9 +13,11 @@ export async function POST(req: NextRequest) {
   const { epochId, lens = "tech-audit" } = (await req.json().catch(() => ({}))) as { epochId?: string; lens?: string };
   if (!LENSES[lens]) return NextResponse.json({ error: "unknown lens" }, { status: 400 });
 
-  const epoch = epochs.find((e) => e.id === epochId);
+  // Main catalog first, then the separate Advanced Audit registry.
+  const mainEpoch = epochs.find((e) => e.id === epochId);
+  const epoch = mainEpoch ?? getAuditEpoch(epochId ?? "");
   if (!epoch) return NextResponse.json({ error: "unknown epoch" }, { status: 404 });
-  const stages = allStages.filter((s) => s.epochId === epochId);
+  const stages = mainEpoch ? allStages.filter((s) => s.epochId === epochId) : auditStagesForEpoch(epochId ?? "");
   if (!stages.length) return NextResponse.json({ error: "epoch has no stages" }, { status: 404 });
 
   const bytes = await buildDeck(epoch, stages, lens);

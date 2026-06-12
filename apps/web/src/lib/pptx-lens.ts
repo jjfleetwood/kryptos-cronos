@@ -13,7 +13,7 @@ type Lens = {
   name: string;
   subtitle: string;
   accent: string; // hex, no '#'
-  sections: (info: StageInfo) => Section[];
+  sections: (info: StageInfo, stage?: StageConfig) => Section[];
 };
 
 /** First sentence (or a clean truncation) of a paragraph that may carry "\n- " bullets. */
@@ -38,11 +38,24 @@ export const LENSES: Record<string, { id: string; name: string }> = {
 const LENS_IMPL: Record<string, Lens> = {
   "tech-audit": {
     id: "tech-audit", name: "Technology Audit", subtitle: "Technology Audit Lens", accent: "7C3AED",
-    sections: (info) => [
-      { label: "The concept", bullets: [lead(info.overview?.[0])] },
-      { label: "Risk — what has gone wrong", bullets: incidentLine(info) },
-      { label: "Audit controls & takeaways", bullets: (info.keyTakeaways ?? []).slice(0, 5) },
-    ],
+    sections: (info, stage) => {
+      // Advanced Audit modules carry a structured audit card — surface it directly.
+      const am = stage?.auditMeta;
+      if (am) {
+        return [
+          { label: "Control objective & test", bullets: [lead(am.objective, 420)] },
+          { label: "Approach — agentic workflow", bullets: [lead(am.approach, 380)] },
+          { label: "Artifacts — evidence to pull", bullets: am.artifacts.slice(0, 5) },
+          { label: "Systems of record", bullets: am.system.slice(0, 5) },
+          { label: "Data owners", bullets: am.dataOwner.slice(0, 4) },
+        ];
+      }
+      return [
+        { label: "The concept", bullets: [lead(info.overview?.[0])] },
+        { label: "Risk — what has gone wrong", bullets: incidentLine(info) },
+        { label: "Audit controls & takeaways", bullets: (info.keyTakeaways ?? []).slice(0, 5) },
+      ];
+    },
   },
   "exec-board": {
     id: "exec-board", name: "Executive / Board", subtitle: "Executive Briefing", accent: "2563EB",
@@ -148,7 +161,7 @@ export async function buildDeck(epoch: EpochConfig, stages: StageConfig[], lensI
 
   for (const s of stages) {
     if (!s.info) continue;
-    const sections = lens.sections(s.info).map((sec) => ({ ...sec, bullets: sec.bullets.filter(Boolean) })).filter((sec) => sec.bullets.length);
+    const sections = lens.sections(s.info, s).map((sec) => ({ ...sec, bullets: sec.bullets.filter(Boolean) })).filter((sec) => sec.bullets.length);
     const img = imgMap.get(s.id);
     const firstSlide = newStageSlide(s.title, s.info.year);
     if (img) firstSlide.addImage({ data: img, x: 9.0, y: 1.4, w: 3.7, h: 2.08 });
