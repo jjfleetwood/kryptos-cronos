@@ -2,13 +2,16 @@
 """Read-only MCP server — Data Lakes & Warehouses: "SDLC / DataOps / CI/CD" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Data Lakes & Warehouses policy/standard and flag every item where the "SDLC / DataOps / CI/CD" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify data products follow a controlled SDLC / DataOps. PASS: transformations + pipelines are deployed via CI/CD (version-controlled, reviewed, tested), not hand-deployed; promotion to prod is gated; pipeline secrets are vaulted/OIDC (not hardcoded); and security scanning (IaC/secrets) runs. Exceptions: manual production deployment of data pipelines, no review/testing, hardcoded warehouse credentials in pipeline code, and no promotion gate.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the sdlc / dataops / ci/cd control (from Lakehouse / warehouse (Snowflake/Databricks/BigQuery))
+    The DataOps CI/CD for data products (pipelines/transformations deployed via CI, not manual)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Lakehouse / warehouse (Snowflake/Databricks/BigQuery), Ingestion + ETL/ELT pipelines, Data catalog + lineage, Fine-grained access + masking)
+    confirm data products deploy via CI/CD (not manual) with review + tests
+    promotion gates dev → prod
+    pipeline secrets: vaulted / OIDC vs hardcoded warehouse credentials
+    security scanning (secrets / IaC) in the data pipeline
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

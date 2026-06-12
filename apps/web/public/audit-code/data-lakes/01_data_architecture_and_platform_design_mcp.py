@@ -2,13 +2,16 @@
 """Read-only MCP server — Data Lakes & Warehouses: "Data architecture and platform design" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Data Lakes & Warehouses policy/standard and flag every item where the "Data architecture and platform design" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the data platform is architected securely by design. PASS: a documented architecture (zone/medallion layering, storage/compute separation, private networking) with a security review; data products follow a security-by-design standard (encryption, access, classification at design); and the platform uses private connectivity (no public endpoints). Exceptions: undocumented/organic architecture, no security review, data products built ad hoc with no standard, and the platform reachable over the public internet.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the data architecture and platform design control (from Lakehouse / warehouse (Snowflake/Databricks/BigQuery))
+    The data-platform architecture (lakehouse/warehouse design: medallion bronze-silver-gold zones, compute/storage separation, network)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Lakehouse / warehouse (Snowflake/Databricks/BigQuery), Ingestion + ETL/ELT pipelines, Data catalog + lineage, Fine-grained access + masking)
+    review the platform architecture: medallion zones, storage/compute separation, tenancy
+    confirm private connectivity (PrivateLink / Private Service Connect; no public endpoints)
+    security-by-design standard for new data products + a design gate
+    coverage: data products built to the standard vs ad hoc
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

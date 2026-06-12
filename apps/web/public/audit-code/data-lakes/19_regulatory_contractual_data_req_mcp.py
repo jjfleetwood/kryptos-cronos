@@ -2,13 +2,16 @@
 """Read-only MCP server — Data Lakes & Warehouses: "Regulatory / contractual data req" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Data Lakes & Warehouses policy/standard and flag every item where the "Regulatory / contractual data req" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the data platform meets its regulatory + contractual data obligations. PASS: applicable obligations (GDPR/CCPA/HIPAA/PCI/sector + residency + contracts) are mapped to platform controls; residency is enforced (data in required regions); access/retention/encryption/audit satisfy each obligation; and compliance is evidenced for audit. Exceptions: unmapped obligations, regulated data in a prohibited region, controls that don't satisfy a mandate (e.g. no audit trail for SOX-relevant data), and no audit-ready evidence.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the regulatory / contractual data req control (from Lakehouse / warehouse (Snowflake/Databricks/BigQuery))
+    The mapping of regulatory/contractual data requirements to the platform (GDPR, CCPA, HIPAA, PCI, sector, data-residency, contractual data-handling)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Lakehouse / warehouse (Snowflake/Databricks/BigQuery), Ingestion + ETL/ELT pipelines, Data catalog + lineage, Fine-grained access + masking)
+    map regulatory/contractual obligations → the data + the platform controls that satisfy them
+    data residency: confirm regulated data is confined to required regions (Snowflake / BigQuery region)
+    do access/retention/encryption/audit satisfy each mandate (SOX audit trail, PCI scope)?
+    audit-ready evidence pack for the data estate
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

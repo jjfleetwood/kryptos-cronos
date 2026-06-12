@@ -2,13 +2,16 @@
 """Read-only MCP server — Data Lakes & Warehouses: "IAM (data lake)" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Data Lakes & Warehouses policy/standard and flag every item where the "IAM (data lake)" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify access to the data platform is least-privilege + governed. PASS: access is role-based + least-privilege (no blanket access to all data); privileged roles (ACCOUNTADMIN / workspace-admin) are minimal + monitored; fine-grained (row/column-level) security protects sensitive data; access is via SSO + MFA; and access is recertified. Exceptions: broad/all-data access, excessive privileged-role holders, no row/column-level security on sensitive data, local logins bypassing SSO/MFA, and no access reviews.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the iam (data lake) control (from Lakehouse / warehouse (Snowflake/Databricks/BigQuery))
+    The access model for the platform (roles, role-based grants, who has access to which datasets/schemas)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Lakehouse / warehouse (Snowflake/Databricks/BigQuery), Ingestion + ETL/ELT pipelines, Data catalog + lineage, Fine-grained access + masking)
+    Snowflake: SHOW GRANTS + role hierarchy; who holds ACCOUNTADMIN / SYSADMIN
+    fine-grained: row-access policies + column masking on sensitive datasets
+    confirm SSO + MFA (no local users with passwords); key-pair / PAT inventory
+    access-review / recertification records for dataset grants
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

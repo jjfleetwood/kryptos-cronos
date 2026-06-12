@@ -2,13 +2,16 @@
 """Read-only MCP server — Data Lakes & Warehouses: "End-user computing / extracts" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Data Lakes & Warehouses policy/standard and flag every item where the "End-user computing / extracts" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify data extracted from the platform (end-user computing) is controlled. PASS: data extracts/downloads are governed + monitored; bulk export of sensitive data is restricted (export limits, DLP, masking on export); sensitive data isn't sprawling into uncontrolled spreadsheets/local files; and there's a policy + detection for data leaving the platform. Exceptions: unrestricted bulk download of sensitive data, no monitoring of extracts, sensitive data in uncontrolled EUC spreadsheets, and no export DLP.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the end-user computing / extracts control (from Lakehouse / warehouse (Snowflake/Databricks/BigQuery))
+    The inventory of data extracts/downloads from the platform (who exports what, to where) + the controls
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Lakehouse / warehouse (Snowflake/Databricks/BigQuery), Ingestion + ETL/ELT pipelines, Data catalog + lineage, Fine-grained access + masking)
+    who exports/downloads from the platform + to where (export logs)
+    controls on bulk export of sensitive data (limits, masking-on-export, blocking)
+    EUC / spreadsheet sprawl: sensitive data extracted into uncontrolled files
+    monitoring + DLP on data leaving the governed platform
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

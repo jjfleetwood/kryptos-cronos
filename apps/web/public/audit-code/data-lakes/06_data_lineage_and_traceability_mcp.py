@@ -2,13 +2,16 @@
 """Read-only MCP server — Data Lakes & Warehouses: "Data lineage and traceability" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Data Lakes & Warehouses policy/standard and flag every item where the "Data lineage and traceability" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify data lineage is captured so changes + breaches are traceable. PASS: end-to-end (and column-level for regulated fields) lineage exists for critical datasets/reports; lineage is automated + current; and it's used for impact analysis (trace a source change or a quality/security issue to every affected downstream report). Exceptions: no lineage for regulated/critical datasets, manual/stale lineage, no column-level lineage where needed, and an inability to scope the blast radius of a change or breach.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the data lineage and traceability control (from Lakehouse / warehouse (Snowflake/Databricks/BigQuery))
+    End-to-end lineage for critical datasets/reports (source → transformations → consumers)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Lakehouse / warehouse (Snowflake/Databricks/BigQuery), Ingestion + ETL/ELT pipelines, Data catalog + lineage, Fine-grained access + masking)
+    end-to-end lineage for a critical report: source → ETL → consumers (traceable?)
+    column-level lineage for regulated/financial fields
+    lineage coverage vs the critical estate
+    impact analysis: trace a source change/breach to affected downstream assets
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

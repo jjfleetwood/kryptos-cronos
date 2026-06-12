@@ -2,13 +2,16 @@
 """Read-only MCP server — Data Lakes & Warehouses: "Logging, monitoring, alerting" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Data Lakes & Warehouses policy/standard and flag every item where the "Logging, monitoring, alerting" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify data-platform activity is logged + monitored. PASS: query history, access, admin actions, and data exports are logged and forwarded to the SIEM with retention; detections fire on data-exfil patterns (bulk export, mass sensitive reads, privilege changes, off-hours); and coverage spans all accounts/workspaces. Exceptions: audit logging off or not forwarded, no detections on bulk-export/mass-read, short retention, and workspaces missing from monitoring.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the logging, monitoring, alerting control (from Lakehouse / warehouse (Snowflake/Databricks/BigQuery))
+    The platform audit-log config (query history, access, admin actions, data exports) + forwarding to the SIEM
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Lakehouse / warehouse (Snowflake/Databricks/BigQuery), Ingestion + ETL/ELT pipelines, Data catalog + lineage, Fine-grained access + masking)
+    confirm audit logs (query/access/admin/export) forward to the SIEM + retention
+    detections: bulk data export, mass reads of sensitive tables, role grants, off-hours access
+    Snowflake ACCESS_HISTORY for who-queried-what on sensitive objects
+    coverage: all accounts/workspaces feeding the SIEM?
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

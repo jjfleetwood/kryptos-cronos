@@ -2,13 +2,16 @@
 """Read-only MCP server — Data Lakes & Warehouses: "Capacity, performance, cost" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Data Lakes & Warehouses policy/standard and flag every item where the "Capacity, performance, cost" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the platform is governed for capacity, performance, and cost. PASS: utilization + query performance are monitored; cost is governed (FinOps: per-workload spend, budgets, anomaly alerts, resource monitors/quotas); compute auto-suspends + is right-sized; and there are no runaway-cost or capacity-failure incidents. Exceptions: no cost monitoring (surprise bills), no resource monitors/quotas (runaway spend), no performance monitoring (degradation hits users), and oversized always-on compute. (Weighted operational/financial — but uncontrolled cost is a real governance + availability risk.)
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the capacity, performance, cost control (from Lakehouse / warehouse (Snowflake/Databricks/BigQuery))
+    Capacity/performance monitoring (compute/warehouse utilization, query performance, concurrency)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Lakehouse / warehouse (Snowflake/Databricks/BigQuery), Ingestion + ETL/ELT pipelines, Data catalog + lineage, Fine-grained access + masking)
+    capacity/performance monitoring (warehouse utilization, query performance, concurrency)
+    cost governance: per-workload spend, budgets, anomaly alerts, resource monitors / quotas
+    auto-suspend + right-sizing of compute
+    runaway-cost / capacity-failure incident history
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

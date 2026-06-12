@@ -2,13 +2,16 @@
 """Read-only MCP server — Data Lakes & Warehouses: "ETL/ELT transformation controls" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Data Lakes & Warehouses policy/standard and flag every item where the "ETL/ELT transformation controls" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify ETL/ELT transformations are controlled + correct. PASS: transformation code is version-controlled, peer-reviewed, and access-controlled (least-privilege to modify/run in prod); transformations have tests (dbt/data tests) + reconciliation (source-to-target counts) so data isn't silently dropped/duplicated; and changes go through change control. Exceptions: transformations edited directly in prod with no version control/review, no tests or reconciliation (silent corruption), and broad access to modify production pipelines.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the etl/elt transformation controls control (from Lakehouse / warehouse (Snowflake/Databricks/BigQuery))
+    The transformation-pipeline inventory + change control (transformations version-controlled + reviewed)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Lakehouse / warehouse (Snowflake/Databricks/BigQuery), Ingestion + ETL/ELT pipelines, Data catalog + lineage, Fine-grained access + masking)
+    confirm transformations are in version control + peer-reviewed (not edited in prod)
+    transformation tests (dbt tests) + source-to-target reconciliation (row counts / checksums)
+    who can modify + run production transformations (least-privilege?)
+    change control on transformation deployments
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

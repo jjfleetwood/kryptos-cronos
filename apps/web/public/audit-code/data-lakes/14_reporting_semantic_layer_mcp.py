@@ -2,13 +2,16 @@
 """Read-only MCP server — Data Lakes & Warehouses: "Reporting / semantic layer" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Data Lakes & Warehouses policy/standard and flag every item where the "Reporting / semantic layer" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the reporting/semantic layer is governed + access-controlled. PASS: BI tools use a governed semantic layer (certified metrics/datasets); row/column-level security is enforced consistently in BI (a user can't see in a dashboard what they can't see in the warehouse); certified reports are distinguished from ad hoc; and reports pull from governed sources. Exceptions: BI bypassing platform security (broader access via a shared service account), inconsistent row/column security in BI, uncontrolled rogue dashboards on raw data, and conflicting metric definitions.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the reporting / semantic layer control (from Lakehouse / warehouse (Snowflake/Databricks/BigQuery))
+    The BI/reporting + semantic-layer config (governed metrics, certified datasets) + access control
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Lakehouse / warehouse (Snowflake/Databricks/BigQuery), Ingestion + ETL/ELT pipelines, Data catalog + lineage, Fine-grained access + masking)
+    BI access model: does it use the governed semantic layer + enforce row/column security?
+    does BI connect via per-user identity or a shared over-privileged service account (security bypass)?
+    certified vs uncertified report inventory (rogue dashboards)
+    confirm reports pull from governed sources, not direct-to-raw / spreadsheets
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

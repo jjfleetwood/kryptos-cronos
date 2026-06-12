@@ -2,13 +2,16 @@
 """Read-only MCP server — Data Lakes & Warehouses: "Retention, archival, deletion" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Data Lakes & Warehouses policy/standard and flag every item where the "Retention, archival, deletion" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify data is retained, archived, and deleted per policy. PASS: a retention schedule per dataset is enforced (lifecycle/TTL, purge jobs); cold data is tiered/archived; expired data is deleted; and right-to-erasure deletes propagate across derived datasets + backups. Exceptions: indefinite retention (raw zones never cleaned), retention defined but unenforced, no archival tiering (cost + exposure), and right-to-erasure that doesn't reach derived copies/backups.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the retention, archival, deletion control (from Lakehouse / warehouse (Snowflake/Databricks/BigQuery))
+    The retention schedule per dataset/zone + its enforcement (lifecycle policies, automated purge)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Lakehouse / warehouse (Snowflake/Databricks/BigQuery), Ingestion + ETL/ELT pipelines, Data catalog + lineage, Fine-grained access + masking)
+    retention schedule per dataset/zone + enforcement (lifecycle / TTL / purge jobs)
+    find data past its retention period (esp. raw/landing zones never cleaned)
+    archival / tiering of cold data
+    right-to-erasure: does a deletion propagate to derived datasets + backups?
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

@@ -2,13 +2,16 @@
 """Read-only MCP server — Data Lakes & Warehouses: "Source onboarding and ingestion" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Data Lakes & Warehouses policy/standard and flag every item where the "Source onboarding and ingestion" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify data sources are onboarded with governance + secure ingestion. PASS: every source is inventoried, owned, classified, and approved before onboarding; ingestion is authenticated + encrypted with vaulted source credentials; schema/data contracts are validated; and external/untrusted sources get extra controls. Exceptions: undocumented/shadow sources, ingestion with plaintext or hardcoded source credentials, no schema validation (bad/poisoned data lands), and external sources ingested with no vetting.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the source onboarding and ingestion control (from Lakehouse / warehouse (Snowflake/Databricks/BigQuery))
+    The source-onboarding inventory (every data source feeding the platform) + owner, classification, approval
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Lakehouse / warehouse (Snowflake/Databricks/BigQuery), Ingestion + ETL/ELT pipelines, Data catalog + lineage, Fine-grained access + masking)
+    source inventory: owner, classification, onboarding approval per source
+    ingestion auth + encryption + where source credentials live (vault vs hardcoded)
+    schema / data-contract validation at ingestion
+    detect shadow ingestion (data landing from un-onboarded sources)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

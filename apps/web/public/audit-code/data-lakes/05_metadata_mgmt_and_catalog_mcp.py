@@ -2,13 +2,16 @@
 """Read-only MCP server — Data Lakes & Warehouses: "Metadata mgmt and catalog" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Data Lakes & Warehouses policy/standard and flag every item where the "Metadata mgmt and catalog" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify metadata is managed so data is discoverable + governable. PASS: a data catalogue covers the in-scope datasets with owner, description, classification, and schema; metadata is harvested automatically + kept fresh; classification tags drive downstream controls (masking/access); and shadow/undocumented datasets are minimal. Exceptions: low catalogue coverage, stale/incomplete metadata, classification tags that drive no control, and large undocumented data.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the metadata mgmt and catalog control (from Lakehouse / warehouse (Snowflake/Databricks/BigQuery))
+    Data-catalogue coverage (datasets catalogued with owner, description, classification, schema vs total)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Lakehouse / warehouse (Snowflake/Databricks/BigQuery), Ingestion + ETL/ELT pipelines, Data catalog + lineage, Fine-grained access + masking)
+    catalogue coverage: datasets with owner + classification + schema vs total (the gap = shadow data)
+    metadata completeness (business + technical)
+    do classification tags drive controls (masking / access policy)?
+    catalogue freshness (auto-harvested vs stale manual)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

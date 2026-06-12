@@ -2,13 +2,16 @@
 """Read-only MCP server — Data Lakes & Warehouses: "Backup, recovery, resilience" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Data Lakes & Warehouses policy/standard and flag every item where the "Backup, recovery, resilience" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the data platform's data is recoverable + resilient. PASS: backups/snapshots + point-in-time recovery (Snowflake Time Travel + Fail-safe, or warehouse snapshots) meet defined RTO/RPO; cross-region replication exists for critical data; restores are tested; and malicious/accidental deletion is recoverable (immutability/retention). Exceptions: no backup beyond default short time-travel, no cross-region replication for critical data, restores never tested, and no protection against a malicious mass-delete/drop.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the backup, recovery, resilience control (from Lakehouse / warehouse (Snowflake/Databricks/BigQuery))
+    The backup/recovery config for the platform (time-travel, fail-safe, snapshots, cross-region replication)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Lakehouse / warehouse (Snowflake/Databricks/BigQuery), Ingestion + ETL/ELT pipelines, Data catalog + lineage, Fine-grained access + masking)
+    recovery config: time-travel / snapshot retention + fail-safe + cross-region replication
+    RTO/RPO defined + restore-test evidence
+    protection against malicious DROP/DELETE (retention / immutability; who can purge)
+    resilience: multi-region for critical data
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

@@ -2,13 +2,16 @@
 """Read-only MCP server — Data Lakes & Warehouses: "Data quality management" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Data Lakes & Warehouses policy/standard and flag every item where the "Data quality management" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify data quality is measured and managed for critical datasets. PASS: data-quality rules/SLAs are defined for critical datasets (completeness/accuracy/validity/timeliness/uniqueness), monitored continuously with alerting on failures + anomalies, and issues are triaged + remediated; coverage spans the critical estate. Exceptions: no data-quality rules, quality issues found only by downstream consumers/regulators, no monitoring/alerting, and unremediated quality issues feeding decisions/reports.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the data quality management control (from Lakehouse / warehouse (Snowflake/Databricks/BigQuery))
+    The data-quality rules/SLAs per critical dataset (completeness, accuracy, validity, timeliness, uniqueness)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Lakehouse / warehouse (Snowflake/Databricks/BigQuery), Ingestion + ETL/ELT pipelines, Data catalog + lineage, Fine-grained access + masking)
+    data-quality rules/SLAs per critical dataset + monitoring (Great Expectations / Monte Carlo)
+    quality results + trend + anomaly alerting
+    issue-management: detection → triage → remediation tracking
+    coverage: critical datasets monitored vs total
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /
