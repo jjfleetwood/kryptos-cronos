@@ -2,13 +2,16 @@
 """Read-only MCP server — Cryptographic Key & Secrets Management: "Secrets detection and prevention" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the "Secrets detection and prevention" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify secrets are detected and prevented from entering code/config. PASS: secret scanning runs across all repos (history + new commits), CI logs, container images, and IaC; push-protection / pre-commit blocks new secrets before merge; detected secrets are rotated (not merely removed from the latest commit); and coverage is near-complete. Exceptions: repos/images not scanned, no push-protection (secrets land then are 'deleted' but stay in history and stay valid), found secrets removed but never rotated, and scanning whose findings no one actions.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the secrets detection and prevention control (from HashiCorp Vault / AWS KMS / Azure Key Vault)
+    The secret-scanning coverage across repos, CI/CD, container images, and IaC (which are scanned)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: HashiCorp Vault / AWS KMS / Azure Key Vault, HSM (PKCS#11), Certificate authority / ACME, Secret-scanning service)
+    gitleaks / TruffleHog across all repos INCLUDING full git history; scan images for embedded secrets
+    confirm push-protection / pre-commit secret blocking is enabled org-wide
+    for each historical finding, confirm the secret was ROTATED (credential invalidated), not just deleted
+    scan CI/CD logs + IaC variable files (tfvars) for secrets
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

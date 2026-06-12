@@ -2,13 +2,16 @@
 """Read-only MCP server — Cryptographic Key & Secrets Management: "Post-quantum cryptography readiness" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the "Post-quantum cryptography readiness" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Assess enterprise readiness to migrate to post-quantum cryptography. PASS: a CBOM inventories all crypto in use; quantum-vulnerable algorithms are catalogued with the data they protect; crypto-agility lets algorithms be swapped centrally; an HNDL-prioritised migration plan to NIST PQC (ML-KEM / ML-DSA) + hybrid exists with CNSA-2.0-aligned timelines; and vendor PQC roadmaps are tracked. Exceptions: no CBOM, no agility (hardcoded crypto), long-lived secrets on classical algorithms, no migration plan, and unknown vendor PQC posture.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the post-quantum cryptography readiness control (from HashiCorp Vault / AWS KMS / Azure Key Vault)
+    The enterprise Cryptographic Bill of Materials (CBOM) — all algorithms, key sizes, protocols, and where used
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: HashiCorp Vault / AWS KMS / Azure Key Vault, HSM (PKCS#11), Certificate authority / ACME, Secret-scanning service)
+    generate a CBOM (CycloneDX crypto-assets) across the estate
+    inventory RSA/ECC/DH usage + the data secrecy-lifetime each protects (HNDL prioritisation)
+    assess crypto-agility: is crypto behind a central abstraction or hardcoded per app?
+    map current → NIST PQC (FIPS 203/204) + hybrid; track vendor PQC commitments
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

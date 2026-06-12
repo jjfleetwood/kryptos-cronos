@@ -2,13 +2,16 @@
 """Read-only MCP server — Cryptographic Key & Secrets Management: "Compliance and regulatory alignment" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the "Compliance and regulatory alignment" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the org's cryptography meets its regulatory + contractual obligations. PASS: applicable crypto mandates are identified; FIPS-validated modules (CMVP-listed) are used where required; algorithms/key sizes/protocols meet each standard (e.g. PCI strong crypto, CNSA for national-security systems); and compliance is evidenced for audit. Exceptions: non-FIPS-validated crypto where validation is required, algorithms below a mandate's floor, missing CMVP evidence, and crypto-compliance gaps with no remediation plan.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the compliance and regulatory alignment control (from HashiCorp Vault / AWS KMS / Azure Key Vault)
+    The mapping of the org's cryptography to applicable mandates (FIPS 140-3, PCI DSS, GDPR, HIPAA, CNSA, eIDAS)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: HashiCorp Vault / AWS KMS / Azure Key Vault, HSM (PKCS#11), Certificate authority / ACME, Secret-scanning service)
+    map each system's crypto to applicable mandates (FIPS 140-3, PCI, HIPAA, GDPR, CNSA, eIDAS)
+    verify modules are CMVP-validated where required (check the certificate numbers on the NIST CMVP list)
+    gap-assess algorithms/key sizes against each mandate's floor
+    assemble the crypto-compliance evidence pack for audit
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

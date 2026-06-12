@@ -2,13 +2,16 @@
 """Read-only MCP server — Cryptographic Key & Secrets Management: "Certificate Management" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the "Certificate Management" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the certificate + PKI estate is governed and won't fail. PASS: a complete cert inventory exists; the CA hierarchy is documented with a CP/CPS and HSM-protected CA keys; certs use approved algorithms/key sizes; renewals are automated (no surprise expiries); revocation (CRL/OCSP) works; and code-signing keys are tightly controlled. Exceptions: unknown/expired certs in production, weak keys (RSA-1024/SHA-1), CA keys not in an HSM, manual renewals causing outages, and broadly-accessible code-signing keys.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the certificate management control (from HashiCorp Vault / AWS KMS / Azure Key Vault)
+    The enterprise certificate inventory (TLS, client, code-signing, device) across internal + external, with CA, key, expiry, deployment
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: HashiCorp Vault / AWS KMS / Azure Key Vault, HSM (PKCS#11), Certificate authority / ACME, Secret-scanning service)
+    Venafi/Keyfactor inventory export (CN, issuer, key, expiry, location)
+    Certificate Transparency query (crt.sh) for every cert ever issued for the org's domains — find the unknowns
+    AD CS issued-cert database + template review (weak-key/EKU issues, key archival)
+    confirm CA + code-signing private keys are HSM-resident; check OCSP/CRL availability
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

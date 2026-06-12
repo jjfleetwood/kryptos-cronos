@@ -2,13 +2,16 @@
 """Read-only MCP server — Cryptographic Key & Secrets Management: "HSM controls" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the "HSM controls" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify HSMs protecting critical keys are correctly controlled. PASS: HSMs are FIPS 140-2 Level 3+ (or 140-3) and current on firmware; administrative operations require quorum (M-of-N) authorisation; roles are separated so no single operator can extract/clone keys; all HSM events are logged to the SIEM; and backup/DR (secure key-cloning) is tested. Exceptions: keys protected by software KMS that should be in an HSM, HSM admin without quorum, single-person key control, HSM logs not collected, and no tested HSM DR.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the hsm controls control (from HashiCorp Vault / AWS KMS / Azure Key Vault)
+    The HSM inventory (model, FIPS 140-2/3 level, firmware) + which keys/operations each protects
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: HashiCorp Vault / AWS KMS / Azure Key Vault, HSM (PKCS#11), Certificate authority / ACME, Secret-scanning service)
+    HSM partition/slot inventory + firmware vs vendor advisories; confirm the FIPS level
+    review the M-of-N quorum configuration for admin operations + role separation
+    confirm HSM audit logs export to the SIEM (key-use + admin actions)
+    verify the backup/clone + DR procedure is documented and tested
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

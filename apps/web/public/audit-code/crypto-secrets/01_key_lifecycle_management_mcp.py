@@ -2,13 +2,16 @@
 """Read-only MCP server — Cryptographic Key & Secrets Management: "Key Lifecycle Management" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the "Key Lifecycle Management" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify every cryptographic key is managed through its full lifecycle. PASS: a complete key inventory exists; keys are generated with approved algorithms/lengths in a secure module; each key has a defined crypto-period and is rotated within it; revocation works; and retired keys are securely destroyed with records. Exceptions: unknown/untracked keys, keys past their crypto-period (never rotated), keys with no owner, and 'destroyed' keys with no destruction evidence (or still re-enableable).
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the key lifecycle management control (from HashiCorp Vault / AWS KMS / Azure Key Vault)
+    The key inventory — every cryptographic key with type, algorithm, length, owner, creation date, crypto-period, and state (active/suspended/destroyed)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: HashiCorp Vault / AWS KMS / Azure Key Vault, HSM (PKCS#11), Certificate authority / ACME, Secret-scanning service)
+    AWS KMS: aws kms list-keys + get-key-rotation-status (creation date, last-rotated, rotation enabled)
+    join keys to a documented crypto-period; flag those overdue for rotation
+    Vault: key/secret metadata + lease/rotation configuration
+    confirm destroyed keys are scheduled-for-deletion/destroyed, not merely disabled
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

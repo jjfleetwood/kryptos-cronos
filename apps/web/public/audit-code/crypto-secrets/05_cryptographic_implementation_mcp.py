@@ -2,13 +2,16 @@
 """Read-only MCP server — Cryptographic Key & Secrets Management: "Cryptographic implementation" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the "Cryptographic implementation" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify cryptography is implemented per standard and free of weak primitives. PASS: only approved algorithms/modes are used (AES-GCM, SHA-256+, RSA-2048+/ECDSA-P256+, TLS 1.2+); passwords are hashed with a strong KDF (bcrypt/scrypt/Argon2/PBKDF2 high-iteration, salted); IVs/nonces and RNG are correct (CSPRNG); crypto libraries are current. Exceptions: MD5/SHA-1 for security, DES/3DES/RC4, ECB mode, hardcoded keys/IVs, weak/predictable RNG, fast-hash or unsalted password storage, and outdated crypto libraries with CVEs.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the cryptographic implementation control (from HashiCorp Vault / AWS KMS / Azure Key Vault)
+    The cryptographic standard the org mandates (approved algorithms, key sizes, modes, protocols)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: HashiCorp Vault / AWS KMS / Azure Key Vault, HSM (PKCS#11), Certificate authority / ACME, Secret-scanning service)
+    SAST crypto rules (CodeQL/Semgrep): MD5/SHA-1, DES/3DES/RC4, ECB, Math.random for security, hardcoded keys/IVs
+    inspect password hashing: bcrypt/Argon2/PBKDF2 vs unsalted MD5/SHA-1
+    testssl.sh for protocol/cipher; SCA for crypto-library versions + CVEs
+    review IV/nonce handling and the RNG source (must be a CSPRNG)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

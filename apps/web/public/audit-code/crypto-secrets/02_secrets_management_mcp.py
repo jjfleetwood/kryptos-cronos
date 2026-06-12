@@ -2,13 +2,16 @@
 """Read-only MCP server — Cryptographic Key & Secrets Management: "Secrets Management" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the "Secrets Management" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify application/service secrets are centrally vaulted, rotated, and least-privilege. PASS: secrets live in a vault (HashiCorp Vault / cloud Secrets Manager), not in source, config, CI, or env files; they're rotated on a schedule (or dynamic/short-TTL); access is least-privilege per workload identity and fully logged. Exceptions: hardcoded secrets in repos/pipelines/images, long-lived static secrets never rotated, broad read access to all secrets, and secret access that isn't logged.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the secrets management control (from HashiCorp Vault / AWS KMS / Azure Key Vault)
+    The secrets inventory in the vault (DB passwords, API keys, tokens, service-account creds) + owners + rotation status
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: HashiCorp Vault / AWS KMS / Azure Key Vault, HSM (PKCS#11), Certificate authority / ACME, Secret-scanning service)
+    vault inventory: secrets + last-rotated + access policies per workload
+    gitleaks / TruffleHog scan of repos, CI logs, and container images for embedded secrets
+    Vault dynamic secrets (DB/cloud) usage vs static; check lease TTLs
+    review the secret-access audit log (which identity read which secret, when)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

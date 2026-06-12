@@ -2,13 +2,16 @@
 """Read-only MCP server — Cryptographic Key & Secrets Management: "Audit logging and monitoring" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Cryptographic Key & Secrets Management policy/standard and flag every item where the "Audit logging and monitoring" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify cryptographic-system activity is logged and monitored. PASS: KMS, Vault, HSM, and CA all log key use, secret access, certificate issuance, and admin actions; logs ship to the SIEM with detections for anomalies (mass secret reads, unusual key-use, unexpected cert issuance, CA admin); logs are retained and tamper-protected; and privileged access is reviewed. Exceptions: crypto systems not logging, logs not forwarded, no detections on key/secret abuse, short retention, and unmonitored CA/HSM admin actions.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the audit logging and monitoring control (from HashiCorp Vault / AWS KMS / Azure Key Vault)
+    The logging configuration for key/secret/certificate systems (KMS, Vault, HSM, CA) — what is logged
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: HashiCorp Vault / AWS KMS / Azure Key Vault, HSM (PKCS#11), Certificate authority / ACME, Secret-scanning service)
+    confirm CloudTrail KMS data events, the Vault audit device, HSM logs, and CA issuance logs are all on
+    verify all forward to the SIEM; check retention
+    detections present for: mass secret reads, Decrypt spikes, unexpected cert issuance, CA/HSM admin actions
+    review privileged key/secret access (who, what, reviewed by whom)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /
