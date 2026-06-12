@@ -88,6 +88,7 @@ export default function Nav() {
   ];
   const moreItems: NavItem[] = username
     ? [
+        { href: "/audit", icon: "🔎", label: t("nav.audit", "Advanced Audit") },
         { href: "/journey", icon: "🌍", label: t("nav.journey") },
         { href: "/explore", icon: "🧭", label: t("nav.explore", "Explore") },
         { href: "/account", icon: "⚙️", label: "Account" },
