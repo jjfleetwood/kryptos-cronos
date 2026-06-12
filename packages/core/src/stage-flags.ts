@@ -1,6 +1,9 @@
 import "server-only";
 
 export const stageFlags: Record<string, string> = {
+  // ── Advanced Audit · Application Review (audit-application-review.ts) ──────
+  "aar-01": "FLAG{app_inv_1shadow_saas_1shadow_cloud_1untiered_material_gap}",
+
   // ── Foundations (stages.ts) ──────────────────────────────────────────────
   "stage-01": "FLAG{CIA_TR14D_P1LL4RS}",
   "stage-02": "FLAG{R0GU3_M0D3L_F0UND}",
