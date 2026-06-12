@@ -2,13 +2,16 @@
 """Read-only MCP server — Change, Release & Configuration Management: "Roles and responsibilities" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the "Roles and responsibilities" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify change-process roles are defined, separated, and staffed. PASS: a RACI defines requester / approver / implementer / CAB / change-manager roles; the roles enforce SoD (no single person holds incompatible roles); people in the roles are trained; and accountability is clear when a change fails. Exceptions: undefined/ambiguous roles, one person holding incompatible roles (request + approve + implement), untrained role-holders, and no clear accountability for failed changes.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the roles and responsibilities control (from ITSM change tooling (ServiceNow))
+    The RACI / documented roles for the change process (requester, approver, implementer, CAB, change manager)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: ITSM change tooling (ServiceNow), Release/deploy pipeline, Configuration baseline (CMDB), Change audit log)
+    the change RACI: are requester/approver/implementer/CAB roles defined + separated?
+    map roles to people + their ITSM permissions (anyone hold incompatible roles?)
+    training/awareness records for change-process roles
+    for a failed change, is accountability clear?
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

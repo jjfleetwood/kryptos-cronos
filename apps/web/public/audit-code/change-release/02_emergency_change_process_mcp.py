@@ -2,13 +2,16 @@
 """Read-only MCP server — Change, Release & Configuration Management: "Emergency change process" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the "Emergency change process" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify emergency changes are controlled, not a bypass. PASS: a defined emergency-change process exists (qualifying criteria, authorizer, expedited-but-real approval, mandatory retro-review); emergency changes are a small % of total; each has justification + a post-implementation review; and testing/backout isn't skipped. Exceptions: 'emergency' used to bypass approval for routine changes, no retro-review, a high emergency-change rate (the process is the norm), and emergency changes that failed with no backout.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the emergency change process control (from ITSM change tooling (ServiceNow))
+    The emergency/expedited change records + their post-hoc approval + justification
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: ITSM change tooling (ServiceNow), Release/deploy pipeline, Configuration baseline (CMDB), Change audit log)
+    emergency-change export: count + % of all changes (abuse signal if high)
+    each emergency change: justification + post-hoc approval + retro-review present?
+    correlate to a real incident/outage (was it a genuine emergency?)
+    emergency changes that caused issues + whether a backout existed
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

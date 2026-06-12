@@ -2,13 +2,16 @@
 """Read-only MCP server — Change, Release & Configuration Management: "Baseline enforcement" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the "Baseline enforcement" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify configuration baselines are enforced, not just documented. PASS: secure baselines are defined per platform, compliance is scanned, drift is detected and auto-remediated or ticketed within SLA, and an enforcement engine (DSC / SSM / Policy) prevents or corrects deviation; exceptions are time-boxed. Exceptions: baselines documented but not scanned/enforced, persistent drift, no auto-remediation, and 'temporary' exceptions with no expiry.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the baseline enforcement control (from ITSM change tooling (ServiceNow))
+    The approved secure-configuration baselines per platform (OS, DB, network, cloud)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: ITSM change tooling (ServiceNow), Release/deploy pipeline, Configuration baseline (CMDB), Change audit log)
+    compliance scan vs the approved baseline per platform
+    confirm an enforcement engine (DSC / SSM / Policy) corrects drift
+    drift detection + MTTR-to-remediate
+    exception register: justified + time-boxed?
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

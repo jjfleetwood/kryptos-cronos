@@ -2,13 +2,16 @@
 """Read-only MCP server — Change, Release & Configuration Management: "Release planning & backout" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the "Release planning & backout" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify releases are planned with a tested rollback. PASS: each significant release has a plan (scope, dependencies, validation) and a documented, tested backout/rollback; a go/no-go gate precedes deployment; and when a release fails, backout works. Exceptions: releases with no plan, no backout/rollback (or untested), no go/no-go gate, and failed releases that couldn't be rolled back (extended outage).
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the release planning & backout control (from ITSM change tooling (ServiceNow))
+    The release plan per major release (scope, schedule, dependencies, validation steps)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: ITSM change tooling (ServiceNow), Release/deploy pipeline, Configuration baseline (CMDB), Change audit log)
+    sample releases: is there a plan + a documented backout/rollback?
+    is the rollback tested (blue-green / canary with automated rollback)?
+    go/no-go decision records
+    post-failure: was backout executed + successful (MTTR)?
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

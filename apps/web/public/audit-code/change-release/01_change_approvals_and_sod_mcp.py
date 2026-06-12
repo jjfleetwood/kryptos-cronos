@@ -2,13 +2,16 @@
 """Read-only MCP server — Change, Release & Configuration Management: "Change approvals and SoD" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the "Change approvals and SoD" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify changes are approved before implementation with segregation of duties. PASS: every production change has a pre-implementation approval appropriate to its risk; the requester/implementer is not the sole approver (SoD); normal/high-risk changes go through the CAB; and there are no unapproved or retro-approved changes. Exceptions: changes implemented with no approval, the implementer self-approving, approvals dated after the change went live, and standard-change auto-approval abused for risky changes.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the change approvals and sod control (from ITSM change tooling (ServiceNow))
+    The change-record export for the period (every change: requester, approver, type, risk, status, dates)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: ITSM change tooling (ServiceNow), Release/deploy pipeline, Configuration baseline (CMDB), Change audit log)
+    ServiceNow change export: requester, approver, approval timestamp vs implementation timestamp
+    find changes where approver = requester/implementer (SoD violation)
+    changes with status=implemented but no approval, or approval after go-live
+    correlate deploy-pipeline events to change records (deploys with no change)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

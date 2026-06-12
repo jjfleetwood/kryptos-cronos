@@ -2,13 +2,16 @@
 """Read-only MCP server — Change, Release & Configuration Management: "Business impact analysis" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the "Business impact analysis" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify changes carry a business-impact/risk assessment that drives handling. PASS: each change has an impact/risk assessment (services, users, downtime, dependencies, security) that sets its approval level + window; high-impact changes get extra scrutiny + scheduling in approved windows; and dependency/conflict checks run. Exceptions: changes with no impact assessment, risk mis-classified (high-impact treated as standard), changes during blackout/peak windows, and no dependency/conflict checking.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the business impact analysis control (from ITSM change tooling (ServiceNow))
+    The risk/impact assessment captured per change (affected services, users, downtime, dependencies, security impact)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: ITSM change tooling (ServiceNow), Release/deploy pipeline, Configuration baseline (CMDB), Change audit log)
+    sample changes: is there an impact/risk assessment + correct classification?
+    dependency check against the CMDB (does it touch a critical/shared service?)
+    changes scheduled outside approved windows / during blackouts
+    high-impact changes treated as standard (mis-classification)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

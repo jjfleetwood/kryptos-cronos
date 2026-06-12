@@ -2,13 +2,16 @@
 """Read-only MCP server — Change, Release & Configuration Management: "Version control" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the "Version control" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify changes are version-controlled and traceable from deployed state to source. PASS: production configuration/code/IaC is managed in version control (not hand-edited on the box); every deployed version traces to a source commit/tag; change artifacts are versioned; and out-of-band direct changes are prevented or detected. Exceptions: production config edited directly outside version control, deployed versions with no traceable source, unversioned scripts/configs, and drift from the version-controlled source.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the version control control (from ITSM change tooling (ServiceNow))
+    Evidence that config/code/IaC for in-scope systems is under version control (no untracked production config)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: ITSM change tooling (ServiceNow), Release/deploy pipeline, Configuration baseline (CMDB), Change audit log)
+    confirm production config/IaC lives in version control (not hand-edited)
+    trace a deployed version back to its source commit/tag
+    detect out-of-band changes (running config vs the version-controlled source)
+    are the change scripts/configs themselves versioned?
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

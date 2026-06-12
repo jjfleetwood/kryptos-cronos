@@ -2,13 +2,16 @@
 """Read-only MCP server — Change, Release & Configuration Management: "Post-implementation review" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Change, Release & Configuration Management policy/standard and flag every item where the "Post-implementation review" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify changes/releases get a post-implementation review that drives improvement. PASS: significant + failed changes get a PIR (did it achieve its goal, any issues, lessons); change-success metrics are tracked; PIR corrective actions are assigned + closed; and failed changes are correlated to incidents. Exceptions: no PIRs, box-ticking PIRs (no corrective actions), failed changes with no review, and no change-success metrics.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the post-implementation review control (from ITSM change tooling (ServiceNow))
+    The post-implementation review (PIR) records for changes/releases (success/failure, issues, lessons)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: ITSM change tooling (ServiceNow), Release/deploy pipeline, Configuration baseline (CMDB), Change audit log)
+    PIR records for a sample of major + failed changes
+    change-success rate, failed-change %, emergency % metrics + trend
+    PIR corrective actions: assigned + closed?
+    correlate failed changes to the incidents they triggered
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /
