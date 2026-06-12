@@ -9,7 +9,7 @@ import type { EpochConfig, StageConfig } from "./types";
 // library at /audit). Modules are ranked by easeScore + valueScore like audit-cm.
 
 export const auditApplicationReviewEpoch: EpochConfig = {
-  id: "audit-application-review",
+  id: "application-review",
   name: "Application Review",
   subtitle: "Agentic technical & privacy audit of an application estate",
   description:
@@ -21,7 +21,7 @@ export const auditApplicationReviewEpoch: EpochConfig = {
 
 export const auditApplicationReviewStages: StageConfig[] = [
   {
-    epochId: "audit-application-review",
+    epochId: "application-review",
     id: "aar-01",
     order: 1,
     title: "Application Inventory & Tiering",
