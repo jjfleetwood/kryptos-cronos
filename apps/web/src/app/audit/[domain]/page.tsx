@@ -4,7 +4,15 @@ import { notFound } from "next/navigation";
 import { getAuditEpoch, auditStagesForEpoch } from "@kryptos/core/audit-registry";
 import { getSessionFromCookies } from "@/lib/server-session";
 import { getUserTier } from "@/lib/access";
+import { redis } from "@/lib/redis";
 import AuditGate from "../AuditGate";
+
+function parseArr(val: unknown): string[] {
+  if (!val) return [];
+  if (Array.isArray(val)) return val as string[];
+  const s = String(val);
+  try { const p = JSON.parse(s); return Array.isArray(p) ? p : []; } catch { return s.split(",").filter(Boolean); }
+}
 
 function isAdminUser(username: string | null): boolean {
   const admin = process.env.ADMIN_USERNAME;
@@ -22,6 +30,12 @@ export default async function AuditDomainPage({ params }: { params: Promise<{ do
   const epoch = getAuditEpoch(domain);
   if (!epoch) return notFound();
   const modules = auditStagesForEpoch(domain);
+
+  // Completion state: a module is fully cleared (CTF flag captured) or half-cleared
+  // (10-question quiz passed). Read straight from the user's progress record.
+  const prog = await redis.hgetall(`progress:${username.toLowerCase()}`);
+  const cleared = new Set(parseArr(prog?.stages));
+  const halfCleared = new Set(parseArr(prog?.quizStages));
 
   // Rank this domain's modules by combined score (ease + value), best-first.
   const combined = (m: { easeScore?: number; valueScore?: number }) => (m.easeScore ?? 0) + (m.valueScore ?? 0);
@@ -67,17 +81,23 @@ export default async function AuditDomainPage({ params }: { params: Promise<{ do
           {ranked.map((m, i) => {
             const ease = m.easeScore ?? 0;
             const value = m.valueScore ?? 0;
+            const done = cleared.has(m.id);
+            const half = !done && halfCleared.has(m.id);
             return (
               <Link
                 key={m.id}
                 href={`/audit/${domain}/${m.id}`}
                 className="group flex items-center gap-4 rounded-xl border border-white/10 bg-white/[0.03] p-4 transition-all hover:border-violet-400/50 hover:bg-violet-500/[0.06]"
               >
-                <div className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-violet-500/10 text-base font-black text-violet-200">
-                  {i + 1}
+                <div className={`grid h-10 w-10 shrink-0 place-items-center rounded-lg text-base font-black ${done ? "bg-emerald-500/20 text-emerald-300" : half ? "bg-amber-500/15 text-amber-300" : "bg-violet-500/10 text-violet-200"}`}>
+                  {done ? "✓" : half ? "◐" : i + 1}
                 </div>
                 <div className="min-w-0 flex-1">
-                  <h3 className="font-semibold text-white group-hover:text-violet-100">{m.title}</h3>
+                  <h3 className="font-semibold text-white group-hover:text-violet-100">
+                    {m.title}
+                    {done && <span className="ml-2 align-middle rounded bg-emerald-500/15 px-1.5 py-0.5 text-[10px] font-semibold text-emerald-300">CLEARED</span>}
+                    {half && <span className="ml-2 align-middle rounded bg-amber-500/15 px-1.5 py-0.5 text-[10px] font-semibold text-amber-300">QUIZ PASSED · ½</span>}
+                  </h3>
                   <p className="truncate text-sm text-gray-400">{m.subtitle}</p>
                 </div>
                 <div className="hidden shrink-0 items-center gap-2 sm:flex">
