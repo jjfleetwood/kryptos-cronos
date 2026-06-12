@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { epochs } from "@kryptos/core/stages-meta";
 
@@ -22,6 +22,14 @@ export default function DecksPage() {
   const [lens, setLens] = useState("tech-audit");
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState<string | null>(null);
+  const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    fetch("/api/auth/me")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => setIsAdmin(!!d?.isAdmin))
+      .catch(() => setIsAdmin(false));
+  }, []);
 
   async function generate() {
     setBusy(true);
@@ -33,7 +41,7 @@ export default function DecksPage() {
         body: JSON.stringify({ epochId, lens }),
       });
       if (!r.ok) {
-        setErr(r.status === 401 ? "Please sign in to generate decks." : `Generation failed (${r.status}).`);
+        setErr(r.status === 403 ? "Admin access required to generate decks." : `Generation failed (${r.status}).`);
         return;
       }
       const blob = await r.blob();
@@ -52,10 +60,23 @@ export default function DecksPage() {
     }
   }
 
+  if (isAdmin === false) {
+    return (
+      <div className="min-h-screen flex items-center justify-center px-4" style={{ background: "linear-gradient(135deg, #0d1117 0%, #0f2027 50%, #1a1a2e 100%)" }}>
+        <div className="text-center max-w-sm">
+          <div className="text-6xl mb-4">🔒</div>
+          <h2 className="text-2xl font-black text-white mb-2">Admin only</h2>
+          <p className="text-gray-400 text-sm mb-6">The deck generator is an internal tool, available from the admin dashboard.</p>
+          <Link href="/admin" className="text-violet-300 hover:text-violet-200 text-sm transition-colors">→ Admin dashboard</Link>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen px-4 py-16" style={{ background: "linear-gradient(135deg, #0d1117 0%, #0f2027 50%, #1a1a2e 100%)" }}>
       <div className="max-w-xl mx-auto">
-        <Link href="/stages" className="text-gray-500 hover:text-violet-400 text-sm transition-colors">← Back to stages</Link>
+        <Link href="/admin" className="text-gray-500 hover:text-violet-400 text-sm transition-colors">← Admin dashboard</Link>
 
         <div className="mt-6 mb-8 flex items-center gap-3">
           <span className="text-3xl flex-shrink-0">📊</span>

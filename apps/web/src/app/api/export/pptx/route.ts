@@ -1,13 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getAuthedUsername } from "@/lib/api-auth";
+import { verifyAdminToken } from "@/lib/admin-token";
 import { stages as allStages, epochs } from "@kryptos/core/stages";
 import { buildDeck, LENSES } from "@/lib/pptx-lens";
 
 /** POST /api/export/pptx { epochId, lens } — generate a slide deck (.pptx) for an
- *  epoch through the chosen lens. Signed-in only. */
+ *  epoch through the chosen lens. Admin only (deck generation is an internal tool). */
 export async function POST(req: NextRequest) {
-  const username = await getAuthedUsername(req);
-  if (!username) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+  const adminUsername = verifyAdminToken(req.cookies.get("admin_token")?.value ?? "");
+  if (!adminUsername) return NextResponse.json({ error: "forbidden" }, { status: 403 });
 
   const { epochId, lens = "tech-audit" } = (await req.json().catch(() => ({}))) as { epochId?: string; lens?: string };
   if (!LENSES[lens]) return NextResponse.json({ error: "unknown lens" }, { status: 400 });

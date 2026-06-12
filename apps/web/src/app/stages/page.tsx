@@ -178,16 +178,6 @@ export default function StagesPage() {
           </Link>
         </div>
 
-        {/* Deck generator — slides from any epoch through a lens. */}
-        <div className="flex justify-end mb-4 -mt-2">
-          <Link
-            href="/decks"
-            className="text-[10px] font-mono text-fuchsia-400 hover:text-fuchsia-300 transition-colors whitespace-nowrap border border-fuchsia-500/30 px-2.5 py-1 rounded-lg"
-          >
-            📊 Generate Slides
-          </Link>
-        </div>
-
         <ContinueStrip />
 
         <TrackCatalog visibleTracks={visibleTracks} completedStages={completedStages} />
