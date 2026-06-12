@@ -2,13 +2,16 @@
 """Read-only MCP server — Incident Management: "Post-incident reviews / corrective" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the "Post-incident reviews / corrective" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify incidents drive durable improvement. PASS: significant incidents get a blameless PIR (timeline, root cause, gaps); corrective + preventive actions are assigned, tracked, and closed; lessons feed back into detections/controls/playbooks; and repeat incidents decline. Exceptions: no PIRs (or only for the biggest), PIRs with no corrective actions or actions never closed, no feedback into controls, and the same incident type recurring.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the post-incident reviews / corrective control (from SIEM / SOAR (Sentinel/Splunk))
+    The post-incident review (PIR) / blameless-postmortem records for significant incidents (timeline, root cause, what worked/failed, lessons)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: SIEM / SOAR (Sentinel/Splunk), IR case management, Forensics + evidence store, On-call / paging (PagerDuty))
+    PIR records for significant incidents: timeline, root cause, gaps (blameless?)
+    CAPA: corrective + preventive actions assigned + closed (not just logged)
+    feedback evidence: detections added, controls fixed, playbooks updated
+    MTTD/MTTR trend + repeat-incident rate
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

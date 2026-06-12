@@ -2,13 +2,16 @@
 """Read-only MCP server — Incident Management: "IR plan, playbooks, tabletop" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the "IR plan, playbooks, tabletop" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the org has a current, tested IR capability. PASS: a current IR plan defines roles, a severity matrix, comms, and legal/regulatory triggers; scenario playbooks exist for the org's top threats; tabletop/IR exercises run on cadence with tracked findings; and the plan is updated from exercises + real incidents. Exceptions: no/stale IR plan, no scenario playbooks, no tabletop exercises (or done once), and exercise findings never actioned.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the ir plan, playbooks, tabletop control (from SIEM / SOAR (Sentinel/Splunk))
+    The incident-response plan (roles, severity matrix, comms, legal/regulatory triggers) + its currency
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: SIEM / SOAR (Sentinel/Splunk), IR case management, Forensics + evidence store, On-call / paging (PagerDuty))
+    IR plan: roles, severity matrix, comms tree, regulatory triggers — current + approved?
+    playbook coverage for the org's top scenarios (ransomware / BEC / breach / DDoS / insider / cloud)
+    tabletop / IR-exercise records: cadence, scenarios, findings, action-item closure
+    evidence the plan is updated from exercises + real incidents
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

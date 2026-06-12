@@ -2,13 +2,16 @@
 """Read-only MCP server — Incident Management: "Evidence handling and forensics" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the "Evidence handling and forensics" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the org can collect + preserve evidence forensically. PASS: a documented evidence-handling procedure covers acquisition, chain of custody, integrity (hashing), and secure storage; forensic capability exists (disk/memory/EDR/cloud collection, remote where possible); telemetry retention is long enough to investigate a past intrusion; and chain of custody is maintained. Exceptions: no evidence-handling procedure, no forensic capability, retention too short to investigate (days not months), and broken chain of custody (evidence inadmissible).
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the evidence handling and forensics control (from SIEM / SOAR (Sentinel/Splunk))
+    The forensic-readiness + evidence-handling procedure (acquisition, chain of custody, integrity/hashing, storage)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: SIEM / SOAR (Sentinel/Splunk), IR case management, Forensics + evidence store, On-call / paging (PagerDuty))
+    evidence-handling procedure: acquisition, chain of custody, hashing, secure storage
+    forensic capability: disk/memory/EDR/cloud acquisition (remote-capable?)
+    log/telemetry retention window vs investigation need (can you reconstruct a 3-month-old intrusion?)
+    chain-of-custody records from prior cases (integrity maintained?)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

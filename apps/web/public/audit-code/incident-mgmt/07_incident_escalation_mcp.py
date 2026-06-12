@@ -2,13 +2,16 @@
 """Read-only MCP server — Incident Management: "Incident escalation" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the "Incident escalation" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify incidents escalate to the right level quickly. PASS: an escalation matrix maps severity to who is engaged within defined timeframes (through to exec/legal/board for major incidents); 24x7 on-call coverage exists + responds within SLA; external help (IR retainer, law enforcement, insurer) can be engaged via a defined path; and past incidents show timely, correct escalation. Exceptions: no escalation matrix, gaps in 24x7 coverage (incidents at night/weekend unhandled), major incidents that didn't reach leadership in time, and no path to external IR/legal/insurer.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the incident escalation control (from SIEM / SOAR (Sentinel/Splunk))
+    The escalation matrix (severity → who is engaged + within what timeframe: SOC → IR lead → CISO → exec / legal / board)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: SIEM / SOAR (Sentinel/Splunk), IR case management, Forensics + evidence store, On-call / paging (PagerDuty))
+    the escalation matrix: severity → who + by when (SOC → IR lead → CISO → exec / legal / board)
+    24x7 on-call coverage + response-SLA evidence (test an after-hours page)
+    past incidents: was the right level engaged within the timeframe?
+    the path to engage an IR retainer / law enforcement / cyber-insurer
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

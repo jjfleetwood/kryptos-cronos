@@ -2,13 +2,16 @@
 """Read-only MCP server — Incident Management: "External notifications / breach comms" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the "External notifications / breach comms" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the org can notify the right parties within legal/contractual deadlines. PASS: a breach-notification process maps every obligation (GDPR 72h, state AG laws, HIPAA, SEC material-incident 4-day, customer-contract clauses) to a trigger + deadline; pre-approved templates + an approval chain exist; legal/PR/insurer/regulator contacts are ready; and past breaches were notified on time. Exceptions: no notification trigger map, missed statutory deadlines, no templates/approval chain (notification improvised under pressure), and unknown regulator/insurer contacts.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the external notifications / breach comms control (from SIEM / SOAR (Sentinel/Splunk))
+    The breach-notification decision process + the regulatory/contractual trigger map (GDPR 72h, US state laws, HIPAA, SEC 4-day, contractual customer-notice)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: SIEM / SOAR (Sentinel/Splunk), IR case management, Forensics + evidence store, On-call / paging (PagerDuty))
+    the obligation map: each regulation/contract → trigger + deadline (GDPR 72h, SEC 4-day, state laws, HIPAA, customer clauses)
+    pre-approved comms templates + the legal/PR/exec approval chain
+    past breaches: were regulators + individuals + customers notified within the deadline?
+    regulator + cyber-insurer + outside-counsel contact readiness
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

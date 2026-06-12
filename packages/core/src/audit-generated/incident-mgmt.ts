@@ -23,25 +23,23 @@ export const incidentMgmtStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"IR plan, playbooks, tabletop\" control for Incident Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"IR plan, playbooks, tabletop\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
-      "approach": "An audit agent calls a read-only MCP server that wraps the Incident Management systems of record (SIEM / SOAR (Sentinel/Splunk); IR case management; Forensics + evidence store) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"IR plan, playbooks, tabletop\" control for Incident Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Verify the org has a current, tested IR capability. PASS: a current IR plan defines roles, a severity matrix, comms, and legal/regulatory triggers; scenario playbooks exist for the org's top threats; tabletop/IR exercises run on cadence with tracked findings; and the plan is updated from exercises + real incidents. Exceptions: no/stale IR plan, no scenario playbooks, no tabletop exercises (or done once), and exercise findings never actioned.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Incident Management systems of record (The IR plan + playbook repository; Tabletop / exercise records; SOAR (where playbooks are codified)) as tools — e.g. `IR plan: roles, severity matrix, comms tree, regulatory triggers — cur`, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
-        "In-scope inventory for the ir plan, playbooks, tabletop control (from SIEM / SOAR (Sentinel/Splunk))",
-        "Observed configuration/state evidence showing whether the control is applied and operating",
-        "The control policy / standard / threshold the evidence is judged against",
-        "The reconciled exceptions list + coverage report (the working paper)"
+        "The incident-response plan (roles, severity matrix, comms, legal/regulatory triggers) + its currency",
+        "The library of incident playbooks per scenario (ransomware, BEC, data breach, DDoS, insider, cloud compromise)",
+        "Tabletop / IR-exercise records (date, scenario, participants, findings, action items)",
+        "Evidence the plan + playbooks are tested + updated (not shelfware)"
       ],
       "system": [
-        "SIEM / SOAR (Sentinel/Splunk)",
-        "IR case management",
-        "Forensics + evidence store",
-        "On-call / paging (PagerDuty)"
+        "The IR plan + playbook repository",
+        "Tabletop / exercise records",
+        "SOAR (where playbooks are codified)"
       ],
       "dataOwner": [
-        "Security operations / CSIRT",
-        "IT operations",
-        "Legal & Communications",
-        "Risk management"
+        "Security operations / CSIRT (owns IR)",
+        "IT, Legal, Comms, Exec (plan participants)",
+        "Risk"
       ],
       "scoring": {
         "ease": "EASE 5/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
@@ -61,17 +59,17 @@ export const incidentMgmtStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"IR plan, playbooks, tabletop\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the ir plan, playbooks, tabletop control (from SIEM / SOAR (Sentinel/Splunk))) with read-only agents, run the test against policy, and issue a defensible opinion on the Incident Management control.",
+      "tagline": "Auditing \"IR plan, playbooks, tabletop\" as a repeatable agentic workflow: pull the real evidence (The incident-response plan (roles, severity matrix, comms, legal/regulatory triggers) + its currency) with read-only agents, run the test against policy, and issue a defensible opinion on the Incident Management control.",
       "year": 2025,
       "overview": [
-        "The \"IR plan, playbooks, tabletop\" sub-process is one of the controls an auditor must verify for Incident Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the ir plan, playbooks, tabletop control (from SIEM / SOAR (Sentinel/Splunk)), for everything in scope.\"",
-        "The evidence lives across systems that were never reconciled — here SIEM / SOAR (Sentinel/Splunk), IR case management, Forensics + evidence store — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The test itself is specific. Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"IR plan, playbooks, tabletop\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
+        "The \"IR plan, playbooks, tabletop\" sub-process is one of the controls an auditor must verify for Incident Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me the incident-response plan (roles, severity matrix, comms, legal/regulatory triggers) + its currency, for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here The IR plan + playbook repository, Tabletop / exercise records, SOAR (where playbooks are codified) — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. In practice you gather it with calls like `IR plan: roles, severity matrix, comms tree, regulatory triggers — current + app` — read-only, against the systems of record.",
+        "The test itself is specific. Verify the org has a current, tested IR capability. PASS: a current IR plan defines roles, a severity matrix, comms, and legal/regulatory triggers; scenario playbooks exist for the org's top threats; tabletop/IR exercises run on cadence with tracked findings; and the plan is updated from exercises + real incidents. Exceptions: no/stale IR plan, no scenario playbooks, no tabletop exercises (or done once), and exercise findings never actioned. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `01_ir_plan_playbooks_tabletop_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from SIEM / SOAR (Sentinel/Splunk) and IR case management (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The included `01_ir_plan_playbooks_tabletop_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from The IR plan + playbook repository and Tabletop / exercise records (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
           "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 01_ir_plan_playbooks_tabletop_mcp.py` to expose it to your agent — or `python 01_ir_plan_playbooks_tabletop_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
@@ -99,7 +97,7 @@ export const incidentMgmtStages: StageConfig[] = [
           },
           {
             "label": "Agent + MCP",
-            "sub": "pull SIEM / SOAR (Sentinel/Splunk) · IR case management",
+            "sub": "pull The IR plan + playbook repository · Tabletop / exercise records",
             "type": "system"
           },
           {
@@ -130,25 +128,26 @@ export const incidentMgmtStages: StageConfig[] = [
           "highlight": true
         }
       ],
-      "examples": [],
+      "examples": [
+        {
+          "label": "Pull the evidence — the real commands / API calls",
+          "code": "IR plan: roles, severity matrix, comms tree, regulatory triggers — current + approved?\nplaybook coverage for the org's top scenarios (ransomware / BEC / breach / DDoS / insider / cloud)\ntabletop / IR-exercise records: cadence, scenarios, findings, action-item closure\nevidence the plan is updated from exercises + real incidents"
+        }
+      ],
       "keyTakeaways": [
-        "The artifact to pull: In-scope inventory for the ir plan, playbooks, tabletop control (from SIEM / SOAR (Sentinel/Splunk)).",
-        "The test: Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"IR plan, playbooks, tabletop\" control is missing, mis-scoped, or not operating.",
-        "Reconcile the systems of record (SIEM / SOAR (Sentinel/Splunk), IR case management, Forensics + evidence store) — anything the control never reached is the highest-value finding.",
+        "The artifact to pull: The incident-response plan (roles, severity matrix, comms, legal/regulatory triggers) + its currency.",
+        "The test: Verify the org has a current, tested IR capability.",
+        "Reconcile the systems of record (The IR plan + playbook repository, Tabletop / exercise records, SOAR (where playbooks are codified)) — anything the control never reached is the highest-value finding.",
         "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the ir plan, playbooks, tabletop control is not applied, mis-scoped, or has drifted from the approved baseline"
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. The IR plan is three years old, names people who have left, has no ransomware or cloud-compromise playbook, and no tabletop has been run — so the first real test would be the incident itself."
       ],
       "references": [
         {
-          "title": "NIST SP 800-61 — Incident Handling",
+          "title": "NIST SP 800-61 Incident Handling",
           "url": "https://csrc.nist.gov/pubs/sp/800/61/r2/final"
         },
         {
-          "title": "SANS Incident Handler's Handbook",
-          "url": "https://www.sans.org/white-papers/33901/"
-        },
-        {
-          "title": "ISO/IEC 27035 — Incident Management",
+          "title": "ISO/IEC 27035",
           "url": "https://www.iso.org/standard/78973.html"
         },
         {
@@ -160,20 +159,20 @@ export const incidentMgmtStages: StageConfig[] = [
         {
           "name": "01_ir_plan_playbooks_tabletop_mcp.py",
           "url": "/audit-code/incident-mgmt/01_ir_plan_playbooks_tabletop_mcp.py",
-          "description": "Runnable read-only MCP server: gathers the Incident Management evidence for \"IR plan, playbooks, tabletop\" (in-scope inventory for the ir plan, playbooks, tabletop control (from siem / soar (sentinel/splunk))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Incident Management evidence for \"IR plan, playbooks, tabletop\" (the incident-response plan (roles, severity matrix, comms, legal/regulatory triggers) + its currency), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"IR plan, playbooks, tabletop\" control for Incident Management at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"IR plan, playbooks, tabletop\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the ir plan, playbooks, tabletop control (from SIEM / SOAR (Sentinel/Splunk)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live SIEM / SOAR (Sentinel/Splunk) APIs; here the same sources are exported to files.)",
-      "hint": "Read every file in /evidence. SIEM / SOAR (Sentinel/Splunk) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
+      "scenario": "You're the auditor testing the \"IR plan, playbooks, tabletop\" control for Incident Management at AcmeCorp. THE TEST: Verify the org has a current, tested IR capability. PASS: a current IR plan defines roles, a severity matrix, comms, and legal/regulatory triggers; scenario playbooks exist for the org's top threats; tabletop/IR exercises run on cadence with tracked findings; and the plan is updated from exercises + real incidents. Exceptions: no/stale IR plan, no scenario playbooks, no tabletop exercises (or done once), and exercise findings never actioned. The evidence — The incident-response plan (roles, severity matrix, comms, legal/regulatory triggers) + its currency — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live The IR plan + playbook repository APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. The IR plan + playbook repository gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. The inventory comes from SIEM / SOAR (Sentinel/Splunk); the state file shows what is actually configured/running.",
+        "cat each file in /evidence. The inventory comes from The IR plan + playbook repository; the state file shows what is actually configured/running.",
         "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Incident Management: \"IR plan, playbooks, tabletop\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"IR plan, playbooks, tabletop\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- incident-mgmt_inventory.json   (in-scope items — In-scope inventory for the ir plan, playbooks, tabletop control (from SIEM / SOAR (Sentinel/Splunk)))\n- incident-mgmt_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Incident Management: \"IR plan, playbooks, tabletop\" Audit Evidence\n\nThe test:\nVerify the org has a current, tested IR capability. PASS: a current IR plan defines roles, a severity matrix, comms, and legal/regulatory triggers; scenario playbooks exist for the org's top threats; tabletop/IR exercises run on cadence with tracked findings; and the plan is updated from exercises + real incidents. Exceptions: no/stale IR plan, no scenario playbooks, no tabletop exercises (or done once), and exercise findings never actioned.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- incident-mgmt_inventory.json   (in-scope items — The incident-response plan (roles, severity matrix, comms, legal/regulatory triggers) + its currency)\n- incident-mgmt_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"IR plan, playbooks, tabletop\",\n  \"domain\": \"Incident Management\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{inc_",
         "/evidence/incident-mgmt_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Security operations / CSIRT\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"IR plan, playbooks, tabletop\" control must cover\n# fragment: ir_plan_playbooks_",
         "/evidence/incident-mgmt_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -269,7 +268,7 @@ export const incidentMgmtStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"IR plan, playbooks, tabletop\" control?",
           "options": [
             "A point-in-time screenshot of one system's ir plan, playbooks, tabletop settings, captured during the walkthrough",
-            "The In-scope inventory for the ir plan, playbooks, tabletop control (from SIEM / SOAR (Sentinel/Splunk)), reconciled against policy, plus the resulting findings working paper",
+            "The The incident-response plan (roles, severity matrix, comms, legal/regulatory triggers) + its currency, reconciled against policy, plus the resulting findings working paper",
             "A signed management attestation that the ir plan, playbooks, tabletop control is in place, with no underlying data attached",
             "A vendor datasheet describing the product's ir plan, playbooks, tabletop capabilities and its recommended configuration"
           ],
@@ -282,13 +281,13 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "Source of truth",
           "text": "Where should an auditor pull the evidence for \"IR plan, playbooks, tabletop\"?",
           "options": [
-            "From SIEM / SOAR (Sentinel/Splunk) and the other systems of record for this domain, accessed read-only",
+            "From The IR plan + playbook repository and the other systems of record for this domain, accessed read-only",
             "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
             "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
             "From an informal summary the team posted to the internal wiki describing how ir plan, playbooks, tabletop works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence must come from the authoritative systems (e.g. SIEM / SOAR (Sentinel/Splunk)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
+          "explanation": "Evidence must come from the authoritative systems (e.g. The IR plan + playbook repository) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "inc-01-q5",
@@ -299,10 +298,10 @@ export const incidentMgmtStages: StageConfig[] = [
             "The external audit firm, since it is the party examining the ir plan, playbooks, tabletop control this period",
             "Whoever most recently changed the configuration, regardless of their role or formal accountability",
             "No single function — the ir plan, playbooks, tabletop data is shared, so the accountability sits with no one in particular",
-            "Security operations / CSIRT, with the related functions attesting to the part each of them owns"
+            "Security operations / CSIRT (owns IR), with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Security operations / CSIRT owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
+          "explanation": "Security operations / CSIRT (owns IR) owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "inc-01-q6",
@@ -338,13 +337,13 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "Typical finding",
           "text": "For \"IR plan, playbooks, tabletop\", which of these is a realistic reportable finding?",
           "options": [
-            "In-scope items where the ir plan, playbooks, tabletop control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The IR plan is three years old, names people who have left, has no ransomware or cloud-compromise playbook, and no tabletop has been run — so the first real test would be the incident itself.",
             "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
             "The team has adopted a leading commercial platform that is widely used to support this control area",
             "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the ir plan, playbooks, tabletop control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. The IR plan is three years old, names people who have left, has no ransomware or cloud-compromise playbook, and no tabletop has been run — so the first real test would be the incident itself. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "inc-01-q9",
@@ -389,25 +388,23 @@ export const incidentMgmtStages: StageConfig[] = [
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Incident intake and triage\" control for Incident Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"Incident intake and triage\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
-      "approach": "An audit agent calls a read-only MCP server that wraps the Incident Management systems of record (SIEM / SOAR (Sentinel/Splunk); IR case management; Forensics + evidence store) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Incident intake and triage\" control for Incident Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Verify potential incidents are reliably captured, triaged, and classified. PASS: all intake channels (SIEM/EDR alerts, user reports, vendor/threat-intel notices) route to a monitored queue with a triage SLA; incidents are classified by a severity matrix; response SLAs are met; and there's no large backlog of un-triaged alerts. Exceptions: alerts into an unmonitored mailbox, no triage SLA or severity criteria, a large un-triaged backlog, and no metrics on triage performance.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Incident Management systems of record (SIEM / SOAR + case management (ServiceNow SecOps / TheHive); Intake channels (alert pipeline, abuse@ / report line); Triage metrics dashboard) as tools — e.g. `map intake channels → the monitored triage queue (alerts, user reports`, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
-        "In-scope inventory for the incident intake and triage control (from SIEM / SOAR (Sentinel/Splunk))",
-        "Observed configuration/state evidence showing whether the control is applied and operating",
-        "The control policy / standard / threshold the evidence is judged against",
-        "The reconciled exceptions list + coverage report (the working paper)"
+        "The intake channels for potential incidents (alerts, user reports, vendor notices, threat intel) + how they reach the IR team",
+        "The triage process + severity-classification criteria + SLAs (time-to-triage, time-to-respond by severity)",
+        "Triage metrics (alert volume, time-to-triage, true/false-positive, escalated)",
+        "Evidence alerts are actually triaged (no unactioned backlog)"
       ],
       "system": [
-        "SIEM / SOAR (Sentinel/Splunk)",
-        "IR case management",
-        "Forensics + evidence store",
-        "On-call / paging (PagerDuty)"
+        "SIEM / SOAR + case management (ServiceNow SecOps / TheHive)",
+        "Intake channels (alert pipeline, abuse@ / report line)",
+        "Triage metrics dashboard"
       ],
       "dataOwner": [
-        "Security operations / CSIRT",
-        "IT operations",
-        "Legal & Communications",
-        "Risk management"
+        "SOC / triage analysts",
+        "Security operations",
+        "Detection engineering"
       ],
       "scoring": {
         "ease": "EASE 6/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
@@ -427,17 +424,17 @@ export const incidentMgmtStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Incident intake and triage\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the incident intake and triage control (from SIEM / SOAR (Sentinel/Splunk))) with read-only agents, run the test against policy, and issue a defensible opinion on the Incident Management control.",
+      "tagline": "Auditing \"Incident intake and triage\" as a repeatable agentic workflow: pull the real evidence (The intake channels for potential incidents (alerts, user reports, vendor notices, threat intel) + how they reach the IR team) with read-only agents, run the test against policy, and issue a defensible opinion on the Incident Management control.",
       "year": 2025,
       "overview": [
-        "The \"Incident intake and triage\" sub-process is one of the controls an auditor must verify for Incident Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the incident intake and triage control (from SIEM / SOAR (Sentinel/Splunk)), for everything in scope.\"",
-        "The evidence lives across systems that were never reconciled — here SIEM / SOAR (Sentinel/Splunk), IR case management, Forensics + evidence store — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The test itself is specific. Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"Incident intake and triage\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
+        "The \"Incident intake and triage\" sub-process is one of the controls an auditor must verify for Incident Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me the intake channels for potential incidents (alerts, user reports, vendor notices, threat intel) + how they reach the IR team, for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here SIEM / SOAR + case management (ServiceNow SecOps / TheHive), Intake channels (alert pipeline, abuse@ / report line), Triage metrics dashboard — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. In practice you gather it with calls like `map intake channels → the monitored triage queue (alerts, user reports, vendor n` — read-only, against the systems of record.",
+        "The test itself is specific. Verify potential incidents are reliably captured, triaged, and classified. PASS: all intake channels (SIEM/EDR alerts, user reports, vendor/threat-intel notices) route to a monitored queue with a triage SLA; incidents are classified by a severity matrix; response SLAs are met; and there's no large backlog of un-triaged alerts. Exceptions: alerts into an unmonitored mailbox, no triage SLA or severity criteria, a large un-triaged backlog, and no metrics on triage performance. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `02_incident_intake_and_triage_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from SIEM / SOAR (Sentinel/Splunk) and IR case management (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The included `02_incident_intake_and_triage_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from SIEM / SOAR + case management (ServiceNow SecOps / TheHive) and Intake channels (alert pipeline, abuse@ / report line) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
           "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 02_incident_intake_and_triage_mcp.py` to expose it to your agent — or `python 02_incident_intake_and_triage_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
@@ -465,7 +462,7 @@ export const incidentMgmtStages: StageConfig[] = [
           },
           {
             "label": "Agent + MCP",
-            "sub": "pull SIEM / SOAR (Sentinel/Splunk) · IR case management",
+            "sub": "pull SIEM / SOAR + case management (ServiceNow SecOps / TheHive) · Intake channels (alert pipeline, abuse@ / report line)",
             "type": "system"
           },
           {
@@ -496,26 +493,27 @@ export const incidentMgmtStages: StageConfig[] = [
           "highlight": true
         }
       ],
-      "examples": [],
+      "examples": [
+        {
+          "label": "Pull the evidence — the real commands / API calls",
+          "code": "map intake channels → the monitored triage queue (alerts, user reports, vendor notices, threat intel)\ntriage SLA + severity-classification criteria + adherence\nmetrics: alert volume, time-to-triage, true/false-positive rate, escalation rate\nthe aged un-triaged backlog (alert-fatigue signal)"
+        }
+      ],
       "keyTakeaways": [
-        "The artifact to pull: In-scope inventory for the incident intake and triage control (from SIEM / SOAR (Sentinel/Splunk)).",
-        "The test: Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"Incident intake and triage\" control is missing, mis-scoped, or not operating.",
-        "Reconcile the systems of record (SIEM / SOAR (Sentinel/Splunk), IR case management, Forensics + evidence store) — anything the control never reached is the highest-value finding.",
+        "The artifact to pull: The intake channels for potential incidents (alerts, user reports, vendor notices, threat intel) + how they reach the IR team.",
+        "The test: Verify potential incidents are reliably captured, triaged, and classified.",
+        "Reconcile the systems of record (SIEM / SOAR + case management (ServiceNow SecOps / TheHive), Intake channels (alert pipeline, abuse@ / report line), Triage metrics dashboard) — anything the control never reached is the highest-value finding.",
         "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the incident intake and triage control is not applied, mis-scoped, or has drifted from the approved baseline"
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. User-reported phishing goes to a shared mailbox no one owns, SIEM alerts have a 5,000-item un-triaged backlog, and there's no severity classification — so a real intrusion sat in the queue for days."
       ],
       "references": [
         {
-          "title": "NIST SP 800-61 — Incident Handling",
+          "title": "NIST SP 800-61",
           "url": "https://csrc.nist.gov/pubs/sp/800/61/r2/final"
         },
         {
           "title": "SANS Incident Handler's Handbook",
           "url": "https://www.sans.org/white-papers/33901/"
-        },
-        {
-          "title": "ISO/IEC 27035 — Incident Management",
-          "url": "https://www.iso.org/standard/78973.html"
         },
         {
           "title": "Model Context Protocol — specification",
@@ -526,20 +524,20 @@ export const incidentMgmtStages: StageConfig[] = [
         {
           "name": "02_incident_intake_and_triage_mcp.py",
           "url": "/audit-code/incident-mgmt/02_incident_intake_and_triage_mcp.py",
-          "description": "Runnable read-only MCP server: gathers the Incident Management evidence for \"Incident intake and triage\" (in-scope inventory for the incident intake and triage control (from siem / soar (sentinel/splunk))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Incident Management evidence for \"Incident intake and triage\" (the intake channels for potential incidents (alerts, user reports, vendor notices, threat intel) + how they reach the ir team), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Incident intake and triage\" control for Incident Management at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"Incident intake and triage\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the incident intake and triage control (from SIEM / SOAR (Sentinel/Splunk)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live SIEM / SOAR (Sentinel/Splunk) APIs; here the same sources are exported to files.)",
-      "hint": "Read every file in /evidence. SIEM / SOAR (Sentinel/Splunk) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
+      "scenario": "You're the auditor testing the \"Incident intake and triage\" control for Incident Management at AcmeCorp. THE TEST: Verify potential incidents are reliably captured, triaged, and classified. PASS: all intake channels (SIEM/EDR alerts, user reports, vendor/threat-intel notices) route to a monitored queue with a triage SLA; incidents are classified by a severity matrix; response SLAs are met; and there's no large backlog of un-triaged alerts. Exceptions: alerts into an unmonitored mailbox, no triage SLA or severity criteria, a large un-triaged backlog, and no metrics on triage performance. The evidence — The intake channels for potential incidents (alerts, user reports, vendor notices, threat intel) + how they reach the IR team — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live SIEM / SOAR + case management (ServiceNow SecOps / TheHive) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. SIEM / SOAR + case management (ServiceNow SecOps / TheHive) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. The inventory comes from SIEM / SOAR (Sentinel/Splunk); the state file shows what is actually configured/running.",
+        "cat each file in /evidence. The inventory comes from SIEM / SOAR + case management (ServiceNow SecOps / TheHive); the state file shows what is actually configured/running.",
         "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Incident Management: \"Incident intake and triage\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"Incident intake and triage\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- incident-mgmt_inventory.json   (in-scope items — In-scope inventory for the incident intake and triage control (from SIEM / SOAR (Sentinel/Splunk)))\n- incident-mgmt_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Incident Management: \"Incident intake and triage\" Audit Evidence\n\nThe test:\nVerify potential incidents are reliably captured, triaged, and classified. PASS: all intake channels (SIEM/EDR alerts, user reports, vendor/threat-intel notices) route to a monitored queue with a triage SLA; incidents are classified by a severity matrix; response SLAs are met; and there's no large backlog of un-triaged alerts. Exceptions: alerts into an unmonitored mailbox, no triage SLA or severity criteria, a large un-triaged backlog, and no metrics on triage performance.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- incident-mgmt_inventory.json   (in-scope items — The intake channels for potential incidents (alerts, user reports, vendor notices, threat intel) + how they reach the IR team)\n- incident-mgmt_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Incident intake and triage\",\n  \"domain\": \"Incident Management\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{inc_",
         "/evidence/incident-mgmt_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Security operations / CSIRT\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Incident intake and triage\" control must cover\n# fragment: incident_intake_triage_",
         "/evidence/incident-mgmt_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -635,7 +633,7 @@ export const incidentMgmtStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Incident intake and triage\" control?",
           "options": [
             "A point-in-time screenshot of one system's incident intake and triage settings, captured during the walkthrough",
-            "The In-scope inventory for the incident intake and triage control (from SIEM / SOAR (Sentinel/Splunk)), reconciled against policy, plus the resulting findings working paper",
+            "The The intake channels for potential incidents (alerts, user reports, vendor notices, threat intel) + how they reach the IR team, reconciled against policy, plus the resulting findings working paper",
             "A signed management attestation that the incident intake and triage control is in place, with no underlying data attached",
             "A vendor datasheet describing the product's incident intake and triage capabilities and its recommended configuration"
           ],
@@ -648,13 +646,13 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "Source of truth",
           "text": "Where should an auditor pull the evidence for \"Incident intake and triage\"?",
           "options": [
-            "From SIEM / SOAR (Sentinel/Splunk) and the other systems of record for this domain, accessed read-only",
+            "From SIEM / SOAR + case management (ServiceNow SecOps / TheHive) and the other systems of record for this domain, accessed read-only",
             "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
             "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
             "From an informal summary the team posted to the internal wiki describing how incident intake and triage works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence must come from the authoritative systems (e.g. SIEM / SOAR (Sentinel/Splunk)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
+          "explanation": "Evidence must come from the authoritative systems (e.g. SIEM / SOAR + case management (ServiceNow SecOps / TheHive)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "inc-02-q5",
@@ -665,10 +663,10 @@ export const incidentMgmtStages: StageConfig[] = [
             "The external audit firm, since it is the party examining the incident intake and triage control this period",
             "Whoever most recently changed the configuration, regardless of their role or formal accountability",
             "No single function — the incident intake and triage data is shared, so the accountability sits with no one in particular",
-            "Security operations / CSIRT, with the related functions attesting to the part each of them owns"
+            "SOC / triage analysts, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Security operations / CSIRT owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
+          "explanation": "SOC / triage analysts owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "inc-02-q6",
@@ -704,13 +702,13 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "Typical finding",
           "text": "For \"Incident intake and triage\", which of these is a realistic reportable finding?",
           "options": [
-            "In-scope items where the incident intake and triage control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "User-reported phishing goes to a shared mailbox no one owns, SIEM alerts have a 5,000-item un-triaged backlog, and there's no severity classification — so a real intrusion sat in the queue for days.",
             "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
             "The team has adopted a leading commercial platform that is widely used to support this control area",
             "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the incident intake and triage control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. User-reported phishing goes to a shared mailbox no one owns, SIEM alerts have a 5,000-item un-triaged backlog, and there's no severity classification — so a real intrusion sat in the queue for days. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "inc-02-q9",
@@ -755,25 +753,23 @@ export const incidentMgmtStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Evidence handling and forensics\" control for Incident Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"Evidence handling and forensics\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
-      "approach": "An audit agent calls a read-only MCP server that wraps the Incident Management systems of record (SIEM / SOAR (Sentinel/Splunk); IR case management; Forensics + evidence store) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Evidence handling and forensics\" control for Incident Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Verify the org can collect + preserve evidence forensically. PASS: a documented evidence-handling procedure covers acquisition, chain of custody, integrity (hashing), and secure storage; forensic capability exists (disk/memory/EDR/cloud collection, remote where possible); telemetry retention is long enough to investigate a past intrusion; and chain of custody is maintained. Exceptions: no evidence-handling procedure, no forensic capability, retention too short to investigate (days not months), and broken chain of custody (evidence inadmissible).",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Incident Management systems of record (Forensic tooling (EnCase / FTK / Velociraptor / EDR collection); Evidence store + chain-of-custody system; SIEM / log retention) as tools — e.g. `evidence-handling procedure: acquisition, chain of custody, hashing, s`, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
-        "In-scope inventory for the evidence handling and forensics control (from SIEM / SOAR (Sentinel/Splunk))",
-        "Observed configuration/state evidence showing whether the control is applied and operating",
-        "The control policy / standard / threshold the evidence is judged against",
-        "The reconciled exceptions list + coverage report (the working paper)"
+        "The forensic-readiness + evidence-handling procedure (acquisition, chain of custody, integrity/hashing, storage)",
+        "The forensic toolkit + capability (disk/memory acquisition, EDR collection, cloud forensics)",
+        "Log/telemetry retention sufficient for investigation (enough history to reconstruct an intrusion)",
+        "Chain-of-custody records from past investigations"
       ],
       "system": [
-        "SIEM / SOAR (Sentinel/Splunk)",
-        "IR case management",
-        "Forensics + evidence store",
-        "On-call / paging (PagerDuty)"
+        "Forensic tooling (EnCase / FTK / Velociraptor / EDR collection)",
+        "Evidence store + chain-of-custody system",
+        "SIEM / log retention"
       ],
       "dataOwner": [
-        "Security operations / CSIRT",
-        "IT operations",
-        "Legal & Communications",
-        "Risk management"
+        "DFIR / forensics",
+        "Security operations",
+        "Legal (admissibility)"
       ],
       "scoring": {
         "ease": "EASE 5/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
@@ -793,17 +789,17 @@ export const incidentMgmtStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Evidence handling and forensics\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the evidence handling and forensics control (from SIEM / SOAR (Sentinel/Splunk))) with read-only agents, run the test against policy, and issue a defensible opinion on the Incident Management control.",
+      "tagline": "Auditing \"Evidence handling and forensics\" as a repeatable agentic workflow: pull the real evidence (The forensic-readiness + evidence-handling procedure (acquisition, chain of custody, integrity/hashing, storage)) with read-only agents, run the test against policy, and issue a defensible opinion on the Incident Management control.",
       "year": 2025,
       "overview": [
-        "The \"Evidence handling and forensics\" sub-process is one of the controls an auditor must verify for Incident Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the evidence handling and forensics control (from SIEM / SOAR (Sentinel/Splunk)), for everything in scope.\"",
-        "The evidence lives across systems that were never reconciled — here SIEM / SOAR (Sentinel/Splunk), IR case management, Forensics + evidence store — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The test itself is specific. Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"Evidence handling and forensics\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
+        "The \"Evidence handling and forensics\" sub-process is one of the controls an auditor must verify for Incident Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me the forensic-readiness + evidence-handling procedure (acquisition, chain of custody, integrity/hashing, storage), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Forensic tooling (EnCase / FTK / Velociraptor / EDR collection), Evidence store + chain-of-custody system, SIEM / log retention — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. In practice you gather it with calls like `evidence-handling procedure: acquisition, chain of custody, hashing, secure stor` — read-only, against the systems of record.",
+        "The test itself is specific. Verify the org can collect + preserve evidence forensically. PASS: a documented evidence-handling procedure covers acquisition, chain of custody, integrity (hashing), and secure storage; forensic capability exists (disk/memory/EDR/cloud collection, remote where possible); telemetry retention is long enough to investigate a past intrusion; and chain of custody is maintained. Exceptions: no evidence-handling procedure, no forensic capability, retention too short to investigate (days not months), and broken chain of custody (evidence inadmissible). The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `03_evidence_handling_and_forensics_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from SIEM / SOAR (Sentinel/Splunk) and IR case management (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The included `03_evidence_handling_and_forensics_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Forensic tooling (EnCase / FTK / Velociraptor / EDR collection) and Evidence store + chain-of-custody system (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
           "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 03_evidence_handling_and_forensics_mcp.py` to expose it to your agent — or `python 03_evidence_handling_and_forensics_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
@@ -831,7 +827,7 @@ export const incidentMgmtStages: StageConfig[] = [
           },
           {
             "label": "Agent + MCP",
-            "sub": "pull SIEM / SOAR (Sentinel/Splunk) · IR case management",
+            "sub": "pull Forensic tooling (EnCase / FTK / Velociraptor / EDR collection) · Evidence store + chain-of-custody system",
             "type": "system"
           },
           {
@@ -862,26 +858,27 @@ export const incidentMgmtStages: StageConfig[] = [
           "highlight": true
         }
       ],
-      "examples": [],
+      "examples": [
+        {
+          "label": "Pull the evidence — the real commands / API calls",
+          "code": "evidence-handling procedure: acquisition, chain of custody, hashing, secure storage\nforensic capability: disk/memory/EDR/cloud acquisition (remote-capable?)\nlog/telemetry retention window vs investigation need (can you reconstruct a 3-month-old intrusion?)\nchain-of-custody records from prior cases (integrity maintained?)"
+        }
+      ],
       "keyTakeaways": [
-        "The artifact to pull: In-scope inventory for the evidence handling and forensics control (from SIEM / SOAR (Sentinel/Splunk)).",
-        "The test: Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"Evidence handling and forensics\" control is missing, mis-scoped, or not operating.",
-        "Reconcile the systems of record (SIEM / SOAR (Sentinel/Splunk), IR case management, Forensics + evidence store) — anything the control never reached is the highest-value finding.",
+        "The artifact to pull: The forensic-readiness + evidence-handling procedure (acquisition, chain of custody, integrity/hashing, storage).",
+        "The test: Verify the org can collect + preserve evidence forensically.",
+        "Reconcile the systems of record (Forensic tooling (EnCase / FTK / Velociraptor / EDR collection), Evidence store + chain-of-custody system, SIEM / log retention) — anything the control never reached is the highest-value finding.",
         "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the evidence handling and forensics control is not applied, mis-scoped, or has drifted from the approved baseline"
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. There's no documented evidence-handling procedure, EDR telemetry is retained 7 days (too short to investigate), and a prior case's evidence had a broken chain of custody — so it couldn't be used."
       ],
       "references": [
         {
-          "title": "NIST SP 800-61 — Incident Handling",
-          "url": "https://csrc.nist.gov/pubs/sp/800/61/r2/final"
+          "title": "NIST SP 800-86 Forensic Techniques",
+          "url": "https://csrc.nist.gov/pubs/sp/800/86/final"
         },
         {
-          "title": "SANS Incident Handler's Handbook",
-          "url": "https://www.sans.org/white-papers/33901/"
-        },
-        {
-          "title": "ISO/IEC 27035 — Incident Management",
-          "url": "https://www.iso.org/standard/78973.html"
+          "title": "ISO/IEC 27037",
+          "url": "https://www.iso.org/standard/44381.html"
         },
         {
           "title": "Model Context Protocol — specification",
@@ -892,20 +889,20 @@ export const incidentMgmtStages: StageConfig[] = [
         {
           "name": "03_evidence_handling_and_forensics_mcp.py",
           "url": "/audit-code/incident-mgmt/03_evidence_handling_and_forensics_mcp.py",
-          "description": "Runnable read-only MCP server: gathers the Incident Management evidence for \"Evidence handling and forensics\" (in-scope inventory for the evidence handling and forensics control (from siem / soar (sentinel/splunk))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Incident Management evidence for \"Evidence handling and forensics\" (the forensic-readiness + evidence-handling procedure (acquisition, chain of custody, integrity/hashing, storage)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Evidence handling and forensics\" control for Incident Management at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"Evidence handling and forensics\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the evidence handling and forensics control (from SIEM / SOAR (Sentinel/Splunk)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live SIEM / SOAR (Sentinel/Splunk) APIs; here the same sources are exported to files.)",
-      "hint": "Read every file in /evidence. SIEM / SOAR (Sentinel/Splunk) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
+      "scenario": "You're the auditor testing the \"Evidence handling and forensics\" control for Incident Management at AcmeCorp. THE TEST: Verify the org can collect + preserve evidence forensically. PASS: a documented evidence-handling procedure covers acquisition, chain of custody, integrity (hashing), and secure storage; forensic capability exists (disk/memory/EDR/cloud collection, remote where possible); telemetry retention is long enough to investigate a past intrusion; and chain of custody is maintained. Exceptions: no evidence-handling procedure, no forensic capability, retention too short to investigate (days not months), and broken chain of custody (evidence inadmissible). The evidence — The forensic-readiness + evidence-handling procedure (acquisition, chain of custody, integrity/hashing, storage) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Forensic tooling (EnCase / FTK / Velociraptor / EDR collection) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Forensic tooling (EnCase / FTK / Velociraptor / EDR collection) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. The inventory comes from SIEM / SOAR (Sentinel/Splunk); the state file shows what is actually configured/running.",
+        "cat each file in /evidence. The inventory comes from Forensic tooling (EnCase / FTK / Velociraptor / EDR collection); the state file shows what is actually configured/running.",
         "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Incident Management: \"Evidence handling and forensics\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"Evidence handling and forensics\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- incident-mgmt_inventory.json   (in-scope items — In-scope inventory for the evidence handling and forensics control (from SIEM / SOAR (Sentinel/Splunk)))\n- incident-mgmt_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Incident Management: \"Evidence handling and forensics\" Audit Evidence\n\nThe test:\nVerify the org can collect + preserve evidence forensically. PASS: a documented evidence-handling procedure covers acquisition, chain of custody, integrity (hashing), and secure storage; forensic capability exists (disk/memory/EDR/cloud collection, remote where possible); telemetry retention is long enough to investigate a past intrusion; and chain of custody is maintained. Exceptions: no evidence-handling procedure, no forensic capability, retention too short to investigate (days not months), and broken chain of custody (evidence inadmissible).\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- incident-mgmt_inventory.json   (in-scope items — The forensic-readiness + evidence-handling procedure (acquisition, chain of custody, integrity/hashing, storage))\n- incident-mgmt_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Evidence handling and forensics\",\n  \"domain\": \"Incident Management\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{inc_",
         "/evidence/incident-mgmt_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Security operations / CSIRT\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Evidence handling and forensics\" control must cover\n# fragment: evidence_handling_forensics_",
         "/evidence/incident-mgmt_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -1001,7 +998,7 @@ export const incidentMgmtStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Evidence handling and forensics\" control?",
           "options": [
             "A point-in-time screenshot of one system's evidence handling and forensics settings, captured during the walkthrough",
-            "The In-scope inventory for the evidence handling and forensics control (from SIEM / SOAR (Sentinel/Splunk)), reconciled against policy, plus the resulting findings working paper",
+            "The The forensic-readiness + evidence-handling procedure (acquisition, chain of custody, integrity/hashing, storage), reconciled against policy, plus the resulting findings working paper",
             "A signed management attestation that the evidence handling and forensics control is in place, with no underlying data attached",
             "A vendor datasheet describing the product's evidence handling and forensics capabilities and its recommended configuration"
           ],
@@ -1014,13 +1011,13 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "Source of truth",
           "text": "Where should an auditor pull the evidence for \"Evidence handling and forensics\"?",
           "options": [
-            "From SIEM / SOAR (Sentinel/Splunk) and the other systems of record for this domain, accessed read-only",
+            "From Forensic tooling (EnCase / FTK / Velociraptor / EDR collection) and the other systems of record for this domain, accessed read-only",
             "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
             "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
             "From an informal summary the team posted to the internal wiki describing how evidence handling and forensics works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence must come from the authoritative systems (e.g. SIEM / SOAR (Sentinel/Splunk)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Forensic tooling (EnCase / FTK / Velociraptor / EDR collection)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "inc-03-q5",
@@ -1031,10 +1028,10 @@ export const incidentMgmtStages: StageConfig[] = [
             "The external audit firm, since it is the party examining the evidence handling and forensics control this period",
             "Whoever most recently changed the configuration, regardless of their role or formal accountability",
             "No single function — the evidence handling and forensics data is shared, so the accountability sits with no one in particular",
-            "Security operations / CSIRT, with the related functions attesting to the part each of them owns"
+            "DFIR / forensics, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Security operations / CSIRT owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
+          "explanation": "DFIR / forensics owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "inc-03-q6",
@@ -1070,13 +1067,13 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "Typical finding",
           "text": "For \"Evidence handling and forensics\", which of these is a realistic reportable finding?",
           "options": [
-            "In-scope items where the evidence handling and forensics control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "There's no documented evidence-handling procedure, EDR telemetry is retained 7 days (too short to investigate), and a prior case's evidence had a broken chain of custody — so it couldn't be used.",
             "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
             "The team has adopted a leading commercial platform that is widely used to support this control area",
             "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the evidence handling and forensics control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. There's no documented evidence-handling procedure, EDR telemetry is retained 7 days (too short to investigate), and a prior case's evidence had a broken chain of custody — so it couldn't be used. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "inc-03-q9",
@@ -1121,25 +1118,24 @@ export const incidentMgmtStages: StageConfig[] = [
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Post-incident reviews / corrective\" control for Incident Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"Post-incident reviews / corrective\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
-      "approach": "An audit agent calls a read-only MCP server that wraps the Incident Management systems of record (SIEM / SOAR (Sentinel/Splunk); IR case management; Forensics + evidence store) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Post-incident reviews / corrective\" control for Incident Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Verify incidents drive durable improvement. PASS: significant incidents get a blameless PIR (timeline, root cause, gaps); corrective + preventive actions are assigned, tracked, and closed; lessons feed back into detections/controls/playbooks; and repeat incidents decline. Exceptions: no PIRs (or only for the biggest), PIRs with no corrective actions or actions never closed, no feedback into controls, and the same incident type recurring.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Incident Management systems of record (PIR / postmortem records; CAPA / action tracker; Detection-engineering + control backlog) as tools — e.g. `PIR records for significant incidents: timeline, root cause, gaps (bla`, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
-        "In-scope inventory for the post-incident reviews / corrective control (from SIEM / SOAR (Sentinel/Splunk))",
-        "Observed configuration/state evidence showing whether the control is applied and operating",
-        "The control policy / standard / threshold the evidence is judged against",
-        "The reconciled exceptions list + coverage report (the working paper)"
+        "The post-incident review (PIR) / blameless-postmortem records for significant incidents (timeline, root cause, what worked/failed, lessons)",
+        "Corrective + preventive actions (CAPA) tracked to closure with owners + dates",
+        "Evidence lessons feed back (detections added, controls fixed, playbooks updated, recurrence prevented)",
+        "Metrics: MTTD/MTTR trend, repeat-incident rate"
       ],
       "system": [
-        "SIEM / SOAR (Sentinel/Splunk)",
-        "IR case management",
-        "Forensics + evidence store",
-        "On-call / paging (PagerDuty)"
+        "PIR / postmortem records",
+        "CAPA / action tracker",
+        "Detection-engineering + control backlog",
+        "Incident-metrics dashboard"
       ],
       "dataOwner": [
         "Security operations / CSIRT",
-        "IT operations",
-        "Legal & Communications",
-        "Risk management"
+        "Detection engineering + control owners",
+        "Leadership"
       ],
       "scoring": {
         "ease": "EASE 6/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
@@ -1159,17 +1155,17 @@ export const incidentMgmtStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Post-incident reviews / corrective\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the post-incident reviews / corrective control (from SIEM / SOAR (Sentinel/Splunk))) with read-only agents, run the test against policy, and issue a defensible opinion on the Incident Management control.",
+      "tagline": "Auditing \"Post-incident reviews / corrective\" as a repeatable agentic workflow: pull the real evidence (The post-incident review (PIR) / blameless-postmortem records for significant incidents (timeline, root cause, what worked/failed, lessons)) with read-only agents, run the test against policy, and issue a defensible opinion on the Incident Management control.",
       "year": 2025,
       "overview": [
-        "The \"Post-incident reviews / corrective\" sub-process is one of the controls an auditor must verify for Incident Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the post-incident reviews / corrective control (from SIEM / SOAR (Sentinel/Splunk)), for everything in scope.\"",
-        "The evidence lives across systems that were never reconciled — here SIEM / SOAR (Sentinel/Splunk), IR case management, Forensics + evidence store — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The test itself is specific. Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"Post-incident reviews / corrective\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
+        "The \"Post-incident reviews / corrective\" sub-process is one of the controls an auditor must verify for Incident Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me the post-incident review (PIR) / blameless-postmortem records for significant incidents (timeline, root cause, what worked/failed, lessons), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here PIR / postmortem records, CAPA / action tracker, Detection-engineering + control backlog — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. In practice you gather it with calls like `PIR records for significant incidents: timeline, root cause, gaps (blameless?)` — read-only, against the systems of record.",
+        "The test itself is specific. Verify incidents drive durable improvement. PASS: significant incidents get a blameless PIR (timeline, root cause, gaps); corrective + preventive actions are assigned, tracked, and closed; lessons feed back into detections/controls/playbooks; and repeat incidents decline. Exceptions: no PIRs (or only for the biggest), PIRs with no corrective actions or actions never closed, no feedback into controls, and the same incident type recurring. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `04_post_incident_reviews_corrective_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from SIEM / SOAR (Sentinel/Splunk) and IR case management (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The included `04_post_incident_reviews_corrective_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from PIR / postmortem records and CAPA / action tracker (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
           "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 04_post_incident_reviews_corrective_mcp.py` to expose it to your agent — or `python 04_post_incident_reviews_corrective_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
@@ -1197,7 +1193,7 @@ export const incidentMgmtStages: StageConfig[] = [
           },
           {
             "label": "Agent + MCP",
-            "sub": "pull SIEM / SOAR (Sentinel/Splunk) · IR case management",
+            "sub": "pull PIR / postmortem records · CAPA / action tracker",
             "type": "system"
           },
           {
@@ -1228,26 +1224,27 @@ export const incidentMgmtStages: StageConfig[] = [
           "highlight": true
         }
       ],
-      "examples": [],
+      "examples": [
+        {
+          "label": "Pull the evidence — the real commands / API calls",
+          "code": "PIR records for significant incidents: timeline, root cause, gaps (blameless?)\nCAPA: corrective + preventive actions assigned + closed (not just logged)\nfeedback evidence: detections added, controls fixed, playbooks updated\nMTTD/MTTR trend + repeat-incident rate"
+        }
+      ],
       "keyTakeaways": [
-        "The artifact to pull: In-scope inventory for the post-incident reviews / corrective control (from SIEM / SOAR (Sentinel/Splunk)).",
-        "The test: Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"Post-incident reviews / corrective\" control is missing, mis-scoped, or not operating.",
-        "Reconcile the systems of record (SIEM / SOAR (Sentinel/Splunk), IR case management, Forensics + evidence store) — anything the control never reached is the highest-value finding.",
+        "The artifact to pull: The post-incident review (PIR) / blameless-postmortem records for significant incidents (timeline, root cause, what worked/failed, lessons).",
+        "The test: Verify incidents drive durable improvement.",
+        "Reconcile the systems of record (PIR / postmortem records, CAPA / action tracker, Detection-engineering + control backlog) — anything the control never reached is the highest-value finding.",
         "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the post-incident reviews / corrective control is not applied, mis-scoped, or has drifted from the approved baseline"
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. PIRs are done only for the largest incidents and produce no tracked corrective actions; the same phishing-to-ransomware path has recurred three times because the root-cause control gap was never fixed."
       ],
       "references": [
         {
-          "title": "NIST SP 800-61 — Incident Handling",
+          "title": "NIST SP 800-61",
           "url": "https://csrc.nist.gov/pubs/sp/800/61/r2/final"
         },
         {
-          "title": "SANS Incident Handler's Handbook",
-          "url": "https://www.sans.org/white-papers/33901/"
-        },
-        {
-          "title": "ISO/IEC 27035 — Incident Management",
-          "url": "https://www.iso.org/standard/78973.html"
+          "title": "Google SRE — Blameless Postmortems",
+          "url": "https://sre.google/sre-book/postmortem-culture/"
         },
         {
           "title": "Model Context Protocol — specification",
@@ -1258,20 +1255,20 @@ export const incidentMgmtStages: StageConfig[] = [
         {
           "name": "04_post_incident_reviews_corrective_mcp.py",
           "url": "/audit-code/incident-mgmt/04_post_incident_reviews_corrective_mcp.py",
-          "description": "Runnable read-only MCP server: gathers the Incident Management evidence for \"Post-incident reviews / corrective\" (in-scope inventory for the post-incident reviews / corrective control (from siem / soar (sentinel/splunk))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Incident Management evidence for \"Post-incident reviews / corrective\" (the post-incident review (pir) / blameless-postmortem records for significant incidents (timeline, root cause, what worked/failed, lessons)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Post-incident reviews / corrective\" control for Incident Management at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"Post-incident reviews / corrective\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the post-incident reviews / corrective control (from SIEM / SOAR (Sentinel/Splunk)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live SIEM / SOAR (Sentinel/Splunk) APIs; here the same sources are exported to files.)",
-      "hint": "Read every file in /evidence. SIEM / SOAR (Sentinel/Splunk) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
+      "scenario": "You're the auditor testing the \"Post-incident reviews / corrective\" control for Incident Management at AcmeCorp. THE TEST: Verify incidents drive durable improvement. PASS: significant incidents get a blameless PIR (timeline, root cause, gaps); corrective + preventive actions are assigned, tracked, and closed; lessons feed back into detections/controls/playbooks; and repeat incidents decline. Exceptions: no PIRs (or only for the biggest), PIRs with no corrective actions or actions never closed, no feedback into controls, and the same incident type recurring. The evidence — The post-incident review (PIR) / blameless-postmortem records for significant incidents (timeline, root cause, what worked/failed, lessons) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live PIR / postmortem records APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. PIR / postmortem records gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. The inventory comes from SIEM / SOAR (Sentinel/Splunk); the state file shows what is actually configured/running.",
+        "cat each file in /evidence. The inventory comes from PIR / postmortem records; the state file shows what is actually configured/running.",
         "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Incident Management: \"Post-incident reviews / corrective\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"Post-incident reviews / corrective\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- incident-mgmt_inventory.json   (in-scope items — In-scope inventory for the post-incident reviews / corrective control (from SIEM / SOAR (Sentinel/Splunk)))\n- incident-mgmt_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Incident Management: \"Post-incident reviews / corrective\" Audit Evidence\n\nThe test:\nVerify incidents drive durable improvement. PASS: significant incidents get a blameless PIR (timeline, root cause, gaps); corrective + preventive actions are assigned, tracked, and closed; lessons feed back into detections/controls/playbooks; and repeat incidents decline. Exceptions: no PIRs (or only for the biggest), PIRs with no corrective actions or actions never closed, no feedback into controls, and the same incident type recurring.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- incident-mgmt_inventory.json   (in-scope items — The post-incident review (PIR) / blameless-postmortem records for significant incidents (timeline, root cause, what worked/failed, lessons))\n- incident-mgmt_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Post-incident reviews / corrective\",\n  \"domain\": \"Incident Management\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{inc_",
         "/evidence/incident-mgmt_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Security operations / CSIRT\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Post-incident reviews / corrective\" control must cover\n# fragment: postincident_reviews_corrective_",
         "/evidence/incident-mgmt_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -1367,7 +1364,7 @@ export const incidentMgmtStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Post-incident reviews / corrective\" control?",
           "options": [
             "A point-in-time screenshot of one system's post-incident reviews / corrective settings, captured during the walkthrough",
-            "The In-scope inventory for the post-incident reviews / corrective control (from SIEM / SOAR (Sentinel/Splunk)), reconciled against policy, plus the resulting findings working paper",
+            "The The post-incident review (PIR) / blameless-postmortem records for significant incidents (timeline, root cause, what worked/failed, lessons), reconciled against policy, plus the resulting findings working paper",
             "A signed management attestation that the post-incident reviews / corrective control is in place, with no underlying data attached",
             "A vendor datasheet describing the product's post-incident reviews / corrective capabilities and its recommended configuration"
           ],
@@ -1380,13 +1377,13 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "Source of truth",
           "text": "Where should an auditor pull the evidence for \"Post-incident reviews / corrective\"?",
           "options": [
-            "From SIEM / SOAR (Sentinel/Splunk) and the other systems of record for this domain, accessed read-only",
+            "From PIR / postmortem records and the other systems of record for this domain, accessed read-only",
             "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
             "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
             "From an informal summary the team posted to the internal wiki describing how post-incident reviews / corrective works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence must come from the authoritative systems (e.g. SIEM / SOAR (Sentinel/Splunk)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
+          "explanation": "Evidence must come from the authoritative systems (e.g. PIR / postmortem records) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "inc-04-q5",
@@ -1436,13 +1433,13 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "Typical finding",
           "text": "For \"Post-incident reviews / corrective\", which of these is a realistic reportable finding?",
           "options": [
-            "In-scope items where the post-incident reviews / corrective control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "PIRs are done only for the largest incidents and produce no tracked corrective actions; the same phishing-to-ransomware path has recurred three times because the root-cause control gap was never fixed.",
             "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
             "The team has adopted a leading commercial platform that is widely used to support this control area",
             "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the post-incident reviews / corrective control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. PIRs are done only for the largest incidents and produce no tracked corrective actions; the same phishing-to-ransomware path has recurred three times because the root-cause control gap was never fixed. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "inc-04-q9",
@@ -1487,25 +1484,24 @@ export const incidentMgmtStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"External notifications / breach comms\" control for Incident Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"External notifications / breach comms\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
-      "approach": "An audit agent calls a read-only MCP server that wraps the Incident Management systems of record (SIEM / SOAR (Sentinel/Splunk); IR case management; Forensics + evidence store) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"External notifications / breach comms\" control for Incident Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Verify the org can notify the right parties within legal/contractual deadlines. PASS: a breach-notification process maps every obligation (GDPR 72h, state AG laws, HIPAA, SEC material-incident 4-day, customer-contract clauses) to a trigger + deadline; pre-approved templates + an approval chain exist; legal/PR/insurer/regulator contacts are ready; and past breaches were notified on time. Exceptions: no notification trigger map, missed statutory deadlines, no templates/approval chain (notification improvised under pressure), and unknown regulator/insurer contacts.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Incident Management systems of record (The breach-notification playbook + obligation map; Legal / Privacy + Comms / PR; Cyber-insurance + regulator contacts) as tools — e.g. `the obligation map: each regulation/contract → trigger + deadline (GDP`, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
-        "In-scope inventory for the external notifications / breach comms control (from SIEM / SOAR (Sentinel/Splunk))",
-        "Observed configuration/state evidence showing whether the control is applied and operating",
-        "The control policy / standard / threshold the evidence is judged against",
-        "The reconciled exceptions list + coverage report (the working paper)"
+        "The breach-notification decision process + the regulatory/contractual trigger map (GDPR 72h, US state laws, HIPAA, SEC 4-day, contractual customer-notice)",
+        "Pre-approved comms templates + the legal/PR/exec approval chain",
+        "Evidence of timely notification in past breaches (regulator, affected individuals, customers, partners)",
+        "The contact list for regulators + the cyber-insurance / outside-counsel notification path"
       ],
       "system": [
-        "SIEM / SOAR (Sentinel/Splunk)",
-        "IR case management",
-        "Forensics + evidence store",
-        "On-call / paging (PagerDuty)"
+        "The breach-notification playbook + obligation map",
+        "Legal / Privacy + Comms / PR",
+        "Cyber-insurance + regulator contacts"
       ],
       "dataOwner": [
-        "Security operations / CSIRT",
-        "IT operations",
-        "Legal & Communications",
-        "Risk management"
+        "Legal / Privacy (owns notification)",
+        "Comms / PR",
+        "CISO + Exec",
+        "Cyber insurance"
       ],
       "scoring": {
         "ease": "EASE 6/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
@@ -1525,17 +1521,17 @@ export const incidentMgmtStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"External notifications / breach comms\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the external notifications / breach comms control (from SIEM / SOAR (Sentinel/Splunk))) with read-only agents, run the test against policy, and issue a defensible opinion on the Incident Management control.",
+      "tagline": "Auditing \"External notifications / breach comms\" as a repeatable agentic workflow: pull the real evidence (The breach-notification decision process + the regulatory/contractual trigger map (GDPR 72h, US state laws, HIPAA, SEC 4-day, contractual customer-notice)) with read-only agents, run the test against policy, and issue a defensible opinion on the Incident Management control.",
       "year": 2025,
       "overview": [
-        "The \"External notifications / breach comms\" sub-process is one of the controls an auditor must verify for Incident Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the external notifications / breach comms control (from SIEM / SOAR (Sentinel/Splunk)), for everything in scope.\"",
-        "The evidence lives across systems that were never reconciled — here SIEM / SOAR (Sentinel/Splunk), IR case management, Forensics + evidence store — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The test itself is specific. Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"External notifications / breach comms\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
+        "The \"External notifications / breach comms\" sub-process is one of the controls an auditor must verify for Incident Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me the breach-notification decision process + the regulatory/contractual trigger map (GDPR 72h, US state laws, HIPAA, SEC 4-day, contractual customer-notice), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here The breach-notification playbook + obligation map, Legal / Privacy + Comms / PR, Cyber-insurance + regulator contacts — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. In practice you gather it with calls like `the obligation map: each regulation/contract → trigger + deadline (GDPR 72h, SEC` — read-only, against the systems of record.",
+        "The test itself is specific. Verify the org can notify the right parties within legal/contractual deadlines. PASS: a breach-notification process maps every obligation (GDPR 72h, state AG laws, HIPAA, SEC material-incident 4-day, customer-contract clauses) to a trigger + deadline; pre-approved templates + an approval chain exist; legal/PR/insurer/regulator contacts are ready; and past breaches were notified on time. Exceptions: no notification trigger map, missed statutory deadlines, no templates/approval chain (notification improvised under pressure), and unknown regulator/insurer contacts. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `05_external_notifications_breach_comms_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from SIEM / SOAR (Sentinel/Splunk) and IR case management (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The included `05_external_notifications_breach_comms_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from The breach-notification playbook + obligation map and Legal / Privacy + Comms / PR (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
           "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 05_external_notifications_breach_comms_mcp.py` to expose it to your agent — or `python 05_external_notifications_breach_comms_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
@@ -1563,7 +1559,7 @@ export const incidentMgmtStages: StageConfig[] = [
           },
           {
             "label": "Agent + MCP",
-            "sub": "pull SIEM / SOAR (Sentinel/Splunk) · IR case management",
+            "sub": "pull The breach-notification playbook + obligation map · Legal / Privacy + Comms / PR",
             "type": "system"
           },
           {
@@ -1594,26 +1590,27 @@ export const incidentMgmtStages: StageConfig[] = [
           "highlight": true
         }
       ],
-      "examples": [],
+      "examples": [
+        {
+          "label": "Pull the evidence — the real commands / API calls",
+          "code": "the obligation map: each regulation/contract → trigger + deadline (GDPR 72h, SEC 4-day, state laws, HIPAA, customer clauses)\npre-approved comms templates + the legal/PR/exec approval chain\npast breaches: were regulators + individuals + customers notified within the deadline?\nregulator + cyber-insurer + outside-counsel contact readiness"
+        }
+      ],
       "keyTakeaways": [
-        "The artifact to pull: In-scope inventory for the external notifications / breach comms control (from SIEM / SOAR (Sentinel/Splunk)).",
-        "The test: Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"External notifications / breach comms\" control is missing, mis-scoped, or not operating.",
-        "Reconcile the systems of record (SIEM / SOAR (Sentinel/Splunk), IR case management, Forensics + evidence store) — anything the control never reached is the highest-value finding.",
+        "The artifact to pull: The breach-notification decision process + the regulatory/contractual trigger map (GDPR 72h, US state laws, HIPAA, SEC 4-day, contractual customer-notice).",
+        "The test: Verify the org can notify the right parties within legal/contractual deadlines.",
+        "Reconcile the systems of record (The breach-notification playbook + obligation map, Legal / Privacy + Comms / PR, Cyber-insurance + regulator contacts) — anything the control never reached is the highest-value finding.",
         "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the external notifications / breach comms control is not applied, mis-scoped, or has drifted from the approved baseline"
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. There's no breach-notification obligation map, so a past incident's GDPR 72-hour clock and a customer-contract notice were both missed; notifications were drafted from scratch under pressure with no legal-approved template."
       ],
       "references": [
         {
-          "title": "NIST SP 800-61 — Incident Handling",
-          "url": "https://csrc.nist.gov/pubs/sp/800/61/r2/final"
+          "title": "GDPR Art. 33 / 34",
+          "url": "https://gdpr-info.eu/art-33-gdpr/"
         },
         {
-          "title": "SANS Incident Handler's Handbook",
-          "url": "https://www.sans.org/white-papers/33901/"
-        },
-        {
-          "title": "ISO/IEC 27035 — Incident Management",
-          "url": "https://www.iso.org/standard/78973.html"
+          "title": "SEC — Cybersecurity Incident Disclosure",
+          "url": "https://www.sec.gov/news/press-release/2023-139"
         },
         {
           "title": "Model Context Protocol — specification",
@@ -1624,20 +1621,20 @@ export const incidentMgmtStages: StageConfig[] = [
         {
           "name": "05_external_notifications_breach_comms_mcp.py",
           "url": "/audit-code/incident-mgmt/05_external_notifications_breach_comms_mcp.py",
-          "description": "Runnable read-only MCP server: gathers the Incident Management evidence for \"External notifications / breach comms\" (in-scope inventory for the external notifications / breach comms control (from siem / soar (sentinel/splunk))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Incident Management evidence for \"External notifications / breach comms\" (the breach-notification decision process + the regulatory/contractual trigger map (gdpr 72h, us state laws, hipaa, sec 4-day, contractual customer-notice)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"External notifications / breach comms\" control for Incident Management at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"External notifications / breach comms\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the external notifications / breach comms control (from SIEM / SOAR (Sentinel/Splunk)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live SIEM / SOAR (Sentinel/Splunk) APIs; here the same sources are exported to files.)",
-      "hint": "Read every file in /evidence. SIEM / SOAR (Sentinel/Splunk) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
+      "scenario": "You're the auditor testing the \"External notifications / breach comms\" control for Incident Management at AcmeCorp. THE TEST: Verify the org can notify the right parties within legal/contractual deadlines. PASS: a breach-notification process maps every obligation (GDPR 72h, state AG laws, HIPAA, SEC material-incident 4-day, customer-contract clauses) to a trigger + deadline; pre-approved templates + an approval chain exist; legal/PR/insurer/regulator contacts are ready; and past breaches were notified on time. Exceptions: no notification trigger map, missed statutory deadlines, no templates/approval chain (notification improvised under pressure), and unknown regulator/insurer contacts. The evidence — The breach-notification decision process + the regulatory/contractual trigger map (GDPR 72h, US state laws, HIPAA, SEC 4-day, contractual customer-notice) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live The breach-notification playbook + obligation map APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. The breach-notification playbook + obligation map gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. The inventory comes from SIEM / SOAR (Sentinel/Splunk); the state file shows what is actually configured/running.",
+        "cat each file in /evidence. The inventory comes from The breach-notification playbook + obligation map; the state file shows what is actually configured/running.",
         "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Incident Management: \"External notifications / breach comms\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"External notifications / breach comms\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- incident-mgmt_inventory.json   (in-scope items — In-scope inventory for the external notifications / breach comms control (from SIEM / SOAR (Sentinel/Splunk)))\n- incident-mgmt_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Incident Management: \"External notifications / breach comms\" Audit Evidence\n\nThe test:\nVerify the org can notify the right parties within legal/contractual deadlines. PASS: a breach-notification process maps every obligation (GDPR 72h, state AG laws, HIPAA, SEC material-incident 4-day, customer-contract clauses) to a trigger + deadline; pre-approved templates + an approval chain exist; legal/PR/insurer/regulator contacts are ready; and past breaches were notified on time. Exceptions: no notification trigger map, missed statutory deadlines, no templates/approval chain (notification improvised under pressure), and unknown regulator/insurer contacts.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- incident-mgmt_inventory.json   (in-scope items — The breach-notification decision process + the regulatory/contractual trigger map (GDPR 72h, US state laws, HIPAA, SEC 4-day, contractual customer-notice))\n- incident-mgmt_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"External notifications / breach comms\",\n  \"domain\": \"Incident Management\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{inc_",
         "/evidence/incident-mgmt_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Security operations / CSIRT\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"External notifications / breach comms\" control must cover\n# fragment: external_notifications_breach_",
         "/evidence/incident-mgmt_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -1733,7 +1730,7 @@ export const incidentMgmtStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"External notifications / breach comms\" control?",
           "options": [
             "A point-in-time screenshot of one system's external notifications / breach comms settings, captured during the walkthrough",
-            "The In-scope inventory for the external notifications / breach comms control (from SIEM / SOAR (Sentinel/Splunk)), reconciled against policy, plus the resulting findings working paper",
+            "The The breach-notification decision process + the regulatory/contractual trigger map (GDPR 72h, US state laws, HIPAA, SEC 4-day, contractual customer-notice), reconciled against policy, plus the resulting findings working paper",
             "A signed management attestation that the external notifications / breach comms control is in place, with no underlying data attached",
             "A vendor datasheet describing the product's external notifications / breach comms capabilities and its recommended configuration"
           ],
@@ -1746,13 +1743,13 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "Source of truth",
           "text": "Where should an auditor pull the evidence for \"External notifications / breach comms\"?",
           "options": [
-            "From SIEM / SOAR (Sentinel/Splunk) and the other systems of record for this domain, accessed read-only",
+            "From The breach-notification playbook + obligation map and the other systems of record for this domain, accessed read-only",
             "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
             "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
             "From an informal summary the team posted to the internal wiki describing how external notifications / breach comms works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence must come from the authoritative systems (e.g. SIEM / SOAR (Sentinel/Splunk)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
+          "explanation": "Evidence must come from the authoritative systems (e.g. The breach-notification playbook + obligation map) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "inc-05-q5",
@@ -1763,10 +1760,10 @@ export const incidentMgmtStages: StageConfig[] = [
             "The external audit firm, since it is the party examining the external notifications / breach comms control this period",
             "Whoever most recently changed the configuration, regardless of their role or formal accountability",
             "No single function — the external notifications / breach comms data is shared, so the accountability sits with no one in particular",
-            "Security operations / CSIRT, with the related functions attesting to the part each of them owns"
+            "Legal / Privacy (owns notification), with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Security operations / CSIRT owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
+          "explanation": "Legal / Privacy (owns notification) owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "inc-05-q6",
@@ -1802,13 +1799,13 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "Typical finding",
           "text": "For \"External notifications / breach comms\", which of these is a realistic reportable finding?",
           "options": [
-            "In-scope items where the external notifications / breach comms control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "There's no breach-notification obligation map, so a past incident's GDPR 72-hour clock and a customer-contract notice were both missed; notifications were drafted from scratch under pressure with no legal-approved template.",
             "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
             "The team has adopted a leading commercial platform that is widely used to support this control area",
             "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the external notifications / breach comms control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. There's no breach-notification obligation map, so a past incident's GDPR 72-hour clock and a customer-contract notice were both missed; notifications were drafted from scratch under pressure with no legal-approved template. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "inc-05-q9",
@@ -1853,25 +1850,23 @@ export const incidentMgmtStages: StageConfig[] = [
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Incident logging and monitoring\" control for Incident Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"Incident logging and monitoring\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
-      "approach": "An audit agent calls a read-only MCP server that wraps the Incident Management systems of record (SIEM / SOAR (Sentinel/Splunk); IR case management; Forensics + evidence store) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Incident logging and monitoring\" control for Incident Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Verify incidents are logged and the monitoring that detects them is effective. PASS: a complete incident register tracks every incident through to resolution; detection use-cases cover the org's key ATT&CK techniques across SIEM/EDR/NDR; coverage gaps are known + being closed; and detection efficacy is validated. Exceptions: incidents not consistently logged, large ATT&CK detection-coverage gaps, no validation of detection efficacy (alerts that would never fire), and unmanaged false-positive noise.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Incident Management systems of record (SIEM / SOAR + the incident register / case management; EDR / NDR detection content; MITRE ATT&CK Navigator (coverage)) as tools — e.g. `incident register: complete, classified, tracked to resolution?`, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
-        "In-scope inventory for the incident logging and monitoring control (from SIEM / SOAR (Sentinel/Splunk))",
-        "Observed configuration/state evidence showing whether the control is applied and operating",
-        "The control policy / standard / threshold the evidence is judged against",
-        "The reconciled exceptions list + coverage report (the working paper)"
+        "The incident register (all incidents with classification, timeline, status, owner, resolution)",
+        "The detection/monitoring coverage that feeds incidents (SIEM/EDR/NDR use-cases mapped to MITRE ATT&CK)",
+        "Detection-coverage gaps (techniques with no detection) + the tuning/false-positive management",
+        "Evidence the SOC's monitoring actually detects (validated efficacy, not assumed)"
       ],
       "system": [
-        "SIEM / SOAR (Sentinel/Splunk)",
-        "IR case management",
-        "Forensics + evidence store",
-        "On-call / paging (PagerDuty)"
+        "SIEM / SOAR + the incident register / case management",
+        "EDR / NDR detection content",
+        "MITRE ATT&CK Navigator (coverage)"
       ],
       "dataOwner": [
-        "Security operations / CSIRT",
-        "IT operations",
-        "Legal & Communications",
-        "Risk management"
+        "Security operations / detection engineering",
+        "SOC",
+        "Threat intel"
       ],
       "scoring": {
         "ease": "EASE 8/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
@@ -1891,17 +1886,17 @@ export const incidentMgmtStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Incident logging and monitoring\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the incident logging and monitoring control (from SIEM / SOAR (Sentinel/Splunk))) with read-only agents, run the test against policy, and issue a defensible opinion on the Incident Management control.",
+      "tagline": "Auditing \"Incident logging and monitoring\" as a repeatable agentic workflow: pull the real evidence (The incident register (all incidents with classification, timeline, status, owner, resolution)) with read-only agents, run the test against policy, and issue a defensible opinion on the Incident Management control.",
       "year": 2025,
       "overview": [
-        "The \"Incident logging and monitoring\" sub-process is one of the controls an auditor must verify for Incident Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the incident logging and monitoring control (from SIEM / SOAR (Sentinel/Splunk)), for everything in scope.\"",
-        "The evidence lives across systems that were never reconciled — here SIEM / SOAR (Sentinel/Splunk), IR case management, Forensics + evidence store — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The test itself is specific. Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"Incident logging and monitoring\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
+        "The \"Incident logging and monitoring\" sub-process is one of the controls an auditor must verify for Incident Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me the incident register (all incidents with classification, timeline, status, owner, resolution), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here SIEM / SOAR + the incident register / case management, EDR / NDR detection content, MITRE ATT&CK Navigator (coverage) — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. In practice you gather it with calls like `incident register: complete, classified, tracked to resolution?` — read-only, against the systems of record.",
+        "The test itself is specific. Verify incidents are logged and the monitoring that detects them is effective. PASS: a complete incident register tracks every incident through to resolution; detection use-cases cover the org's key ATT&CK techniques across SIEM/EDR/NDR; coverage gaps are known + being closed; and detection efficacy is validated. Exceptions: incidents not consistently logged, large ATT&CK detection-coverage gaps, no validation of detection efficacy (alerts that would never fire), and unmanaged false-positive noise. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `06_incident_logging_and_monitoring_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from SIEM / SOAR (Sentinel/Splunk) and IR case management (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The included `06_incident_logging_and_monitoring_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from SIEM / SOAR + the incident register / case management and EDR / NDR detection content (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
           "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 06_incident_logging_and_monitoring_mcp.py` to expose it to your agent — or `python 06_incident_logging_and_monitoring_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
@@ -1929,7 +1924,7 @@ export const incidentMgmtStages: StageConfig[] = [
           },
           {
             "label": "Agent + MCP",
-            "sub": "pull SIEM / SOAR (Sentinel/Splunk) · IR case management",
+            "sub": "pull SIEM / SOAR + the incident register / case management · EDR / NDR detection content",
             "type": "system"
           },
           {
@@ -1960,26 +1955,27 @@ export const incidentMgmtStages: StageConfig[] = [
           "highlight": true
         }
       ],
-      "examples": [],
+      "examples": [
+        {
+          "label": "Pull the evidence — the real commands / API calls",
+          "code": "incident register: complete, classified, tracked to resolution?\ndetection-use-case coverage mapped to MITRE ATT&CK (SIEM/EDR/NDR)\ncoverage gaps: techniques with no detection + the plan to close\nvalidate detection efficacy (purple-team / Atomic Red Team — do the alerts actually fire?)"
+        }
+      ],
       "keyTakeaways": [
-        "The artifact to pull: In-scope inventory for the incident logging and monitoring control (from SIEM / SOAR (Sentinel/Splunk)).",
-        "The test: Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"Incident logging and monitoring\" control is missing, mis-scoped, or not operating.",
-        "Reconcile the systems of record (SIEM / SOAR (Sentinel/Splunk), IR case management, Forensics + evidence store) — anything the control never reached is the highest-value finding.",
+        "The artifact to pull: The incident register (all incidents with classification, timeline, status, owner, resolution).",
+        "The test: Verify incidents are logged and the monitoring that detects them is effective.",
+        "Reconcile the systems of record (SIEM / SOAR + the incident register / case management, EDR / NDR detection content, MITRE ATT&CK Navigator (coverage)) — anything the control never reached is the highest-value finding.",
         "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the incident logging and monitoring control is not applied, mis-scoped, or has drifted from the approved baseline"
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. The incident register is incomplete (analysts track cases in email), ATT&CK coverage is a fraction of the relevant techniques, and a purple-team test showed credential-dumping and lateral movement produce no alert at all."
       ],
       "references": [
         {
-          "title": "NIST SP 800-61 — Incident Handling",
+          "title": "NIST SP 800-61",
           "url": "https://csrc.nist.gov/pubs/sp/800/61/r2/final"
         },
         {
-          "title": "SANS Incident Handler's Handbook",
-          "url": "https://www.sans.org/white-papers/33901/"
-        },
-        {
-          "title": "ISO/IEC 27035 — Incident Management",
-          "url": "https://www.iso.org/standard/78973.html"
+          "title": "MITRE ATT&CK",
+          "url": "https://attack.mitre.org/"
         },
         {
           "title": "Model Context Protocol — specification",
@@ -1990,20 +1986,20 @@ export const incidentMgmtStages: StageConfig[] = [
         {
           "name": "06_incident_logging_and_monitoring_mcp.py",
           "url": "/audit-code/incident-mgmt/06_incident_logging_and_monitoring_mcp.py",
-          "description": "Runnable read-only MCP server: gathers the Incident Management evidence for \"Incident logging and monitoring\" (in-scope inventory for the incident logging and monitoring control (from siem / soar (sentinel/splunk))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Incident Management evidence for \"Incident logging and monitoring\" (the incident register (all incidents with classification, timeline, status, owner, resolution)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Incident logging and monitoring\" control for Incident Management at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"Incident logging and monitoring\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the incident logging and monitoring control (from SIEM / SOAR (Sentinel/Splunk)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live SIEM / SOAR (Sentinel/Splunk) APIs; here the same sources are exported to files.)",
-      "hint": "Read every file in /evidence. SIEM / SOAR (Sentinel/Splunk) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
+      "scenario": "You're the auditor testing the \"Incident logging and monitoring\" control for Incident Management at AcmeCorp. THE TEST: Verify incidents are logged and the monitoring that detects them is effective. PASS: a complete incident register tracks every incident through to resolution; detection use-cases cover the org's key ATT&CK techniques across SIEM/EDR/NDR; coverage gaps are known + being closed; and detection efficacy is validated. Exceptions: incidents not consistently logged, large ATT&CK detection-coverage gaps, no validation of detection efficacy (alerts that would never fire), and unmanaged false-positive noise. The evidence — The incident register (all incidents with classification, timeline, status, owner, resolution) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live SIEM / SOAR + the incident register / case management APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. SIEM / SOAR + the incident register / case management gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. The inventory comes from SIEM / SOAR (Sentinel/Splunk); the state file shows what is actually configured/running.",
+        "cat each file in /evidence. The inventory comes from SIEM / SOAR + the incident register / case management; the state file shows what is actually configured/running.",
         "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Incident Management: \"Incident logging and monitoring\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"Incident logging and monitoring\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- incident-mgmt_inventory.json   (in-scope items — In-scope inventory for the incident logging and monitoring control (from SIEM / SOAR (Sentinel/Splunk)))\n- incident-mgmt_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Incident Management: \"Incident logging and monitoring\" Audit Evidence\n\nThe test:\nVerify incidents are logged and the monitoring that detects them is effective. PASS: a complete incident register tracks every incident through to resolution; detection use-cases cover the org's key ATT&CK techniques across SIEM/EDR/NDR; coverage gaps are known + being closed; and detection efficacy is validated. Exceptions: incidents not consistently logged, large ATT&CK detection-coverage gaps, no validation of detection efficacy (alerts that would never fire), and unmanaged false-positive noise.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- incident-mgmt_inventory.json   (in-scope items — The incident register (all incidents with classification, timeline, status, owner, resolution))\n- incident-mgmt_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Incident logging and monitoring\",\n  \"domain\": \"Incident Management\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{inc_",
         "/evidence/incident-mgmt_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Security operations / CSIRT\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Incident logging and monitoring\" control must cover\n# fragment: incident_logging_monitoring_",
         "/evidence/incident-mgmt_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -2099,7 +2095,7 @@ export const incidentMgmtStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Incident logging and monitoring\" control?",
           "options": [
             "A point-in-time screenshot of one system's incident logging and monitoring settings, captured during the walkthrough",
-            "The In-scope inventory for the incident logging and monitoring control (from SIEM / SOAR (Sentinel/Splunk)), reconciled against policy, plus the resulting findings working paper",
+            "The The incident register (all incidents with classification, timeline, status, owner, resolution), reconciled against policy, plus the resulting findings working paper",
             "A signed management attestation that the incident logging and monitoring control is in place, with no underlying data attached",
             "A vendor datasheet describing the product's incident logging and monitoring capabilities and its recommended configuration"
           ],
@@ -2112,13 +2108,13 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "Source of truth",
           "text": "Where should an auditor pull the evidence for \"Incident logging and monitoring\"?",
           "options": [
-            "From SIEM / SOAR (Sentinel/Splunk) and the other systems of record for this domain, accessed read-only",
+            "From SIEM / SOAR + the incident register / case management and the other systems of record for this domain, accessed read-only",
             "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
             "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
             "From an informal summary the team posted to the internal wiki describing how incident logging and monitoring works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence must come from the authoritative systems (e.g. SIEM / SOAR (Sentinel/Splunk)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
+          "explanation": "Evidence must come from the authoritative systems (e.g. SIEM / SOAR + the incident register / case management) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "inc-06-q5",
@@ -2129,10 +2125,10 @@ export const incidentMgmtStages: StageConfig[] = [
             "The external audit firm, since it is the party examining the incident logging and monitoring control this period",
             "Whoever most recently changed the configuration, regardless of their role or formal accountability",
             "No single function — the incident logging and monitoring data is shared, so the accountability sits with no one in particular",
-            "Security operations / CSIRT, with the related functions attesting to the part each of them owns"
+            "Security operations / detection engineering, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Security operations / CSIRT owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
+          "explanation": "Security operations / detection engineering owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "inc-06-q6",
@@ -2168,13 +2164,13 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "Typical finding",
           "text": "For \"Incident logging and monitoring\", which of these is a realistic reportable finding?",
           "options": [
-            "In-scope items where the incident logging and monitoring control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The incident register is incomplete (analysts track cases in email), ATT&CK coverage is a fraction of the relevant techniques, and a purple-team test showed credential-dumping and lateral movement produce no alert at all.",
             "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
             "The team has adopted a leading commercial platform that is widely used to support this control area",
             "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the incident logging and monitoring control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. The incident register is incomplete (analysts track cases in email), ATT&CK coverage is a fraction of the relevant techniques, and a purple-team test showed credential-dumping and lateral movement produce no alert at all. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "inc-06-q9",
@@ -2219,25 +2215,23 @@ export const incidentMgmtStages: StageConfig[] = [
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Incident escalation\" control for Incident Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"Incident escalation\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
-      "approach": "An audit agent calls a read-only MCP server that wraps the Incident Management systems of record (SIEM / SOAR (Sentinel/Splunk); IR case management; Forensics + evidence store) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Incident escalation\" control for Incident Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Verify incidents escalate to the right level quickly. PASS: an escalation matrix maps severity to who is engaged within defined timeframes (through to exec/legal/board for major incidents); 24x7 on-call coverage exists + responds within SLA; external help (IR retainer, law enforcement, insurer) can be engaged via a defined path; and past incidents show timely, correct escalation. Exceptions: no escalation matrix, gaps in 24x7 coverage (incidents at night/weekend unhandled), major incidents that didn't reach leadership in time, and no path to external IR/legal/insurer.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Incident Management systems of record (The escalation matrix + on-call (PagerDuty / Opsgenie); IR retainer + cyber-insurance + law-enforcement contacts; Incident records (escalation timeline)) as tools — e.g. `the escalation matrix: severity → who + by when (SOC → IR lead → CISO `, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
-        "In-scope inventory for the incident escalation control (from SIEM / SOAR (Sentinel/Splunk))",
-        "Observed configuration/state evidence showing whether the control is applied and operating",
-        "The control policy / standard / threshold the evidence is judged against",
-        "The reconciled exceptions list + coverage report (the working paper)"
+        "The escalation matrix (severity → who is engaged + within what timeframe: SOC → IR lead → CISO → exec / legal / board)",
+        "On-call + 24x7 coverage evidence (someone is reachable + responds within SLA at all hours)",
+        "Escalation evidence from past incidents (was the right level engaged in time?)",
+        "The criteria + path to engage external help (IR retainer, law enforcement, cyber-insurer)"
       ],
       "system": [
-        "SIEM / SOAR (Sentinel/Splunk)",
-        "IR case management",
-        "Forensics + evidence store",
-        "On-call / paging (PagerDuty)"
+        "The escalation matrix + on-call (PagerDuty / Opsgenie)",
+        "IR retainer + cyber-insurance + law-enforcement contacts",
+        "Incident records (escalation timeline)"
       ],
       "dataOwner": [
-        "Security operations / CSIRT",
-        "IT operations",
-        "Legal & Communications",
-        "Risk management"
+        "Security operations / IR lead",
+        "CISO + leadership",
+        "Legal + cyber insurance"
       ],
       "scoring": {
         "ease": "EASE 5/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
@@ -2257,17 +2251,17 @@ export const incidentMgmtStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Incident escalation\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the incident escalation control (from SIEM / SOAR (Sentinel/Splunk))) with read-only agents, run the test against policy, and issue a defensible opinion on the Incident Management control.",
+      "tagline": "Auditing \"Incident escalation\" as a repeatable agentic workflow: pull the real evidence (The escalation matrix (severity → who is engaged + within what timeframe: SOC → IR lead → CISO → exec / legal / board)) with read-only agents, run the test against policy, and issue a defensible opinion on the Incident Management control.",
       "year": 2025,
       "overview": [
-        "The \"Incident escalation\" sub-process is one of the controls an auditor must verify for Incident Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the incident escalation control (from SIEM / SOAR (Sentinel/Splunk)), for everything in scope.\"",
-        "The evidence lives across systems that were never reconciled — here SIEM / SOAR (Sentinel/Splunk), IR case management, Forensics + evidence store — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The test itself is specific. Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"Incident escalation\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
+        "The \"Incident escalation\" sub-process is one of the controls an auditor must verify for Incident Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me the escalation matrix (severity → who is engaged + within what timeframe: SOC → IR lead → CISO → exec / legal / board), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here The escalation matrix + on-call (PagerDuty / Opsgenie), IR retainer + cyber-insurance + law-enforcement contacts, Incident records (escalation timeline) — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. In practice you gather it with calls like `the escalation matrix: severity → who + by when (SOC → IR lead → CISO → exec / l` — read-only, against the systems of record.",
+        "The test itself is specific. Verify incidents escalate to the right level quickly. PASS: an escalation matrix maps severity to who is engaged within defined timeframes (through to exec/legal/board for major incidents); 24x7 on-call coverage exists + responds within SLA; external help (IR retainer, law enforcement, insurer) can be engaged via a defined path; and past incidents show timely, correct escalation. Exceptions: no escalation matrix, gaps in 24x7 coverage (incidents at night/weekend unhandled), major incidents that didn't reach leadership in time, and no path to external IR/legal/insurer. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `07_incident_escalation_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from SIEM / SOAR (Sentinel/Splunk) and IR case management (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The included `07_incident_escalation_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from The escalation matrix + on-call (PagerDuty / Opsgenie) and IR retainer + cyber-insurance + law-enforcement contacts (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
           "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 07_incident_escalation_mcp.py` to expose it to your agent — or `python 07_incident_escalation_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
@@ -2295,7 +2289,7 @@ export const incidentMgmtStages: StageConfig[] = [
           },
           {
             "label": "Agent + MCP",
-            "sub": "pull SIEM / SOAR (Sentinel/Splunk) · IR case management",
+            "sub": "pull The escalation matrix + on-call (PagerDuty / Opsgenie) · IR retainer + cyber-insurance + law-enforcement contacts",
             "type": "system"
           },
           {
@@ -2326,26 +2320,27 @@ export const incidentMgmtStages: StageConfig[] = [
           "highlight": true
         }
       ],
-      "examples": [],
+      "examples": [
+        {
+          "label": "Pull the evidence — the real commands / API calls",
+          "code": "the escalation matrix: severity → who + by when (SOC → IR lead → CISO → exec / legal / board)\n24x7 on-call coverage + response-SLA evidence (test an after-hours page)\npast incidents: was the right level engaged within the timeframe?\nthe path to engage an IR retainer / law enforcement / cyber-insurer"
+        }
+      ],
       "keyTakeaways": [
-        "The artifact to pull: In-scope inventory for the incident escalation control (from SIEM / SOAR (Sentinel/Splunk)).",
-        "The test: Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"Incident escalation\" control is missing, mis-scoped, or not operating.",
-        "Reconcile the systems of record (SIEM / SOAR (Sentinel/Splunk), IR case management, Forensics + evidence store) — anything the control never reached is the highest-value finding.",
+        "The artifact to pull: The escalation matrix (severity → who is engaged + within what timeframe: SOC → IR lead → CISO → exec / legal / board).",
+        "The test: Verify incidents escalate to the right level quickly.",
+        "Reconcile the systems of record (The escalation matrix + on-call (PagerDuty / Opsgenie), IR retainer + cyber-insurance + law-enforcement contacts, Incident records (escalation timeline)) — anything the control never reached is the highest-value finding.",
         "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the incident escalation control is not applied, mis-scoped, or has drifted from the approved baseline"
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. There's no escalation matrix and no after-hours on-call, so a weekend ransomware detonation wasn't escalated until Monday; leadership and the cyber-insurer were engaged days late, voiding part of the policy."
       ],
       "references": [
         {
-          "title": "NIST SP 800-61 — Incident Handling",
+          "title": "NIST SP 800-61",
           "url": "https://csrc.nist.gov/pubs/sp/800/61/r2/final"
         },
         {
           "title": "SANS Incident Handler's Handbook",
           "url": "https://www.sans.org/white-papers/33901/"
-        },
-        {
-          "title": "ISO/IEC 27035 — Incident Management",
-          "url": "https://www.iso.org/standard/78973.html"
         },
         {
           "title": "Model Context Protocol — specification",
@@ -2356,20 +2351,20 @@ export const incidentMgmtStages: StageConfig[] = [
         {
           "name": "07_incident_escalation_mcp.py",
           "url": "/audit-code/incident-mgmt/07_incident_escalation_mcp.py",
-          "description": "Runnable read-only MCP server: gathers the Incident Management evidence for \"Incident escalation\" (in-scope inventory for the incident escalation control (from siem / soar (sentinel/splunk))), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Incident Management evidence for \"Incident escalation\" (the escalation matrix (severity → who is engaged + within what timeframe: soc → ir lead → ciso → exec / legal / board)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Incident escalation\" control for Incident Management at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"Incident escalation\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the incident escalation control (from SIEM / SOAR (Sentinel/Splunk)) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live SIEM / SOAR (Sentinel/Splunk) APIs; here the same sources are exported to files.)",
-      "hint": "Read every file in /evidence. SIEM / SOAR (Sentinel/Splunk) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
+      "scenario": "You're the auditor testing the \"Incident escalation\" control for Incident Management at AcmeCorp. THE TEST: Verify incidents escalate to the right level quickly. PASS: an escalation matrix maps severity to who is engaged within defined timeframes (through to exec/legal/board for major incidents); 24x7 on-call coverage exists + responds within SLA; external help (IR retainer, law enforcement, insurer) can be engaged via a defined path; and past incidents show timely, correct escalation. Exceptions: no escalation matrix, gaps in 24x7 coverage (incidents at night/weekend unhandled), major incidents that didn't reach leadership in time, and no path to external IR/legal/insurer. The evidence — The escalation matrix (severity → who is engaged + within what timeframe: SOC → IR lead → CISO → exec / legal / board) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live The escalation matrix + on-call (PagerDuty / Opsgenie) APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. The escalation matrix + on-call (PagerDuty / Opsgenie) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. The inventory comes from SIEM / SOAR (Sentinel/Splunk); the state file shows what is actually configured/running.",
+        "cat each file in /evidence. The inventory comes from The escalation matrix + on-call (PagerDuty / Opsgenie); the state file shows what is actually configured/running.",
         "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Incident Management: \"Incident escalation\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the \"Incident escalation\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- incident-mgmt_inventory.json   (in-scope items — In-scope inventory for the incident escalation control (from SIEM / SOAR (Sentinel/Splunk)))\n- incident-mgmt_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Incident Management: \"Incident escalation\" Audit Evidence\n\nThe test:\nVerify incidents escalate to the right level quickly. PASS: an escalation matrix maps severity to who is engaged within defined timeframes (through to exec/legal/board for major incidents); 24x7 on-call coverage exists + responds within SLA; external help (IR retainer, law enforcement, insurer) can be engaged via a defined path; and past incidents show timely, correct escalation. Exceptions: no escalation matrix, gaps in 24x7 coverage (incidents at night/weekend unhandled), major incidents that didn't reach leadership in time, and no path to external IR/legal/insurer.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- incident-mgmt_inventory.json   (in-scope items — The escalation matrix (severity → who is engaged + within what timeframe: SOC → IR lead → CISO → exec / legal / board))\n- incident-mgmt_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Incident escalation\",\n  \"domain\": \"Incident Management\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{inc_",
         "/evidence/incident-mgmt_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Security operations / CSIRT\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Incident escalation\" control must cover\n# fragment: incident_escalation_",
         "/evidence/incident-mgmt_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -2465,7 +2460,7 @@ export const incidentMgmtStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Incident escalation\" control?",
           "options": [
             "A point-in-time screenshot of one system's incident escalation settings, captured during the walkthrough",
-            "The In-scope inventory for the incident escalation control (from SIEM / SOAR (Sentinel/Splunk)), reconciled against policy, plus the resulting findings working paper",
+            "The The escalation matrix (severity → who is engaged + within what timeframe: SOC → IR lead → CISO → exec / legal / board), reconciled against policy, plus the resulting findings working paper",
             "A signed management attestation that the incident escalation control is in place, with no underlying data attached",
             "A vendor datasheet describing the product's incident escalation capabilities and its recommended configuration"
           ],
@@ -2478,13 +2473,13 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "Source of truth",
           "text": "Where should an auditor pull the evidence for \"Incident escalation\"?",
           "options": [
-            "From SIEM / SOAR (Sentinel/Splunk) and the other systems of record for this domain, accessed read-only",
+            "From The escalation matrix + on-call (PagerDuty / Opsgenie) and the other systems of record for this domain, accessed read-only",
             "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
             "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
             "From an informal summary the team posted to the internal wiki describing how incident escalation works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence must come from the authoritative systems (e.g. SIEM / SOAR (Sentinel/Splunk)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
+          "explanation": "Evidence must come from the authoritative systems (e.g. The escalation matrix + on-call (PagerDuty / Opsgenie)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "inc-07-q5",
@@ -2495,10 +2490,10 @@ export const incidentMgmtStages: StageConfig[] = [
             "The external audit firm, since it is the party examining the incident escalation control this period",
             "Whoever most recently changed the configuration, regardless of their role or formal accountability",
             "No single function — the incident escalation data is shared, so the accountability sits with no one in particular",
-            "Security operations / CSIRT, with the related functions attesting to the part each of them owns"
+            "Security operations / IR lead, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "Security operations / CSIRT owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
+          "explanation": "Security operations / IR lead owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "inc-07-q6",
@@ -2534,13 +2529,13 @@ export const incidentMgmtStages: StageConfig[] = [
           "challenge": "Typical finding",
           "text": "For \"Incident escalation\", which of these is a realistic reportable finding?",
           "options": [
-            "In-scope items where the incident escalation control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "There's no escalation matrix and no after-hours on-call, so a weekend ransomware detonation wasn't escalated until Monday; leadership and the cyber-insurer were engaged days late, voiding part of the policy.",
             "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
             "The team has adopted a leading commercial platform that is widely used to support this control area",
             "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the incident escalation control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. There's no escalation matrix and no after-hours on-call, so a weekend ransomware detonation wasn't escalated until Monday; leadership and the cyber-insurer were engaged days late, voiding part of the policy. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "inc-07-q9",

@@ -2,13 +2,16 @@
 """Read-only MCP server — Incident Management: "Incident logging and monitoring" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Incident Management policy/standard and flag every item where the "Incident logging and monitoring" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify incidents are logged and the monitoring that detects them is effective. PASS: a complete incident register tracks every incident through to resolution; detection use-cases cover the org's key ATT&CK techniques across SIEM/EDR/NDR; coverage gaps are known + being closed; and detection efficacy is validated. Exceptions: incidents not consistently logged, large ATT&CK detection-coverage gaps, no validation of detection efficacy (alerts that would never fire), and unmanaged false-positive noise.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the incident logging and monitoring control (from SIEM / SOAR (Sentinel/Splunk))
+    The incident register (all incidents with classification, timeline, status, owner, resolution)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: SIEM / SOAR (Sentinel/Splunk), IR case management, Forensics + evidence store, On-call / paging (PagerDuty))
+    incident register: complete, classified, tracked to resolution?
+    detection-use-case coverage mapped to MITRE ATT&CK (SIEM/EDR/NDR)
+    coverage gaps: techniques with no detection + the plan to close
+    validate detection efficacy (purple-team / Atomic Red Team — do the alerts actually fire?)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /
