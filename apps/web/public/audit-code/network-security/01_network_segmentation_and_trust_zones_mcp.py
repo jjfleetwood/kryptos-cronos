@@ -2,13 +2,16 @@
 """Read-only MCP server — Network Security: "Network segmentation and trust zones" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Network Security policy/standard and flag every item where the "Network segmentation and trust zones" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Validate that the defined trust zones are actually enforced, not just drawn. PASS: each in-scope zone boundary is enforced deny-by-default; observed east-west flows match the documented allow-list; and sensitive zones (PCI CDE, OT, the management plane) are isolated. Exceptions: zones reachable any-to-any, a 'segmented' boundary held open by a permit-ip-any rule, and flows in the logs that no rule should allow (shadow connectivity).
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the network segmentation and trust zones control (from Next-gen firewalls (Palo Alto/Fortinet))
+    The network segmentation diagram plus the authoritative VLAN/subnet-to-trust-zone mapping
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Next-gen firewalls (Palo Alto/Fortinet), Network segmentation / microsegmentation, ZTNA / VPN gateways, NDR + flow logs)
+    export the firewall rulebase + interface-to-zone mapping (Panorama / FortiManager)
+    compare the documented zone matrix against the actual inter-zone permit rules
+    NetFlow analysis: list cross-zone flows that are NOT in the allow-list
+    Illumio/NSX policy export + traffic explorer to see real east-west connectivity
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

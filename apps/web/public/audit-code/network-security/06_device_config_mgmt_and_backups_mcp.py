@@ -2,13 +2,16 @@
 """Read-only MCP server — Network Security: "Device config mgmt and backups" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Network Security policy/standard and flag every item where the "Device config mgmt and backups" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Assess network-device configuration governance. PASS: every device's config is backed up automatically and version-controlled; configs are diffed against a hardened baseline (TACACS+/AAA, SSHv2 only, SNMPv3, NTP, logging, no telnet/http); drift is detected; firmware is supported and patched; and changes go through change control. Exceptions: devices with no config backup, telnet/SNMPv1/HTTP enabled, default or shared credentials, end-of-life firmware with known CVEs, and out-of-band config changes.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the device config mgmt and backups control (from Next-gen firewalls (Palo Alto/Fortinet))
+    Each network device's running-config plus the approved hardened baseline to diff against
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Next-gen firewalls (Palo Alto/Fortinet), Network segmentation / microsegmentation, ZTNA / VPN gateways, NDR + flow logs)
+    Oxidized/RANCID/NCM: confirm every device has a recent successful config backup
+    diff running-config vs the hardened baseline (CIS Cisco/Juniper Benchmark)
+    grep configs for `telnet`, `snmp-server community public|private`, `no aaa`, `ip http server`
+    map device OS versions to vendor EOL dates + PSIRT advisories
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

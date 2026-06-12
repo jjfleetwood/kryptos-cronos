@@ -2,13 +2,16 @@
 """Read-only MCP server — Network Security: "AIOps / AI-driven networking" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Network Security policy/standard and flag every item where the "AIOps / AI-driven networking" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Govern AI/ML in network operations. PASS: every AIOps/intent-based system is inventoried with its authority bounded (what it may change automatically vs what needs approval); automated remediation has blast-radius limits and tested rollback; AI-initiated changes are logged, attributable, and reviewable; and the model/data feeding decisions is governed (no poisoning, no sensitive telemetry leaking to an ungoverned vendor model). Exceptions: AIOps with unbounded auto-remediation authority, AI changes with no logging or rollback, anomaly models trained on unvetted data, and config/telemetry streamed to ungoverned external AI.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the aiops / ai-driven networking control (from Next-gen firewalls (Palo Alto/Fortinet))
+    The inventory of AI/ML-driven networking systems (AIOps anomaly detection, intent-based networking, auto-remediation) and the actions each can take
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Next-gen firewalls (Palo Alto/Fortinet), Network segmentation / microsegmentation, ZTNA / VPN gateways, NDR + flow logs)
+    inventory AIOps/IBN systems and the scope of changes each can auto-apply
+    review auto-remediation policy: approval gate, maximum blast radius, rollback test evidence
+    pull the audit log of AI-initiated changes (what changed, why, outcome, who reviewed)
+    confirm telemetry/config sent to vendor AI is governed (DLP + contractual data handling)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

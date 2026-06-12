@@ -2,13 +2,16 @@
 """Read-only MCP server — Network Security: "Remote access (VPN, ZTNA)" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Network Security policy/standard and flag every item where the "Remote access (VPN, ZTNA)" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Assess every remote-access path into the network. PASS: all require phishing-resistant MFA and a posture-checked device; access is least-privilege (ZTNA per-application, or tightly-scoped VPN, not flat-subnet); split/full-tunnel is deliberate; sessions time out and are logged; legacy/unused gateways are decommissioned. Exceptions: a VPN without MFA, a VPN that drops users onto a flat internal subnet, no device-posture check, and forgotten internet-facing remote-access gateways.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the remote access (vpn, ztna) control (from Next-gen firewalls (Palo Alto/Fortinet))
+    The remote-access inventory — every VPN gateway and ZTNA application, and who is entitled to each
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Next-gen firewalls (Palo Alto/Fortinet), Network segmentation / microsegmentation, ZTNA / VPN gateways, NDR + flow logs)
+    enumerate remote-access gateways (external scan + config) and the auth method each uses
+    confirm MFA + Conditional Access / device posture on every VPN and ZTNA portal
+    review the access scope: ZTNA per-app policy vs the routes a VPN actually pushes
+    Shodan/Censys external scan for exposed remote-access portals you forgot existed
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

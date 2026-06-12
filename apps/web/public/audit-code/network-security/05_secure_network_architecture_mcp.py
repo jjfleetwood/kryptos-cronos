@@ -2,13 +2,16 @@
 """Read-only MCP server — Network Security: "Secure network architecture" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Network Security policy/standard and flag every item where the "Secure network architecture" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Review the network architecture against secure-design principles. PASS: defense-in-depth tiers (DMZ → app → data) with no direct internet-to-internal paths; egress is proxied/filtered (no arbitrary outbound); the management plane is out-of-band and isolated from production/user traffic; the external attack surface is inventoried and minimized; and single points of failure are addressed. Exceptions: internal services directly internet-exposed, unrestricted outbound egress, management interfaces on the user/production network, and an unknown external attack surface.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the secure network architecture control (from Next-gen firewalls (Palo Alto/Fortinet))
+    The current-state network architecture diagram + data-flow diagrams for crown-jewel systems
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Next-gen firewalls (Palo Alto/Fortinet), Network segmentation / microsegmentation, ZTNA / VPN gateways, NDR + flow logs)
+    external attack-surface scan (Shodan/Censys/Defender EASM) across the org's IP ranges + domains
+    review the egress policy: is outbound default-deny via a proxy allow-list?
+    confirm out-of-band management isolation (separate VRF/VLAN, not reachable from users)
+    trace data flows for crown-jewel systems and compare to the documented design
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

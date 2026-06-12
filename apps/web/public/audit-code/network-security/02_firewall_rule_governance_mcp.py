@@ -2,13 +2,16 @@
 """Read-only MCP server — Network Security: "Firewall rule governance" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Network Security policy/standard and flag every item where the "Firewall rule governance" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Review the firewall rule base for governance. PASS: every rule has a documented business justification, an owner, and an approval ticket; rules are recertified on cadence; there are no any-any or overly-broad permits; unused (zero-hit) and shadowed/redundant rules are removed; and logging is on for denies and sensitive permits. Exceptions: rules with no owner or justification, permit any-any, zero-hit rules left in place for years, and rules with no approval trail.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the firewall rule governance control (from Next-gen firewalls (Palo Alto/Fortinet))
+    The full firewall rule base export — source, destination, service, action, hit-count, age, owner, last-modified
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Next-gen firewalls (Palo Alto/Fortinet), Network segmentation / microsegmentation, ZTNA / VPN gateways, NDR + flow logs)
+    export the rulebase with hit-counts + last-hit (e.g. PAN-OS `show rule-hit-count`)
+    Tufin/AlgoSec rule-cleanup + risk report (any-any, shadowed, unused, redundant)
+    join each rule to its change-ticket id (the recertification/approval evidence)
+    flag any permit to a sensitive zone that has logging disabled
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

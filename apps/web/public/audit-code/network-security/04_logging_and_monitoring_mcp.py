@@ -2,13 +2,16 @@
 """Read-only MCP server — Network Security: "Logging and monitoring" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Network Security policy/standard and flag every item where the "Logging and monitoring" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify network telemetry is collected, complete, and actioned. PASS: all in-scope network devices forward logs to the SIEM; firewalls log denies and sensitive permits; DNS and proxy logs are collected; NetFlow/NDR covers north-south and key east-west; detections exist for beaconing/exfiltration/lateral movement; and retention meets policy. Exceptions: devices not forwarding (visibility gaps), deny logging off, no DNS logging, NDR blind to east-west, and retention below policy.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the logging and monitoring control (from Next-gen firewalls (Palo Alto/Fortinet))
+    The list of network log sources sending to the SIEM (firewall, VPN, DNS, proxy, NetFlow, NDR) vs the device inventory
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Next-gen firewalls (Palo Alto/Fortinet), Network segmentation / microsegmentation, ZTNA / VPN gateways, NDR + flow logs)
+    SIEM: which network devices reported in the last 24h vs the network CMDB
+    confirm firewalls 'log at session end' on deny and sensitive-permit rules
+    DNS: query logging enabled + detections (NXDOMAIN spikes, known-bad domains, tunneling)
+    map NDR sensor placement: which segments are actually monitored vs dark
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /
