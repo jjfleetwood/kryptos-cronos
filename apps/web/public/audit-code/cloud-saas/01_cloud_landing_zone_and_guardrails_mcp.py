@@ -2,13 +2,16 @@
 """Read-only MCP server — Cloud Platform & SaaS (Software-as-a-Service): "Cloud landing zone and guardrails" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Cloud Platform & SaaS (Software-as-a-Service) policy/standard and flag every item where the "Cloud landing zone and guardrails" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify every cloud account/subscription is governed by the landing zone's guardrails. PASS: all accounts are vended through the landing zone with org-level preventive guardrails (SCPs / Azure Policy) that local admins can't disable — deny public object storage, require encryption + logging, restrict regions, block root keys; detective controls flag drift. Exceptions: accounts created outside the landing zone (no guardrails), guardrails left in audit-only mode, and accounts where the baseline was detached.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the cloud landing zone and guardrails control (from AWS / Azure / GCP control plane)
+    The landing-zone definition (AWS Control Tower / Azure Landing Zone) + the org-level guardrails (SCPs / Azure Policy)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: AWS / Azure / GCP control plane, CSPM (Wiz / Prisma / Defender), SaaS admin consoles (M365/Salesforce), Cloud audit logs (CloudTrail))
+    aws organizations list-accounts vs Control Tower enrolled accounts (the un-governed gap)
+    list SCPs + Azure Policy assignments at the org/management-group root; check enforce vs audit mode
+    CSPM: accounts/subscriptions non-conformant to the baseline
+    look for accounts in an exempt OU or with guardrail SCPs detached
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

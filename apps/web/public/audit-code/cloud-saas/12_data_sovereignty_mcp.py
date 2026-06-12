@@ -2,13 +2,16 @@
 """Read-only MCP server — Cloud Platform & SaaS (Software-as-a-Service): "Data sovereignty" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Cloud Platform & SaaS (Software-as-a-Service) policy/standard and flag every item where the "Data sovereignty" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify regulated data stays in its required jurisdiction. PASS: residency requirements are documented per category; sensitive workloads, backups, replicas, and logs reside only in permitted regions; cross-region/CDN/support flows don't move data out of bounds; and region-restriction guardrails prevent deployment elsewhere. Exceptions: regulated data (or its backups/logs) in a prohibited region, replication/CDN egressing data cross-border, and no preventive region guardrail.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the data sovereignty control (from AWS / Azure / GCP control plane)
+    The data-residency requirement per data category (regulatory + contractual)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: AWS / Azure / GCP control plane, CSPM (Wiz / Prisma / Defender), SaaS admin consoles (M365/Salesforce), Cloud audit logs (CloudTrail))
+    enumerate resource regions for sensitive workloads (including backups, replicas, log archives)
+    confirm an SCP region-deny / Azure Policy 'allowed locations' is enforced
+    check cross-region replication + CDN POP configuration for cross-border data movement
+    verify support / telemetry data-handling region
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

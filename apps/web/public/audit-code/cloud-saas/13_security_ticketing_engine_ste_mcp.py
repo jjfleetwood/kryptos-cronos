@@ -2,13 +2,16 @@
 """Read-only MCP server — Cloud Platform & SaaS (Software-as-a-Service): "Security Ticketing Engine (STE)" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Cloud Platform & SaaS (Software-as-a-Service) policy/standard and flag every item where the "Security Ticketing Engine (STE)" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Assess the engine that operationalises cloud findings into tracked work (the Security Ticketing Engine). PASS: every cloud security finding auto-creates a ticket routed to the resource owner by tag, with a severity-based SLA, dedup, and closed-loop verification on rescan; orphaned (untagged) findings are escalated to a named owner. Exceptions: findings with no ticket/owner, no SLA, duplicate noise drowning real findings, and tickets closed without confirming the finding is gone.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the security ticketing engine (ste) control (from AWS / Azure / GCP control plane)
+    The pipeline turning every cloud security finding (CSPM / GuardDuty / Inspector) into a ticket with an owner + SLA
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: AWS / Azure / GCP control plane, CSPM (Wiz / Prisma / Defender), SaaS admin consoles (M365/Salesforce), Cloud audit logs (CloudTrail))
+    Security Hub findings → EventBridge → ticket automation (confirm it runs for ALL finding types, not just Security Hub)
+    routing rules by tag + dedup by finding id; aging dashboard by severity
+    untagged-resource findings: are they escalated to an owner or silently dropped?
+    auto-close a ticket only after a rescan shows it resolved
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

@@ -2,13 +2,16 @@
 """Read-only MCP server — Cloud Platform & SaaS (Software-as-a-Service): "Cloud supply chain" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Cloud Platform & SaaS (Software-as-a-Service) policy/standard and flag every item where the "Cloud supply chain" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Assess the cloud software + service supply chain. PASS: workloads use only trusted, scanned, signed images from approved registries (no unvetted public/marketplace images); base images + Lambda layers are inventoried and vuln-scanned; IaC modules come from trusted sources; and third-party tools get least-privilege, time-bound cross-account roles (with an ExternalId). Exceptions: untrusted public/marketplace images in production, unsigned images, unscanned base layers with known CVEs, and broad standing cross-account roles to vendors.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the cloud supply chain control (from AWS / Azure / GCP control plane)
+    The inventory of third-party code/components in cloud workloads (container base images, Lambda layers, marketplace AMIs/images, IaC modules)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: AWS / Azure / GCP control plane, CSPM (Wiz / Prisma / Defender), SaaS admin consoles (M365/Salesforce), Cloud audit logs (CloudTrail))
+    registry scan: base images + layers with CVEs; flag images from untrusted sources
+    verify image signing (cosign) + that admission control blocks unsigned images
+    list IAM roles assumable by external accounts (cross-account trust) + their permissions + ExternalId
+    inventory marketplace AMIs/images in use vs the approved list
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

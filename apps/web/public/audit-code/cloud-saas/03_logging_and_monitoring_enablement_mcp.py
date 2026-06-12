@@ -2,13 +2,16 @@
 """Read-only MCP server — Cloud Platform & SaaS (Software-as-a-Service): "Logging and monitoring enablement" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Cloud Platform & SaaS (Software-as-a-Service) policy/standard and flag every item where the "Logging and monitoring enablement" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify cloud audit + threat logging is on everywhere and tamper-resistant. PASS: management-event logging (CloudTrail/Activity Log) is enabled org-wide across all regions; Config + flow logs + threat detection (GuardDuty/Defender for Cloud) are on; logs ship to a central, immutable archive in a separate security account with retention per policy; and findings reach the SIEM. Exceptions: accounts/regions with no trail, logs writable/deletable by the workload account, threat detection off, and findings that go nowhere.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the logging and monitoring enablement control (from AWS / Azure / GCP control plane)
+    CloudTrail/Activity Log + Config + VPC flow-log + threat-detection (GuardDuty/Defender) enablement status across every account and region
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: AWS / Azure / GCP control plane, CSPM (Wiz / Prisma / Defender), SaaS admin consoles (M365/Salesforce), Cloud audit logs (CloudTrail))
+    aws cloudtrail describe-trails across accounts/regions; confirm an org-trail that is multi-region
+    GuardDuty/Defender enablement per account; AWS Config recorder status
+    confirm the log-archive bucket has Object Lock and sits in a separate account with deny-delete
+    Security Hub → SIEM integration health
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

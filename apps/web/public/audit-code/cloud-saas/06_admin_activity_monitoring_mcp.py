@@ -2,13 +2,16 @@
 """Read-only MCP server — Cloud Platform & SaaS (Software-as-a-Service): "Admin activity monitoring" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Cloud Platform & SaaS (Software-as-a-Service) policy/standard and flag every item where the "Admin activity monitoring" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify cloud administrative + control-plane activity is monitored for abuse. PASS: high-risk control-plane events are alerted (IAM/policy changes, new access keys, KMS key use, SG opened to 0.0.0.0/0, CloudTrail disabled, root login, mass deletion); alerts cover all accounts and route to a monitored queue; and there's evidence they're triaged. Exceptions: no detections on control-plane events, key risky actions unalerted (e.g. trail-disabled), accounts missing from the pipeline, and alerts no one reviews.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the admin activity monitoring control (from AWS / Azure / GCP control plane)
+    The detection rules over cloud admin / control-plane activity (CloudTrail / Activity Log)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: AWS / Azure / GCP control plane, CSPM (Wiz / Prisma / Defender), SaaS admin consoles (M365/Salesforce), Cloud audit logs (CloudTrail))
+    confirm detections for: PutUserPolicy/AttachRolePolicy, CreateAccessKey, StopLogging, AuthorizeSecurityGroupIngress 0.0.0.0/0, root ConsoleLogin
+    verify every account feeds the SIEM (coverage)
+    GuardDuty/Defender alert routing + triage records
+    test: trigger a benign risky action and confirm it alerts
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

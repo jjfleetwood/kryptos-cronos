@@ -2,13 +2,16 @@
 """Read-only MCP server — Cloud Platform & SaaS (Software-as-a-Service): "Cloud network security (SG, NACL)" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Cloud Platform & SaaS (Software-as-a-Service) policy/standard and flag every item where the "Cloud network security (SG, NACL)" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Assess cloud network exposure. PASS: no security group allows 0.0.0.0/0 to sensitive ports (SSH 22, RDP 3389, DB 3306/5432, etc.); ingress is least-privilege and justified; default VPCs/SGs aren't used for workloads; private subnets + endpoints keep the data plane off the internet; and flow logs confirm no unexpected ingress. Exceptions: SSH/RDP/DB open to the world, over-broad SG rules, publicly-accessible databases, and default-SG allow-all in use.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the cloud network security (sg, nacl) control (from AWS / Azure / GCP control plane)
+    The security-group + NACL (or NSG) rule export across the estate
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: AWS / Azure / GCP control plane, CSPM (Wiz / Prisma / Defender), SaaS admin consoles (M365/Salesforce), Cloud audit logs (CloudTrail))
+    aws ec2 describe-security-groups → rules with CidrIp 0.0.0.0/0 on 22 / 3389 / 3306 / 5432
+    CSPM 'publicly exposed' resource inventory
+    check for RDS / databases with PubliclyAccessible=true
+    flow logs: accepted ingress from the internet to exposed resources
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

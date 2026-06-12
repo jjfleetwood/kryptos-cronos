@@ -2,13 +2,16 @@
 """Read-only MCP server — Cloud Platform & SaaS (Software-as-a-Service): "Business and service resilience" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Cloud Platform & SaaS (Software-as-a-Service) policy/standard and flag every item where the "Business and service resilience" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Assess resilience of cloud-hosted services. PASS: critical workloads are multi-AZ (and multi-region where RTO/RPO demands), with auto-scaling, health checks, and self-healing; stateful data is backed up and replicated cross-region; DR failover is tested (game days) and meets RTO/RPO; no tier-1 service has a single-AZ/single-region SPOF. Exceptions: tier-1 workloads in a single AZ, no cross-region backup/replication for critical data, DR never tested, and undocumented RTO/RPO.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the business and service resilience control (from AWS / Azure / GCP control plane)
+    The cloud workloads' multi-AZ / multi-region design + documented RTO/RPO
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: AWS / Azure / GCP control plane, CSPM (Wiz / Prisma / Defender), SaaS admin consoles (M365/Salesforce), Cloud audit logs (CloudTrail))
+    map tier-1 workloads to AZ/region spread (single-AZ SPOFs?)
+    AWS Resilience Hub assessment vs RTO/RPO; check Multi-AZ on RDS, cross-region replication on S3
+    pull DR game-day records: date, RTO achieved, outcome
+    review auto-scaling + health-check configuration
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

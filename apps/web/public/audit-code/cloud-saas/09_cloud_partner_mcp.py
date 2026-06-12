@@ -2,13 +2,16 @@
 """Read-only MCP server — Cloud Platform & SaaS (Software-as-a-Service): "Cloud partner" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Cloud Platform & SaaS (Software-as-a-Service) policy/standard and flag every item where the "Cloud partner" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Assess reliance on the cloud provider and managed partners. PASS: shared responsibility is documented per service (you know which controls are yours); current CSP attestations (SOC 2 / ISO / FedRAMP) are on file and cover the services used; partner/MSP access is least-privilege, federated, JIT, logged, and reviewed; and contracts carry security, breach-notification, and data-residency terms. Exceptions: unclear shared-responsibility boundaries, stale/missing CSP attestations, MSPs with standing admin into the tenant, and partner access that isn't logged or reviewed.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the cloud partner control (from AWS / Azure / GCP control plane)
+    The cloud-provider / managed-service-provider relationship docs — the shared-responsibility matrix per service
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: AWS / Azure / GCP control plane, CSPM (Wiz / Prisma / Defender), SaaS admin consoles (M365/Salesforce), Cloud audit logs (CloudTrail))
+    pull current CSP SOC 2 / ISO / FedRAMP from AWS Artifact / Azure Trust Center; check scope + date
+    list partner/MSP access (Azure Lighthouse delegations, cross-account roles) + permissions
+    confirm partner actions are logged in CloudTrail/Activity Log and reviewed
+    map shared responsibility per service actually used
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

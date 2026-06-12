@@ -2,13 +2,16 @@
 """Read-only MCP server — Cloud Platform & SaaS (Software-as-a-Service): "Security assessments" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Cloud Platform & SaaS (Software-as-a-Service) policy/standard and flag every item where the "Security assessments" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the cloud estate is regularly assessed. PASS: CSPM runs continuously against a recognised benchmark (CIS Foundations) across all accounts with a tracked, improving score; periodic penetration tests cover internet-facing cloud apps with findings remediated and retested; and assessment coverage spans the estate. Exceptions: accounts not in CSPM, no benchmark score/trend, no pen testing of cloud-exposed apps, and findings reported but never remediated.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the security assessments control (from AWS / Azure / GCP control plane)
+    The cloud-assessment schedule + scope (continuous CSPM, periodic penetration test, config review)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: AWS / Azure / GCP control plane, CSPM (Wiz / Prisma / Defender), SaaS admin consoles (M365/Salesforce), Cloud audit logs (CloudTrail))
+    CSPM: CIS Foundations score per account + trend; list accounts not enrolled
+    pen-test report inventory for cloud apps + remediation/retest status
+    coverage = assessed accounts ÷ total accounts
+    compare the current posture score to prior periods (is it improving?)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

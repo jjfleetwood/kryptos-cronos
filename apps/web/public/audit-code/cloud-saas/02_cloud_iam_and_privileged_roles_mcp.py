@@ -2,13 +2,16 @@
 """Read-only MCP server — Cloud Platform & SaaS (Software-as-a-Service): "Cloud IAM and privileged roles" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Cloud Platform & SaaS (Software-as-a-Service) policy/standard and flag every item where the "Cloud IAM and privileged roles" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Assess cloud identity and privilege. PASS: human access is federated via SSO (few/no long-lived IAM users or access keys); privileged roles are least-privilege and just-in-time (e.g. Entra PIM), not standing; root/break-glass is MFA-protected, sealed, and alerts on use; access keys are rotated and unused permissions removed. Exceptions: long-lived IAM users with access keys, standing Administrator/Owner, wildcard `*:*` policies, root with no MFA or in routine use, and access keys unused or un-rotated for ages.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the cloud iam and privileged roles control (from AWS / Azure / GCP control plane)
+    The cloud IAM principal inventory (users, roles, service principals) + their effective permissions
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: AWS / Azure / GCP control plane, CSPM (Wiz / Prisma / Defender), SaaS admin consoles (M365/Salesforce), Cloud audit logs (CloudTrail))
+    aws iam list-users + list-access-keys (key age, last-used); flag long-lived keys
+    find policies granting Action:'*' on Resource:'*' (wildcard admin)
+    IAM Access Analyzer 'unused access' findings + Access Advisor last-accessed services
+    Entra PIM: standing vs eligible role assignments; confirm root/global-admin MFA + usage
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

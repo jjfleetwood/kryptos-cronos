@@ -2,13 +2,16 @@
 """Read-only MCP server — Cloud Platform & SaaS (Software-as-a-Service): "SaaS configuration" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Cloud Platform & SaaS (Software-as-a-Service) policy/standard and flag every item where the "SaaS configuration" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Assess the security configuration of business-critical SaaS. PASS: each major SaaS enforces SSO + MFA, restricts external sharing/guest access per policy, limits admin roles, enables audit logging shipped to the SIEM, and follows a documented baseline (e.g. CIS M365); OAuth app grants are reviewed. Exceptions: SaaS with local logins bypassing SSO, open external sharing, excessive global admins, audit logging off, and risky third-party OAuth grants with broad scopes.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the saas configuration control (from AWS / Azure / GCP control plane)
+    The SaaS application inventory (M365, Salesforce, Workday, ServiceNow, Slack) + each app's security-config baseline
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: AWS / Azure / GCP control plane, CSPM (Wiz / Prisma / Defender), SaaS admin consoles (M365/Salesforce), Cloud audit logs (CloudTrail))
+    SSPM scan across connected SaaS for posture drift vs baseline
+    M365: Secure Score + Conditional Access, external-sharing settings, global-admin count
+    review OAuth / enterprise-app grants + their scopes per tenant
+    confirm audit-log export to the SIEM for each SaaS
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /
