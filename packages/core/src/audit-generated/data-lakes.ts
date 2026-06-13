@@ -1475,15 +1475,15 @@ export const dataLakesStages: StageConfig[] = [
     "epochId": "data-lakes",
     "id": "dlw-05",
     "order": 5,
-    "title": "Metadata mgmt and catalog",
-    "subtitle": "Agentic technical & privacy audit of the metadata mgmt and catalog control",
+    "title": "Metadata management and catalog",
+    "subtitle": "Agentic technical & privacy audit of the metadata management and catalog control",
     "category": "cybersecurity",
     "xp": 140,
     "easeScore": 6,
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Metadata mgmt and catalog\" control for Data Lakes & Warehouses is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Verify metadata is managed so data is discoverable + governable. PASS: a data catalogue covers the in-scope datasets with owner, description, classification, and schema; metadata is harvested automatically + kept fresh; classification tags drive downstream controls (masking/access); and shadow/undocumented datasets are minimal. Exceptions: low catalogue coverage, stale/incomplete metadata, classification tags that drive no control, and large undocumented data.",
+      "objective": "Prove the \"Metadata management and catalog\" control for Data Lakes & Warehouses is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Verify metadata is managed so data is discoverable + governable. PASS: a data catalogue covers the in-scope datasets with owner, description, classification, and schema; metadata is harvested automatically + kept fresh; classification tags drive downstream controls (masking/access); and shadow/undocumented datasets are minimal. Exceptions: low catalogue coverage, stale/incomplete metadata, classification tags that drive no control, and large undocumented data.",
       "approach": "An audit agent calls a read-only MCP server that wraps the Data Lakes & Warehouses systems of record (Data catalogue (Collibra / Alation / Purview / DataHub / Unity Catalog); Auto-harvesting / scanning; The platform's native catalogue) as tools — e.g. `catalogue coverage: datasets with owner + classification + schema vs t`, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "Data-catalogue coverage (datasets catalogued with owner, description, classification, schema vs total)",
@@ -1512,26 +1512,26 @@ export const dataLakesStages: StageConfig[] = [
       "emoji": "🗄️"
     },
     "wonder": {
-      "name": "Metadata mgmt and catalog",
+      "name": "Metadata management and catalog",
       "location": "Data Lakes & Warehouses",
       "era": "Present Day",
       "emoji": "🗄️"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Metadata mgmt and catalog\" as a repeatable agentic workflow: pull the real evidence (Data-catalogue coverage (datasets catalogued with owner, description, classification, schema vs total)) with read-only agents, run the test against policy, and issue a defensible opinion on the Data Lakes & Warehouses control.",
+      "tagline": "Auditing \"Metadata management and catalog\" as a repeatable agentic workflow: pull the real evidence (Data-catalogue coverage (datasets catalogued with owner, description, classification, schema vs total)) with read-only agents, run the test against policy, and issue a defensible opinion on the Data Lakes & Warehouses control.",
       "year": 2025,
       "overview": [
-        "The \"Metadata mgmt and catalog\" sub-process is one of the controls an auditor must verify for Data Lakes & Warehouses. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me data-catalogue coverage (datasets catalogued with owner, description, classification, schema vs total), for everything in scope.\"",
+        "The \"Metadata management and catalog\" sub-process is one of the controls an auditor must verify for Data Lakes & Warehouses. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me data-catalogue coverage (datasets catalogued with owner, description, classification, schema vs total), for everything in scope.\"",
         "The evidence lives across systems that were never reconciled — here Data catalogue (Collibra / Alation / Purview / DataHub / Unity Catalog), Auto-harvesting / scanning, The platform's native catalogue — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. In practice you gather it with calls like `catalogue coverage: datasets with owner + classification + schema vs total (the ` — read-only, against the systems of record.",
         "The test itself is specific. Verify metadata is managed so data is discoverable + governable. PASS: a data catalogue covers the in-scope datasets with owner, description, classification, and schema; metadata is harvested automatically + kept fresh; classification tags drive downstream controls (masking/access); and shadow/undocumented datasets are minimal. Exceptions: low catalogue coverage, stale/incomplete metadata, classification tags that drive no control, and large undocumented data. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `05_metadata_mgmt_and_catalog_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Data catalogue (Collibra / Alation / Purview / DataHub / Unity Catalog) and Auto-harvesting / scanning (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
+          "The included `05_metadata_management_and_catalog_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Data catalogue (Collibra / Alation / Purview / DataHub / Unity Catalog) and Auto-harvesting / scanning (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
           "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
-          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 05_metadata_mgmt_and_catalog_mcp.py` to expose it to your agent — or `python 05_metadata_mgmt_and_catalog_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
+          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 05_metadata_management_and_catalog_mcp.py` to expose it to your agent — or `python 05_metadata_management_and_catalog_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
           "label": "coverage_report() — the audit deliverable (excerpt)",
@@ -1584,7 +1584,7 @@ export const dataLakesStages: StageConfig[] = [
         },
         {
           "year": 2025,
-          "event": "Agentic evidence-gathering becomes the practical way to keep \"Metadata mgmt and catalog\" continuously assured",
+          "event": "Agentic evidence-gathering becomes the practical way to keep \"Metadata management and catalog\" continuously assured",
           "highlight": true
         }
       ],
@@ -1617,14 +1617,14 @@ export const dataLakesStages: StageConfig[] = [
       ],
       "downloads": [
         {
-          "name": "05_metadata_mgmt_and_catalog_mcp.py",
-          "url": "/audit-code/data-lakes/05_metadata_mgmt_and_catalog_mcp.py",
-          "description": "Runnable read-only MCP server: gathers the Data Lakes & Warehouses evidence for \"Metadata mgmt and catalog\" (data-catalogue coverage (datasets catalogued with owner, description, classification, schema vs total)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "name": "05_metadata_management_and_catalog_mcp.py",
+          "url": "/audit-code/data-lakes/05_metadata_management_and_catalog_mcp.py",
+          "description": "Runnable read-only MCP server: gathers the Data Lakes & Warehouses evidence for \"Metadata management and catalog\" (data-catalogue coverage (datasets catalogued with owner, description, classification, schema vs total)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Metadata mgmt and catalog\" control for Data Lakes & Warehouses at AcmeCorp. THE TEST: Verify metadata is managed so data is discoverable + governable. PASS: a data catalogue covers the in-scope datasets with owner, description, classification, and schema; metadata is harvested automatically + kept fresh; classification tags drive downstream controls (masking/access); and shadow/undocumented datasets are minimal. Exceptions: low catalogue coverage, stale/incomplete metadata, classification tags that drive no control, and large undocumented data. The evidence — Data-catalogue coverage (datasets catalogued with owner, description, classification, schema vs total) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Data catalogue (Collibra / Alation / Purview / DataHub / Unity Catalog) APIs; here the same sources are exported to files.)",
+      "scenario": "You're the auditor testing the \"Metadata management and catalog\" control for Data Lakes & Warehouses at AcmeCorp. THE TEST: Verify metadata is managed so data is discoverable + governable. PASS: a data catalogue covers the in-scope datasets with owner, description, classification, and schema; metadata is harvested automatically + kept fresh; classification tags drive downstream controls (masking/access); and shadow/undocumented datasets are minimal. Exceptions: low catalogue coverage, stale/incomplete metadata, classification tags that drive no control, and large undocumented data. The evidence — Data-catalogue coverage (datasets catalogued with owner, description, classification, schema vs total) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Data catalogue (Collibra / Alation / Purview / DataHub / Unity Catalog) APIs; here the same sources are exported to files.)",
       "hint": "Read every file in /evidence. Data catalogue (Collibra / Alation / Purview / DataHub / Unity Catalog) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
         "cat each file in /evidence. The inventory comes from Data catalogue (Collibra / Alation / Purview / DataHub / Unity Catalog); the state file shows what is actually configured/running.",
@@ -1632,9 +1632,9 @@ export const dataLakesStages: StageConfig[] = [
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Data Lakes & Warehouses: \"Metadata mgmt and catalog\" Audit Evidence\n\nThe test:\nVerify metadata is managed so data is discoverable + governable. PASS: a data catalogue covers the in-scope datasets with owner, description, classification, and schema; metadata is harvested automatically + kept fresh; classification tags drive downstream controls (masking/access); and shadow/undocumented datasets are minimal. Exceptions: low catalogue coverage, stale/incomplete metadata, classification tags that drive no control, and large undocumented data.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- data-lakes_inventory.json   (in-scope items — Data-catalogue coverage (datasets catalogued with owner, description, classification, schema vs total))\n- data-lakes_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Metadata mgmt and catalog\",\n  \"domain\": \"Data Lakes & Warehouses\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{dlw_",
-        "/evidence/data-lakes_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Data engineering / platform\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Metadata mgmt and catalog\" control must cover\n# fragment: metadata_mgmt_catalog_",
+        "/evidence/README.md": "# AcmeCorp — Data Lakes & Warehouses: \"Metadata management and catalog\" Audit Evidence\n\nThe test:\nVerify metadata is managed so data is discoverable + governable. PASS: a data catalogue covers the in-scope datasets with owner, description, classification, and schema; metadata is harvested automatically + kept fresh; classification tags drive downstream controls (masking/access); and shadow/undocumented datasets are minimal. Exceptions: low catalogue coverage, stale/incomplete metadata, classification tags that drive no control, and large undocumented data.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- data-lakes_inventory.json   (in-scope items — Data-catalogue coverage (datasets catalogued with owner, description, classification, schema vs total))\n- data-lakes_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Metadata management and catalog\",\n  \"domain\": \"Data Lakes & Warehouses\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{dlw_",
+        "/evidence/data-lakes_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Data engineering / platform\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Metadata management and catalog\" control must cover\n# fragment: metadata_management_catalog_",
         "/evidence/data-lakes_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"EXCEPTIONS\"\n}\n# fragment: exceptions}"
       },
@@ -1676,7 +1676,7 @@ export const dataLakesStages: StageConfig[] = [
         },
         {
           "trigger": "/evidence/data-lakes_inventory.json",
-          "value": "metadata_mgmt_catalog_",
+          "value": "metadata_management_catalog_",
           "label": "Inventory — the in-scope items"
         },
         {
@@ -1697,12 +1697,12 @@ export const dataLakesStages: StageConfig[] = [
           "id": "dlw-05-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Metadata mgmt and catalog\" sub-process of Data Lakes & Warehouses?",
+          "text": "What is the primary audit objective for the \"Metadata management and catalog\" sub-process of Data Lakes & Warehouses?",
           "options": [
-            "Deploy and operate the metadata mgmt and catalog control on the team's behalf so the gap is closed during fieldwork",
-            "Confirm management is comfortable that the metadata mgmt and catalog control works, based on their verbal assurance",
-            "Benchmark how many tools the team uses for metadata mgmt and catalog against comparable organisations in the sector",
-            "Obtain evidence that the metadata mgmt and catalog control is designed and operating effectively, and quantify the gap where it is not"
+            "Deploy and operate the metadata management and catalog control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the metadata management and catalog control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for metadata management and catalog against comparable organisations in the sector",
+            "Obtain evidence that the metadata management and catalog control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
           "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
@@ -1711,7 +1711,7 @@ export const dataLakesStages: StageConfig[] = [
           "id": "dlw-05-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Metadata mgmt and catalog\" matter to the broader Data Lakes & Warehouses posture?",
+          "text": "Why does a weakness in \"Metadata management and catalog\" matter to the broader Data Lakes & Warehouses posture?",
           "options": [
             "It mainly affects how the annual compliance report reads, rather than the actual risk to Data Lakes & Warehouses",
             "It stops mattering once a firewall and endpoint agent are deployed across the Data Lakes & Warehouses estate",
@@ -1725,12 +1725,12 @@ export const dataLakesStages: StageConfig[] = [
           "id": "dlw-05-q3",
           "type": "Artifacts",
           "challenge": "Evidence",
-          "text": "Which artifact best evidences the \"Metadata mgmt and catalog\" control?",
+          "text": "Which artifact best evidences the \"Metadata management and catalog\" control?",
           "options": [
-            "A point-in-time screenshot of one system's metadata mgmt and catalog settings, captured during the walkthrough",
+            "A point-in-time screenshot of one system's metadata management and catalog settings, captured during the walkthrough",
             "The Data-catalogue coverage (datasets catalogued with owner, description, classification, schema vs total), reconciled against policy, plus the resulting findings working paper",
-            "A signed management attestation that the metadata mgmt and catalog control is in place, with no underlying data attached",
-            "A vendor datasheet describing the product's metadata mgmt and catalog capabilities and its recommended configuration"
+            "A signed management attestation that the metadata management and catalog control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's metadata management and catalog capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
           "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
@@ -1739,12 +1739,12 @@ export const dataLakesStages: StageConfig[] = [
           "id": "dlw-05-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where should an auditor pull the evidence for \"Metadata mgmt and catalog\"?",
+          "text": "Where should an auditor pull the evidence for \"Metadata management and catalog\"?",
           "options": [
             "From Data catalogue (Collibra / Alation / Purview / DataHub / Unity Catalog) and the other systems of record for this domain, accessed read-only",
             "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
             "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
-            "From an informal summary the team posted to the internal wiki describing how metadata mgmt and catalog works"
+            "From an informal summary the team posted to the internal wiki describing how metadata management and catalog works"
           ],
           "correctIndex": 0,
           "explanation": "Evidence must come from the authoritative systems (e.g. Data catalogue (Collibra / Alation / Purview / DataHub / Unity Catalog)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
@@ -1753,11 +1753,11 @@ export const dataLakesStages: StageConfig[] = [
           "id": "dlw-05-q5",
           "type": "Data owner",
           "challenge": "Accountability",
-          "text": "Who is most likely accountable for the data behind \"Metadata mgmt and catalog\"?",
+          "text": "Who is most likely accountable for the data behind \"Metadata management and catalog\"?",
           "options": [
-            "The external audit firm, since it is the party examining the metadata mgmt and catalog control this period",
+            "The external audit firm, since it is the party examining the metadata management and catalog control this period",
             "Whoever most recently changed the configuration, regardless of their role or formal accountability",
-            "No single function — the metadata mgmt and catalog data is shared, so the accountability sits with no one in particular",
+            "No single function — the metadata management and catalog data is shared, so the accountability sits with no one in particular",
             "Data governance / Chief Data Office, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
@@ -1767,7 +1767,7 @@ export const dataLakesStages: StageConfig[] = [
           "id": "dlw-05-q6",
           "type": "Agentic",
           "challenge": "Human vs agent",
-          "text": "In the agentic workflow for \"Metadata mgmt and catalog\", which part stays with the human auditor?",
+          "text": "In the agentic workflow for \"Metadata management and catalog\", which part stays with the human auditor?",
           "options": [
             "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
             "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
@@ -1795,7 +1795,7 @@ export const dataLakesStages: StageConfig[] = [
           "id": "dlw-05-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Metadata mgmt and catalog\", which of these is a realistic reportable finding?",
+          "text": "For \"Metadata management and catalog\", which of these is a realistic reportable finding?",
           "options": [
             "The catalogue covers a third of datasets, most lack an owner or classification, and the few classification tags drive no controls — so sensitive columns aren't masked because nothing knows they're sensitive.",
             "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
@@ -1823,9 +1823,9 @@ export const dataLakesStages: StageConfig[] = [
           "id": "dlw-05-q10",
           "type": "Privacy/Risk",
           "challenge": "The data angle",
-          "text": "Why does auditing \"Metadata mgmt and catalog\" also serve privacy and regulatory goals?",
+          "text": "Why does auditing \"Metadata management and catalog\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators review only written policy documents, never the technical controls behind metadata mgmt and catalog, so there is no overlap",
+            "Regulators review only written policy documents, never the technical controls behind metadata management and catalog, so there is no overlap",
             "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
             "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
             "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
@@ -5491,15 +5491,15 @@ export const dataLakesStages: StageConfig[] = [
     "epochId": "data-lakes",
     "id": "dlw-16",
     "order": 16,
-    "title": "Third-party / CSP mgmt",
-    "subtitle": "Agentic technical & privacy audit of the third-party / csp mgmt control",
+    "title": "Third-party / CSP management",
+    "subtitle": "Agentic technical & privacy audit of the third-party / csp management control",
     "category": "cybersecurity",
     "xp": 180,
     "easeScore": 5,
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Third-party / CSP mgmt\" control for Data Lakes & Warehouses is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Verify the managed-platform provider + connected third parties are governed. PASS: the shared-responsibility split is understood (the org owns access/data/config; the CSP owns the platform); current CSP attestations + data-residency terms are on file; data-sharing features (Snowflake shares/marketplace, reader accounts) are controlled + reviewed; and third-party tools connected to the platform are vetted + least-privilege. Exceptions: unclear shared responsibility, stale/missing CSP attestation, uncontrolled outbound data shares/marketplace listings, and unvetted third-party tools with broad platform access.",
+      "objective": "Prove the \"Third-party / CSP management\" control for Data Lakes & Warehouses is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Verify the managed-platform provider + connected third parties are governed. PASS: the shared-responsibility split is understood (the org owns access/data/config; the CSP owns the platform); current CSP attestations + data-residency terms are on file; data-sharing features (Snowflake shares/marketplace, reader accounts) are controlled + reviewed; and third-party tools connected to the platform are vetted + least-privilege. Exceptions: unclear shared responsibility, stale/missing CSP attestation, uncontrolled outbound data shares/marketplace listings, and unvetted third-party tools with broad platform access.",
       "approach": "An audit agent calls a read-only MCP server that wraps the Data Lakes & Warehouses systems of record (The data-platform provider (Snowflake / Databricks / BigQuery); Data-share / marketplace config; TPRM (connected tools + the CSP)) as tools — e.g. `confirm the shared-responsibility split + the CSP's current SOC 2 / IS`, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "The shared-responsibility understanding for the managed platform (Snowflake/Databricks/BigQuery — CSP's vs the org's)",
@@ -5528,26 +5528,26 @@ export const dataLakesStages: StageConfig[] = [
       "emoji": "🗄️"
     },
     "wonder": {
-      "name": "Third-party / CSP mgmt",
+      "name": "Third-party / CSP management",
       "location": "Data Lakes & Warehouses",
       "era": "Present Day",
       "emoji": "🗄️"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Third-party / CSP mgmt\" as a repeatable agentic workflow: pull the real evidence (The shared-responsibility understanding for the managed platform (Snowflake/Databricks/BigQuery — CSP's vs the org's)) with read-only agents, run the test against policy, and issue a defensible opinion on the Data Lakes & Warehouses control.",
+      "tagline": "Auditing \"Third-party / CSP management\" as a repeatable agentic workflow: pull the real evidence (The shared-responsibility understanding for the managed platform (Snowflake/Databricks/BigQuery — CSP's vs the org's)) with read-only agents, run the test against policy, and issue a defensible opinion on the Data Lakes & Warehouses control.",
       "year": 2025,
       "overview": [
-        "The \"Third-party / CSP mgmt\" sub-process is one of the controls an auditor must verify for Data Lakes & Warehouses. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me the shared-responsibility understanding for the managed platform (Snowflake/Databricks/BigQuery — CSP's vs the org's), for everything in scope.\"",
+        "The \"Third-party / CSP management\" sub-process is one of the controls an auditor must verify for Data Lakes & Warehouses. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me the shared-responsibility understanding for the managed platform (Snowflake/Databricks/BigQuery — CSP's vs the org's), for everything in scope.\"",
         "The evidence lives across systems that were never reconciled — here The data-platform provider (Snowflake / Databricks / BigQuery), Data-share / marketplace config, TPRM (connected tools + the CSP) — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. In practice you gather it with calls like `confirm the shared-responsibility split + the CSP's current SOC 2 / ISO / FedRAM` — read-only, against the systems of record.",
         "The test itself is specific. Verify the managed-platform provider + connected third parties are governed. PASS: the shared-responsibility split is understood (the org owns access/data/config; the CSP owns the platform); current CSP attestations + data-residency terms are on file; data-sharing features (Snowflake shares/marketplace, reader accounts) are controlled + reviewed; and third-party tools connected to the platform are vetted + least-privilege. Exceptions: unclear shared responsibility, stale/missing CSP attestation, uncontrolled outbound data shares/marketplace listings, and unvetted third-party tools with broad platform access. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `16_third_party_csp_mgmt_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from The data-platform provider (Snowflake / Databricks / BigQuery) and Data-share / marketplace config (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
+          "The included `16_third_party_csp_management_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from The data-platform provider (Snowflake / Databricks / BigQuery) and Data-share / marketplace config (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
           "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
-          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 16_third_party_csp_mgmt_mcp.py` to expose it to your agent — or `python 16_third_party_csp_mgmt_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
+          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 16_third_party_csp_management_mcp.py` to expose it to your agent — or `python 16_third_party_csp_management_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
           "label": "coverage_report() — the audit deliverable (excerpt)",
@@ -5600,7 +5600,7 @@ export const dataLakesStages: StageConfig[] = [
         },
         {
           "year": 2025,
-          "event": "Agentic evidence-gathering becomes the practical way to keep \"Third-party / CSP mgmt\" continuously assured",
+          "event": "Agentic evidence-gathering becomes the practical way to keep \"Third-party / CSP management\" continuously assured",
           "highlight": true
         }
       ],
@@ -5633,14 +5633,14 @@ export const dataLakesStages: StageConfig[] = [
       ],
       "downloads": [
         {
-          "name": "16_third_party_csp_mgmt_mcp.py",
-          "url": "/audit-code/data-lakes/16_third_party_csp_mgmt_mcp.py",
-          "description": "Runnable read-only MCP server: gathers the Data Lakes & Warehouses evidence for \"Third-party / CSP mgmt\" (the shared-responsibility understanding for the managed platform (snowflake/databricks/bigquery — csp's vs the org's)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "name": "16_third_party_csp_management_mcp.py",
+          "url": "/audit-code/data-lakes/16_third_party_csp_management_mcp.py",
+          "description": "Runnable read-only MCP server: gathers the Data Lakes & Warehouses evidence for \"Third-party / CSP management\" (the shared-responsibility understanding for the managed platform (snowflake/databricks/bigquery — csp's vs the org's)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Third-party / CSP mgmt\" control for Data Lakes & Warehouses at AcmeCorp. THE TEST: Verify the managed-platform provider + connected third parties are governed. PASS: the shared-responsibility split is understood (the org owns access/data/config; the CSP owns the platform); current CSP attestations + data-residency terms are on file; data-sharing features (Snowflake shares/marketplace, reader accounts) are controlled + reviewed; and third-party tools connected to the platform are vetted + least-privilege. Exceptions: unclear shared responsibility, stale/missing CSP attestation, uncontrolled outbound data shares/marketplace listings, and unvetted third-party tools with broad platform access. The evidence — The shared-responsibility understanding for the managed platform (Snowflake/Databricks/BigQuery — CSP's vs the org's) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live The data-platform provider (Snowflake / Databricks / BigQuery) APIs; here the same sources are exported to files.)",
+      "scenario": "You're the auditor testing the \"Third-party / CSP management\" control for Data Lakes & Warehouses at AcmeCorp. THE TEST: Verify the managed-platform provider + connected third parties are governed. PASS: the shared-responsibility split is understood (the org owns access/data/config; the CSP owns the platform); current CSP attestations + data-residency terms are on file; data-sharing features (Snowflake shares/marketplace, reader accounts) are controlled + reviewed; and third-party tools connected to the platform are vetted + least-privilege. Exceptions: unclear shared responsibility, stale/missing CSP attestation, uncontrolled outbound data shares/marketplace listings, and unvetted third-party tools with broad platform access. The evidence — The shared-responsibility understanding for the managed platform (Snowflake/Databricks/BigQuery — CSP's vs the org's) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live The data-platform provider (Snowflake / Databricks / BigQuery) APIs; here the same sources are exported to files.)",
       "hint": "Read every file in /evidence. The data-platform provider (Snowflake / Databricks / BigQuery) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
         "cat each file in /evidence. The inventory comes from The data-platform provider (Snowflake / Databricks / BigQuery); the state file shows what is actually configured/running.",
@@ -5648,9 +5648,9 @@ export const dataLakesStages: StageConfig[] = [
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Data Lakes & Warehouses: \"Third-party / CSP mgmt\" Audit Evidence\n\nThe test:\nVerify the managed-platform provider + connected third parties are governed. PASS: the shared-responsibility split is understood (the org owns access/data/config; the CSP owns the platform); current CSP attestations + data-residency terms are on file; data-sharing features (Snowflake shares/marketplace, reader accounts) are controlled + reviewed; and third-party tools connected to the platform are vetted + least-privilege. Exceptions: unclear shared responsibility, stale/missing CSP attestation, uncontrolled outbound data shares/marketplace listings, and unvetted third-party tools with broad platform access.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- data-lakes_inventory.json   (in-scope items — The shared-responsibility understanding for the managed platform (Snowflake/Databricks/BigQuery — CSP's vs the org's))\n- data-lakes_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Third-party / CSP mgmt\",\n  \"domain\": \"Data Lakes & Warehouses\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{dlw_",
-        "/evidence/data-lakes_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Data engineering / platform\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Third-party / CSP mgmt\" control must cover\n# fragment: thirdparty_csp_mgmt_",
+        "/evidence/README.md": "# AcmeCorp — Data Lakes & Warehouses: \"Third-party / CSP management\" Audit Evidence\n\nThe test:\nVerify the managed-platform provider + connected third parties are governed. PASS: the shared-responsibility split is understood (the org owns access/data/config; the CSP owns the platform); current CSP attestations + data-residency terms are on file; data-sharing features (Snowflake shares/marketplace, reader accounts) are controlled + reviewed; and third-party tools connected to the platform are vetted + least-privilege. Exceptions: unclear shared responsibility, stale/missing CSP attestation, uncontrolled outbound data shares/marketplace listings, and unvetted third-party tools with broad platform access.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- data-lakes_inventory.json   (in-scope items — The shared-responsibility understanding for the managed platform (Snowflake/Databricks/BigQuery — CSP's vs the org's))\n- data-lakes_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Third-party / CSP management\",\n  \"domain\": \"Data Lakes & Warehouses\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{dlw_",
+        "/evidence/data-lakes_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Data engineering / platform\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Third-party / CSP management\" control must cover\n# fragment: thirdparty_csp_management_",
         "/evidence/data-lakes_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
       },
@@ -5692,7 +5692,7 @@ export const dataLakesStages: StageConfig[] = [
         },
         {
           "trigger": "/evidence/data-lakes_inventory.json",
-          "value": "thirdparty_csp_mgmt_",
+          "value": "thirdparty_csp_management_",
           "label": "Inventory — the in-scope items"
         },
         {
@@ -5713,12 +5713,12 @@ export const dataLakesStages: StageConfig[] = [
           "id": "dlw-16-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Third-party / CSP mgmt\" sub-process of Data Lakes & Warehouses?",
+          "text": "What is the primary audit objective for the \"Third-party / CSP management\" sub-process of Data Lakes & Warehouses?",
           "options": [
-            "Deploy and operate the third-party / csp mgmt control on the team's behalf so the gap is closed during fieldwork",
-            "Confirm management is comfortable that the third-party / csp mgmt control works, based on their verbal assurance",
-            "Benchmark how many tools the team uses for third-party / csp mgmt against comparable organisations in the sector",
-            "Obtain evidence that the third-party / csp mgmt control is designed and operating effectively, and quantify the gap where it is not"
+            "Deploy and operate the third-party / csp management control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the third-party / csp management control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for third-party / csp management against comparable organisations in the sector",
+            "Obtain evidence that the third-party / csp management control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
           "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
@@ -5727,7 +5727,7 @@ export const dataLakesStages: StageConfig[] = [
           "id": "dlw-16-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Third-party / CSP mgmt\" matter to the broader Data Lakes & Warehouses posture?",
+          "text": "Why does a weakness in \"Third-party / CSP management\" matter to the broader Data Lakes & Warehouses posture?",
           "options": [
             "It mainly affects how the annual compliance report reads, rather than the actual risk to Data Lakes & Warehouses",
             "It stops mattering once a firewall and endpoint agent are deployed across the Data Lakes & Warehouses estate",
@@ -5741,12 +5741,12 @@ export const dataLakesStages: StageConfig[] = [
           "id": "dlw-16-q3",
           "type": "Artifacts",
           "challenge": "Evidence",
-          "text": "Which artifact best evidences the \"Third-party / CSP mgmt\" control?",
+          "text": "Which artifact best evidences the \"Third-party / CSP management\" control?",
           "options": [
-            "A point-in-time screenshot of one system's third-party / csp mgmt settings, captured during the walkthrough",
+            "A point-in-time screenshot of one system's third-party / csp management settings, captured during the walkthrough",
             "The The shared-responsibility understanding for the managed platform (Snowflake/Databricks/BigQuery — CSP's vs the org's), reconciled against policy, plus the resulting findings working paper",
-            "A signed management attestation that the third-party / csp mgmt control is in place, with no underlying data attached",
-            "A vendor datasheet describing the product's third-party / csp mgmt capabilities and its recommended configuration"
+            "A signed management attestation that the third-party / csp management control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's third-party / csp management capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
           "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
@@ -5755,12 +5755,12 @@ export const dataLakesStages: StageConfig[] = [
           "id": "dlw-16-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where should an auditor pull the evidence for \"Third-party / CSP mgmt\"?",
+          "text": "Where should an auditor pull the evidence for \"Third-party / CSP management\"?",
           "options": [
             "From The data-platform provider (Snowflake / Databricks / BigQuery) and the other systems of record for this domain, accessed read-only",
             "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
             "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
-            "From an informal summary the team posted to the internal wiki describing how third-party / csp mgmt works"
+            "From an informal summary the team posted to the internal wiki describing how third-party / csp management works"
           ],
           "correctIndex": 0,
           "explanation": "Evidence must come from the authoritative systems (e.g. The data-platform provider (Snowflake / Databricks / BigQuery)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
@@ -5769,11 +5769,11 @@ export const dataLakesStages: StageConfig[] = [
           "id": "dlw-16-q5",
           "type": "Data owner",
           "challenge": "Accountability",
-          "text": "Who is most likely accountable for the data behind \"Third-party / CSP mgmt\"?",
+          "text": "Who is most likely accountable for the data behind \"Third-party / CSP management\"?",
           "options": [
-            "The external audit firm, since it is the party examining the third-party / csp mgmt control this period",
+            "The external audit firm, since it is the party examining the third-party / csp management control this period",
             "Whoever most recently changed the configuration, regardless of their role or formal accountability",
-            "No single function — the third-party / csp mgmt data is shared, so the accountability sits with no one in particular",
+            "No single function — the third-party / csp management data is shared, so the accountability sits with no one in particular",
             "Data platform + vendor risk, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
@@ -5783,7 +5783,7 @@ export const dataLakesStages: StageConfig[] = [
           "id": "dlw-16-q6",
           "type": "Agentic",
           "challenge": "Human vs agent",
-          "text": "In the agentic workflow for \"Third-party / CSP mgmt\", which part stays with the human auditor?",
+          "text": "In the agentic workflow for \"Third-party / CSP management\", which part stays with the human auditor?",
           "options": [
             "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
             "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
@@ -5811,7 +5811,7 @@ export const dataLakesStages: StageConfig[] = [
           "id": "dlw-16-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Third-party / CSP mgmt\", which of these is a realistic reportable finding?",
+          "text": "For \"Third-party / CSP management\", which of these is a realistic reportable finding?",
           "options": [
             "An outbound Snowflake data share exposes a sensitive table to a partner account no one reviewed, several third-party BI/ETL tools hold broad warehouse access with no vetting, and the CSP attestation on file is stale.",
             "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
@@ -5839,9 +5839,9 @@ export const dataLakesStages: StageConfig[] = [
           "id": "dlw-16-q10",
           "type": "Privacy/Risk",
           "challenge": "The data angle",
-          "text": "Why does auditing \"Third-party / CSP mgmt\" also serve privacy and regulatory goals?",
+          "text": "Why does auditing \"Third-party / CSP management\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators review only written policy documents, never the technical controls behind third-party / csp mgmt, so there is no overlap",
+            "Regulators review only written policy documents, never the technical controls behind third-party / csp management, so there is no overlap",
             "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
             "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
             "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
@@ -5856,15 +5856,15 @@ export const dataLakesStages: StageConfig[] = [
     "epochId": "data-lakes",
     "id": "dlw-17",
     "order": 17,
-    "title": "Incident response / problem mgmt",
-    "subtitle": "Agentic technical & privacy audit of the incident response / problem mgmt control",
+    "title": "Incident response / problem management",
+    "subtitle": "Agentic technical & privacy audit of the incident response / problem management control",
     "category": "cybersecurity",
     "xp": 180,
     "easeScore": 6,
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Incident response / problem mgmt\" control for Data Lakes & Warehouses is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Verify data-platform incidents are handled. PASS: playbooks exist for data-platform incidents (exfiltration, corruption, ransomware, mass-delete); platform alerts feed the IR process; incidents get RCA + containment; and recovery (restore + integrity validation) is defined. Exceptions: no data-specific incident playbooks, platform alerts not wired into IR, no RCA for data incidents, and no tested recovery for a data-corruption/deletion event.",
+      "objective": "Prove the \"Incident response / problem management\" control for Data Lakes & Warehouses is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Verify data-platform incidents are handled. PASS: playbooks exist for data-platform incidents (exfiltration, corruption, ransomware, mass-delete); platform alerts feed the IR process; incidents get RCA + containment; and recovery (restore + integrity validation) is defined. Exceptions: no data-specific incident playbooks, platform alerts not wired into IR, no RCA for data incidents, and no tested recovery for a data-corruption/deletion event.",
       "approach": "An audit agent calls a read-only MCP server that wraps the Data Lakes & Warehouses systems of record (IR playbooks (data-specific) + SOAR; Platform alerts → SIEM / IR; Recovery features (time-travel / restore)) as tools — e.g. `data-platform incident playbooks (exfil / corruption / ransomware / ma`, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "Data-platform-specific incident playbooks (data breach/exfil, data corruption, ransomware on data, accidental mass-delete)",
@@ -5893,26 +5893,26 @@ export const dataLakesStages: StageConfig[] = [
       "emoji": "🗄️"
     },
     "wonder": {
-      "name": "Incident response / problem mgmt",
+      "name": "Incident response / problem management",
       "location": "Data Lakes & Warehouses",
       "era": "Present Day",
       "emoji": "🗄️"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Incident response / problem mgmt\" as a repeatable agentic workflow: pull the real evidence (Data-platform-specific incident playbooks (data breach/exfil, data corruption, ransomware on data, accidental mass-delete)) with read-only agents, run the test against policy, and issue a defensible opinion on the Data Lakes & Warehouses control.",
+      "tagline": "Auditing \"Incident response / problem management\" as a repeatable agentic workflow: pull the real evidence (Data-platform-specific incident playbooks (data breach/exfil, data corruption, ransomware on data, accidental mass-delete)) with read-only agents, run the test against policy, and issue a defensible opinion on the Data Lakes & Warehouses control.",
       "year": 2025,
       "overview": [
-        "The \"Incident response / problem mgmt\" sub-process is one of the controls an auditor must verify for Data Lakes & Warehouses. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me data-platform-specific incident playbooks (data breach/exfil, data corruption, ransomware on data, accidental mass-delete), for everything in scope.\"",
+        "The \"Incident response / problem management\" sub-process is one of the controls an auditor must verify for Data Lakes & Warehouses. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me data-platform-specific incident playbooks (data breach/exfil, data corruption, ransomware on data, accidental mass-delete), for everything in scope.\"",
         "The evidence lives across systems that were never reconciled — here IR playbooks (data-specific) + SOAR, Platform alerts → SIEM / IR, Recovery features (time-travel / restore) — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. In practice you gather it with calls like `data-platform incident playbooks (exfil / corruption / ransomware / mass-delete)` — read-only, against the systems of record.",
         "The test itself is specific. Verify data-platform incidents are handled. PASS: playbooks exist for data-platform incidents (exfiltration, corruption, ransomware, mass-delete); platform alerts feed the IR process; incidents get RCA + containment; and recovery (restore + integrity validation) is defined. Exceptions: no data-specific incident playbooks, platform alerts not wired into IR, no RCA for data incidents, and no tested recovery for a data-corruption/deletion event. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `17_incident_response_problem_mgmt_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from IR playbooks (data-specific) + SOAR and Platform alerts → SIEM / IR (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
+          "The included `17_incident_response_problem_management_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from IR playbooks (data-specific) + SOAR and Platform alerts → SIEM / IR (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
           "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
-          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 17_incident_response_problem_mgmt_mcp.py` to expose it to your agent — or `python 17_incident_response_problem_mgmt_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
+          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 17_incident_response_problem_management_mcp.py` to expose it to your agent — or `python 17_incident_response_problem_management_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
           "label": "coverage_report() — the audit deliverable (excerpt)",
@@ -5965,7 +5965,7 @@ export const dataLakesStages: StageConfig[] = [
         },
         {
           "year": 2025,
-          "event": "Agentic evidence-gathering becomes the practical way to keep \"Incident response / problem mgmt\" continuously assured",
+          "event": "Agentic evidence-gathering becomes the practical way to keep \"Incident response / problem management\" continuously assured",
           "highlight": true
         }
       ],
@@ -5998,14 +5998,14 @@ export const dataLakesStages: StageConfig[] = [
       ],
       "downloads": [
         {
-          "name": "17_incident_response_problem_mgmt_mcp.py",
-          "url": "/audit-code/data-lakes/17_incident_response_problem_mgmt_mcp.py",
-          "description": "Runnable read-only MCP server: gathers the Data Lakes & Warehouses evidence for \"Incident response / problem mgmt\" (data-platform-specific incident playbooks (data breach/exfil, data corruption, ransomware on data, accidental mass-delete)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "name": "17_incident_response_problem_management_mcp.py",
+          "url": "/audit-code/data-lakes/17_incident_response_problem_management_mcp.py",
+          "description": "Runnable read-only MCP server: gathers the Data Lakes & Warehouses evidence for \"Incident response / problem management\" (data-platform-specific incident playbooks (data breach/exfil, data corruption, ransomware on data, accidental mass-delete)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Incident response / problem mgmt\" control for Data Lakes & Warehouses at AcmeCorp. THE TEST: Verify data-platform incidents are handled. PASS: playbooks exist for data-platform incidents (exfiltration, corruption, ransomware, mass-delete); platform alerts feed the IR process; incidents get RCA + containment; and recovery (restore + integrity validation) is defined. Exceptions: no data-specific incident playbooks, platform alerts not wired into IR, no RCA for data incidents, and no tested recovery for a data-corruption/deletion event. The evidence — Data-platform-specific incident playbooks (data breach/exfil, data corruption, ransomware on data, accidental mass-delete) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live IR playbooks (data-specific) + SOAR APIs; here the same sources are exported to files.)",
+      "scenario": "You're the auditor testing the \"Incident response / problem management\" control for Data Lakes & Warehouses at AcmeCorp. THE TEST: Verify data-platform incidents are handled. PASS: playbooks exist for data-platform incidents (exfiltration, corruption, ransomware, mass-delete); platform alerts feed the IR process; incidents get RCA + containment; and recovery (restore + integrity validation) is defined. Exceptions: no data-specific incident playbooks, platform alerts not wired into IR, no RCA for data incidents, and no tested recovery for a data-corruption/deletion event. The evidence — Data-platform-specific incident playbooks (data breach/exfil, data corruption, ransomware on data, accidental mass-delete) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live IR playbooks (data-specific) + SOAR APIs; here the same sources are exported to files.)",
       "hint": "Read every file in /evidence. IR playbooks (data-specific) + SOAR gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
         "cat each file in /evidence. The inventory comes from IR playbooks (data-specific) + SOAR; the state file shows what is actually configured/running.",
@@ -6013,9 +6013,9 @@ export const dataLakesStages: StageConfig[] = [
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Data Lakes & Warehouses: \"Incident response / problem mgmt\" Audit Evidence\n\nThe test:\nVerify data-platform incidents are handled. PASS: playbooks exist for data-platform incidents (exfiltration, corruption, ransomware, mass-delete); platform alerts feed the IR process; incidents get RCA + containment; and recovery (restore + integrity validation) is defined. Exceptions: no data-specific incident playbooks, platform alerts not wired into IR, no RCA for data incidents, and no tested recovery for a data-corruption/deletion event.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- data-lakes_inventory.json   (in-scope items — Data-platform-specific incident playbooks (data breach/exfil, data corruption, ransomware on data, accidental mass-delete))\n- data-lakes_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Incident response / problem mgmt\",\n  \"domain\": \"Data Lakes & Warehouses\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{dlw_",
-        "/evidence/data-lakes_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Data engineering / platform\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Incident response / problem mgmt\" control must cover\n# fragment: incident_response_problem_",
+        "/evidence/README.md": "# AcmeCorp — Data Lakes & Warehouses: \"Incident response / problem management\" Audit Evidence\n\nThe test:\nVerify data-platform incidents are handled. PASS: playbooks exist for data-platform incidents (exfiltration, corruption, ransomware, mass-delete); platform alerts feed the IR process; incidents get RCA + containment; and recovery (restore + integrity validation) is defined. Exceptions: no data-specific incident playbooks, platform alerts not wired into IR, no RCA for data incidents, and no tested recovery for a data-corruption/deletion event.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- data-lakes_inventory.json   (in-scope items — Data-platform-specific incident playbooks (data breach/exfil, data corruption, ransomware on data, accidental mass-delete))\n- data-lakes_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Incident response / problem management\",\n  \"domain\": \"Data Lakes & Warehouses\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{dlw_",
+        "/evidence/data-lakes_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Data engineering / platform\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Incident response / problem management\" control must cover\n# fragment: incident_response_problem_",
         "/evidence/data-lakes_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
       },
@@ -6078,12 +6078,12 @@ export const dataLakesStages: StageConfig[] = [
           "id": "dlw-17-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Incident response / problem mgmt\" sub-process of Data Lakes & Warehouses?",
+          "text": "What is the primary audit objective for the \"Incident response / problem management\" sub-process of Data Lakes & Warehouses?",
           "options": [
-            "Deploy and operate the incident response / problem mgmt control on the team's behalf so the gap is closed during fieldwork",
-            "Confirm management is comfortable that the incident response / problem mgmt control works, based on their verbal assurance",
-            "Benchmark how many tools the team uses for incident response / problem mgmt against comparable organisations in the sector",
-            "Obtain evidence that the incident response / problem mgmt control is designed and operating effectively, and quantify the gap where it is not"
+            "Deploy and operate the incident response / problem management control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the incident response / problem management control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for incident response / problem management against comparable organisations in the sector",
+            "Obtain evidence that the incident response / problem management control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
           "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
@@ -6092,7 +6092,7 @@ export const dataLakesStages: StageConfig[] = [
           "id": "dlw-17-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Incident response / problem mgmt\" matter to the broader Data Lakes & Warehouses posture?",
+          "text": "Why does a weakness in \"Incident response / problem management\" matter to the broader Data Lakes & Warehouses posture?",
           "options": [
             "It mainly affects how the annual compliance report reads, rather than the actual risk to Data Lakes & Warehouses",
             "It stops mattering once a firewall and endpoint agent are deployed across the Data Lakes & Warehouses estate",
@@ -6106,12 +6106,12 @@ export const dataLakesStages: StageConfig[] = [
           "id": "dlw-17-q3",
           "type": "Artifacts",
           "challenge": "Evidence",
-          "text": "Which artifact best evidences the \"Incident response / problem mgmt\" control?",
+          "text": "Which artifact best evidences the \"Incident response / problem management\" control?",
           "options": [
-            "A point-in-time screenshot of one system's incident response / problem mgmt settings, captured during the walkthrough",
+            "A point-in-time screenshot of one system's incident response / problem management settings, captured during the walkthrough",
             "The Data-platform-specific incident playbooks (data breach/exfil, data corruption, ransomware on data, accidental mass-delete), reconciled against policy, plus the resulting findings working paper",
-            "A signed management attestation that the incident response / problem mgmt control is in place, with no underlying data attached",
-            "A vendor datasheet describing the product's incident response / problem mgmt capabilities and its recommended configuration"
+            "A signed management attestation that the incident response / problem management control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's incident response / problem management capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
           "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
@@ -6120,12 +6120,12 @@ export const dataLakesStages: StageConfig[] = [
           "id": "dlw-17-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where should an auditor pull the evidence for \"Incident response / problem mgmt\"?",
+          "text": "Where should an auditor pull the evidence for \"Incident response / problem management\"?",
           "options": [
             "From IR playbooks (data-specific) + SOAR and the other systems of record for this domain, accessed read-only",
             "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
             "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
-            "From an informal summary the team posted to the internal wiki describing how incident response / problem mgmt works"
+            "From an informal summary the team posted to the internal wiki describing how incident response / problem management works"
           ],
           "correctIndex": 0,
           "explanation": "Evidence must come from the authoritative systems (e.g. IR playbooks (data-specific) + SOAR) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
@@ -6134,11 +6134,11 @@ export const dataLakesStages: StageConfig[] = [
           "id": "dlw-17-q5",
           "type": "Data owner",
           "challenge": "Accountability",
-          "text": "Who is most likely accountable for the data behind \"Incident response / problem mgmt\"?",
+          "text": "Who is most likely accountable for the data behind \"Incident response / problem management\"?",
           "options": [
-            "The external audit firm, since it is the party examining the incident response / problem mgmt control this period",
+            "The external audit firm, since it is the party examining the incident response / problem management control this period",
             "Whoever most recently changed the configuration, regardless of their role or formal accountability",
-            "No single function — the incident response / problem mgmt data is shared, so the accountability sits with no one in particular",
+            "No single function — the incident response / problem management data is shared, so the accountability sits with no one in particular",
             "Security operations / CSIRT + data platform, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
@@ -6148,7 +6148,7 @@ export const dataLakesStages: StageConfig[] = [
           "id": "dlw-17-q6",
           "type": "Agentic",
           "challenge": "Human vs agent",
-          "text": "In the agentic workflow for \"Incident response / problem mgmt\", which part stays with the human auditor?",
+          "text": "In the agentic workflow for \"Incident response / problem management\", which part stays with the human auditor?",
           "options": [
             "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
             "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
@@ -6176,7 +6176,7 @@ export const dataLakesStages: StageConfig[] = [
           "id": "dlw-17-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Incident response / problem mgmt\", which of these is a realistic reportable finding?",
+          "text": "For \"Incident response / problem management\", which of these is a realistic reportable finding?",
           "options": [
             "There's no data-platform incident playbook, platform alerts (where they exist) don't reach the IR team, and a recent accidental table-drop had no defined recovery — it was reconstructed manually over days.",
             "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
@@ -6204,9 +6204,9 @@ export const dataLakesStages: StageConfig[] = [
           "id": "dlw-17-q10",
           "type": "Privacy/Risk",
           "challenge": "The data angle",
-          "text": "Why does auditing \"Incident response / problem mgmt\" also serve privacy and regulatory goals?",
+          "text": "Why does auditing \"Incident response / problem management\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators review only written policy documents, never the technical controls behind incident response / problem mgmt, so there is no overlap",
+            "Regulators review only written policy documents, never the technical controls behind incident response / problem management, so there is no overlap",
             "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
             "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
             "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"

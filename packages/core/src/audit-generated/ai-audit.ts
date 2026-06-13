@@ -2217,15 +2217,15 @@ export const aiAuditStages: StageConfig[] = [
     "epochId": "ai-audit",
     "id": "aig-07",
     "order": 7,
-    "title": "AI infra and access security",
-    "subtitle": "Agentic technical & privacy audit of the ai infra and access security control",
+    "title": "AI infrastructure and access security",
+    "subtitle": "Agentic technical & privacy audit of the ai infrastructure and access security control",
     "category": "cybersecurity",
     "xp": 180,
     "easeScore": 5,
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"AI infra and access security\" control for Artificial Intelligence (AI) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Verify AI infrastructure + access are secured. PASS: AI compute, the ML platform, model registry, and data are access-controlled (least-privilege, SSO+MFA, network isolation, hardened); pipeline service identities are scoped + least-privilege; secrets (model-provider API keys, data creds) are vaulted; and model-serving/inference endpoints are authenticated + protected. Exceptions: broad/unrestricted access to models + training data, the ML platform exposed/unhardened, over-privileged pipeline service accounts, hardcoded model-provider API keys, and unauthenticated inference endpoints.",
+      "objective": "Prove the \"AI infrastructure and access security\" control for Artificial Intelligence (AI) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Verify AI infrastructure + access are secured. PASS: AI compute, the ML platform, model registry, and data are access-controlled (least-privilege, SSO+MFA, network isolation, hardened); pipeline service identities are scoped + least-privilege; secrets (model-provider API keys, data creds) are vaulted; and model-serving/inference endpoints are authenticated + protected. Exceptions: broad/unrestricted access to models + training data, the ML platform exposed/unhardened, over-privileged pipeline service accounts, hardcoded model-provider API keys, and unauthenticated inference endpoints.",
       "approach": "An audit agent calls a read-only MCP server that wraps the Artificial Intelligence (AI) systems of record (ML platform + compute (access / network / hardening); Model registry + storage; IAM (model / data access)) as tools — e.g. `access control to models + ML platform + training data (least-privileg`, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "The security of AI infrastructure (training/inference compute, model registry, ML platform, GPUs) — access control, network isolation, hardening",
@@ -2255,26 +2255,26 @@ export const aiAuditStages: StageConfig[] = [
       "emoji": "🧠"
     },
     "wonder": {
-      "name": "AI infra and access security",
+      "name": "AI infrastructure and access security",
       "location": "Artificial Intelligence (AI)",
       "era": "Present Day",
       "emoji": "🧠"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"AI infra and access security\" as a repeatable agentic workflow: pull the real evidence (The security of AI infrastructure (training/inference compute, model registry, ML platform, GPUs) — access control, network isolation, hardening) with read-only agents, run the test against policy, and issue a defensible opinion on the Artificial Intelligence (AI) control.",
+      "tagline": "Auditing \"AI infrastructure and access security\" as a repeatable agentic workflow: pull the real evidence (The security of AI infrastructure (training/inference compute, model registry, ML platform, GPUs) — access control, network isolation, hardening) with read-only agents, run the test against policy, and issue a defensible opinion on the Artificial Intelligence (AI) control.",
       "year": 2025,
       "overview": [
-        "The \"AI infra and access security\" sub-process is one of the controls an auditor must verify for Artificial Intelligence (AI). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me the security of AI infrastructure (training/inference compute, model registry, ML platform, GPUs) — access control, network isolation, hardening, for everything in scope.\"",
+        "The \"AI infrastructure and access security\" sub-process is one of the controls an auditor must verify for Artificial Intelligence (AI). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me the security of AI infrastructure (training/inference compute, model registry, ML platform, GPUs) — access control, network isolation, hardening, for everything in scope.\"",
         "The evidence lives across systems that were never reconciled — here ML platform + compute (access / network / hardening), Model registry + storage, IAM (model / data access) — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. In practice you gather it with calls like `access control to models + ML platform + training data (least-privilege, SSO/MFA` — read-only, against the systems of record.",
         "The test itself is specific. Verify AI infrastructure + access are secured. PASS: AI compute, the ML platform, model registry, and data are access-controlled (least-privilege, SSO+MFA, network isolation, hardened); pipeline service identities are scoped + least-privilege; secrets (model-provider API keys, data creds) are vaulted; and model-serving/inference endpoints are authenticated + protected. Exceptions: broad/unrestricted access to models + training data, the ML platform exposed/unhardened, over-privileged pipeline service accounts, hardcoded model-provider API keys, and unauthenticated inference endpoints. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `07_ai_infra_and_access_security_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from ML platform + compute (access / network / hardening) and Model registry + storage (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
+          "The included `07_ai_infrastructure_and_access_security_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from ML platform + compute (access / network / hardening) and Model registry + storage (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
           "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
-          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 07_ai_infra_and_access_security_mcp.py` to expose it to your agent — or `python 07_ai_infra_and_access_security_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
+          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 07_ai_infrastructure_and_access_security_mcp.py` to expose it to your agent — or `python 07_ai_infrastructure_and_access_security_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
           "label": "coverage_report() — the audit deliverable (excerpt)",
@@ -2327,7 +2327,7 @@ export const aiAuditStages: StageConfig[] = [
         },
         {
           "year": 2025,
-          "event": "Agentic evidence-gathering becomes the practical way to keep \"AI infra and access security\" continuously assured",
+          "event": "Agentic evidence-gathering becomes the practical way to keep \"AI infrastructure and access security\" continuously assured",
           "highlight": true
         }
       ],
@@ -2360,14 +2360,14 @@ export const aiAuditStages: StageConfig[] = [
       ],
       "downloads": [
         {
-          "name": "07_ai_infra_and_access_security_mcp.py",
-          "url": "/audit-code/ai-audit/07_ai_infra_and_access_security_mcp.py",
-          "description": "Runnable read-only MCP server: gathers the Artificial Intelligence (AI) evidence for \"AI infra and access security\" (the security of ai infrastructure (training/inference compute, model registry, ml platform, gpus) — access control, network isolation, hardening), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "name": "07_ai_infrastructure_and_access_security_mcp.py",
+          "url": "/audit-code/ai-audit/07_ai_infrastructure_and_access_security_mcp.py",
+          "description": "Runnable read-only MCP server: gathers the Artificial Intelligence (AI) evidence for \"AI infrastructure and access security\" (the security of ai infrastructure (training/inference compute, model registry, ml platform, gpus) — access control, network isolation, hardening), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"AI infra and access security\" control for Artificial Intelligence (AI) at AcmeCorp. THE TEST: Verify AI infrastructure + access are secured. PASS: AI compute, the ML platform, model registry, and data are access-controlled (least-privilege, SSO+MFA, network isolation, hardened); pipeline service identities are scoped + least-privilege; secrets (model-provider API keys, data creds) are vaulted; and model-serving/inference endpoints are authenticated + protected. Exceptions: broad/unrestricted access to models + training data, the ML platform exposed/unhardened, over-privileged pipeline service accounts, hardcoded model-provider API keys, and unauthenticated inference endpoints. The evidence — The security of AI infrastructure (training/inference compute, model registry, ML platform, GPUs) — access control, network isolation, hardening — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live ML platform + compute (access / network / hardening) APIs; here the same sources are exported to files.)",
+      "scenario": "You're the auditor testing the \"AI infrastructure and access security\" control for Artificial Intelligence (AI) at AcmeCorp. THE TEST: Verify AI infrastructure + access are secured. PASS: AI compute, the ML platform, model registry, and data are access-controlled (least-privilege, SSO+MFA, network isolation, hardened); pipeline service identities are scoped + least-privilege; secrets (model-provider API keys, data creds) are vaulted; and model-serving/inference endpoints are authenticated + protected. Exceptions: broad/unrestricted access to models + training data, the ML platform exposed/unhardened, over-privileged pipeline service accounts, hardcoded model-provider API keys, and unauthenticated inference endpoints. The evidence — The security of AI infrastructure (training/inference compute, model registry, ML platform, GPUs) — access control, network isolation, hardening — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live ML platform + compute (access / network / hardening) APIs; here the same sources are exported to files.)",
       "hint": "Read every file in /evidence. ML platform + compute (access / network / hardening) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
         "cat each file in /evidence. The inventory comes from ML platform + compute (access / network / hardening); the state file shows what is actually configured/running.",
@@ -2375,9 +2375,9 @@ export const aiAuditStages: StageConfig[] = [
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Artificial Intelligence (AI): \"AI infra and access security\" Audit Evidence\n\nThe test:\nVerify AI infrastructure + access are secured. PASS: AI compute, the ML platform, model registry, and data are access-controlled (least-privilege, SSO+MFA, network isolation, hardened); pipeline service identities are scoped + least-privilege; secrets (model-provider API keys, data creds) are vaulted; and model-serving/inference endpoints are authenticated + protected. Exceptions: broad/unrestricted access to models + training data, the ML platform exposed/unhardened, over-privileged pipeline service accounts, hardcoded model-provider API keys, and unauthenticated inference endpoints.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- ai-audit_inventory.json   (in-scope items — The security of AI infrastructure (training/inference compute, model registry, ML platform, GPUs) — access control, network isolation, hardening)\n- ai-audit_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"AI infra and access security\",\n  \"domain\": \"Artificial Intelligence (AI)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{aig_",
-        "/evidence/ai-audit_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"AI/ML engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"AI infra and access security\" control must cover\n# fragment: ai_infra_access_",
+        "/evidence/README.md": "# AcmeCorp — Artificial Intelligence (AI): \"AI infrastructure and access security\" Audit Evidence\n\nThe test:\nVerify AI infrastructure + access are secured. PASS: AI compute, the ML platform, model registry, and data are access-controlled (least-privilege, SSO+MFA, network isolation, hardened); pipeline service identities are scoped + least-privilege; secrets (model-provider API keys, data creds) are vaulted; and model-serving/inference endpoints are authenticated + protected. Exceptions: broad/unrestricted access to models + training data, the ML platform exposed/unhardened, over-privileged pipeline service accounts, hardcoded model-provider API keys, and unauthenticated inference endpoints.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- ai-audit_inventory.json   (in-scope items — The security of AI infrastructure (training/inference compute, model registry, ML platform, GPUs) — access control, network isolation, hardening)\n- ai-audit_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"AI infrastructure and access security\",\n  \"domain\": \"Artificial Intelligence (AI)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{aig_",
+        "/evidence/ai-audit_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"AI/ML engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"AI infrastructure and access security\" control must cover\n# fragment: ai_infrastructure_access_",
         "/evidence/ai-audit_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
       },
@@ -2419,7 +2419,7 @@ export const aiAuditStages: StageConfig[] = [
         },
         {
           "trigger": "/evidence/ai-audit_inventory.json",
-          "value": "ai_infra_access_",
+          "value": "ai_infrastructure_access_",
           "label": "Inventory — the in-scope items"
         },
         {
@@ -2440,12 +2440,12 @@ export const aiAuditStages: StageConfig[] = [
           "id": "aig-07-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"AI infra and access security\" sub-process of Artificial Intelligence (AI)?",
+          "text": "What is the primary audit objective for the \"AI infrastructure and access security\" sub-process of Artificial Intelligence (AI)?",
           "options": [
-            "Deploy and operate the ai infra and access security control on the team's behalf so the gap is closed during fieldwork",
-            "Confirm management is comfortable that the ai infra and access security control works, based on their verbal assurance",
-            "Benchmark how many tools the team uses for ai infra and access security against comparable organisations in the sector",
-            "Obtain evidence that the ai infra and access security control is designed and operating effectively, and quantify the gap where it is not"
+            "Deploy and operate the ai infrastructure and access security control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the ai infrastructure and access security control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for ai infrastructure and access security against comparable organisations in the sector",
+            "Obtain evidence that the ai infrastructure and access security control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
           "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
@@ -2454,7 +2454,7 @@ export const aiAuditStages: StageConfig[] = [
           "id": "aig-07-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"AI infra and access security\" matter to the broader Artificial Intelligence (AI) posture?",
+          "text": "Why does a weakness in \"AI infrastructure and access security\" matter to the broader Artificial Intelligence (AI) posture?",
           "options": [
             "It mainly affects how the annual compliance report reads, rather than the actual risk to Artificial Intelligence (AI)",
             "It stops mattering once a firewall and endpoint agent are deployed across the Artificial Intelligence (AI) estate",
@@ -2468,12 +2468,12 @@ export const aiAuditStages: StageConfig[] = [
           "id": "aig-07-q3",
           "type": "Artifacts",
           "challenge": "Evidence",
-          "text": "Which artifact best evidences the \"AI infra and access security\" control?",
+          "text": "Which artifact best evidences the \"AI infrastructure and access security\" control?",
           "options": [
-            "A point-in-time screenshot of one system's ai infra and access security settings, captured during the walkthrough",
+            "A point-in-time screenshot of one system's ai infrastructure and access security settings, captured during the walkthrough",
             "The The security of AI infrastructure (training/inference compute, model registry, ML platform, GPUs) — access control, network isolation, hardening, reconciled against policy, plus the resulting findings working paper",
-            "A signed management attestation that the ai infra and access security control is in place, with no underlying data attached",
-            "A vendor datasheet describing the product's ai infra and access security capabilities and its recommended configuration"
+            "A signed management attestation that the ai infrastructure and access security control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's ai infrastructure and access security capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
           "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
@@ -2482,12 +2482,12 @@ export const aiAuditStages: StageConfig[] = [
           "id": "aig-07-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where should an auditor pull the evidence for \"AI infra and access security\"?",
+          "text": "Where should an auditor pull the evidence for \"AI infrastructure and access security\"?",
           "options": [
             "From ML platform + compute (access / network / hardening) and the other systems of record for this domain, accessed read-only",
             "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
             "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
-            "From an informal summary the team posted to the internal wiki describing how ai infra and access security works"
+            "From an informal summary the team posted to the internal wiki describing how ai infrastructure and access security works"
           ],
           "correctIndex": 0,
           "explanation": "Evidence must come from the authoritative systems (e.g. ML platform + compute (access / network / hardening)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
@@ -2496,11 +2496,11 @@ export const aiAuditStages: StageConfig[] = [
           "id": "aig-07-q5",
           "type": "Data owner",
           "challenge": "Accountability",
-          "text": "Who is most likely accountable for the data behind \"AI infra and access security\"?",
+          "text": "Who is most likely accountable for the data behind \"AI infrastructure and access security\"?",
           "options": [
-            "The external audit firm, since it is the party examining the ai infra and access security control this period",
+            "The external audit firm, since it is the party examining the ai infrastructure and access security control this period",
             "Whoever most recently changed the configuration, regardless of their role or formal accountability",
-            "No single function — the ai infra and access security data is shared, so the accountability sits with no one in particular",
+            "No single function — the ai infrastructure and access security data is shared, so the accountability sits with no one in particular",
             "AI security + cloud/platform security, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
@@ -2510,7 +2510,7 @@ export const aiAuditStages: StageConfig[] = [
           "id": "aig-07-q6",
           "type": "Agentic",
           "challenge": "Human vs agent",
-          "text": "In the agentic workflow for \"AI infra and access security\", which part stays with the human auditor?",
+          "text": "In the agentic workflow for \"AI infrastructure and access security\", which part stays with the human auditor?",
           "options": [
             "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
             "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
@@ -2538,7 +2538,7 @@ export const aiAuditStages: StageConfig[] = [
           "id": "aig-07-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"AI infra and access security\", which of these is a realistic reportable finding?",
+          "text": "For \"AI infrastructure and access security\", which of these is a realistic reportable finding?",
           "options": [
             "Anyone in data science can access all models, weights, and training data; the inference API has no authentication; and the model-provider API key is hardcoded in a notebook in a shared repo.",
             "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
@@ -2566,9 +2566,9 @@ export const aiAuditStages: StageConfig[] = [
           "id": "aig-07-q10",
           "type": "Privacy/Risk",
           "challenge": "The data angle",
-          "text": "Why does auditing \"AI infra and access security\" also serve privacy and regulatory goals?",
+          "text": "Why does auditing \"AI infrastructure and access security\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators review only written policy documents, never the technical controls behind ai infra and access security, so there is no overlap",
+            "Regulators review only written policy documents, never the technical controls behind ai infrastructure and access security, so there is no overlap",
             "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
             "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
             "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"

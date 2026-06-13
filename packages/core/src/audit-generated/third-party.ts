@@ -752,15 +752,15 @@ export const thirdPartyStages: StageConfig[] = [
     "epochId": "third-party",
     "id": "tps-03",
     "order": 3,
-    "title": "Change and release mgmt (vendor)",
-    "subtitle": "Agentic technical & privacy audit of the change and release mgmt (vendor) control",
+    "title": "Change and release management (vendor)",
+    "subtitle": "Agentic technical & privacy audit of the change and release management (vendor) control",
     "category": "cybersecurity",
     "xp": 140,
     "easeScore": 7,
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Change and release mgmt (vendor)\" control for Third Party Systems is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Verify vendor changes are governed so they don't surprise the org. PASS: contracts require advance notice of material/breaking changes + maintenance windows; the org receives + assesses vendor change notifications and tests them before they affect production; and there's a process for vendor deprecations. Exceptions: no contractual change-notice terms, vendor changes that broke production with no warning, no org-side assessment/testing of vendor changes, and unmanaged API deprecations.",
+      "objective": "Prove the \"Change and release management (vendor)\" control for Third Party Systems is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Verify vendor changes are governed so they don't surprise the org. PASS: contracts require advance notice of material/breaking changes + maintenance windows; the org receives + assesses vendor change notifications and tests them before they affect production; and there's a process for vendor deprecations. Exceptions: no contractual change-notice terms, vendor changes that broke production with no warning, no org-side assessment/testing of vendor changes, and unmanaged API deprecations.",
       "approach": "An audit agent calls a read-only MCP server that wraps the Third Party Systems systems of record (Vendor change/release notifications + status pages; Contracts (change-notice terms); The org's vendor-change assessment process) as tools — e.g. `confirm contractual advance-notice terms for breaking changes + mainte`, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "The vendor's change-notification process + evidence the org is notified of material vendor changes (releases, deprecations, infra changes)",
@@ -790,26 +790,26 @@ export const thirdPartyStages: StageConfig[] = [
       "emoji": "🔗"
     },
     "wonder": {
-      "name": "Change and release mgmt (vendor)",
+      "name": "Change and release management (vendor)",
       "location": "Third Party Systems",
       "era": "Present Day",
       "emoji": "🔗"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Change and release mgmt (vendor)\" as a repeatable agentic workflow: pull the real evidence (The vendor's change-notification process + evidence the org is notified of material vendor changes (releases, deprecations, infra changes)) with read-only agents, run the test against policy, and issue a defensible opinion on the Third Party Systems control.",
+      "tagline": "Auditing \"Change and release management (vendor)\" as a repeatable agentic workflow: pull the real evidence (The vendor's change-notification process + evidence the org is notified of material vendor changes (releases, deprecations, infra changes)) with read-only agents, run the test against policy, and issue a defensible opinion on the Third Party Systems control.",
       "year": 2025,
       "overview": [
-        "The \"Change and release mgmt (vendor)\" sub-process is one of the controls an auditor must verify for Third Party Systems. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me the vendor's change-notification process + evidence the org is notified of material vendor changes (releases, deprecations, infra changes), for everything in scope.\"",
+        "The \"Change and release management (vendor)\" sub-process is one of the controls an auditor must verify for Third Party Systems. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me the vendor's change-notification process + evidence the org is notified of material vendor changes (releases, deprecations, infra changes), for everything in scope.\"",
         "The evidence lives across systems that were never reconciled — here Vendor change/release notifications + status pages, Contracts (change-notice terms), The org's vendor-change assessment process — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. In practice you gather it with calls like `confirm contractual advance-notice terms for breaking changes + maintenance wind` — read-only, against the systems of record.",
         "The test itself is specific. Verify vendor changes are governed so they don't surprise the org. PASS: contracts require advance notice of material/breaking changes + maintenance windows; the org receives + assesses vendor change notifications and tests them before they affect production; and there's a process for vendor deprecations. Exceptions: no contractual change-notice terms, vendor changes that broke production with no warning, no org-side assessment/testing of vendor changes, and unmanaged API deprecations. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `03_change_and_release_mgmt_vendor_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Vendor change/release notifications + status pages and Contracts (change-notice terms) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
+          "The included `03_change_and_release_management_vendor_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Vendor change/release notifications + status pages and Contracts (change-notice terms) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
           "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
-          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 03_change_and_release_mgmt_vendor_mcp.py` to expose it to your agent — or `python 03_change_and_release_mgmt_vendor_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
+          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 03_change_and_release_management_vendor_mcp.py` to expose it to your agent — or `python 03_change_and_release_management_vendor_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
           "label": "coverage_report() — the audit deliverable (excerpt)",
@@ -862,7 +862,7 @@ export const thirdPartyStages: StageConfig[] = [
         },
         {
           "year": 2025,
-          "event": "Agentic evidence-gathering becomes the practical way to keep \"Change and release mgmt (vendor)\" continuously assured",
+          "event": "Agentic evidence-gathering becomes the practical way to keep \"Change and release management (vendor)\" continuously assured",
           "highlight": true
         }
       ],
@@ -895,14 +895,14 @@ export const thirdPartyStages: StageConfig[] = [
       ],
       "downloads": [
         {
-          "name": "03_change_and_release_mgmt_vendor_mcp.py",
-          "url": "/audit-code/third-party/03_change_and_release_mgmt_vendor_mcp.py",
-          "description": "Runnable read-only MCP server: gathers the Third Party Systems evidence for \"Change and release mgmt (vendor)\" (the vendor's change-notification process + evidence the org is notified of material vendor changes (releases, deprecations, infra changes)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "name": "03_change_and_release_management_vendor_mcp.py",
+          "url": "/audit-code/third-party/03_change_and_release_management_vendor_mcp.py",
+          "description": "Runnable read-only MCP server: gathers the Third Party Systems evidence for \"Change and release management (vendor)\" (the vendor's change-notification process + evidence the org is notified of material vendor changes (releases, deprecations, infra changes)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Change and release mgmt (vendor)\" control for Third Party Systems at AcmeCorp. THE TEST: Verify vendor changes are governed so they don't surprise the org. PASS: contracts require advance notice of material/breaking changes + maintenance windows; the org receives + assesses vendor change notifications and tests them before they affect production; and there's a process for vendor deprecations. Exceptions: no contractual change-notice terms, vendor changes that broke production with no warning, no org-side assessment/testing of vendor changes, and unmanaged API deprecations. The evidence — The vendor's change-notification process + evidence the org is notified of material vendor changes (releases, deprecations, infra changes) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Vendor change/release notifications + status pages APIs; here the same sources are exported to files.)",
+      "scenario": "You're the auditor testing the \"Change and release management (vendor)\" control for Third Party Systems at AcmeCorp. THE TEST: Verify vendor changes are governed so they don't surprise the org. PASS: contracts require advance notice of material/breaking changes + maintenance windows; the org receives + assesses vendor change notifications and tests them before they affect production; and there's a process for vendor deprecations. Exceptions: no contractual change-notice terms, vendor changes that broke production with no warning, no org-side assessment/testing of vendor changes, and unmanaged API deprecations. The evidence — The vendor's change-notification process + evidence the org is notified of material vendor changes (releases, deprecations, infra changes) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Vendor change/release notifications + status pages APIs; here the same sources are exported to files.)",
       "hint": "Read every file in /evidence. Vendor change/release notifications + status pages gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
         "cat each file in /evidence. The inventory comes from Vendor change/release notifications + status pages; the state file shows what is actually configured/running.",
@@ -910,9 +910,9 @@ export const thirdPartyStages: StageConfig[] = [
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Third Party Systems: \"Change and release mgmt (vendor)\" Audit Evidence\n\nThe test:\nVerify vendor changes are governed so they don't surprise the org. PASS: contracts require advance notice of material/breaking changes + maintenance windows; the org receives + assesses vendor change notifications and tests them before they affect production; and there's a process for vendor deprecations. Exceptions: no contractual change-notice terms, vendor changes that broke production with no warning, no org-side assessment/testing of vendor changes, and unmanaged API deprecations.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- third-party_inventory.json   (in-scope items — The vendor's change-notification process + evidence the org is notified of material vendor changes (releases, deprecations, infra changes))\n- third-party_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Change and release mgmt (vendor)\",\n  \"domain\": \"Third Party Systems\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{tps_",
-        "/evidence/third-party_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Third-party risk management\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Change and release mgmt (vendor)\" control must cover\n# fragment: change_release_mgmt_",
+        "/evidence/README.md": "# AcmeCorp — Third Party Systems: \"Change and release management (vendor)\" Audit Evidence\n\nThe test:\nVerify vendor changes are governed so they don't surprise the org. PASS: contracts require advance notice of material/breaking changes + maintenance windows; the org receives + assesses vendor change notifications and tests them before they affect production; and there's a process for vendor deprecations. Exceptions: no contractual change-notice terms, vendor changes that broke production with no warning, no org-side assessment/testing of vendor changes, and unmanaged API deprecations.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- third-party_inventory.json   (in-scope items — The vendor's change-notification process + evidence the org is notified of material vendor changes (releases, deprecations, infra changes))\n- third-party_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Change and release management (vendor)\",\n  \"domain\": \"Third Party Systems\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{tps_",
+        "/evidence/third-party_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Third-party risk management\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Change and release management (vendor)\" control must cover\n# fragment: change_release_management_",
         "/evidence/third-party_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
       },
@@ -954,7 +954,7 @@ export const thirdPartyStages: StageConfig[] = [
         },
         {
           "trigger": "/evidence/third-party_inventory.json",
-          "value": "change_release_mgmt_",
+          "value": "change_release_management_",
           "label": "Inventory — the in-scope items"
         },
         {
@@ -975,12 +975,12 @@ export const thirdPartyStages: StageConfig[] = [
           "id": "tps-03-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Change and release mgmt (vendor)\" sub-process of Third Party Systems?",
+          "text": "What is the primary audit objective for the \"Change and release management (vendor)\" sub-process of Third Party Systems?",
           "options": [
-            "Deploy and operate the change and release mgmt (vendor) control on the team's behalf so the gap is closed during fieldwork",
-            "Confirm management is comfortable that the change and release mgmt (vendor) control works, based on their verbal assurance",
-            "Benchmark how many tools the team uses for change and release mgmt (vendor) against comparable organisations in the sector",
-            "Obtain evidence that the change and release mgmt (vendor) control is designed and operating effectively, and quantify the gap where it is not"
+            "Deploy and operate the change and release management (vendor) control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the change and release management (vendor) control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for change and release management (vendor) against comparable organisations in the sector",
+            "Obtain evidence that the change and release management (vendor) control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
           "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
@@ -989,7 +989,7 @@ export const thirdPartyStages: StageConfig[] = [
           "id": "tps-03-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Change and release mgmt (vendor)\" matter to the broader Third Party Systems posture?",
+          "text": "Why does a weakness in \"Change and release management (vendor)\" matter to the broader Third Party Systems posture?",
           "options": [
             "It mainly affects how the annual compliance report reads, rather than the actual risk to Third Party Systems",
             "It stops mattering once a firewall and endpoint agent are deployed across the Third Party Systems estate",
@@ -1003,12 +1003,12 @@ export const thirdPartyStages: StageConfig[] = [
           "id": "tps-03-q3",
           "type": "Artifacts",
           "challenge": "Evidence",
-          "text": "Which artifact best evidences the \"Change and release mgmt (vendor)\" control?",
+          "text": "Which artifact best evidences the \"Change and release management (vendor)\" control?",
           "options": [
-            "A point-in-time screenshot of one system's change and release mgmt (vendor) settings, captured during the walkthrough",
+            "A point-in-time screenshot of one system's change and release management (vendor) settings, captured during the walkthrough",
             "The The vendor's change-notification process + evidence the org is notified of material vendor changes (releases, deprecations, infra changes), reconciled against policy, plus the resulting findings working paper",
-            "A signed management attestation that the change and release mgmt (vendor) control is in place, with no underlying data attached",
-            "A vendor datasheet describing the product's change and release mgmt (vendor) capabilities and its recommended configuration"
+            "A signed management attestation that the change and release management (vendor) control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's change and release management (vendor) capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
           "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
@@ -1017,12 +1017,12 @@ export const thirdPartyStages: StageConfig[] = [
           "id": "tps-03-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where should an auditor pull the evidence for \"Change and release mgmt (vendor)\"?",
+          "text": "Where should an auditor pull the evidence for \"Change and release management (vendor)\"?",
           "options": [
             "From Vendor change/release notifications + status pages and the other systems of record for this domain, accessed read-only",
             "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
             "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
-            "From an informal summary the team posted to the internal wiki describing how change and release mgmt (vendor) works"
+            "From an informal summary the team posted to the internal wiki describing how change and release management (vendor) works"
           ],
           "correctIndex": 0,
           "explanation": "Evidence must come from the authoritative systems (e.g. Vendor change/release notifications + status pages) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
@@ -1031,11 +1031,11 @@ export const thirdPartyStages: StageConfig[] = [
           "id": "tps-03-q5",
           "type": "Data owner",
           "challenge": "Accountability",
-          "text": "Who is most likely accountable for the data behind \"Change and release mgmt (vendor)\"?",
+          "text": "Who is most likely accountable for the data behind \"Change and release management (vendor)\"?",
           "options": [
-            "The external audit firm, since it is the party examining the change and release mgmt (vendor) control this period",
+            "The external audit firm, since it is the party examining the change and release management (vendor) control this period",
             "Whoever most recently changed the configuration, regardless of their role or formal accountability",
-            "No single function — the change and release mgmt (vendor) data is shared, so the accountability sits with no one in particular",
+            "No single function — the change and release management (vendor) data is shared, so the accountability sits with no one in particular",
             "Vendor management, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
@@ -1045,7 +1045,7 @@ export const thirdPartyStages: StageConfig[] = [
           "id": "tps-03-q6",
           "type": "Agentic",
           "challenge": "Human vs agent",
-          "text": "In the agentic workflow for \"Change and release mgmt (vendor)\", which part stays with the human auditor?",
+          "text": "In the agentic workflow for \"Change and release management (vendor)\", which part stays with the human auditor?",
           "options": [
             "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
             "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
@@ -1073,7 +1073,7 @@ export const thirdPartyStages: StageConfig[] = [
           "id": "tps-03-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Change and release mgmt (vendor)\", which of these is a realistic reportable finding?",
+          "text": "For \"Change and release management (vendor)\", which of these is a realistic reportable finding?",
           "options": [
             "A vendor deprecated an API version with 30 days' notice that nobody was monitoring; the integration broke in production, and there's no contractual requirement or internal process for assessing vendor changes.",
             "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
@@ -1101,9 +1101,9 @@ export const thirdPartyStages: StageConfig[] = [
           "id": "tps-03-q10",
           "type": "Privacy/Risk",
           "challenge": "The data angle",
-          "text": "Why does auditing \"Change and release mgmt (vendor)\" also serve privacy and regulatory goals?",
+          "text": "Why does auditing \"Change and release management (vendor)\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators review only written policy documents, never the technical controls behind change and release mgmt (vendor), so there is no overlap",
+            "Regulators review only written policy documents, never the technical controls behind change and release management (vendor), so there is no overlap",
             "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
             "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
             "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
@@ -1118,15 +1118,15 @@ export const thirdPartyStages: StageConfig[] = [
     "epochId": "third-party",
     "id": "tps-04",
     "order": 4,
-    "title": "Incident and problem mgmt (vendor)",
-    "subtitle": "Agentic technical & privacy audit of the incident and problem mgmt (vendor) control",
+    "title": "Incident and problem management (vendor)",
+    "subtitle": "Agentic technical & privacy audit of the incident and problem management (vendor) control",
     "category": "cybersecurity",
     "xp": 180,
     "easeScore": 5,
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Incident and problem mgmt (vendor)\" control for Third Party Systems is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Verify vendor incidents are communicated + jointly managed. PASS: contracts mandate incident/breach notification within a defined SLA (e.g. 24-72h); the org has a runbook for vendor-side incidents (escalation, comms, customer notice); the vendor provides RCAs for significant/recurring issues; and past incidents show the SLA was met. Exceptions: no contractual notification SLA, late/no notice in real incidents, no joint IR runbook, and recurring vendor problems with no RCA or remediation.",
+      "objective": "Prove the \"Incident and problem management (vendor)\" control for Third Party Systems is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Verify vendor incidents are communicated + jointly managed. PASS: contracts mandate incident/breach notification within a defined SLA (e.g. 24-72h); the org has a runbook for vendor-side incidents (escalation, comms, customer notice); the vendor provides RCAs for significant/recurring issues; and past incidents show the SLA was met. Exceptions: no contractual notification SLA, late/no notice in real incidents, no joint IR runbook, and recurring vendor problems with no RCA or remediation.",
       "approach": "An audit agent calls a read-only MCP server that wraps the Third Party Systems systems of record (Contracts (incident/breach SLA); The joint IR runbook; Vendor status / incident comms) as tools — e.g. `contract: incident + breach-notification SLA (hours)`, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "The vendor incident-notification SLA + evidence it's met (breach/incident-notice timeliness in real cases)",
@@ -1156,26 +1156,26 @@ export const thirdPartyStages: StageConfig[] = [
       "emoji": "🔗"
     },
     "wonder": {
-      "name": "Incident and problem mgmt (vendor)",
+      "name": "Incident and problem management (vendor)",
       "location": "Third Party Systems",
       "era": "Present Day",
       "emoji": "🔗"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Incident and problem mgmt (vendor)\" as a repeatable agentic workflow: pull the real evidence (The vendor incident-notification SLA + evidence it's met (breach/incident-notice timeliness in real cases)) with read-only agents, run the test against policy, and issue a defensible opinion on the Third Party Systems control.",
+      "tagline": "Auditing \"Incident and problem management (vendor)\" as a repeatable agentic workflow: pull the real evidence (The vendor incident-notification SLA + evidence it's met (breach/incident-notice timeliness in real cases)) with read-only agents, run the test against policy, and issue a defensible opinion on the Third Party Systems control.",
       "year": 2025,
       "overview": [
-        "The \"Incident and problem mgmt (vendor)\" sub-process is one of the controls an auditor must verify for Third Party Systems. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me the vendor incident-notification SLA + evidence it's met (breach/incident-notice timeliness in real cases), for everything in scope.\"",
+        "The \"Incident and problem management (vendor)\" sub-process is one of the controls an auditor must verify for Third Party Systems. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me the vendor incident-notification SLA + evidence it's met (breach/incident-notice timeliness in real cases), for everything in scope.\"",
         "The evidence lives across systems that were never reconciled — here Contracts (incident/breach SLA), The joint IR runbook, Vendor status / incident comms — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. In practice you gather it with calls like `contract: incident + breach-notification SLA (hours)` — read-only, against the systems of record.",
         "The test itself is specific. Verify vendor incidents are communicated + jointly managed. PASS: contracts mandate incident/breach notification within a defined SLA (e.g. 24-72h); the org has a runbook for vendor-side incidents (escalation, comms, customer notice); the vendor provides RCAs for significant/recurring issues; and past incidents show the SLA was met. Exceptions: no contractual notification SLA, late/no notice in real incidents, no joint IR runbook, and recurring vendor problems with no RCA or remediation. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `04_incident_and_problem_mgmt_vendor_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Contracts (incident/breach SLA) and The joint IR runbook (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
+          "The included `04_incident_and_problem_management_vendor_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Contracts (incident/breach SLA) and The joint IR runbook (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
           "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
-          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 04_incident_and_problem_mgmt_vendor_mcp.py` to expose it to your agent — or `python 04_incident_and_problem_mgmt_vendor_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
+          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 04_incident_and_problem_management_vendor_mcp.py` to expose it to your agent — or `python 04_incident_and_problem_management_vendor_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
           "label": "coverage_report() — the audit deliverable (excerpt)",
@@ -1228,7 +1228,7 @@ export const thirdPartyStages: StageConfig[] = [
         },
         {
           "year": 2025,
-          "event": "Agentic evidence-gathering becomes the practical way to keep \"Incident and problem mgmt (vendor)\" continuously assured",
+          "event": "Agentic evidence-gathering becomes the practical way to keep \"Incident and problem management (vendor)\" continuously assured",
           "highlight": true
         }
       ],
@@ -1261,14 +1261,14 @@ export const thirdPartyStages: StageConfig[] = [
       ],
       "downloads": [
         {
-          "name": "04_incident_and_problem_mgmt_vendor_mcp.py",
-          "url": "/audit-code/third-party/04_incident_and_problem_mgmt_vendor_mcp.py",
-          "description": "Runnable read-only MCP server: gathers the Third Party Systems evidence for \"Incident and problem mgmt (vendor)\" (the vendor incident-notification sla + evidence it's met (breach/incident-notice timeliness in real cases)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "name": "04_incident_and_problem_management_vendor_mcp.py",
+          "url": "/audit-code/third-party/04_incident_and_problem_management_vendor_mcp.py",
+          "description": "Runnable read-only MCP server: gathers the Third Party Systems evidence for \"Incident and problem management (vendor)\" (the vendor incident-notification sla + evidence it's met (breach/incident-notice timeliness in real cases)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Incident and problem mgmt (vendor)\" control for Third Party Systems at AcmeCorp. THE TEST: Verify vendor incidents are communicated + jointly managed. PASS: contracts mandate incident/breach notification within a defined SLA (e.g. 24-72h); the org has a runbook for vendor-side incidents (escalation, comms, customer notice); the vendor provides RCAs for significant/recurring issues; and past incidents show the SLA was met. Exceptions: no contractual notification SLA, late/no notice in real incidents, no joint IR runbook, and recurring vendor problems with no RCA or remediation. The evidence — The vendor incident-notification SLA + evidence it's met (breach/incident-notice timeliness in real cases) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Contracts (incident/breach SLA) APIs; here the same sources are exported to files.)",
+      "scenario": "You're the auditor testing the \"Incident and problem management (vendor)\" control for Third Party Systems at AcmeCorp. THE TEST: Verify vendor incidents are communicated + jointly managed. PASS: contracts mandate incident/breach notification within a defined SLA (e.g. 24-72h); the org has a runbook for vendor-side incidents (escalation, comms, customer notice); the vendor provides RCAs for significant/recurring issues; and past incidents show the SLA was met. Exceptions: no contractual notification SLA, late/no notice in real incidents, no joint IR runbook, and recurring vendor problems with no RCA or remediation. The evidence — The vendor incident-notification SLA + evidence it's met (breach/incident-notice timeliness in real cases) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Contracts (incident/breach SLA) APIs; here the same sources are exported to files.)",
       "hint": "Read every file in /evidence. Contracts (incident/breach SLA) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
         "cat each file in /evidence. The inventory comes from Contracts (incident/breach SLA); the state file shows what is actually configured/running.",
@@ -1276,9 +1276,9 @@ export const thirdPartyStages: StageConfig[] = [
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Third Party Systems: \"Incident and problem mgmt (vendor)\" Audit Evidence\n\nThe test:\nVerify vendor incidents are communicated + jointly managed. PASS: contracts mandate incident/breach notification within a defined SLA (e.g. 24-72h); the org has a runbook for vendor-side incidents (escalation, comms, customer notice); the vendor provides RCAs for significant/recurring issues; and past incidents show the SLA was met. Exceptions: no contractual notification SLA, late/no notice in real incidents, no joint IR runbook, and recurring vendor problems with no RCA or remediation.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- third-party_inventory.json   (in-scope items — The vendor incident-notification SLA + evidence it's met (breach/incident-notice timeliness in real cases))\n- third-party_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Incident and problem mgmt (vendor)\",\n  \"domain\": \"Third Party Systems\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{tps_",
-        "/evidence/third-party_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Third-party risk management\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Incident and problem mgmt (vendor)\" control must cover\n# fragment: incident_problem_mgmt_",
+        "/evidence/README.md": "# AcmeCorp — Third Party Systems: \"Incident and problem management (vendor)\" Audit Evidence\n\nThe test:\nVerify vendor incidents are communicated + jointly managed. PASS: contracts mandate incident/breach notification within a defined SLA (e.g. 24-72h); the org has a runbook for vendor-side incidents (escalation, comms, customer notice); the vendor provides RCAs for significant/recurring issues; and past incidents show the SLA was met. Exceptions: no contractual notification SLA, late/no notice in real incidents, no joint IR runbook, and recurring vendor problems with no RCA or remediation.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- third-party_inventory.json   (in-scope items — The vendor incident-notification SLA + evidence it's met (breach/incident-notice timeliness in real cases))\n- third-party_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Incident and problem management (vendor)\",\n  \"domain\": \"Third Party Systems\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{tps_",
+        "/evidence/third-party_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Third-party risk management\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Incident and problem management (vendor)\" control must cover\n# fragment: incident_problem_management_",
         "/evidence/third-party_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
       },
@@ -1320,7 +1320,7 @@ export const thirdPartyStages: StageConfig[] = [
         },
         {
           "trigger": "/evidence/third-party_inventory.json",
-          "value": "incident_problem_mgmt_",
+          "value": "incident_problem_management_",
           "label": "Inventory — the in-scope items"
         },
         {
@@ -1341,12 +1341,12 @@ export const thirdPartyStages: StageConfig[] = [
           "id": "tps-04-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Incident and problem mgmt (vendor)\" sub-process of Third Party Systems?",
+          "text": "What is the primary audit objective for the \"Incident and problem management (vendor)\" sub-process of Third Party Systems?",
           "options": [
-            "Deploy and operate the incident and problem mgmt (vendor) control on the team's behalf so the gap is closed during fieldwork",
-            "Confirm management is comfortable that the incident and problem mgmt (vendor) control works, based on their verbal assurance",
-            "Benchmark how many tools the team uses for incident and problem mgmt (vendor) against comparable organisations in the sector",
-            "Obtain evidence that the incident and problem mgmt (vendor) control is designed and operating effectively, and quantify the gap where it is not"
+            "Deploy and operate the incident and problem management (vendor) control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the incident and problem management (vendor) control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for incident and problem management (vendor) against comparable organisations in the sector",
+            "Obtain evidence that the incident and problem management (vendor) control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
           "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
@@ -1355,7 +1355,7 @@ export const thirdPartyStages: StageConfig[] = [
           "id": "tps-04-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Incident and problem mgmt (vendor)\" matter to the broader Third Party Systems posture?",
+          "text": "Why does a weakness in \"Incident and problem management (vendor)\" matter to the broader Third Party Systems posture?",
           "options": [
             "It mainly affects how the annual compliance report reads, rather than the actual risk to Third Party Systems",
             "It stops mattering once a firewall and endpoint agent are deployed across the Third Party Systems estate",
@@ -1369,12 +1369,12 @@ export const thirdPartyStages: StageConfig[] = [
           "id": "tps-04-q3",
           "type": "Artifacts",
           "challenge": "Evidence",
-          "text": "Which artifact best evidences the \"Incident and problem mgmt (vendor)\" control?",
+          "text": "Which artifact best evidences the \"Incident and problem management (vendor)\" control?",
           "options": [
-            "A point-in-time screenshot of one system's incident and problem mgmt (vendor) settings, captured during the walkthrough",
+            "A point-in-time screenshot of one system's incident and problem management (vendor) settings, captured during the walkthrough",
             "The The vendor incident-notification SLA + evidence it's met (breach/incident-notice timeliness in real cases), reconciled against policy, plus the resulting findings working paper",
-            "A signed management attestation that the incident and problem mgmt (vendor) control is in place, with no underlying data attached",
-            "A vendor datasheet describing the product's incident and problem mgmt (vendor) capabilities and its recommended configuration"
+            "A signed management attestation that the incident and problem management (vendor) control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's incident and problem management (vendor) capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
           "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
@@ -1383,12 +1383,12 @@ export const thirdPartyStages: StageConfig[] = [
           "id": "tps-04-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where should an auditor pull the evidence for \"Incident and problem mgmt (vendor)\"?",
+          "text": "Where should an auditor pull the evidence for \"Incident and problem management (vendor)\"?",
           "options": [
             "From Contracts (incident/breach SLA) and the other systems of record for this domain, accessed read-only",
             "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
             "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
-            "From an informal summary the team posted to the internal wiki describing how incident and problem mgmt (vendor) works"
+            "From an informal summary the team posted to the internal wiki describing how incident and problem management (vendor) works"
           ],
           "correctIndex": 0,
           "explanation": "Evidence must come from the authoritative systems (e.g. Contracts (incident/breach SLA)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
@@ -1397,11 +1397,11 @@ export const thirdPartyStages: StageConfig[] = [
           "id": "tps-04-q5",
           "type": "Data owner",
           "challenge": "Accountability",
-          "text": "Who is most likely accountable for the data behind \"Incident and problem mgmt (vendor)\"?",
+          "text": "Who is most likely accountable for the data behind \"Incident and problem management (vendor)\"?",
           "options": [
-            "The external audit firm, since it is the party examining the incident and problem mgmt (vendor) control this period",
+            "The external audit firm, since it is the party examining the incident and problem management (vendor) control this period",
             "Whoever most recently changed the configuration, regardless of their role or formal accountability",
-            "No single function — the incident and problem mgmt (vendor) data is shared, so the accountability sits with no one in particular",
+            "No single function — the incident and problem management (vendor) data is shared, so the accountability sits with no one in particular",
             "Vendor risk + security operations / CSIRT, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
@@ -1411,7 +1411,7 @@ export const thirdPartyStages: StageConfig[] = [
           "id": "tps-04-q6",
           "type": "Agentic",
           "challenge": "Human vs agent",
-          "text": "In the agentic workflow for \"Incident and problem mgmt (vendor)\", which part stays with the human auditor?",
+          "text": "In the agentic workflow for \"Incident and problem management (vendor)\", which part stays with the human auditor?",
           "options": [
             "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
             "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
@@ -1439,7 +1439,7 @@ export const thirdPartyStages: StageConfig[] = [
           "id": "tps-04-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Incident and problem mgmt (vendor)\", which of these is a realistic reportable finding?",
+          "text": "For \"Incident and problem management (vendor)\", which of these is a realistic reportable finding?",
           "options": [
             "The vendor learned of a breach affecting the org's data weeks before notifying, the contract has no notification SLA, and there's no joint incident-response runbook — so the org's own breach-notification clock started late.",
             "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
@@ -1467,9 +1467,9 @@ export const thirdPartyStages: StageConfig[] = [
           "id": "tps-04-q10",
           "type": "Privacy/Risk",
           "challenge": "The data angle",
-          "text": "Why does auditing \"Incident and problem mgmt (vendor)\" also serve privacy and regulatory goals?",
+          "text": "Why does auditing \"Incident and problem management (vendor)\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators review only written policy documents, never the technical controls behind incident and problem mgmt (vendor), so there is no overlap",
+            "Regulators review only written policy documents, never the technical controls behind incident and problem management (vendor), so there is no overlap",
             "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
             "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
             "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
@@ -2580,15 +2580,15 @@ export const thirdPartyStages: StageConfig[] = [
     "epochId": "third-party",
     "id": "tps-08",
     "order": 8,
-    "title": "Vendor governance and risk mgmt",
-    "subtitle": "Agentic technical & privacy audit of the vendor governance and risk mgmt control",
+    "title": "Vendor governance and risk management",
+    "subtitle": "Agentic technical & privacy audit of the vendor governance and risk management control",
     "category": "cybersecurity",
     "xp": 140,
     "easeScore": 6,
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Vendor governance and risk mgmt\" control for Third Party Systems is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Verify third parties are governed across their lifecycle with risk-based rigor. PASS: a complete vendor inventory is risk-tiered; onboarding due-diligence matches the tier; vendors are reassessed on cadence (and continuously monitored for high-risk ones); and offboarding revokes access + confirms data return/destruction. Exceptions: shadow/uninventoried vendors, no risk-tiering, onboarding with no due-diligence, high-risk vendors never reassessed, and offboarded vendors with residual access/data.",
+      "objective": "Prove the \"Vendor governance and risk management\" control for Third Party Systems is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Verify third parties are governed across their lifecycle with risk-based rigor. PASS: a complete vendor inventory is risk-tiered; onboarding due-diligence matches the tier; vendors are reassessed on cadence (and continuously monitored for high-risk ones); and offboarding revokes access + confirms data return/destruction. Exceptions: shadow/uninventoried vendors, no risk-tiering, onboarding with no due-diligence, high-risk vendors never reassessed, and offboarded vendors with residual access/data.",
       "approach": "An audit agent calls a read-only MCP server that wraps the Third Party Systems systems of record (TPRM / GRC (Archer / OneTrust / ProcessUnity / Whistic); Continuous monitoring (SecurityScorecard / BitSight); Procurement + the contract repository) as tools — e.g. `vendor inventory + risk-tier (criticality × data sensitivity) + assess`, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "The vendor inventory + risk-tiering (criticality × data sensitivity) + the assessment cadence per tier",
@@ -2617,26 +2617,26 @@ export const thirdPartyStages: StageConfig[] = [
       "emoji": "🔗"
     },
     "wonder": {
-      "name": "Vendor governance and risk mgmt",
+      "name": "Vendor governance and risk management",
       "location": "Third Party Systems",
       "era": "Present Day",
       "emoji": "🔗"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Vendor governance and risk mgmt\" as a repeatable agentic workflow: pull the real evidence (The vendor inventory + risk-tiering (criticality × data sensitivity) + the assessment cadence per tier) with read-only agents, run the test against policy, and issue a defensible opinion on the Third Party Systems control.",
+      "tagline": "Auditing \"Vendor governance and risk management\" as a repeatable agentic workflow: pull the real evidence (The vendor inventory + risk-tiering (criticality × data sensitivity) + the assessment cadence per tier) with read-only agents, run the test against policy, and issue a defensible opinion on the Third Party Systems control.",
       "year": 2025,
       "overview": [
-        "The \"Vendor governance and risk mgmt\" sub-process is one of the controls an auditor must verify for Third Party Systems. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me the vendor inventory + risk-tiering (criticality × data sensitivity) + the assessment cadence per tier, for everything in scope.\"",
+        "The \"Vendor governance and risk management\" sub-process is one of the controls an auditor must verify for Third Party Systems. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me the vendor inventory + risk-tiering (criticality × data sensitivity) + the assessment cadence per tier, for everything in scope.\"",
         "The evidence lives across systems that were never reconciled — here TPRM / GRC (Archer / OneTrust / ProcessUnity / Whistic), Continuous monitoring (SecurityScorecard / BitSight), Procurement + the contract repository — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. In practice you gather it with calls like `vendor inventory + risk-tier (criticality × data sensitivity) + assessment caden` — read-only, against the systems of record.",
         "The test itself is specific. Verify third parties are governed across their lifecycle with risk-based rigor. PASS: a complete vendor inventory is risk-tiered; onboarding due-diligence matches the tier; vendors are reassessed on cadence (and continuously monitored for high-risk ones); and offboarding revokes access + confirms data return/destruction. Exceptions: shadow/uninventoried vendors, no risk-tiering, onboarding with no due-diligence, high-risk vendors never reassessed, and offboarded vendors with residual access/data. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `08_vendor_governance_and_risk_mgmt_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from TPRM / GRC (Archer / OneTrust / ProcessUnity / Whistic) and Continuous monitoring (SecurityScorecard / BitSight) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
+          "The included `08_vendor_governance_and_risk_management_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from TPRM / GRC (Archer / OneTrust / ProcessUnity / Whistic) and Continuous monitoring (SecurityScorecard / BitSight) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
           "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
-          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 08_vendor_governance_and_risk_mgmt_mcp.py` to expose it to your agent — or `python 08_vendor_governance_and_risk_mgmt_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
+          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 08_vendor_governance_and_risk_management_mcp.py` to expose it to your agent — or `python 08_vendor_governance_and_risk_management_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
           "label": "coverage_report() — the audit deliverable (excerpt)",
@@ -2689,7 +2689,7 @@ export const thirdPartyStages: StageConfig[] = [
         },
         {
           "year": 2025,
-          "event": "Agentic evidence-gathering becomes the practical way to keep \"Vendor governance and risk mgmt\" continuously assured",
+          "event": "Agentic evidence-gathering becomes the practical way to keep \"Vendor governance and risk management\" continuously assured",
           "highlight": true
         }
       ],
@@ -2726,14 +2726,14 @@ export const thirdPartyStages: StageConfig[] = [
       ],
       "downloads": [
         {
-          "name": "08_vendor_governance_and_risk_mgmt_mcp.py",
-          "url": "/audit-code/third-party/08_vendor_governance_and_risk_mgmt_mcp.py",
-          "description": "Runnable read-only MCP server: gathers the Third Party Systems evidence for \"Vendor governance and risk mgmt\" (the vendor inventory + risk-tiering (criticality × data sensitivity) + the assessment cadence per tier), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "name": "08_vendor_governance_and_risk_management_mcp.py",
+          "url": "/audit-code/third-party/08_vendor_governance_and_risk_management_mcp.py",
+          "description": "Runnable read-only MCP server: gathers the Third Party Systems evidence for \"Vendor governance and risk management\" (the vendor inventory + risk-tiering (criticality × data sensitivity) + the assessment cadence per tier), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Vendor governance and risk mgmt\" control for Third Party Systems at AcmeCorp. THE TEST: Verify third parties are governed across their lifecycle with risk-based rigor. PASS: a complete vendor inventory is risk-tiered; onboarding due-diligence matches the tier; vendors are reassessed on cadence (and continuously monitored for high-risk ones); and offboarding revokes access + confirms data return/destruction. Exceptions: shadow/uninventoried vendors, no risk-tiering, onboarding with no due-diligence, high-risk vendors never reassessed, and offboarded vendors with residual access/data. The evidence — The vendor inventory + risk-tiering (criticality × data sensitivity) + the assessment cadence per tier — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live TPRM / GRC (Archer / OneTrust / ProcessUnity / Whistic) APIs; here the same sources are exported to files.)",
+      "scenario": "You're the auditor testing the \"Vendor governance and risk management\" control for Third Party Systems at AcmeCorp. THE TEST: Verify third parties are governed across their lifecycle with risk-based rigor. PASS: a complete vendor inventory is risk-tiered; onboarding due-diligence matches the tier; vendors are reassessed on cadence (and continuously monitored for high-risk ones); and offboarding revokes access + confirms data return/destruction. Exceptions: shadow/uninventoried vendors, no risk-tiering, onboarding with no due-diligence, high-risk vendors never reassessed, and offboarded vendors with residual access/data. The evidence — The vendor inventory + risk-tiering (criticality × data sensitivity) + the assessment cadence per tier — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live TPRM / GRC (Archer / OneTrust / ProcessUnity / Whistic) APIs; here the same sources are exported to files.)",
       "hint": "Read every file in /evidence. TPRM / GRC (Archer / OneTrust / ProcessUnity / Whistic) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
         "cat each file in /evidence. The inventory comes from TPRM / GRC (Archer / OneTrust / ProcessUnity / Whistic); the state file shows what is actually configured/running.",
@@ -2741,9 +2741,9 @@ export const thirdPartyStages: StageConfig[] = [
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Third Party Systems: \"Vendor governance and risk mgmt\" Audit Evidence\n\nThe test:\nVerify third parties are governed across their lifecycle with risk-based rigor. PASS: a complete vendor inventory is risk-tiered; onboarding due-diligence matches the tier; vendors are reassessed on cadence (and continuously monitored for high-risk ones); and offboarding revokes access + confirms data return/destruction. Exceptions: shadow/uninventoried vendors, no risk-tiering, onboarding with no due-diligence, high-risk vendors never reassessed, and offboarded vendors with residual access/data.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- third-party_inventory.json   (in-scope items — The vendor inventory + risk-tiering (criticality × data sensitivity) + the assessment cadence per tier)\n- third-party_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Vendor governance and risk mgmt\",\n  \"domain\": \"Third Party Systems\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{tps_",
-        "/evidence/third-party_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Third-party risk management\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Vendor governance and risk mgmt\" control must cover\n# fragment: vendor_governance_risk_",
+        "/evidence/README.md": "# AcmeCorp — Third Party Systems: \"Vendor governance and risk management\" Audit Evidence\n\nThe test:\nVerify third parties are governed across their lifecycle with risk-based rigor. PASS: a complete vendor inventory is risk-tiered; onboarding due-diligence matches the tier; vendors are reassessed on cadence (and continuously monitored for high-risk ones); and offboarding revokes access + confirms data return/destruction. Exceptions: shadow/uninventoried vendors, no risk-tiering, onboarding with no due-diligence, high-risk vendors never reassessed, and offboarded vendors with residual access/data.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- third-party_inventory.json   (in-scope items — The vendor inventory + risk-tiering (criticality × data sensitivity) + the assessment cadence per tier)\n- third-party_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Vendor governance and risk management\",\n  \"domain\": \"Third Party Systems\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{tps_",
+        "/evidence/third-party_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Third-party risk management\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Vendor governance and risk management\" control must cover\n# fragment: vendor_governance_risk_",
         "/evidence/third-party_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
       },
@@ -2806,12 +2806,12 @@ export const thirdPartyStages: StageConfig[] = [
           "id": "tps-08-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Vendor governance and risk mgmt\" sub-process of Third Party Systems?",
+          "text": "What is the primary audit objective for the \"Vendor governance and risk management\" sub-process of Third Party Systems?",
           "options": [
-            "Deploy and operate the vendor governance and risk mgmt control on the team's behalf so the gap is closed during fieldwork",
-            "Confirm management is comfortable that the vendor governance and risk mgmt control works, based on their verbal assurance",
-            "Benchmark how many tools the team uses for vendor governance and risk mgmt against comparable organisations in the sector",
-            "Obtain evidence that the vendor governance and risk mgmt control is designed and operating effectively, and quantify the gap where it is not"
+            "Deploy and operate the vendor governance and risk management control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the vendor governance and risk management control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for vendor governance and risk management against comparable organisations in the sector",
+            "Obtain evidence that the vendor governance and risk management control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
           "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
@@ -2820,7 +2820,7 @@ export const thirdPartyStages: StageConfig[] = [
           "id": "tps-08-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Vendor governance and risk mgmt\" matter to the broader Third Party Systems posture?",
+          "text": "Why does a weakness in \"Vendor governance and risk management\" matter to the broader Third Party Systems posture?",
           "options": [
             "It mainly affects how the annual compliance report reads, rather than the actual risk to Third Party Systems",
             "It stops mattering once a firewall and endpoint agent are deployed across the Third Party Systems estate",
@@ -2834,12 +2834,12 @@ export const thirdPartyStages: StageConfig[] = [
           "id": "tps-08-q3",
           "type": "Artifacts",
           "challenge": "Evidence",
-          "text": "Which artifact best evidences the \"Vendor governance and risk mgmt\" control?",
+          "text": "Which artifact best evidences the \"Vendor governance and risk management\" control?",
           "options": [
-            "A point-in-time screenshot of one system's vendor governance and risk mgmt settings, captured during the walkthrough",
+            "A point-in-time screenshot of one system's vendor governance and risk management settings, captured during the walkthrough",
             "The The vendor inventory + risk-tiering (criticality × data sensitivity) + the assessment cadence per tier, reconciled against policy, plus the resulting findings working paper",
-            "A signed management attestation that the vendor governance and risk mgmt control is in place, with no underlying data attached",
-            "A vendor datasheet describing the product's vendor governance and risk mgmt capabilities and its recommended configuration"
+            "A signed management attestation that the vendor governance and risk management control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's vendor governance and risk management capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
           "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
@@ -2848,12 +2848,12 @@ export const thirdPartyStages: StageConfig[] = [
           "id": "tps-08-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where should an auditor pull the evidence for \"Vendor governance and risk mgmt\"?",
+          "text": "Where should an auditor pull the evidence for \"Vendor governance and risk management\"?",
           "options": [
             "From TPRM / GRC (Archer / OneTrust / ProcessUnity / Whistic) and the other systems of record for this domain, accessed read-only",
             "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
             "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
-            "From an informal summary the team posted to the internal wiki describing how vendor governance and risk mgmt works"
+            "From an informal summary the team posted to the internal wiki describing how vendor governance and risk management works"
           ],
           "correctIndex": 0,
           "explanation": "Evidence must come from the authoritative systems (e.g. TPRM / GRC (Archer / OneTrust / ProcessUnity / Whistic)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
@@ -2862,11 +2862,11 @@ export const thirdPartyStages: StageConfig[] = [
           "id": "tps-08-q5",
           "type": "Data owner",
           "challenge": "Accountability",
-          "text": "Who is most likely accountable for the data behind \"Vendor governance and risk mgmt\"?",
+          "text": "Who is most likely accountable for the data behind \"Vendor governance and risk management\"?",
           "options": [
-            "The external audit firm, since it is the party examining the vendor governance and risk mgmt control this period",
+            "The external audit firm, since it is the party examining the vendor governance and risk management control this period",
             "Whoever most recently changed the configuration, regardless of their role or formal accountability",
-            "No single function — the vendor governance and risk mgmt data is shared, so the accountability sits with no one in particular",
+            "No single function — the vendor governance and risk management data is shared, so the accountability sits with no one in particular",
             "Third-party risk management (owns the program), with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
@@ -2876,7 +2876,7 @@ export const thirdPartyStages: StageConfig[] = [
           "id": "tps-08-q6",
           "type": "Agentic",
           "challenge": "Human vs agent",
-          "text": "In the agentic workflow for \"Vendor governance and risk mgmt\", which part stays with the human auditor?",
+          "text": "In the agentic workflow for \"Vendor governance and risk management\", which part stays with the human auditor?",
           "options": [
             "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
             "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
@@ -2904,7 +2904,7 @@ export const thirdPartyStages: StageConfig[] = [
           "id": "tps-08-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Vendor governance and risk mgmt\", which of these is a realistic reportable finding?",
+          "text": "For \"Vendor governance and risk management\", which of these is a realistic reportable finding?",
           "options": [
             "There's no central vendor inventory (procurement, IT, and business units each onboard vendors), no risk-tiering, and high-risk vendors are assessed once at onboarding and never again — plus several 'terminated' vendors still hold active integration credentials.",
             "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
@@ -2932,9 +2932,9 @@ export const thirdPartyStages: StageConfig[] = [
           "id": "tps-08-q10",
           "type": "Privacy/Risk",
           "challenge": "The data angle",
-          "text": "Why does auditing \"Vendor governance and risk mgmt\" also serve privacy and regulatory goals?",
+          "text": "Why does auditing \"Vendor governance and risk management\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators review only written policy documents, never the technical controls behind vendor governance and risk mgmt, so there is no overlap",
+            "Regulators review only written policy documents, never the technical controls behind vendor governance and risk management, so there is no overlap",
             "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
             "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
             "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"

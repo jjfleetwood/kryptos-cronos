@@ -384,15 +384,15 @@ export const vulnPatchStages: StageConfig[] = [
     "epochId": "vuln-patch",
     "id": "vpm-02",
     "order": 2,
-    "title": "Patch mgmt and exception handling",
-    "subtitle": "Agentic technical & privacy audit of the patch mgmt and exception handling control",
+    "title": "Patch management and exception handling",
+    "subtitle": "Agentic technical & privacy audit of the patch management and exception handling control",
     "category": "cybersecurity",
     "xp": 180,
     "easeScore": 6,
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Patch mgmt and exception handling\" control for Vulnerability & Patch Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile missing patches against the SLA and the KEV catalogue. PASS: every missing patch is within its severity SLA window; nothing on the CISA KEV list is open past the BOD 22-01 due date; and every overdue item has a formal, time-boxed risk acceptance with a compensating control. Exceptions: critical or KEV-listed vulnerabilities open past SLA, patches missing for months, and 'exceptions' with no owner or expiry date.",
+      "objective": "Prove the \"Patch management and exception handling\" control for Vulnerability & Patch Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile missing patches against the SLA and the KEV catalogue. PASS: every missing patch is within its severity SLA window; nothing on the CISA KEV list is open past the BOD 22-01 due date; and every overdue item has a formal, time-boxed risk acceptance with a compensating control. Exceptions: critical or KEV-listed vulnerabilities open past SLA, patches missing for months, and 'exceptions' with no owner or expiry date.",
       "approach": "An audit agent calls a read-only MCP server that wraps the Vulnerability & Patch Management systems of record (WSUS / SCCM / Intune (Windows) and Satellite / Ansible (Linux) patch state; Vulnerability scanner (Tenable / Qualys) for missing-patch detection; CISA KEV feed) as tools — e.g. `SCCM / Intune update-compliance export per device`, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "The patch-compliance report by host — missing patches with severity and age",
@@ -422,26 +422,26 @@ export const vulnPatchStages: StageConfig[] = [
       "emoji": "🩹"
     },
     "wonder": {
-      "name": "Patch mgmt and exception handling",
+      "name": "Patch management and exception handling",
       "location": "Vulnerability & Patch Management",
       "era": "Present Day",
       "emoji": "🩹"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Patch mgmt and exception handling\" as a repeatable agentic workflow: pull the real evidence (The patch-compliance report by host — missing patches with severity and age) with read-only agents, run the test against policy, and issue a defensible opinion on the Vulnerability & Patch Management control.",
+      "tagline": "Auditing \"Patch management and exception handling\" as a repeatable agentic workflow: pull the real evidence (The patch-compliance report by host — missing patches with severity and age) with read-only agents, run the test against policy, and issue a defensible opinion on the Vulnerability & Patch Management control.",
       "year": 2025,
       "overview": [
-        "The \"Patch mgmt and exception handling\" sub-process is one of the controls an auditor must verify for Vulnerability & Patch Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me the patch-compliance report by host — missing patches with severity and age, for everything in scope.\"",
+        "The \"Patch management and exception handling\" sub-process is one of the controls an auditor must verify for Vulnerability & Patch Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me the patch-compliance report by host — missing patches with severity and age, for everything in scope.\"",
         "The evidence lives across systems that were never reconciled — here WSUS / SCCM / Intune (Windows) and Satellite / Ansible (Linux) patch state, Vulnerability scanner (Tenable / Qualys) for missing-patch detection, CISA KEV feed — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. In practice you gather it with calls like `SCCM / Intune update-compliance export per device` — read-only, against the systems of record.",
         "The test itself is specific. Reconcile missing patches against the SLA and the KEV catalogue. PASS: every missing patch is within its severity SLA window; nothing on the CISA KEV list is open past the BOD 22-01 due date; and every overdue item has a formal, time-boxed risk acceptance with a compensating control. Exceptions: critical or KEV-listed vulnerabilities open past SLA, patches missing for months, and 'exceptions' with no owner or expiry date. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `02_patch_mgmt_and_exception_handling_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from WSUS / SCCM / Intune (Windows) and Satellite / Ansible (Linux) patch state and Vulnerability scanner (Tenable / Qualys) for missing-patch detection (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
+          "The included `02_patch_management_and_exception_handling_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from WSUS / SCCM / Intune (Windows) and Satellite / Ansible (Linux) patch state and Vulnerability scanner (Tenable / Qualys) for missing-patch detection (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
           "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
-          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 02_patch_mgmt_and_exception_handling_mcp.py` to expose it to your agent — or `python 02_patch_mgmt_and_exception_handling_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
+          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 02_patch_management_and_exception_handling_mcp.py` to expose it to your agent — or `python 02_patch_management_and_exception_handling_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
           "label": "coverage_report() — the audit deliverable (excerpt)",
@@ -494,7 +494,7 @@ export const vulnPatchStages: StageConfig[] = [
         },
         {
           "year": 2025,
-          "event": "Agentic evidence-gathering becomes the practical way to keep \"Patch mgmt and exception handling\" continuously assured",
+          "event": "Agentic evidence-gathering becomes the practical way to keep \"Patch management and exception handling\" continuously assured",
           "highlight": true
         }
       ],
@@ -527,14 +527,14 @@ export const vulnPatchStages: StageConfig[] = [
       ],
       "downloads": [
         {
-          "name": "02_patch_mgmt_and_exception_handling_mcp.py",
-          "url": "/audit-code/vuln-patch/02_patch_mgmt_and_exception_handling_mcp.py",
-          "description": "Runnable read-only MCP server: gathers the Vulnerability & Patch Management evidence for \"Patch mgmt and exception handling\" (the patch-compliance report by host — missing patches with severity and age), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "name": "02_patch_management_and_exception_handling_mcp.py",
+          "url": "/audit-code/vuln-patch/02_patch_management_and_exception_handling_mcp.py",
+          "description": "Runnable read-only MCP server: gathers the Vulnerability & Patch Management evidence for \"Patch management and exception handling\" (the patch-compliance report by host — missing patches with severity and age), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Patch mgmt and exception handling\" control for Vulnerability & Patch Management at AcmeCorp. THE TEST: Reconcile missing patches against the SLA and the KEV catalogue. PASS: every missing patch is within its severity SLA window; nothing on the CISA KEV list is open past the BOD 22-01 due date; and every overdue item has a formal, time-boxed risk acceptance with a compensating control. Exceptions: critical or KEV-listed vulnerabilities open past SLA, patches missing for months, and 'exceptions' with no owner or expiry date. The evidence — The patch-compliance report by host — missing patches with severity and age — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live WSUS / SCCM / Intune (Windows) and Satellite / Ansible (Linux) patch state APIs; here the same sources are exported to files.)",
+      "scenario": "You're the auditor testing the \"Patch management and exception handling\" control for Vulnerability & Patch Management at AcmeCorp. THE TEST: Reconcile missing patches against the SLA and the KEV catalogue. PASS: every missing patch is within its severity SLA window; nothing on the CISA KEV list is open past the BOD 22-01 due date; and every overdue item has a formal, time-boxed risk acceptance with a compensating control. Exceptions: critical or KEV-listed vulnerabilities open past SLA, patches missing for months, and 'exceptions' with no owner or expiry date. The evidence — The patch-compliance report by host — missing patches with severity and age — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live WSUS / SCCM / Intune (Windows) and Satellite / Ansible (Linux) patch state APIs; here the same sources are exported to files.)",
       "hint": "Read every file in /evidence. WSUS / SCCM / Intune (Windows) and Satellite / Ansible (Linux) patch state gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
         "cat each file in /evidence. The inventory comes from WSUS / SCCM / Intune (Windows) and Satellite / Ansible (Linux) patch state; the state file shows what is actually configured/running.",
@@ -542,9 +542,9 @@ export const vulnPatchStages: StageConfig[] = [
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Vulnerability & Patch Management: \"Patch mgmt and exception handling\" Audit Evidence\n\nThe test:\nReconcile missing patches against the SLA and the KEV catalogue. PASS: every missing patch is within its severity SLA window; nothing on the CISA KEV list is open past the BOD 22-01 due date; and every overdue item has a formal, time-boxed risk acceptance with a compensating control. Exceptions: critical or KEV-listed vulnerabilities open past SLA, patches missing for months, and 'exceptions' with no owner or expiry date.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- vuln-patch_inventory.json   (in-scope items — The patch-compliance report by host — missing patches with severity and age)\n- vuln-patch_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Patch mgmt and exception handling\",\n  \"domain\": \"Vulnerability & Patch Management\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{vpm_",
-        "/evidence/vuln-patch_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"IT Operations\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Patch mgmt and exception handling\" control must cover\n# fragment: patch_mgmt_exception_",
+        "/evidence/README.md": "# AcmeCorp — Vulnerability & Patch Management: \"Patch management and exception handling\" Audit Evidence\n\nThe test:\nReconcile missing patches against the SLA and the KEV catalogue. PASS: every missing patch is within its severity SLA window; nothing on the CISA KEV list is open past the BOD 22-01 due date; and every overdue item has a formal, time-boxed risk acceptance with a compensating control. Exceptions: critical or KEV-listed vulnerabilities open past SLA, patches missing for months, and 'exceptions' with no owner or expiry date.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- vuln-patch_inventory.json   (in-scope items — The patch-compliance report by host — missing patches with severity and age)\n- vuln-patch_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Patch management and exception handling\",\n  \"domain\": \"Vulnerability & Patch Management\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{vpm_",
+        "/evidence/vuln-patch_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"IT Operations\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Patch management and exception handling\" control must cover\n# fragment: patch_management_exception_",
         "/evidence/vuln-patch_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
       },
@@ -586,7 +586,7 @@ export const vulnPatchStages: StageConfig[] = [
         },
         {
           "trigger": "/evidence/vuln-patch_inventory.json",
-          "value": "patch_mgmt_exception_",
+          "value": "patch_management_exception_",
           "label": "Inventory — the in-scope items"
         },
         {
@@ -607,12 +607,12 @@ export const vulnPatchStages: StageConfig[] = [
           "id": "vpm-02-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Patch mgmt and exception handling\" sub-process of Vulnerability & Patch Management?",
+          "text": "What is the primary audit objective for the \"Patch management and exception handling\" sub-process of Vulnerability & Patch Management?",
           "options": [
-            "Deploy and operate the patch mgmt and exception handling control on the team's behalf so the gap is closed during fieldwork",
-            "Confirm management is comfortable that the patch mgmt and exception handling control works, based on their verbal assurance",
-            "Benchmark how many tools the team uses for patch mgmt and exception handling against comparable organisations in the sector",
-            "Obtain evidence that the patch mgmt and exception handling control is designed and operating effectively, and quantify the gap where it is not"
+            "Deploy and operate the patch management and exception handling control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the patch management and exception handling control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for patch management and exception handling against comparable organisations in the sector",
+            "Obtain evidence that the patch management and exception handling control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
           "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
@@ -621,7 +621,7 @@ export const vulnPatchStages: StageConfig[] = [
           "id": "vpm-02-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Patch mgmt and exception handling\" matter to the broader Vulnerability & Patch Management posture?",
+          "text": "Why does a weakness in \"Patch management and exception handling\" matter to the broader Vulnerability & Patch Management posture?",
           "options": [
             "It mainly affects how the annual compliance report reads, rather than the actual risk to Vulnerability & Patch Management",
             "It stops mattering once a firewall and endpoint agent are deployed across the Vulnerability & Patch Management estate",
@@ -635,12 +635,12 @@ export const vulnPatchStages: StageConfig[] = [
           "id": "vpm-02-q3",
           "type": "Artifacts",
           "challenge": "Evidence",
-          "text": "Which artifact best evidences the \"Patch mgmt and exception handling\" control?",
+          "text": "Which artifact best evidences the \"Patch management and exception handling\" control?",
           "options": [
-            "A point-in-time screenshot of one system's patch mgmt and exception handling settings, captured during the walkthrough",
+            "A point-in-time screenshot of one system's patch management and exception handling settings, captured during the walkthrough",
             "The The patch-compliance report by host — missing patches with severity and age, reconciled against policy, plus the resulting findings working paper",
-            "A signed management attestation that the patch mgmt and exception handling control is in place, with no underlying data attached",
-            "A vendor datasheet describing the product's patch mgmt and exception handling capabilities and its recommended configuration"
+            "A signed management attestation that the patch management and exception handling control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's patch management and exception handling capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
           "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
@@ -649,12 +649,12 @@ export const vulnPatchStages: StageConfig[] = [
           "id": "vpm-02-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where should an auditor pull the evidence for \"Patch mgmt and exception handling\"?",
+          "text": "Where should an auditor pull the evidence for \"Patch management and exception handling\"?",
           "options": [
             "From WSUS / SCCM / Intune (Windows) and Satellite / Ansible (Linux) patch state and the other systems of record for this domain, accessed read-only",
             "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
             "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
-            "From an informal summary the team posted to the internal wiki describing how patch mgmt and exception handling works"
+            "From an informal summary the team posted to the internal wiki describing how patch management and exception handling works"
           ],
           "correctIndex": 0,
           "explanation": "Evidence must come from the authoritative systems (e.g. WSUS / SCCM / Intune (Windows) and Satellite / Ansible (Linux) patch state) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
@@ -663,11 +663,11 @@ export const vulnPatchStages: StageConfig[] = [
           "id": "vpm-02-q5",
           "type": "Data owner",
           "challenge": "Accountability",
-          "text": "Who is most likely accountable for the data behind \"Patch mgmt and exception handling\"?",
+          "text": "Who is most likely accountable for the data behind \"Patch management and exception handling\"?",
           "options": [
-            "The external audit firm, since it is the party examining the patch mgmt and exception handling control this period",
+            "The external audit firm, since it is the party examining the patch management and exception handling control this period",
             "Whoever most recently changed the configuration, regardless of their role or formal accountability",
-            "No single function — the patch mgmt and exception handling data is shared, so the accountability sits with no one in particular",
+            "No single function — the patch management and exception handling data is shared, so the accountability sits with no one in particular",
             "IT Operations — applies the patches, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
@@ -677,7 +677,7 @@ export const vulnPatchStages: StageConfig[] = [
           "id": "vpm-02-q6",
           "type": "Agentic",
           "challenge": "Human vs agent",
-          "text": "In the agentic workflow for \"Patch mgmt and exception handling\", which part stays with the human auditor?",
+          "text": "In the agentic workflow for \"Patch management and exception handling\", which part stays with the human auditor?",
           "options": [
             "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
             "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
@@ -705,7 +705,7 @@ export const vulnPatchStages: StageConfig[] = [
           "id": "vpm-02-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Patch mgmt and exception handling\", which of these is a realistic reportable finding?",
+          "text": "For \"Patch management and exception handling\", which of these is a realistic reportable finding?",
           "options": [
             "Several internet-facing hosts missing a KEV-listed critical patch for 90+ days with no risk acceptance on file — exactly the pattern behind most breaches.",
             "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
@@ -733,9 +733,9 @@ export const vulnPatchStages: StageConfig[] = [
           "id": "vpm-02-q10",
           "type": "Privacy/Risk",
           "challenge": "The data angle",
-          "text": "Why does auditing \"Patch mgmt and exception handling\" also serve privacy and regulatory goals?",
+          "text": "Why does auditing \"Patch management and exception handling\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators review only written policy documents, never the technical controls behind patch mgmt and exception handling, so there is no overlap",
+            "Regulators review only written policy documents, never the technical controls behind patch management and exception handling, so there is no overlap",
             "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
             "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
             "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
@@ -3318,15 +3318,15 @@ export const vulnPatchStages: StageConfig[] = [
     "epochId": "vuln-patch",
     "id": "vpm-10",
     "order": 10,
-    "title": "STE — cloud infra vuln tickets",
-    "subtitle": "Agentic technical & privacy audit of the ste — cloud infra vuln tickets control",
+    "title": "STE — cloud infrastructure vulnerability tickets",
+    "subtitle": "Agentic technical & privacy audit of the ste — cloud infrastructure vulnerability tickets control",
     "category": "cybersecurity",
     "xp": 180,
     "easeScore": 5,
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"STE — cloud infra vuln tickets\" control for Vulnerability & Patch Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Assess the automated cloud-vulnerability ticketing flow (the Security Ticketing Engine). PASS: every cloud finding (CSPM / Inspector / Wiz) auto-creates a ticket routed to the resource owner by tag, with a severity-based SLA, dedup, and closed-loop verification on rescan. Exceptions: findings with no ticket or owner (orphaned risk), tickets with no SLA, duplicate noise drowning real findings, and tickets closed without a confirming rescan.",
+      "objective": "Prove the \"STE — cloud infrastructure vulnerability tickets\" control for Vulnerability & Patch Management is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Assess the automated cloud-vulnerability ticketing flow (the Security Ticketing Engine). PASS: every cloud finding (CSPM / Inspector / Wiz) auto-creates a ticket routed to the resource owner by tag, with a severity-based SLA, dedup, and closed-loop verification on rescan. Exceptions: findings with no ticket or owner (orphaned risk), tickets with no SLA, duplicate noise drowning real findings, and tickets closed without a confirming rescan.",
       "approach": "An audit agent calls a read-only MCP server that wraps the Vulnerability & Patch Management systems of record (CSPM — Wiz / Prisma Cloud / Microsoft Defender for Cloud, or AWS Inspector + Security Hub; Ticketing — Jira / ServiceNow; Cloud tagging (ownership)) as tools — e.g. `AWS Security Hub / Inspector findings → EventBridge → ticket-automatio`, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "The pipeline from cloud vulnerability finding (CSPM/scanner) to a ticket with an owner and SLA",
@@ -3356,26 +3356,26 @@ export const vulnPatchStages: StageConfig[] = [
       "emoji": "🩹"
     },
     "wonder": {
-      "name": "STE — cloud infra vuln tickets",
+      "name": "STE — cloud infrastructure vulnerability tickets",
       "location": "Vulnerability & Patch Management",
       "era": "Present Day",
       "emoji": "🩹"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"STE — cloud infra vuln tickets\" as a repeatable agentic workflow: pull the real evidence (The pipeline from cloud vulnerability finding (CSPM/scanner) to a ticket with an owner and SLA) with read-only agents, run the test against policy, and issue a defensible opinion on the Vulnerability & Patch Management control.",
+      "tagline": "Auditing \"STE — cloud infrastructure vulnerability tickets\" as a repeatable agentic workflow: pull the real evidence (The pipeline from cloud vulnerability finding (CSPM/scanner) to a ticket with an owner and SLA) with read-only agents, run the test against policy, and issue a defensible opinion on the Vulnerability & Patch Management control.",
       "year": 2025,
       "overview": [
-        "The \"STE — cloud infra vuln tickets\" sub-process is one of the controls an auditor must verify for Vulnerability & Patch Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me the pipeline from cloud vulnerability finding (CSPM/scanner) to a ticket with an owner and SLA, for everything in scope.\"",
+        "The \"STE — cloud infrastructure vulnerability tickets\" sub-process is one of the controls an auditor must verify for Vulnerability & Patch Management. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me the pipeline from cloud vulnerability finding (CSPM/scanner) to a ticket with an owner and SLA, for everything in scope.\"",
         "The evidence lives across systems that were never reconciled — here CSPM — Wiz / Prisma Cloud / Microsoft Defender for Cloud, or AWS Inspector + Security Hub, Ticketing — Jira / ServiceNow, Cloud tagging (ownership) — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. In practice you gather it with calls like `AWS Security Hub / Inspector findings → EventBridge → ticket-automation Lambda` — read-only, against the systems of record.",
         "The test itself is specific. Assess the automated cloud-vulnerability ticketing flow (the Security Ticketing Engine). PASS: every cloud finding (CSPM / Inspector / Wiz) auto-creates a ticket routed to the resource owner by tag, with a severity-based SLA, dedup, and closed-loop verification on rescan. Exceptions: findings with no ticket or owner (orphaned risk), tickets with no SLA, duplicate noise drowning real findings, and tickets closed without a confirming rescan. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `10_ste_cloud_infra_vuln_tickets_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from CSPM — Wiz / Prisma Cloud / Microsoft Defender for Cloud, or AWS Inspector + Security Hub and Ticketing — Jira / ServiceNow (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
+          "The included `10_ste_cloud_infrastructure_vulnerability_tickets_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from CSPM — Wiz / Prisma Cloud / Microsoft Defender for Cloud, or AWS Inspector + Security Hub and Ticketing — Jira / ServiceNow (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
           "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
-          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 10_ste_cloud_infra_vuln_tickets_mcp.py` to expose it to your agent — or `python 10_ste_cloud_infra_vuln_tickets_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
+          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 10_ste_cloud_infrastructure_vulnerability_tickets_mcp.py` to expose it to your agent — or `python 10_ste_cloud_infrastructure_vulnerability_tickets_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
           "label": "coverage_report() — the audit deliverable (excerpt)",
@@ -3428,7 +3428,7 @@ export const vulnPatchStages: StageConfig[] = [
         },
         {
           "year": 2025,
-          "event": "Agentic evidence-gathering becomes the practical way to keep \"STE — cloud infra vuln tickets\" continuously assured",
+          "event": "Agentic evidence-gathering becomes the practical way to keep \"STE — cloud infrastructure vulnerability tickets\" continuously assured",
           "highlight": true
         }
       ],
@@ -3461,14 +3461,14 @@ export const vulnPatchStages: StageConfig[] = [
       ],
       "downloads": [
         {
-          "name": "10_ste_cloud_infra_vuln_tickets_mcp.py",
-          "url": "/audit-code/vuln-patch/10_ste_cloud_infra_vuln_tickets_mcp.py",
-          "description": "Runnable read-only MCP server: gathers the Vulnerability & Patch Management evidence for \"STE — cloud infra vuln tickets\" (the pipeline from cloud vulnerability finding (cspm/scanner) to a ticket with an owner and sla), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "name": "10_ste_cloud_infrastructure_vulnerability_tickets_mcp.py",
+          "url": "/audit-code/vuln-patch/10_ste_cloud_infrastructure_vulnerability_tickets_mcp.py",
+          "description": "Runnable read-only MCP server: gathers the Vulnerability & Patch Management evidence for \"STE — cloud infrastructure vulnerability tickets\" (the pipeline from cloud vulnerability finding (cspm/scanner) to a ticket with an owner and sla), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"STE — cloud infra vuln tickets\" control for Vulnerability & Patch Management at AcmeCorp. THE TEST: Assess the automated cloud-vulnerability ticketing flow (the Security Ticketing Engine). PASS: every cloud finding (CSPM / Inspector / Wiz) auto-creates a ticket routed to the resource owner by tag, with a severity-based SLA, dedup, and closed-loop verification on rescan. Exceptions: findings with no ticket or owner (orphaned risk), tickets with no SLA, duplicate noise drowning real findings, and tickets closed without a confirming rescan. The evidence — The pipeline from cloud vulnerability finding (CSPM/scanner) to a ticket with an owner and SLA — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live CSPM — Wiz / Prisma Cloud / Microsoft Defender for Cloud, or AWS Inspector + Security Hub APIs; here the same sources are exported to files.)",
+      "scenario": "You're the auditor testing the \"STE — cloud infrastructure vulnerability tickets\" control for Vulnerability & Patch Management at AcmeCorp. THE TEST: Assess the automated cloud-vulnerability ticketing flow (the Security Ticketing Engine). PASS: every cloud finding (CSPM / Inspector / Wiz) auto-creates a ticket routed to the resource owner by tag, with a severity-based SLA, dedup, and closed-loop verification on rescan. Exceptions: findings with no ticket or owner (orphaned risk), tickets with no SLA, duplicate noise drowning real findings, and tickets closed without a confirming rescan. The evidence — The pipeline from cloud vulnerability finding (CSPM/scanner) to a ticket with an owner and SLA — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live CSPM — Wiz / Prisma Cloud / Microsoft Defender for Cloud, or AWS Inspector + Security Hub APIs; here the same sources are exported to files.)",
       "hint": "Read every file in /evidence. CSPM — Wiz / Prisma Cloud / Microsoft Defender for Cloud, or AWS Inspector + Security Hub gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
         "cat each file in /evidence. The inventory comes from CSPM — Wiz / Prisma Cloud / Microsoft Defender for Cloud, or AWS Inspector + Security Hub; the state file shows what is actually configured/running.",
@@ -3476,9 +3476,9 @@ export const vulnPatchStages: StageConfig[] = [
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Vulnerability & Patch Management: \"STE — cloud infra vuln tickets\" Audit Evidence\n\nThe test:\nAssess the automated cloud-vulnerability ticketing flow (the Security Ticketing Engine). PASS: every cloud finding (CSPM / Inspector / Wiz) auto-creates a ticket routed to the resource owner by tag, with a severity-based SLA, dedup, and closed-loop verification on rescan. Exceptions: findings with no ticket or owner (orphaned risk), tickets with no SLA, duplicate noise drowning real findings, and tickets closed without a confirming rescan.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- vuln-patch_inventory.json   (in-scope items — The pipeline from cloud vulnerability finding (CSPM/scanner) to a ticket with an owner and SLA)\n- vuln-patch_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"STE — cloud infra vuln tickets\",\n  \"domain\": \"Vulnerability & Patch Management\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{vpm_",
-        "/evidence/vuln-patch_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"IT Operations\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"STE — cloud infra vuln tickets\" control must cover\n# fragment: ste_cloud_infra_",
+        "/evidence/README.md": "# AcmeCorp — Vulnerability & Patch Management: \"STE — cloud infrastructure vulnerability tickets\" Audit Evidence\n\nThe test:\nAssess the automated cloud-vulnerability ticketing flow (the Security Ticketing Engine). PASS: every cloud finding (CSPM / Inspector / Wiz) auto-creates a ticket routed to the resource owner by tag, with a severity-based SLA, dedup, and closed-loop verification on rescan. Exceptions: findings with no ticket or owner (orphaned risk), tickets with no SLA, duplicate noise drowning real findings, and tickets closed without a confirming rescan.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- vuln-patch_inventory.json   (in-scope items — The pipeline from cloud vulnerability finding (CSPM/scanner) to a ticket with an owner and SLA)\n- vuln-patch_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"STE — cloud infrastructure vulnerability tickets\",\n  \"domain\": \"Vulnerability & Patch Management\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{vpm_",
+        "/evidence/vuln-patch_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"IT Operations\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"STE — cloud infrastructure vulnerability tickets\" control must cover\n# fragment: ste_cloud_infrastructure_",
         "/evidence/vuln-patch_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"EXCEPTIONS\"\n}\n# fragment: exceptions}"
       },
@@ -3520,7 +3520,7 @@ export const vulnPatchStages: StageConfig[] = [
         },
         {
           "trigger": "/evidence/vuln-patch_inventory.json",
-          "value": "ste_cloud_infra_",
+          "value": "ste_cloud_infrastructure_",
           "label": "Inventory — the in-scope items"
         },
         {
@@ -3541,12 +3541,12 @@ export const vulnPatchStages: StageConfig[] = [
           "id": "vpm-10-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"STE — cloud infra vuln tickets\" sub-process of Vulnerability & Patch Management?",
+          "text": "What is the primary audit objective for the \"STE — cloud infrastructure vulnerability tickets\" sub-process of Vulnerability & Patch Management?",
           "options": [
-            "Deploy and operate the ste — cloud infra vuln tickets control on the team's behalf so the gap is closed during fieldwork",
-            "Confirm management is comfortable that the ste — cloud infra vuln tickets control works, based on their verbal assurance",
-            "Benchmark how many tools the team uses for ste — cloud infra vuln tickets against comparable organisations in the sector",
-            "Obtain evidence that the ste — cloud infra vuln tickets control is designed and operating effectively, and quantify the gap where it is not"
+            "Deploy and operate the ste — cloud infrastructure vulnerability tickets control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the ste — cloud infrastructure vulnerability tickets control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for ste — cloud infrastructure vulnerability tickets against comparable organisations in the sector",
+            "Obtain evidence that the ste — cloud infrastructure vulnerability tickets control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
           "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
@@ -3555,7 +3555,7 @@ export const vulnPatchStages: StageConfig[] = [
           "id": "vpm-10-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"STE — cloud infra vuln tickets\" matter to the broader Vulnerability & Patch Management posture?",
+          "text": "Why does a weakness in \"STE — cloud infrastructure vulnerability tickets\" matter to the broader Vulnerability & Patch Management posture?",
           "options": [
             "It mainly affects how the annual compliance report reads, rather than the actual risk to Vulnerability & Patch Management",
             "It stops mattering once a firewall and endpoint agent are deployed across the Vulnerability & Patch Management estate",
@@ -3569,12 +3569,12 @@ export const vulnPatchStages: StageConfig[] = [
           "id": "vpm-10-q3",
           "type": "Artifacts",
           "challenge": "Evidence",
-          "text": "Which artifact best evidences the \"STE — cloud infra vuln tickets\" control?",
+          "text": "Which artifact best evidences the \"STE — cloud infrastructure vulnerability tickets\" control?",
           "options": [
-            "A point-in-time screenshot of one system's ste — cloud infra vuln tickets settings, captured during the walkthrough",
+            "A point-in-time screenshot of one system's ste — cloud infrastructure vulnerability tickets settings, captured during the walkthrough",
             "The The pipeline from cloud vulnerability finding (CSPM/scanner) to a ticket with an owner and SLA, reconciled against policy, plus the resulting findings working paper",
-            "A signed management attestation that the ste — cloud infra vuln tickets control is in place, with no underlying data attached",
-            "A vendor datasheet describing the product's ste — cloud infra vuln tickets capabilities and its recommended configuration"
+            "A signed management attestation that the ste — cloud infrastructure vulnerability tickets control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's ste — cloud infrastructure vulnerability tickets capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
           "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
@@ -3583,12 +3583,12 @@ export const vulnPatchStages: StageConfig[] = [
           "id": "vpm-10-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where should an auditor pull the evidence for \"STE — cloud infra vuln tickets\"?",
+          "text": "Where should an auditor pull the evidence for \"STE — cloud infrastructure vulnerability tickets\"?",
           "options": [
             "From CSPM — Wiz / Prisma Cloud / Microsoft Defender for Cloud, or AWS Inspector + Security Hub and the other systems of record for this domain, accessed read-only",
             "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
             "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
-            "From an informal summary the team posted to the internal wiki describing how ste — cloud infra vuln tickets works"
+            "From an informal summary the team posted to the internal wiki describing how ste — cloud infrastructure vulnerability tickets works"
           ],
           "correctIndex": 0,
           "explanation": "Evidence must come from the authoritative systems (e.g. CSPM — Wiz / Prisma Cloud / Microsoft Defender for Cloud, or AWS Inspector + Security Hub) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
@@ -3597,11 +3597,11 @@ export const vulnPatchStages: StageConfig[] = [
           "id": "vpm-10-q5",
           "type": "Data owner",
           "challenge": "Accountability",
-          "text": "Who is most likely accountable for the data behind \"STE — cloud infra vuln tickets\"?",
+          "text": "Who is most likely accountable for the data behind \"STE — cloud infrastructure vulnerability tickets\"?",
           "options": [
-            "The external audit firm, since it is the party examining the ste — cloud infra vuln tickets control this period",
+            "The external audit firm, since it is the party examining the ste — cloud infrastructure vulnerability tickets control this period",
             "Whoever most recently changed the configuration, regardless of their role or formal accountability",
-            "No single function — the ste — cloud infra vuln tickets data is shared, so the accountability sits with no one in particular",
+            "No single function — the ste — cloud infrastructure vulnerability tickets data is shared, so the accountability sits with no one in particular",
             "Cloud security — owns the engine, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
@@ -3611,7 +3611,7 @@ export const vulnPatchStages: StageConfig[] = [
           "id": "vpm-10-q6",
           "type": "Agentic",
           "challenge": "Human vs agent",
-          "text": "In the agentic workflow for \"STE — cloud infra vuln tickets\", which part stays with the human auditor?",
+          "text": "In the agentic workflow for \"STE — cloud infrastructure vulnerability tickets\", which part stays with the human auditor?",
           "options": [
             "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
             "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
@@ -3639,7 +3639,7 @@ export const vulnPatchStages: StageConfig[] = [
           "id": "vpm-10-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"STE — cloud infra vuln tickets\", which of these is a realistic reportable finding?",
+          "text": "For \"STE — cloud infrastructure vulnerability tickets\", which of these is a realistic reportable finding?",
           "options": [
             "About 30% of cloud findings sit on resources with no owner tag, so they generate orphaned tickets nobody actions; criticals on untagged resources age indefinitely.",
             "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
@@ -3667,9 +3667,9 @@ export const vulnPatchStages: StageConfig[] = [
           "id": "vpm-10-q10",
           "type": "Privacy/Risk",
           "challenge": "The data angle",
-          "text": "Why does auditing \"STE — cloud infra vuln tickets\" also serve privacy and regulatory goals?",
+          "text": "Why does auditing \"STE — cloud infrastructure vulnerability tickets\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators review only written policy documents, never the technical controls behind ste — cloud infra vuln tickets, so there is no overlap",
+            "Regulators review only written policy documents, never the technical controls behind ste — cloud infrastructure vulnerability tickets, so there is no overlap",
             "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
             "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
             "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"

@@ -1110,15 +1110,15 @@ export const iamStages: StageConfig[] = [
     "epochId": "iam",
     "id": "iam-04",
     "order": 4,
-    "title": "Privileged access mgmt",
-    "subtitle": "Agentic technical & privacy audit of the privileged access mgmt control",
+    "title": "Privileged access management",
+    "subtitle": "Agentic technical & privacy audit of the privileged access management control",
     "category": "cybersecurity",
     "xp": 180,
     "easeScore": 5,
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Privileged access mgmt\" control for Identity & Access Management (IAM) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Enumerate every privileged principal across directory, cloud, and hosts, then reconcile against the PAM vault. PASS: each is vaulted with automatic rotation, requires MFA + approval/checkout, prefers JIT over standing access, and sessions are logged/recorded; break-glass accounts are sealed and alert on use. Exceptions: privileged accounts NOT in the vault ('discovered, not managed'), unjustified standing admin, shared admin credentials, and break-glass used without a corresponding incident.",
+      "objective": "Prove the \"Privileged access management\" control for Identity & Access Management (IAM) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Enumerate every privileged principal across directory, cloud, and hosts, then reconcile against the PAM vault. PASS: each is vaulted with automatic rotation, requires MFA + approval/checkout, prefers JIT over standing access, and sessions are logged/recorded; break-glass accounts are sealed and alert on use. Exceptions: privileged accounts NOT in the vault ('discovered, not managed'), unjustified standing admin, shared admin credentials, and break-glass used without a corresponding incident.",
       "approach": "An audit agent calls a read-only MCP server that wraps the Identity & Access Management (IAM) systems of record (CyberArk / Delinea / BeyondTrust (PAM); Active Directory (privileged groups); Microsoft Entra PIM + AWS/Azure/GCP IAM (cloud admin roles)) as tools — e.g. `Get-ADGroupMember 'Domain Admins','Enterprise Admins','Schema Admins',`, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "The privileged-principal inventory — Domain/Enterprise Admins, cloud admin roles, root, local admins, and application super-users",
@@ -1147,26 +1147,26 @@ export const iamStages: StageConfig[] = [
       "emoji": "🪪"
     },
     "wonder": {
-      "name": "Privileged access mgmt",
+      "name": "Privileged access management",
       "location": "Identity & Access Management (IAM)",
       "era": "Present Day",
       "emoji": "🪪"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Privileged access mgmt\" as a repeatable agentic workflow: pull the real evidence (The privileged-principal inventory — Domain/Enterprise Admins, cloud admin roles, root, local admins, and application super-users) with read-only agents, run the test against policy, and issue a defensible opinion on the Identity & Access Management (IAM) control.",
+      "tagline": "Auditing \"Privileged access management\" as a repeatable agentic workflow: pull the real evidence (The privileged-principal inventory — Domain/Enterprise Admins, cloud admin roles, root, local admins, and application super-users) with read-only agents, run the test against policy, and issue a defensible opinion on the Identity & Access Management (IAM) control.",
       "year": 2025,
       "overview": [
-        "The \"Privileged access mgmt\" sub-process is one of the controls an auditor must verify for Identity & Access Management (IAM). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me the privileged-principal inventory — Domain/Enterprise Admins, cloud admin roles, root, local admins, and application super-users, for everything in scope.\"",
+        "The \"Privileged access management\" sub-process is one of the controls an auditor must verify for Identity & Access Management (IAM). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me the privileged-principal inventory — Domain/Enterprise Admins, cloud admin roles, root, local admins, and application super-users, for everything in scope.\"",
         "The evidence lives across systems that were never reconciled — here CyberArk / Delinea / BeyondTrust (PAM), Active Directory (privileged groups), Microsoft Entra PIM + AWS/Azure/GCP IAM (cloud admin roles) — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. In practice you gather it with calls like `Get-ADGroupMember 'Domain Admins','Enterprise Admins','Schema Admins','Administr` — read-only, against the systems of record.",
         "The test itself is specific. Enumerate every privileged principal across directory, cloud, and hosts, then reconcile against the PAM vault. PASS: each is vaulted with automatic rotation, requires MFA + approval/checkout, prefers JIT over standing access, and sessions are logged/recorded; break-glass accounts are sealed and alert on use. Exceptions: privileged accounts NOT in the vault ('discovered, not managed'), unjustified standing admin, shared admin credentials, and break-glass used without a corresponding incident. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `04_privileged_access_mgmt_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from CyberArk / Delinea / BeyondTrust (PAM) and Active Directory (privileged groups) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
+          "The included `04_privileged_access_management_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from CyberArk / Delinea / BeyondTrust (PAM) and Active Directory (privileged groups) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
           "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
-          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 04_privileged_access_mgmt_mcp.py` to expose it to your agent — or `python 04_privileged_access_mgmt_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
+          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 04_privileged_access_management_mcp.py` to expose it to your agent — or `python 04_privileged_access_management_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
           "label": "coverage_report() — the audit deliverable (excerpt)",
@@ -1219,7 +1219,7 @@ export const iamStages: StageConfig[] = [
         },
         {
           "year": 2025,
-          "event": "Agentic evidence-gathering becomes the practical way to keep \"Privileged access mgmt\" continuously assured",
+          "event": "Agentic evidence-gathering becomes the practical way to keep \"Privileged access management\" continuously assured",
           "highlight": true
         }
       ],
@@ -1252,14 +1252,14 @@ export const iamStages: StageConfig[] = [
       ],
       "downloads": [
         {
-          "name": "04_privileged_access_mgmt_mcp.py",
-          "url": "/audit-code/iam/04_privileged_access_mgmt_mcp.py",
-          "description": "Runnable read-only MCP server: gathers the Identity & Access Management (IAM) evidence for \"Privileged access mgmt\" (the privileged-principal inventory — domain/enterprise admins, cloud admin roles, root, local admins, and application super-users), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "name": "04_privileged_access_management_mcp.py",
+          "url": "/audit-code/iam/04_privileged_access_management_mcp.py",
+          "description": "Runnable read-only MCP server: gathers the Identity & Access Management (IAM) evidence for \"Privileged access management\" (the privileged-principal inventory — domain/enterprise admins, cloud admin roles, root, local admins, and application super-users), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Privileged access mgmt\" control for Identity & Access Management (IAM) at AcmeCorp. THE TEST: Enumerate every privileged principal across directory, cloud, and hosts, then reconcile against the PAM vault. PASS: each is vaulted with automatic rotation, requires MFA + approval/checkout, prefers JIT over standing access, and sessions are logged/recorded; break-glass accounts are sealed and alert on use. Exceptions: privileged accounts NOT in the vault ('discovered, not managed'), unjustified standing admin, shared admin credentials, and break-glass used without a corresponding incident. The evidence — The privileged-principal inventory — Domain/Enterprise Admins, cloud admin roles, root, local admins, and application super-users — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live CyberArk / Delinea / BeyondTrust (PAM) APIs; here the same sources are exported to files.)",
+      "scenario": "You're the auditor testing the \"Privileged access management\" control for Identity & Access Management (IAM) at AcmeCorp. THE TEST: Enumerate every privileged principal across directory, cloud, and hosts, then reconcile against the PAM vault. PASS: each is vaulted with automatic rotation, requires MFA + approval/checkout, prefers JIT over standing access, and sessions are logged/recorded; break-glass accounts are sealed and alert on use. Exceptions: privileged accounts NOT in the vault ('discovered, not managed'), unjustified standing admin, shared admin credentials, and break-glass used without a corresponding incident. The evidence — The privileged-principal inventory — Domain/Enterprise Admins, cloud admin roles, root, local admins, and application super-users — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live CyberArk / Delinea / BeyondTrust (PAM) APIs; here the same sources are exported to files.)",
       "hint": "Read every file in /evidence. CyberArk / Delinea / BeyondTrust (PAM) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
         "cat each file in /evidence. The inventory comes from CyberArk / Delinea / BeyondTrust (PAM); the state file shows what is actually configured/running.",
@@ -1267,9 +1267,9 @@ export const iamStages: StageConfig[] = [
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Identity & Access Management (IAM): \"Privileged access mgmt\" Audit Evidence\n\nThe test:\nEnumerate every privileged principal across directory, cloud, and hosts, then reconcile against the PAM vault. PASS: each is vaulted with automatic rotation, requires MFA + approval/checkout, prefers JIT over standing access, and sessions are logged/recorded; break-glass accounts are sealed and alert on use. Exceptions: privileged accounts NOT in the vault ('discovered, not managed'), unjustified standing admin, shared admin credentials, and break-glass used without a corresponding incident.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- iam_inventory.json   (in-scope items — The privileged-principal inventory — Domain/Enterprise Admins, cloud admin roles, root, local admins, and application super-users)\n- iam_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Privileged access mgmt\",\n  \"domain\": \"Identity & Access Management (IAM)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{iam_",
-        "/evidence/iam_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Identity & Access Management\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Privileged access mgmt\" control must cover\n# fragment: privileged_access_mgmt_",
+        "/evidence/README.md": "# AcmeCorp — Identity & Access Management (IAM): \"Privileged access management\" Audit Evidence\n\nThe test:\nEnumerate every privileged principal across directory, cloud, and hosts, then reconcile against the PAM vault. PASS: each is vaulted with automatic rotation, requires MFA + approval/checkout, prefers JIT over standing access, and sessions are logged/recorded; break-glass accounts are sealed and alert on use. Exceptions: privileged accounts NOT in the vault ('discovered, not managed'), unjustified standing admin, shared admin credentials, and break-glass used without a corresponding incident.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- iam_inventory.json   (in-scope items — The privileged-principal inventory — Domain/Enterprise Admins, cloud admin roles, root, local admins, and application super-users)\n- iam_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Privileged access management\",\n  \"domain\": \"Identity & Access Management (IAM)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{iam_",
+        "/evidence/iam_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Identity & Access Management\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Privileged access management\" control must cover\n# fragment: privileged_access_management_",
         "/evidence/iam_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
       },
@@ -1311,7 +1311,7 @@ export const iamStages: StageConfig[] = [
         },
         {
           "trigger": "/evidence/iam_inventory.json",
-          "value": "privileged_access_mgmt_",
+          "value": "privileged_access_management_",
           "label": "Inventory — the in-scope items"
         },
         {
@@ -1332,12 +1332,12 @@ export const iamStages: StageConfig[] = [
           "id": "iam-04-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Privileged access mgmt\" sub-process of Identity & Access Management (IAM)?",
+          "text": "What is the primary audit objective for the \"Privileged access management\" sub-process of Identity & Access Management (IAM)?",
           "options": [
-            "Deploy and operate the privileged access mgmt control on the team's behalf so the gap is closed during fieldwork",
-            "Confirm management is comfortable that the privileged access mgmt control works, based on their verbal assurance",
-            "Benchmark how many tools the team uses for privileged access mgmt against comparable organisations in the sector",
-            "Obtain evidence that the privileged access mgmt control is designed and operating effectively, and quantify the gap where it is not"
+            "Deploy and operate the privileged access management control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the privileged access management control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for privileged access management against comparable organisations in the sector",
+            "Obtain evidence that the privileged access management control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
           "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
@@ -1346,7 +1346,7 @@ export const iamStages: StageConfig[] = [
           "id": "iam-04-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Privileged access mgmt\" matter to the broader Identity & Access Management (IAM) posture?",
+          "text": "Why does a weakness in \"Privileged access management\" matter to the broader Identity & Access Management (IAM) posture?",
           "options": [
             "It mainly affects how the annual compliance report reads, rather than the actual risk to Identity & Access Management (IAM)",
             "It stops mattering once a firewall and endpoint agent are deployed across the Identity & Access Management (IAM) estate",
@@ -1360,12 +1360,12 @@ export const iamStages: StageConfig[] = [
           "id": "iam-04-q3",
           "type": "Artifacts",
           "challenge": "Evidence",
-          "text": "Which artifact best evidences the \"Privileged access mgmt\" control?",
+          "text": "Which artifact best evidences the \"Privileged access management\" control?",
           "options": [
-            "A point-in-time screenshot of one system's privileged access mgmt settings, captured during the walkthrough",
+            "A point-in-time screenshot of one system's privileged access management settings, captured during the walkthrough",
             "The The privileged-principal inventory — Domain/Enterprise Admins, cloud admin roles, root, local admins, and application super-users, reconciled against policy, plus the resulting findings working paper",
-            "A signed management attestation that the privileged access mgmt control is in place, with no underlying data attached",
-            "A vendor datasheet describing the product's privileged access mgmt capabilities and its recommended configuration"
+            "A signed management attestation that the privileged access management control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's privileged access management capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
           "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
@@ -1374,12 +1374,12 @@ export const iamStages: StageConfig[] = [
           "id": "iam-04-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where should an auditor pull the evidence for \"Privileged access mgmt\"?",
+          "text": "Where should an auditor pull the evidence for \"Privileged access management\"?",
           "options": [
             "From CyberArk / Delinea / BeyondTrust (PAM) and the other systems of record for this domain, accessed read-only",
             "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
             "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
-            "From an informal summary the team posted to the internal wiki describing how privileged access mgmt works"
+            "From an informal summary the team posted to the internal wiki describing how privileged access management works"
           ],
           "correctIndex": 0,
           "explanation": "Evidence must come from the authoritative systems (e.g. CyberArk / Delinea / BeyondTrust (PAM)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
@@ -1388,11 +1388,11 @@ export const iamStages: StageConfig[] = [
           "id": "iam-04-q5",
           "type": "Data owner",
           "challenge": "Accountability",
-          "text": "Who is most likely accountable for the data behind \"Privileged access mgmt\"?",
+          "text": "Who is most likely accountable for the data behind \"Privileged access management\"?",
           "options": [
-            "The external audit firm, since it is the party examining the privileged access mgmt control this period",
+            "The external audit firm, since it is the party examining the privileged access management control this period",
             "Whoever most recently changed the configuration, regardless of their role or formal accountability",
-            "No single function — the privileged access mgmt data is shared, so the accountability sits with no one in particular",
+            "No single function — the privileged access management data is shared, so the accountability sits with no one in particular",
             "Privileged Access Management team — owns the vault and policy, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
@@ -1402,7 +1402,7 @@ export const iamStages: StageConfig[] = [
           "id": "iam-04-q6",
           "type": "Agentic",
           "challenge": "Human vs agent",
-          "text": "In the agentic workflow for \"Privileged access mgmt\", which part stays with the human auditor?",
+          "text": "In the agentic workflow for \"Privileged access management\", which part stays with the human auditor?",
           "options": [
             "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
             "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
@@ -1430,7 +1430,7 @@ export const iamStages: StageConfig[] = [
           "id": "iam-04-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Privileged access mgmt\", which of these is a realistic reportable finding?",
+          "text": "For \"Privileged access management\", which of these is a realistic reportable finding?",
           "options": [
             "Privileged accounts discovered on hosts and in cloud that are not vaulted, plus standing Domain Admin members beyond the approved break-glass set — each named.",
             "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
@@ -1458,9 +1458,9 @@ export const iamStages: StageConfig[] = [
           "id": "iam-04-q10",
           "type": "Privacy/Risk",
           "challenge": "The data angle",
-          "text": "Why does auditing \"Privileged access mgmt\" also serve privacy and regulatory goals?",
+          "text": "Why does auditing \"Privileged access management\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators review only written policy documents, never the technical controls behind privileged access mgmt, so there is no overlap",
+            "Regulators review only written policy documents, never the technical controls behind privileged access management, so there is no overlap",
             "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
             "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
             "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"

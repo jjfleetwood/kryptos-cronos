@@ -3665,15 +3665,15 @@ export const resiliencyStages: StageConfig[] = [
     "epochId": "resiliency",
     "id": "res-11",
     "order": 11,
-    "title": "Secret and certificate mgmt",
-    "subtitle": "Agentic technical & privacy audit of the secret and certificate mgmt control",
+    "title": "Secret and certificate management",
+    "subtitle": "Agentic technical & privacy audit of the secret and certificate management control",
     "category": "cybersecurity",
     "xp": 180,
     "easeScore": 6,
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Secret and certificate mgmt\" control for Resiliency & Redundancy is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Verify secrets + certificates don't become a single point of failure for resilience. PASS: secrets + certs are replicated/available in the DR environment; certificate expiry is monitored + auto-renewed (no expiry-driven outages); the secrets-management/PKI system itself has a recovery plan; and there's no hard dependency on a single primary-region vault/CA. Exceptions: DR can't access secrets/certs (recovery blocked), expiring certs causing outages, no recovery plan for the vault/PKI, and a single-region vault/CA that a disaster locks (taking everything with it).",
+      "objective": "Prove the \"Secret and certificate management\" control for Resiliency & Redundancy is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Verify secrets + certificates don't become a single point of failure for resilience. PASS: secrets + certs are replicated/available in the DR environment; certificate expiry is monitored + auto-renewed (no expiry-driven outages); the secrets-management/PKI system itself has a recovery plan; and there's no hard dependency on a single primary-region vault/CA. Exceptions: DR can't access secrets/certs (recovery blocked), expiring certs causing outages, no recovery plan for the vault/PKI, and a single-region vault/CA that a disaster locks (taking everything with it).",
       "approach": "An audit agent calls a read-only MCP server that wraps the Resiliency & Redundancy systems of record (Secrets manager / Vault (replication / DR); Certificate management (expiry monitoring + auto-renew); PKI / CA (DR)) as tools — e.g. `are secrets + certs replicated to / accessible from the DR environment`, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "Evidence secrets + certificates are available in DR (replicated to / accessible from the recovery environment)",
@@ -3702,26 +3702,26 @@ export const resiliencyStages: StageConfig[] = [
       "emoji": "♻️"
     },
     "wonder": {
-      "name": "Secret and certificate mgmt",
+      "name": "Secret and certificate management",
       "location": "Resiliency & Redundancy",
       "era": "Present Day",
       "emoji": "♻️"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Secret and certificate mgmt\" as a repeatable agentic workflow: pull the real evidence (Evidence secrets + certificates are available in DR (replicated to / accessible from the recovery environment)) with read-only agents, run the test against policy, and issue a defensible opinion on the Resiliency & Redundancy control.",
+      "tagline": "Auditing \"Secret and certificate management\" as a repeatable agentic workflow: pull the real evidence (Evidence secrets + certificates are available in DR (replicated to / accessible from the recovery environment)) with read-only agents, run the test against policy, and issue a defensible opinion on the Resiliency & Redundancy control.",
       "year": 2025,
       "overview": [
-        "The \"Secret and certificate mgmt\" sub-process is one of the controls an auditor must verify for Resiliency & Redundancy. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me evidence secrets + certificates are available in DR (replicated to / accessible from the recovery environment), for everything in scope.\"",
+        "The \"Secret and certificate management\" sub-process is one of the controls an auditor must verify for Resiliency & Redundancy. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me evidence secrets + certificates are available in DR (replicated to / accessible from the recovery environment), for everything in scope.\"",
         "The evidence lives across systems that were never reconciled — here Secrets manager / Vault (replication / DR), Certificate management (expiry monitoring + auto-renew), PKI / CA (DR) — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. In practice you gather it with calls like `are secrets + certs replicated to / accessible from the DR environment?` — read-only, against the systems of record.",
         "The test itself is specific. Verify secrets + certificates don't become a single point of failure for resilience. PASS: secrets + certs are replicated/available in the DR environment; certificate expiry is monitored + auto-renewed (no expiry-driven outages); the secrets-management/PKI system itself has a recovery plan; and there's no hard dependency on a single primary-region vault/CA. Exceptions: DR can't access secrets/certs (recovery blocked), expiring certs causing outages, no recovery plan for the vault/PKI, and a single-region vault/CA that a disaster locks (taking everything with it). The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `11_secret_and_certificate_mgmt_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Secrets manager / Vault (replication / DR) and Certificate management (expiry monitoring + auto-renew) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
+          "The included `11_secret_and_certificate_management_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Secrets manager / Vault (replication / DR) and Certificate management (expiry monitoring + auto-renew) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
           "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
-          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 11_secret_and_certificate_mgmt_mcp.py` to expose it to your agent — or `python 11_secret_and_certificate_mgmt_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
+          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 11_secret_and_certificate_management_mcp.py` to expose it to your agent — or `python 11_secret_and_certificate_management_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
           "label": "coverage_report() — the audit deliverable (excerpt)",
@@ -3774,7 +3774,7 @@ export const resiliencyStages: StageConfig[] = [
         },
         {
           "year": 2025,
-          "event": "Agentic evidence-gathering becomes the practical way to keep \"Secret and certificate mgmt\" continuously assured",
+          "event": "Agentic evidence-gathering becomes the practical way to keep \"Secret and certificate management\" continuously assured",
           "highlight": true
         }
       ],
@@ -3807,14 +3807,14 @@ export const resiliencyStages: StageConfig[] = [
       ],
       "downloads": [
         {
-          "name": "11_secret_and_certificate_mgmt_mcp.py",
-          "url": "/audit-code/resiliency/11_secret_and_certificate_mgmt_mcp.py",
-          "description": "Runnable read-only MCP server: gathers the Resiliency & Redundancy evidence for \"Secret and certificate mgmt\" (evidence secrets + certificates are available in dr (replicated to / accessible from the recovery environment)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "name": "11_secret_and_certificate_management_mcp.py",
+          "url": "/audit-code/resiliency/11_secret_and_certificate_management_mcp.py",
+          "description": "Runnable read-only MCP server: gathers the Resiliency & Redundancy evidence for \"Secret and certificate management\" (evidence secrets + certificates are available in dr (replicated to / accessible from the recovery environment)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Secret and certificate mgmt\" control for Resiliency & Redundancy at AcmeCorp. THE TEST: Verify secrets + certificates don't become a single point of failure for resilience. PASS: secrets + certs are replicated/available in the DR environment; certificate expiry is monitored + auto-renewed (no expiry-driven outages); the secrets-management/PKI system itself has a recovery plan; and there's no hard dependency on a single primary-region vault/CA. Exceptions: DR can't access secrets/certs (recovery blocked), expiring certs causing outages, no recovery plan for the vault/PKI, and a single-region vault/CA that a disaster locks (taking everything with it). The evidence — Evidence secrets + certificates are available in DR (replicated to / accessible from the recovery environment) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Secrets manager / Vault (replication / DR) APIs; here the same sources are exported to files.)",
+      "scenario": "You're the auditor testing the \"Secret and certificate management\" control for Resiliency & Redundancy at AcmeCorp. THE TEST: Verify secrets + certificates don't become a single point of failure for resilience. PASS: secrets + certs are replicated/available in the DR environment; certificate expiry is monitored + auto-renewed (no expiry-driven outages); the secrets-management/PKI system itself has a recovery plan; and there's no hard dependency on a single primary-region vault/CA. Exceptions: DR can't access secrets/certs (recovery blocked), expiring certs causing outages, no recovery plan for the vault/PKI, and a single-region vault/CA that a disaster locks (taking everything with it). The evidence — Evidence secrets + certificates are available in DR (replicated to / accessible from the recovery environment) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Secrets manager / Vault (replication / DR) APIs; here the same sources are exported to files.)",
       "hint": "Read every file in /evidence. Secrets manager / Vault (replication / DR) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
         "cat each file in /evidence. The inventory comes from Secrets manager / Vault (replication / DR); the state file shows what is actually configured/running.",
@@ -3822,9 +3822,9 @@ export const resiliencyStages: StageConfig[] = [
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Resiliency & Redundancy: \"Secret and certificate mgmt\" Audit Evidence\n\nThe test:\nVerify secrets + certificates don't become a single point of failure for resilience. PASS: secrets + certs are replicated/available in the DR environment; certificate expiry is monitored + auto-renewed (no expiry-driven outages); the secrets-management/PKI system itself has a recovery plan; and there's no hard dependency on a single primary-region vault/CA. Exceptions: DR can't access secrets/certs (recovery blocked), expiring certs causing outages, no recovery plan for the vault/PKI, and a single-region vault/CA that a disaster locks (taking everything with it).\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- resiliency_inventory.json   (in-scope items — Evidence secrets + certificates are available in DR (replicated to / accessible from the recovery environment))\n- resiliency_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Secret and certificate mgmt\",\n  \"domain\": \"Resiliency & Redundancy\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{res_",
-        "/evidence/resiliency_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Business Continuity / DR\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Secret and certificate mgmt\" control must cover\n# fragment: secret_certificate_mgmt_",
+        "/evidence/README.md": "# AcmeCorp — Resiliency & Redundancy: \"Secret and certificate management\" Audit Evidence\n\nThe test:\nVerify secrets + certificates don't become a single point of failure for resilience. PASS: secrets + certs are replicated/available in the DR environment; certificate expiry is monitored + auto-renewed (no expiry-driven outages); the secrets-management/PKI system itself has a recovery plan; and there's no hard dependency on a single primary-region vault/CA. Exceptions: DR can't access secrets/certs (recovery blocked), expiring certs causing outages, no recovery plan for the vault/PKI, and a single-region vault/CA that a disaster locks (taking everything with it).\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- resiliency_inventory.json   (in-scope items — Evidence secrets + certificates are available in DR (replicated to / accessible from the recovery environment))\n- resiliency_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Secret and certificate management\",\n  \"domain\": \"Resiliency & Redundancy\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{res_",
+        "/evidence/resiliency_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Business Continuity / DR\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Secret and certificate management\" control must cover\n# fragment: secret_certificate_management_",
         "/evidence/resiliency_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
       },
@@ -3866,7 +3866,7 @@ export const resiliencyStages: StageConfig[] = [
         },
         {
           "trigger": "/evidence/resiliency_inventory.json",
-          "value": "secret_certificate_mgmt_",
+          "value": "secret_certificate_management_",
           "label": "Inventory — the in-scope items"
         },
         {
@@ -3887,12 +3887,12 @@ export const resiliencyStages: StageConfig[] = [
           "id": "res-11-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Secret and certificate mgmt\" sub-process of Resiliency & Redundancy?",
+          "text": "What is the primary audit objective for the \"Secret and certificate management\" sub-process of Resiliency & Redundancy?",
           "options": [
-            "Deploy and operate the secret and certificate mgmt control on the team's behalf so the gap is closed during fieldwork",
-            "Confirm management is comfortable that the secret and certificate mgmt control works, based on their verbal assurance",
-            "Benchmark how many tools the team uses for secret and certificate mgmt against comparable organisations in the sector",
-            "Obtain evidence that the secret and certificate mgmt control is designed and operating effectively, and quantify the gap where it is not"
+            "Deploy and operate the secret and certificate management control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the secret and certificate management control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for secret and certificate management against comparable organisations in the sector",
+            "Obtain evidence that the secret and certificate management control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
           "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
@@ -3901,7 +3901,7 @@ export const resiliencyStages: StageConfig[] = [
           "id": "res-11-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Secret and certificate mgmt\" matter to the broader Resiliency & Redundancy posture?",
+          "text": "Why does a weakness in \"Secret and certificate management\" matter to the broader Resiliency & Redundancy posture?",
           "options": [
             "It mainly affects how the annual compliance report reads, rather than the actual risk to Resiliency & Redundancy",
             "It stops mattering once a firewall and endpoint agent are deployed across the Resiliency & Redundancy estate",
@@ -3915,12 +3915,12 @@ export const resiliencyStages: StageConfig[] = [
           "id": "res-11-q3",
           "type": "Artifacts",
           "challenge": "Evidence",
-          "text": "Which artifact best evidences the \"Secret and certificate mgmt\" control?",
+          "text": "Which artifact best evidences the \"Secret and certificate management\" control?",
           "options": [
-            "A point-in-time screenshot of one system's secret and certificate mgmt settings, captured during the walkthrough",
+            "A point-in-time screenshot of one system's secret and certificate management settings, captured during the walkthrough",
             "The Evidence secrets + certificates are available in DR (replicated to / accessible from the recovery environment), reconciled against policy, plus the resulting findings working paper",
-            "A signed management attestation that the secret and certificate mgmt control is in place, with no underlying data attached",
-            "A vendor datasheet describing the product's secret and certificate mgmt capabilities and its recommended configuration"
+            "A signed management attestation that the secret and certificate management control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's secret and certificate management capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
           "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
@@ -3929,12 +3929,12 @@ export const resiliencyStages: StageConfig[] = [
           "id": "res-11-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where should an auditor pull the evidence for \"Secret and certificate mgmt\"?",
+          "text": "Where should an auditor pull the evidence for \"Secret and certificate management\"?",
           "options": [
             "From Secrets manager / Vault (replication / DR) and the other systems of record for this domain, accessed read-only",
             "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
             "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
-            "From an informal summary the team posted to the internal wiki describing how secret and certificate mgmt works"
+            "From an informal summary the team posted to the internal wiki describing how secret and certificate management works"
           ],
           "correctIndex": 0,
           "explanation": "Evidence must come from the authoritative systems (e.g. Secrets manager / Vault (replication / DR)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
@@ -3943,11 +3943,11 @@ export const resiliencyStages: StageConfig[] = [
           "id": "res-11-q5",
           "type": "Data owner",
           "challenge": "Accountability",
-          "text": "Who is most likely accountable for the data behind \"Secret and certificate mgmt\"?",
+          "text": "Who is most likely accountable for the data behind \"Secret and certificate management\"?",
           "options": [
-            "The external audit firm, since it is the party examining the secret and certificate mgmt control this period",
+            "The external audit firm, since it is the party examining the secret and certificate management control this period",
             "Whoever most recently changed the configuration, regardless of their role or formal accountability",
-            "No single function — the secret and certificate mgmt data is shared, so the accountability sits with no one in particular",
+            "No single function — the secret and certificate management data is shared, so the accountability sits with no one in particular",
             "Platform security / PKI, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
@@ -3957,7 +3957,7 @@ export const resiliencyStages: StageConfig[] = [
           "id": "res-11-q6",
           "type": "Agentic",
           "challenge": "Human vs agent",
-          "text": "In the agentic workflow for \"Secret and certificate mgmt\", which part stays with the human auditor?",
+          "text": "In the agentic workflow for \"Secret and certificate management\", which part stays with the human auditor?",
           "options": [
             "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
             "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
@@ -3985,7 +3985,7 @@ export const resiliencyStages: StageConfig[] = [
           "id": "res-11-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Secret and certificate mgmt\", which of these is a realistic reportable finding?",
+          "text": "For \"Secret and certificate management\", which of these is a realistic reportable finding?",
           "options": [
             "The Vault cluster is single-region with no DR replica, so a regional failure would lock every workload out of its secrets; and three production certs expired last quarter because nothing monitors expiry.",
             "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
@@ -4013,9 +4013,9 @@ export const resiliencyStages: StageConfig[] = [
           "id": "res-11-q10",
           "type": "Privacy/Risk",
           "challenge": "The data angle",
-          "text": "Why does auditing \"Secret and certificate mgmt\" also serve privacy and regulatory goals?",
+          "text": "Why does auditing \"Secret and certificate management\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators review only written policy documents, never the technical controls behind secret and certificate mgmt, so there is no overlap",
+            "Regulators review only written policy documents, never the technical controls behind secret and certificate management, so there is no overlap",
             "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
             "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
             "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"

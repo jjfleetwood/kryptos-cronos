@@ -1845,15 +1845,15 @@ export const sysimplAiStages: StageConfig[] = [
     "epochId": "sysimpl-ai",
     "id": "sia-06",
     "order": 6,
-    "title": "AI model deployment and infra",
-    "subtitle": "Agentic technical & privacy audit of the ai model deployment and infra control",
+    "title": "AI model deployment and infrastructure",
+    "subtitle": "Agentic technical & privacy audit of the ai model deployment and infrastructure control",
     "category": "cybersecurity",
     "xp": 140,
     "easeScore": 7,
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"AI model deployment and infra\" control for System Implementation — AI (Artificial Intelligence) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Verify the AI system is deployed securely + controllably. PASS: deployment uses a governed model CI/CD pipeline with environment separation, staged/canary rollout, prod model versioning, and tested rollback; the serving stack is secured (authenticated + rate-limited endpoint, protected artifact, vaulted secrets); promotion requires approval; and the validated artifact is exactly what reaches prod. Exceptions: models hand-deployed with no pipeline/versioning, no rollback path, an unauthenticated/unprotected inference endpoint, and an unvalidated/last-minute model artifact reaching production.",
+      "objective": "Prove the \"AI model deployment and infrastructure\" control for System Implementation — AI (Artificial Intelligence) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Verify the AI system is deployed securely + controllably. PASS: deployment uses a governed model CI/CD pipeline with environment separation, staged/canary rollout, prod model versioning, and tested rollback; the serving stack is secured (authenticated + rate-limited endpoint, protected artifact, vaulted secrets); promotion requires approval; and the validated artifact is exactly what reaches prod. Exceptions: models hand-deployed with no pipeline/versioning, no rollback path, an unauthenticated/unprotected inference endpoint, and an unvalidated/last-minute model artifact reaching production.",
       "approach": "An audit agent calls a read-only MCP server that wraps the System Implementation — AI (Artificial Intelligence) systems of record (Model CI/CD + serving (endpoint / containers); Model registry (prod versioning); API gateway (auth + rate-limit)) as tools — e.g. `deployment architecture + secured serving (endpoint, model CI/CD, envi`, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "The deployment architecture + the secured serving infrastructure (model endpoint, inference scaling, the deployment/CI-CD pipeline for models, environment separation)",
@@ -1883,26 +1883,26 @@ export const sysimplAiStages: StageConfig[] = [
       "emoji": "🤖"
     },
     "wonder": {
-      "name": "AI model deployment and infra",
+      "name": "AI model deployment and infrastructure",
       "location": "System Implementation — AI (Artificial Intelligence)",
       "era": "Present Day",
       "emoji": "🤖"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"AI model deployment and infra\" as a repeatable agentic workflow: pull the real evidence (The deployment architecture + the secured serving infrastructure (model endpoint, inference scaling, the deployment/CI-CD pipeline for models, environment separation)) with read-only agents, run the test against policy, and issue a defensible opinion on the System Implementation — AI (Artificial Intelligence) control.",
+      "tagline": "Auditing \"AI model deployment and infrastructure\" as a repeatable agentic workflow: pull the real evidence (The deployment architecture + the secured serving infrastructure (model endpoint, inference scaling, the deployment/CI-CD pipeline for models, environment separation)) with read-only agents, run the test against policy, and issue a defensible opinion on the System Implementation — AI (Artificial Intelligence) control.",
       "year": 2025,
       "overview": [
-        "The \"AI model deployment and infra\" sub-process is one of the controls an auditor must verify for System Implementation — AI (Artificial Intelligence). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me the deployment architecture + the secured serving infrastructure (model endpoint, inference scaling, the deployment/CI-CD pipeline for models, environment separation), for everything in scope.\"",
+        "The \"AI model deployment and infrastructure\" sub-process is one of the controls an auditor must verify for System Implementation — AI (Artificial Intelligence). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me the deployment architecture + the secured serving infrastructure (model endpoint, inference scaling, the deployment/CI-CD pipeline for models, environment separation), for everything in scope.\"",
         "The evidence lives across systems that were never reconciled — here Model CI/CD + serving (endpoint / containers), Model registry (prod versioning), API gateway (auth + rate-limit) — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. In practice you gather it with calls like `deployment architecture + secured serving (endpoint, model CI/CD, environment se` — read-only, against the systems of record.",
         "The test itself is specific. Verify the AI system is deployed securely + controllably. PASS: deployment uses a governed model CI/CD pipeline with environment separation, staged/canary rollout, prod model versioning, and tested rollback; the serving stack is secured (authenticated + rate-limited endpoint, protected artifact, vaulted secrets); promotion requires approval; and the validated artifact is exactly what reaches prod. Exceptions: models hand-deployed with no pipeline/versioning, no rollback path, an unauthenticated/unprotected inference endpoint, and an unvalidated/last-minute model artifact reaching production. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `06_ai_model_deployment_and_infra_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Model CI/CD + serving (endpoint / containers) and Model registry (prod versioning) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
+          "The included `06_ai_model_deployment_and_infrastructure_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Model CI/CD + serving (endpoint / containers) and Model registry (prod versioning) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
           "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
-          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 06_ai_model_deployment_and_infra_mcp.py` to expose it to your agent — or `python 06_ai_model_deployment_and_infra_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
+          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 06_ai_model_deployment_and_infrastructure_mcp.py` to expose it to your agent — or `python 06_ai_model_deployment_and_infrastructure_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
           "label": "coverage_report() — the audit deliverable (excerpt)",
@@ -1955,7 +1955,7 @@ export const sysimplAiStages: StageConfig[] = [
         },
         {
           "year": 2025,
-          "event": "Agentic evidence-gathering becomes the practical way to keep \"AI model deployment and infra\" continuously assured",
+          "event": "Agentic evidence-gathering becomes the practical way to keep \"AI model deployment and infrastructure\" continuously assured",
           "highlight": true
         }
       ],
@@ -1988,14 +1988,14 @@ export const sysimplAiStages: StageConfig[] = [
       ],
       "downloads": [
         {
-          "name": "06_ai_model_deployment_and_infra_mcp.py",
-          "url": "/audit-code/sysimpl-ai/06_ai_model_deployment_and_infra_mcp.py",
-          "description": "Runnable read-only MCP server: gathers the System Implementation — AI (Artificial Intelligence) evidence for \"AI model deployment and infra\" (the deployment architecture + the secured serving infrastructure (model endpoint, inference scaling, the deployment/ci-cd pipeline for models, environment separation)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "name": "06_ai_model_deployment_and_infrastructure_mcp.py",
+          "url": "/audit-code/sysimpl-ai/06_ai_model_deployment_and_infrastructure_mcp.py",
+          "description": "Runnable read-only MCP server: gathers the System Implementation — AI (Artificial Intelligence) evidence for \"AI model deployment and infrastructure\" (the deployment architecture + the secured serving infrastructure (model endpoint, inference scaling, the deployment/ci-cd pipeline for models, environment separation)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"AI model deployment and infra\" control for System Implementation — AI (Artificial Intelligence) at AcmeCorp. THE TEST: Verify the AI system is deployed securely + controllably. PASS: deployment uses a governed model CI/CD pipeline with environment separation, staged/canary rollout, prod model versioning, and tested rollback; the serving stack is secured (authenticated + rate-limited endpoint, protected artifact, vaulted secrets); promotion requires approval; and the validated artifact is exactly what reaches prod. Exceptions: models hand-deployed with no pipeline/versioning, no rollback path, an unauthenticated/unprotected inference endpoint, and an unvalidated/last-minute model artifact reaching production. The evidence — The deployment architecture + the secured serving infrastructure (model endpoint, inference scaling, the deployment/CI-CD pipeline for models, environment separation) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Model CI/CD + serving (endpoint / containers) APIs; here the same sources are exported to files.)",
+      "scenario": "You're the auditor testing the \"AI model deployment and infrastructure\" control for System Implementation — AI (Artificial Intelligence) at AcmeCorp. THE TEST: Verify the AI system is deployed securely + controllably. PASS: deployment uses a governed model CI/CD pipeline with environment separation, staged/canary rollout, prod model versioning, and tested rollback; the serving stack is secured (authenticated + rate-limited endpoint, protected artifact, vaulted secrets); promotion requires approval; and the validated artifact is exactly what reaches prod. Exceptions: models hand-deployed with no pipeline/versioning, no rollback path, an unauthenticated/unprotected inference endpoint, and an unvalidated/last-minute model artifact reaching production. The evidence — The deployment architecture + the secured serving infrastructure (model endpoint, inference scaling, the deployment/CI-CD pipeline for models, environment separation) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Model CI/CD + serving (endpoint / containers) APIs; here the same sources are exported to files.)",
       "hint": "Read every file in /evidence. Model CI/CD + serving (endpoint / containers) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
         "cat each file in /evidence. The inventory comes from Model CI/CD + serving (endpoint / containers); the state file shows what is actually configured/running.",
@@ -2003,9 +2003,9 @@ export const sysimplAiStages: StageConfig[] = [
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — System Implementation — AI (Artificial Intelligence): \"AI model deployment and infra\" Audit Evidence\n\nThe test:\nVerify the AI system is deployed securely + controllably. PASS: deployment uses a governed model CI/CD pipeline with environment separation, staged/canary rollout, prod model versioning, and tested rollback; the serving stack is secured (authenticated + rate-limited endpoint, protected artifact, vaulted secrets); promotion requires approval; and the validated artifact is exactly what reaches prod. Exceptions: models hand-deployed with no pipeline/versioning, no rollback path, an unauthenticated/unprotected inference endpoint, and an unvalidated/last-minute model artifact reaching production.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-ai_inventory.json   (in-scope items — The deployment architecture + the secured serving infrastructure (model endpoint, inference scaling, the deployment/CI-CD pipeline for models, environment separation))\n- sysimpl-ai_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"AI model deployment and infra\",\n  \"domain\": \"System Implementation — AI (Artificial Intelligence)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{sia_",
-        "/evidence/sysimpl-ai_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Data science / ML engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"AI model deployment and infra\" control must cover\n# fragment: ai_model_deployment_",
+        "/evidence/README.md": "# AcmeCorp — System Implementation — AI (Artificial Intelligence): \"AI model deployment and infrastructure\" Audit Evidence\n\nThe test:\nVerify the AI system is deployed securely + controllably. PASS: deployment uses a governed model CI/CD pipeline with environment separation, staged/canary rollout, prod model versioning, and tested rollback; the serving stack is secured (authenticated + rate-limited endpoint, protected artifact, vaulted secrets); promotion requires approval; and the validated artifact is exactly what reaches prod. Exceptions: models hand-deployed with no pipeline/versioning, no rollback path, an unauthenticated/unprotected inference endpoint, and an unvalidated/last-minute model artifact reaching production.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-ai_inventory.json   (in-scope items — The deployment architecture + the secured serving infrastructure (model endpoint, inference scaling, the deployment/CI-CD pipeline for models, environment separation))\n- sysimpl-ai_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"AI model deployment and infrastructure\",\n  \"domain\": \"System Implementation — AI (Artificial Intelligence)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{sia_",
+        "/evidence/sysimpl-ai_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Data science / ML engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"AI model deployment and infrastructure\" control must cover\n# fragment: ai_model_deployment_",
         "/evidence/sysimpl-ai_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
       },
@@ -2068,12 +2068,12 @@ export const sysimplAiStages: StageConfig[] = [
           "id": "sia-06-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"AI model deployment and infra\" sub-process of System Implementation — AI (Artificial Intelligence)?",
+          "text": "What is the primary audit objective for the \"AI model deployment and infrastructure\" sub-process of System Implementation — AI (Artificial Intelligence)?",
           "options": [
-            "Deploy and operate the ai model deployment and infra control on the team's behalf so the gap is closed during fieldwork",
-            "Confirm management is comfortable that the ai model deployment and infra control works, based on their verbal assurance",
-            "Benchmark how many tools the team uses for ai model deployment and infra against comparable organisations in the sector",
-            "Obtain evidence that the ai model deployment and infra control is designed and operating effectively, and quantify the gap where it is not"
+            "Deploy and operate the ai model deployment and infrastructure control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the ai model deployment and infrastructure control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for ai model deployment and infrastructure against comparable organisations in the sector",
+            "Obtain evidence that the ai model deployment and infrastructure control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
           "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
@@ -2082,7 +2082,7 @@ export const sysimplAiStages: StageConfig[] = [
           "id": "sia-06-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"AI model deployment and infra\" matter to the broader System Implementation — AI (Artificial Intelligence) posture?",
+          "text": "Why does a weakness in \"AI model deployment and infrastructure\" matter to the broader System Implementation — AI (Artificial Intelligence) posture?",
           "options": [
             "It mainly affects how the annual compliance report reads, rather than the actual risk to System Implementation — AI (Artificial Intelligence)",
             "It stops mattering once a firewall and endpoint agent are deployed across the System Implementation — AI (Artificial Intelligence) estate",
@@ -2096,12 +2096,12 @@ export const sysimplAiStages: StageConfig[] = [
           "id": "sia-06-q3",
           "type": "Artifacts",
           "challenge": "Evidence",
-          "text": "Which artifact best evidences the \"AI model deployment and infra\" control?",
+          "text": "Which artifact best evidences the \"AI model deployment and infrastructure\" control?",
           "options": [
-            "A point-in-time screenshot of one system's ai model deployment and infra settings, captured during the walkthrough",
+            "A point-in-time screenshot of one system's ai model deployment and infrastructure settings, captured during the walkthrough",
             "The The deployment architecture + the secured serving infrastructure (model endpoint, inference scaling, the deployment/CI-CD pipeline for models, environment separation), reconciled against policy, plus the resulting findings working paper",
-            "A signed management attestation that the ai model deployment and infra control is in place, with no underlying data attached",
-            "A vendor datasheet describing the product's ai model deployment and infra capabilities and its recommended configuration"
+            "A signed management attestation that the ai model deployment and infrastructure control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's ai model deployment and infrastructure capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
           "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
@@ -2110,12 +2110,12 @@ export const sysimplAiStages: StageConfig[] = [
           "id": "sia-06-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where should an auditor pull the evidence for \"AI model deployment and infra\"?",
+          "text": "Where should an auditor pull the evidence for \"AI model deployment and infrastructure\"?",
           "options": [
             "From Model CI/CD + serving (endpoint / containers) and the other systems of record for this domain, accessed read-only",
             "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
             "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
-            "From an informal summary the team posted to the internal wiki describing how ai model deployment and infra works"
+            "From an informal summary the team posted to the internal wiki describing how ai model deployment and infrastructure works"
           ],
           "correctIndex": 0,
           "explanation": "Evidence must come from the authoritative systems (e.g. Model CI/CD + serving (endpoint / containers)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
@@ -2124,11 +2124,11 @@ export const sysimplAiStages: StageConfig[] = [
           "id": "sia-06-q5",
           "type": "Data owner",
           "challenge": "Accountability",
-          "text": "Who is most likely accountable for the data behind \"AI model deployment and infra\"?",
+          "text": "Who is most likely accountable for the data behind \"AI model deployment and infrastructure\"?",
           "options": [
-            "The external audit firm, since it is the party examining the ai model deployment and infra control this period",
+            "The external audit firm, since it is the party examining the ai model deployment and infrastructure control this period",
             "Whoever most recently changed the configuration, regardless of their role or formal accountability",
-            "No single function — the ai model deployment and infra data is shared, so the accountability sits with no one in particular",
+            "No single function — the ai model deployment and infrastructure data is shared, so the accountability sits with no one in particular",
             "MLOps / ML engineering + platform, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
@@ -2138,7 +2138,7 @@ export const sysimplAiStages: StageConfig[] = [
           "id": "sia-06-q6",
           "type": "Agentic",
           "challenge": "Human vs agent",
-          "text": "In the agentic workflow for \"AI model deployment and infra\", which part stays with the human auditor?",
+          "text": "In the agentic workflow for \"AI model deployment and infrastructure\", which part stays with the human auditor?",
           "options": [
             "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
             "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
@@ -2166,7 +2166,7 @@ export const sysimplAiStages: StageConfig[] = [
           "id": "sia-06-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"AI model deployment and infra\", which of these is a realistic reportable finding?",
+          "text": "For \"AI model deployment and infrastructure\", which of these is a realistic reportable finding?",
           "options": [
             "The model was hand-copied to a production server with no pipeline, versioning, or rollback; the inference endpoint has no authentication or rate-limiting; and the artifact in prod isn't the one that was validated.",
             "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
@@ -2194,9 +2194,9 @@ export const sysimplAiStages: StageConfig[] = [
           "id": "sia-06-q10",
           "type": "Privacy/Risk",
           "challenge": "The data angle",
-          "text": "Why does auditing \"AI model deployment and infra\" also serve privacy and regulatory goals?",
+          "text": "Why does auditing \"AI model deployment and infrastructure\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators review only written policy documents, never the technical controls behind ai model deployment and infra, so there is no overlap",
+            "Regulators review only written policy documents, never the technical controls behind ai model deployment and infrastructure, so there is no overlap",
             "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
             "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
             "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
@@ -2211,15 +2211,15 @@ export const sysimplAiStages: StageConfig[] = [
     "epochId": "sysimpl-ai",
     "id": "sia-07",
     "order": 7,
-    "title": "Model lifecycle and drift mgmt",
-    "subtitle": "Agentic technical & privacy audit of the model lifecycle and drift mgmt control",
+    "title": "Model lifecycle and drift management",
+    "subtitle": "Agentic technical & privacy audit of the model lifecycle and drift management control",
     "category": "cybersecurity",
     "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Model lifecycle and drift mgmt\" control for System Implementation — AI (Artificial Intelligence) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Verify the model is managed across its lifecycle in production. PASS: production monitors model + data drift, performance decay, and distribution shift against thresholds; drift/decay triggers a governed retrain or rollback (with revalidation before relaunch); a lifecycle register tracks prod versions + retirement; and fairness/quality is monitored over time. Exceptions: no drift/performance monitoring (silent decay), no retraining trigger or the retrain skips revalidation, no model lifecycle/ownership register, and fairness checked only at launch.",
+      "objective": "Prove the \"Model lifecycle and drift management\" control for System Implementation — AI (Artificial Intelligence) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Verify the model is managed across its lifecycle in production. PASS: production monitors model + data drift, performance decay, and distribution shift against thresholds; drift/decay triggers a governed retrain or rollback (with revalidation before relaunch); a lifecycle register tracks prod versions + retirement; and fairness/quality is monitored over time. Exceptions: no drift/performance monitoring (silent decay), no retraining trigger or the retrain skips revalidation, no model lifecycle/ownership register, and fairness checked only at launch.",
       "approach": "An audit agent calls a read-only MCP server that wraps the System Implementation — AI (Artificial Intelligence) systems of record (Model monitoring (Arize / Fiddler / Evidently); Drift + performance monitoring; Retraining pipeline + revalidation gate) as tools — e.g. `production monitoring: model + data drift + performance decay + distri`, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "The production monitoring for model + data drift, performance decay, and prediction-distribution shift, with thresholds",
@@ -2249,26 +2249,26 @@ export const sysimplAiStages: StageConfig[] = [
       "emoji": "🤖"
     },
     "wonder": {
-      "name": "Model lifecycle and drift mgmt",
+      "name": "Model lifecycle and drift management",
       "location": "System Implementation — AI (Artificial Intelligence)",
       "era": "Present Day",
       "emoji": "🤖"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Model lifecycle and drift mgmt\" as a repeatable agentic workflow: pull the real evidence (The production monitoring for model + data drift, performance decay, and prediction-distribution shift, with thresholds) with read-only agents, run the test against policy, and issue a defensible opinion on the System Implementation — AI (Artificial Intelligence) control.",
+      "tagline": "Auditing \"Model lifecycle and drift management\" as a repeatable agentic workflow: pull the real evidence (The production monitoring for model + data drift, performance decay, and prediction-distribution shift, with thresholds) with read-only agents, run the test against policy, and issue a defensible opinion on the System Implementation — AI (Artificial Intelligence) control.",
       "year": 2025,
       "overview": [
-        "The \"Model lifecycle and drift mgmt\" sub-process is one of the controls an auditor must verify for System Implementation — AI (Artificial Intelligence). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me the production monitoring for model + data drift, performance decay, and prediction-distribution shift, with thresholds, for everything in scope.\"",
+        "The \"Model lifecycle and drift management\" sub-process is one of the controls an auditor must verify for System Implementation — AI (Artificial Intelligence). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me the production monitoring for model + data drift, performance decay, and prediction-distribution shift, with thresholds, for everything in scope.\"",
         "The evidence lives across systems that were never reconciled — here Model monitoring (Arize / Fiddler / Evidently), Drift + performance monitoring, Retraining pipeline + revalidation gate — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. In practice you gather it with calls like `production monitoring: model + data drift + performance decay + distribution shi` — read-only, against the systems of record.",
         "The test itself is specific. Verify the model is managed across its lifecycle in production. PASS: production monitors model + data drift, performance decay, and distribution shift against thresholds; drift/decay triggers a governed retrain or rollback (with revalidation before relaunch); a lifecycle register tracks prod versions + retirement; and fairness/quality is monitored over time. Exceptions: no drift/performance monitoring (silent decay), no retraining trigger or the retrain skips revalidation, no model lifecycle/ownership register, and fairness checked only at launch. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `07_model_lifecycle_and_drift_mgmt_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Model monitoring (Arize / Fiddler / Evidently) and Drift + performance monitoring (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
+          "The included `07_model_lifecycle_and_drift_management_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Model monitoring (Arize / Fiddler / Evidently) and Drift + performance monitoring (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
           "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
-          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 07_model_lifecycle_and_drift_mgmt_mcp.py` to expose it to your agent — or `python 07_model_lifecycle_and_drift_mgmt_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
+          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 07_model_lifecycle_and_drift_management_mcp.py` to expose it to your agent — or `python 07_model_lifecycle_and_drift_management_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
           "label": "coverage_report() — the audit deliverable (excerpt)",
@@ -2321,7 +2321,7 @@ export const sysimplAiStages: StageConfig[] = [
         },
         {
           "year": 2025,
-          "event": "Agentic evidence-gathering becomes the practical way to keep \"Model lifecycle and drift mgmt\" continuously assured",
+          "event": "Agentic evidence-gathering becomes the practical way to keep \"Model lifecycle and drift management\" continuously assured",
           "highlight": true
         }
       ],
@@ -2354,14 +2354,14 @@ export const sysimplAiStages: StageConfig[] = [
       ],
       "downloads": [
         {
-          "name": "07_model_lifecycle_and_drift_mgmt_mcp.py",
-          "url": "/audit-code/sysimpl-ai/07_model_lifecycle_and_drift_mgmt_mcp.py",
-          "description": "Runnable read-only MCP server: gathers the System Implementation — AI (Artificial Intelligence) evidence for \"Model lifecycle and drift mgmt\" (the production monitoring for model + data drift, performance decay, and prediction-distribution shift, with thresholds), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "name": "07_model_lifecycle_and_drift_management_mcp.py",
+          "url": "/audit-code/sysimpl-ai/07_model_lifecycle_and_drift_management_mcp.py",
+          "description": "Runnable read-only MCP server: gathers the System Implementation — AI (Artificial Intelligence) evidence for \"Model lifecycle and drift management\" (the production monitoring for model + data drift, performance decay, and prediction-distribution shift, with thresholds), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Model lifecycle and drift mgmt\" control for System Implementation — AI (Artificial Intelligence) at AcmeCorp. THE TEST: Verify the model is managed across its lifecycle in production. PASS: production monitors model + data drift, performance decay, and distribution shift against thresholds; drift/decay triggers a governed retrain or rollback (with revalidation before relaunch); a lifecycle register tracks prod versions + retirement; and fairness/quality is monitored over time. Exceptions: no drift/performance monitoring (silent decay), no retraining trigger or the retrain skips revalidation, no model lifecycle/ownership register, and fairness checked only at launch. The evidence — The production monitoring for model + data drift, performance decay, and prediction-distribution shift, with thresholds — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Model monitoring (Arize / Fiddler / Evidently) APIs; here the same sources are exported to files.)",
+      "scenario": "You're the auditor testing the \"Model lifecycle and drift management\" control for System Implementation — AI (Artificial Intelligence) at AcmeCorp. THE TEST: Verify the model is managed across its lifecycle in production. PASS: production monitors model + data drift, performance decay, and distribution shift against thresholds; drift/decay triggers a governed retrain or rollback (with revalidation before relaunch); a lifecycle register tracks prod versions + retirement; and fairness/quality is monitored over time. Exceptions: no drift/performance monitoring (silent decay), no retraining trigger or the retrain skips revalidation, no model lifecycle/ownership register, and fairness checked only at launch. The evidence — The production monitoring for model + data drift, performance decay, and prediction-distribution shift, with thresholds — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Model monitoring (Arize / Fiddler / Evidently) APIs; here the same sources are exported to files.)",
       "hint": "Read every file in /evidence. Model monitoring (Arize / Fiddler / Evidently) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
         "cat each file in /evidence. The inventory comes from Model monitoring (Arize / Fiddler / Evidently); the state file shows what is actually configured/running.",
@@ -2369,9 +2369,9 @@ export const sysimplAiStages: StageConfig[] = [
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — System Implementation — AI (Artificial Intelligence): \"Model lifecycle and drift mgmt\" Audit Evidence\n\nThe test:\nVerify the model is managed across its lifecycle in production. PASS: production monitors model + data drift, performance decay, and distribution shift against thresholds; drift/decay triggers a governed retrain or rollback (with revalidation before relaunch); a lifecycle register tracks prod versions + retirement; and fairness/quality is monitored over time. Exceptions: no drift/performance monitoring (silent decay), no retraining trigger or the retrain skips revalidation, no model lifecycle/ownership register, and fairness checked only at launch.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-ai_inventory.json   (in-scope items — The production monitoring for model + data drift, performance decay, and prediction-distribution shift, with thresholds)\n- sysimpl-ai_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Model lifecycle and drift mgmt\",\n  \"domain\": \"System Implementation — AI (Artificial Intelligence)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{sia_",
-        "/evidence/sysimpl-ai_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Data science / ML engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Model lifecycle and drift mgmt\" control must cover\n# fragment: model_lifecycle_drift_",
+        "/evidence/README.md": "# AcmeCorp — System Implementation — AI (Artificial Intelligence): \"Model lifecycle and drift management\" Audit Evidence\n\nThe test:\nVerify the model is managed across its lifecycle in production. PASS: production monitors model + data drift, performance decay, and distribution shift against thresholds; drift/decay triggers a governed retrain or rollback (with revalidation before relaunch); a lifecycle register tracks prod versions + retirement; and fairness/quality is monitored over time. Exceptions: no drift/performance monitoring (silent decay), no retraining trigger or the retrain skips revalidation, no model lifecycle/ownership register, and fairness checked only at launch.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-ai_inventory.json   (in-scope items — The production monitoring for model + data drift, performance decay, and prediction-distribution shift, with thresholds)\n- sysimpl-ai_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Model lifecycle and drift management\",\n  \"domain\": \"System Implementation — AI (Artificial Intelligence)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{sia_",
+        "/evidence/sysimpl-ai_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Data science / ML engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Model lifecycle and drift management\" control must cover\n# fragment: model_lifecycle_drift_",
         "/evidence/sysimpl-ai_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
       },
@@ -2434,12 +2434,12 @@ export const sysimplAiStages: StageConfig[] = [
           "id": "sia-07-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Model lifecycle and drift mgmt\" sub-process of System Implementation — AI (Artificial Intelligence)?",
+          "text": "What is the primary audit objective for the \"Model lifecycle and drift management\" sub-process of System Implementation — AI (Artificial Intelligence)?",
           "options": [
-            "Deploy and operate the model lifecycle and drift mgmt control on the team's behalf so the gap is closed during fieldwork",
-            "Confirm management is comfortable that the model lifecycle and drift mgmt control works, based on their verbal assurance",
-            "Benchmark how many tools the team uses for model lifecycle and drift mgmt against comparable organisations in the sector",
-            "Obtain evidence that the model lifecycle and drift mgmt control is designed and operating effectively, and quantify the gap where it is not"
+            "Deploy and operate the model lifecycle and drift management control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the model lifecycle and drift management control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for model lifecycle and drift management against comparable organisations in the sector",
+            "Obtain evidence that the model lifecycle and drift management control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
           "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
@@ -2448,7 +2448,7 @@ export const sysimplAiStages: StageConfig[] = [
           "id": "sia-07-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Model lifecycle and drift mgmt\" matter to the broader System Implementation — AI (Artificial Intelligence) posture?",
+          "text": "Why does a weakness in \"Model lifecycle and drift management\" matter to the broader System Implementation — AI (Artificial Intelligence) posture?",
           "options": [
             "It mainly affects how the annual compliance report reads, rather than the actual risk to System Implementation — AI (Artificial Intelligence)",
             "It stops mattering once a firewall and endpoint agent are deployed across the System Implementation — AI (Artificial Intelligence) estate",
@@ -2462,12 +2462,12 @@ export const sysimplAiStages: StageConfig[] = [
           "id": "sia-07-q3",
           "type": "Artifacts",
           "challenge": "Evidence",
-          "text": "Which artifact best evidences the \"Model lifecycle and drift mgmt\" control?",
+          "text": "Which artifact best evidences the \"Model lifecycle and drift management\" control?",
           "options": [
-            "A point-in-time screenshot of one system's model lifecycle and drift mgmt settings, captured during the walkthrough",
+            "A point-in-time screenshot of one system's model lifecycle and drift management settings, captured during the walkthrough",
             "The The production monitoring for model + data drift, performance decay, and prediction-distribution shift, with thresholds, reconciled against policy, plus the resulting findings working paper",
-            "A signed management attestation that the model lifecycle and drift mgmt control is in place, with no underlying data attached",
-            "A vendor datasheet describing the product's model lifecycle and drift mgmt capabilities and its recommended configuration"
+            "A signed management attestation that the model lifecycle and drift management control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's model lifecycle and drift management capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
           "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
@@ -2476,12 +2476,12 @@ export const sysimplAiStages: StageConfig[] = [
           "id": "sia-07-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where should an auditor pull the evidence for \"Model lifecycle and drift mgmt\"?",
+          "text": "Where should an auditor pull the evidence for \"Model lifecycle and drift management\"?",
           "options": [
             "From Model monitoring (Arize / Fiddler / Evidently) and the other systems of record for this domain, accessed read-only",
             "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
             "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
-            "From an informal summary the team posted to the internal wiki describing how model lifecycle and drift mgmt works"
+            "From an informal summary the team posted to the internal wiki describing how model lifecycle and drift management works"
           ],
           "correctIndex": 0,
           "explanation": "Evidence must come from the authoritative systems (e.g. Model monitoring (Arize / Fiddler / Evidently)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
@@ -2490,11 +2490,11 @@ export const sysimplAiStages: StageConfig[] = [
           "id": "sia-07-q5",
           "type": "Data owner",
           "challenge": "Accountability",
-          "text": "Who is most likely accountable for the data behind \"Model lifecycle and drift mgmt\"?",
+          "text": "Who is most likely accountable for the data behind \"Model lifecycle and drift management\"?",
           "options": [
-            "The external audit firm, since it is the party examining the model lifecycle and drift mgmt control this period",
+            "The external audit firm, since it is the party examining the model lifecycle and drift management control this period",
             "Whoever most recently changed the configuration, regardless of their role or formal accountability",
-            "No single function — the model lifecycle and drift mgmt data is shared, so the accountability sits with no one in particular",
+            "No single function — the model lifecycle and drift management data is shared, so the accountability sits with no one in particular",
             "MLOps + model owners, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
@@ -2504,7 +2504,7 @@ export const sysimplAiStages: StageConfig[] = [
           "id": "sia-07-q6",
           "type": "Agentic",
           "challenge": "Human vs agent",
-          "text": "In the agentic workflow for \"Model lifecycle and drift mgmt\", which part stays with the human auditor?",
+          "text": "In the agentic workflow for \"Model lifecycle and drift management\", which part stays with the human auditor?",
           "options": [
             "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
             "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
@@ -2532,7 +2532,7 @@ export const sysimplAiStages: StageConfig[] = [
           "id": "sia-07-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Model lifecycle and drift mgmt\", which of these is a realistic reportable finding?",
+          "text": "For \"Model lifecycle and drift management\", which of these is a realistic reportable finding?",
           "options": [
             "Once live, the model had no drift or performance monitoring; the input distribution shifted and accuracy silently decayed for months; there's no retraining trigger and no owner tracking which model versions are running where.",
             "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
@@ -2560,9 +2560,9 @@ export const sysimplAiStages: StageConfig[] = [
           "id": "sia-07-q10",
           "type": "Privacy/Risk",
           "challenge": "The data angle",
-          "text": "Why does auditing \"Model lifecycle and drift mgmt\" also serve privacy and regulatory goals?",
+          "text": "Why does auditing \"Model lifecycle and drift management\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators review only written policy documents, never the technical controls behind model lifecycle and drift mgmt, so there is no overlap",
+            "Regulators review only written policy documents, never the technical controls behind model lifecycle and drift management, so there is no overlap",
             "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
             "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
             "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"

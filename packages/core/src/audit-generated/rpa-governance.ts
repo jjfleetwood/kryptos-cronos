@@ -1113,15 +1113,15 @@ export const rpaGovernanceStages: StageConfig[] = [
     "epochId": "rpa-governance",
     "id": "rpa-04",
     "order": 4,
-    "title": "Change mgmt and version control",
-    "subtitle": "Agentic technical & privacy audit of the change mgmt and version control control",
+    "title": "Change management and version control",
+    "subtitle": "Agentic technical & privacy audit of the change management and version control control",
     "category": "cybersecurity",
     "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Change mgmt and version control\" control for Robotic Process Automation (RPA) Governance is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Verify bot changes are controlled + versioned. PASS: bot changes follow approval + testing, bot code/config is version-controlled with rollback, application/UI changes trigger bot impact review + retest, and emergency changes + rollback are handled. Exceptions: bot logic changed directly in production with no approval/testing, no version control (can't roll back a bad bot), application changes breaking bots with no impact process, and no rollback capability.",
+      "objective": "Prove the \"Change management and version control\" control for Robotic Process Automation (RPA) Governance is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Verify bot changes are controlled + versioned. PASS: bot changes follow approval + testing, bot code/config is version-controlled with rollback, application/UI changes trigger bot impact review + retest, and emergency changes + rollback are handled. Exceptions: bot logic changed directly in production with no approval/testing, no version control (can't roll back a bad bot), application changes breaking bots with no impact process, and no rollback capability.",
       "approach": "An audit agent calls a read-only MCP server that wraps the Robotic Process Automation (RPA) Governance systems of record (Change management (bots); Version control (bot code/config); App-change → bot-impact link) as tools — e.g. `change management for bots (approval + testing; assess impact of app/U`, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "Change management for bots (changes to bot logic go through approval + testing; the impact of UI/application changes on bots is assessed)",
@@ -1151,26 +1151,26 @@ export const rpaGovernanceStages: StageConfig[] = [
       "emoji": "⚙️"
     },
     "wonder": {
-      "name": "Change mgmt and version control",
+      "name": "Change management and version control",
       "location": "Robotic Process Automation (RPA) Governance",
       "era": "Present Day",
       "emoji": "⚙️"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Change mgmt and version control\" as a repeatable agentic workflow: pull the real evidence (Change management for bots (changes to bot logic go through approval + testing; the impact of UI/application changes on bots is assessed)) with read-only agents, run the test against policy, and issue a defensible opinion on the Robotic Process Automation (RPA) Governance control.",
+      "tagline": "Auditing \"Change management and version control\" as a repeatable agentic workflow: pull the real evidence (Change management for bots (changes to bot logic go through approval + testing; the impact of UI/application changes on bots is assessed)) with read-only agents, run the test against policy, and issue a defensible opinion on the Robotic Process Automation (RPA) Governance control.",
       "year": 2025,
       "overview": [
-        "The \"Change mgmt and version control\" sub-process is one of the controls an auditor must verify for Robotic Process Automation (RPA) Governance. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me change management for bots (changes to bot logic go through approval + testing; the impact of UI/application changes on bots is assessed), for everything in scope.\"",
+        "The \"Change management and version control\" sub-process is one of the controls an auditor must verify for Robotic Process Automation (RPA) Governance. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me change management for bots (changes to bot logic go through approval + testing; the impact of UI/application changes on bots is assessed), for everything in scope.\"",
         "The evidence lives across systems that were never reconciled — here Change management (bots), Version control (bot code/config), App-change → bot-impact link — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. In practice you gather it with calls like `change management for bots (approval + testing; assess impact of app/UI changes ` — read-only, against the systems of record.",
         "The test itself is specific. Verify bot changes are controlled + versioned. PASS: bot changes follow approval + testing, bot code/config is version-controlled with rollback, application/UI changes trigger bot impact review + retest, and emergency changes + rollback are handled. Exceptions: bot logic changed directly in production with no approval/testing, no version control (can't roll back a bad bot), application changes breaking bots with no impact process, and no rollback capability. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `04_change_mgmt_and_version_control_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Change management (bots) and Version control (bot code/config) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
+          "The included `04_change_management_and_version_control_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Change management (bots) and Version control (bot code/config) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
           "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
-          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 04_change_mgmt_and_version_control_mcp.py` to expose it to your agent — or `python 04_change_mgmt_and_version_control_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
+          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 04_change_management_and_version_control_mcp.py` to expose it to your agent — or `python 04_change_management_and_version_control_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
           "label": "coverage_report() — the audit deliverable (excerpt)",
@@ -1223,7 +1223,7 @@ export const rpaGovernanceStages: StageConfig[] = [
         },
         {
           "year": 2025,
-          "event": "Agentic evidence-gathering becomes the practical way to keep \"Change mgmt and version control\" continuously assured",
+          "event": "Agentic evidence-gathering becomes the practical way to keep \"Change management and version control\" continuously assured",
           "highlight": true
         }
       ],
@@ -1256,14 +1256,14 @@ export const rpaGovernanceStages: StageConfig[] = [
       ],
       "downloads": [
         {
-          "name": "04_change_mgmt_and_version_control_mcp.py",
-          "url": "/audit-code/rpa-governance/04_change_mgmt_and_version_control_mcp.py",
-          "description": "Runnable read-only MCP server: gathers the Robotic Process Automation (RPA) Governance evidence for \"Change mgmt and version control\" (change management for bots (changes to bot logic go through approval + testing; the impact of ui/application changes on bots is assessed)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "name": "04_change_management_and_version_control_mcp.py",
+          "url": "/audit-code/rpa-governance/04_change_management_and_version_control_mcp.py",
+          "description": "Runnable read-only MCP server: gathers the Robotic Process Automation (RPA) Governance evidence for \"Change management and version control\" (change management for bots (changes to bot logic go through approval + testing; the impact of ui/application changes on bots is assessed)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Change mgmt and version control\" control for Robotic Process Automation (RPA) Governance at AcmeCorp. THE TEST: Verify bot changes are controlled + versioned. PASS: bot changes follow approval + testing, bot code/config is version-controlled with rollback, application/UI changes trigger bot impact review + retest, and emergency changes + rollback are handled. Exceptions: bot logic changed directly in production with no approval/testing, no version control (can't roll back a bad bot), application changes breaking bots with no impact process, and no rollback capability. The evidence — Change management for bots (changes to bot logic go through approval + testing; the impact of UI/application changes on bots is assessed) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Change management (bots) APIs; here the same sources are exported to files.)",
+      "scenario": "You're the auditor testing the \"Change management and version control\" control for Robotic Process Automation (RPA) Governance at AcmeCorp. THE TEST: Verify bot changes are controlled + versioned. PASS: bot changes follow approval + testing, bot code/config is version-controlled with rollback, application/UI changes trigger bot impact review + retest, and emergency changes + rollback are handled. Exceptions: bot logic changed directly in production with no approval/testing, no version control (can't roll back a bad bot), application changes breaking bots with no impact process, and no rollback capability. The evidence — Change management for bots (changes to bot logic go through approval + testing; the impact of UI/application changes on bots is assessed) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Change management (bots) APIs; here the same sources are exported to files.)",
       "hint": "Read every file in /evidence. Change management (bots) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
         "cat each file in /evidence. The inventory comes from Change management (bots); the state file shows what is actually configured/running.",
@@ -1271,9 +1271,9 @@ export const rpaGovernanceStages: StageConfig[] = [
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Robotic Process Automation (RPA) Governance: \"Change mgmt and version control\" Audit Evidence\n\nThe test:\nVerify bot changes are controlled + versioned. PASS: bot changes follow approval + testing, bot code/config is version-controlled with rollback, application/UI changes trigger bot impact review + retest, and emergency changes + rollback are handled. Exceptions: bot logic changed directly in production with no approval/testing, no version control (can't roll back a bad bot), application changes breaking bots with no impact process, and no rollback capability.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- rpa-governance_inventory.json   (in-scope items — Change management for bots (changes to bot logic go through approval + testing; the impact of UI/application changes on bots is assessed))\n- rpa-governance_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Change mgmt and version control\",\n  \"domain\": \"Robotic Process Automation (RPA) Governance\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{rpa_",
-        "/evidence/rpa-governance_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Automation CoE\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Change mgmt and version control\" control must cover\n# fragment: change_mgmt_version_",
+        "/evidence/README.md": "# AcmeCorp — Robotic Process Automation (RPA) Governance: \"Change management and version control\" Audit Evidence\n\nThe test:\nVerify bot changes are controlled + versioned. PASS: bot changes follow approval + testing, bot code/config is version-controlled with rollback, application/UI changes trigger bot impact review + retest, and emergency changes + rollback are handled. Exceptions: bot logic changed directly in production with no approval/testing, no version control (can't roll back a bad bot), application changes breaking bots with no impact process, and no rollback capability.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- rpa-governance_inventory.json   (in-scope items — Change management for bots (changes to bot logic go through approval + testing; the impact of UI/application changes on bots is assessed))\n- rpa-governance_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Change management and version control\",\n  \"domain\": \"Robotic Process Automation (RPA) Governance\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{rpa_",
+        "/evidence/rpa-governance_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Automation CoE\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Change management and version control\" control must cover\n# fragment: change_management_version_",
         "/evidence/rpa-governance_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
       },
@@ -1315,7 +1315,7 @@ export const rpaGovernanceStages: StageConfig[] = [
         },
         {
           "trigger": "/evidence/rpa-governance_inventory.json",
-          "value": "change_mgmt_version_",
+          "value": "change_management_version_",
           "label": "Inventory — the in-scope items"
         },
         {
@@ -1336,12 +1336,12 @@ export const rpaGovernanceStages: StageConfig[] = [
           "id": "rpa-04-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Change mgmt and version control\" sub-process of Robotic Process Automation (RPA) Governance?",
+          "text": "What is the primary audit objective for the \"Change management and version control\" sub-process of Robotic Process Automation (RPA) Governance?",
           "options": [
-            "Deploy and operate the change mgmt and version control control on the team's behalf so the gap is closed during fieldwork",
-            "Confirm management is comfortable that the change mgmt and version control control works, based on their verbal assurance",
-            "Benchmark how many tools the team uses for change mgmt and version control against comparable organisations in the sector",
-            "Obtain evidence that the change mgmt and version control control is designed and operating effectively, and quantify the gap where it is not"
+            "Deploy and operate the change management and version control control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the change management and version control control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for change management and version control against comparable organisations in the sector",
+            "Obtain evidence that the change management and version control control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
           "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
@@ -1350,7 +1350,7 @@ export const rpaGovernanceStages: StageConfig[] = [
           "id": "rpa-04-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Change mgmt and version control\" matter to the broader Robotic Process Automation (RPA) Governance posture?",
+          "text": "Why does a weakness in \"Change management and version control\" matter to the broader Robotic Process Automation (RPA) Governance posture?",
           "options": [
             "It mainly affects how the annual compliance report reads, rather than the actual risk to Robotic Process Automation (RPA) Governance",
             "It stops mattering once a firewall and endpoint agent are deployed across the Robotic Process Automation (RPA) Governance estate",
@@ -1364,12 +1364,12 @@ export const rpaGovernanceStages: StageConfig[] = [
           "id": "rpa-04-q3",
           "type": "Artifacts",
           "challenge": "Evidence",
-          "text": "Which artifact best evidences the \"Change mgmt and version control\" control?",
+          "text": "Which artifact best evidences the \"Change management and version control\" control?",
           "options": [
-            "A point-in-time screenshot of one system's change mgmt and version control settings, captured during the walkthrough",
+            "A point-in-time screenshot of one system's change management and version control settings, captured during the walkthrough",
             "The Change management for bots (changes to bot logic go through approval + testing; the impact of UI/application changes on bots is assessed), reconciled against policy, plus the resulting findings working paper",
-            "A signed management attestation that the change mgmt and version control control is in place, with no underlying data attached",
-            "A vendor datasheet describing the product's change mgmt and version control capabilities and its recommended configuration"
+            "A signed management attestation that the change management and version control control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's change management and version control capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
           "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
@@ -1378,12 +1378,12 @@ export const rpaGovernanceStages: StageConfig[] = [
           "id": "rpa-04-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where should an auditor pull the evidence for \"Change mgmt and version control\"?",
+          "text": "Where should an auditor pull the evidence for \"Change management and version control\"?",
           "options": [
             "From Change management (bots) and the other systems of record for this domain, accessed read-only",
             "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
             "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
-            "From an informal summary the team posted to the internal wiki describing how change mgmt and version control works"
+            "From an informal summary the team posted to the internal wiki describing how change management and version control works"
           ],
           "correctIndex": 0,
           "explanation": "Evidence must come from the authoritative systems (e.g. Change management (bots)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
@@ -1392,11 +1392,11 @@ export const rpaGovernanceStages: StageConfig[] = [
           "id": "rpa-04-q5",
           "type": "Data owner",
           "challenge": "Accountability",
-          "text": "Who is most likely accountable for the data behind \"Change mgmt and version control\"?",
+          "text": "Who is most likely accountable for the data behind \"Change management and version control\"?",
           "options": [
-            "The external audit firm, since it is the party examining the change mgmt and version control control this period",
+            "The external audit firm, since it is the party examining the change management and version control control this period",
             "Whoever most recently changed the configuration, regardless of their role or formal accountability",
-            "No single function — the change mgmt and version control data is shared, so the accountability sits with no one in particular",
+            "No single function — the change management and version control data is shared, so the accountability sits with no one in particular",
             "RPA CoE + change management, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
@@ -1406,7 +1406,7 @@ export const rpaGovernanceStages: StageConfig[] = [
           "id": "rpa-04-q6",
           "type": "Agentic",
           "challenge": "Human vs agent",
-          "text": "In the agentic workflow for \"Change mgmt and version control\", which part stays with the human auditor?",
+          "text": "In the agentic workflow for \"Change management and version control\", which part stays with the human auditor?",
           "options": [
             "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
             "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
@@ -1434,7 +1434,7 @@ export const rpaGovernanceStages: StageConfig[] = [
           "id": "rpa-04-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Change mgmt and version control\", which of these is a realistic reportable finding?",
+          "text": "For \"Change management and version control\", which of these is a realistic reportable finding?",
           "options": [
             "Bot logic is edited live with no change control or version history, so there's no way to roll back a faulty change; a routine update to the application the bot drives broke it with no impact assessment, and the bad version couldn't be reverted.",
             "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
@@ -1462,9 +1462,9 @@ export const rpaGovernanceStages: StageConfig[] = [
           "id": "rpa-04-q10",
           "type": "Privacy/Risk",
           "challenge": "The data angle",
-          "text": "Why does auditing \"Change mgmt and version control\" also serve privacy and regulatory goals?",
+          "text": "Why does auditing \"Change management and version control\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators review only written policy documents, never the technical controls behind change mgmt and version control, so there is no overlap",
+            "Regulators review only written policy documents, never the technical controls behind change management and version control, so there is no overlap",
             "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
             "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
             "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
@@ -2211,15 +2211,15 @@ export const rpaGovernanceStages: StageConfig[] = [
     "epochId": "rpa-governance",
     "id": "rpa-07",
     "order": 7,
-    "title": "Infra hardening and vuln mgmt",
-    "subtitle": "Agentic technical & privacy audit of the infra hardening and vuln mgmt control",
+    "title": "Infra hardening and vulnerability management",
+    "subtitle": "Agentic technical & privacy audit of the infra hardening and vulnerability management control",
     "category": "cybersecurity",
     "xp": 180,
     "easeScore": 5,
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Infra hardening and vuln mgmt\" control for Robotic Process Automation (RPA) Governance is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Verify RPA infrastructure is hardened + patched. PASS: the Orchestrator/control room + bot-runner hosts are hardened, patched, and access-controlled, the RPA platform + bot hosts have vuln/patch management, the control room (auth, credential store, audit log) is secured, and bot-runner endpoints are managed + monitored. Exceptions: unpatched RPA platform/runners, an Orchestrator with weak auth or an exposed credential store, unmanaged/unmonitored bot-runner machines, and no hardening of the RPA infrastructure.",
+      "objective": "Prove the \"Infra hardening and vulnerability management\" control for Robotic Process Automation (RPA) Governance is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Verify RPA infrastructure is hardened + patched. PASS: the Orchestrator/control room + bot-runner hosts are hardened, patched, and access-controlled, the RPA platform + bot hosts have vuln/patch management, the control room (auth, credential store, audit log) is secured, and bot-runner endpoints are managed + monitored. Exceptions: unpatched RPA platform/runners, an Orchestrator with weak auth or an exposed credential store, unmanaged/unmonitored bot-runner machines, and no hardening of the RPA infrastructure.",
       "approach": "An audit agent calls a read-only MCP server that wraps the Robotic Process Automation (RPA) Governance systems of record (RPA Orchestrator / control room hardening; RPA platform + runner patching; Bot-runner endpoint security) as tools — e.g. `hardening of RPA infrastructure (Orchestrator/control room + bot runne`, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "Hardening of the RPA infrastructure (the Orchestrator/control room + bot runner machines hardened, patched, access-controlled)",
@@ -2249,26 +2249,26 @@ export const rpaGovernanceStages: StageConfig[] = [
       "emoji": "⚙️"
     },
     "wonder": {
-      "name": "Infra hardening and vuln mgmt",
+      "name": "Infra hardening and vulnerability management",
       "location": "Robotic Process Automation (RPA) Governance",
       "era": "Present Day",
       "emoji": "⚙️"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Infra hardening and vuln mgmt\" as a repeatable agentic workflow: pull the real evidence (Hardening of the RPA infrastructure (the Orchestrator/control room + bot runner machines hardened, patched, access-controlled)) with read-only agents, run the test against policy, and issue a defensible opinion on the Robotic Process Automation (RPA) Governance control.",
+      "tagline": "Auditing \"Infra hardening and vulnerability management\" as a repeatable agentic workflow: pull the real evidence (Hardening of the RPA infrastructure (the Orchestrator/control room + bot runner machines hardened, patched, access-controlled)) with read-only agents, run the test against policy, and issue a defensible opinion on the Robotic Process Automation (RPA) Governance control.",
       "year": 2025,
       "overview": [
-        "The \"Infra hardening and vuln mgmt\" sub-process is one of the controls an auditor must verify for Robotic Process Automation (RPA) Governance. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me hardening of the RPA infrastructure (the Orchestrator/control room + bot runner machines hardened, patched, access-controlled), for everything in scope.\"",
+        "The \"Infra hardening and vulnerability management\" sub-process is one of the controls an auditor must verify for Robotic Process Automation (RPA) Governance. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me hardening of the RPA infrastructure (the Orchestrator/control room + bot runner machines hardened, patched, access-controlled), for everything in scope.\"",
         "The evidence lives across systems that were never reconciled — here RPA Orchestrator / control room hardening, RPA platform + runner patching, Bot-runner endpoint security — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. In practice you gather it with calls like `hardening of RPA infrastructure (Orchestrator/control room + bot runners — harde` — read-only, against the systems of record.",
         "The test itself is specific. Verify RPA infrastructure is hardened + patched. PASS: the Orchestrator/control room + bot-runner hosts are hardened, patched, and access-controlled, the RPA platform + bot hosts have vuln/patch management, the control room (auth, credential store, audit log) is secured, and bot-runner endpoints are managed + monitored. Exceptions: unpatched RPA platform/runners, an Orchestrator with weak auth or an exposed credential store, unmanaged/unmonitored bot-runner machines, and no hardening of the RPA infrastructure. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `07_infra_hardening_and_vuln_mgmt_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from RPA Orchestrator / control room hardening and RPA platform + runner patching (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
+          "The included `07_infra_hardening_and_vulnerability_management_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from RPA Orchestrator / control room hardening and RPA platform + runner patching (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
           "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
-          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 07_infra_hardening_and_vuln_mgmt_mcp.py` to expose it to your agent — or `python 07_infra_hardening_and_vuln_mgmt_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
+          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 07_infra_hardening_and_vulnerability_management_mcp.py` to expose it to your agent — or `python 07_infra_hardening_and_vulnerability_management_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
           "label": "coverage_report() — the audit deliverable (excerpt)",
@@ -2321,7 +2321,7 @@ export const rpaGovernanceStages: StageConfig[] = [
         },
         {
           "year": 2025,
-          "event": "Agentic evidence-gathering becomes the practical way to keep \"Infra hardening and vuln mgmt\" continuously assured",
+          "event": "Agentic evidence-gathering becomes the practical way to keep \"Infra hardening and vulnerability management\" continuously assured",
           "highlight": true
         }
       ],
@@ -2354,14 +2354,14 @@ export const rpaGovernanceStages: StageConfig[] = [
       ],
       "downloads": [
         {
-          "name": "07_infra_hardening_and_vuln_mgmt_mcp.py",
-          "url": "/audit-code/rpa-governance/07_infra_hardening_and_vuln_mgmt_mcp.py",
-          "description": "Runnable read-only MCP server: gathers the Robotic Process Automation (RPA) Governance evidence for \"Infra hardening and vuln mgmt\" (hardening of the rpa infrastructure (the orchestrator/control room + bot runner machines hardened, patched, access-controlled)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "name": "07_infra_hardening_and_vulnerability_management_mcp.py",
+          "url": "/audit-code/rpa-governance/07_infra_hardening_and_vulnerability_management_mcp.py",
+          "description": "Runnable read-only MCP server: gathers the Robotic Process Automation (RPA) Governance evidence for \"Infra hardening and vulnerability management\" (hardening of the rpa infrastructure (the orchestrator/control room + bot runner machines hardened, patched, access-controlled)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Infra hardening and vuln mgmt\" control for Robotic Process Automation (RPA) Governance at AcmeCorp. THE TEST: Verify RPA infrastructure is hardened + patched. PASS: the Orchestrator/control room + bot-runner hosts are hardened, patched, and access-controlled, the RPA platform + bot hosts have vuln/patch management, the control room (auth, credential store, audit log) is secured, and bot-runner endpoints are managed + monitored. Exceptions: unpatched RPA platform/runners, an Orchestrator with weak auth or an exposed credential store, unmanaged/unmonitored bot-runner machines, and no hardening of the RPA infrastructure. The evidence — Hardening of the RPA infrastructure (the Orchestrator/control room + bot runner machines hardened, patched, access-controlled) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live RPA Orchestrator / control room hardening APIs; here the same sources are exported to files.)",
+      "scenario": "You're the auditor testing the \"Infra hardening and vulnerability management\" control for Robotic Process Automation (RPA) Governance at AcmeCorp. THE TEST: Verify RPA infrastructure is hardened + patched. PASS: the Orchestrator/control room + bot-runner hosts are hardened, patched, and access-controlled, the RPA platform + bot hosts have vuln/patch management, the control room (auth, credential store, audit log) is secured, and bot-runner endpoints are managed + monitored. Exceptions: unpatched RPA platform/runners, an Orchestrator with weak auth or an exposed credential store, unmanaged/unmonitored bot-runner machines, and no hardening of the RPA infrastructure. The evidence — Hardening of the RPA infrastructure (the Orchestrator/control room + bot runner machines hardened, patched, access-controlled) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live RPA Orchestrator / control room hardening APIs; here the same sources are exported to files.)",
       "hint": "Read every file in /evidence. RPA Orchestrator / control room hardening gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
         "cat each file in /evidence. The inventory comes from RPA Orchestrator / control room hardening; the state file shows what is actually configured/running.",
@@ -2369,9 +2369,9 @@ export const rpaGovernanceStages: StageConfig[] = [
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Robotic Process Automation (RPA) Governance: \"Infra hardening and vuln mgmt\" Audit Evidence\n\nThe test:\nVerify RPA infrastructure is hardened + patched. PASS: the Orchestrator/control room + bot-runner hosts are hardened, patched, and access-controlled, the RPA platform + bot hosts have vuln/patch management, the control room (auth, credential store, audit log) is secured, and bot-runner endpoints are managed + monitored. Exceptions: unpatched RPA platform/runners, an Orchestrator with weak auth or an exposed credential store, unmanaged/unmonitored bot-runner machines, and no hardening of the RPA infrastructure.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- rpa-governance_inventory.json   (in-scope items — Hardening of the RPA infrastructure (the Orchestrator/control room + bot runner machines hardened, patched, access-controlled))\n- rpa-governance_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Infra hardening and vuln mgmt\",\n  \"domain\": \"Robotic Process Automation (RPA) Governance\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{rpa_",
-        "/evidence/rpa-governance_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Automation CoE\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Infra hardening and vuln mgmt\" control must cover\n# fragment: infra_hardening_vuln_",
+        "/evidence/README.md": "# AcmeCorp — Robotic Process Automation (RPA) Governance: \"Infra hardening and vulnerability management\" Audit Evidence\n\nThe test:\nVerify RPA infrastructure is hardened + patched. PASS: the Orchestrator/control room + bot-runner hosts are hardened, patched, and access-controlled, the RPA platform + bot hosts have vuln/patch management, the control room (auth, credential store, audit log) is secured, and bot-runner endpoints are managed + monitored. Exceptions: unpatched RPA platform/runners, an Orchestrator with weak auth or an exposed credential store, unmanaged/unmonitored bot-runner machines, and no hardening of the RPA infrastructure.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- rpa-governance_inventory.json   (in-scope items — Hardening of the RPA infrastructure (the Orchestrator/control room + bot runner machines hardened, patched, access-controlled))\n- rpa-governance_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Infra hardening and vulnerability management\",\n  \"domain\": \"Robotic Process Automation (RPA) Governance\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{rpa_",
+        "/evidence/rpa-governance_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Automation CoE\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Infra hardening and vulnerability management\" control must cover\n# fragment: infra_hardening_vulnerability_",
         "/evidence/rpa-governance_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
       },
@@ -2413,7 +2413,7 @@ export const rpaGovernanceStages: StageConfig[] = [
         },
         {
           "trigger": "/evidence/rpa-governance_inventory.json",
-          "value": "infra_hardening_vuln_",
+          "value": "infra_hardening_vulnerability_",
           "label": "Inventory — the in-scope items"
         },
         {
@@ -2434,12 +2434,12 @@ export const rpaGovernanceStages: StageConfig[] = [
           "id": "rpa-07-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Infra hardening and vuln mgmt\" sub-process of Robotic Process Automation (RPA) Governance?",
+          "text": "What is the primary audit objective for the \"Infra hardening and vulnerability management\" sub-process of Robotic Process Automation (RPA) Governance?",
           "options": [
-            "Deploy and operate the infra hardening and vuln mgmt control on the team's behalf so the gap is closed during fieldwork",
-            "Confirm management is comfortable that the infra hardening and vuln mgmt control works, based on their verbal assurance",
-            "Benchmark how many tools the team uses for infra hardening and vuln mgmt against comparable organisations in the sector",
-            "Obtain evidence that the infra hardening and vuln mgmt control is designed and operating effectively, and quantify the gap where it is not"
+            "Deploy and operate the infra hardening and vulnerability management control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the infra hardening and vulnerability management control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for infra hardening and vulnerability management against comparable organisations in the sector",
+            "Obtain evidence that the infra hardening and vulnerability management control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
           "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
@@ -2448,7 +2448,7 @@ export const rpaGovernanceStages: StageConfig[] = [
           "id": "rpa-07-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Infra hardening and vuln mgmt\" matter to the broader Robotic Process Automation (RPA) Governance posture?",
+          "text": "Why does a weakness in \"Infra hardening and vulnerability management\" matter to the broader Robotic Process Automation (RPA) Governance posture?",
           "options": [
             "It mainly affects how the annual compliance report reads, rather than the actual risk to Robotic Process Automation (RPA) Governance",
             "It stops mattering once a firewall and endpoint agent are deployed across the Robotic Process Automation (RPA) Governance estate",
@@ -2462,12 +2462,12 @@ export const rpaGovernanceStages: StageConfig[] = [
           "id": "rpa-07-q3",
           "type": "Artifacts",
           "challenge": "Evidence",
-          "text": "Which artifact best evidences the \"Infra hardening and vuln mgmt\" control?",
+          "text": "Which artifact best evidences the \"Infra hardening and vulnerability management\" control?",
           "options": [
-            "A point-in-time screenshot of one system's infra hardening and vuln mgmt settings, captured during the walkthrough",
+            "A point-in-time screenshot of one system's infra hardening and vulnerability management settings, captured during the walkthrough",
             "The Hardening of the RPA infrastructure (the Orchestrator/control room + bot runner machines hardened, patched, access-controlled), reconciled against policy, plus the resulting findings working paper",
-            "A signed management attestation that the infra hardening and vuln mgmt control is in place, with no underlying data attached",
-            "A vendor datasheet describing the product's infra hardening and vuln mgmt capabilities and its recommended configuration"
+            "A signed management attestation that the infra hardening and vulnerability management control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's infra hardening and vulnerability management capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
           "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
@@ -2476,12 +2476,12 @@ export const rpaGovernanceStages: StageConfig[] = [
           "id": "rpa-07-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where should an auditor pull the evidence for \"Infra hardening and vuln mgmt\"?",
+          "text": "Where should an auditor pull the evidence for \"Infra hardening and vulnerability management\"?",
           "options": [
             "From RPA Orchestrator / control room hardening and the other systems of record for this domain, accessed read-only",
             "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
             "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
-            "From an informal summary the team posted to the internal wiki describing how infra hardening and vuln mgmt works"
+            "From an informal summary the team posted to the internal wiki describing how infra hardening and vulnerability management works"
           ],
           "correctIndex": 0,
           "explanation": "Evidence must come from the authoritative systems (e.g. RPA Orchestrator / control room hardening) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
@@ -2490,11 +2490,11 @@ export const rpaGovernanceStages: StageConfig[] = [
           "id": "rpa-07-q5",
           "type": "Data owner",
           "challenge": "Accountability",
-          "text": "Who is most likely accountable for the data behind \"Infra hardening and vuln mgmt\"?",
+          "text": "Who is most likely accountable for the data behind \"Infra hardening and vulnerability management\"?",
           "options": [
-            "The external audit firm, since it is the party examining the infra hardening and vuln mgmt control this period",
+            "The external audit firm, since it is the party examining the infra hardening and vulnerability management control this period",
             "Whoever most recently changed the configuration, regardless of their role or formal accountability",
-            "No single function — the infra hardening and vuln mgmt data is shared, so the accountability sits with no one in particular",
+            "No single function — the infra hardening and vulnerability management data is shared, so the accountability sits with no one in particular",
             "RPA CoE + Infrastructure security, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
@@ -2504,7 +2504,7 @@ export const rpaGovernanceStages: StageConfig[] = [
           "id": "rpa-07-q6",
           "type": "Agentic",
           "challenge": "Human vs agent",
-          "text": "In the agentic workflow for \"Infra hardening and vuln mgmt\", which part stays with the human auditor?",
+          "text": "In the agentic workflow for \"Infra hardening and vulnerability management\", which part stays with the human auditor?",
           "options": [
             "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
             "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
@@ -2532,7 +2532,7 @@ export const rpaGovernanceStages: StageConfig[] = [
           "id": "rpa-07-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Infra hardening and vuln mgmt\", which of these is a realistic reportable finding?",
+          "text": "For \"Infra hardening and vulnerability management\", which of these is a realistic reportable finding?",
           "options": [
             "The RPA Orchestrator runs an unpatched version with weak admin auth and holds every bot's credentials in its vault; the unattended bot-runner machines are unmanaged, unmonitored desktops — compromising the control room would hand over every bot and its credentials.",
             "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
@@ -2560,9 +2560,9 @@ export const rpaGovernanceStages: StageConfig[] = [
           "id": "rpa-07-q10",
           "type": "Privacy/Risk",
           "challenge": "The data angle",
-          "text": "Why does auditing \"Infra hardening and vuln mgmt\" also serve privacy and regulatory goals?",
+          "text": "Why does auditing \"Infra hardening and vulnerability management\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators review only written policy documents, never the technical controls behind infra hardening and vuln mgmt, so there is no overlap",
+            "Regulators review only written policy documents, never the technical controls behind infra hardening and vulnerability management, so there is no overlap",
             "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
             "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
             "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"

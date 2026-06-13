@@ -1112,15 +1112,15 @@ export const datacenterStages: StageConfig[] = [
     "epochId": "datacenter",
     "id": "dcr-04",
     "order": 4,
-    "title": "Asset inventory mgmt",
-    "subtitle": "Agentic technical & privacy audit of the asset inventory mgmt control",
+    "title": "Asset inventory management",
+    "subtitle": "Agentic technical & privacy audit of the asset inventory management control",
     "category": "cybersecurity",
     "xp": 140,
     "easeScore": 6,
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Asset inventory mgmt\" control for Datacenter / Lab / Colocation (CoLo) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Verify physical assets are inventoried + tracked. PASS: a physical-asset inventory maps every device to its location/owner/status and reconciles to a physical audit (the CMDB matches the racks); equipment entry/exit is logged; and decommissioned assets are securely removed + media-sanitised. Exceptions: an inaccurate inventory (ghost/unknown devices in racks), no physical reconciliation, untracked equipment movement, and decommissioned data-bearing assets removed with no media sanitisation.",
+      "objective": "Prove the \"Asset inventory management\" control for Datacenter / Lab / Colocation (CoLo) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Verify physical assets are inventoried + tracked. PASS: a physical-asset inventory maps every device to its location/owner/status and reconciles to a physical audit (the CMDB matches the racks); equipment entry/exit is logged; and decommissioned assets are securely removed + media-sanitised. Exceptions: an inaccurate inventory (ghost/unknown devices in racks), no physical reconciliation, untracked equipment movement, and decommissioned data-bearing assets removed with no media sanitisation.",
       "approach": "An audit agent calls a read-only MCP server that wraps the Datacenter / Lab / Colocation (CoLo) systems of record (ITAM / DCIM (physical inventory); Asset tagging; Equipment in/out logging) as tools — e.g. `physical-asset inventory per DC/cage: device, location, owner, status`, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "The physical-asset inventory (servers, network, storage, media) per DC/cage with location, owner, status",
@@ -1150,26 +1150,26 @@ export const datacenterStages: StageConfig[] = [
       "emoji": "🏢"
     },
     "wonder": {
-      "name": "Asset inventory mgmt",
+      "name": "Asset inventory management",
       "location": "Datacenter / Lab / Colocation (CoLo)",
       "era": "Present Day",
       "emoji": "🏢"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Asset inventory mgmt\" as a repeatable agentic workflow: pull the real evidence (The physical-asset inventory (servers, network, storage, media) per DC/cage with location, owner, status) with read-only agents, run the test against policy, and issue a defensible opinion on the Datacenter / Lab / Colocation (CoLo) control.",
+      "tagline": "Auditing \"Asset inventory management\" as a repeatable agentic workflow: pull the real evidence (The physical-asset inventory (servers, network, storage, media) per DC/cage with location, owner, status) with read-only agents, run the test against policy, and issue a defensible opinion on the Datacenter / Lab / Colocation (CoLo) control.",
       "year": 2025,
       "overview": [
-        "The \"Asset inventory mgmt\" sub-process is one of the controls an auditor must verify for Datacenter / Lab / Colocation (CoLo). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me the physical-asset inventory (servers, network, storage, media) per DC/cage with location, owner, status, for everything in scope.\"",
+        "The \"Asset inventory management\" sub-process is one of the controls an auditor must verify for Datacenter / Lab / Colocation (CoLo). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me the physical-asset inventory (servers, network, storage, media) per DC/cage with location, owner, status, for everything in scope.\"",
         "The evidence lives across systems that were never reconciled — here ITAM / DCIM (physical inventory), Asset tagging, Equipment in/out logging — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. In practice you gather it with calls like `physical-asset inventory per DC/cage: device, location, owner, status` — read-only, against the systems of record.",
         "The test itself is specific. Verify physical assets are inventoried + tracked. PASS: a physical-asset inventory maps every device to its location/owner/status and reconciles to a physical audit (the CMDB matches the racks); equipment entry/exit is logged; and decommissioned assets are securely removed + media-sanitised. Exceptions: an inaccurate inventory (ghost/unknown devices in racks), no physical reconciliation, untracked equipment movement, and decommissioned data-bearing assets removed with no media sanitisation. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `04_asset_inventory_mgmt_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from ITAM / DCIM (physical inventory) and Asset tagging (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
+          "The included `04_asset_inventory_management_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from ITAM / DCIM (physical inventory) and Asset tagging (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
           "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
-          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 04_asset_inventory_mgmt_mcp.py` to expose it to your agent — or `python 04_asset_inventory_mgmt_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
+          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 04_asset_inventory_management_mcp.py` to expose it to your agent — or `python 04_asset_inventory_management_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
           "label": "coverage_report() — the audit deliverable (excerpt)",
@@ -1222,7 +1222,7 @@ export const datacenterStages: StageConfig[] = [
         },
         {
           "year": 2025,
-          "event": "Agentic evidence-gathering becomes the practical way to keep \"Asset inventory mgmt\" continuously assured",
+          "event": "Agentic evidence-gathering becomes the practical way to keep \"Asset inventory management\" continuously assured",
           "highlight": true
         }
       ],
@@ -1255,14 +1255,14 @@ export const datacenterStages: StageConfig[] = [
       ],
       "downloads": [
         {
-          "name": "04_asset_inventory_mgmt_mcp.py",
-          "url": "/audit-code/datacenter/04_asset_inventory_mgmt_mcp.py",
-          "description": "Runnable read-only MCP server: gathers the Datacenter / Lab / Colocation (CoLo) evidence for \"Asset inventory mgmt\" (the physical-asset inventory (servers, network, storage, media) per dc/cage with location, owner, status), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "name": "04_asset_inventory_management_mcp.py",
+          "url": "/audit-code/datacenter/04_asset_inventory_management_mcp.py",
+          "description": "Runnable read-only MCP server: gathers the Datacenter / Lab / Colocation (CoLo) evidence for \"Asset inventory management\" (the physical-asset inventory (servers, network, storage, media) per dc/cage with location, owner, status), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Asset inventory mgmt\" control for Datacenter / Lab / Colocation (CoLo) at AcmeCorp. THE TEST: Verify physical assets are inventoried + tracked. PASS: a physical-asset inventory maps every device to its location/owner/status and reconciles to a physical audit (the CMDB matches the racks); equipment entry/exit is logged; and decommissioned assets are securely removed + media-sanitised. Exceptions: an inaccurate inventory (ghost/unknown devices in racks), no physical reconciliation, untracked equipment movement, and decommissioned data-bearing assets removed with no media sanitisation. The evidence — The physical-asset inventory (servers, network, storage, media) per DC/cage with location, owner, status — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live ITAM / DCIM (physical inventory) APIs; here the same sources are exported to files.)",
+      "scenario": "You're the auditor testing the \"Asset inventory management\" control for Datacenter / Lab / Colocation (CoLo) at AcmeCorp. THE TEST: Verify physical assets are inventoried + tracked. PASS: a physical-asset inventory maps every device to its location/owner/status and reconciles to a physical audit (the CMDB matches the racks); equipment entry/exit is logged; and decommissioned assets are securely removed + media-sanitised. Exceptions: an inaccurate inventory (ghost/unknown devices in racks), no physical reconciliation, untracked equipment movement, and decommissioned data-bearing assets removed with no media sanitisation. The evidence — The physical-asset inventory (servers, network, storage, media) per DC/cage with location, owner, status — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live ITAM / DCIM (physical inventory) APIs; here the same sources are exported to files.)",
       "hint": "Read every file in /evidence. ITAM / DCIM (physical inventory) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
         "cat each file in /evidence. The inventory comes from ITAM / DCIM (physical inventory); the state file shows what is actually configured/running.",
@@ -1270,9 +1270,9 @@ export const datacenterStages: StageConfig[] = [
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Datacenter / Lab / Colocation (CoLo): \"Asset inventory mgmt\" Audit Evidence\n\nThe test:\nVerify physical assets are inventoried + tracked. PASS: a physical-asset inventory maps every device to its location/owner/status and reconciles to a physical audit (the CMDB matches the racks); equipment entry/exit is logged; and decommissioned assets are securely removed + media-sanitised. Exceptions: an inaccurate inventory (ghost/unknown devices in racks), no physical reconciliation, untracked equipment movement, and decommissioned data-bearing assets removed with no media sanitisation.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- datacenter_inventory.json   (in-scope items — The physical-asset inventory (servers, network, storage, media) per DC/cage with location, owner, status)\n- datacenter_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Asset inventory mgmt\",\n  \"domain\": \"Datacenter / Lab / Colocation (CoLo)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{dcr_",
-        "/evidence/datacenter_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Facilities / Datacenter operations\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Asset inventory mgmt\" control must cover\n# fragment: asset_inventory_mgmt_",
+        "/evidence/README.md": "# AcmeCorp — Datacenter / Lab / Colocation (CoLo): \"Asset inventory management\" Audit Evidence\n\nThe test:\nVerify physical assets are inventoried + tracked. PASS: a physical-asset inventory maps every device to its location/owner/status and reconciles to a physical audit (the CMDB matches the racks); equipment entry/exit is logged; and decommissioned assets are securely removed + media-sanitised. Exceptions: an inaccurate inventory (ghost/unknown devices in racks), no physical reconciliation, untracked equipment movement, and decommissioned data-bearing assets removed with no media sanitisation.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- datacenter_inventory.json   (in-scope items — The physical-asset inventory (servers, network, storage, media) per DC/cage with location, owner, status)\n- datacenter_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Asset inventory management\",\n  \"domain\": \"Datacenter / Lab / Colocation (CoLo)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{dcr_",
+        "/evidence/datacenter_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Facilities / Datacenter operations\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Asset inventory management\" control must cover\n# fragment: asset_inventory_management_",
         "/evidence/datacenter_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
       },
@@ -1314,7 +1314,7 @@ export const datacenterStages: StageConfig[] = [
         },
         {
           "trigger": "/evidence/datacenter_inventory.json",
-          "value": "asset_inventory_mgmt_",
+          "value": "asset_inventory_management_",
           "label": "Inventory — the in-scope items"
         },
         {
@@ -1335,12 +1335,12 @@ export const datacenterStages: StageConfig[] = [
           "id": "dcr-04-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Asset inventory mgmt\" sub-process of Datacenter / Lab / Colocation (CoLo)?",
+          "text": "What is the primary audit objective for the \"Asset inventory management\" sub-process of Datacenter / Lab / Colocation (CoLo)?",
           "options": [
-            "Deploy and operate the asset inventory mgmt control on the team's behalf so the gap is closed during fieldwork",
-            "Confirm management is comfortable that the asset inventory mgmt control works, based on their verbal assurance",
-            "Benchmark how many tools the team uses for asset inventory mgmt against comparable organisations in the sector",
-            "Obtain evidence that the asset inventory mgmt control is designed and operating effectively, and quantify the gap where it is not"
+            "Deploy and operate the asset inventory management control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the asset inventory management control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for asset inventory management against comparable organisations in the sector",
+            "Obtain evidence that the asset inventory management control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
           "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
@@ -1349,7 +1349,7 @@ export const datacenterStages: StageConfig[] = [
           "id": "dcr-04-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Asset inventory mgmt\" matter to the broader Datacenter / Lab / Colocation (CoLo) posture?",
+          "text": "Why does a weakness in \"Asset inventory management\" matter to the broader Datacenter / Lab / Colocation (CoLo) posture?",
           "options": [
             "It mainly affects how the annual compliance report reads, rather than the actual risk to Datacenter / Lab / Colocation (CoLo)",
             "It stops mattering once a firewall and endpoint agent are deployed across the Datacenter / Lab / Colocation (CoLo) estate",
@@ -1363,12 +1363,12 @@ export const datacenterStages: StageConfig[] = [
           "id": "dcr-04-q3",
           "type": "Artifacts",
           "challenge": "Evidence",
-          "text": "Which artifact best evidences the \"Asset inventory mgmt\" control?",
+          "text": "Which artifact best evidences the \"Asset inventory management\" control?",
           "options": [
-            "A point-in-time screenshot of one system's asset inventory mgmt settings, captured during the walkthrough",
+            "A point-in-time screenshot of one system's asset inventory management settings, captured during the walkthrough",
             "The The physical-asset inventory (servers, network, storage, media) per DC/cage with location, owner, status, reconciled against policy, plus the resulting findings working paper",
-            "A signed management attestation that the asset inventory mgmt control is in place, with no underlying data attached",
-            "A vendor datasheet describing the product's asset inventory mgmt capabilities and its recommended configuration"
+            "A signed management attestation that the asset inventory management control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's asset inventory management capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
           "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
@@ -1377,12 +1377,12 @@ export const datacenterStages: StageConfig[] = [
           "id": "dcr-04-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where should an auditor pull the evidence for \"Asset inventory mgmt\"?",
+          "text": "Where should an auditor pull the evidence for \"Asset inventory management\"?",
           "options": [
             "From ITAM / DCIM (physical inventory) and the other systems of record for this domain, accessed read-only",
             "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
             "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
-            "From an informal summary the team posted to the internal wiki describing how asset inventory mgmt works"
+            "From an informal summary the team posted to the internal wiki describing how asset inventory management works"
           ],
           "correctIndex": 0,
           "explanation": "Evidence must come from the authoritative systems (e.g. ITAM / DCIM (physical inventory)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
@@ -1391,11 +1391,11 @@ export const datacenterStages: StageConfig[] = [
           "id": "dcr-04-q5",
           "type": "Data owner",
           "challenge": "Accountability",
-          "text": "Who is most likely accountable for the data behind \"Asset inventory mgmt\"?",
+          "text": "Who is most likely accountable for the data behind \"Asset inventory management\"?",
           "options": [
-            "The external audit firm, since it is the party examining the asset inventory mgmt control this period",
+            "The external audit firm, since it is the party examining the asset inventory management control this period",
             "Whoever most recently changed the configuration, regardless of their role or formal accountability",
-            "No single function — the asset inventory mgmt data is shared, so the accountability sits with no one in particular",
+            "No single function — the asset inventory management data is shared, so the accountability sits with no one in particular",
             "Datacenter operations / IT asset management, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
@@ -1405,7 +1405,7 @@ export const datacenterStages: StageConfig[] = [
           "id": "dcr-04-q6",
           "type": "Agentic",
           "challenge": "Human vs agent",
-          "text": "In the agentic workflow for \"Asset inventory mgmt\", which part stays with the human auditor?",
+          "text": "In the agentic workflow for \"Asset inventory management\", which part stays with the human auditor?",
           "options": [
             "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
             "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
@@ -1433,7 +1433,7 @@ export const datacenterStages: StageConfig[] = [
           "id": "dcr-04-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Asset inventory mgmt\", which of these is a realistic reportable finding?",
+          "text": "For \"Asset inventory management\", which of these is a realistic reportable finding?",
           "options": [
             "A physical walk found a dozen powered, networked servers in the racks that aren't in any inventory (unknown, unowned), and decommissioned drives were sent to recycling with no sanitisation records.",
             "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
@@ -1461,9 +1461,9 @@ export const datacenterStages: StageConfig[] = [
           "id": "dcr-04-q10",
           "type": "Privacy/Risk",
           "challenge": "The data angle",
-          "text": "Why does auditing \"Asset inventory mgmt\" also serve privacy and regulatory goals?",
+          "text": "Why does auditing \"Asset inventory management\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators review only written policy documents, never the technical controls behind asset inventory mgmt, so there is no overlap",
+            "Regulators review only written policy documents, never the technical controls behind asset inventory management, so there is no overlap",
             "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
             "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
             "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
@@ -1478,15 +1478,15 @@ export const datacenterStages: StageConfig[] = [
     "epochId": "datacenter",
     "id": "dcr-05",
     "order": 5,
-    "title": "Maintenance and vendor mgmt",
-    "subtitle": "Agentic technical & privacy audit of the maintenance and vendor mgmt control",
+    "title": "Maintenance and vendor management",
+    "subtitle": "Agentic technical & privacy audit of the maintenance and vendor management control",
     "category": "cybersecurity",
     "xp": 140,
     "easeScore": 6,
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Maintenance and vendor mgmt\" control for Datacenter / Lab / Colocation (CoLo) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Verify facility maintenance + vendor access are controlled. PASS: critical infrastructure (UPS/gen/HVAC/fire) gets preventive maintenance on cadence with records; maintenance vendors/contractors are vetted, escorted, time-bound, and logged; infra changes go through change control; and vendor support SLAs are in place. Exceptions: lapsed preventive maintenance (equipment fails when needed), unescorted/unvetted vendor access, physical-infra changes outside change control, and no support SLA for critical infra.",
+      "objective": "Prove the \"Maintenance and vendor management\" control for Datacenter / Lab / Colocation (CoLo) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Verify facility maintenance + vendor access are controlled. PASS: critical infrastructure (UPS/gen/HVAC/fire) gets preventive maintenance on cadence with records; maintenance vendors/contractors are vetted, escorted, time-bound, and logged; infra changes go through change control; and vendor support SLAs are in place. Exceptions: lapsed preventive maintenance (equipment fails when needed), unescorted/unvetted vendor access, physical-infra changes outside change control, and no support SLA for critical infra.",
       "approach": "An audit agent calls a read-only MCP server that wraps the Datacenter / Lab / Colocation (CoLo) systems of record (CMMS / maintenance records; Vendor-access controls (PACS + escort); Change management) as tools — e.g. `preventive-maintenance schedule + records for UPS/gen/HVAC/fire (done `, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "The maintenance schedule + records for critical infrastructure (UPS, generators, HVAC, fire systems) — preventive maintenance done on cadence",
@@ -1516,26 +1516,26 @@ export const datacenterStages: StageConfig[] = [
       "emoji": "🏢"
     },
     "wonder": {
-      "name": "Maintenance and vendor mgmt",
+      "name": "Maintenance and vendor management",
       "location": "Datacenter / Lab / Colocation (CoLo)",
       "era": "Present Day",
       "emoji": "🏢"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Maintenance and vendor mgmt\" as a repeatable agentic workflow: pull the real evidence (The maintenance schedule + records for critical infrastructure (UPS, generators, HVAC, fire systems) — preventive maintenance done on cadence) with read-only agents, run the test against policy, and issue a defensible opinion on the Datacenter / Lab / Colocation (CoLo) control.",
+      "tagline": "Auditing \"Maintenance and vendor management\" as a repeatable agentic workflow: pull the real evidence (The maintenance schedule + records for critical infrastructure (UPS, generators, HVAC, fire systems) — preventive maintenance done on cadence) with read-only agents, run the test against policy, and issue a defensible opinion on the Datacenter / Lab / Colocation (CoLo) control.",
       "year": 2025,
       "overview": [
-        "The \"Maintenance and vendor mgmt\" sub-process is one of the controls an auditor must verify for Datacenter / Lab / Colocation (CoLo). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me the maintenance schedule + records for critical infrastructure (UPS, generators, HVAC, fire systems) — preventive maintenance done on cadence, for everything in scope.\"",
+        "The \"Maintenance and vendor management\" sub-process is one of the controls an auditor must verify for Datacenter / Lab / Colocation (CoLo). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me the maintenance schedule + records for critical infrastructure (UPS, generators, HVAC, fire systems) — preventive maintenance done on cadence, for everything in scope.\"",
         "The evidence lives across systems that were never reconciled — here CMMS / maintenance records, Vendor-access controls (PACS + escort), Change management — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. In practice you gather it with calls like `preventive-maintenance schedule + records for UPS/gen/HVAC/fire (done on cadence` — read-only, against the systems of record.",
         "The test itself is specific. Verify facility maintenance + vendor access are controlled. PASS: critical infrastructure (UPS/gen/HVAC/fire) gets preventive maintenance on cadence with records; maintenance vendors/contractors are vetted, escorted, time-bound, and logged; infra changes go through change control; and vendor support SLAs are in place. Exceptions: lapsed preventive maintenance (equipment fails when needed), unescorted/unvetted vendor access, physical-infra changes outside change control, and no support SLA for critical infra. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `05_maintenance_and_vendor_mgmt_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from CMMS / maintenance records and Vendor-access controls (PACS + escort) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
+          "The included `05_maintenance_and_vendor_management_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from CMMS / maintenance records and Vendor-access controls (PACS + escort) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
           "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
-          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 05_maintenance_and_vendor_mgmt_mcp.py` to expose it to your agent — or `python 05_maintenance_and_vendor_mgmt_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
+          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 05_maintenance_and_vendor_management_mcp.py` to expose it to your agent — or `python 05_maintenance_and_vendor_management_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
           "label": "coverage_report() — the audit deliverable (excerpt)",
@@ -1588,7 +1588,7 @@ export const datacenterStages: StageConfig[] = [
         },
         {
           "year": 2025,
-          "event": "Agentic evidence-gathering becomes the practical way to keep \"Maintenance and vendor mgmt\" continuously assured",
+          "event": "Agentic evidence-gathering becomes the practical way to keep \"Maintenance and vendor management\" continuously assured",
           "highlight": true
         }
       ],
@@ -1621,14 +1621,14 @@ export const datacenterStages: StageConfig[] = [
       ],
       "downloads": [
         {
-          "name": "05_maintenance_and_vendor_mgmt_mcp.py",
-          "url": "/audit-code/datacenter/05_maintenance_and_vendor_mgmt_mcp.py",
-          "description": "Runnable read-only MCP server: gathers the Datacenter / Lab / Colocation (CoLo) evidence for \"Maintenance and vendor mgmt\" (the maintenance schedule + records for critical infrastructure (ups, generators, hvac, fire systems) — preventive maintenance done on cadence), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "name": "05_maintenance_and_vendor_management_mcp.py",
+          "url": "/audit-code/datacenter/05_maintenance_and_vendor_management_mcp.py",
+          "description": "Runnable read-only MCP server: gathers the Datacenter / Lab / Colocation (CoLo) evidence for \"Maintenance and vendor management\" (the maintenance schedule + records for critical infrastructure (ups, generators, hvac, fire systems) — preventive maintenance done on cadence), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Maintenance and vendor mgmt\" control for Datacenter / Lab / Colocation (CoLo) at AcmeCorp. THE TEST: Verify facility maintenance + vendor access are controlled. PASS: critical infrastructure (UPS/gen/HVAC/fire) gets preventive maintenance on cadence with records; maintenance vendors/contractors are vetted, escorted, time-bound, and logged; infra changes go through change control; and vendor support SLAs are in place. Exceptions: lapsed preventive maintenance (equipment fails when needed), unescorted/unvetted vendor access, physical-infra changes outside change control, and no support SLA for critical infra. The evidence — The maintenance schedule + records for critical infrastructure (UPS, generators, HVAC, fire systems) — preventive maintenance done on cadence — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live CMMS / maintenance records APIs; here the same sources are exported to files.)",
+      "scenario": "You're the auditor testing the \"Maintenance and vendor management\" control for Datacenter / Lab / Colocation (CoLo) at AcmeCorp. THE TEST: Verify facility maintenance + vendor access are controlled. PASS: critical infrastructure (UPS/gen/HVAC/fire) gets preventive maintenance on cadence with records; maintenance vendors/contractors are vetted, escorted, time-bound, and logged; infra changes go through change control; and vendor support SLAs are in place. Exceptions: lapsed preventive maintenance (equipment fails when needed), unescorted/unvetted vendor access, physical-infra changes outside change control, and no support SLA for critical infra. The evidence — The maintenance schedule + records for critical infrastructure (UPS, generators, HVAC, fire systems) — preventive maintenance done on cadence — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live CMMS / maintenance records APIs; here the same sources are exported to files.)",
       "hint": "Read every file in /evidence. CMMS / maintenance records gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
         "cat each file in /evidence. The inventory comes from CMMS / maintenance records; the state file shows what is actually configured/running.",
@@ -1636,9 +1636,9 @@ export const datacenterStages: StageConfig[] = [
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Datacenter / Lab / Colocation (CoLo): \"Maintenance and vendor mgmt\" Audit Evidence\n\nThe test:\nVerify facility maintenance + vendor access are controlled. PASS: critical infrastructure (UPS/gen/HVAC/fire) gets preventive maintenance on cadence with records; maintenance vendors/contractors are vetted, escorted, time-bound, and logged; infra changes go through change control; and vendor support SLAs are in place. Exceptions: lapsed preventive maintenance (equipment fails when needed), unescorted/unvetted vendor access, physical-infra changes outside change control, and no support SLA for critical infra.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- datacenter_inventory.json   (in-scope items — The maintenance schedule + records for critical infrastructure (UPS, generators, HVAC, fire systems) — preventive maintenance done on cadence)\n- datacenter_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Maintenance and vendor mgmt\",\n  \"domain\": \"Datacenter / Lab / Colocation (CoLo)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{dcr_",
-        "/evidence/datacenter_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Facilities / Datacenter operations\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Maintenance and vendor mgmt\" control must cover\n# fragment: maintenance_vendor_mgmt_",
+        "/evidence/README.md": "# AcmeCorp — Datacenter / Lab / Colocation (CoLo): \"Maintenance and vendor management\" Audit Evidence\n\nThe test:\nVerify facility maintenance + vendor access are controlled. PASS: critical infrastructure (UPS/gen/HVAC/fire) gets preventive maintenance on cadence with records; maintenance vendors/contractors are vetted, escorted, time-bound, and logged; infra changes go through change control; and vendor support SLAs are in place. Exceptions: lapsed preventive maintenance (equipment fails when needed), unescorted/unvetted vendor access, physical-infra changes outside change control, and no support SLA for critical infra.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- datacenter_inventory.json   (in-scope items — The maintenance schedule + records for critical infrastructure (UPS, generators, HVAC, fire systems) — preventive maintenance done on cadence)\n- datacenter_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Maintenance and vendor management\",\n  \"domain\": \"Datacenter / Lab / Colocation (CoLo)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{dcr_",
+        "/evidence/datacenter_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Facilities / Datacenter operations\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Maintenance and vendor management\" control must cover\n# fragment: maintenance_vendor_management_",
         "/evidence/datacenter_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"EXCEPTIONS\"\n}\n# fragment: exceptions}"
       },
@@ -1680,7 +1680,7 @@ export const datacenterStages: StageConfig[] = [
         },
         {
           "trigger": "/evidence/datacenter_inventory.json",
-          "value": "maintenance_vendor_mgmt_",
+          "value": "maintenance_vendor_management_",
           "label": "Inventory — the in-scope items"
         },
         {
@@ -1701,12 +1701,12 @@ export const datacenterStages: StageConfig[] = [
           "id": "dcr-05-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Maintenance and vendor mgmt\" sub-process of Datacenter / Lab / Colocation (CoLo)?",
+          "text": "What is the primary audit objective for the \"Maintenance and vendor management\" sub-process of Datacenter / Lab / Colocation (CoLo)?",
           "options": [
-            "Deploy and operate the maintenance and vendor mgmt control on the team's behalf so the gap is closed during fieldwork",
-            "Confirm management is comfortable that the maintenance and vendor mgmt control works, based on their verbal assurance",
-            "Benchmark how many tools the team uses for maintenance and vendor mgmt against comparable organisations in the sector",
-            "Obtain evidence that the maintenance and vendor mgmt control is designed and operating effectively, and quantify the gap where it is not"
+            "Deploy and operate the maintenance and vendor management control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the maintenance and vendor management control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for maintenance and vendor management against comparable organisations in the sector",
+            "Obtain evidence that the maintenance and vendor management control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
           "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
@@ -1715,7 +1715,7 @@ export const datacenterStages: StageConfig[] = [
           "id": "dcr-05-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Maintenance and vendor mgmt\" matter to the broader Datacenter / Lab / Colocation (CoLo) posture?",
+          "text": "Why does a weakness in \"Maintenance and vendor management\" matter to the broader Datacenter / Lab / Colocation (CoLo) posture?",
           "options": [
             "It mainly affects how the annual compliance report reads, rather than the actual risk to Datacenter / Lab / Colocation (CoLo)",
             "It stops mattering once a firewall and endpoint agent are deployed across the Datacenter / Lab / Colocation (CoLo) estate",
@@ -1729,12 +1729,12 @@ export const datacenterStages: StageConfig[] = [
           "id": "dcr-05-q3",
           "type": "Artifacts",
           "challenge": "Evidence",
-          "text": "Which artifact best evidences the \"Maintenance and vendor mgmt\" control?",
+          "text": "Which artifact best evidences the \"Maintenance and vendor management\" control?",
           "options": [
-            "A point-in-time screenshot of one system's maintenance and vendor mgmt settings, captured during the walkthrough",
+            "A point-in-time screenshot of one system's maintenance and vendor management settings, captured during the walkthrough",
             "The The maintenance schedule + records for critical infrastructure (UPS, generators, HVAC, fire systems) — preventive maintenance done on cadence, reconciled against policy, plus the resulting findings working paper",
-            "A signed management attestation that the maintenance and vendor mgmt control is in place, with no underlying data attached",
-            "A vendor datasheet describing the product's maintenance and vendor mgmt capabilities and its recommended configuration"
+            "A signed management attestation that the maintenance and vendor management control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's maintenance and vendor management capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
           "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
@@ -1743,12 +1743,12 @@ export const datacenterStages: StageConfig[] = [
           "id": "dcr-05-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where should an auditor pull the evidence for \"Maintenance and vendor mgmt\"?",
+          "text": "Where should an auditor pull the evidence for \"Maintenance and vendor management\"?",
           "options": [
             "From CMMS / maintenance records and the other systems of record for this domain, accessed read-only",
             "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
             "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
-            "From an informal summary the team posted to the internal wiki describing how maintenance and vendor mgmt works"
+            "From an informal summary the team posted to the internal wiki describing how maintenance and vendor management works"
           ],
           "correctIndex": 0,
           "explanation": "Evidence must come from the authoritative systems (e.g. CMMS / maintenance records) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
@@ -1757,11 +1757,11 @@ export const datacenterStages: StageConfig[] = [
           "id": "dcr-05-q5",
           "type": "Data owner",
           "challenge": "Accountability",
-          "text": "Who is most likely accountable for the data behind \"Maintenance and vendor mgmt\"?",
+          "text": "Who is most likely accountable for the data behind \"Maintenance and vendor management\"?",
           "options": [
-            "The external audit firm, since it is the party examining the maintenance and vendor mgmt control this period",
+            "The external audit firm, since it is the party examining the maintenance and vendor management control this period",
             "Whoever most recently changed the configuration, regardless of their role or formal accountability",
-            "No single function — the maintenance and vendor mgmt data is shared, so the accountability sits with no one in particular",
+            "No single function — the maintenance and vendor management data is shared, so the accountability sits with no one in particular",
             "Facilities / Datacenter operations, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
@@ -1771,7 +1771,7 @@ export const datacenterStages: StageConfig[] = [
           "id": "dcr-05-q6",
           "type": "Agentic",
           "challenge": "Human vs agent",
-          "text": "In the agentic workflow for \"Maintenance and vendor mgmt\", which part stays with the human auditor?",
+          "text": "In the agentic workflow for \"Maintenance and vendor management\", which part stays with the human auditor?",
           "options": [
             "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
             "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
@@ -1799,7 +1799,7 @@ export const datacenterStages: StageConfig[] = [
           "id": "dcr-05-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Maintenance and vendor mgmt\", which of these is a realistic reportable finding?",
+          "text": "For \"Maintenance and vendor management\", which of these is a realistic reportable finding?",
           "options": [
             "Generator and UPS preventive maintenance lapsed (the generator failed to start in the last power test), and HVAC contractors badge in with unescorted, non-time-bound access to the equipment floor.",
             "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
@@ -1827,9 +1827,9 @@ export const datacenterStages: StageConfig[] = [
           "id": "dcr-05-q10",
           "type": "Privacy/Risk",
           "challenge": "The data angle",
-          "text": "Why does auditing \"Maintenance and vendor mgmt\" also serve privacy and regulatory goals?",
+          "text": "Why does auditing \"Maintenance and vendor management\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators review only written policy documents, never the technical controls behind maintenance and vendor mgmt, so there is no overlap",
+            "Regulators review only written policy documents, never the technical controls behind maintenance and vendor management, so there is no overlap",
             "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
             "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
             "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"

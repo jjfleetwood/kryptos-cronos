@@ -3299,15 +3299,15 @@ export const applicationReviewStages: StageConfig[] = [
     "epochId": "application-review",
     "id": "aar-11",
     "order": 11,
-    "title": "Cryptographic library and dependency mgmt (+PQC)",
-    "subtitle": "Agentic technical & privacy audit of the cryptographic library and dependency mgmt (+pqc) control",
+    "title": "Cryptographic library and dependency management (+PQC)",
+    "subtitle": "Agentic technical & privacy audit of the cryptographic library and dependency management (+pqc) control",
     "category": "cybersecurity",
     "xp": 180,
     "easeScore": 6,
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Cryptographic library and dependency mgmt (+PQC)\" control for Application Review is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Verify the app's crypto + dependencies are sound + PQC-aware. PASS: the app uses strong, current, correctly-implemented crypto (no weak/deprecated/homegrown), dependencies are inventoried (SBOM) + vuln-scanned + current, keys are properly managed (vaulted/HSM, rotated, not hardcoded; strong TLS), and there's crypto-agility + a PQC inventory/migration path for long-lived data. Exceptions: weak/deprecated/homegrown crypto, hardcoded keys, vulnerable/abandoned dependencies (no SBOM/scanning), and no crypto-agility or PQC awareness for long-lived sensitive data.",
+      "objective": "Prove the \"Cryptographic library and dependency management (+PQC)\" control for Application Review is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Verify the app's crypto + dependencies are sound + PQC-aware. PASS: the app uses strong, current, correctly-implemented crypto (no weak/deprecated/homegrown), dependencies are inventoried (SBOM) + vuln-scanned + current, keys are properly managed (vaulted/HSM, rotated, not hardcoded; strong TLS), and there's crypto-agility + a PQC inventory/migration path for long-lived data. Exceptions: weak/deprecated/homegrown crypto, hardcoded keys, vulnerable/abandoned dependencies (no SBOM/scanning), and no crypto-agility or PQC awareness for long-lived sensitive data.",
       "approach": "An audit agent calls a read-only MCP server that wraps the Application Review systems of record (App crypto implementation; Dependency / SBOM + scanning (SCA); Key management (vault / HSM)) as tools — e.g. `application cryptography (strong, current, correctly implemented; no w`, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "The application's cryptography (algorithms + libraries used — strong, current, correctly implemented; no weak/deprecated crypto — MD5/SHA1/DES/ECB or homegrown; proper key management)",
@@ -3337,26 +3337,26 @@ export const applicationReviewStages: StageConfig[] = [
       "emoji": "🔎"
     },
     "wonder": {
-      "name": "Cryptographic library and dependency mgmt (+PQC)",
+      "name": "Cryptographic library and dependency management (+PQC)",
       "location": "Application Review",
       "era": "Present Day",
       "emoji": "🔎"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Cryptographic library and dependency mgmt (+PQC)\" as a repeatable agentic workflow: pull the real evidence (The application's cryptography (algorithms + libraries used — strong, current, correctly implemented; no weak/deprecated crypto — MD5/SHA1/DES/ECB or homegrown; proper key management)) with read-only agents, run the test against policy, and issue a defensible opinion on the Application Review control.",
+      "tagline": "Auditing \"Cryptographic library and dependency management (+PQC)\" as a repeatable agentic workflow: pull the real evidence (The application's cryptography (algorithms + libraries used — strong, current, correctly implemented; no weak/deprecated crypto — MD5/SHA1/DES/ECB or homegrown; proper key management)) with read-only agents, run the test against policy, and issue a defensible opinion on the Application Review control.",
       "year": 2025,
       "overview": [
-        "The \"Cryptographic library and dependency mgmt (+PQC)\" sub-process is one of the controls an auditor must verify for Application Review. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me the application's cryptography (algorithms + libraries used — strong, current, correctly implemented; no weak/deprecated crypto — MD5/SHA1/DES/ECB or homegrown; proper key management), for everything in scope.\"",
+        "The \"Cryptographic library and dependency management (+PQC)\" sub-process is one of the controls an auditor must verify for Application Review. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me the application's cryptography (algorithms + libraries used — strong, current, correctly implemented; no weak/deprecated crypto — MD5/SHA1/DES/ECB or homegrown; proper key management), for everything in scope.\"",
         "The evidence lives across systems that were never reconciled — here App crypto implementation, Dependency / SBOM + scanning (SCA), Key management (vault / HSM) — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. In practice you gather it with calls like `application cryptography (strong, current, correctly implemented; no weak/deprec` — read-only, against the systems of record.",
         "The test itself is specific. Verify the app's crypto + dependencies are sound + PQC-aware. PASS: the app uses strong, current, correctly-implemented crypto (no weak/deprecated/homegrown), dependencies are inventoried (SBOM) + vuln-scanned + current, keys are properly managed (vaulted/HSM, rotated, not hardcoded; strong TLS), and there's crypto-agility + a PQC inventory/migration path for long-lived data. Exceptions: weak/deprecated/homegrown crypto, hardcoded keys, vulnerable/abandoned dependencies (no SBOM/scanning), and no crypto-agility or PQC awareness for long-lived sensitive data. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `11_cryptographic_library_and_dependency_mgmt_pqc_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from App crypto implementation and Dependency / SBOM + scanning (SCA) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
+          "The included `11_cryptographic_library_and_dependency_management_pqc_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from App crypto implementation and Dependency / SBOM + scanning (SCA) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
           "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
-          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 11_cryptographic_library_and_dependency_mgmt_pqc_mcp.py` to expose it to your agent — or `python 11_cryptographic_library_and_dependency_mgmt_pqc_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
+          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 11_cryptographic_library_and_dependency_management_pqc_mcp.py` to expose it to your agent — or `python 11_cryptographic_library_and_dependency_management_pqc_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
           "label": "coverage_report() — the audit deliverable (excerpt)",
@@ -3409,7 +3409,7 @@ export const applicationReviewStages: StageConfig[] = [
         },
         {
           "year": 2025,
-          "event": "Agentic evidence-gathering becomes the practical way to keep \"Cryptographic library and dependency mgmt (+PQC)\" continuously assured",
+          "event": "Agentic evidence-gathering becomes the practical way to keep \"Cryptographic library and dependency management (+PQC)\" continuously assured",
           "highlight": true
         }
       ],
@@ -3442,14 +3442,14 @@ export const applicationReviewStages: StageConfig[] = [
       ],
       "downloads": [
         {
-          "name": "11_cryptographic_library_and_dependency_mgmt_pqc_mcp.py",
-          "url": "/audit-code/application-review/11_cryptographic_library_and_dependency_mgmt_pqc_mcp.py",
-          "description": "Runnable read-only MCP server: gathers the Application Review evidence for \"Cryptographic library and dependency mgmt (+PQC)\" (the application's cryptography (algorithms + libraries used — strong, current, correctly implemented; no weak/deprecated crypto — md5/sha1/des/ecb or homegrown; proper key management)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "name": "11_cryptographic_library_and_dependency_management_pqc_mcp.py",
+          "url": "/audit-code/application-review/11_cryptographic_library_and_dependency_management_pqc_mcp.py",
+          "description": "Runnable read-only MCP server: gathers the Application Review evidence for \"Cryptographic library and dependency management (+PQC)\" (the application's cryptography (algorithms + libraries used — strong, current, correctly implemented; no weak/deprecated crypto — md5/sha1/des/ecb or homegrown; proper key management)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Cryptographic library and dependency mgmt (+PQC)\" control for Application Review at AcmeCorp. THE TEST: Verify the app's crypto + dependencies are sound + PQC-aware. PASS: the app uses strong, current, correctly-implemented crypto (no weak/deprecated/homegrown), dependencies are inventoried (SBOM) + vuln-scanned + current, keys are properly managed (vaulted/HSM, rotated, not hardcoded; strong TLS), and there's crypto-agility + a PQC inventory/migration path for long-lived data. Exceptions: weak/deprecated/homegrown crypto, hardcoded keys, vulnerable/abandoned dependencies (no SBOM/scanning), and no crypto-agility or PQC awareness for long-lived sensitive data. The evidence — The application's cryptography (algorithms + libraries used — strong, current, correctly implemented; no weak/deprecated crypto — MD5/SHA1/DES/ECB or homegrown; proper key management) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live App crypto implementation APIs; here the same sources are exported to files.)",
+      "scenario": "You're the auditor testing the \"Cryptographic library and dependency management (+PQC)\" control for Application Review at AcmeCorp. THE TEST: Verify the app's crypto + dependencies are sound + PQC-aware. PASS: the app uses strong, current, correctly-implemented crypto (no weak/deprecated/homegrown), dependencies are inventoried (SBOM) + vuln-scanned + current, keys are properly managed (vaulted/HSM, rotated, not hardcoded; strong TLS), and there's crypto-agility + a PQC inventory/migration path for long-lived data. Exceptions: weak/deprecated/homegrown crypto, hardcoded keys, vulnerable/abandoned dependencies (no SBOM/scanning), and no crypto-agility or PQC awareness for long-lived sensitive data. The evidence — The application's cryptography (algorithms + libraries used — strong, current, correctly implemented; no weak/deprecated crypto — MD5/SHA1/DES/ECB or homegrown; proper key management) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live App crypto implementation APIs; here the same sources are exported to files.)",
       "hint": "Read every file in /evidence. App crypto implementation gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
         "cat each file in /evidence. The inventory comes from App crypto implementation; the state file shows what is actually configured/running.",
@@ -3457,9 +3457,9 @@ export const applicationReviewStages: StageConfig[] = [
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Application Review: \"Cryptographic library and dependency mgmt (+PQC)\" Audit Evidence\n\nThe test:\nVerify the app's crypto + dependencies are sound + PQC-aware. PASS: the app uses strong, current, correctly-implemented crypto (no weak/deprecated/homegrown), dependencies are inventoried (SBOM) + vuln-scanned + current, keys are properly managed (vaulted/HSM, rotated, not hardcoded; strong TLS), and there's crypto-agility + a PQC inventory/migration path for long-lived data. Exceptions: weak/deprecated/homegrown crypto, hardcoded keys, vulnerable/abandoned dependencies (no SBOM/scanning), and no crypto-agility or PQC awareness for long-lived sensitive data.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- application-review_inventory.json   (in-scope items — The application's cryptography (algorithms + libraries used — strong, current, correctly implemented; no weak/deprecated crypto — MD5/SHA1/DES/ECB or homegrown; proper key management))\n- application-review_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Cryptographic library and dependency mgmt (+PQC)\",\n  \"domain\": \"Application Review\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{aar_",
-        "/evidence/application-review_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Application owners\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Cryptographic library and dependency mgmt (+PQC)\" control must cover\n# fragment: cryptographic_library_dependency_",
+        "/evidence/README.md": "# AcmeCorp — Application Review: \"Cryptographic library and dependency management (+PQC)\" Audit Evidence\n\nThe test:\nVerify the app's crypto + dependencies are sound + PQC-aware. PASS: the app uses strong, current, correctly-implemented crypto (no weak/deprecated/homegrown), dependencies are inventoried (SBOM) + vuln-scanned + current, keys are properly managed (vaulted/HSM, rotated, not hardcoded; strong TLS), and there's crypto-agility + a PQC inventory/migration path for long-lived data. Exceptions: weak/deprecated/homegrown crypto, hardcoded keys, vulnerable/abandoned dependencies (no SBOM/scanning), and no crypto-agility or PQC awareness for long-lived sensitive data.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- application-review_inventory.json   (in-scope items — The application's cryptography (algorithms + libraries used — strong, current, correctly implemented; no weak/deprecated crypto — MD5/SHA1/DES/ECB or homegrown; proper key management))\n- application-review_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Cryptographic library and dependency management (+PQC)\",\n  \"domain\": \"Application Review\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{aar_",
+        "/evidence/application-review_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Application owners\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Cryptographic library and dependency management (+PQC)\" control must cover\n# fragment: cryptographic_library_dependency_",
         "/evidence/application-review_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
       },
@@ -3522,12 +3522,12 @@ export const applicationReviewStages: StageConfig[] = [
           "id": "aar-11-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Cryptographic library and dependency mgmt (+PQC)\" sub-process of Application Review?",
+          "text": "What is the primary audit objective for the \"Cryptographic library and dependency management (+PQC)\" sub-process of Application Review?",
           "options": [
-            "Deploy and operate the cryptographic library and dependency mgmt (+pqc) control on the team's behalf so the gap is closed during fieldwork",
-            "Confirm management is comfortable that the cryptographic library and dependency mgmt (+pqc) control works, based on their verbal assurance",
-            "Benchmark how many tools the team uses for cryptographic library and dependency mgmt (+pqc) against comparable organisations in the sector",
-            "Obtain evidence that the cryptographic library and dependency mgmt (+pqc) control is designed and operating effectively, and quantify the gap where it is not"
+            "Deploy and operate the cryptographic library and dependency management (+pqc) control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the cryptographic library and dependency management (+pqc) control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for cryptographic library and dependency management (+pqc) against comparable organisations in the sector",
+            "Obtain evidence that the cryptographic library and dependency management (+pqc) control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
           "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
@@ -3536,7 +3536,7 @@ export const applicationReviewStages: StageConfig[] = [
           "id": "aar-11-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Cryptographic library and dependency mgmt (+PQC)\" matter to the broader Application Review posture?",
+          "text": "Why does a weakness in \"Cryptographic library and dependency management (+PQC)\" matter to the broader Application Review posture?",
           "options": [
             "It mainly affects how the annual compliance report reads, rather than the actual risk to Application Review",
             "It stops mattering once a firewall and endpoint agent are deployed across the Application Review estate",
@@ -3550,12 +3550,12 @@ export const applicationReviewStages: StageConfig[] = [
           "id": "aar-11-q3",
           "type": "Artifacts",
           "challenge": "Evidence",
-          "text": "Which artifact best evidences the \"Cryptographic library and dependency mgmt (+PQC)\" control?",
+          "text": "Which artifact best evidences the \"Cryptographic library and dependency management (+PQC)\" control?",
           "options": [
-            "A point-in-time screenshot of one system's cryptographic library and dependency mgmt (+pqc) settings, captured during the walkthrough",
+            "A point-in-time screenshot of one system's cryptographic library and dependency management (+pqc) settings, captured during the walkthrough",
             "The The application's cryptography (algorithms + libraries used — strong, current, correctly implemented; no weak/deprecated crypto — MD5/SHA1/DES/ECB or homegrown; proper key management), reconciled against policy, plus the resulting findings working paper",
-            "A signed management attestation that the cryptographic library and dependency mgmt (+pqc) control is in place, with no underlying data attached",
-            "A vendor datasheet describing the product's cryptographic library and dependency mgmt (+pqc) capabilities and its recommended configuration"
+            "A signed management attestation that the cryptographic library and dependency management (+pqc) control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's cryptographic library and dependency management (+pqc) capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
           "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
@@ -3564,12 +3564,12 @@ export const applicationReviewStages: StageConfig[] = [
           "id": "aar-11-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where should an auditor pull the evidence for \"Cryptographic library and dependency mgmt (+PQC)\"?",
+          "text": "Where should an auditor pull the evidence for \"Cryptographic library and dependency management (+PQC)\"?",
           "options": [
             "From App crypto implementation and the other systems of record for this domain, accessed read-only",
             "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
             "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
-            "From an informal summary the team posted to the internal wiki describing how cryptographic library and dependency mgmt (+pqc) works"
+            "From an informal summary the team posted to the internal wiki describing how cryptographic library and dependency management (+pqc) works"
           ],
           "correctIndex": 0,
           "explanation": "Evidence must come from the authoritative systems (e.g. App crypto implementation) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
@@ -3578,11 +3578,11 @@ export const applicationReviewStages: StageConfig[] = [
           "id": "aar-11-q5",
           "type": "Data owner",
           "challenge": "Accountability",
-          "text": "Who is most likely accountable for the data behind \"Cryptographic library and dependency mgmt (+PQC)\"?",
+          "text": "Who is most likely accountable for the data behind \"Cryptographic library and dependency management (+PQC)\"?",
           "options": [
-            "The external audit firm, since it is the party examining the cryptographic library and dependency mgmt (+pqc) control this period",
+            "The external audit firm, since it is the party examining the cryptographic library and dependency management (+pqc) control this period",
             "Whoever most recently changed the configuration, regardless of their role or formal accountability",
-            "No single function — the cryptographic library and dependency mgmt (+pqc) data is shared, so the accountability sits with no one in particular",
+            "No single function — the cryptographic library and dependency management (+pqc) data is shared, so the accountability sits with no one in particular",
             "Development + AppSec + crypto, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
@@ -3592,7 +3592,7 @@ export const applicationReviewStages: StageConfig[] = [
           "id": "aar-11-q6",
           "type": "Agentic",
           "challenge": "Human vs agent",
-          "text": "In the agentic workflow for \"Cryptographic library and dependency mgmt (+PQC)\", which part stays with the human auditor?",
+          "text": "In the agentic workflow for \"Cryptographic library and dependency management (+PQC)\", which part stays with the human auditor?",
           "options": [
             "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
             "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
@@ -3620,7 +3620,7 @@ export const applicationReviewStages: StageConfig[] = [
           "id": "aar-11-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Cryptographic library and dependency mgmt (+PQC)\", which of these is a realistic reportable finding?",
+          "text": "For \"Cryptographic library and dependency management (+PQC)\", which of these is a realistic reportable finding?",
           "options": [
             "The application hashes passwords with unsalted MD5, hardcodes its encryption key in source, and depends on several abandoned libraries with known CVEs and no SBOM; its RSA-based crypto has no agility or PQC migration plan despite protecting decade-long-sensitive data.",
             "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
@@ -3648,9 +3648,9 @@ export const applicationReviewStages: StageConfig[] = [
           "id": "aar-11-q10",
           "type": "Privacy/Risk",
           "challenge": "The data angle",
-          "text": "Why does auditing \"Cryptographic library and dependency mgmt (+PQC)\" also serve privacy and regulatory goals?",
+          "text": "Why does auditing \"Cryptographic library and dependency management (+PQC)\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators review only written policy documents, never the technical controls behind cryptographic library and dependency mgmt (+pqc), so there is no overlap",
+            "Regulators review only written policy documents, never the technical controls behind cryptographic library and dependency management (+pqc), so there is no overlap",
             "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
             "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
             "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"

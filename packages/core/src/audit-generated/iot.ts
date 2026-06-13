@@ -2211,15 +2211,15 @@ export const iotStages: StageConfig[] = [
     "epochId": "iot",
     "id": "iot-07",
     "order": 7,
-    "title": "Vulnerability mgmt and pen test",
-    "subtitle": "Agentic technical & privacy audit of the vulnerability mgmt and pen test control",
+    "title": "Vulnerability management and pen test",
+    "subtitle": "Agentic technical & privacy audit of the vulnerability management and pen test control",
     "category": "cybersecurity",
     "xp": 180,
     "easeScore": 5,
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Vulnerability mgmt and pen test\" control for Internet of Things (IoT) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Verify IoT vulnerabilities are managed + tested. PASS: vulnerability scanning + a secure OTA update mechanism (signed/authenticated/rollback-protected) with tracked update coverage, periodic device + ecosystem pen testing (hardware/firmware/radio/cloud/app), a coordinated disclosure/PSIRT process + defined support period, and remediation reaching the fielded fleet. Exceptions: no OTA update mechanism (unpatchable devices), no pen testing of the device/ecosystem, no disclosure channel/PSIRT, and patches that never reach fielded devices.",
+      "objective": "Prove the \"Vulnerability management and pen test\" control for Internet of Things (IoT) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Verify IoT vulnerabilities are managed + tested. PASS: vulnerability scanning + a secure OTA update mechanism (signed/authenticated/rollback-protected) with tracked update coverage, periodic device + ecosystem pen testing (hardware/firmware/radio/cloud/app), a coordinated disclosure/PSIRT process + defined support period, and remediation reaching the fielded fleet. Exceptions: no OTA update mechanism (unpatchable devices), no pen testing of the device/ecosystem, no disclosure channel/PSIRT, and patches that never reach fielded devices.",
       "approach": "An audit agent calls a read-only MCP server that wraps the Internet of Things (IoT) systems of record (Firmware vuln scanning; Secure OTA update infrastructure; IoT pen-test (hardware / RF / cloud)) as tools — e.g. `IoT vuln mgmt (firmware scanning + secure OTA — signed/authenticated/r`, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "IoT vulnerability management (firmware/device vulnerability scanning, the secure OTA update mechanism — signed, authenticated, rollback-protected — and update coverage/cadence)",
@@ -2249,26 +2249,26 @@ export const iotStages: StageConfig[] = [
       "emoji": "📡"
     },
     "wonder": {
-      "name": "Vulnerability mgmt and pen test",
+      "name": "Vulnerability management and pen test",
       "location": "Internet of Things (IoT)",
       "era": "Present Day",
       "emoji": "📡"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Vulnerability mgmt and pen test\" as a repeatable agentic workflow: pull the real evidence (IoT vulnerability management (firmware/device vulnerability scanning, the secure OTA update mechanism — signed, authenticated, rollback-protected — and update coverage/cadence)) with read-only agents, run the test against policy, and issue a defensible opinion on the Internet of Things (IoT) control.",
+      "tagline": "Auditing \"Vulnerability management and pen test\" as a repeatable agentic workflow: pull the real evidence (IoT vulnerability management (firmware/device vulnerability scanning, the secure OTA update mechanism — signed, authenticated, rollback-protected — and update coverage/cadence)) with read-only agents, run the test against policy, and issue a defensible opinion on the Internet of Things (IoT) control.",
       "year": 2025,
       "overview": [
-        "The \"Vulnerability mgmt and pen test\" sub-process is one of the controls an auditor must verify for Internet of Things (IoT). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me ioT vulnerability management (firmware/device vulnerability scanning, the secure OTA update mechanism — signed, authenticated, rollback-protected — and update coverage/cadence), for everything in scope.\"",
+        "The \"Vulnerability management and pen test\" sub-process is one of the controls an auditor must verify for Internet of Things (IoT). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me ioT vulnerability management (firmware/device vulnerability scanning, the secure OTA update mechanism — signed, authenticated, rollback-protected — and update coverage/cadence), for everything in scope.\"",
         "The evidence lives across systems that were never reconciled — here Firmware vuln scanning, Secure OTA update infrastructure, IoT pen-test (hardware / RF / cloud) — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. In practice you gather it with calls like `IoT vuln mgmt (firmware scanning + secure OTA — signed/authenticated/rollback — ` — read-only, against the systems of record.",
         "The test itself is specific. Verify IoT vulnerabilities are managed + tested. PASS: vulnerability scanning + a secure OTA update mechanism (signed/authenticated/rollback-protected) with tracked update coverage, periodic device + ecosystem pen testing (hardware/firmware/radio/cloud/app), a coordinated disclosure/PSIRT process + defined support period, and remediation reaching the fielded fleet. Exceptions: no OTA update mechanism (unpatchable devices), no pen testing of the device/ecosystem, no disclosure channel/PSIRT, and patches that never reach fielded devices. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `07_vulnerability_mgmt_and_pen_test_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Firmware vuln scanning and Secure OTA update infrastructure (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
+          "The included `07_vulnerability_management_and_pen_test_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Firmware vuln scanning and Secure OTA update infrastructure (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
           "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
-          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 07_vulnerability_mgmt_and_pen_test_mcp.py` to expose it to your agent — or `python 07_vulnerability_mgmt_and_pen_test_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
+          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 07_vulnerability_management_and_pen_test_mcp.py` to expose it to your agent — or `python 07_vulnerability_management_and_pen_test_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
           "label": "coverage_report() — the audit deliverable (excerpt)",
@@ -2321,7 +2321,7 @@ export const iotStages: StageConfig[] = [
         },
         {
           "year": 2025,
-          "event": "Agentic evidence-gathering becomes the practical way to keep \"Vulnerability mgmt and pen test\" continuously assured",
+          "event": "Agentic evidence-gathering becomes the practical way to keep \"Vulnerability management and pen test\" continuously assured",
           "highlight": true
         }
       ],
@@ -2354,14 +2354,14 @@ export const iotStages: StageConfig[] = [
       ],
       "downloads": [
         {
-          "name": "07_vulnerability_mgmt_and_pen_test_mcp.py",
-          "url": "/audit-code/iot/07_vulnerability_mgmt_and_pen_test_mcp.py",
-          "description": "Runnable read-only MCP server: gathers the Internet of Things (IoT) evidence for \"Vulnerability mgmt and pen test\" (iot vulnerability management (firmware/device vulnerability scanning, the secure ota update mechanism — signed, authenticated, rollback-protected — and update coverage/cadence)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "name": "07_vulnerability_management_and_pen_test_mcp.py",
+          "url": "/audit-code/iot/07_vulnerability_management_and_pen_test_mcp.py",
+          "description": "Runnable read-only MCP server: gathers the Internet of Things (IoT) evidence for \"Vulnerability management and pen test\" (iot vulnerability management (firmware/device vulnerability scanning, the secure ota update mechanism — signed, authenticated, rollback-protected — and update coverage/cadence)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Vulnerability mgmt and pen test\" control for Internet of Things (IoT) at AcmeCorp. THE TEST: Verify IoT vulnerabilities are managed + tested. PASS: vulnerability scanning + a secure OTA update mechanism (signed/authenticated/rollback-protected) with tracked update coverage, periodic device + ecosystem pen testing (hardware/firmware/radio/cloud/app), a coordinated disclosure/PSIRT process + defined support period, and remediation reaching the fielded fleet. Exceptions: no OTA update mechanism (unpatchable devices), no pen testing of the device/ecosystem, no disclosure channel/PSIRT, and patches that never reach fielded devices. The evidence — IoT vulnerability management (firmware/device vulnerability scanning, the secure OTA update mechanism — signed, authenticated, rollback-protected — and update coverage/cadence) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Firmware vuln scanning APIs; here the same sources are exported to files.)",
+      "scenario": "You're the auditor testing the \"Vulnerability management and pen test\" control for Internet of Things (IoT) at AcmeCorp. THE TEST: Verify IoT vulnerabilities are managed + tested. PASS: vulnerability scanning + a secure OTA update mechanism (signed/authenticated/rollback-protected) with tracked update coverage, periodic device + ecosystem pen testing (hardware/firmware/radio/cloud/app), a coordinated disclosure/PSIRT process + defined support period, and remediation reaching the fielded fleet. Exceptions: no OTA update mechanism (unpatchable devices), no pen testing of the device/ecosystem, no disclosure channel/PSIRT, and patches that never reach fielded devices. The evidence — IoT vulnerability management (firmware/device vulnerability scanning, the secure OTA update mechanism — signed, authenticated, rollback-protected — and update coverage/cadence) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Firmware vuln scanning APIs; here the same sources are exported to files.)",
       "hint": "Read every file in /evidence. Firmware vuln scanning gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
         "cat each file in /evidence. The inventory comes from Firmware vuln scanning; the state file shows what is actually configured/running.",
@@ -2369,9 +2369,9 @@ export const iotStages: StageConfig[] = [
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Internet of Things (IoT): \"Vulnerability mgmt and pen test\" Audit Evidence\n\nThe test:\nVerify IoT vulnerabilities are managed + tested. PASS: vulnerability scanning + a secure OTA update mechanism (signed/authenticated/rollback-protected) with tracked update coverage, periodic device + ecosystem pen testing (hardware/firmware/radio/cloud/app), a coordinated disclosure/PSIRT process + defined support period, and remediation reaching the fielded fleet. Exceptions: no OTA update mechanism (unpatchable devices), no pen testing of the device/ecosystem, no disclosure channel/PSIRT, and patches that never reach fielded devices.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- iot_inventory.json   (in-scope items — IoT vulnerability management (firmware/device vulnerability scanning, the secure OTA update mechanism — signed, authenticated, rollback-protected — and update coverage/cadence))\n- iot_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Vulnerability mgmt and pen test\",\n  \"domain\": \"Internet of Things (IoT)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{iot_",
-        "/evidence/iot_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"IoT / product engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Vulnerability mgmt and pen test\" control must cover\n# fragment: vulnerability_mgmt_pen_",
+        "/evidence/README.md": "# AcmeCorp — Internet of Things (IoT): \"Vulnerability management and pen test\" Audit Evidence\n\nThe test:\nVerify IoT vulnerabilities are managed + tested. PASS: vulnerability scanning + a secure OTA update mechanism (signed/authenticated/rollback-protected) with tracked update coverage, periodic device + ecosystem pen testing (hardware/firmware/radio/cloud/app), a coordinated disclosure/PSIRT process + defined support period, and remediation reaching the fielded fleet. Exceptions: no OTA update mechanism (unpatchable devices), no pen testing of the device/ecosystem, no disclosure channel/PSIRT, and patches that never reach fielded devices.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- iot_inventory.json   (in-scope items — IoT vulnerability management (firmware/device vulnerability scanning, the secure OTA update mechanism — signed, authenticated, rollback-protected — and update coverage/cadence))\n- iot_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Vulnerability management and pen test\",\n  \"domain\": \"Internet of Things (IoT)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{iot_",
+        "/evidence/iot_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"IoT / product engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Vulnerability management and pen test\" control must cover\n# fragment: vulnerability_management_pen_",
         "/evidence/iot_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
       },
@@ -2413,7 +2413,7 @@ export const iotStages: StageConfig[] = [
         },
         {
           "trigger": "/evidence/iot_inventory.json",
-          "value": "vulnerability_mgmt_pen_",
+          "value": "vulnerability_management_pen_",
           "label": "Inventory — the in-scope items"
         },
         {
@@ -2434,12 +2434,12 @@ export const iotStages: StageConfig[] = [
           "id": "iot-07-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Vulnerability mgmt and pen test\" sub-process of Internet of Things (IoT)?",
+          "text": "What is the primary audit objective for the \"Vulnerability management and pen test\" sub-process of Internet of Things (IoT)?",
           "options": [
-            "Deploy and operate the vulnerability mgmt and pen test control on the team's behalf so the gap is closed during fieldwork",
-            "Confirm management is comfortable that the vulnerability mgmt and pen test control works, based on their verbal assurance",
-            "Benchmark how many tools the team uses for vulnerability mgmt and pen test against comparable organisations in the sector",
-            "Obtain evidence that the vulnerability mgmt and pen test control is designed and operating effectively, and quantify the gap where it is not"
+            "Deploy and operate the vulnerability management and pen test control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the vulnerability management and pen test control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for vulnerability management and pen test against comparable organisations in the sector",
+            "Obtain evidence that the vulnerability management and pen test control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
           "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
@@ -2448,7 +2448,7 @@ export const iotStages: StageConfig[] = [
           "id": "iot-07-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Vulnerability mgmt and pen test\" matter to the broader Internet of Things (IoT) posture?",
+          "text": "Why does a weakness in \"Vulnerability management and pen test\" matter to the broader Internet of Things (IoT) posture?",
           "options": [
             "It mainly affects how the annual compliance report reads, rather than the actual risk to Internet of Things (IoT)",
             "It stops mattering once a firewall and endpoint agent are deployed across the Internet of Things (IoT) estate",
@@ -2462,12 +2462,12 @@ export const iotStages: StageConfig[] = [
           "id": "iot-07-q3",
           "type": "Artifacts",
           "challenge": "Evidence",
-          "text": "Which artifact best evidences the \"Vulnerability mgmt and pen test\" control?",
+          "text": "Which artifact best evidences the \"Vulnerability management and pen test\" control?",
           "options": [
-            "A point-in-time screenshot of one system's vulnerability mgmt and pen test settings, captured during the walkthrough",
+            "A point-in-time screenshot of one system's vulnerability management and pen test settings, captured during the walkthrough",
             "The IoT vulnerability management (firmware/device vulnerability scanning, the secure OTA update mechanism — signed, authenticated, rollback-protected — and update coverage/cadence), reconciled against policy, plus the resulting findings working paper",
-            "A signed management attestation that the vulnerability mgmt and pen test control is in place, with no underlying data attached",
-            "A vendor datasheet describing the product's vulnerability mgmt and pen test capabilities and its recommended configuration"
+            "A signed management attestation that the vulnerability management and pen test control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's vulnerability management and pen test capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
           "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
@@ -2476,12 +2476,12 @@ export const iotStages: StageConfig[] = [
           "id": "iot-07-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where should an auditor pull the evidence for \"Vulnerability mgmt and pen test\"?",
+          "text": "Where should an auditor pull the evidence for \"Vulnerability management and pen test\"?",
           "options": [
             "From Firmware vuln scanning and the other systems of record for this domain, accessed read-only",
             "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
             "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
-            "From an informal summary the team posted to the internal wiki describing how vulnerability mgmt and pen test works"
+            "From an informal summary the team posted to the internal wiki describing how vulnerability management and pen test works"
           ],
           "correctIndex": 0,
           "explanation": "Evidence must come from the authoritative systems (e.g. Firmware vuln scanning) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
@@ -2490,11 +2490,11 @@ export const iotStages: StageConfig[] = [
           "id": "iot-07-q5",
           "type": "Data owner",
           "challenge": "Accountability",
-          "text": "Who is most likely accountable for the data behind \"Vulnerability mgmt and pen test\"?",
+          "text": "Who is most likely accountable for the data behind \"Vulnerability management and pen test\"?",
           "options": [
-            "The external audit firm, since it is the party examining the vulnerability mgmt and pen test control this period",
+            "The external audit firm, since it is the party examining the vulnerability management and pen test control this period",
             "Whoever most recently changed the configuration, regardless of their role or formal accountability",
-            "No single function — the vulnerability mgmt and pen test data is shared, so the accountability sits with no one in particular",
+            "No single function — the vulnerability management and pen test data is shared, so the accountability sits with no one in particular",
             "IoT / product security + PSIRT, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
@@ -2504,7 +2504,7 @@ export const iotStages: StageConfig[] = [
           "id": "iot-07-q6",
           "type": "Agentic",
           "challenge": "Human vs agent",
-          "text": "In the agentic workflow for \"Vulnerability mgmt and pen test\", which part stays with the human auditor?",
+          "text": "In the agentic workflow for \"Vulnerability management and pen test\", which part stays with the human auditor?",
           "options": [
             "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
             "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
@@ -2532,7 +2532,7 @@ export const iotStages: StageConfig[] = [
           "id": "iot-07-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Vulnerability mgmt and pen test\", which of these is a realistic reportable finding?",
+          "text": "For \"Vulnerability management and pen test\", which of these is a realistic reportable finding?",
           "options": [
             "Devices have no OTA update capability, so known vulnerabilities can never be patched in the field; the product was never penetration-tested, and there's no disclosure channel for researchers to report flaws.",
             "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
@@ -2560,9 +2560,9 @@ export const iotStages: StageConfig[] = [
           "id": "iot-07-q10",
           "type": "Privacy/Risk",
           "challenge": "The data angle",
-          "text": "Why does auditing \"Vulnerability mgmt and pen test\" also serve privacy and regulatory goals?",
+          "text": "Why does auditing \"Vulnerability management and pen test\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators review only written policy documents, never the technical controls behind vulnerability mgmt and pen test, so there is no overlap",
+            "Regulators review only written policy documents, never the technical controls behind vulnerability management and pen test, so there is no overlap",
             "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
             "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
             "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"

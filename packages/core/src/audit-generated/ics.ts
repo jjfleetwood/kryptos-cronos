@@ -1479,15 +1479,15 @@ export const icsStages: StageConfig[] = [
     "epochId": "ics",
     "id": "ics-05",
     "order": 5,
-    "title": "Patch and vuln mgmt (ICS)",
-    "subtitle": "Agentic technical & privacy audit of the patch and vuln mgmt (ics) control",
+    "title": "Patch and vulnerability management (ICS)",
+    "subtitle": "Agentic technical & privacy audit of the patch and vulnerability management (ics) control",
     "category": "cybersecurity",
     "xp": 180,
     "easeScore": 6,
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Patch and vuln mgmt (ICS)\" control for Industrial Control Systems (ICS) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Verify ICS vulnerabilities are managed within OT constraints. PASS: OT vulnerabilities are tracked (ICS-CERT/vendor advisories) + risk-prioritised, compensating controls (segmentation, virtual patching, hardening) cover what can't be patched, patchable assets follow a tested/vendor-approved/maintenance-window process with rollback, and unpatchable/EOL assets are tracked with controls. Exceptions: no OT vulnerability awareness, IT-style forced patching risking process disruption, unpatchable assets with no compensating controls, and untracked legacy/EOL OT exposure.",
+      "objective": "Prove the \"Patch and vulnerability management (ICS)\" control for Industrial Control Systems (ICS) is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Verify ICS vulnerabilities are managed within OT constraints. PASS: OT vulnerabilities are tracked (ICS-CERT/vendor advisories) + risk-prioritised, compensating controls (segmentation, virtual patching, hardening) cover what can't be patched, patchable assets follow a tested/vendor-approved/maintenance-window process with rollback, and unpatchable/EOL assets are tracked with controls. Exceptions: no OT vulnerability awareness, IT-style forced patching risking process disruption, unpatchable assets with no compensating controls, and untracked legacy/EOL OT exposure.",
       "approach": "An audit agent calls a read-only MCP server that wraps the Industrial Control Systems (ICS) systems of record (ICS-CERT / vendor advisory tracking; OT vuln prioritisation; Virtual patching / IPS + segmentation) as tools — e.g. `OT vuln awareness (ICS-CERT/vendor advisories) + risk-based prioritisa`, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "OT vulnerability management adapted to ICS constraints (vulnerability awareness via vendor advisories/ICS-CERT, risk-based prioritisation since patching is constrained by uptime/safety)",
@@ -1517,26 +1517,26 @@ export const icsStages: StageConfig[] = [
       "emoji": "🏭"
     },
     "wonder": {
-      "name": "Patch and vuln mgmt (ICS)",
+      "name": "Patch and vulnerability management (ICS)",
       "location": "Industrial Control Systems (ICS)",
       "era": "Present Day",
       "emoji": "🏭"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Patch and vuln mgmt (ICS)\" as a repeatable agentic workflow: pull the real evidence (OT vulnerability management adapted to ICS constraints (vulnerability awareness via vendor advisories/ICS-CERT, risk-based prioritisation since patching is constrained by uptime/safety)) with read-only agents, run the test against policy, and issue a defensible opinion on the Industrial Control Systems (ICS) control.",
+      "tagline": "Auditing \"Patch and vulnerability management (ICS)\" as a repeatable agentic workflow: pull the real evidence (OT vulnerability management adapted to ICS constraints (vulnerability awareness via vendor advisories/ICS-CERT, risk-based prioritisation since patching is constrained by uptime/safety)) with read-only agents, run the test against policy, and issue a defensible opinion on the Industrial Control Systems (ICS) control.",
       "year": 2025,
       "overview": [
-        "The \"Patch and vuln mgmt (ICS)\" sub-process is one of the controls an auditor must verify for Industrial Control Systems (ICS). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me oT vulnerability management adapted to ICS constraints (vulnerability awareness via vendor advisories/ICS-CERT, risk-based prioritisation since patching is constrained by uptime/safety), for everything in scope.\"",
+        "The \"Patch and vulnerability management (ICS)\" sub-process is one of the controls an auditor must verify for Industrial Control Systems (ICS). The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me oT vulnerability management adapted to ICS constraints (vulnerability awareness via vendor advisories/ICS-CERT, risk-based prioritisation since patching is constrained by uptime/safety), for everything in scope.\"",
         "The evidence lives across systems that were never reconciled — here ICS-CERT / vendor advisory tracking, OT vuln prioritisation, Virtual patching / IPS + segmentation — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. In practice you gather it with calls like `OT vuln awareness (ICS-CERT/vendor advisories) + risk-based prioritisation (upti` — read-only, against the systems of record.",
         "The test itself is specific. Verify ICS vulnerabilities are managed within OT constraints. PASS: OT vulnerabilities are tracked (ICS-CERT/vendor advisories) + risk-prioritised, compensating controls (segmentation, virtual patching, hardening) cover what can't be patched, patchable assets follow a tested/vendor-approved/maintenance-window process with rollback, and unpatchable/EOL assets are tracked with controls. Exceptions: no OT vulnerability awareness, IT-style forced patching risking process disruption, unpatchable assets with no compensating controls, and untracked legacy/EOL OT exposure. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `05_patch_and_vuln_mgmt_ics_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from ICS-CERT / vendor advisory tracking and OT vuln prioritisation (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
+          "The included `05_patch_and_vulnerability_management_ics_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from ICS-CERT / vendor advisory tracking and OT vuln prioritisation (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
           "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
-          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 05_patch_and_vuln_mgmt_ics_mcp.py` to expose it to your agent — or `python 05_patch_and_vuln_mgmt_ics_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
+          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 05_patch_and_vulnerability_management_ics_mcp.py` to expose it to your agent — or `python 05_patch_and_vulnerability_management_ics_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
           "label": "coverage_report() — the audit deliverable (excerpt)",
@@ -1589,7 +1589,7 @@ export const icsStages: StageConfig[] = [
         },
         {
           "year": 2025,
-          "event": "Agentic evidence-gathering becomes the practical way to keep \"Patch and vuln mgmt (ICS)\" continuously assured",
+          "event": "Agentic evidence-gathering becomes the practical way to keep \"Patch and vulnerability management (ICS)\" continuously assured",
           "highlight": true
         }
       ],
@@ -1622,14 +1622,14 @@ export const icsStages: StageConfig[] = [
       ],
       "downloads": [
         {
-          "name": "05_patch_and_vuln_mgmt_ics_mcp.py",
-          "url": "/audit-code/ics/05_patch_and_vuln_mgmt_ics_mcp.py",
-          "description": "Runnable read-only MCP server: gathers the Industrial Control Systems (ICS) evidence for \"Patch and vuln mgmt (ICS)\" (ot vulnerability management adapted to ics constraints (vulnerability awareness via vendor advisories/ics-cert, risk-based prioritisation since patching is constrained by uptime/safety)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "name": "05_patch_and_vulnerability_management_ics_mcp.py",
+          "url": "/audit-code/ics/05_patch_and_vulnerability_management_ics_mcp.py",
+          "description": "Runnable read-only MCP server: gathers the Industrial Control Systems (ICS) evidence for \"Patch and vulnerability management (ICS)\" (ot vulnerability management adapted to ics constraints (vulnerability awareness via vendor advisories/ics-cert, risk-based prioritisation since patching is constrained by uptime/safety)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Patch and vuln mgmt (ICS)\" control for Industrial Control Systems (ICS) at AcmeCorp. THE TEST: Verify ICS vulnerabilities are managed within OT constraints. PASS: OT vulnerabilities are tracked (ICS-CERT/vendor advisories) + risk-prioritised, compensating controls (segmentation, virtual patching, hardening) cover what can't be patched, patchable assets follow a tested/vendor-approved/maintenance-window process with rollback, and unpatchable/EOL assets are tracked with controls. Exceptions: no OT vulnerability awareness, IT-style forced patching risking process disruption, unpatchable assets with no compensating controls, and untracked legacy/EOL OT exposure. The evidence — OT vulnerability management adapted to ICS constraints (vulnerability awareness via vendor advisories/ICS-CERT, risk-based prioritisation since patching is constrained by uptime/safety) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live ICS-CERT / vendor advisory tracking APIs; here the same sources are exported to files.)",
+      "scenario": "You're the auditor testing the \"Patch and vulnerability management (ICS)\" control for Industrial Control Systems (ICS) at AcmeCorp. THE TEST: Verify ICS vulnerabilities are managed within OT constraints. PASS: OT vulnerabilities are tracked (ICS-CERT/vendor advisories) + risk-prioritised, compensating controls (segmentation, virtual patching, hardening) cover what can't be patched, patchable assets follow a tested/vendor-approved/maintenance-window process with rollback, and unpatchable/EOL assets are tracked with controls. Exceptions: no OT vulnerability awareness, IT-style forced patching risking process disruption, unpatchable assets with no compensating controls, and untracked legacy/EOL OT exposure. The evidence — OT vulnerability management adapted to ICS constraints (vulnerability awareness via vendor advisories/ICS-CERT, risk-based prioritisation since patching is constrained by uptime/safety) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live ICS-CERT / vendor advisory tracking APIs; here the same sources are exported to files.)",
       "hint": "Read every file in /evidence. ICS-CERT / vendor advisory tracking gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
         "cat each file in /evidence. The inventory comes from ICS-CERT / vendor advisory tracking; the state file shows what is actually configured/running.",
@@ -1637,9 +1637,9 @@ export const icsStages: StageConfig[] = [
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Industrial Control Systems (ICS): \"Patch and vuln mgmt (ICS)\" Audit Evidence\n\nThe test:\nVerify ICS vulnerabilities are managed within OT constraints. PASS: OT vulnerabilities are tracked (ICS-CERT/vendor advisories) + risk-prioritised, compensating controls (segmentation, virtual patching, hardening) cover what can't be patched, patchable assets follow a tested/vendor-approved/maintenance-window process with rollback, and unpatchable/EOL assets are tracked with controls. Exceptions: no OT vulnerability awareness, IT-style forced patching risking process disruption, unpatchable assets with no compensating controls, and untracked legacy/EOL OT exposure.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- ics_inventory.json   (in-scope items — OT vulnerability management adapted to ICS constraints (vulnerability awareness via vendor advisories/ICS-CERT, risk-based prioritisation since patching is constrained by uptime/safety))\n- ics_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Patch and vuln mgmt (ICS)\",\n  \"domain\": \"Industrial Control Systems (ICS)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ics_",
-        "/evidence/ics_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"OT / plant engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Patch and vuln mgmt (ICS)\" control must cover\n# fragment: patch_vuln_mgmt_",
+        "/evidence/README.md": "# AcmeCorp — Industrial Control Systems (ICS): \"Patch and vulnerability management (ICS)\" Audit Evidence\n\nThe test:\nVerify ICS vulnerabilities are managed within OT constraints. PASS: OT vulnerabilities are tracked (ICS-CERT/vendor advisories) + risk-prioritised, compensating controls (segmentation, virtual patching, hardening) cover what can't be patched, patchable assets follow a tested/vendor-approved/maintenance-window process with rollback, and unpatchable/EOL assets are tracked with controls. Exceptions: no OT vulnerability awareness, IT-style forced patching risking process disruption, unpatchable assets with no compensating controls, and untracked legacy/EOL OT exposure.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- ics_inventory.json   (in-scope items — OT vulnerability management adapted to ICS constraints (vulnerability awareness via vendor advisories/ICS-CERT, risk-based prioritisation since patching is constrained by uptime/safety))\n- ics_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Patch and vulnerability management (ICS)\",\n  \"domain\": \"Industrial Control Systems (ICS)\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ics_",
+        "/evidence/ics_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"OT / plant engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Patch and vulnerability management (ICS)\" control must cover\n# fragment: patch_vulnerability_management_",
         "/evidence/ics_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"EXCEPTIONS\"\n}\n# fragment: exceptions}"
       },
@@ -1681,7 +1681,7 @@ export const icsStages: StageConfig[] = [
         },
         {
           "trigger": "/evidence/ics_inventory.json",
-          "value": "patch_vuln_mgmt_",
+          "value": "patch_vulnerability_management_",
           "label": "Inventory — the in-scope items"
         },
         {
@@ -1702,12 +1702,12 @@ export const icsStages: StageConfig[] = [
           "id": "ics-05-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Patch and vuln mgmt (ICS)\" sub-process of Industrial Control Systems (ICS)?",
+          "text": "What is the primary audit objective for the \"Patch and vulnerability management (ICS)\" sub-process of Industrial Control Systems (ICS)?",
           "options": [
-            "Deploy and operate the patch and vuln mgmt (ics) control on the team's behalf so the gap is closed during fieldwork",
-            "Confirm management is comfortable that the patch and vuln mgmt (ics) control works, based on their verbal assurance",
-            "Benchmark how many tools the team uses for patch and vuln mgmt (ics) against comparable organisations in the sector",
-            "Obtain evidence that the patch and vuln mgmt (ics) control is designed and operating effectively, and quantify the gap where it is not"
+            "Deploy and operate the patch and vulnerability management (ics) control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the patch and vulnerability management (ics) control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for patch and vulnerability management (ics) against comparable organisations in the sector",
+            "Obtain evidence that the patch and vulnerability management (ics) control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
           "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
@@ -1716,7 +1716,7 @@ export const icsStages: StageConfig[] = [
           "id": "ics-05-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Patch and vuln mgmt (ICS)\" matter to the broader Industrial Control Systems (ICS) posture?",
+          "text": "Why does a weakness in \"Patch and vulnerability management (ICS)\" matter to the broader Industrial Control Systems (ICS) posture?",
           "options": [
             "It mainly affects how the annual compliance report reads, rather than the actual risk to Industrial Control Systems (ICS)",
             "It stops mattering once a firewall and endpoint agent are deployed across the Industrial Control Systems (ICS) estate",
@@ -1730,12 +1730,12 @@ export const icsStages: StageConfig[] = [
           "id": "ics-05-q3",
           "type": "Artifacts",
           "challenge": "Evidence",
-          "text": "Which artifact best evidences the \"Patch and vuln mgmt (ICS)\" control?",
+          "text": "Which artifact best evidences the \"Patch and vulnerability management (ICS)\" control?",
           "options": [
-            "A point-in-time screenshot of one system's patch and vuln mgmt (ics) settings, captured during the walkthrough",
+            "A point-in-time screenshot of one system's patch and vulnerability management (ics) settings, captured during the walkthrough",
             "The OT vulnerability management adapted to ICS constraints (vulnerability awareness via vendor advisories/ICS-CERT, risk-based prioritisation since patching is constrained by uptime/safety), reconciled against policy, plus the resulting findings working paper",
-            "A signed management attestation that the patch and vuln mgmt (ics) control is in place, with no underlying data attached",
-            "A vendor datasheet describing the product's patch and vuln mgmt (ics) capabilities and its recommended configuration"
+            "A signed management attestation that the patch and vulnerability management (ics) control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's patch and vulnerability management (ics) capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
           "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
@@ -1744,12 +1744,12 @@ export const icsStages: StageConfig[] = [
           "id": "ics-05-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where should an auditor pull the evidence for \"Patch and vuln mgmt (ICS)\"?",
+          "text": "Where should an auditor pull the evidence for \"Patch and vulnerability management (ICS)\"?",
           "options": [
             "From ICS-CERT / vendor advisory tracking and the other systems of record for this domain, accessed read-only",
             "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
             "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
-            "From an informal summary the team posted to the internal wiki describing how patch and vuln mgmt (ics) works"
+            "From an informal summary the team posted to the internal wiki describing how patch and vulnerability management (ics) works"
           ],
           "correctIndex": 0,
           "explanation": "Evidence must come from the authoritative systems (e.g. ICS-CERT / vendor advisory tracking) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
@@ -1758,11 +1758,11 @@ export const icsStages: StageConfig[] = [
           "id": "ics-05-q5",
           "type": "Data owner",
           "challenge": "Accountability",
-          "text": "Who is most likely accountable for the data behind \"Patch and vuln mgmt (ICS)\"?",
+          "text": "Who is most likely accountable for the data behind \"Patch and vulnerability management (ICS)\"?",
           "options": [
-            "The external audit firm, since it is the party examining the patch and vuln mgmt (ics) control this period",
+            "The external audit firm, since it is the party examining the patch and vulnerability management (ics) control this period",
             "Whoever most recently changed the configuration, regardless of their role or formal accountability",
-            "No single function — the patch and vuln mgmt (ics) data is shared, so the accountability sits with no one in particular",
+            "No single function — the patch and vulnerability management (ics) data is shared, so the accountability sits with no one in particular",
             "OT / ICS security, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
@@ -1772,7 +1772,7 @@ export const icsStages: StageConfig[] = [
           "id": "ics-05-q6",
           "type": "Agentic",
           "challenge": "Human vs agent",
-          "text": "In the agentic workflow for \"Patch and vuln mgmt (ICS)\", which part stays with the human auditor?",
+          "text": "In the agentic workflow for \"Patch and vulnerability management (ICS)\", which part stays with the human auditor?",
           "options": [
             "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
             "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
@@ -1800,7 +1800,7 @@ export const icsStages: StageConfig[] = [
           "id": "ics-05-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Patch and vuln mgmt (ICS)\", which of these is a realistic reportable finding?",
+          "text": "For \"Patch and vulnerability management (ICS)\", which of these is a realistic reportable finding?",
           "options": [
             "OT vulnerabilities are neither tracked nor compensated — controllers run years-old firmware with public exploits, patching is deemed 'too risky' so nothing is done, and there are no compensating controls like segmentation or virtual patching.",
             "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
@@ -1828,9 +1828,9 @@ export const icsStages: StageConfig[] = [
           "id": "ics-05-q10",
           "type": "Privacy/Risk",
           "challenge": "The data angle",
-          "text": "Why does auditing \"Patch and vuln mgmt (ICS)\" also serve privacy and regulatory goals?",
+          "text": "Why does auditing \"Patch and vulnerability management (ICS)\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators review only written policy documents, never the technical controls behind patch and vuln mgmt (ics), so there is no overlap",
+            "Regulators review only written policy documents, never the technical controls behind patch and vulnerability management (ics), so there is no overlap",
             "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
             "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
             "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"

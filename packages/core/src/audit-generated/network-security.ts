@@ -1862,15 +1862,15 @@ export const networkSecurityStages: StageConfig[] = [
     "epochId": "network-security",
     "id": "net-06",
     "order": 6,
-    "title": "Device config mgmt and backups",
-    "subtitle": "Agentic technical & privacy audit of the device config mgmt and backups control",
+    "title": "Device configuration management and backups",
+    "subtitle": "Agentic technical & privacy audit of the device configuration management and backups control",
     "category": "cybersecurity",
     "xp": 180,
     "easeScore": 8,
     "valueScore": 9,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Device config mgmt and backups\" control for Network Security is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Assess network-device configuration governance. PASS: every device's config is backed up automatically and version-controlled; configs are diffed against a hardened baseline (TACACS+/AAA, SSHv2 only, SNMPv3, NTP, logging, no telnet/http); drift is detected; firmware is supported and patched; and changes go through change control. Exceptions: devices with no config backup, telnet/SNMPv1/HTTP enabled, default or shared credentials, end-of-life firmware with known CVEs, and out-of-band config changes.",
+      "objective": "Prove the \"Device configuration management and backups\" control for Network Security is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Assess network-device configuration governance. PASS: every device's config is backed up automatically and version-controlled; configs are diffed against a hardened baseline (TACACS+/AAA, SSHv2 only, SNMPv3, NTP, logging, no telnet/http); drift is detected; firmware is supported and patched; and changes go through change control. Exceptions: devices with no config backup, telnet/SNMPv1/HTTP enabled, default or shared credentials, end-of-life firmware with known CVEs, and out-of-band config changes.",
       "approach": "An audit agent calls a read-only MCP server that wraps the Network Security systems of record (NCCM — SolarWinds NCM / Oxidized / RANCID / Cisco DNA Center; TACACS+/RADIUS (device AAA); Config-backup store / git) as tools — e.g. `Oxidized/RANCID/NCM: confirm every device has a recent successful conf`, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "Each network device's running-config plus the approved hardened baseline to diff against",
@@ -1900,26 +1900,26 @@ export const networkSecurityStages: StageConfig[] = [
       "emoji": "🌐"
     },
     "wonder": {
-      "name": "Device config mgmt and backups",
+      "name": "Device configuration management and backups",
       "location": "Network Security",
       "era": "Present Day",
       "emoji": "🌐"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Device config mgmt and backups\" as a repeatable agentic workflow: pull the real evidence (Each network device's running-config plus the approved hardened baseline to diff against) with read-only agents, run the test against policy, and issue a defensible opinion on the Network Security control.",
+      "tagline": "Auditing \"Device configuration management and backups\" as a repeatable agentic workflow: pull the real evidence (Each network device's running-config plus the approved hardened baseline to diff against) with read-only agents, run the test against policy, and issue a defensible opinion on the Network Security control.",
       "year": 2025,
       "overview": [
-        "The \"Device config mgmt and backups\" sub-process is one of the controls an auditor must verify for Network Security. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me each network device's running-config plus the approved hardened baseline to diff against, for everything in scope.\"",
+        "The \"Device configuration management and backups\" sub-process is one of the controls an auditor must verify for Network Security. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me each network device's running-config plus the approved hardened baseline to diff against, for everything in scope.\"",
         "The evidence lives across systems that were never reconciled — here NCCM — SolarWinds NCM / Oxidized / RANCID / Cisco DNA Center, TACACS+/RADIUS (device AAA), Config-backup store / git — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. In practice you gather it with calls like `Oxidized/RANCID/NCM: confirm every device has a recent successful config backup` — read-only, against the systems of record.",
         "The test itself is specific. Assess network-device configuration governance. PASS: every device's config is backed up automatically and version-controlled; configs are diffed against a hardened baseline (TACACS+/AAA, SSHv2 only, SNMPv3, NTP, logging, no telnet/http); drift is detected; firmware is supported and patched; and changes go through change control. Exceptions: devices with no config backup, telnet/SNMPv1/HTTP enabled, default or shared credentials, end-of-life firmware with known CVEs, and out-of-band config changes. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `06_device_config_mgmt_and_backups_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from NCCM — SolarWinds NCM / Oxidized / RANCID / Cisco DNA Center and TACACS+/RADIUS (device AAA) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
+          "The included `06_device_configuration_management_and_backups_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from NCCM — SolarWinds NCM / Oxidized / RANCID / Cisco DNA Center and TACACS+/RADIUS (device AAA) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
           "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
-          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 06_device_config_mgmt_and_backups_mcp.py` to expose it to your agent — or `python 06_device_config_mgmt_and_backups_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
+          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 06_device_configuration_management_and_backups_mcp.py` to expose it to your agent — or `python 06_device_configuration_management_and_backups_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
           "label": "coverage_report() — the audit deliverable (excerpt)",
@@ -1972,7 +1972,7 @@ export const networkSecurityStages: StageConfig[] = [
         },
         {
           "year": 2025,
-          "event": "Agentic evidence-gathering becomes the practical way to keep \"Device config mgmt and backups\" continuously assured",
+          "event": "Agentic evidence-gathering becomes the practical way to keep \"Device configuration management and backups\" continuously assured",
           "highlight": true
         }
       ],
@@ -2009,14 +2009,14 @@ export const networkSecurityStages: StageConfig[] = [
       ],
       "downloads": [
         {
-          "name": "06_device_config_mgmt_and_backups_mcp.py",
-          "url": "/audit-code/network-security/06_device_config_mgmt_and_backups_mcp.py",
-          "description": "Runnable read-only MCP server: gathers the Network Security evidence for \"Device config mgmt and backups\" (each network device's running-config plus the approved hardened baseline to diff against), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "name": "06_device_configuration_management_and_backups_mcp.py",
+          "url": "/audit-code/network-security/06_device_configuration_management_and_backups_mcp.py",
+          "description": "Runnable read-only MCP server: gathers the Network Security evidence for \"Device configuration management and backups\" (each network device's running-config plus the approved hardened baseline to diff against), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Device config mgmt and backups\" control for Network Security at AcmeCorp. THE TEST: Assess network-device configuration governance. PASS: every device's config is backed up automatically and version-controlled; configs are diffed against a hardened baseline (TACACS+/AAA, SSHv2 only, SNMPv3, NTP, logging, no telnet/http); drift is detected; firmware is supported and patched; and changes go through change control. Exceptions: devices with no config backup, telnet/SNMPv1/HTTP enabled, default or shared credentials, end-of-life firmware with known CVEs, and out-of-band config changes. The evidence — Each network device's running-config plus the approved hardened baseline to diff against — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live NCCM — SolarWinds NCM / Oxidized / RANCID / Cisco DNA Center APIs; here the same sources are exported to files.)",
+      "scenario": "You're the auditor testing the \"Device configuration management and backups\" control for Network Security at AcmeCorp. THE TEST: Assess network-device configuration governance. PASS: every device's config is backed up automatically and version-controlled; configs are diffed against a hardened baseline (TACACS+/AAA, SSHv2 only, SNMPv3, NTP, logging, no telnet/http); drift is detected; firmware is supported and patched; and changes go through change control. Exceptions: devices with no config backup, telnet/SNMPv1/HTTP enabled, default or shared credentials, end-of-life firmware with known CVEs, and out-of-band config changes. The evidence — Each network device's running-config plus the approved hardened baseline to diff against — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live NCCM — SolarWinds NCM / Oxidized / RANCID / Cisco DNA Center APIs; here the same sources are exported to files.)",
       "hint": "Read every file in /evidence. NCCM — SolarWinds NCM / Oxidized / RANCID / Cisco DNA Center gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
         "cat each file in /evidence. The inventory comes from NCCM — SolarWinds NCM / Oxidized / RANCID / Cisco DNA Center; the state file shows what is actually configured/running.",
@@ -2024,9 +2024,9 @@ export const networkSecurityStages: StageConfig[] = [
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Network Security: \"Device config mgmt and backups\" Audit Evidence\n\nThe test:\nAssess network-device configuration governance. PASS: every device's config is backed up automatically and version-controlled; configs are diffed against a hardened baseline (TACACS+/AAA, SSHv2 only, SNMPv3, NTP, logging, no telnet/http); drift is detected; firmware is supported and patched; and changes go through change control. Exceptions: devices with no config backup, telnet/SNMPv1/HTTP enabled, default or shared credentials, end-of-life firmware with known CVEs, and out-of-band config changes.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- network-security_inventory.json   (in-scope items — Each network device's running-config plus the approved hardened baseline to diff against)\n- network-security_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Device config mgmt and backups\",\n  \"domain\": \"Network Security\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{net_",
-        "/evidence/network-security_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Network engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Device config mgmt and backups\" control must cover\n# fragment: device_config_mgmt_",
+        "/evidence/README.md": "# AcmeCorp — Network Security: \"Device configuration management and backups\" Audit Evidence\n\nThe test:\nAssess network-device configuration governance. PASS: every device's config is backed up automatically and version-controlled; configs are diffed against a hardened baseline (TACACS+/AAA, SSHv2 only, SNMPv3, NTP, logging, no telnet/http); drift is detected; firmware is supported and patched; and changes go through change control. Exceptions: devices with no config backup, telnet/SNMPv1/HTTP enabled, default or shared credentials, end-of-life firmware with known CVEs, and out-of-band config changes.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- network-security_inventory.json   (in-scope items — Each network device's running-config plus the approved hardened baseline to diff against)\n- network-security_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Device configuration management and backups\",\n  \"domain\": \"Network Security\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{net_",
+        "/evidence/network-security_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Network engineering\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Device configuration management and backups\" control must cover\n# fragment: device_configuration_management_",
         "/evidence/network-security_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
       },
@@ -2068,7 +2068,7 @@ export const networkSecurityStages: StageConfig[] = [
         },
         {
           "trigger": "/evidence/network-security_inventory.json",
-          "value": "device_config_mgmt_",
+          "value": "device_configuration_management_",
           "label": "Inventory — the in-scope items"
         },
         {
@@ -2089,12 +2089,12 @@ export const networkSecurityStages: StageConfig[] = [
           "id": "net-06-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Device config mgmt and backups\" sub-process of Network Security?",
+          "text": "What is the primary audit objective for the \"Device configuration management and backups\" sub-process of Network Security?",
           "options": [
-            "Deploy and operate the device config mgmt and backups control on the team's behalf so the gap is closed during fieldwork",
-            "Confirm management is comfortable that the device config mgmt and backups control works, based on their verbal assurance",
-            "Benchmark how many tools the team uses for device config mgmt and backups against comparable organisations in the sector",
-            "Obtain evidence that the device config mgmt and backups control is designed and operating effectively, and quantify the gap where it is not"
+            "Deploy and operate the device configuration management and backups control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the device configuration management and backups control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for device configuration management and backups against comparable organisations in the sector",
+            "Obtain evidence that the device configuration management and backups control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
           "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
@@ -2103,7 +2103,7 @@ export const networkSecurityStages: StageConfig[] = [
           "id": "net-06-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Device config mgmt and backups\" matter to the broader Network Security posture?",
+          "text": "Why does a weakness in \"Device configuration management and backups\" matter to the broader Network Security posture?",
           "options": [
             "It mainly affects how the annual compliance report reads, rather than the actual risk to Network Security",
             "It stops mattering once a firewall and endpoint agent are deployed across the Network Security estate",
@@ -2117,12 +2117,12 @@ export const networkSecurityStages: StageConfig[] = [
           "id": "net-06-q3",
           "type": "Artifacts",
           "challenge": "Evidence",
-          "text": "Which artifact best evidences the \"Device config mgmt and backups\" control?",
+          "text": "Which artifact best evidences the \"Device configuration management and backups\" control?",
           "options": [
-            "A point-in-time screenshot of one system's device config mgmt and backups settings, captured during the walkthrough",
+            "A point-in-time screenshot of one system's device configuration management and backups settings, captured during the walkthrough",
             "The Each network device's running-config plus the approved hardened baseline to diff against, reconciled against policy, plus the resulting findings working paper",
-            "A signed management attestation that the device config mgmt and backups control is in place, with no underlying data attached",
-            "A vendor datasheet describing the product's device config mgmt and backups capabilities and its recommended configuration"
+            "A signed management attestation that the device configuration management and backups control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's device configuration management and backups capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
           "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
@@ -2131,12 +2131,12 @@ export const networkSecurityStages: StageConfig[] = [
           "id": "net-06-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where should an auditor pull the evidence for \"Device config mgmt and backups\"?",
+          "text": "Where should an auditor pull the evidence for \"Device configuration management and backups\"?",
           "options": [
             "From NCCM — SolarWinds NCM / Oxidized / RANCID / Cisco DNA Center and the other systems of record for this domain, accessed read-only",
             "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
             "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
-            "From an informal summary the team posted to the internal wiki describing how device config mgmt and backups works"
+            "From an informal summary the team posted to the internal wiki describing how device configuration management and backups works"
           ],
           "correctIndex": 0,
           "explanation": "Evidence must come from the authoritative systems (e.g. NCCM — SolarWinds NCM / Oxidized / RANCID / Cisco DNA Center) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
@@ -2145,11 +2145,11 @@ export const networkSecurityStages: StageConfig[] = [
           "id": "net-06-q5",
           "type": "Data owner",
           "challenge": "Accountability",
-          "text": "Who is most likely accountable for the data behind \"Device config mgmt and backups\"?",
+          "text": "Who is most likely accountable for the data behind \"Device configuration management and backups\"?",
           "options": [
-            "The external audit firm, since it is the party examining the device config mgmt and backups control this period",
+            "The external audit firm, since it is the party examining the device configuration management and backups control this period",
             "Whoever most recently changed the configuration, regardless of their role or formal accountability",
-            "No single function — the device config mgmt and backups data is shared, so the accountability sits with no one in particular",
+            "No single function — the device configuration management and backups data is shared, so the accountability sits with no one in particular",
             "Network engineering — owns device config, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
@@ -2159,7 +2159,7 @@ export const networkSecurityStages: StageConfig[] = [
           "id": "net-06-q6",
           "type": "Agentic",
           "challenge": "Human vs agent",
-          "text": "In the agentic workflow for \"Device config mgmt and backups\", which part stays with the human auditor?",
+          "text": "In the agentic workflow for \"Device configuration management and backups\", which part stays with the human auditor?",
           "options": [
             "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
             "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
@@ -2187,7 +2187,7 @@ export const networkSecurityStages: StageConfig[] = [
           "id": "net-06-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Device config mgmt and backups\", which of these is a realistic reportable finding?",
+          "text": "For \"Device configuration management and backups\", which of these is a realistic reportable finding?",
           "options": [
             "A dozen access switches still run telnet with a shared 'cisco' enable password, several core devices are past end-of-life with known CVEs, and three devices have no config backup at all — no recovery if they fail.",
             "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
@@ -2215,9 +2215,9 @@ export const networkSecurityStages: StageConfig[] = [
           "id": "net-06-q10",
           "type": "Privacy/Risk",
           "challenge": "The data angle",
-          "text": "Why does auditing \"Device config mgmt and backups\" also serve privacy and regulatory goals?",
+          "text": "Why does auditing \"Device configuration management and backups\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators review only written policy documents, never the technical controls behind device config mgmt and backups, so there is no overlap",
+            "Regulators review only written policy documents, never the technical controls behind device configuration management and backups, so there is no overlap",
             "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
             "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
             "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"

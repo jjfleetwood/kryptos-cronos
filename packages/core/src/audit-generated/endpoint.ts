@@ -1110,15 +1110,15 @@ export const endpointStages: StageConfig[] = [
     "epochId": "endpoint",
     "id": "ept-04",
     "order": 4,
-    "title": "Device image version mgmt",
-    "subtitle": "Agentic technical & privacy audit of the device image version mgmt control",
+    "title": "Device image version management",
+    "subtitle": "Agentic technical & privacy audit of the device image version management control",
     "category": "cybersecurity",
     "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Device image version mgmt\" control for Endpoint Devices is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Verify endpoints run a current, approved, hardened image. PASS: gold images are versioned, hardened (CIS), and patched at bake; the fleet runs current image versions; and re-imaging/refresh keeps drift bounded. Exceptions: devices on images years old, unapproved/unmanaged builds, images that ship unpatched or unhardened, and no process to refresh stale images.",
+      "objective": "Prove the \"Device image version management\" control for Endpoint Devices is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Verify endpoints run a current, approved, hardened image. PASS: gold images are versioned, hardened (CIS), and patched at bake; the fleet runs current image versions; and re-imaging/refresh keeps drift bounded. Exceptions: devices on images years old, unapproved/unmanaged builds, images that ship unpatched or unhardened, and no process to refresh stale images.",
       "approach": "An audit agent calls a read-only MCP server that wraps the Endpoint Devices systems of record (Imaging — Autopilot / MDT-SCCM / Jamf (the gold-image pipeline); MDM (deployed image/build version); CIS-CAT (image hardening)) as tools — e.g. `MDM: deployed OS build + image-version distribution across the fleet`, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "The approved gold-image/build definitions + versions per OS",
@@ -1147,26 +1147,26 @@ export const endpointStages: StageConfig[] = [
       "emoji": "💻"
     },
     "wonder": {
-      "name": "Device image version mgmt",
+      "name": "Device image version management",
       "location": "Endpoint Devices",
       "era": "Present Day",
       "emoji": "💻"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Device image version mgmt\" as a repeatable agentic workflow: pull the real evidence (The approved gold-image/build definitions + versions per OS) with read-only agents, run the test against policy, and issue a defensible opinion on the Endpoint Devices control.",
+      "tagline": "Auditing \"Device image version management\" as a repeatable agentic workflow: pull the real evidence (The approved gold-image/build definitions + versions per OS) with read-only agents, run the test against policy, and issue a defensible opinion on the Endpoint Devices control.",
       "year": 2025,
       "overview": [
-        "The \"Device image version mgmt\" sub-process is one of the controls an auditor must verify for Endpoint Devices. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me the approved gold-image/build definitions + versions per OS, for everything in scope.\"",
+        "The \"Device image version management\" sub-process is one of the controls an auditor must verify for Endpoint Devices. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me the approved gold-image/build definitions + versions per OS, for everything in scope.\"",
         "The evidence lives across systems that were never reconciled — here Imaging — Autopilot / MDT-SCCM / Jamf (the gold-image pipeline), MDM (deployed image/build version), CIS-CAT (image hardening) — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. In practice you gather it with calls like `MDM: deployed OS build + image-version distribution across the fleet` — read-only, against the systems of record.",
         "The test itself is specific. Verify endpoints run a current, approved, hardened image. PASS: gold images are versioned, hardened (CIS), and patched at bake; the fleet runs current image versions; and re-imaging/refresh keeps drift bounded. Exceptions: devices on images years old, unapproved/unmanaged builds, images that ship unpatched or unhardened, and no process to refresh stale images. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `04_device_image_version_mgmt_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Imaging — Autopilot / MDT-SCCM / Jamf (the gold-image pipeline) and MDM (deployed image/build version) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
+          "The included `04_device_image_version_management_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Imaging — Autopilot / MDT-SCCM / Jamf (the gold-image pipeline) and MDM (deployed image/build version) (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
           "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
-          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 04_device_image_version_mgmt_mcp.py` to expose it to your agent — or `python 04_device_image_version_mgmt_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
+          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 04_device_image_version_management_mcp.py` to expose it to your agent — or `python 04_device_image_version_management_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
           "label": "coverage_report() — the audit deliverable (excerpt)",
@@ -1219,7 +1219,7 @@ export const endpointStages: StageConfig[] = [
         },
         {
           "year": 2025,
-          "event": "Agentic evidence-gathering becomes the practical way to keep \"Device image version mgmt\" continuously assured",
+          "event": "Agentic evidence-gathering becomes the practical way to keep \"Device image version management\" continuously assured",
           "highlight": true
         }
       ],
@@ -1252,14 +1252,14 @@ export const endpointStages: StageConfig[] = [
       ],
       "downloads": [
         {
-          "name": "04_device_image_version_mgmt_mcp.py",
-          "url": "/audit-code/endpoint/04_device_image_version_mgmt_mcp.py",
-          "description": "Runnable read-only MCP server: gathers the Endpoint Devices evidence for \"Device image version mgmt\" (the approved gold-image/build definitions + versions per os), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "name": "04_device_image_version_management_mcp.py",
+          "url": "/audit-code/endpoint/04_device_image_version_management_mcp.py",
+          "description": "Runnable read-only MCP server: gathers the Endpoint Devices evidence for \"Device image version management\" (the approved gold-image/build definitions + versions per os), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Device image version mgmt\" control for Endpoint Devices at AcmeCorp. THE TEST: Verify endpoints run a current, approved, hardened image. PASS: gold images are versioned, hardened (CIS), and patched at bake; the fleet runs current image versions; and re-imaging/refresh keeps drift bounded. Exceptions: devices on images years old, unapproved/unmanaged builds, images that ship unpatched or unhardened, and no process to refresh stale images. The evidence — The approved gold-image/build definitions + versions per OS — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Imaging — Autopilot / MDT-SCCM / Jamf (the gold-image pipeline) APIs; here the same sources are exported to files.)",
+      "scenario": "You're the auditor testing the \"Device image version management\" control for Endpoint Devices at AcmeCorp. THE TEST: Verify endpoints run a current, approved, hardened image. PASS: gold images are versioned, hardened (CIS), and patched at bake; the fleet runs current image versions; and re-imaging/refresh keeps drift bounded. Exceptions: devices on images years old, unapproved/unmanaged builds, images that ship unpatched or unhardened, and no process to refresh stale images. The evidence — The approved gold-image/build definitions + versions per OS — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Imaging — Autopilot / MDT-SCCM / Jamf (the gold-image pipeline) APIs; here the same sources are exported to files.)",
       "hint": "Read every file in /evidence. Imaging — Autopilot / MDT-SCCM / Jamf (the gold-image pipeline) gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
         "cat each file in /evidence. The inventory comes from Imaging — Autopilot / MDT-SCCM / Jamf (the gold-image pipeline); the state file shows what is actually configured/running.",
@@ -1267,9 +1267,9 @@ export const endpointStages: StageConfig[] = [
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Endpoint Devices: \"Device image version mgmt\" Audit Evidence\n\nThe test:\nVerify endpoints run a current, approved, hardened image. PASS: gold images are versioned, hardened (CIS), and patched at bake; the fleet runs current image versions; and re-imaging/refresh keeps drift bounded. Exceptions: devices on images years old, unapproved/unmanaged builds, images that ship unpatched or unhardened, and no process to refresh stale images.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- endpoint_inventory.json   (in-scope items — The approved gold-image/build definitions + versions per OS)\n- endpoint_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Device image version mgmt\",\n  \"domain\": \"Endpoint Devices\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ept_",
-        "/evidence/endpoint_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"End-user computing / IT\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Device image version mgmt\" control must cover\n# fragment: device_image_version_",
+        "/evidence/README.md": "# AcmeCorp — Endpoint Devices: \"Device image version management\" Audit Evidence\n\nThe test:\nVerify endpoints run a current, approved, hardened image. PASS: gold images are versioned, hardened (CIS), and patched at bake; the fleet runs current image versions; and re-imaging/refresh keeps drift bounded. Exceptions: devices on images years old, unapproved/unmanaged builds, images that ship unpatched or unhardened, and no process to refresh stale images.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- endpoint_inventory.json   (in-scope items — The approved gold-image/build definitions + versions per OS)\n- endpoint_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Device image version management\",\n  \"domain\": \"Endpoint Devices\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{ept_",
+        "/evidence/endpoint_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"End-user computing / IT\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Device image version management\" control must cover\n# fragment: device_image_version_",
         "/evidence/endpoint_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
       },
@@ -1332,12 +1332,12 @@ export const endpointStages: StageConfig[] = [
           "id": "ept-04-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Device image version mgmt\" sub-process of Endpoint Devices?",
+          "text": "What is the primary audit objective for the \"Device image version management\" sub-process of Endpoint Devices?",
           "options": [
-            "Deploy and operate the device image version mgmt control on the team's behalf so the gap is closed during fieldwork",
-            "Confirm management is comfortable that the device image version mgmt control works, based on their verbal assurance",
-            "Benchmark how many tools the team uses for device image version mgmt against comparable organisations in the sector",
-            "Obtain evidence that the device image version mgmt control is designed and operating effectively, and quantify the gap where it is not"
+            "Deploy and operate the device image version management control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the device image version management control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for device image version management against comparable organisations in the sector",
+            "Obtain evidence that the device image version management control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
           "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
@@ -1346,7 +1346,7 @@ export const endpointStages: StageConfig[] = [
           "id": "ept-04-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Device image version mgmt\" matter to the broader Endpoint Devices posture?",
+          "text": "Why does a weakness in \"Device image version management\" matter to the broader Endpoint Devices posture?",
           "options": [
             "It mainly affects how the annual compliance report reads, rather than the actual risk to Endpoint Devices",
             "It stops mattering once a firewall and endpoint agent are deployed across the Endpoint Devices estate",
@@ -1360,12 +1360,12 @@ export const endpointStages: StageConfig[] = [
           "id": "ept-04-q3",
           "type": "Artifacts",
           "challenge": "Evidence",
-          "text": "Which artifact best evidences the \"Device image version mgmt\" control?",
+          "text": "Which artifact best evidences the \"Device image version management\" control?",
           "options": [
-            "A point-in-time screenshot of one system's device image version mgmt settings, captured during the walkthrough",
+            "A point-in-time screenshot of one system's device image version management settings, captured during the walkthrough",
             "The The approved gold-image/build definitions + versions per OS, reconciled against policy, plus the resulting findings working paper",
-            "A signed management attestation that the device image version mgmt control is in place, with no underlying data attached",
-            "A vendor datasheet describing the product's device image version mgmt capabilities and its recommended configuration"
+            "A signed management attestation that the device image version management control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's device image version management capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
           "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
@@ -1374,12 +1374,12 @@ export const endpointStages: StageConfig[] = [
           "id": "ept-04-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where should an auditor pull the evidence for \"Device image version mgmt\"?",
+          "text": "Where should an auditor pull the evidence for \"Device image version management\"?",
           "options": [
             "From Imaging — Autopilot / MDT-SCCM / Jamf (the gold-image pipeline) and the other systems of record for this domain, accessed read-only",
             "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
             "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
-            "From an informal summary the team posted to the internal wiki describing how device image version mgmt works"
+            "From an informal summary the team posted to the internal wiki describing how device image version management works"
           ],
           "correctIndex": 0,
           "explanation": "Evidence must come from the authoritative systems (e.g. Imaging — Autopilot / MDT-SCCM / Jamf (the gold-image pipeline)) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
@@ -1388,11 +1388,11 @@ export const endpointStages: StageConfig[] = [
           "id": "ept-04-q5",
           "type": "Data owner",
           "challenge": "Accountability",
-          "text": "Who is most likely accountable for the data behind \"Device image version mgmt\"?",
+          "text": "Who is most likely accountable for the data behind \"Device image version management\"?",
           "options": [
-            "The external audit firm, since it is the party examining the device image version mgmt control this period",
+            "The external audit firm, since it is the party examining the device image version management control this period",
             "Whoever most recently changed the configuration, regardless of their role or formal accountability",
-            "No single function — the device image version mgmt data is shared, so the accountability sits with no one in particular",
+            "No single function — the device image version management data is shared, so the accountability sits with no one in particular",
             "End-user computing / engineering — owns images, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
@@ -1402,7 +1402,7 @@ export const endpointStages: StageConfig[] = [
           "id": "ept-04-q6",
           "type": "Agentic",
           "challenge": "Human vs agent",
-          "text": "In the agentic workflow for \"Device image version mgmt\", which part stays with the human auditor?",
+          "text": "In the agentic workflow for \"Device image version management\", which part stays with the human auditor?",
           "options": [
             "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
             "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
@@ -1430,7 +1430,7 @@ export const endpointStages: StageConfig[] = [
           "id": "ept-04-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Device image version mgmt\", which of these is a realistic reportable finding?",
+          "text": "For \"Device image version management\", which of these is a realistic reportable finding?",
           "options": [
             "A third of the fleet runs a gold image from two years ago with known-unpatched components baked in, and several departments use their own unapproved, unhardened images.",
             "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
@@ -1458,9 +1458,9 @@ export const endpointStages: StageConfig[] = [
           "id": "ept-04-q10",
           "type": "Privacy/Risk",
           "challenge": "The data angle",
-          "text": "Why does auditing \"Device image version mgmt\" also serve privacy and regulatory goals?",
+          "text": "Why does auditing \"Device image version management\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators review only written policy documents, never the technical controls behind device image version mgmt, so there is no overlap",
+            "Regulators review only written policy documents, never the technical controls behind device image version management, so there is no overlap",
             "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
             "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
             "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"

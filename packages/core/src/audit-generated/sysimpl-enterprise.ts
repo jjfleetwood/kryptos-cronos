@@ -15,15 +15,15 @@ export const sysimplEnterpriseStages: StageConfig[] = [
     "epochId": "sysimpl-enterprise",
     "id": "sie-01",
     "order": 1,
-    "title": "Program & project mgmt (PMO)",
-    "subtitle": "Agentic technical & privacy audit of the program & project mgmt (pmo) control",
+    "title": "Program & project management (PMO)",
+    "subtitle": "Agentic technical & privacy audit of the program & project management (pmo) control",
     "category": "cybersecurity",
     "xp": 140,
     "easeScore": 5,
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Program & project mgmt (PMO)\" control for System Implementation — Enterprise is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Verify the program is managed with discipline. PASS: there's a baselined plan (charter, scope, schedule, budget), an active RAID log, status + milestone/budget tracking against baseline, scope change-control, a RACI/decision log, and stage-gate approvals before each phase. Exceptions: no baselined plan or RAID log, status reporting that doesn't track to baseline (green-shifting), uncontrolled scope creep, and phases proceeding with no stage-gate approval.",
+      "objective": "Prove the \"Program & project management (PMO)\" control for System Implementation — Enterprise is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Verify the program is managed with discipline. PASS: there's a baselined plan (charter, scope, schedule, budget), an active RAID log, status + milestone/budget tracking against baseline, scope change-control, a RACI/decision log, and stage-gate approvals before each phase. Exceptions: no baselined plan or RAID log, status reporting that doesn't track to baseline (green-shifting), uncontrolled scope creep, and phases proceeding with no stage-gate approval.",
       "approach": "An audit agent calls a read-only MCP server that wraps the System Implementation — Enterprise systems of record (PPM / PMO tooling; RAID / issue + change log; Schedule + budget baseline (EVM)) as tools — e.g. `the baselined plan: charter + scope + schedule + budget + RAID log`, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "The program/project management plan + governance (charter, scope, schedule, RAID log — risks/assumptions/issues/dependencies, stage-gates)",
@@ -53,26 +53,26 @@ export const sysimplEnterpriseStages: StageConfig[] = [
       "emoji": "🏛️"
     },
     "wonder": {
-      "name": "Program & project mgmt (PMO)",
+      "name": "Program & project management (PMO)",
       "location": "System Implementation — Enterprise",
       "era": "Present Day",
       "emoji": "🏛️"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Program & project mgmt (PMO)\" as a repeatable agentic workflow: pull the real evidence (The program/project management plan + governance (charter, scope, schedule, RAID log — risks/assumptions/issues/dependencies, stage-gates)) with read-only agents, run the test against policy, and issue a defensible opinion on the System Implementation — Enterprise control.",
+      "tagline": "Auditing \"Program & project management (PMO)\" as a repeatable agentic workflow: pull the real evidence (The program/project management plan + governance (charter, scope, schedule, RAID log — risks/assumptions/issues/dependencies, stage-gates)) with read-only agents, run the test against policy, and issue a defensible opinion on the System Implementation — Enterprise control.",
       "year": 2025,
       "overview": [
-        "The \"Program & project mgmt (PMO)\" sub-process is one of the controls an auditor must verify for System Implementation — Enterprise. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me the program/project management plan + governance (charter, scope, schedule, RAID log — risks/assumptions/issues/dependencies, stage-gates), for everything in scope.\"",
+        "The \"Program & project management (PMO)\" sub-process is one of the controls an auditor must verify for System Implementation — Enterprise. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me the program/project management plan + governance (charter, scope, schedule, RAID log — risks/assumptions/issues/dependencies, stage-gates), for everything in scope.\"",
         "The evidence lives across systems that were never reconciled — here PPM / PMO tooling, RAID / issue + change log, Schedule + budget baseline (EVM) — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. In practice you gather it with calls like `the baselined plan: charter + scope + schedule + budget + RAID log` — read-only, against the systems of record.",
         "The test itself is specific. Verify the program is managed with discipline. PASS: there's a baselined plan (charter, scope, schedule, budget), an active RAID log, status + milestone/budget tracking against baseline, scope change-control, a RACI/decision log, and stage-gate approvals before each phase. Exceptions: no baselined plan or RAID log, status reporting that doesn't track to baseline (green-shifting), uncontrolled scope creep, and phases proceeding with no stage-gate approval. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `01_program_project_mgmt_pmo_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from PPM / PMO tooling and RAID / issue + change log (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
+          "The included `01_program_project_management_pmo_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from PPM / PMO tooling and RAID / issue + change log (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
           "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
-          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 01_program_project_mgmt_pmo_mcp.py` to expose it to your agent — or `python 01_program_project_mgmt_pmo_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
+          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 01_program_project_management_pmo_mcp.py` to expose it to your agent — or `python 01_program_project_management_pmo_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
           "label": "coverage_report() — the audit deliverable (excerpt)",
@@ -125,7 +125,7 @@ export const sysimplEnterpriseStages: StageConfig[] = [
         },
         {
           "year": 2025,
-          "event": "Agentic evidence-gathering becomes the practical way to keep \"Program & project mgmt (PMO)\" continuously assured",
+          "event": "Agentic evidence-gathering becomes the practical way to keep \"Program & project management (PMO)\" continuously assured",
           "highlight": true
         }
       ],
@@ -158,14 +158,14 @@ export const sysimplEnterpriseStages: StageConfig[] = [
       ],
       "downloads": [
         {
-          "name": "01_program_project_mgmt_pmo_mcp.py",
-          "url": "/audit-code/sysimpl-enterprise/01_program_project_mgmt_pmo_mcp.py",
-          "description": "Runnable read-only MCP server: gathers the System Implementation — Enterprise evidence for \"Program & project mgmt (PMO)\" (the program/project management plan + governance (charter, scope, schedule, raid log — risks/assumptions/issues/dependencies, stage-gates)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "name": "01_program_project_management_pmo_mcp.py",
+          "url": "/audit-code/sysimpl-enterprise/01_program_project_management_pmo_mcp.py",
+          "description": "Runnable read-only MCP server: gathers the System Implementation — Enterprise evidence for \"Program & project management (PMO)\" (the program/project management plan + governance (charter, scope, schedule, raid log — risks/assumptions/issues/dependencies, stage-gates)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Program & project mgmt (PMO)\" control for System Implementation — Enterprise at AcmeCorp. THE TEST: Verify the program is managed with discipline. PASS: there's a baselined plan (charter, scope, schedule, budget), an active RAID log, status + milestone/budget tracking against baseline, scope change-control, a RACI/decision log, and stage-gate approvals before each phase. Exceptions: no baselined plan or RAID log, status reporting that doesn't track to baseline (green-shifting), uncontrolled scope creep, and phases proceeding with no stage-gate approval. The evidence — The program/project management plan + governance (charter, scope, schedule, RAID log — risks/assumptions/issues/dependencies, stage-gates) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live PPM / PMO tooling APIs; here the same sources are exported to files.)",
+      "scenario": "You're the auditor testing the \"Program & project management (PMO)\" control for System Implementation — Enterprise at AcmeCorp. THE TEST: Verify the program is managed with discipline. PASS: there's a baselined plan (charter, scope, schedule, budget), an active RAID log, status + milestone/budget tracking against baseline, scope change-control, a RACI/decision log, and stage-gate approvals before each phase. Exceptions: no baselined plan or RAID log, status reporting that doesn't track to baseline (green-shifting), uncontrolled scope creep, and phases proceeding with no stage-gate approval. The evidence — The program/project management plan + governance (charter, scope, schedule, RAID log — risks/assumptions/issues/dependencies, stage-gates) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live PPM / PMO tooling APIs; here the same sources are exported to files.)",
       "hint": "Read every file in /evidence. PPM / PMO tooling gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
         "cat each file in /evidence. The inventory comes from PPM / PMO tooling; the state file shows what is actually configured/running.",
@@ -173,9 +173,9 @@ export const sysimplEnterpriseStages: StageConfig[] = [
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — System Implementation — Enterprise: \"Program & project mgmt (PMO)\" Audit Evidence\n\nThe test:\nVerify the program is managed with discipline. PASS: there's a baselined plan (charter, scope, schedule, budget), an active RAID log, status + milestone/budget tracking against baseline, scope change-control, a RACI/decision log, and stage-gate approvals before each phase. Exceptions: no baselined plan or RAID log, status reporting that doesn't track to baseline (green-shifting), uncontrolled scope creep, and phases proceeding with no stage-gate approval.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-enterprise_inventory.json   (in-scope items — The program/project management plan + governance (charter, scope, schedule, RAID log — risks/assumptions/issues/dependencies, stage-gates))\n- sysimpl-enterprise_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Program & project mgmt (PMO)\",\n  \"domain\": \"System Implementation — Enterprise\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{sie_",
-        "/evidence/sysimpl-enterprise_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Program / PMO leadership\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Program & project mgmt (PMO)\" control must cover\n# fragment: program_project_mgmt_",
+        "/evidence/README.md": "# AcmeCorp — System Implementation — Enterprise: \"Program & project management (PMO)\" Audit Evidence\n\nThe test:\nVerify the program is managed with discipline. PASS: there's a baselined plan (charter, scope, schedule, budget), an active RAID log, status + milestone/budget tracking against baseline, scope change-control, a RACI/decision log, and stage-gate approvals before each phase. Exceptions: no baselined plan or RAID log, status reporting that doesn't track to baseline (green-shifting), uncontrolled scope creep, and phases proceeding with no stage-gate approval.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-enterprise_inventory.json   (in-scope items — The program/project management plan + governance (charter, scope, schedule, RAID log — risks/assumptions/issues/dependencies, stage-gates))\n- sysimpl-enterprise_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Program & project management (PMO)\",\n  \"domain\": \"System Implementation — Enterprise\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{sie_",
+        "/evidence/sysimpl-enterprise_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Program / PMO leadership\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Program & project management (PMO)\" control must cover\n# fragment: program_project_management_",
         "/evidence/sysimpl-enterprise_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"MATERIAL GAP\"\n}\n# fragment: material_gap}"
       },
@@ -217,7 +217,7 @@ export const sysimplEnterpriseStages: StageConfig[] = [
         },
         {
           "trigger": "/evidence/sysimpl-enterprise_inventory.json",
-          "value": "program_project_mgmt_",
+          "value": "program_project_management_",
           "label": "Inventory — the in-scope items"
         },
         {
@@ -238,12 +238,12 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "id": "sie-01-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Program & project mgmt (PMO)\" sub-process of System Implementation — Enterprise?",
+          "text": "What is the primary audit objective for the \"Program & project management (PMO)\" sub-process of System Implementation — Enterprise?",
           "options": [
-            "Deploy and operate the program & project mgmt (pmo) control on the team's behalf so the gap is closed during fieldwork",
-            "Confirm management is comfortable that the program & project mgmt (pmo) control works, based on their verbal assurance",
-            "Benchmark how many tools the team uses for program & project mgmt (pmo) against comparable organisations in the sector",
-            "Obtain evidence that the program & project mgmt (pmo) control is designed and operating effectively, and quantify the gap where it is not"
+            "Deploy and operate the program & project management (pmo) control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the program & project management (pmo) control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for program & project management (pmo) against comparable organisations in the sector",
+            "Obtain evidence that the program & project management (pmo) control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
           "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
@@ -252,7 +252,7 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "id": "sie-01-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Program & project mgmt (PMO)\" matter to the broader System Implementation — Enterprise posture?",
+          "text": "Why does a weakness in \"Program & project management (PMO)\" matter to the broader System Implementation — Enterprise posture?",
           "options": [
             "It mainly affects how the annual compliance report reads, rather than the actual risk to System Implementation — Enterprise",
             "It stops mattering once a firewall and endpoint agent are deployed across the System Implementation — Enterprise estate",
@@ -266,12 +266,12 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "id": "sie-01-q3",
           "type": "Artifacts",
           "challenge": "Evidence",
-          "text": "Which artifact best evidences the \"Program & project mgmt (PMO)\" control?",
+          "text": "Which artifact best evidences the \"Program & project management (PMO)\" control?",
           "options": [
-            "A point-in-time screenshot of one system's program & project mgmt (pmo) settings, captured during the walkthrough",
+            "A point-in-time screenshot of one system's program & project management (pmo) settings, captured during the walkthrough",
             "The The program/project management plan + governance (charter, scope, schedule, RAID log — risks/assumptions/issues/dependencies, stage-gates), reconciled against policy, plus the resulting findings working paper",
-            "A signed management attestation that the program & project mgmt (pmo) control is in place, with no underlying data attached",
-            "A vendor datasheet describing the product's program & project mgmt (pmo) capabilities and its recommended configuration"
+            "A signed management attestation that the program & project management (pmo) control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's program & project management (pmo) capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
           "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
@@ -280,12 +280,12 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "id": "sie-01-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where should an auditor pull the evidence for \"Program & project mgmt (PMO)\"?",
+          "text": "Where should an auditor pull the evidence for \"Program & project management (PMO)\"?",
           "options": [
             "From PPM / PMO tooling and the other systems of record for this domain, accessed read-only",
             "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
             "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
-            "From an informal summary the team posted to the internal wiki describing how program & project mgmt (pmo) works"
+            "From an informal summary the team posted to the internal wiki describing how program & project management (pmo) works"
           ],
           "correctIndex": 0,
           "explanation": "Evidence must come from the authoritative systems (e.g. PPM / PMO tooling) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
@@ -294,11 +294,11 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "id": "sie-01-q5",
           "type": "Data owner",
           "challenge": "Accountability",
-          "text": "Who is most likely accountable for the data behind \"Program & project mgmt (PMO)\"?",
+          "text": "Who is most likely accountable for the data behind \"Program & project management (PMO)\"?",
           "options": [
-            "The external audit firm, since it is the party examining the program & project mgmt (pmo) control this period",
+            "The external audit firm, since it is the party examining the program & project management (pmo) control this period",
             "Whoever most recently changed the configuration, regardless of their role or formal accountability",
-            "No single function — the program & project mgmt (pmo) data is shared, so the accountability sits with no one in particular",
+            "No single function — the program & project management (pmo) data is shared, so the accountability sits with no one in particular",
             "Program / PMO leadership, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
@@ -308,7 +308,7 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "id": "sie-01-q6",
           "type": "Agentic",
           "challenge": "Human vs agent",
-          "text": "In the agentic workflow for \"Program & project mgmt (PMO)\", which part stays with the human auditor?",
+          "text": "In the agentic workflow for \"Program & project management (PMO)\", which part stays with the human auditor?",
           "options": [
             "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
             "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
@@ -336,7 +336,7 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "id": "sie-01-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Program & project mgmt (PMO)\", which of these is a realistic reportable finding?",
+          "text": "For \"Program & project management (PMO)\", which of these is a realistic reportable finding?",
           "options": [
             "The program runs with no baselined schedule or RAID log; status is reported 'green' against a moving target while scope quietly expands, and no stage-gate approval was taken before build began.",
             "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
@@ -364,9 +364,9 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "id": "sie-01-q10",
           "type": "Privacy/Risk",
           "challenge": "The data angle",
-          "text": "Why does auditing \"Program & project mgmt (PMO)\" also serve privacy and regulatory goals?",
+          "text": "Why does auditing \"Program & project management (PMO)\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators review only written policy documents, never the technical controls behind program & project mgmt (pmo), so there is no overlap",
+            "Regulators review only written policy documents, never the technical controls behind program & project management (pmo), so there is no overlap",
             "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
             "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
             "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
@@ -5139,15 +5139,15 @@ export const sysimplEnterpriseStages: StageConfig[] = [
     "epochId": "sysimpl-enterprise",
     "id": "sie-15",
     "order": 15,
-    "title": "Training, change mgmt, knowledge transfer",
-    "subtitle": "Agentic technical & privacy audit of the training, change mgmt, knowledge transfer control",
+    "title": "Training, change management, knowledge transfer",
+    "subtitle": "Agentic technical & privacy audit of the training, change management, knowledge transfer control",
     "category": "cybersecurity",
     "xp": 120,
     "easeScore": 7,
     "valueScore": 6,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Training, change mgmt, knowledge transfer\" control for System Implementation — Enterprise is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Verify people are ready to adopt the system. PASS: an OCM plan covers stakeholder/impact analysis, communications, and change readiness; role-based training is built, delivered, and completion-tracked with competency confirmed pre-go-live; knowledge transfer to internal staff/support reduces vendor lock-in; and adoption/readiness is measured. Exceptions: no change management (resistance + low adoption), training built late or not delivered (users untrained at go-live), no knowledge transfer (permanent vendor dependency), and adoption never measured.",
+      "objective": "Prove the \"Training, change management, knowledge transfer\" control for System Implementation — Enterprise is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Verify people are ready to adopt the system. PASS: an OCM plan covers stakeholder/impact analysis, communications, and change readiness; role-based training is built, delivered, and completion-tracked with competency confirmed pre-go-live; knowledge transfer to internal staff/support reduces vendor lock-in; and adoption/readiness is measured. Exceptions: no change management (resistance + low adoption), training built late or not delivered (users untrained at go-live), no knowledge transfer (permanent vendor dependency), and adoption never measured.",
       "approach": "An audit agent calls a read-only MCP server that wraps the System Implementation — Enterprise systems of record (OCM / communications plan; LMS / training completion records; Knowledge-transfer / documentation) as tools — e.g. `OCM plan: stakeholder/impact analysis + communications + change-readin`, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
         "The organisational change management (OCM) plan (stakeholder + impact analysis, communications, change-readiness assessment, adoption measures)",
@@ -5177,26 +5177,26 @@ export const sysimplEnterpriseStages: StageConfig[] = [
       "emoji": "🏛️"
     },
     "wonder": {
-      "name": "Training, change mgmt, knowledge transfer",
+      "name": "Training, change management, knowledge transfer",
       "location": "System Implementation — Enterprise",
       "era": "Present Day",
       "emoji": "🏛️"
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Training, change mgmt, knowledge transfer\" as a repeatable agentic workflow: pull the real evidence (The organisational change management (OCM) plan (stakeholder + impact analysis, communications, change-readiness assessment, adoption measures)) with read-only agents, run the test against policy, and issue a defensible opinion on the System Implementation — Enterprise control.",
+      "tagline": "Auditing \"Training, change management, knowledge transfer\" as a repeatable agentic workflow: pull the real evidence (The organisational change management (OCM) plan (stakeholder + impact analysis, communications, change-readiness assessment, adoption measures)) with read-only agents, run the test against policy, and issue a defensible opinion on the System Implementation — Enterprise control.",
       "year": 2025,
       "overview": [
-        "The \"Training, change mgmt, knowledge transfer\" sub-process is one of the controls an auditor must verify for System Implementation — Enterprise. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me the organisational change management (OCM) plan (stakeholder + impact analysis, communications, change-readiness assessment, adoption measures), for everything in scope.\"",
+        "The \"Training, change management, knowledge transfer\" sub-process is one of the controls an auditor must verify for System Implementation — Enterprise. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me the organisational change management (OCM) plan (stakeholder + impact analysis, communications, change-readiness assessment, adoption measures), for everything in scope.\"",
         "The evidence lives across systems that were never reconciled — here OCM / communications plan, LMS / training completion records, Knowledge-transfer / documentation — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. In practice you gather it with calls like `OCM plan: stakeholder/impact analysis + communications + change-readiness + adop` — read-only, against the systems of record.",
         "The test itself is specific. Verify people are ready to adopt the system. PASS: an OCM plan covers stakeholder/impact analysis, communications, and change readiness; role-based training is built, delivered, and completion-tracked with competency confirmed pre-go-live; knowledge transfer to internal staff/support reduces vendor lock-in; and adoption/readiness is measured. Exceptions: no change management (resistance + low adoption), training built late or not delivered (users untrained at go-live), no knowledge transfer (permanent vendor dependency), and adoption never measured. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `15_training_change_mgmt_knowledge_transfer_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from OCM / communications plan and LMS / training completion records (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
+          "The included `15_training_change_management_knowledge_transfer_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from OCM / communications plan and LMS / training completion records (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
           "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
-          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 15_training_change_mgmt_knowledge_transfer_mcp.py` to expose it to your agent — or `python 15_training_change_mgmt_knowledge_transfer_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
+          "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 15_training_change_management_knowledge_transfer_mcp.py` to expose it to your agent — or `python 15_training_change_management_knowledge_transfer_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
         "codeExample": {
           "label": "coverage_report() — the audit deliverable (excerpt)",
@@ -5249,7 +5249,7 @@ export const sysimplEnterpriseStages: StageConfig[] = [
         },
         {
           "year": 2025,
-          "event": "Agentic evidence-gathering becomes the practical way to keep \"Training, change mgmt, knowledge transfer\" continuously assured",
+          "event": "Agentic evidence-gathering becomes the practical way to keep \"Training, change management, knowledge transfer\" continuously assured",
           "highlight": true
         }
       ],
@@ -5282,14 +5282,14 @@ export const sysimplEnterpriseStages: StageConfig[] = [
       ],
       "downloads": [
         {
-          "name": "15_training_change_mgmt_knowledge_transfer_mcp.py",
-          "url": "/audit-code/sysimpl-enterprise/15_training_change_mgmt_knowledge_transfer_mcp.py",
-          "description": "Runnable read-only MCP server: gathers the System Implementation — Enterprise evidence for \"Training, change mgmt, knowledge transfer\" (the organisational change management (ocm) plan (stakeholder + impact analysis, communications, change-readiness assessment, adoption measures)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "name": "15_training_change_management_knowledge_transfer_mcp.py",
+          "url": "/audit-code/sysimpl-enterprise/15_training_change_management_knowledge_transfer_mcp.py",
+          "description": "Runnable read-only MCP server: gathers the System Implementation — Enterprise evidence for \"Training, change management, knowledge transfer\" (the organisational change management (ocm) plan (stakeholder + impact analysis, communications, change-readiness assessment, adoption measures)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Training, change mgmt, knowledge transfer\" control for System Implementation — Enterprise at AcmeCorp. THE TEST: Verify people are ready to adopt the system. PASS: an OCM plan covers stakeholder/impact analysis, communications, and change readiness; role-based training is built, delivered, and completion-tracked with competency confirmed pre-go-live; knowledge transfer to internal staff/support reduces vendor lock-in; and adoption/readiness is measured. Exceptions: no change management (resistance + low adoption), training built late or not delivered (users untrained at go-live), no knowledge transfer (permanent vendor dependency), and adoption never measured. The evidence — The organisational change management (OCM) plan (stakeholder + impact analysis, communications, change-readiness assessment, adoption measures) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live OCM / communications plan APIs; here the same sources are exported to files.)",
+      "scenario": "You're the auditor testing the \"Training, change management, knowledge transfer\" control for System Implementation — Enterprise at AcmeCorp. THE TEST: Verify people are ready to adopt the system. PASS: an OCM plan covers stakeholder/impact analysis, communications, and change readiness; role-based training is built, delivered, and completion-tracked with competency confirmed pre-go-live; knowledge transfer to internal staff/support reduces vendor lock-in; and adoption/readiness is measured. Exceptions: no change management (resistance + low adoption), training built late or not delivered (users untrained at go-live), no knowledge transfer (permanent vendor dependency), and adoption never measured. The evidence — The organisational change management (OCM) plan (stakeholder + impact analysis, communications, change-readiness assessment, adoption measures) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live OCM / communications plan APIs; here the same sources are exported to files.)",
       "hint": "Read every file in /evidence. OCM / communications plan gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
         "cat each file in /evidence. The inventory comes from OCM / communications plan; the state file shows what is actually configured/running.",
@@ -5297,9 +5297,9 @@ export const sysimplEnterpriseStages: StageConfig[] = [
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — System Implementation — Enterprise: \"Training, change mgmt, knowledge transfer\" Audit Evidence\n\nThe test:\nVerify people are ready to adopt the system. PASS: an OCM plan covers stakeholder/impact analysis, communications, and change readiness; role-based training is built, delivered, and completion-tracked with competency confirmed pre-go-live; knowledge transfer to internal staff/support reduces vendor lock-in; and adoption/readiness is measured. Exceptions: no change management (resistance + low adoption), training built late or not delivered (users untrained at go-live), no knowledge transfer (permanent vendor dependency), and adoption never measured.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-enterprise_inventory.json   (in-scope items — The organisational change management (OCM) plan (stakeholder + impact analysis, communications, change-readiness assessment, adoption measures))\n- sysimpl-enterprise_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
-        "/evidence/policy.json": "{\n  \"control\": \"Training, change mgmt, knowledge transfer\",\n  \"domain\": \"System Implementation — Enterprise\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{sie_",
-        "/evidence/sysimpl-enterprise_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Program / PMO leadership\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Training, change mgmt, knowledge transfer\" control must cover\n# fragment: training_change_mgmt_",
+        "/evidence/README.md": "# AcmeCorp — System Implementation — Enterprise: \"Training, change management, knowledge transfer\" Audit Evidence\n\nThe test:\nVerify people are ready to adopt the system. PASS: an OCM plan covers stakeholder/impact analysis, communications, and change readiness; role-based training is built, delivered, and completion-tracked with competency confirmed pre-go-live; knowledge transfer to internal staff/support reduces vendor lock-in; and adoption/readiness is measured. Exceptions: no change management (resistance + low adoption), training built late or not delivered (users untrained at go-live), no knowledge transfer (permanent vendor dependency), and adoption never measured.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- sysimpl-enterprise_inventory.json   (in-scope items — The organisational change management (OCM) plan (stakeholder + impact analysis, communications, change-readiness assessment, adoption measures))\n- sysimpl-enterprise_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/policy.json": "{\n  \"control\": \"Training, change management, knowledge transfer\",\n  \"domain\": \"System Implementation — Enterprise\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{sie_",
+        "/evidence/sysimpl-enterprise_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"Program / PMO leadership\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Training, change management, knowledge transfer\" control must cover\n# fragment: training_change_management_",
         "/evidence/sysimpl-enterprise_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
         "/evidence/coverage_report.json": "{\n  \"in_scope\": 4,\n  \"compliant\": 2,\n  \"exceptions\": [\"item-002\",\"item-003\"],\n  \"opinion\": \"EXCEPTIONS\"\n}\n# fragment: exceptions}"
       },
@@ -5341,7 +5341,7 @@ export const sysimplEnterpriseStages: StageConfig[] = [
         },
         {
           "trigger": "/evidence/sysimpl-enterprise_inventory.json",
-          "value": "training_change_mgmt_",
+          "value": "training_change_management_",
           "label": "Inventory — the in-scope items"
         },
         {
@@ -5362,12 +5362,12 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "id": "sie-15-q1",
           "type": "Objective",
           "challenge": "Control objective",
-          "text": "What is the primary audit objective for the \"Training, change mgmt, knowledge transfer\" sub-process of System Implementation — Enterprise?",
+          "text": "What is the primary audit objective for the \"Training, change management, knowledge transfer\" sub-process of System Implementation — Enterprise?",
           "options": [
-            "Deploy and operate the training, change mgmt, knowledge transfer control on the team's behalf so the gap is closed during fieldwork",
-            "Confirm management is comfortable that the training, change mgmt, knowledge transfer control works, based on their verbal assurance",
-            "Benchmark how many tools the team uses for training, change mgmt, knowledge transfer against comparable organisations in the sector",
-            "Obtain evidence that the training, change mgmt, knowledge transfer control is designed and operating effectively, and quantify the gap where it is not"
+            "Deploy and operate the training, change management, knowledge transfer control on the team's behalf so the gap is closed during fieldwork",
+            "Confirm management is comfortable that the training, change management, knowledge transfer control works, based on their verbal assurance",
+            "Benchmark how many tools the team uses for training, change management, knowledge transfer against comparable organisations in the sector",
+            "Obtain evidence that the training, change management, knowledge transfer control is designed and operating effectively, and quantify the gap where it is not"
           ],
           "correctIndex": 3,
           "explanation": "An audit tests control design and operating effectiveness and reports the gap — it does not run, own, or take assurance on faith for the control."
@@ -5376,7 +5376,7 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "id": "sie-15-q2",
           "type": "Why it matters",
           "challenge": "Materiality",
-          "text": "Why does a weakness in \"Training, change mgmt, knowledge transfer\" matter to the broader System Implementation — Enterprise posture?",
+          "text": "Why does a weakness in \"Training, change management, knowledge transfer\" matter to the broader System Implementation — Enterprise posture?",
           "options": [
             "It mainly affects how the annual compliance report reads, rather than the actual risk to System Implementation — Enterprise",
             "It stops mattering once a firewall and endpoint agent are deployed across the System Implementation — Enterprise estate",
@@ -5390,12 +5390,12 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "id": "sie-15-q3",
           "type": "Artifacts",
           "challenge": "Evidence",
-          "text": "Which artifact best evidences the \"Training, change mgmt, knowledge transfer\" control?",
+          "text": "Which artifact best evidences the \"Training, change management, knowledge transfer\" control?",
           "options": [
-            "A point-in-time screenshot of one system's training, change mgmt, knowledge transfer settings, captured during the walkthrough",
+            "A point-in-time screenshot of one system's training, change management, knowledge transfer settings, captured during the walkthrough",
             "The The organisational change management (OCM) plan (stakeholder + impact analysis, communications, change-readiness assessment, adoption measures), reconciled against policy, plus the resulting findings working paper",
-            "A signed management attestation that the training, change mgmt, knowledge transfer control is in place, with no underlying data attached",
-            "A vendor datasheet describing the product's training, change mgmt, knowledge transfer capabilities and its recommended configuration"
+            "A signed management attestation that the training, change management, knowledge transfer control is in place, with no underlying data attached",
+            "A vendor datasheet describing the product's training, change management, knowledge transfer capabilities and its recommended configuration"
           ],
           "correctIndex": 1,
           "explanation": "Evidence must be objective and reproducible — a reconciled export judged against policy, not an assertion, a datasheet, or a single screenshot."
@@ -5404,12 +5404,12 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "id": "sie-15-q4",
           "type": "System",
           "challenge": "Source of truth",
-          "text": "Where should an auditor pull the evidence for \"Training, change mgmt, knowledge transfer\"?",
+          "text": "Where should an auditor pull the evidence for \"Training, change management, knowledge transfer\"?",
           "options": [
             "From OCM / communications plan and the other systems of record for this domain, accessed read-only",
             "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
             "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
-            "From an informal summary the team posted to the internal wiki describing how training, change mgmt, knowledge transfer works"
+            "From an informal summary the team posted to the internal wiki describing how training, change management, knowledge transfer works"
           ],
           "correctIndex": 0,
           "explanation": "Evidence must come from the authoritative systems (e.g. OCM / communications plan) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
@@ -5418,11 +5418,11 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "id": "sie-15-q5",
           "type": "Data owner",
           "challenge": "Accountability",
-          "text": "Who is most likely accountable for the data behind \"Training, change mgmt, knowledge transfer\"?",
+          "text": "Who is most likely accountable for the data behind \"Training, change management, knowledge transfer\"?",
           "options": [
-            "The external audit firm, since it is the party examining the training, change mgmt, knowledge transfer control this period",
+            "The external audit firm, since it is the party examining the training, change management, knowledge transfer control this period",
             "Whoever most recently changed the configuration, regardless of their role or formal accountability",
-            "No single function — the training, change mgmt, knowledge transfer data is shared, so the accountability sits with no one in particular",
+            "No single function — the training, change management, knowledge transfer data is shared, so the accountability sits with no one in particular",
             "Change management + HR/L&D, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
@@ -5432,7 +5432,7 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "id": "sie-15-q6",
           "type": "Agentic",
           "challenge": "Human vs agent",
-          "text": "In the agentic workflow for \"Training, change mgmt, knowledge transfer\", which part stays with the human auditor?",
+          "text": "In the agentic workflow for \"Training, change management, knowledge transfer\", which part stays with the human auditor?",
           "options": [
             "Re-keying each system's export into a spreadsheet by hand before the agent is allowed to read it",
             "Nothing of substance — the agent decides materiality and the human simply approves whatever it outputs",
@@ -5460,7 +5460,7 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "id": "sie-15-q8",
           "type": "Findings",
           "challenge": "Typical finding",
-          "text": "For \"Training, change mgmt, knowledge transfer\", which of these is a realistic reportable finding?",
+          "text": "For \"Training, change management, knowledge transfer\", which of these is a realistic reportable finding?",
           "options": [
             "There was no change-management effort and training was a single optional webinar the week before go-live; users were not competent at cutover, adoption was never measured, and all system knowledge stayed with the vendor.",
             "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
@@ -5488,9 +5488,9 @@ export const sysimplEnterpriseStages: StageConfig[] = [
           "id": "sie-15-q10",
           "type": "Privacy/Risk",
           "challenge": "The data angle",
-          "text": "Why does auditing \"Training, change mgmt, knowledge transfer\" also serve privacy and regulatory goals?",
+          "text": "Why does auditing \"Training, change management, knowledge transfer\" also serve privacy and regulatory goals?",
           "options": [
-            "Regulators review only written policy documents, never the technical controls behind training, change mgmt, knowledge transfer, so there is no overlap",
+            "Regulators review only written policy documents, never the technical controls behind training, change management, knowledge transfer, so there is no overlap",
             "The control applies only to public, non-sensitive data, so any gap in it carries no real regulatory exposure",
             "The control protects regulated or sensitive data, or the systems that process it, so a gap here carries compliance and privacy exposure",
             "Technical controls and privacy obligations are governed entirely separately, so this control sits outside privacy scope"
