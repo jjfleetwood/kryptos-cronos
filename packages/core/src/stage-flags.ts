@@ -230,6 +230,10 @@ export const stageFlags: Record<string, string> = {
   // ── Cisco CVE Extended (cisco-2.ts) ──────────────────────────────────────
   "stage-m13": "FLAG{CVE_2016_1287_IK3_H3AP_0WN3D}",
   "stage-m14": "FLAG{CVE_2017_3881_CMP_T3LN3T_RCE}",
+  "range-msf-01": "FLAG{MSF_M0DUL3S_W0RKFL0W}",
+  "range-msf-02": "FLAG{R3C0N_SMB445_MS17_010}",
+  "range-msf-03": "FLAG{3T3RNALBLU3_M3T3RPR3T3R_SYST3M}",
+  "range-msf-04": "FLAG{L00T_H4SHDUMP_PATCH_SMBV1}",
   "stage-m15": "FLAG{CVE_2020_3118_CDPWN_L2_RCE}",
   "stage-m16": "FLAG{CVE_2021_1609_SOHO_RCE_ROOT}",
   "stage-m17": "FLAG{CVE_2020_3259_M3M_L3AK_VPN}",

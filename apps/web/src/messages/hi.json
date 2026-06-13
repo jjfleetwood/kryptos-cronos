@@ -612,5 +612,7 @@
   "achievements.cat.streak": "स्ट्रिक",
   "achievements.cat.epochs": "पूर्णता",
   "achievements.cat.leagues": "लीग",
-  "quests.proBadge": "PRO · +1 दैनिक क्वेस्ट"
+  "quests.proBadge": "PRO · +1 दैनिक क्वेस्ट",
+  "stages.tracks.cyberRange": "साइबर रेंज",
+  "stages.tracks.cyberRangeDesc": "असली टूल्स के साथ हैंड्स-ऑन रेड-टीम लैब — Metasploit और अधिक (CTF)"
 }

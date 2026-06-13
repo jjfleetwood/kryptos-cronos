@@ -38,6 +38,7 @@ import { threatFrameworksEpoch, threatFrameworksStages } from "./threat-framewor
 import { flagFootball1Epoch, flagFootball1Stages, flagFootball2Epoch, flagFootball2Stages, flagFootball3Epoch, flagFootball3Stages } from "./flag-football";
 import { physicsOfHackingEpoch, physicsOfHackingStages } from "./physics-of-hacking";
 import { emergingTechEpoch, emergingTechStages } from "./emerging-tech";
+import { rangeMetasploitEpoch, rangeMetasploitStages } from "./cyber-range";
 import { cisco2Stages } from "./cisco-2";
 import { cisco3Stages } from "./cisco-3";
 import { cisco4Stages } from "./cisco-4";
@@ -163,6 +164,7 @@ export const epochs: EpochConfig[] = [
   flagFootball3Epoch,
   physicsOfHackingEpoch,
   emergingTechEpoch,
+  rangeMetasploitEpoch,
   umbrellaEpoch,
   tapestryEpoch,
   nailsEpoch,
@@ -238,6 +240,7 @@ export const stages: StageConfig[] = [
   ...flagFootball3Stages,
   ...physicsOfHackingStages,
   ...emergingTechStages,
+  ...rangeMetasploitStages,
   ...umbrellaStages,
   ...tapestryStages,
   ...nailsStages,

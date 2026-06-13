@@ -612,5 +612,7 @@
   "achievements.cat.streak": "Passa",
   "achievements.cat.epochs": "Ukończenie",
   "achievements.cat.leagues": "Ligi",
-  "quests.proBadge": "PRO · +1 zadanie dzienne"
+  "quests.proBadge": "PRO · +1 zadanie dzienne",
+  "stages.tracks.cyberRange": "Cyber Range",
+  "stages.tracks.cyberRangeDesc": "Praktyczne laboratoria red team z prawdziwymi narzędziami — Metasploit i więcej (CTF)"
 }

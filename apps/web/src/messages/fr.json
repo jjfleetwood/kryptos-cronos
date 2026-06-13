@@ -612,5 +612,7 @@
   "achievements.cat.streak": "Série",
   "achievements.cat.epochs": "Achèvement",
   "achievements.cat.leagues": "Ligues",
-  "quests.proBadge": "PRO · +1 quête quotidienne"
+  "quests.proBadge": "PRO · +1 quête quotidienne",
+  "stages.tracks.cyberRange": "Cyber Range",
+  "stages.tracks.cyberRangeDesc": "Labos red team pratiques avec de vrais outils — Metasploit et plus (CTF)"
 }
