@@ -2,13 +2,16 @@
 """Read-only MCP server — System Implementation — Enterprise: "PIR / lessons learned" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the System Implementation — Enterprise policy/standard and flag every item where the "PIR / lessons learned" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the program is closed with a real PIR + benefits check. PASS: a formal PIR assesses objectives/scope/budget/schedule outcome, benefits are measured against business-case KPIs with owners, lessons learned feed the methodology/knowledge base, and outstanding issues + technical debt are handed to BAU with owners. Exceptions: no PIR (no honest accounting of the outcome), benefits never measured (success assumed), lessons-learned never captured or reused, and open issues/tech debt abandoned at project close with no owner.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the pir / lessons learned control (from PPM / PMO tooling)
+    The post-implementation review (a formal PIR after stabilisation: did it meet objectives/scope/budget/schedule, benefits realised vs business case, what worked + what didn't)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: PPM / PMO tooling, Enterprise architecture repository, Test management (E2E/UAT), Vendor + contract management)
+    formal PIR after stabilisation (objectives/scope/budget/schedule outcome; what worked/didn't)
+    benefits realisation vs business-case KPIs (actual outcome, owned + reported)
+    lessons learned fed into methodology/knowledge base
+    outstanding-issue + technical-debt register handed to BAU with owners
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

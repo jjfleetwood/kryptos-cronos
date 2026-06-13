@@ -2,13 +2,16 @@
 """Read-only MCP server — System Implementation — Enterprise: "Executive governance / steering" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the System Implementation — Enterprise policy/standard and flag every item where the "Executive governance / steering" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify executive governance actively steers the program. PASS: a chartered steering committee with defined authority meets on cadence, makes + records real decisions (scope/budget/risk escalations approved at the right level), the sponsor is engaged + accountable for outcomes, and independent assurance reports to it. Exceptions: a steering committee that rubber-stamps or doesn't meet, escalations + budget changes decided below the right authority, an absent/disengaged sponsor, and governance relying solely on the project's optimistic self-report.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the executive governance / steering control (from PPM / PMO tooling)
+    The steering committee + executive governance (charter, membership/authority, meeting cadence, the decisions + escalations it owns)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: PPM / PMO tooling, Enterprise architecture repository, Test management (E2E/UAT), Vendor + contract management)
+    steering committee: charter, authority, cadence, decisions/escalations owned
+    evidence of active governance (minutes, escalations handled, budget/scope approved at right level)
+    sponsor engagement + accountability for benefits/outcomes
+    independent assurance reporting to steering (not just project self-report)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

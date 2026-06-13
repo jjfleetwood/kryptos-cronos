@@ -2,13 +2,16 @@
 """Read-only MCP server — System Implementation — Enterprise: "Cutover" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the System Implementation — Enterprise policy/standard and flag every item where the "Cutover" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify cutover is planned, rehearsed, and reversible. PASS: there's a detailed cutover runbook (sequenced tasks/owners/timings, freeze), it's been rehearsed (dry-run proving timings), a tested backout plan with trigger criteria exists, and execution has validation checkpoints + go/no-go points. Exceptions: an unrehearsed cutover (timings unknown, runs past the window), no backout plan or an untested one, no validation between steps, and no freeze period (changes landing mid-cutover).
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the cutover control (from PPM / PMO tooling)
+    The detailed cutover plan + runbook (sequenced tasks, owners, timings, dependencies, the cutover window, freeze period)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: PPM / PMO tooling, Enterprise architecture repository, Test management (E2E/UAT), Vendor + contract management)
+    detailed cutover runbook (sequenced tasks, owners, timings, freeze period)
+    rehearsed cutover (dry-run proving sequence + timings) + go/no-go checkpoints
+    tested backout/rollback plan + trigger criteria
+    execution validation/reconciliation between steps
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

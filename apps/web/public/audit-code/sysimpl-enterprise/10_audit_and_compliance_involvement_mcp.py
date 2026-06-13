@@ -2,13 +2,16 @@
 """Read-only MCP server — System Implementation — Enterprise: "Audit and compliance involvement" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the System Implementation — Enterprise policy/standard and flag every item where the "Audit and compliance involvement" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify audit/compliance are embedded across the implementation. PASS: audit/risk/compliance engaged from design (control + SoD review), a control-readiness review precedes go-live (application controls, audit trails, ITGCs, reliance controls), regulatory/SoX considerations are designed in for in-scope systems, and internal-audit quality gates + findings are tracked to closure. Exceptions: audit involved only post-go-live, controls + SoD designed late or not at all, no pre-go-live control-readiness review, and assurance findings raised but never closed.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the audit and compliance involvement control (from PPM / PMO tooling)
+    Evidence audit/risk/compliance were engaged across the lifecycle (not just at the end) — design-stage control review, key controls built in, SoD designed into roles
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: PPM / PMO tooling, Enterprise architecture repository, Test management (E2E/UAT), Vendor + contract management)
+    audit/risk/compliance engaged across lifecycle (design-stage control review, SoD designed in)
+    control-readiness review before go-live (app controls, audit trails, reliance controls)
+    SoX/regulatory + ITGC considerations for in-scope systems
+    internal-audit quality gates + findings tracked to closure
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

@@ -2,13 +2,16 @@
 """Read-only MCP server — System Implementation — Enterprise: "Program & project mgmt (PMO)" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the System Implementation — Enterprise policy/standard and flag every item where the "Program & project mgmt (PMO)" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the program is managed with discipline. PASS: there's a baselined plan (charter, scope, schedule, budget), an active RAID log, status + milestone/budget tracking against baseline, scope change-control, a RACI/decision log, and stage-gate approvals before each phase. Exceptions: no baselined plan or RAID log, status reporting that doesn't track to baseline (green-shifting), uncontrolled scope creep, and phases proceeding with no stage-gate approval.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the program & project mgmt (pmo) control (from PPM / PMO tooling)
+    The program/project management plan + governance (charter, scope, schedule, RAID log — risks/assumptions/issues/dependencies, stage-gates)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: PPM / PMO tooling, Enterprise architecture repository, Test management (E2E/UAT), Vendor + contract management)
+    the baselined plan: charter + scope + schedule + budget + RAID log
+    status + milestone/budget tracking vs baseline + scope change-control
+    RACI + decision log
+    stage-gate approvals before each phase
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

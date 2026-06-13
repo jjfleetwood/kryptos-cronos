@@ -2,13 +2,16 @@
 """Read-only MCP server — System Implementation — Enterprise: "Business continuity / resilience" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the System Implementation — Enterprise policy/standard and flag every item where the "Business continuity / resilience" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the new system is resilient + recoverable. PASS: the availability design meets the business RTO/RPO (HA, redundancy, failover, backup), BCP/DR runbooks exist + are tested + integrated into enterprise continuity, backup/restore is validated for the system's data, and resilience is tested under failure scenarios. Exceptions: a single-point-of-failure design with no HA, no DR plan/runbook or an untested one, backups assumed but never restore-tested, and RTO/RPO undefined or unmet.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the business continuity / resilience control (from PPM / PMO tooling)
+    The resilience/availability design for the new system meeting its business RTO/RPO (HA architecture, redundancy, failover, the backup design)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: PPM / PMO tooling, Enterprise architecture repository, Test management (E2E/UAT), Vendor + contract management)
+    resilience/availability design vs business RTO/RPO (HA, redundancy, failover, backup)
+    BCP/DR procedures for the system (runbooks, DR plan, enterprise-continuity integration) + tested
+    backup + restore validated for the system's data (not assumed)
+    capacity + resilience tested under load/failure scenarios
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

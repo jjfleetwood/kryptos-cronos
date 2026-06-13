@@ -2,13 +2,16 @@
 """Read-only MCP server — System Implementation — Enterprise: "Implement (go-live, phased)" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the System Implementation — Enterprise policy/standard and flag every item where the "Implement (go-live, phased)" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify go-live is gated by readiness. PASS: a go-live readiness assessment scores the program against defined criteria (testing, data, training, support, backout), the rollout approach (phased/pilot vs big-bang) is risk-justified, and an authorised go/no-go decision is recorded against met criteria. Exceptions: go-live with no readiness assessment, criteria waived under schedule pressure (untested/untrained go-live), an unjustified big-bang on a high-risk system, and no recorded go/no-go authority.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the implement (go-live, phased) control (from PPM / PMO tooling)
+    The go-live readiness assessment + decision (a go/no-go checklist against defined readiness criteria — testing complete, data ready, training done, support ready, backout ready)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: PPM / PMO tooling, Enterprise architecture repository, Test management (E2E/UAT), Vendor + contract management)
+    go-live readiness assessment vs defined criteria (testing, data, training, support, backout)
+    rollout approach (big-bang vs phased/pilot) + risk justification
+    authorised go/no-go decision recorded against met criteria
+    were readiness criteria met (not waived under schedule pressure)?
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

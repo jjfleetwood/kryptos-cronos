@@ -2,13 +2,16 @@
 """Read-only MCP server — System Implementation — Enterprise: "Business case, ROI" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the System Implementation — Enterprise policy/standard and flag every item where the "Business case, ROI" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the investment is justified + benefits are owned. PASS: an approved business case quantifies TCO, benefits, and ROI/NPV/payback with stated assumptions + alternatives; a benefits-realisation plan assigns owners + measurable KPIs with baselines; the business case is re-validated at stage gates as cost/scope change; and benefits will actually be measured. Exceptions: no quantified business case (cost or benefits), benefits with no owner or KPI (never measured), a business case never revisited as costs ballooned, and a project continued despite a now-negative case.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the business case, roi control (from PPM / PMO tooling)
+    The approved business case (costs — capex/opex/TCO, quantified benefits, ROI/NPV/payback, the assumptions + alternatives considered)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: PPM / PMO tooling, Enterprise architecture repository, Test management (E2E/UAT), Vendor + contract management)
+    approved business case: TCO + quantified benefits + ROI/NPV/payback + assumptions/alternatives
+    benefits-realisation plan: owners + measurable KPIs + baseline/target + when measured
+    business-case re-validation at stage gates as cost/scope change
+    does the business case actually drive the project (not a one-time artifact)?
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

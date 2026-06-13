@@ -2,13 +2,16 @@
 """Read-only MCP server — System Implementation — Enterprise: "Post-implementation support / hypercare" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the System Implementation — Enterprise policy/standard and flag every item where the "Post-implementation support / hypercare" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify post-go-live support stabilises the system. PASS: a hypercare plan provides elevated support with a command center, defect triage + SLA, and daily checkpoints; defects are tracked with an exit gate before BAU transition; operations/support handover (runbooks, KT, support model) is done; and the system is demonstrably stable before hypercare stands down. Exceptions: no hypercare after go-live (users abandoned with a broken system), no defect SLA or exit criteria, no handover to BAU support, and hypercare ended while the system was still unstable.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the post-implementation support / hypercare control (from PPM / PMO tooling)
+    The hypercare plan (the elevated-support period after go-live: staffing, hours, the command center, defect triage + SLA, daily checkpoints)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: PPM / PMO tooling, Enterprise architecture repository, Test management (E2E/UAT), Vendor + contract management)
+    hypercare plan: staffing, command center, defect triage + SLA, daily checkpoints
+    defect tracking during stabilisation + exit gate to BAU
+    transition-to-operations handover (runbooks, KT, support model)
+    system stabilised before standing down hypercare?
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

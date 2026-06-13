@@ -2,13 +2,16 @@
 """Read-only MCP server — System Implementation — Enterprise: "Data governance and MDM" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the System Implementation — Enterprise policy/standard and flag every item where the "Data governance and MDM" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify data is governed in + around the new system. PASS: data ownership/stewardship + definitions are defined, MDM provides a governed golden record (dedup, survivorship) consistent across the landscape, data-quality standards + ongoing controls exist with an owner, and classification + retention are applied. Exceptions: no data owners/stewards or definitions, no MDM (conflicting master data across systems), no ongoing data-quality controls (quality decays post-go-live), and no classification/retention.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the data governance and mdm control (from PPM / PMO tooling)
+    The data governance for the new system (data ownership/stewardship, the data model + definitions, master-data management — golden record, deduplication, survivorship rules)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: PPM / PMO tooling, Enterprise architecture repository, Test management (E2E/UAT), Vendor + contract management)
+    data governance: ownership/stewardship + data model/definitions + MDM (golden record, dedup, survivorship)
+    data quality standards + ongoing controls (validation, metrics, cleansing, maintenance owner)
+    reference + master data consistency across the integrated landscape
+    data classification + retention in the new system
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

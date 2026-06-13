@@ -2,13 +2,16 @@
 """Read-only MCP server — System Implementation — Enterprise: "Escrow agreement for source code" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the System Implementation — Enterprise policy/standard and flag every item where the "Escrow agreement for source code" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify source-code escrow protects continuity for critical vendor software. PASS: a current escrow agreement exists for business-critical software with defined deposit contents + release triggers, deposits are actually made + verified (complete + buildable), the org could use the code if released (license + capability), and escrow's appropriateness vs SaaS-exit alternatives is reasoned. Exceptions: no escrow for critical custom software (vendor failure = no continuity), an escrow account with no/stale deposits, deposits never verified as buildable, and release-trigger rights that don't actually allow use.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the escrow agreement for source code control (from PPM / PMO tooling)
+    The source-code (software) escrow agreement for business-critical vendor software (what's deposited: source, build scripts, docs, dependencies; release/trigger conditions — vendor insolvency, breach, EOL)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: PPM / PMO tooling, Enterprise architecture repository, Test management (E2E/UAT), Vendor + contract management)
+    escrow agreement: deposit contents (source, build, docs, deps) + release/trigger conditions
+    actual current deposits + verification (complete + buildable, not stale/empty)
+    release conditions + ability to use the code if triggered (license + capability)
+    escrow appropriate to the risk vs SaaS continuity/exit alternative?
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

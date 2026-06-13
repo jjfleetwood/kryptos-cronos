@@ -2,13 +2,16 @@
 """Read-only MCP server — System Implementation — Enterprise: "Testing & QA (E2E)" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the System Implementation — Enterprise policy/standard and flag every item where the "Testing & QA (E2E)" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify testing is rigorous before go-live. PASS: a test strategy covers all levels (unit/system/integration/E2E/performance/security/regression) with entry/exit criteria, coverage traces requirements→tests→results, defects are tracked with severity-based exit gates, UAT is signed off by the business, and performance + security testing meets NFRs. Exceptions: testing limited to happy-path/unit, no requirements-to-test traceability, open high-severity defects waived at go-live, no business UAT sign-off, and no performance/security testing.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the testing & qa (e2e) control (from PPM / PMO tooling)
+    The test strategy + plan covering all levels (unit, system, integration, end-to-end, performance/load, security, regression) with entry/exit criteria
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: PPM / PMO tooling, Enterprise architecture repository, Test management (E2E/UAT), Vendor + contract management)
+    test strategy across levels (unit/system/integration/E2E/performance/security/regression) + entry/exit criteria
+    coverage traceability: requirements → test cases → results + defect log
+    UAT business sign-off before go-live
+    performance/load + security testing vs NFRs
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

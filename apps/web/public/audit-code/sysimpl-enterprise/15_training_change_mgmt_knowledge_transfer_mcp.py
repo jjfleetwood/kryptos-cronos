@@ -2,13 +2,16 @@
 """Read-only MCP server — System Implementation — Enterprise: "Training, change mgmt, knowledge transfer" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the System Implementation — Enterprise policy/standard and flag every item where the "Training, change mgmt, knowledge transfer" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify people are ready to adopt the system. PASS: an OCM plan covers stakeholder/impact analysis, communications, and change readiness; role-based training is built, delivered, and completion-tracked with competency confirmed pre-go-live; knowledge transfer to internal staff/support reduces vendor lock-in; and adoption/readiness is measured. Exceptions: no change management (resistance + low adoption), training built late or not delivered (users untrained at go-live), no knowledge transfer (permanent vendor dependency), and adoption never measured.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the training, change mgmt, knowledge transfer control (from PPM / PMO tooling)
+    The organisational change management (OCM) plan (stakeholder + impact analysis, communications, change-readiness assessment, adoption measures)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: PPM / PMO tooling, Enterprise architecture repository, Test management (E2E/UAT), Vendor + contract management)
+    OCM plan: stakeholder/impact analysis + communications + change-readiness + adoption measures
+    training program: role-based, delivered, completion-tracked, competency before go-live
+    knowledge transfer to internal staff + support (reduce vendor dependency)
+    adoption + readiness measurement at go-live
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

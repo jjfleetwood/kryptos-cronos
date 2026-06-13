@@ -2,13 +2,16 @@
 """Read-only MCP server — System Implementation — Enterprise: "Vendor selection" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the System Implementation — Enterprise policy/standard and flag every item where the "Vendor selection" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify vendor selection was objective + diligent. PASS: selection followed a documented process (requirements/RFP, weighted criteria, scoring, references/PoC), the chosen vendor passed due diligence (financial, security/SOC 2, track record, fit), conflicts of interest were managed, and the decision is signed off + traceable to the evaluation. Exceptions: a vendor chosen with no documented evaluation or criteria, no due diligence (financial/security/fit unverified), undisclosed conflicts of interest, and a decision that doesn't match the scoring.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the vendor selection control (from PPM / PMO tooling)
+    The vendor selection process + evidence (documented requirements/RFP, weighted evaluation criteria, scoring, the shortlist + decision rationale, references/PoC)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: PPM / PMO tooling, Enterprise architecture repository, Test management (E2E/UAT), Vendor + contract management)
+    documented selection: requirements/RFP + weighted criteria + scoring + references/PoC
+    due diligence on selected vendor (financial, security/SOC 2, track record, fit/roadmap)
+    conflict-of-interest + fair-process evidence
+    selection sign-off traceable to the documented evaluation
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

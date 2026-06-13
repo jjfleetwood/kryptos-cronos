@@ -2,13 +2,16 @@
 """Read-only MCP server — System Implementation — Enterprise: "Regulatory / compliance alignment" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the System Implementation — Enterprise policy/standard and flag every item where the "Regulatory / compliance alignment" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the system meets its regulatory + compliance obligations. PASS: applicable regulations are mapped to system requirements, compliance controls are built + tested (audit trails, retention, privacy, regulatory reporting), privacy-by-design (DPIA, minimisation, DSAR) applies where personal data is processed, and legal/compliance sign off before go-live. Exceptions: no regulatory mapping, compliance controls missing (no audit trail/retention; broken regulatory report), no DPIA for personal-data processing, and go-live with no compliance sign-off.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the regulatory / compliance alignment control (from PPM / PMO tooling)
+    The regulatory/compliance requirements mapped into the system (applicable laws/regs/standards — SoX, GDPR/privacy, PCI, HIPAA, industry rules — and how the system meets each)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: PPM / PMO tooling, Enterprise architecture repository, Test management (E2E/UAT), Vendor + contract management)
+    regulatory mapping into the system (SoX, GDPR/privacy, PCI, HIPAA, industry) + how each is met
+    compliance controls built + tested (audit trails, retention, privacy/consent, regulatory reporting)
+    privacy by design (DPIA, data-minimisation, data-subject-rights handling)
+    compliance sign-off before go-live
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

@@ -2,13 +2,16 @@
 """Read-only MCP server — System Implementation — Enterprise: "Enterprise architecture" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the System Implementation — Enterprise policy/standard and flag every item where the "Enterprise architecture" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the solution is architected to enterprise standards. PASS: the solution architecture aligns to the EA/reference standards and target state, an architecture board signs it off against non-functional requirements (performance/scalability/security/availability), integration + data architecture are designed across the landscape, and configure-vs-customize decisions are governed. Exceptions: a point solution designed in isolation from the EA, no NFRs or ARB review, undesigned integrations discovered during build, and unchecked customization creating technical debt.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the enterprise architecture control (from PPM / PMO tooling)
+    The solution architecture + its alignment to the enterprise architecture/reference standards (target-state design, integration architecture, data architecture, technology standards)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: PPM / PMO tooling, Enterprise architecture repository, Test management (E2E/UAT), Vendor + contract management)
+    solution architecture vs EA/reference standards + target state
+    ARB sign-off incl. NFRs (performance, scalability, security, availability)
+    integration + data architecture across the landscape
+    configure-vs-customize governance (avoiding un-governed customisation/tech debt)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

@@ -2,13 +2,16 @@
 """Read-only MCP server — System Implementation — Enterprise: "Data conversion and migration" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the System Implementation — Enterprise policy/standard and flag every item where the "Data conversion and migration" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify data migration is controlled + reconciled. PASS: there's a migration strategy + field mapping/transformation rules, source data is cleansed before migration, migration is tested via trial loads with record-count + control-total reconciliation and business validation/sign-off of converted data, and there's a fallback for failure. Exceptions: migration with no mapping/cleansing (garbage migrated), no reconciliation (records silently lost or duplicated), no business validation of converted data, and no fallback if the load fails.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the data conversion and migration control (from PPM / PMO tooling)
+    The data migration strategy + mapping (source→target field mapping, transformation rules, the scope of data migrated vs archived)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: PPM / PMO tooling, Enterprise architecture repository, Test management (E2E/UAT), Vendor + contract management)
+    migration strategy + source→target mapping + transformation rules + scope (migrate vs archive)
+    data cleansing + quality remediation before migration
+    migration testing + reconciliation (counts + control totals source vs target) + business sign-off
+    fallback for migration failure + cut-over data freeze
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

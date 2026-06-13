@@ -2,13 +2,16 @@
 """Read-only MCP server — System Implementation — Enterprise: "Infra and capacity planning" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the System Implementation — Enterprise policy/standard and flag every item where the "Infra and capacity planning" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify infrastructure + capacity are planned + validated. PASS: infra is sized to expected volumes + growth across appropriately separated environments, performance/capacity testing proves NFRs are met under peak + projected load, environments have prod parity, and post-go-live capacity monitoring + scaling headroom exist. Exceptions: infra sized by guesswork (under-provisioned), no capacity/performance testing (the system buckles under real load), non-representative test environments, and no capacity monitoring/scaling plan.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the infra and capacity planning control (from PPM / PMO tooling)
+    The infrastructure design + capacity plan (sizing based on expected volumes/users/growth, the environment topology — dev/test/stage/prod, cloud/on-prem decisions)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: PPM / PMO tooling, Enterprise architecture repository, Test management (E2E/UAT), Vendor + contract management)
+    infra design + capacity plan (sizing vs volumes/users/growth, environment topology, cloud/on-prem)
+    performance + capacity testing vs NFRs under peak + projected-growth load
+    environment provisioning + prod parity (test/stage representative of prod)
+    capacity monitoring + scaling/headroom for post-go-live growth
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /
