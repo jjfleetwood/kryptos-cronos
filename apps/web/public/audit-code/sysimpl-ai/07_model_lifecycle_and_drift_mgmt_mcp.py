@@ -2,13 +2,16 @@
 """Read-only MCP server — System Implementation — AI (Artificial Intelligence): "Model lifecycle and drift mgmt" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the "Model lifecycle and drift mgmt" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the model is managed across its lifecycle in production. PASS: production monitors model + data drift, performance decay, and distribution shift against thresholds; drift/decay triggers a governed retrain or rollback (with revalidation before relaunch); a lifecycle register tracks prod versions + retirement; and fairness/quality is monitored over time. Exceptions: no drift/performance monitoring (silent decay), no retraining trigger or the retrain skips revalidation, no model lifecycle/ownership register, and fairness checked only at launch.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the model lifecycle and drift mgmt control (from ML platform (SageMaker/Vertex/Azure ML))
+    The production monitoring for model + data drift, performance decay, and prediction-distribution shift, with thresholds
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: ML platform (SageMaker/Vertex/Azure ML), Feature + data store, Model registry + eval harness, Model monitoring / drift)
+    production monitoring: model + data drift + performance decay + distribution shift (thresholds)
+    retraining/rollback triggers + governed retrain (revalidation before relaunch)
+    model lifecycle register: prod versions + retirement/decommission + ownership
+    ongoing fairness/quality monitoring (not just at launch)?
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

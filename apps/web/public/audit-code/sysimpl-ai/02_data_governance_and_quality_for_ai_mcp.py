@@ -2,13 +2,16 @@
 """Read-only MCP server — System Implementation — AI (Artificial Intelligence): "Data governance and quality for AI" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the "Data governance and quality for AI" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the data for this AI system is governed + fit for purpose. PASS: the training/test data is assessed for quality + representativeness against the target population (coverage, balance, label quality), has documented provenance + lawful basis (consent/licensing/classification), is prepared with leakage prevention + feature governance, and meets defined data-acceptance criteria before training. Exceptions: unrepresentative/biased training data (a population the model will serve is absent or under-sampled), unknown provenance/lawful basis, train/test leakage inflating metrics, and no data-quality acceptance gate.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the data governance and quality for ai control (from ML platform (SageMaker/Vertex/Azure ML))
+    The training/test data quality + representativeness assessment for this use-case (coverage of the real population, class balance, label quality, known gaps)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: ML platform (SageMaker/Vertex/Azure ML), Feature + data store, Model registry + eval harness, Model monitoring / drift)
+    training/test data quality + representativeness for this use-case (coverage, balance, label quality, gaps)
+    data provenance + lineage + lawful basis (consent/licensing, classification)
+    data-prep controls: cleaning, de-dup, train/test leakage prevention, feature governance
+    data-quality acceptance criteria met before training?
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

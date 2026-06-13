@@ -2,13 +2,16 @@
 """Read-only MCP server — System Implementation — AI (Artificial Intelligence): "Model development and validation" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the "Model development and validation" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the model is developed + validated rigorously for this implementation. PASS: development is tracked + reproducible (experiment tracking, versioning); the model is validated against pre-agreed acceptance criteria on a representative held-out set (performance, robustness, calibration); subgroup/slice performance + error analysis are done; and validation is signed off before deployment. Exceptions: non-reproducible development, validation on a single average metric with no subgroup analysis (hiding poor performance on a group), no pre-agreed acceptance criteria, and deployment with no validation sign-off.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the model development and validation control (from ML platform (SageMaker/Vertex/Azure ML))
+    The model development records (approach, features, hyperparameters, experiment tracking, model versioning/reproducibility)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: ML platform (SageMaker/Vertex/Azure ML), Feature + data store, Model registry + eval harness, Model monitoring / drift)
+    model development records: experiment tracking + versioning + reproducibility
+    validation vs pre-agreed acceptance criteria (representative held-out set: performance, robustness, calibration)
+    subgroup/slice performance + error analysis (works across populations?)
+    validation sign-off before deployment?
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

@@ -2,13 +2,16 @@
 """Read-only MCP server — System Implementation — AI (Artificial Intelligence): "AI model deployment and infra" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the "AI model deployment and infra" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the AI system is deployed securely + controllably. PASS: deployment uses a governed model CI/CD pipeline with environment separation, staged/canary rollout, prod model versioning, and tested rollback; the serving stack is secured (authenticated + rate-limited endpoint, protected artifact, vaulted secrets); promotion requires approval; and the validated artifact is exactly what reaches prod. Exceptions: models hand-deployed with no pipeline/versioning, no rollback path, an unauthenticated/unprotected inference endpoint, and an unvalidated/last-minute model artifact reaching production.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the ai model deployment and infra control (from ML platform (SageMaker/Vertex/Azure ML))
+    The deployment architecture + the secured serving infrastructure (model endpoint, inference scaling, the deployment/CI-CD pipeline for models, environment separation)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: ML platform (SageMaker/Vertex/Azure ML), Feature + data store, Model registry + eval harness, Model monitoring / drift)
+    deployment architecture + secured serving (endpoint, model CI/CD, environment separation)
+    deployment controls: staged/canary rollout + prod versioning + rollback + promotion approval
+    serving security: authenticated + rate-limited endpoint, protected artifact, vaulted secrets
+    is the exact validated artifact what reaches prod (no last-minute swaps)?
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

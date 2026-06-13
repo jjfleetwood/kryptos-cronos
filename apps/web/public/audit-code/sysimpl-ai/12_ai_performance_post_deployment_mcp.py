@@ -2,13 +2,16 @@
 """Read-only MCP server — System Implementation — AI (Artificial Intelligence): "AI performance / post-deployment" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the "AI performance / post-deployment" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the AI system's value + performance are reviewed post-deployment. PASS: a post-implementation review measures the system against its original success metrics + business case; production outcomes are tracked (real-world performance vs validation, harm/complaint/appeal rates, benefit realisation); a feedback loop feeds outcomes + affected-party feedback into improvement; and there are criteria to remediate or decommission an under-delivering/harmful model. Exceptions: no post-implementation review (no one knows if it delivered value), no production outcome/harm tracking, no feedback loop, and no criteria to retire a failing model (it runs indefinitely unmeasured).
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the ai performance / post-deployment control (from ML platform (SageMaker/Vertex/Azure ML))
+    The post-implementation review of the AI system against its original success metrics + business case (did it deliver the intended outcome and value)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: ML platform (SageMaker/Vertex/Azure ML), Feature + data store, Model registry + eval harness, Model monitoring / drift)
+    post-implementation review vs original success metrics + business case (delivered value?)
+    production outcome tracking: real-world performance vs validation + harm/complaint/appeal rates
+    feedback loop: production outcomes + affected-party feedback → model improvement
+    decommission/continuation criteria (retire or remediate an under-delivering/harmful model)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

@@ -2,13 +2,16 @@
 """Read-only MCP server — System Implementation — AI (Artificial Intelligence): "Human oversight and accountability" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the "Human oversight and accountability" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify human oversight + accountability are implemented. PASS: human oversight is designed to the risk (operators can interpret, override, and halt the system), accountability is assigned (RACI: model owner + outcome-answerable role + escalation), there's an override/appeal path with an audit trail (and override-rate monitoring), and operators are trained on appropriate reliance. Exceptions: a consequential model running with no effective human override or stop, no named accountable owner for AI decisions, no audit trail of human-vs-model decisions, and operators untrained (rubber-stamping or ignoring the model).
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the human oversight and accountability control (from ML platform (SageMaker/Vertex/Azure ML))
+    The human-oversight design for the AI system (human in/on/over-the-loop matched to the risk; the operator's ability to interpret, override, and stop the system)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: ML platform (SageMaker/Vertex/Azure ML), Feature + data store, Model registry + eval harness, Model monitoring / drift)
+    human-oversight design (in/on/over-the-loop to the risk; interpret + override + stop)
+    accountability + RACI for AI decisions (model owner, outcome-answerable role, escalation)
+    override/appeal + audit trail of human vs model decisions (override-rate signal)
+    operator training on appropriate reliance (no automation bias / no dismissal)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

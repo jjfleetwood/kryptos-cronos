@@ -2,13 +2,16 @@
 """Read-only MCP server — System Implementation — AI (Artificial Intelligence): "AI security and adversarial testing" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the "AI security and adversarial testing" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the AI system is secured + adversarially tested. PASS: there's an AI threat model (MITRE ATLAS), adversarial/red-team testing with defenses deployed (input validation, robustness, LLM guardrails, inference rate-limiting/anomaly), model + data assets are protected (access control, weight encryption, pretrained-model/dependency vetting), and adversarial activity is monitored to the SOC. Exceptions: no AI threat model, no adversarial/red-team testing (an LLM with no guardrails; a model with no extraction protection), unprotected weights or unvetted pretrained dependencies, and no adversarial monitoring.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the ai security and adversarial testing control (from ML platform (SageMaker/Vertex/Azure ML))
+    The AI threat model for this system (poisoning, evasion, model/data extraction, inversion, prompt injection, jailbreak) mapped to MITRE ATLAS
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: ML platform (SageMaker/Vertex/Azure ML), Feature + data store, Model registry + eval harness, Model monitoring / drift)
+    AI threat model (MITRE ATLAS): poisoning, evasion, extraction, inversion, prompt injection, jailbreak
+    adversarial/red-team testing + defenses (input validation, robustness, guardrails, inference rate-limiting/anomaly)
+    model + data asset protection (access control, weight encryption, pretrained-model/dependency vetting)
+    adversarial-activity monitoring wired to the SOC?
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

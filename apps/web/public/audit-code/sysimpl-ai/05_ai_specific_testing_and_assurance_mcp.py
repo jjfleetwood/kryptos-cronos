@@ -2,13 +2,16 @@
 """Read-only MCP server — System Implementation — AI (Artificial Intelligence): "AI-specific testing and assurance" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the "AI-specific testing and assurance" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify AI-specific testing + assurance is performed. PASS: testing goes beyond accuracy (robustness, edge cases, adversarial/perturbation, prompt-injection + grounding for LLMs), UAT + human-factors testing covers appropriate trust/over-reliance, defects are tracked against acceptance criteria, and tests trace to use-case requirements. Exceptions: only happy-path accuracy tested, no adversarial/robustness or prompt-injection testing, no UAT/human-factors assessment, and no traceability from requirements to tests.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the ai-specific testing and assurance control (from ML platform (SageMaker/Vertex/Azure ML))
+    The AI test plan beyond accuracy (robustness/stress tests, edge cases, adversarial/perturbation tests, prompt-injection + jailbreak tests for LLMs, hallucination/grounding checks)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: ML platform (SageMaker/Vertex/Azure ML), Feature + data store, Model registry + eval harness, Model monitoring / drift)
+    AI test plan beyond accuracy: robustness, edge cases, adversarial/perturbation, prompt-injection + grounding (LLMs)
+    UAT + human-factors: appropriate trust / over-reliance (automation bias) checks
+    test evidence + defect tracking vs acceptance criteria
+    traceability: use-case requirements → test cases
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

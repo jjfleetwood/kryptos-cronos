@@ -2,13 +2,16 @@
 """Read-only MCP server — System Implementation — AI (Artificial Intelligence): "Third-party AI / foundation model gov" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the "Third-party AI / foundation model gov" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify third-party AI + foundation models are governed. PASS: external AI/foundation-model providers pass due diligence (security, data-use/retention, provenance), contracts protect data (no-training-without-consent, IP indemnity, change-notice, audit rights), data sent to external models is controlled (DLP/redaction, AI gateway, allowed-use policy), and the third-party model is monitored for changes + incidents. Exceptions: foundation models adopted with no due diligence, no contractual data-use protection (provider free to train on your data), sensitive data sent to external models with no redaction/gateway, and no monitoring of provider model changes.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the third-party ai / foundation model gov control (from ML platform (SageMaker/Vertex/Azure ML))
+    The due-diligence + risk assessment on third-party AI/foundation-model providers used (the provider's security, data-use/retention terms, model provenance, where prompts/data go)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: ML platform (SageMaker/Vertex/Azure ML), Feature + data store, Model registry + eval harness, Model monitoring / drift)
+    due diligence on third-party AI/foundation-model providers (security, data-use/retention, provenance, data flow)
+    contract terms: no-training-without-consent + confidentiality + IP indemnity + change-notice + audit rights
+    controls on data to external models: DLP/redaction, AI gateway, allowed-use policy
+    ongoing monitoring of the third-party model (version/behaviour changes, provider incidents)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

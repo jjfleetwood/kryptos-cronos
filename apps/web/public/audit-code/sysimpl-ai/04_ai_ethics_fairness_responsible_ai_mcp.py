@@ -2,13 +2,16 @@
 """Read-only MCP server — System Implementation — AI (Artificial Intelligence): "AI ethics, fairness, responsible AI" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the System Implementation — AI (Artificial Intelligence) policy/standard and flag every item where the "AI ethics, fairness, responsible AI" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify responsible-AI + fairness controls are implemented for this system. PASS: a fairness/bias assessment is done (protected-attribute + disparate-impact testing with a justified fairness metric), a responsible-AI review covers transparency + explainability + contestability, mitigations are applied where bias is found with residual risk accepted by an owner, and a model card documents it. Exceptions: no fairness/bias testing on a consequential model, no explainability/contestability for affected people, bias found but not mitigated or formally accepted, and no model card/transparency record.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the ai ethics, fairness, responsible ai control (from ML platform (SageMaker/Vertex/Azure ML))
+    The fairness/bias assessment for this model (protected-attribute analysis, the fairness metric chosen + justified, disparate-impact testing)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: ML platform (SageMaker/Vertex/Azure ML), Feature + data store, Model registry + eval harness, Model monitoring / drift)
+    fairness/bias assessment: protected-attribute + disparate-impact testing (justified fairness metric)
+    responsible-AI review: transparency + explainability + contestability + ethics sign-off
+    mitigations where bias found + residual-risk acceptance
+    the model card / transparency documentation
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /
