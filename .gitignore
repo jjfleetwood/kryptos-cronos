@@ -23,3 +23,6 @@ out/
 # Logs / OS
 *.log
 .DS_Store
+
+# Local-only personal working files — intentionally not version-controlled
+docs/legal/
