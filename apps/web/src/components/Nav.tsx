@@ -76,6 +76,7 @@ export default function Nav() {
   type NavItem = { href: string; icon: string; label: string };
   const primaryItems: NavItem[] = [
     { href: "/stages", icon: "🗺️", label: t("nav.stages") },
+    { href: "/range", icon: "🥷", label: t("nav.range", "Range") },
     { href: "/certs", icon: "📜", label: t("nav.certs", "Certifications") },
     { href: "/leaderboard", icon: "🏆", label: t("nav.leaderboard") },
     ...(username
