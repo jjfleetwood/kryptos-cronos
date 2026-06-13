@@ -43,7 +43,7 @@ export async function POST(req: NextRequest) {
           body: JSON.stringify({
             from: "Kryptós CronOS <noreply@kryptoscronos.com>",
             to: [email],
-            subject: "You're now Pro — all 855 stages unlocked",
+            subject: "You're now Pro — all 859 stages unlocked",
             html: `<!DOCTYPE html>
 <html>
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
@@ -62,7 +62,7 @@ export async function POST(req: NextRequest) {
             <p style="margin:0 0 8px;font-size:13px;color:rgba(34,211,238,0.6);letter-spacing:2px;text-transform:uppercase;">Payment confirmed</p>
             <h1 style="margin:0 0 20px;font-size:26px;font-weight:900;color:#ffffff;line-height:1.2;">You're Pro. Every stage is yours.</h1>
             <p style="margin:0 0 24px;font-size:14px;color:rgba(156,163,175,0.9);line-height:1.7;">
-              All 855 stages across 81 epochs are now unlocked. Unlimited ARIA AI hints.
+              All 859 stages across 82 epochs are now unlocked. Unlimited ARIA AI hints.
               No paywalls. No waiting. Pick up exactly where you left off.
             </p>
             <table cellpadding="0" cellspacing="0" style="margin:0 0 28px;">
@@ -78,11 +78,11 @@ export async function POST(req: NextRequest) {
             <table width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 20px;border:1px solid rgba(255,255,255,0.06);border-radius:8px;overflow:hidden;">
               <tr>
                 <td align="center" style="padding:16px 8px;border-right:1px solid rgba(255,255,255,0.06);">
-                  <div style="font-size:22px;font-weight:900;color:#22d3ee;">855</div>
+                  <div style="font-size:22px;font-weight:900;color:#22d3ee;">859</div>
                   <div style="font-size:10px;color:rgba(75,85,99,1);text-transform:uppercase;letter-spacing:1px;margin-top:2px;">Stages</div>
                 </td>
                 <td align="center" style="padding:16px 8px;border-right:1px solid rgba(255,255,255,0.06);">
-                  <div style="font-size:22px;font-weight:900;color:#a78bfa;">81</div>
+                  <div style="font-size:22px;font-weight:900;color:#a78bfa;">82</div>
                   <div style="font-size:10px;color:rgba(75,85,99,1);text-transform:uppercase;letter-spacing:1px;margin-top:2px;">Epochs</div>
                 </td>
                 <td align="center" style="padding:16px 8px;">
