@@ -42,6 +42,7 @@ import { rangeMetasploitEpoch, rangeMetasploitStages } from "./cyber-range";
 import { rangeReconEpoch, rangeReconStages } from "./range-recon";
 import { rangeWebEpoch, rangeWebStages } from "./range-web";
 import { rangePasswordsEpoch, rangePasswordsStages } from "./range-passwords";
+import { rangePrivescEpoch, rangePrivescStages } from "./range-privesc";
 import { cisco2Stages } from "./cisco-2";
 import { cisco3Stages } from "./cisco-3";
 import { cisco4Stages } from "./cisco-4";
@@ -171,6 +172,7 @@ export const epochs: EpochConfig[] = [
   rangeReconEpoch,
   rangeWebEpoch,
   rangePasswordsEpoch,
+  rangePrivescEpoch,
   umbrellaEpoch,
   tapestryEpoch,
   nailsEpoch,
@@ -250,6 +252,7 @@ export const stages: StageConfig[] = [
   ...rangeReconStages,
   ...rangeWebStages,
   ...rangePasswordsStages,
+  ...rangePrivescStages,
   ...umbrellaStages,
   ...tapestryStages,
   ...nailsStages,

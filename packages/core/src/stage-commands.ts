@@ -28,6 +28,7 @@ const LOADERS: Record<string, Array<() => Promise<unknown>>> = {
   "range-recon": [() => import("./range-recon")],
   "range-web": [() => import("./range-web")],
   "range-passwords": [() => import("./range-passwords")],
+  "range-privesc": [() => import("./range-privesc")],
   "ot-sec": [() => import("./ot-sec")],
   "physics-of-hacking": [() => import("./physics-of-hacking")],
   "quantum-1": [() => import("./quantum-1")],
