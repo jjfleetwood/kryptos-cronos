@@ -2,13 +2,16 @@
 """Read-only MCP server — Industrial Control Systems (ICS): "Network segmentation" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Industrial Control Systems (ICS) policy/standard and flag every item where the "Network segmentation" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify ICS is segmented per a zone/conduit model. PASS: OT is segmented into zones with enforced conduits (IEC 62443/Purdue), an IT/OT DMZ brokers shared services, internal OT is segmented (control vs supervisory), and the segmentation is verified/enforced with no bypass. Exceptions: a flat OT network, IT directly connected to OT with no DMZ, unrestricted conduits between zones, and segmentation on paper but bypassed in practice.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the network segmentation control (from ICS/SCADA + PLC/RTU/HMI)
+    The ICS network segmentation / zone + conduit model (the Purdue/IEC 62443 zones, the DMZ between IT and OT, segmentation within OT — control vs supervisory)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: ICS/SCADA + PLC/RTU/HMI, OT network monitoring (Dragos/Nozomi), IT/OT boundary firewalls (DMZ), OT asset inventory)
+    ICS zone + conduit model (IEC 62443/Purdue zones, IT/OT DMZ, intra-OT segmentation)
+    enforced conduits (firewalls/data diodes; only required + inspected flows)
+    OT DMZ for shared services (historian, remote access, patching) so IT never touches OT directly
+    segmentation actually enforced (no bypass paths)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

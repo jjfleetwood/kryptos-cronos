@@ -2,13 +2,16 @@
 """Read-only MCP server — Industrial Control Systems (ICS): "IT/OT asset boundary" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Industrial Control Systems (ICS) policy/standard and flag every item where the "IT/OT asset boundary" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the IT/OT boundary is controlled. PASS: a defined boundary (DMZ, reviewed firewall rules) brokers IT↔OT with data flowing OT→IT (no direct IT→controller), identity/access is separated across IT and OT, and boundary traffic is monitored + logged. Exceptions: direct IT-to-OT control paths, shared IT/OT identities (IT compromise = OT access), unreviewed boundary firewall rules, and no monitoring of cross-boundary traffic.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the it/ot asset boundary control (from ICS/SCADA + PLC/RTU/HMI)
+    The IT/OT boundary controls (the secured interface where IT and OT meet — DMZ, firewall rules, data flows reviewed; data flows OT→IT, not IT→OT control)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: ICS/SCADA + PLC/RTU/HMI, OT network monitoring (Dragos/Nozomi), IT/OT boundary firewalls (DMZ), OT asset inventory)
+    IT/OT boundary controls (DMZ, reviewed firewall rules; data flows OT→IT not IT→control)
+    control of data crossing the boundary (historian egress via DMZ; no direct IT-to-controller paths)
+    identity/access separation across IT and OT (separate credentials/domains)
+    boundary traffic inspected + logged
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

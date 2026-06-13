@@ -2,13 +2,16 @@
 """Read-only MCP server — Internet of Things (IoT): "IoT gateway security" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the "IoT gateway security" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify IoT gateways are secured. PASS: gateways are hardened + patched, authenticate devices + enforce policy as a security boundary, use encrypted mutually-authenticated channels to the cloud, have controlled management (no defaults, secured interface, least-privilege), and are monitored for tamper/compromise. Exceptions: gateways with default credentials or exposed management, unencrypted/unauthenticated gateway-to-cloud channel, a gateway that passes device traffic without auth/filtering, and unpatched/unmonitored gateways.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the iot gateway security control (from IoT device fleet + firmware)
+    The security of IoT gateways/edge aggregators (hardening, authentication, the gateway-to-cloud channel encryption + mutual auth, gateway patching)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: IoT device fleet + firmware, IoT gateway / broker, Device-identity / certificate service, IoT monitoring (NDR/asset))
+    gateway hardening + authentication + gateway-to-cloud encryption + mutual auth + patching
+    gateway as security boundary (secure protocol translation, device auth enforced, traffic filtering)
+    gateway access control + management (no default creds, secured interface, least-privilege)
+    gateway monitoring + integrity (tamper/compromise detection)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

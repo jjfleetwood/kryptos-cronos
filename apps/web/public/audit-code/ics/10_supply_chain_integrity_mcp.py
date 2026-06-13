@@ -2,13 +2,16 @@
 """Read-only MCP server — Industrial Control Systems (ICS): "Supply chain integrity" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Industrial Control Systems (ICS) policy/standard and flag every item where the "Supply chain integrity" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify ICS supply-chain integrity. PASS: controllers/firmware/software come from authorised channels with verified/signed integrity, ICS vendors/integrators are security-assured (secure-by-design, their supply chain), delivered firmware/updates are signature-verified before loading, and counterfeit/tampered devices are detected. Exceptions: firmware/software from unverified sources loaded without signature checks, no vendor security assurance (blind trust), counterfeit-risk parts/spares, and no integrity verification on updates (a firmware-implant path).
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the supply chain integrity control (from ICS/SCADA + PLC/RTU/HMI)
+    ICS supply-chain integrity (controller/firmware/software provenance — components sourced from authorised channels, firmware integrity verified/signed, no counterfeit or tampered devices)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: ICS/SCADA + PLC/RTU/HMI, OT network monitoring (Dragos/Nozomi), IT/OT boundary firewalls (DMZ), OT asset inventory)
+    ICS supply-chain integrity (controller/firmware/software provenance; authorised channels; no counterfeit/tampered)
+    vendor/integrator security assurance (secure-by-design, their own supply chain)
+    integrity verification of delivered/updated firmware + software (signatures checked before loading)
+    counterfeit + tampered-device detection (critical controllers + spares)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

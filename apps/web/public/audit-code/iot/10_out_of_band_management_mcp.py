@@ -2,13 +2,16 @@
 """Read-only MCP server — Internet of Things (IoT): "Out-of-band management" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the "Out-of-band management" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify device management is out-of-band + secured. PASS: device/IoT management runs on a separated management plane/network (not mixed with data/corporate), remote management is authenticated + encrypted + MFA'd, management access is least-privilege + logged, and the management infrastructure is protected. Exceptions: management traffic mixed with data/corporate networks, unauthenticated/unencrypted remote management, broad management access with no MFA or logging, and an unprotected management server controlling the whole fleet.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the out-of-band management control (from IoT device fleet + firmware)
+    The out-of-band / management-plane separation for IoT/device management (device management on a dedicated network/channel separate from data + corporate traffic)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: IoT device fleet + firmware, IoT gateway / broker, Device-identity / certificate service, IoT monitoring (NDR/asset))
+    out-of-band / management-plane separation (device mgmt on a dedicated network/channel)
+    secured remote management (authenticated, encrypted, MFA; no flat mgmt access)
+    management-plane access control + logging (least-privilege, audited)
+    protection of the management infrastructure (mgmt compromise = fleet compromise)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

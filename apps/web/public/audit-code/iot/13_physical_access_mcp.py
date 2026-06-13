@@ -2,13 +2,16 @@
 """Read-only MCP server — Internet of Things (IoT): "Physical access" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the "Physical access" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify deployed IoT devices are physically protected. PASS: devices in the field are tamper-evident/resistant with secured enclosures, anti-tamper protections (secure element, tamper-triggered key wipe, disabled debug ports), tamper triggers alerts + device disablement/key revocation, and physical risk is assessed for the deployment environment. Exceptions: unattended devices with no tamper protection + exposed debug/recovery, no detection or response to physical tampering, a stolen device's keys remaining valid (fleet exposure), and no physical-risk assessment for hostile/public deployments.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the physical access control (from IoT device fleet + firmware)
+    Physical security of deployed IoT devices (tamper-evidence/tamper-resistance, secured mounting/enclosures, protection against theft/physical access — especially for devices in public/unattended locations)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: IoT device fleet + firmware, IoT gateway / broker, Device-identity / certificate service, IoT monitoring (NDR/asset))
+    physical security of deployed devices (tamper-evidence/resistance, secured enclosures, theft protection)
+    anti-tamper (secure element, tamper-triggered key wipe, disabled debug ports, potting)
+    response to tampering (alerts, device disablement, key revocation for a stolen device)
+    physical-access risk assessment for the deployment environment
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

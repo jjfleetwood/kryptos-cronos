@@ -2,13 +2,16 @@
 """Read-only MCP server — Industrial Control Systems (ICS): "ICS monitoring and IR" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Industrial Control Systems (ICS) policy/standard and flag every item where the "ICS monitoring and IR" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify ICS is monitored + has cyber-physical IR. PASS: passive OT monitoring/IDS baselines ICS traffic + detects anomalous commands/known ICS malware/lateral movement, OT IR playbooks account for safety + physical impact (fail-safe/manual decisions) coordinated with operations, and IR is tested + SOC-integrated. Exceptions: no OT monitoring (ICS attacks invisible), no ICS-specific detections, IT IR playbooks that ignore physical/safety consequence, and no OT incident exercises with operations.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the ics monitoring and ir control (from ICS/SCADA + PLC/RTU/HMI)
+    OT-specific security monitoring (passive OT network monitoring/IDS — Dragos/Nozomi/Claroty — baselining normal ICS traffic, detecting anomalous commands/protocol abuse, rogue devices)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: ICS/SCADA + PLC/RTU/HMI, OT network monitoring (Dragos/Nozomi), IT/OT boundary firewalls (DMZ), OT asset inventory)
+    OT monitoring (passive IDS — Dragos/Nozomi/Claroty — baselining ICS traffic, anomalous commands, rogue devices)
+    OT detections (unauthorised PLC programming, setpoint changes, ICS malware — TRITON/Industroyer — IT-to-OT lateral movement)
+    OT/ICS IR (safety + cyber-physical impact; fail-safe/manual decision; coordinated with operations)
+    OT IR tested + integrated with SOC + plant operations
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

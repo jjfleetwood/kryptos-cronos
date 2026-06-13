@@ -2,13 +2,16 @@
 """Read-only MCP server — Industrial Control Systems (ICS): "Physical access and security" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Industrial Control Systems (ICS) policy/standard and flag every item where the "Physical access and security" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify ICS physical security is enforced. PASS: control rooms, plant floor, cabinets, and field devices have controlled + logged physical access, engineering workstations + control infra are physically restricted (no open USB), OT-space access is logged with contractor escort, and remote/unmanned sites have tamper/intrusion protection. Exceptions: open access to control rooms/controller cabinets, engineering workstations physically exposed with open USB, no logging of OT-space entry, and unmanned sites with no physical/tamper protection.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the physical access and security control (from ICS/SCADA + PLC/RTU/HMI)
+    Physical security of ICS assets (controlled access to control rooms, plant floor, RTU/substation cabinets, field devices — locks, badge access, the controller cabinet itself)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: ICS/SCADA + PLC/RTU/HMI, OT network monitoring (Dragos/Nozomi), IT/OT boundary firewalls (DMZ), OT asset inventory)
+    physical security of ICS assets (control rooms, plant floor, RTU/substation cabinets, field devices)
+    engineering workstations + control infra protected from physical access (locked, restricted, no open USB)
+    physical access control + logging for OT spaces (entry logged, contractors escorted)
+    remote/unmanned sites protected (substations, pumping stations, RTUs — tamper/intrusion detection)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

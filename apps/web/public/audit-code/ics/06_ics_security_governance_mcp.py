@@ -2,13 +2,16 @@
 """Read-only MCP server — Industrial Control Systems (ICS): "ICS security governance" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Industrial Control Systems (ICS) policy/standard and flag every item where the "ICS security governance" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify ICS security is governed. PASS: an OT security program with OT-specific policies + defined ownership, OT risk assessment tied to safety/operational impact, alignment to IEC 62443/NIST 800-82 with a roadmap, and security coordinated with safety + operations. Exceptions: no OT security program/ownership (IT policies assumed to cover OT), risk assessed only as IT data-risk (ignoring physical/safety consequence), no ICS-framework alignment, and security changes made without safety coordination.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the ics security governance control (from ICS/SCADA + PLC/RTU/HMI)
+    The OT/ICS security program + governance (OT-specific policies, defined OT security ownership/roles, the IT-OT-engineering-safety governance structure)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: ICS/SCADA + PLC/RTU/HMI, OT network monitoring (Dragos/Nozomi), IT/OT boundary firewalls (DMZ), OT asset inventory)
+    OT security program + governance (OT-specific policies, ownership/roles, IT-OT-engineering-safety structure)
+    OT risk assessment tied to safety + operational/physical impact
+    alignment to IEC 62443 / NIST 800-82 + maturity/roadmap
+    OT security integrated + coordinated with safety + operations
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

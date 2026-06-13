@@ -2,13 +2,16 @@
 """Read-only MCP server — Internet of Things (IoT): "NAC" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the "NAC" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify IoT network access is controlled. PASS: IoT devices authenticate to the network (802.1X/cert or controlled MAC-auth), unknown devices are blocked/quarantined, devices are segmented onto isolated VLANs with least-privilege flows, NAC profiles device type + applies policy, across wired + wireless. Exceptions: IoT on a flat network with corporate systems, no device authentication (any device plugs in), no segmentation/quarantine of unknown devices, and no NAC coverage on wireless.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the nac control (from IoT device fleet + firmware)
+    Network access control for IoT devices (devices authenticated to the network — 802.1X/cert-based or MAC-auth fallback; unknown devices blocked/quarantined)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: IoT device fleet + firmware, IoT gateway / broker, Device-identity / certificate service, IoT monitoring (NDR/asset))
+    network access control for IoT (802.1X/cert or MAC-auth; unknown devices blocked/quarantined)
+    IoT segmentation (isolated VLANs, least-privilege device-to-service flows)
+    device profiling + policy enforcement (NAC identifies type + applies policy)
+    coverage across wired + wireless IoT
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

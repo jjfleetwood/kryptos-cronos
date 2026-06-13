@@ -2,13 +2,16 @@
 """Read-only MCP server — Industrial Control Systems (ICS): "IAM (ICS)" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Industrial Control Systems (ICS) policy/standard and flag every item where the "IAM (ICS)" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify ICS access is controlled. PASS: named role-based accounts (no shared operator logins), least privilege across engineer/operator/view roles, strong auth (MFA for remote/engineering, no default/shared controller passwords), controlled + logged privileged engineering access, and OT access reviews/JML incl. vendors. Exceptions: shared/generic HMI logins, default controller passwords, no MFA on remote engineering access, anyone able to change PLC logic, and no access review (orphaned vendor accounts).
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the iam (ics) control (from ICS/SCADA + PLC/RTU/HMI)
+    Access control for the ICS environment (named accounts on HMIs/EWS — not shared operator logins; role-based access; least privilege for engineering vs operator vs view-only)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: ICS/SCADA + PLC/RTU/HMI, OT network monitoring (Dragos/Nozomi), IT/OT boundary firewalls (DMZ), OT asset inventory)
+    ICS access control (named accounts, role-based, least privilege: engineer/operator/view)
+    authentication strength (MFA for remote/engineering; no default/shared controller passwords)
+    privileged-access control for engineering (PLC logic/setpoint changes: approval + logging)
+    OT access review + JML (contractors/vendors especially)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

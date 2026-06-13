@@ -2,13 +2,16 @@
 """Read-only MCP server — Industrial Control Systems (ICS): "ICS asset inventory" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Industrial Control Systems (ICS) policy/standard and flag every item where the "ICS asset inventory" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the ICS asset inventory is complete + safe. PASS: a comprehensive OT asset inventory (controllers/HMI/EWS/historian with protocol + firmware) built via passive discovery, with criticality + process-impact mapping, reconciled to the physical plant, and maintained current. Exceptions: no/partial OT inventory (unknown devices controlling the process), inventory built by active scanning (risking ICS disruption), no criticality mapping, and a stale inventory.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the ics asset inventory control (from ICS/SCADA + PLC/RTU/HMI)
+    The OT/ICS asset inventory (every controller — PLC/RTU/DCS/IED, HMI, engineering workstation, historian, protocol + firmware version — built via passive discovery, not active scanning)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: ICS/SCADA + PLC/RTU/HMI, OT network monitoring (Dragos/Nozomi), IT/OT boundary firewalls (DMZ), OT asset inventory)
+    OT/ICS asset inventory (PLC/RTU/DCS/IED, HMI, EWS, historian + protocol + firmware — passive discovery)
+    asset criticality + cyber-physical impact mapping (safety/critical-process control)
+    reconciliation completeness (matches the physical plant)
+    inventory kept current as OT changes
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

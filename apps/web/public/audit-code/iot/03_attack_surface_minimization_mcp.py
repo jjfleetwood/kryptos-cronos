@@ -2,13 +2,16 @@
 """Read-only MCP server — Internet of Things (IoT): "Attack surface minimization" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the "Attack surface minimization" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify IoT attack surface is minimised. PASS: devices are hardened (unused services/ports/debug interfaces disabled — UART/JTAG/Telnet, default admin), not directly internet-exposed (verified by external scan/Shodan), physical/debug interfaces are secured, and the hardening baseline is applied + verified fleet-wide. Exceptions: devices with open debug ports/Telnet/default web admin, devices directly internet-exposed, exposed UART/JTAG, and no hardening baseline.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the attack surface minimization control (from IoT device fleet + firmware)
+    The device hardening / attack-surface reduction (disabled unused services/ports/interfaces — debug/UART/JTAG, Telnet, default web admin; minimal software footprint)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: IoT device fleet + firmware, IoT gateway / broker, Device-identity / certificate service, IoT monitoring (NDR/asset))
+    device hardening: unused services/ports/debug interfaces disabled (UART/JTAG/Telnet, default admin)
+    network exposure assessment (not internet-exposed; Shodan/external scan)
+    disabled/secured physical + debug interfaces
+    hardening baseline applied + verified fleet-wide
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

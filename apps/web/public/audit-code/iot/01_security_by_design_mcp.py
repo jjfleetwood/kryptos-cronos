@@ -2,13 +2,16 @@
 """Read-only MCP server — Internet of Things (IoT): "Security by design" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the "Security by design" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify IoT devices are secure by design. PASS: a security-by-design standard (secure boot, root of trust, signed firmware, unique per-device identity, no default/hardcoded creds) is applied to procured/built devices against ETSI EN 303 645 / NIST IR 8259, with secure provisioning + credential lifecycle, across the fleet. Exceptions: devices with default/hardcoded credentials, unsigned firmware/no secure boot, shared/static identities, and no security requirements in procurement.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the security by design control (from IoT device fleet + firmware)
+    The IoT security-by-design standard + evidence it's applied to devices/products (secure boot, hardware root of trust, signed firmware, no default/hardcoded credentials, unique per-device identity/certs)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: IoT device fleet + firmware, IoT gateway / broker, Device-identity / certificate service, IoT monitoring (NDR/asset))
+    IoT security-by-design standard applied (secure boot, root of trust, signed firmware, unique identity, no default creds)
+    device security requirements in procurement/development (ETSI EN 303 645 / NIST IR 8259)
+    secure provisioning + device identity/credential lifecycle
+    coverage: fleet built to standard vs legacy/uncontrolled
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

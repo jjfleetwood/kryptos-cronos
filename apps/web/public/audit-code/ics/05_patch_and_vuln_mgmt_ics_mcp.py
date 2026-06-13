@@ -2,13 +2,16 @@
 """Read-only MCP server — Industrial Control Systems (ICS): "Patch and vuln mgmt (ICS)" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Industrial Control Systems (ICS) policy/standard and flag every item where the "Patch and vuln mgmt (ICS)" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify ICS vulnerabilities are managed within OT constraints. PASS: OT vulnerabilities are tracked (ICS-CERT/vendor advisories) + risk-prioritised, compensating controls (segmentation, virtual patching, hardening) cover what can't be patched, patchable assets follow a tested/vendor-approved/maintenance-window process with rollback, and unpatchable/EOL assets are tracked with controls. Exceptions: no OT vulnerability awareness, IT-style forced patching risking process disruption, unpatchable assets with no compensating controls, and untracked legacy/EOL OT exposure.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the patch and vuln mgmt (ics) control (from ICS/SCADA + PLC/RTU/HMI)
+    OT vulnerability management adapted to ICS constraints (vulnerability awareness via vendor advisories/ICS-CERT, risk-based prioritisation since patching is constrained by uptime/safety)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: ICS/SCADA + PLC/RTU/HMI, OT network monitoring (Dragos/Nozomi), IT/OT boundary firewalls (DMZ), OT asset inventory)
+    OT vuln awareness (ICS-CERT/vendor advisories) + risk-based prioritisation (uptime/safety constrained)
+    compensating controls where patching isn't possible (segmentation, virtual patching/IPS, hardening)
+    controlled OT patching (lab-tested, vendor-approved, maintenance window, rollback)
+    unpatchable/legacy/EOL OT tracking + compensating controls
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

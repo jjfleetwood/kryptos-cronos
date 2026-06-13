@@ -2,13 +2,16 @@
 """Read-only MCP server — Industrial Control Systems (ICS): "Vendor physical and remote access" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Industrial Control Systems (ICS) policy/standard and flag every item where the "Vendor physical and remote access" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify vendor OT access is controlled. PASS: vendor remote access to OT is brokered (jump host/DMZ, MFA, time-bound + approved + recorded sessions), vendor physical access is escorted + logged + scoped, legacy always-on paths (modems, persistent VPNs) are removed, and vendor sessions are monitored + logged. Exceptions: always-on vendor VPN/modem access into OT, vendor remote access with no MFA/approval/recording, unescorted/unlogged vendor physical access, and dual-homed vendor laptops bridging internet to OT.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the vendor physical and remote access control (from ICS/SCADA + PLC/RTU/HMI)
+    Control of vendor/integrator remote access to OT (brokered through a secured jump host/DMZ with MFA; time-bound, approved, monitored/recorded sessions — not always-on vendor VPNs/modems)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: ICS/SCADA + PLC/RTU/HMI, OT network monitoring (Dragos/Nozomi), IT/OT boundary firewalls (DMZ), OT asset inventory)
+    vendor remote access brokered (jump host/DMZ, MFA, time-bound + approved + recorded sessions; no always-on)
+    vendor physical access (escorted, logged, scoped; equipment/media checked)
+    removal of legacy always-on paths (dial-up modems, persistent VPNs, dual-homed laptops)
+    monitoring + logging of all vendor OT sessions
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

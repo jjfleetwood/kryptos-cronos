@@ -2,13 +2,16 @@
 """Read-only MCP server — Internet of Things (IoT): "Privacy by design" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the "Privacy by design" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify IoT respects privacy by design. PASS: a privacy assessment/DPIA covers what personal data devices collect with minimisation + consent, privacy controls apply on-device + in the pipeline (minimisation, encryption, retention), and transparency + data-subject rights are provided. Exceptions: devices collecting excessive personal data (audio/video/location) with no minimisation or consent, unencrypted/over-retained IoT data, no transparency or deletion rights, and no DPIA for high-privacy devices.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the privacy by design control (from IoT device fleet + firmware)
+    The privacy assessment for the IoT data collected (what personal/sensitive data devices capture — location, audio/video, biometrics, behaviour; data minimisation; consent)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: IoT device fleet + firmware, IoT gateway / broker, Device-identity / certificate service, IoT monitoring (NDR/asset))
+    privacy assessment of IoT data collected (location, audio/video, biometrics, behaviour; minimisation; consent)
+    privacy controls on-device + in pipeline (minimisation/anonymisation, encryption, retention)
+    transparency + data-subject rights for IoT data
+    DPIA for high-privacy IoT (cameras, wearables, smart-home, location)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

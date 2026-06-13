@@ -2,13 +2,16 @@
 """Read-only MCP server — Internet of Things (IoT): "Third-party components" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the "Third-party components" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify IoT third-party components are governed. PASS: devices have an SBOM/HBOM, component CVEs are tracked with an update path, supply-chain integrity is verified (trusted sources, signed third-party firmware, no counterfeit parts), and EOL/unsupported components are tracked. Exceptions: no SBOM (unknown components), unpatched known-CVE libraries in the embedded OS, unvetted/counterfeit-risk parts, and EOL components with no replacement plan.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the third-party components control (from IoT device fleet + firmware)
+    The device software/hardware bill of materials (SBOM/HBOM — the OS, libraries, chips, radios, and their origins) for the device
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: IoT device fleet + firmware, IoT gateway / broker, Device-identity / certificate service, IoT monitoring (NDR/asset))
+    device SBOM/HBOM (OS, libraries, chips, radios + origins)
+    known-vulnerability tracking on components + update path
+    supply-chain integrity (trusted sources, signed third-party firmware, no counterfeit)
+    EOL/unsupported component tracking
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

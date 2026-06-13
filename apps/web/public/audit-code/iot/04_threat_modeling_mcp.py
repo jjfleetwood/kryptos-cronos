@@ -2,13 +2,16 @@
 """Read-only MCP server — Internet of Things (IoT): "Threat modeling" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the "Threat modeling" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the IoT system is threat-modeled end-to-end. PASS: a threat model covers the full ecosystem (device/firmware/comms/gateway/cloud/app) with identified threats + mitigations (tamper, firmware extraction, comms spoofing, cloud-API abuse, fleet compromise), abuse cases for the deployment, and it drives + is validated against security requirements. Exceptions: no threat model, the cloud/app/comms tiers unmodeled (only the device considered), no fleet-compromise scenario, and threats identified but never mitigated/tested.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the threat modeling control (from IoT device fleet + firmware)
+    The IoT threat model for the device + ecosystem (device, firmware, comms, gateway, cloud backend, mobile app — STRIDE/attack-tree across the whole system)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: IoT device fleet + firmware, IoT gateway / broker, Device-identity / certificate service, IoT monitoring (NDR/asset))
+    IoT threat model across the ecosystem (device, firmware, comms, gateway, cloud, app)
+    threats + mitigations (tamper, firmware extraction, comms spoofing, cloud-API abuse, fleet compromise)
+    abuse cases for the device's function + deployment
+    threat model feeding security requirements + tested?
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

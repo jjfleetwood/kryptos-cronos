@@ -2,13 +2,16 @@
 """Read-only MCP server — Internet of Things (IoT): "Shadow IoT detection" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the "Shadow IoT detection" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify shadow IoT is detected + controlled. PASS: continuous device discovery reconciles against an IoT inventory to flag unknown/rogue devices, unsanctioned devices are blocked/quarantined with a sanctioned onboarding path, across corporate/OT/remote/wireless. Exceptions: no device discovery (unknown what's on the network), no inventory to reconcile against, unsanctioned IoT left connected, and discovery blind to wireless/OT/remote sites.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the shadow iot detection control (from IoT device fleet + firmware)
+    Discovery/detection of unsanctioned IoT on the network (continuous passive discovery — the device exists in inventory; rogue/unknown IoT flagged)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: IoT device fleet + firmware, IoT gateway / broker, Device-identity / certificate service, IoT monitoring (NDR/asset))
+    discovery/detection of unsanctioned IoT (continuous passive discovery; rogue/unknown flagged)
+    IoT asset inventory + discovery reconciled against it
+    policy + enforcement on unsanctioned devices (block/quarantine + sanctioned onboarding)
+    coverage across corporate, OT, remote sites, wireless
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

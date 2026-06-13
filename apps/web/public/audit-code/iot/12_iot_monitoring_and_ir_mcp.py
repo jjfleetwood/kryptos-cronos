@@ -2,13 +2,16 @@
 """Read-only MCP server — Internet of Things (IoT): "IoT monitoring and IR" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Internet of Things (IoT) policy/standard and flag every item where the "IoT monitoring and IR" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify IoT is monitored + has IR. PASS: device telemetry + network behaviour feed the SOC/SIEM with IoT-specific anomaly detection (botnet/C2/lateral movement), IoT IR playbooks exist (quarantine, fleet response, reflash), and there's demonstrated detection + response capability. Exceptions: IoT a monitoring blind spot (no telemetry/detection), no IoT-specific detections (Mirai-style recruitment unseen), no IR playbook for compromised devices, and no ability to quarantine/remediate at fleet scale.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the iot monitoring and ir control (from IoT device fleet + firmware)
+    IoT security monitoring (device telemetry + network behaviour into the SOC/SIEM; anomaly detection for compromised devices — DDoS botnet behaviour, C2, lateral movement)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: IoT device fleet + firmware, IoT gateway / broker, Device-identity / certificate service, IoT monitoring (NDR/asset))
+    IoT monitoring (device telemetry + network behaviour to SOC/SIEM; anomaly detection — DDoS botnet, C2, lateral movement)
+    IoT-specific detections (Mirai-style recruitment, unusual traffic, firmware-tamper)
+    IoT IR playbooks (isolate/quarantine, fleet response, firmware reflash)
+    demonstrated detection + response for an IoT compromise?
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /
