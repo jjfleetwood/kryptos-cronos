@@ -45,19 +45,27 @@ export async function POST(req: NextRequest) {
     (f: Finding) => f && (f.ref || f.stageId) && f.checkId && f.title && f.severity !== "low",
   );
 
-  // Map THIS agent's existing OPEN finding cards by their finding key (sourceRef).
+  // Map THIS agent's existing finding cards by their finding key (sourceRef),
+  // across ALL statuses. Deduping only on OPEN cards is what made the board
+  // balloon: a finding triaged to done/archived was invisible next sweep, so a
+  // duplicate card was created. Now one finding key → one card, forever:
+  //   • archived  → human dismissed it; never re-card (respect the decision).
+  //   • done      → still detected ⇒ re-open (it regressed / the fix didn't take).
+  //   • open      → update in place.
+  // `open` is the subset eligible for auto-resolve when a finding disappears.
   const all = await listItems();
+  const byKey = new Map<string, ScrumItem>();
   const open = new Map<string, ScrumItem>();
   for (const it of all) {
     if (it.source === "agent" && it.initiator === initiator &&
-        it.sourceRef?.startsWith(keyPrefix) && it.sourceRef !== summaryRef &&
-        it.status !== "archived" && it.status !== "done") {
-      open.set(it.sourceRef, it);
+        it.sourceRef?.startsWith(keyPrefix) && it.sourceRef !== summaryRef) {
+      byKey.set(it.sourceRef, it);
+      if (it.status !== "archived" && it.status !== "done") open.set(it.sourceRef, it);
     }
   }
 
   const seen = new Set<string>();
-  let created = 0, updated = 0;
+  let created = 0, updated = 0, reopened = 0, suppressed = 0;
   for (const f of findings) {
     const refId = f.ref ?? f.stageId ?? "?";
     const key = `${agent}:${refId}:${f.checkId}`;
@@ -65,14 +73,24 @@ export async function POST(req: NextRequest) {
     seen.add(key);
     const sev = SEV[f.severity] ?? SEV.medium;
     const desc = `${f.detail ?? ""}\n\nref: ${refId}${f.epochId ? ` (${f.epochId})` : ""} · check: ${f.checkId} · severity: ${f.severity}`;
-    const existing = open.get(key);
+    const existing = byKey.get(key);
+    if (existing?.status === "archived") {
+      suppressed++; // dismissed by a human — leave it archived, don't re-card
+      continue;
+    }
     if (existing) {
       existing.title = f.title.slice(0, 200);
       existing.description = desc;
       existing.priority = sev.priority;
+      if (existing.status === "done") {
+        existing.status = "triage";
+        existing.notes = [...(existing.notes ?? []), { ts: Date.now(), author: initiator, text: "↻ Re-opened — detected again in the latest sweep." }];
+        reopened++;
+      } else {
+        updated++;
+      }
       existing.updatedAt = Date.now();
       await putItem(existing);
-      updated++;
     } else {
       await createItem({
         title: f.title.slice(0, 200), description: desc,
@@ -83,7 +101,7 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  // Auto-resolve this agent's open findings that are no longer detected.
+  // Auto-resolve this agent's still-open findings that are no longer detected.
   let resolved = 0;
   for (const [key, it] of open) {
     if (!seen.has(key)) {
@@ -102,7 +120,7 @@ export async function POST(req: NextRequest) {
   await putItem(newItem({
     id: `agent-${agent}-sweep`,
     title: `${s.icon ?? "🤖"} ${s.label ?? agent} sweep — ${new Date().toISOString().slice(0, 16).replace("T", " ")}Z · ${findings.length} open finding(s)`,
-    description: `Latest sweep by ${initiator}.\n${scopeStr ? `- Scope: ${scopeStr}\n` : ""}- Open high/medium findings: ${findings.length} (new ${created}, updated ${updated}, auto-resolved ${resolved})\n- Low-severity (aggregated, not carded): ${lowStr}`,
+    description: `Latest sweep by ${initiator}.\n${scopeStr ? `- Scope: ${scopeStr}\n` : ""}- Open high/medium findings: ${findings.length} (new ${created}, updated ${updated}, reopened ${reopened}, suppressed ${suppressed}, auto-resolved ${resolved})\n- Low-severity (aggregated, not carded): ${lowStr}`,
     type: "test", priority: findings.length ? "p2" : "p3", status: "review",
     source: "agent", initiator, sourceRef: summaryRef,
     order: -8.6e15, // just under the pinned plan card, top of Review
@@ -149,5 +167,5 @@ export async function POST(req: NextRequest) {
     order: -8.65e15, // sits with the sweep summaries at the top of Review
   }));
 
-  return NextResponse.json({ ok: true, agent, created, updated, resolved, open: findings.length });
+  return NextResponse.json({ ok: true, agent, created, updated, reopened, suppressed, resolved, open: findings.length });
 }
