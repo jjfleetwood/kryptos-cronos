@@ -20,9 +20,9 @@ export const cisco4Stages: StageConfig[] = [
       tagline: "A single unauthenticated HTTP request turned 50,000 routers into attacker-controlled network nodes.",
       year: 2023,
       overview: [
-        "CVE-2023-20198 is a CVSS 10.0 — maximum possible score — flaw in the Cisco IOS XE Web UI:\n- It applies wherever the web management interface is enabled (`ip http server` or `ip http secure-server`).\n- An unauthenticated remote attacker could send a crafted HTTP request to the management interface.\n- That created a new local user account at privilege level 15 (full admin).",
+        "CVE-2023-20198 is a CVSS 10.0 — the maximum possible score — flaw in the Cisco IOS XE Web UI. Wherever the web management interface is enabled (`ip http server` or `ip http secure-server`), an unauthenticated remote attacker could send a crafted HTTP request to that interface and create a new local user account at privilege level 15, full admin.",
         "It was exploited as a zero-day from late September 2023, and by October researchers had identified over 50,000 compromised Cisco IOS XE devices worldwide, each with an active implant awaiting commands — Cisco's first advisory landed October 16, 2023, weeks after mass exploitation was already underway.",
-        "IOS XE runs on Cisco's Catalyst switches, ISR routers, ASR routers, and other enterprise infrastructure, so a privilege-15 account hands an attacker complete control:\n- Routing-table manipulation and traffic interception.\n- Lateral movement to management networks.\n- The ability to install persistent implants — all without tripping standard authentication logs.",
+        "IOS XE runs on Cisco's Catalyst switches, ISR routers, ASR routers, and other enterprise infrastructure, so a privilege-15 account hands an attacker complete control: routing-table manipulation and traffic interception, lateral movement to management networks, and the ability to install persistent implants — all without tripping standard authentication logs.",
       ],
       technical: {
         title: "IOS XE HTTP Server Privilege Escalation — Unauthenticated Account Creation",
@@ -246,8 +246,8 @@ no ip http secure-server
       tagline: "The first zero-day created the door. The second zero-day installed a lock only the attacker could open.",
       year: 2023,
       overview: [
-        "CVE-2023-20273 is a command-injection flaw in the Cisco IOS XE Web UI, used alongside CVE-2023-20198 in the October 2023 mass-exploitation campaign:\n- First, CVE-2023-20198 created a privilege-15 account on the device.\n- Then CVE-2023-20273 injected OS-level commands into the underlying operating system IOS XE runs on.\n- That reached below the IOS EXEC layer entirely.",
-        "The chained attack let the threat actor plant a malicious Lua plugin as a persistent implant:\n- It was written into the IOS XE filesystem and loaded on device startup.\n- That gave command-and-control access that survived device reloads.\n- The implant intercepted specific HTTPS packets and ran embedded shellcode — effectively turning the router into a covert network tap.",
+        "CVE-2023-20273 is a command-injection flaw in the Cisco IOS XE Web UI, used alongside CVE-2023-20198 in the October 2023 mass-exploitation campaign. First CVE-2023-20198 created a privilege-15 account on the device; then CVE-2023-20273 injected OS-level commands into the underlying operating system IOS XE runs on, reaching below the IOS EXEC layer entirely.",
+        "The chained attack let the threat actor plant a malicious Lua plugin as a persistent implant: written into the IOS XE filesystem and loaded on device startup, it gave command-and-control access that survived device reloads, intercepting specific HTTPS packets and running embedded shellcode — effectively turning the router into a covert network tap.",
         "Cisco updated its October 16, 2023 advisory on October 23 to add CVE-2023-20273 once analysis of the implant revealed the second link in the chain, and patches for both vulnerabilities shipped together.",
       ],
       technical: {
@@ -424,8 +424,8 @@ show running-config | include event manager
       year: 2024,
       overview: [
         "ArcaneDoor is a Cisco Talos-named nation-state espionage campaign disclosed April 24, 2024. The threat actor (tracked as UAT4356, and by Microsoft as STORM-1849) targeted government and critical infrastructure organizations globally by exploiting two zero-day vulnerabilities in Cisco Adaptive Security Appliance (ASA) and Firepower Threat Defense (FTD) — exactly the perimeter security devices designed to protect networks from external threats.",
-        "The campaign chained two zero-days in the ASA/FTD management and data interfaces:\n- CVE-2024-20353 (CVSS 8.6) — an unauthenticated denial-of-service and potential remote code execution that let attackers trigger a reload or, in some configurations, run code.\n- CVE-2024-20359 (CVSS 6.0) — an authenticated persistent local code execution that let the implant survive reboots and upgrades, an exceptionally rare capability for network-device malware.",
-        "It deployed two malware families, then told customers to treat any ASA/FTD management exposure as an active threat:\n- Line Dancer — an in-memory shellcode implant using crafted HTTPS management packets as a covert C2 channel.\n- Line Runner — an HTTP-based backdoor abusing the ASDM plugin mechanism to survive reboots.",
+        "The campaign chained two zero-days in the ASA/FTD management and data interfaces. CVE-2024-20353 (CVSS 8.6) was an unauthenticated denial-of-service and potential remote code execution that let attackers trigger a reload or, in some configurations, run code; CVE-2024-20359 (CVSS 6.0) was an authenticated persistent local code execution that let the implant survive reboots and upgrades — an exceptionally rare capability for network-device malware.",
+        "It deployed two malware families — Line Dancer, an in-memory shellcode implant using crafted HTTPS management packets as a covert C2 channel, and Line Runner, an HTTP-based backdoor abusing the ASDM plugin mechanism to survive reboots — after which Cisco told customers to treat any ASA/FTD management exposure as an active threat.",
       ],
       technical: {
         title: "Line Dancer & Line Runner — Perimeter Device Implant Architecture",
@@ -623,7 +623,7 @@ show memory detail
       tagline: "A convenience feature for network engineers became a master key to 250,000 routers worldwide.",
       year: 2018,
       overview: [
-        "CVE-2018-0171 is a critical buffer overflow in the Cisco Smart Install (SMI) protocol — a plug-and-play feature that lets new Cisco switches auto-download their configuration and IOS image from a Smart Install Director on TCP port 4786:\n- An unauthenticated remote attacker could execute arbitrary code on any device running the Smart Install Client.\n- That client was enabled by default on many Cisco IOS and IOS XE devices.\n- Scored CVSS 9.8.",
+        "CVE-2018-0171 is a critical buffer overflow in the Cisco Smart Install (SMI) protocol — a plug-and-play feature that lets new Cisco switches auto-download their configuration and IOS image from a Smart Install Director on TCP port 4786. An unauthenticated remote attacker could execute arbitrary code on any device running the Smart Install Client, which was enabled by default on many Cisco IOS and IOS XE devices, and the flaw scored CVSS 9.8.",
         "Disclosed in March 2018, it drew a joint CISA/FBI alert within months attributing mass exploitation to Russian state actors — specifically APT28 (GRU Unit 26165, aka Fancy Bear), who had been using it to compromise routers across the United States, United Kingdom, Germany, and Ukraine — while a separate Iranian threat group exploited the same flaw independently.",
         "At peak exposure, researchers found over 250,000 devices with TCP port 4786 openly reachable on the internet — a convenience feature for network engineers that had never been designed with external threat models in mind — and the attacks reached routers in critical infrastructure across energy, telecommunications, and government networks.",
       ],
@@ -844,7 +844,7 @@ no vstack
       year: 2024,
       overview: [
         "Cisco Identity Services Engine (ISE) is the enforcement layer for zero-trust network access. It implements 802.1X port-based Network Access Control (NAC), authenticating every device and user attempting to connect to the network before granting access. ISE integrates with Active Directory, Cisco DNA Center, and endpoint security tools to make access decisions based on identity, device posture, and context.",
-        "The difference NAC makes is stark — without 802.1X, any device plugged into a switch port gets network access; with ISE enforcing 802.1X:\n- Every device must authenticate with machine certificates, user credentials, or both.\n- The device's security posture — patch level, antivirus status, disk encryption — is assessed before the port opens.\n- Non-compliant devices are quarantined to a remediation VLAN.",
+        "The difference NAC makes is stark. Without 802.1X, any device plugged into a switch port gets network access; with ISE enforcing 802.1X, every device must authenticate with machine certificates, user credentials, or both, its security posture — patch level, antivirus status, disk encryption — is assessed before the port opens, and non-compliant devices are quarantined to a remediation VLAN.",
         "RADIUS (Remote Authentication Dial-In User Service) is the protocol ISE uses to talk to network switches, and that ISE-switch channel is a critical boundary: an attacker who can impersonate the RADIUS server or replay RADIUS traffic can grant themselves network access, bypassing the entire NAC enforcement layer.",
       ],
       technical: {

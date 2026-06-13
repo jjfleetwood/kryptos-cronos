@@ -19,7 +19,7 @@ export const cisco3Stages: StageConfig[] = [
       tagline: "A privileged CLI command could escape FTD's restricted shell and execute arbitrary OS commands as root.",
       year: 2022,
       overview: [
-        "CVE-2022-20828 is a command-injection flaw in the CLI parser of Cisco Firepower Threat Defense (FTD) Software:\n- An authenticated attacker with read-only or higher privileges could exploit it.\n- Crafted input to specific CLI commands escaped the FTD restricted shell.\n- The result was arbitrary OS command execution as root, scored CVSS 7.2.",
+        "CVE-2022-20828 is a command-injection flaw in the CLI parser of Cisco Firepower Threat Defense (FTD) Software. An authenticated attacker holding read-only or higher privileges could feed crafted input to specific CLI commands that escaped the FTD restricted shell, and the result was arbitrary OS command execution as root — scored CVSS 7.2.",
         "Cisco FTD is the next-generation firewall engine across the Firepower 1000, 2100, 4100, and 9300 series, folding stateful inspection, IPS, URL filtering, and advanced malware protection into one platform — the heart of enterprise network security for thousands of organizations.",
         "It did require prior authentication, but read-only CLI credentials are routinely shared among operations staff or recoverable from configuration backups — so once an attacker holds any valid CLI account, CVE-2022-20828 is a direct path to root on the firewall itself.",
       ],
@@ -218,7 +218,7 @@ show version | include Software
       tagline: "A crafted TCP stream slipped through Cisco's Snort IPS engine completely undetected.",
       year: 2021,
       overview: [
-        "CVE-2021-1224 affects the Snort detection engine embedded in Cisco IOS XE, ASA with Firepower Services, and FTD, and lives in how Snort reassembled TCP streams:\n- A crafted sequence of TCP packets with overlapping segments triggered incorrect reassembly.\n- Snort ended up analyzing a different byte stream than the end host actually received.\n- Scored CVSS 8.6.",
+        "CVE-2021-1224 affects the Snort detection engine embedded in Cisco IOS XE, ASA with Firepower Services, and FTD, and it lives in how Snort reassembled TCP streams. A crafted sequence of TCP packets with overlapping segments triggered incorrect reassembly, so Snort ended up analyzing a different byte stream than the end host actually received — a CVSS 8.6 evasion.",
         "Intrusion Prevention Systems detect attacks by matching reassembled TCP streams against known signatures — so if the IPS reassembles the stream differently than the target host, the signatures never match, and the attack passes through uninspected with zero alerts.",
         "This class of bug — TCP evasion, or IPS bypass — has been understood since Ptacek & Newsham's 1998 paper, yet it keeps resurfacing in production IPS products; CVE-2021-1224 showed that as late as 2021, stream-normalization gaps could still evade Cisco's flagship security platform.",
       ],
@@ -384,7 +384,7 @@ show version | include Software
       tagline: "A forged SAML assertion gave unauthenticated attackers admin access to every Umbrella-protected tenant.",
       year: 2022,
       overview: [
-        "CVE-2022-20773 is a critical authentication bypass in the Cisco Umbrella Single Sign-On (SSO) service, rooted in insufficient SAML assertion validation:\n- An unauthenticated remote attacker could send a crafted SAML assertion to the Umbrella SSO endpoint.\n- That let them authenticate as any user — administrators included — with no valid credentials.\n- Scored CVSS 9.6, near-maximum severity.",
+        "CVE-2022-20773 is a critical authentication bypass in the Cisco Umbrella Single Sign-On (SSO) service, rooted in insufficient SAML assertion validation. An unauthenticated remote attacker could send a crafted SAML assertion to the Umbrella SSO endpoint and authenticate as any user — administrators included — with no valid credentials, a near-maximum CVSS 9.6.",
         "Cisco Umbrella is a cloud-delivered DNS-security and SASE platform protecting tens of thousands of enterprises, so admin access to a tenant lets an attacker disable DNS security policies, add allow-list bypass rules, and reroute DNS traffic — neutralizing the organization's entire cloud-delivered security perimeter.",
         "SAML bypasses are especially dangerous because they're invisible downstream: the application receives what looks like a valid, signed assertion from a trusted identity provider, so traditional monitoring has no reason to flag the session as anomalous.",
       ],
@@ -581,8 +581,8 @@ show version | include Software
       year: 2023,
       overview: [
         "Cisco SecureX (now Cisco XDR) is a cloud-native security operations platform that aggregates telemetry from the entire Cisco security portfolio — Umbrella, Firepower, Secure Endpoint (AMP), Secure Email, Duo MFA, and third-party tools — into a unified dashboard for detection, investigation, and automated response.",
-        "Extended Detection and Response (XDR) platforms represent a major architectural shift:\n- instead of analysts manually correlating alerts from dozens of disjointed tools\n- XDR ingests\n- normalizes\n- and correlates telemetry at scale\n- providing cross-product incident timelines and automated playbook execution",
-        "But centralization introduces new risk vectors:\n- A compromised XDR API token exposes telemetry from the entire security stack.\n- Misconfigured OAuth integrations can grant unauthorized third-party access.\n- Automated response playbooks that disable firewall rules or quarantine endpoints can be weaponized if an attacker reaches the orchestration layer.",
+        "Extended Detection and Response (XDR) platforms represent a major architectural shift: instead of analysts manually correlating alerts from dozens of disjointed tools, XDR ingests, normalizes, and correlates telemetry at scale, providing cross-product incident timelines and automated playbook execution.",
+        "But centralization introduces new risk vectors. A compromised XDR API token exposes telemetry from the entire security stack, misconfigured OAuth integrations can grant unauthorized third-party access, and automated response playbooks that disable firewall rules or quarantine endpoints can be weaponized if an attacker reaches the orchestration layer.",
       ],
       technical: {
         title: "Cisco XDR Architecture and Risk Surface",
@@ -718,7 +718,7 @@ grant_type=client_credentials
       tagline: "A REST API designed to manage physical servers became a backdoor straight to the OS.",
       year: 2019,
       overview: [
-        "CVE-2019-1896 is a command-injection flaw in the REST API of the Cisco Integrated Management Controller (IMC) — the out-of-band management for Cisco UCS (Unified Computing System) servers, analogous to IPMI or Dell iDRAC:\n- It lets administrators remotely power-cycle servers, mount virtual media, configure BIOS, and monitor hardware health.\n- All of that runs from a separate management network.\n- Scored CVSS 7.2.",
+        "CVE-2019-1896 is a command-injection flaw in the REST API of the Cisco Integrated Management Controller (IMC) — the out-of-band management for Cisco UCS (Unified Computing System) servers, analogous to IPMI or Dell iDRAC. The IMC lets administrators remotely power-cycle servers, mount virtual media, configure BIOS, and monitor hardware health, all from a separate management network, and the flaw scored CVSS 7.2.",
         "The flaw was in how the IMC REST API handled certain request parameters — user input flowed straight into underlying OS commands without sanitization — so an authenticated attacker at any privilege level could inject OS commands via API parameters and run them as root on the IMC firmware.",
         "Out-of-band management interfaces are extremely high-value targets: compromising the IMC gives persistent access that survives OS reinstalls, the equivalent of physical control (power cycling, virtual-media mounting), and the ability to plant firmware-level implants.",
       ],
@@ -925,7 +925,7 @@ curl -k -X POST https://IMC_IP/api/v2/virtual-media/mount \
       year: 2023,
       overview: [
         "Cisco DevNet is the developer program and API ecosystem for Cisco's networking portfolio. Through DevNet, engineers automate networks using REST APIs, YANG data models, NETCONF/RESTCONF, and Cisco-specific SDKs for DNA Center, Catalyst Center, Meraki, APIC-EM, and NSO (Network Services Orchestrator).",
-        "Network automation introduces a critical new attack surface — API credentials, automation scripts, and CI/CD pipelines all touching production network infrastructure:\n- A leaked Cisco DNA Center API token carries the same authority as a network administrator.\n- With it, an attacker can reconfigure the entire campus network — VLANs, ACLs, routing policies, and QoS settings.",
+        "Network automation introduces a critical new attack surface — API credentials, automation scripts, and CI/CD pipelines all touching production network infrastructure. A leaked Cisco DNA Center API token carries the same authority as a network administrator, and with it an attacker can reconfigure the entire campus network: VLANs, ACLs, routing policies, and QoS settings.",
         "DevNet best practices stress securing API tokens with vault storage, short token lifetimes, RBAC on API scopes, and auditing every API call via YANG Telemetry and syslog.",
       ],
       technical: {
@@ -1077,7 +1077,7 @@ curl -H "X-Auth-Token: $DNAC_TOKEN" \\
       tagline: "A SOC analyst who can't prioritize is just watching alerts scroll by.",
       year: 2024,
       overview: [
-        "The Cisco CyberOps Associate certification prepares analysts for Tier 1 and Tier 2 Security Operations Center roles, with core competencies including:\n- SIEM alert triage and incident classification.\n- Network traffic analysis and log interpretation.\n- Basic threat hunting using Cisco SecureX, Splunk, and the ELK stack.",
+        "The Cisco CyberOps Associate certification prepares analysts for Tier 1 and Tier 2 Security Operations Center roles, building core competencies in SIEM alert triage and incident classification, network traffic analysis and log interpretation, and basic threat hunting using Cisco SecureX, Splunk, and the ELK stack.",
         "SIEM platforms collect, normalize, and correlate logs from across an organization — firewalls, endpoints, DNS servers, authentication systems, and cloud services — and Cisco SecureX/XDR ties into Splunk and Cisco's analytics for unified alert management across the whole security portfolio.",
         "A Tier 1 SOC analyst's primary job is triage: deciding whether an alert is a true positive (a real attack) or a false positive (benign activity that tripped a rule), and whether to escalate to Tier 2 for deep investigation.",
       ],
@@ -1234,7 +1234,7 @@ index=windows EventCode=4624 Logon_Type=10
       year: 2024,
       overview: [
         "Threat hunting is the proactive discipline of searching for attacker activity that has evaded automated detection. Unlike reactive incident response triggered by SIEM alerts, threat hunters form hypotheses based on threat intelligence, adversary TTPs from MITRE ATT&CK, and anomalies in telemetry — then actively query logs, endpoint data, and network captures to confirm or refute them.",
-        "Indicators of Compromise (IOCs) are forensic artifacts that suggest a system has been compromised:\n- Malicious IP addresses and file hashes of known malware.\n- Suspicious registry keys and anomalous DNS queries.\n- Unusual outbound connections.\nThese are curated in threat-intelligence platforms like Cisco SecureX Threat Intelligence, MISP, and VirusTotal.",
+        "Indicators of Compromise (IOCs) are forensic artifacts that suggest a system has been compromised — malicious IP addresses and file hashes of known malware, suspicious registry keys and anomalous DNS queries, and unusual outbound connections — and they are curated in threat-intelligence platforms like Cisco SecureX Threat Intelligence, MISP, and VirusTotal.",
         "Cisco CyberOps Associate covers the hunt methodology: building hypotheses from ATT&CK TTPs, querying endpoint telemetry, spotting lateral movement in authentication logs, and detecting C2 beaconing through DNS and NetFlow analysis.",
       ],
       technical: {

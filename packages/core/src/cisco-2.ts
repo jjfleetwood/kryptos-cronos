@@ -19,7 +19,7 @@ export const cisco2Stages: StageConfig[] = [
       tagline: "A single malformed IKE packet could crash or own every Cisco ASA firewall on the internet.",
       year: 2016,
       overview: [
-        "In February 2016, Cisco disclosed CVE-2016-1287 — a heap buffer overflow in the IKEv1/IKEv2 UDP fragment-reassembly code of the Adaptive Security Appliance, scored CVSS 10.0. The attack was devastatingly simple:\n- No authentication — the overflow fires during initial packet processing, before any credential check.\n- One crafted UDP packet to port 500 or 4500 was enough, sent from anywhere on the internet.\n- On 32-bit ASA platforms it gave arbitrary code execution as root; on 64-bit it crashed and reloaded the device.\n- The exposed surface was every ASA with IPsec VPN enabled — which was nearly all of them.",
+        "In February 2016, Cisco disclosed CVE-2016-1287 — a heap buffer overflow in the IKEv1/IKEv2 UDP fragment-reassembly code of the Adaptive Security Appliance, scored CVSS 10.0. The attack was devastatingly simple: it required no authentication, since the overflow fires during initial packet processing before any credential check, and a single crafted UDP packet to port 500 or 4500 sent from anywhere on the internet was enough. On 32-bit ASA platforms it gave arbitrary code execution as root, while on 64-bit it crashed and reloaded the device — and the exposed surface was every ASA with IPsec VPN enabled, which was nearly all of them.",
         "The ASA is Cisco's flagship enterprise firewall, sitting at the perimeter of millions of corporate, government, and ISP networks. Compromising it from outside hands the attacker a position inside the boundary: all transiting traffic is visible, every VPN session can be monitored, and the firewall's access-control lists can be read and rewritten — making the device a passive collection platform and an active pivot at the same time.",
         "Six months after Cisco's emergency patch, the Shadow Brokers leaked what they claimed was an NSA cyberweapons cache — and it contained BANANAGLEE and EPICBANANA, tools targeting the Cisco ASA IKE stack. That confirmed the NSA had been exploiting this codebase in the wild before Cisco knew the bugs existed.",
       ],
@@ -208,8 +208,8 @@ show version
       tagline: "WikiLeaks exposed a CIA Telnet exploit that could own any Cisco IOS switch before authentication.",
       year: 2017,
       overview: [
-        "In March 2017, WikiLeaks published Vault 7 — the largest-ever release of CIA hacking documents — and buried in it was a reference to a Cisco IOS flaw in the Cluster Management Protocol (CMP). Cisco investigated and confirmed CVE-2017-3881:\n- A critical bug in CMP's Telnet option parser, scored CVSS 9.8.\n- Unauthenticated — code execution fires before any login.\n- Remote — reachable over a single TCP/23 connection to the switch.\n- The payoff was full IOS privileged-exec control of the device.",
-        "CMP is a Cisco-internal protocol for managing switch clusters, and its Telnet options made the attack surface unavoidable:\n- The CMP Telnet option code ran for any connection on port 23, even when Telnet was turned off with `no service telnet`.\n- So 'Telnet is disabled' in the running config gave no protection — the parser still executed.\n- Every switch on an affected IOS version was exposed, not just the ones with intentional Telnet access.",
+        "In March 2017, WikiLeaks published Vault 7 — the largest-ever release of CIA hacking documents — and buried in it was a reference to a Cisco IOS flaw in the Cluster Management Protocol (CMP). Cisco investigated and confirmed CVE-2017-3881, a critical bug in CMP's Telnet option parser scored CVSS 9.8: it was unauthenticated, firing code execution before any login, and remote, reachable over a single TCP/23 connection to the switch, with the payoff being full IOS privileged-exec control of the device.",
+        "CMP is a Cisco-internal protocol for managing switch clusters, and its Telnet options made the attack surface unavoidable: the CMP Telnet option code ran for any connection on port 23 even when Telnet was turned off with `no service telnet`, so 'Telnet is disabled' in the running config gave no protection because the parser still executed — meaning every switch on an affected IOS version was exposed, not just the ones with intentional Telnet access.",
         "That mattered because Cisco IOS switches form the backbone of enterprise networks worldwide — anyone who could reach TCP/23, even from inside the LAN, could seize full switch control with no credentials at all.",
       ],
       technical: {
@@ -403,8 +403,8 @@ show interfaces status | include Telnet
       tagline: "CDPwn: five zero-days in Cisco Discovery Protocol turned every Cisco device into a pivot point.",
       year: 2020,
       overview: [
-        "In February 2020, Armis Security disclosed CDPwn — five critical zero-days in Cisco Discovery Protocol (CDP). CVE-2020-3118 was the most severe:\n- A format-string flaw in the IOS XR CDP parser, scored CVSS 8.8.\n- Unauthenticated — no credentials needed to trigger it.\n- Code execution on carrier-grade routers and infrastructure switches.",
-        "CDP is a Layer 2 protocol Cisco devices use to advertise themselves to their neighbors — which is exactly what makes it dangerous:\n- Operating at Layer 2, it sidesteps network-layer controls — firewalls, ACLs, and VLANs offer no protection.\n- Any device on the same physical or logical Layer 2 segment could send a crafted CDP packet.\n- There is no authentication and no encryption — adjacency is the only requirement.",
+        "In February 2020, Armis Security disclosed CDPwn — five critical zero-days in Cisco Discovery Protocol (CDP) — and CVE-2020-3118 was the most severe: a format-string flaw in the IOS XR CDP parser scored CVSS 8.8, unauthenticated and needing no credentials to trigger, yielding code execution on carrier-grade routers and infrastructure switches.",
+        "CDP is a Layer 2 protocol Cisco devices use to advertise themselves to their neighbors — which is exactly what makes it dangerous. Operating at Layer 2, it sidesteps network-layer controls, so firewalls, ACLs, and VLANs offer no protection; any device on the same physical or logical Layer 2 segment could send a crafted CDP packet; and there is no authentication and no encryption, making adjacency the only requirement.",
         "CVE-2020-3118 specifically hit Cisco IOS XR — the OS on carrier-grade routers like the ASR 9000 and NCS 5000 that form the backbone of internet and telecom networks, where code execution could enable large-scale traffic interception or disruption.",
       ],
       technical: {
@@ -597,7 +597,7 @@ show cdp traffic
       tagline: "Millions of small-office Cisco routers exposed to unauthenticated remote code execution via their web UI.",
       year: 2021,
       overview: [
-        "CVE-2021-1609 is a critical flaw in the web management interface of the Cisco RV340 and RV345 Dual WAN Gigabit VPN Routers — the go-to firewall/router for small and medium businesses:\n- Unauthenticated and remote — no login required.\n- Allowed arbitrary code execution on the device, or a denial of service.\n- Scored CVSS 9.8, reachable through the router's web UI.",
+        "CVE-2021-1609 is a critical flaw in the web management interface of the Cisco RV340 and RV345 Dual WAN Gigabit VPN Routers — the go-to firewall/router for small and medium businesses. Unauthenticated and remote with no login required, it allowed arbitrary code execution on the device or a denial of service, scored CVSS 9.8 and reachable through the router's web UI.",
         "The RV series is sold to SMBs as an affordable, full-featured security gateway, and millions sit at the edge of small-business networks, branch offices, and employees' home offices — which makes them a high-value path into corporate networks through workers' home infrastructure.",
         "The root cause was insufficient input validation in that web interface — and anyone who could reach the UI (typically exposed on the WAN interface or via port forwarding) could exploit it without credentials.",
       ],
@@ -787,7 +787,7 @@ curl -k https://TARGET_ROUTER_IP/api/v1/diag_ping_stop
       tagline: "Akira ransomware weaponized a 4-year-old Cisco VPN flaw to breach hundreds of organizations.",
       year: 2024,
       overview: [
-        "Cisco first disclosed CVE-2020-3259 in May 2020 — a memory-disclosure flaw in the Cisco ASA and FTD web services interface:\n- Unauthenticated — attackers could read device memory with no login.\n- Scored CVSS 7.5 (high severity).\n- The leaked contents could include session tokens, credentials, and configuration data.",
+        "Cisco first disclosed CVE-2020-3259 in May 2020 — a memory-disclosure flaw in the Cisco ASA and FTD web services interface. It was unauthenticated, letting attackers read device memory with no login, scored CVSS 7.5 (high severity), and the leaked contents could include session tokens, credentials, and configuration data.",
         "Four years later, in 2024, the Akira ransomware group began actively exploiting it against organizations that still hadn't patched their Cisco VPN appliances — breaching hundreds of them through this single flaw, a stark reminder that known CVEs stay dangerous indefinitely until patched.",
         "The leak's prize was VPN session tokens for active user sessions — letting attackers steal access with no brute-force or phishing, since anyone holding a valid token could authenticate to the VPN as that user.",
       ],
@@ -977,8 +977,8 @@ show vpn-sessiondb anyconnect
       tagline: "A classic stack overflow in Cisco's SOHO routers gave root to any unauthenticated attacker.",
       year: 2019,
       overview: [
-        "CVE-2019-1663 is a critical stack overflow in the web management interface of the Cisco RV110W Wireless-N VPN Firewall and RV130W Wireless-N Multifunction VPN Router:\n- Unauthenticated and remote — no credentials required.\n- Allowed arbitrary code execution on the device, scored CVSS 9.8.\n- Reachable through the router's HTTP management interface.",
-        "These routers are everywhere in small businesses and retail across Asia-Pacific and beyond, and the bug lived in the HTTP request handler:\n- A request with an overly long parameter value overflowed a fixed stack buffer.\n- The overflow overwrote the saved return address.\n- Redirected execution then ran attacker-supplied code.",
+        "CVE-2019-1663 is a critical stack overflow in the web management interface of the Cisco RV110W Wireless-N VPN Firewall and RV130W Wireless-N Multifunction VPN Router. Unauthenticated and remote with no credentials required, it allowed arbitrary code execution on the device, scored CVSS 9.8, and was reachable through the router's HTTP management interface.",
+        "These routers are everywhere in small businesses and retail across Asia-Pacific and beyond, and the bug lived in the HTTP request handler: a request with an overly long parameter value overflowed a fixed stack buffer, overwrote the saved return address, and redirected execution to run attacker-supplied code.",
         "Stack overflows are especially brutal on embedded networking gear — these devices usually run as root with no privilege separation, ship without stack canaries or ASLR, and are internet-facing by design, so a successful exploit lands root immediately.",
       ],
       technical: {
@@ -1167,7 +1167,7 @@ curl -k -X POST https://TARGET_IP/cgi-bin/userLogin.cgi \
       tagline: "A path traversal in Cisco's video conferencing gateway allowed root file read and write without authentication.",
       year: 2022,
       overview: [
-        "CVE-2022-20812 is a critical path-traversal flaw in the cluster database API of Cisco Expressway Series and TelePresence Video Communication Server (VCS):\n- Scored CVSS 9.0, with arbitrary file read and write on the underlying OS.\n- These products are the backbone of enterprise video conferencing.\n- They handle media negotiation, firewall traversal, and SIP/H.323 call routing for organizations worldwide.",
+        "CVE-2022-20812 is a critical path-traversal flaw in the cluster database API of Cisco Expressway Series and TelePresence Video Communication Server (VCS), scored CVSS 9.0 with arbitrary file read and write on the underlying OS. These products are the backbone of enterprise video conferencing, handling media negotiation, firewall traversal, and SIP/H.323 call routing for organizations worldwide.",
         "It required an authenticated attacker with read-write access to the cluster database API — but combined with other weaknesses, the traversal enabled arbitrary file read and write on the underlying OS, effectively a root compromise of the conferencing infrastructure.",
         "Because Expressway sits in DMZ segments and handles encrypted media streams, compromising it could enable interception of video conferences, credential theft, and lateral movement into the internal network.",
       ],
@@ -1357,8 +1357,8 @@ curl -k -u apiuser:apipass -X PUT \
       tagline: "Velvet Ant used a Cisco NX-OS zero-day to hide inside data center switches for years undetected.",
       year: 2024,
       overview: [
-        "CVE-2024-20399 is a command-injection flaw in the CLI of Cisco NX-OS — the OS running Cisco's Nexus data center switches:\n- Scored CVSS 6.0, but a powerful post-exploitation primitive.\n- Discovered by Sygnia while investigating a Velvet Ant intrusion at a Fortune 500 company.\n- The attackers there had held persistence for over three years.",
-        "It needed local authenticated access with specific privileges, so it's a post-exploitation tool rather than an initial-access vector — but the payoff was severe:\n- Any privileged foothold on a Nexus switch would do — stolen credentials, another vulnerability, or insider access.\n- From there CVE-2024-20399 ran arbitrary commands as root.\n- Crucially, that execution landed outside the NX-OS security boundary.",
+        "CVE-2024-20399 is a command-injection flaw in the CLI of Cisco NX-OS — the OS running Cisco's Nexus data center switches. Scored CVSS 6.0 but a powerful post-exploitation primitive, it was discovered by Sygnia while investigating a Velvet Ant intrusion at a Fortune 500 company where the attackers had held persistence for over three years.",
+        "It needed local authenticated access with specific privileges, so it's a post-exploitation tool rather than an initial-access vector — but the payoff was severe. Any privileged foothold on a Nexus switch would do, whether from stolen credentials, another vulnerability, or insider access, and from there CVE-2024-20399 ran arbitrary commands as root — execution that, crucially, landed outside the NX-OS security boundary.",
         "That's especially dangerous because NX-OS devices — Nexus 3000, 7000, and 9000 series — form the core of enterprise data centers, where root access lets an attacker install persistent malware that survives firmware upgrades and stays invisible to standard NX-OS monitoring.",
       ],
       technical: {
@@ -1551,8 +1551,8 @@ show running-config | include feature bash
       tagline: "ArcaneDoor: a Chinese state actor crashed Cisco firewalls to cover their tracks with zero-days.",
       year: 2024,
       overview: [
-        "CVE-2024-20353 is one of two zero-days used in the ArcaneDoor espionage campaign, attributed to a Chinese state-sponsored actor (tracked as UAT4356 / Storm-1849):\n- Unauthenticated — no credentials required.\n- A crafted HTTP request to the management or data-plane interface forces a denial of service (reload) of Cisco ASA and FTD devices.\n- Scored CVSS 8.6.",
-        "ArcaneDoor hit government networks worldwide, in a campaign Cisco Talos uncovered in early 2024, chaining two zero-days into a full attack:\n- CVE-2024-20353 crashed firewalls — likely to disrupt logging and detection.\n- CVE-2024-20359 installed a persistent backdoor.\n- Together they formed a complete chain against the most widely deployed enterprise firewalls.",
+        "CVE-2024-20353 is one of two zero-days used in the ArcaneDoor espionage campaign, attributed to a Chinese state-sponsored actor (tracked as UAT4356 / Storm-1849). Unauthenticated and requiring no credentials, a crafted HTTP request to the management or data-plane interface forces a denial of service (reload) of Cisco ASA and FTD devices, scored CVSS 8.6.",
+        "ArcaneDoor hit government networks worldwide in a campaign Cisco Talos uncovered in early 2024, chaining two zero-days into a full attack: CVE-2024-20353 crashed firewalls, likely to disrupt logging and detection, while CVE-2024-20359 installed a persistent backdoor — together forming a complete chain against the most widely deployed enterprise firewalls.",
         "The DoS wasn't vandalism — it was used operationally to blind defenders: crashing the firewall wiped its logs and disabled monitoring, opening a window to complete other operations undetected.",
       ],
       technical: {
@@ -1743,8 +1743,8 @@ show logging
       tagline: "Line Dancer: the ArcaneDoor backdoor that survived ASA reboots and evaded all standard detection.",
       year: 2024,
       overview: [
-        "CVE-2024-20359 is the second zero-day in ArcaneDoor — a privilege-escalation and persistent-code-execution flaw in Cisco ASA and FTD:\n- Where CVE-2024-20353 crashed the firewall to clear logs, this one delivered persistence.\n- It let the attackers install Line Dancer, an in-memory shellcode backdoor.\n- The implant survived device reloads, scored CVSS 6.0.",
-        "The flaw lived in a legacy capability that let pre-loaded VPN clients and plug-ins persist across reboots:\n- By abusing it, the attackers could load arbitrary code that ran automatically every time the ASA booted.\n- That execution was invisible to standard `show` commands and device integrity checks.",
+        "CVE-2024-20359 is the second zero-day in ArcaneDoor — a privilege-escalation and persistent-code-execution flaw in Cisco ASA and FTD. Where CVE-2024-20353 crashed the firewall to clear logs, this one delivered persistence: it let the attackers install Line Dancer, an in-memory shellcode backdoor that survived device reloads, scored CVSS 6.0.",
+        "The flaw lived in a legacy capability that let pre-loaded VPN clients and plug-ins persist across reboots: by abusing it, the attackers could load arbitrary code that ran automatically every time the ASA booted — execution invisible to standard `show` commands and device integrity checks.",
         "Line Dancer ran entirely in memory, intercepting HTTPS POST requests and executing attacker-supplied shellcode — disabling syslog and SNMP traps to blind monitoring and using a host-knock authentication scheme so only its operators could trigger it.",
       ],
       technical: {
@@ -1944,8 +1944,8 @@ show logging | include disable
       tagline: "SQL injection in Cisco's SD-WAN management plane gave attackers the keys to every WAN router in the enterprise.",
       year: 2021,
       overview: [
-        "CVE-2021-1291 is a SQL-injection flaw in the web management interface of Cisco SD-WAN vManage Software:\n- vManage is the centralized management and orchestration platform for Cisco's Software-Defined WAN.\n- It configures, monitors, and controls all SD-WAN edge routers (vEdge, cEdge) across an organization's WAN.\n- Scored CVSS 8.1.",
-        "An authenticated attacker with only read privileges could turn the injection into deep access:\n- Execute arbitrary SQL against the underlying database.\n- Read sensitive configuration data, credentials, and tunnel parameters for every WAN router.\n- In some configurations, escalate database access to OS command execution.",
+        "CVE-2021-1291 is a SQL-injection flaw in the web management interface of Cisco SD-WAN vManage Software. vManage is the centralized management and orchestration platform for Cisco's Software-Defined WAN, configuring, monitoring, and controlling all SD-WAN edge routers (vEdge, cEdge) across an organization's WAN, and the flaw scored CVSS 8.1.",
+        "An authenticated attacker with only read privileges could turn the injection into deep access: executing arbitrary SQL against the underlying database, reading sensitive configuration data, credentials, and tunnel parameters for every WAN router, and in some configurations escalating database access to OS command execution.",
         "The severity is hard to overstate: vManage is the single pane of glass for SD-WAN, so an attacker who controls it controls every router, every WAN policy, and every segmentation boundary across the whole organization.",
       ],
       technical: {
@@ -2136,7 +2136,7 @@ curl -k -b cookies.txt \
       tagline: "Compromising the GET VPN key server poisoned every router in the group with a single malicious rekey.",
       year: 2023,
       overview: [
-        "CVE-2023-20109 is a flaw in the Cisco Group Encrypted Transport (GET) VPN feature of Cisco IOS and IOS XE:\n- GET VPN uses the Group Domain of Interpretation (GDOI) protocol to distribute encryption keys to a group of routers.\n- That lets every router in the group encrypt traffic to the others using shared group keys.\n- No individual tunnel negotiation between sites is required.",
+        "CVE-2023-20109 is a flaw in the Cisco Group Encrypted Transport (GET) VPN feature of Cisco IOS and IOS XE. GET VPN uses the Group Domain of Interpretation (GDOI) protocol to distribute encryption keys to a group of routers, letting every router in the group encrypt traffic to the others using shared group keys with no individual tunnel negotiation between sites.",
         "The flaw let an attacker who controlled the GET VPN key server — or could man-in-the-middle the key exchange — send a crafted GDOI rekey message that triggered arbitrary code execution on every registered group member at once.",
         "The impact is unusual: one exploit payload could compromise every router subscribed to the affected GET VPN group simultaneously — potentially dozens or hundreds of branch routers across an enterprise WAN in a single shot.",
       ],
@@ -2336,7 +2336,7 @@ show crypto gdoi ks policy
       tagline: "An unauthenticated path traversal on Cisco ASA could crash the firewall or leak directory listings.",
       year: 2018,
       overview: [
-        "CVE-2018-0296 is a flaw in the web interface of the Cisco Adaptive Security Appliance (ASA), rooted in improper handling of HTTP URL requests:\n- Unauthenticated and remote — no credentials needed.\n- Could force a denial of service (device reload).\n- Could also return a listing of the device's directory structure.\n- Scored CVSS 8.6.",
+        "CVE-2018-0296 is a flaw in the web interface of the Cisco Adaptive Security Appliance (ASA), rooted in improper handling of HTTP URL requests. Unauthenticated and remote with no credentials needed, it could force a denial of service (device reload) and could also return a listing of the device's directory structure, scored CVSS 8.6.",
         "A single crafted HTTP request could trigger a reload — knocking out the enterprise firewall and disabling all security enforcement at the perimeter — while the same technique could enumerate the device's directory structure to feed further exploitation.",
         "The mix of unauthenticated access, perimeter impact, and dead-simple exploitation made it high-severity: the attack needed only an HTTP GET request, within reach of any scanner or script kiddie that could touch the ASA management interface.",
       ],
