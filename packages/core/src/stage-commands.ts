@@ -31,6 +31,7 @@ const LOADERS: Record<string, Array<() => Promise<unknown>>> = {
   "range-privesc": [() => import("./range-privesc")],
   "range-capstone": [() => import("./range-capstone")],
   "range-traffic": [() => import("./range-traffic")],
+  "range-ad": [() => import("./range-ad")],
   "ot-sec": [() => import("./ot-sec")],
   "physics-of-hacking": [() => import("./physics-of-hacking")],
   "quantum-1": [() => import("./quantum-1")],
