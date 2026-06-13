@@ -2,13 +2,16 @@
 """Read-only MCP server — System Implementation — Functional: "Audit and compliance involvement" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the "Audit and compliance involvement" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify controls + compliance are built in, not bolted on. PASS: audit/risk/compliance engaged at design (controls + SoD), a pre-go-live control-readiness review (audit trails, key/reliance controls), regulatory/SoX/ITGC considerations for in-scope systems, and findings tracked to closure. Exceptions: audit engaged only post-go-live, no SoD/app controls designed, no pre-go-live control review, and findings never closed.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the audit and compliance involvement control (from Requirements / design records)
+    Evidence audit/risk/compliance were engaged during design (control review, SoD built into roles, application controls)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Requirements / design records, Test management, Deployment pipeline, Vendor / SLA documentation)
+    audit/risk/compliance engaged at design (control review + SoD in roles + app controls)
+    pre-go-live control-readiness review (audit trails, key/reliance controls)
+    regulatory/SoX + ITGC considerations for in-scope systems
+    findings tracked to closure
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

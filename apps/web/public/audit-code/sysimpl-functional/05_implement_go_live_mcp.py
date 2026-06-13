@@ -2,13 +2,16 @@
 """Read-only MCP server — System Implementation — Functional: "Implement (go-live)" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the "Implement (go-live)" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify go-live is gated by readiness. PASS: a readiness check scores the project against criteria (testing/data/training/support/backout), the rollout approach is risk-justified, and an authorised go/no-go is recorded against met criteria. Exceptions: go-live driven by date not readiness, criteria waived under pressure, and no recorded go/no-go decision.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the implement (go-live) control (from Requirements / design records)
+    The go-live readiness check + go/no-go decision (against criteria: testing, data, training, support, backout)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Requirements / design records, Test management, Deployment pipeline, Vendor / SLA documentation)
+    go-live readiness check vs criteria (testing, data, training, support, backout)
+    rollout approach + risk justification
+    recorded go/no-go authority/sign-off
+    were readiness criteria met (not waived)?
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

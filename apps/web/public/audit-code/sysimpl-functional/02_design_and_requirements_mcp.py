@@ -2,13 +2,16 @@
 """Read-only MCP server — System Implementation — Functional: "Design and requirements" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the "Design and requirements" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify requirements + design are complete + traceable. PASS: business/functional requirements are documented, testable, prioritised, and signed off; design traces to them (fit-gap, integration, reports/interfaces); a traceability matrix links requirement→design→build→test; and NFRs are captured. Exceptions: vague/unsigned requirements, design not traced to requirements, no traceability matrix (scope drift), and missing NFRs (performance/security as an afterthought).
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the design and requirements control (from Requirements / design records)
+    The documented + approved business/functional requirements (signed off by the process owners; testable, prioritised)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Requirements / design records, Test management, Deployment pipeline, Vendor / SLA documentation)
+    documented + approved business/functional requirements (testable, prioritised, signed off)
+    functional + technical design traced to requirements (fit-gap, integration, reports/interfaces)
+    requirements traceability matrix (requirement → design → build → test)
+    non-functional requirements (performance, security, usability, availability)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

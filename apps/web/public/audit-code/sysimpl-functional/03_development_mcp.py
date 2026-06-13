@@ -2,13 +2,16 @@
 """Read-only MCP server — System Implementation — Functional: "Development" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the "Development" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify development/configuration is controlled. PASS: development uses version control, peer review, separated environments, and a controlled promotion process; build traces to approved design; custom code gets security review (SAST/dependency/secrets); and promotion is approval-gated. Exceptions: building in shared/unversioned environments, no design-to-build traceability, no security review of custom code, and unapproved promotion to prod.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the development control (from Requirements / design records)
+    The development/configuration standards + evidence (version control, peer review, environment separation, the build/promotion process)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Requirements / design records, Test management, Deployment pipeline, Vendor / SLA documentation)
+    dev/config standards: version control + peer review + environment separation + promotion process
+    traceability: approved design → built config/code
+    secure coding for custom code (review + SAST/dependency + secrets)
+    dev→test→prod promotion with approvals
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

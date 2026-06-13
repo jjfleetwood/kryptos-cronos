@@ -2,13 +2,16 @@
 """Read-only MCP server — System Implementation — Functional: "Steering committee" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the "Steering committee" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the project is actively governed. PASS: a chartered steering group with authority meets on cadence, records real decisions + escalations (approved at the right level), an engaged sponsor is accountable, and reporting isn't solely the project's self-assessment. Exceptions: a rubber-stamp/absent committee, escalations decided below authority, a disengaged sponsor, and only optimistic self-reporting.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the steering committee control (from Requirements / design records)
+    The steering/governance group (charter, members/authority, cadence, what it decides + escalates)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Requirements / design records, Test management, Deployment pipeline, Vendor / SLA documentation)
+    steering group: charter, authority, cadence, decisions/escalations
+    active-governance evidence (minutes, escalations handled, approvals at right level)
+    sponsor engagement + accountability
+    independent reporting (not only project self-report)?
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

@@ -2,13 +2,16 @@
 """Read-only MCP server — System Implementation — Functional: "Support and maintenance" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the "Support and maintenance" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the system transitions cleanly to sustainable support. PASS: a defined support model (tiers, runbooks, SLA) with knowledge transfer, a stabilisation period handling post-go-live defects, an ongoing maintenance arrangement (patching/enhancements/vendor support), and a support team able to run it. Exceptions: no support model or handover, no stabilisation (issues unowned at go-live), no maintenance/patching arrangement, and permanent dependence on the project team or vendor.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the support and maintenance control (from Requirements / design records)
+    The transition to support/maintenance (the support model/tiers, runbooks, knowledge transfer, the SLA)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Requirements / design records, Test management, Deployment pipeline, Vendor / SLA documentation)
+    transition to support (model/tiers, runbooks, KT, SLA)
+    post-go-live defect handling + stabilisation before full handover
+    ongoing maintenance (patching, enhancements, vendor support contract)
+    can the support team actually run the system (not project-team/vendor-dependent)?
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

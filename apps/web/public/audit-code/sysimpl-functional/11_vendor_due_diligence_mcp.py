@@ -2,13 +2,16 @@
 """Read-only MCP server — System Implementation — Functional: "Vendor due diligence" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the "Vendor due diligence" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the vendor was vetted before commitment. PASS: documented due diligence (financial, security/SOC 2, references/track record, fit, support), an evaluation basis tying the choice to requirements, a vendor risk assessment (viability/data/sub-processors), and sign-off before contracting. Exceptions: no due diligence (vendor viability/security unknown), choice not tied to requirements, no vendor risk assessment, and contracting before diligence.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the vendor due diligence control (from Requirements / design records)
+    The due diligence performed on the vendor before commitment (financial viability, security posture/SOC 2, references + track record, product fit/roadmap, support model)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Requirements / design records, Test management, Deployment pipeline, Vendor / SLA documentation)
+    due diligence: financial viability + security/SOC 2 + references/track record + fit/roadmap + support
+    evaluation basis (requirements vs vendor capability)
+    vendor risk assessment (viability, data-handling, sub-processors)
+    sign-off that diligence completed before contracting
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

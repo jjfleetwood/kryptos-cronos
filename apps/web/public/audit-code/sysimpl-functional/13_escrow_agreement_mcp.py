@@ -2,13 +2,16 @@
 """Read-only MCP server — System Implementation — Functional: "Escrow agreement" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the "Escrow agreement" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify escrow gives real continuity protection. PASS: a current escrow agreement for critical software with defined deposits + triggers, verified (complete + buildable) deposits, usable release rights, and a reasoned escrow-vs-SaaS-exit choice. Exceptions: no escrow for critical software, empty/stale deposits, unverified buildability, and release rights that don't permit use.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the escrow agreement control (from Requirements / design records)
+    The source-code escrow for business-critical vendor software (deposit contents + release triggers)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Requirements / design records, Test management, Deployment pipeline, Vendor / SLA documentation)
+    escrow agreement: deposit contents + release/trigger conditions
+    actual current deposits + verification (complete + buildable)
+    release conditions + right/ability to use the code
+    escrow fits the risk vs SaaS continuity/exit alternative?
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

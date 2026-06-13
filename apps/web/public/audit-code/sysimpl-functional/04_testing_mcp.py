@@ -2,13 +2,16 @@
 """Read-only MCP server — System Implementation — Functional: "Testing" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the "Testing" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify testing is adequate before go-live. PASS: a test plan covers functional/integration/regression/UAT with entry/exit criteria, test cases trace to requirements, defects are tracked with severity-based closure, the business signs off UAT, and interfaces/reports are tested. Exceptions: only ad-hoc/happy-path testing, no requirements-to-test traceability, high-severity defects waived to make the date, and no business UAT sign-off.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the testing control (from Requirements / design records)
+    The test plan covering functional + integration + regression + UAT (with entry/exit criteria)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Requirements / design records, Test management, Deployment pipeline, Vendor / SLA documentation)
+    test plan: functional + integration + regression + UAT (entry/exit criteria)
+    test cases traced to requirements + defect log (severity-based closure)
+    UAT business sign-off before go-live
+    interfaces/reports tested + high-severity defects resolved (not waived)?
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

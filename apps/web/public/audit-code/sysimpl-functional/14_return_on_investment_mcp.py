@@ -2,13 +2,16 @@
 """Read-only MCP server — System Implementation — Functional: "Return on investment" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the "Return on investment" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the investment is justified + benefits tracked. PASS: an approved business case quantifies cost/TCO, benefits, and payback; a benefits-realisation plan assigns owners + KPIs; ROI is re-validated as cost/scope changes; and benefits are measured post-go-live. Exceptions: no quantified case, benefits with no owner/KPI, ROI never revisited, and benefits never measured (success assumed).
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the return on investment control (from Requirements / design records)
+    The business case + expected ROI (costs/TCO, quantified benefits, payback) approved before the spend
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Requirements / design records, Test management, Deployment pipeline, Vendor / SLA documentation)
+    approved business case + ROI (TCO, quantified benefits, payback)
+    benefits-realisation plan (owners, KPIs, baseline/target, timing)
+    ROI re-validation as costs/scope change
+    post-go-live benefits measurement vs the case
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

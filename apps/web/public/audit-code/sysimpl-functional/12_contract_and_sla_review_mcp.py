@@ -2,13 +2,16 @@
 """Read-only MCP server — System Implementation — Functional: "Contract and SLA review" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the System Implementation — Functional policy/standard and flag every item where the "Contract and SLA review" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the contract protects the organisation. PASS: defined deliverables + acceptance criteria, SLAs with remedies, liability + IP + DPA + exit terms, payment tied to acceptance, audit + security obligations, and legal/security review. Exceptions: vague deliverables, no SLA/remedies or liability terms, missing DPA/exit rights, payment by calendar, and no legal/security review.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the contract and sla review control (from Requirements / design records)
+    The contract + SLA terms (deliverables/acceptance criteria, service levels + remedies, liability, IP, data protection/DPA, exit/termination)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Requirements / design records, Test management, Deployment pipeline, Vendor / SLA documentation)
+    contract + SLA (deliverables/acceptance, service levels + remedies, liability, IP, DPA, exit)
+    acceptance/payment tied to deliverable acceptance
+    audit rights + security/compliance obligations
+    legal/procurement/security review before signature
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /
