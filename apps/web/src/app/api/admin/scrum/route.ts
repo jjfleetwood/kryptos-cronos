@@ -55,7 +55,29 @@ export async function PATCH(req: NextRequest) {
   const admin = await requireAdmin(req);
   if (admin !== BOARD_OWNER) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  const b = (await req.json()) as Partial<ScrumItem> & { id?: string; note?: string };
+  const b = (await req.json()) as Partial<ScrumItem> & { id?: string; ids?: string[]; note?: string };
+
+  // Bulk update: { ids: [...], status?/priority?/type?/pinned? } — move/retag many at once.
+  if (Array.isArray(b.ids)) {
+    const ids = b.ids.filter((x) => typeof x === "string").slice(0, 500);
+    if (!ids.length) return NextResponse.json({ error: "ids required" }, { status: 400 });
+    const updated: ScrumItem[] = [];
+    for (const id of ids) {
+      const it = await getItem(id);
+      if (!it) continue;
+      if (STATUSES.includes(b.status as string)) it.status = b.status!;
+      if (PRIORITIES.includes(b.priority as string)) it.priority = b.priority!;
+      if (TYPES.includes(b.type as string)) it.type = b.type!;
+      if (typeof b.pinned === "boolean") it.pinned = b.pinned;
+      it.updatedAt = Date.now();
+      await putItem(it);
+      updated.push(it);
+    }
+    const what = b.status ?? b.priority ?? b.type ?? (b.pinned !== undefined ? `pinned=${b.pinned}` : "?");
+    await logAdminAction(admin, "scrum-bulk", `${updated.length} items → ${what}`);
+    return NextResponse.json({ items: updated });
+  }
+
   if (!b.id) return NextResponse.json({ error: "id required" }, { status: 400 });
   const item = await getItem(b.id);
   if (!item) return NextResponse.json({ error: "Not found" }, { status: 404 });

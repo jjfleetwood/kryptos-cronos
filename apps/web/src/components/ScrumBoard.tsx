@@ -29,6 +29,8 @@ export default function ScrumBoard() {
   const [fPrio, setFPrio] = useState<ScrumPriority | "all">("all");
   const [q, setQ] = useState("");
   const [showArchived, setShowArchived] = useState(false);
+  const [selectMode, setSelectMode] = useState(false);
+  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
 
   async function load() {
     setLoading(true);
@@ -94,6 +96,29 @@ export default function ScrumBoard() {
     setDragId(null); setDragOver(null);
   }
 
+  function toggleSelect(id: string) {
+    setSelectedIds((prev) => { const n = new Set(prev); n.has(id) ? n.delete(id) : n.add(id); return n; });
+  }
+  function exitSelect() { setSelectMode(false); setSelectedIds(new Set()); }
+
+  // Apply a field change to every selected card in one round-trip.
+  async function bulkPatch(fields: Partial<ScrumItem>) {
+    const ids = [...selectedIds];
+    if (!ids.length) return;
+    setItems((prev) => prev.map((it) => (selectedIds.has(it.id) ? { ...it, ...fields, updatedAt: Date.now() } as ScrumItem : it)));
+    const r = await fetch("/api/admin/scrum", {
+      method: "PATCH", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ids, ...fields }),
+    });
+    if (r.ok) {
+      const { items: updated } = (await r.json()) as { items: ScrumItem[] };
+      const map = new Map(updated.map((it) => [it.id, it]));
+      setItems((prev) => prev.map((it) => map.get(it.id) ?? it));
+      setBanner(`Moved ${updated.length} item(s).`);
+    } else { load(); }
+    setSelectedIds(new Set());
+  }
+
   return (
     <div>
       {/* Toolbar */}
@@ -111,8 +136,35 @@ export default function ScrumBoard() {
         <label className="text-[11px] text-gray-500 flex items-center gap-1.5 ml-1">
           <input type="checkbox" checked={showArchived} onChange={(e) => setShowArchived(e.target.checked)} /> archived
         </label>
+        <button onClick={() => (selectMode ? exitSelect() : setSelectMode(true))}
+          className={`text-xs font-semibold px-3 py-1.5 rounded-lg border transition-colors ${selectMode ? "bg-amber-500/20 border-amber-500/50 text-amber-200" : "bg-white/5 border-white/10 text-gray-300 hover:border-amber-500/40"}`}>
+          {selectMode ? "✕ Done selecting" : "☑ Select"}
+        </button>
         <button onClick={load} className="text-xs text-gray-500 hover:text-cyan-400 ml-auto transition-colors">↻ refresh</button>
       </div>
+
+      {/* Bulk action bar — appears in select mode */}
+      {selectMode && (
+        <div className="mb-3 flex flex-wrap items-center gap-2 rounded-lg border border-amber-500/30 bg-amber-500/8 px-3 py-2">
+          <span className="text-xs font-semibold text-amber-200">{selectedIds.size} selected</span>
+          <button onClick={() => setSelectedIds(new Set(filtered.map((i) => i.id)))} className="text-[11px] text-gray-300 hover:text-amber-200 underline">select all ({filtered.length})</button>
+          {selectedIds.size > 0 && <button onClick={() => setSelectedIds(new Set())} className="text-[11px] text-gray-500 hover:text-gray-300 underline">clear</button>}
+          <span className="text-gray-700 mx-1">|</span>
+          <select value="" disabled={selectedIds.size === 0} onChange={(e) => { if (e.target.value) bulkPatch({ status: e.target.value as ScrumStatus }); e.target.value = ""; }}
+            className="text-xs bg-white/5 border border-white/10 rounded-lg px-2 py-1.5 text-gray-200 disabled:opacity-40">
+            <option value="">Move to…</option>
+            {STATUS_COLUMNS.map((c) => <option key={c.id} value={c.id}>{c.label}</option>)}
+            <option value="archived">Archived</option>
+          </select>
+          <select value="" disabled={selectedIds.size === 0} onChange={(e) => { if (e.target.value) bulkPatch({ priority: e.target.value as ScrumPriority }); e.target.value = ""; }}
+            className="text-xs bg-white/5 border border-white/10 rounded-lg px-2 py-1.5 text-gray-200 disabled:opacity-40">
+            <option value="">Set priority…</option>
+            {PRIOS.map((p) => <option key={p} value={p}>{PRIORITY_META[p].label}</option>)}
+          </select>
+          <button disabled={selectedIds.size === 0} onClick={() => bulkPatch({ status: "archived" })}
+            className="text-xs px-2.5 py-1.5 rounded-lg bg-white/5 border border-white/10 text-gray-300 hover:bg-white/10 disabled:opacity-40">Archive</button>
+        </div>
+      )}
 
       {banner && (
         <div className="mb-3 text-[11px] text-cyan-300 bg-cyan-500/8 border border-cyan-500/25 rounded-lg px-3 py-1.5 flex items-center justify-between">
@@ -142,7 +194,10 @@ export default function ScrumBoard() {
                 <p className="text-[10px] text-gray-600 px-1 mb-2 leading-tight">{col.hint}</p>
                 <div className={`min-h-[40px] ${col.id === "done" ? "space-y-1" : "space-y-2"}`}>
                   {cards.map((it) => (
-                    <Card key={it.id} item={it} compact={col.id === "done"} onClick={() => setSelected(it)} onDragStart={() => setDragId(it.id)} />
+                    <Card key={it.id} item={it} compact={col.id === "done"}
+                      selectMode={selectMode} selected={selectedIds.has(it.id)}
+                      onClick={() => (selectMode ? toggleSelect(it.id) : setSelected(it))}
+                      onDragStart={() => setDragId(it.id)} />
                   ))}
                 </div>
               </div>
@@ -159,19 +214,21 @@ export default function ScrumBoard() {
   );
 }
 
-function Card({ item, onClick, onDragStart, compact = false }: { item: ScrumItem; onClick: () => void; onDragStart: () => void; compact?: boolean }) {
+function Card({ item, onClick, onDragStart, compact = false, selectMode = false, selected = false }: { item: ScrumItem; onClick: () => void; onDragStart: () => void; compact?: boolean; selectMode?: boolean; selected?: boolean }) {
   const t = TYPE_META[item.type], p = PRIORITY_META[item.priority], s = SOURCE_META[item.source];
+  const selRing = selected ? "border-amber-400/70 ring-1 ring-amber-400/50" : "";
 
   // Compact one-line card (used in the Done column, which otherwise eats space).
   if (compact) {
     return (
       <div
-        draggable
+        draggable={!selectMode}
         onDragStart={onDragStart}
         onClick={onClick}
         title={item.title}
-        className="cursor-pointer rounded-md border border-white/8 bg-[#0d1117] hover:border-white/20 transition-colors px-2 py-1 flex items-center gap-1.5"
+        className={`cursor-pointer rounded-md border bg-[#0d1117] hover:border-white/20 transition-colors px-2 py-1 flex items-center gap-1.5 ${selected ? selRing : "border-white/8"}`}
       >
+        {selectMode && <span className={`text-[10px] flex-shrink-0 ${selected ? "text-amber-300" : "text-gray-600"}`}>{selected ? "☑" : "☐"}</span>}
         <span className="text-xs leading-none flex-shrink-0">{t.icon}</span>
         <span className="text-[11px] text-gray-400 leading-none truncate flex-1">{item.title}</span>
         {item.notes?.length > 0 && <span className="text-[9px] text-gray-600 flex-shrink-0">💬{item.notes.length}</span>}
@@ -181,12 +238,13 @@ function Card({ item, onClick, onDragStart, compact = false }: { item: ScrumItem
 
   return (
     <div
-      draggable
+      draggable={!selectMode}
       onDragStart={onDragStart}
       onClick={onClick}
-      className="cursor-pointer rounded-lg border border-white/10 bg-[#0d1117] hover:border-white/25 hover:-translate-y-0.5 transition-all p-2.5"
+      className={`cursor-pointer rounded-lg border bg-[#0d1117] transition-all p-2.5 ${selected ? selRing : "border-white/10 hover:border-white/25 hover:-translate-y-0.5"}`}
     >
       <div className="flex items-center gap-1.5 mb-1.5">
+        {selectMode && <span className={`text-xs leading-none ${selected ? "text-amber-300" : "text-gray-600"}`}>{selected ? "☑" : "☐"}</span>}
         <span title={t.label} className="text-sm leading-none">{t.icon}</span>
         <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded" style={{ color: p.color, background: `${p.color}1a`, border: `1px solid ${p.color}55` }}>{p.short}</span>
         {item.pinned && <span title="pinned" className="text-[10px]">📌</span>}
