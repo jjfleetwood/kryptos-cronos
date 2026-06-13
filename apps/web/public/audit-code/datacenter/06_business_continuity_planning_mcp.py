@@ -2,13 +2,16 @@
 """Read-only MCP server — Datacenter / Lab / Colocation (CoLo): "Business continuity planning" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Datacenter / Lab / Colocation (CoLo) policy/standard and flag every item where the "Business continuity planning" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the org can survive losing the facility. PASS: a facility-loss scenario (fire/flood/power/denied-access) is in the BCP/DR with a recovery strategy; critical workloads have geographic redundancy or an alternate site; the scenario is tested; and single-facility concentration risk is assessed + mitigated. Exceptions: no facility-loss plan, all critical workloads in one facility with no alternate (single-facility SPOF), the scenario never tested, and unmitigated concentration in one DC/cage.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the business continuity planning control (from Badge / PACS access system)
+    The facility-level BCP/DR (what happens if the DC/cage is lost — fire, flood, power, denied access) + the recovery strategy
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Badge / PACS access system, Environmental + power monitoring (DCIM), Asset / rack inventory, Vendor / maintenance ticketing)
+    facility-loss scenario in the BCP/DR (fire / flood / power / denied-access) + recovery strategy
+    geographic redundancy / alternate-site for the facility's critical workloads
+    is the facility-loss scenario tested?
+    concentration risk: how much depends on a single facility?
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

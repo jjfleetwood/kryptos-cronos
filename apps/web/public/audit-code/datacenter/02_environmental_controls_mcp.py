@@ -2,13 +2,16 @@
 """Read-only MCP server — Datacenter / Lab / Colocation (CoLo): "Environmental controls" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Datacenter / Lab / Colocation (CoLo) policy/standard and flag every item where the "Environmental controls" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify environmental controls keep the facility running. PASS: power (UPS + generator, dual feeds) and cooling are redundant (N+1+) with monitoring + alerting on temperature/humidity/power/leak; generators + UPS are load-tested on cadence; and there's capacity headroom. Exceptions: a single power feed or no generator, no cooling redundancy, no environmental monitoring/alerting, untested generators/UPS (fail when needed), and power/cooling at the capacity limit (no headroom).
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the environmental controls control (from Badge / PACS access system)
+    The environmental-controls design + monitoring (power: UPS + generator + dual feed; cooling/HVAC redundancy; temperature/humidity monitoring; water/leak detection)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Badge / PACS access system, Environmental + power monitoring (DCIM), Asset / rack inventory, Vendor / maintenance ticketing)
+    power design: UPS + generator + dual utility feed + N+1; cooling redundancy
+    generator + UPS test records (load tests, battery health)
+    environmental monitoring + alerting (temp / humidity / power / leak)
+    capacity headroom: power + cooling vs current + projected load
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

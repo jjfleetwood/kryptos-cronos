@@ -2,13 +2,16 @@
 """Read-only MCP server — Datacenter / Lab / Colocation (CoLo): "Safety controls" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Datacenter / Lab / Colocation (CoLo) policy/standard and flag every item where the "Safety controls" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify life-safety + fire controls are in place + maintained. PASS: fire detection + suppression (clean-agent or pre-action, not just wet-pipe over equipment), alarms, and EPO exist + are inspected/tested on cadence; the facility meets fire/electrical/occupancy codes with current certificates; emergency procedures + drills are documented; and hazard controls (arc-flash, lab hazards) are managed. Exceptions: inadequate/uninspected fire suppression, expired safety certificates, no emergency procedures/drills, and unmanaged electrical/lab safety hazards.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the safety controls control (from Badge / PACS access system)
+    The life-safety + fire-suppression systems (detection, suppression — clean-agent / pre-action, EPO, alarms) + their inspection/test records
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Badge / PACS access system, Environmental + power monitoring (DCIM), Asset / rack inventory, Vendor / maintenance ticketing)
+    fire detection + suppression (clean-agent / pre-action) + EPO + alarm test/inspection records
+    safety-code compliance + current inspection certificates (fire / electrical / occupancy)
+    emergency procedures (evacuation / EPO / first-aid) + drill records
+    hazard controls (arc-flash, lab-specific)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

@@ -2,13 +2,16 @@
 """Read-only MCP server — Datacenter / Lab / Colocation (CoLo): "Physical security controls" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Datacenter / Lab / Colocation (CoLo) policy/standard and flag every item where the "Physical security controls" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify physical access to the facility is least-privilege, layered, and logged. PASS: badge access to the DC/lab/cage is least-privilege with documented justification; access is provisioned on approval + revoked on leaver/role-change/term; layered controls (perimeter → mantrap → cage/cabinet) plus CCTV exist; and visitors/vendors are logged + escorted. Exceptions: people with access and no business need, leaver/contractor badges still active, tailgating-prone single-door entry (no mantrap/anti-passback), unmonitored or short-retention CCTV, and unescorted visitors.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the physical security controls control (from Badge / PACS access system)
+    The physical-access-control records (badge/PACS access list to the data center/lab/cage) + who has access + their justification
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Badge / PACS access system, Environmental + power monitoring (DCIM), Asset / rack inventory, Vendor / maintenance ticketing)
+    PACS access export: who can enter the DC/lab/cage + justification (least-privilege?)
+    reconcile badge access vs active employees/contractors (orphaned/leaver badges)
+    layered controls: perimeter, mantrap/anti-passback, cage/cabinet locks, CCTV coverage + retention
+    visitor + vendor logs + escort-policy adherence
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

@@ -2,13 +2,16 @@
 """Read-only MCP server — Datacenter / Lab / Colocation (CoLo): "Maintenance and vendor mgmt" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Datacenter / Lab / Colocation (CoLo) policy/standard and flag every item where the "Maintenance and vendor mgmt" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify facility maintenance + vendor access are controlled. PASS: critical infrastructure (UPS/gen/HVAC/fire) gets preventive maintenance on cadence with records; maintenance vendors/contractors are vetted, escorted, time-bound, and logged; infra changes go through change control; and vendor support SLAs are in place. Exceptions: lapsed preventive maintenance (equipment fails when needed), unescorted/unvetted vendor access, physical-infra changes outside change control, and no support SLA for critical infra.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the maintenance and vendor mgmt control (from Badge / PACS access system)
+    The maintenance schedule + records for critical infrastructure (UPS, generators, HVAC, fire systems) — preventive maintenance done on cadence
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Badge / PACS access system, Environmental + power monitoring (DCIM), Asset / rack inventory, Vendor / maintenance ticketing)
+    preventive-maintenance schedule + records for UPS/gen/HVAC/fire (done on cadence?)
+    vendor/contractor access: vetted, escorted, time-bound, logged?
+    are physical-infra changes under change control?
+    vendor support SLAs for critical infrastructure
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /
