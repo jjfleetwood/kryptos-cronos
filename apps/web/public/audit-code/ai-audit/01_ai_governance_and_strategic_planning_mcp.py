@@ -2,13 +2,16 @@
 """Read-only MCP server — Artificial Intelligence (AI): "AI governance and strategic planning" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the "AI governance and strategic planning" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify AI use is governed strategically. PASS: an AI governance framework + policy exists with an accountable body, an AI system register, risk-tiering of AI systems, an approval gate for new AI use-cases, and alignment to NIST AI RMF / ISO 42001; shadow AI is detected. Exceptions: no AI governance/policy, no AI inventory (shadow AI proliferating), no risk-tiering, AI deployed with no approval/governance, and no framework alignment.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the ai governance and strategic planning control (from Model registry + lineage)
+    The AI governance framework + policy (AI-use policy, roles, an AI risk committee / governance body) + an AI system inventory/register
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Model registry + lineage, Eval / red-team harness, AI gateway + guardrails, Model + prompt monitoring)
+    the AI governance framework + policy + accountable body (AI risk committee)?
+    the AI system register: inventory + risk-tier per system (EU AI Act tiers)
+    approval gate for new AI use-cases + shadow-AI detection
+    alignment to NIST AI RMF / ISO 42001
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

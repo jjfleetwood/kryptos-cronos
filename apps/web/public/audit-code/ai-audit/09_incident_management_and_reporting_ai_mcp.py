@@ -2,13 +2,16 @@
 """Read-only MCP server — Artificial Intelligence (AI): "Incident management and reporting (AI)" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the "Incident management and reporting (AI)" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify AI incidents are handled + reported. PASS: AI-specific incident playbooks exist (model failure, harmful/biased output, data leakage, adversarial attack); AI alerts feed the IR process + an incident register; incidents get RCA + remediation (rollback/retrain); and regulatory AI-incident reporting (EU AI Act serious-incident) is handled where applicable. Exceptions: no AI-specific incident playbooks, AI failures/harms not treated as incidents, no model rollback/retrain path, and missed regulatory AI-incident reporting.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the incident management and reporting (ai) control (from Model registry + lineage)
+    AI-specific incident playbooks (model failure/degradation, harmful/biased output, data leakage via the model, adversarial attack, hallucination causing harm)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Model registry + lineage, Eval / red-team harness, AI gateway + guardrails, Model + prompt monitoring)
+    AI-specific incident playbooks (model failure / harmful output / data leakage / adversarial)
+    are AI alerts wired into the IR process + an AI incident register?
+    past AI incidents: RCA + remediation (rollback / retrain)
+    regulatory AI-incident reporting (EU AI Act serious-incident for high-risk)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

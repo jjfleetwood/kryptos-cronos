@@ -2,13 +2,16 @@
 """Read-only MCP server — Artificial Intelligence (AI): "AI infra and access security" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the "AI infra and access security" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify AI infrastructure + access are secured. PASS: AI compute, the ML platform, model registry, and data are access-controlled (least-privilege, SSO+MFA, network isolation, hardened); pipeline service identities are scoped + least-privilege; secrets (model-provider API keys, data creds) are vaulted; and model-serving/inference endpoints are authenticated + protected. Exceptions: broad/unrestricted access to models + training data, the ML platform exposed/unhardened, over-privileged pipeline service accounts, hardcoded model-provider API keys, and unauthenticated inference endpoints.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the ai infra and access security control (from Model registry + lineage)
+    The security of AI infrastructure (training/inference compute, model registry, ML platform, GPUs) — access control, network isolation, hardening
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Model registry + lineage, Eval / red-team harness, AI gateway + guardrails, Model + prompt monitoring)
+    access control to models + ML platform + training data (least-privilege, SSO/MFA, network isolation)
+    AI-pipeline service identities + their permissions (scoped?)
+    secrets in AI pipelines: vaulted vs hardcoded (model-provider API keys, data creds)
+    inference/serving endpoints: authenticated + protected?
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

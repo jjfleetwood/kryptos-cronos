@@ -2,13 +2,16 @@
 """Read-only MCP server — Artificial Intelligence (AI): "Data governance and handling (AI)" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the "Data governance and handling (AI)" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the data feeding AI is governed. PASS: training/fine-tuning data has documented provenance + lineage, is approved + classified + lawfully sourced (consent/licensing), is quality-checked, and is protected against poisoning (vetted sources, integrity); data-to-model lineage is maintained. Exceptions: training data with unknown provenance/licensing (unlicensed/scraped/PII), no data-poisoning protection, no consent for personal data used in training, and no data-to-model lineage (can't audit or remediate a tainted model).
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the data governance and handling (ai) control (from Model registry + lineage)
+    The training/fine-tuning data governance (provenance, lineage, consent/licensing, quality) per model
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Model registry + lineage, Eval / red-team harness, AI gateway + guardrails, Model + prompt monitoring)
+    per model: training/fine-tuning data provenance + lineage + consent/licensing + quality
+    is training data approved, classified, lawfully sourced (no unlicensed/scraped PII)?
+    data-poisoning protection: source vetting + integrity
+    data-to-model lineage (which data trained which model?)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

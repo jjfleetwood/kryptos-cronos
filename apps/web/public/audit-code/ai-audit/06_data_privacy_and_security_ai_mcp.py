@@ -2,13 +2,16 @@
 """Read-only MCP server — Artificial Intelligence (AI): "Data privacy and security (AI)" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the "Data privacy and security (AI)" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify AI handles data privately + securely. PASS: PII is minimised/de-identified in training + inference; training data, model weights, and inference data (prompts/outputs) are encrypted + access-controlled; sensitive data doesn't leak (to logs, to external model endpoints); right-to-erasure is handled for data embedded in models; and data-leakage risks (membership inference, model inversion) are assessed. Exceptions: raw PII in training/inference, unprotected model weights, prompts/sensitive data sent to ungoverned external models or leaked to logs, no erasure handling, and unassessed model-leakage risk.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the data privacy and security (ai) control (from Model registry + lineage)
+    Privacy controls for AI (PII minimisation in training/inference, de-identification, right-to-erasure handling for data in models)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Model registry + lineage, Eval / red-team harness, AI gateway + guardrails, Model + prompt monitoring)
+    PII minimisation/de-identification in training + inference + right-to-erasure for data in models
+    protection of training data + model weights (encryption + access control)
+    inference-data protection: prompts/outputs not leaking to logs or external models (DLP)
+    data-leakage risk: membership inference / model inversion assessment
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

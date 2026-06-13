@@ -2,13 +2,16 @@
 """Read-only MCP server — Artificial Intelligence (AI): "Legal, ethics, compliance" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the "Legal, ethics, compliance" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify AI systems meet legal + ethical + compliance obligations. PASS: each AI system is assessed against applicable law (EU AI Act, GDPR Art. 22 automated decisions, sector rules) and ethics (bias/fairness tested, transparency/explainability provided); high-risk AI meets conformity requirements; consequential decisions have human oversight + appeal; and IP/data-use is lawful. Exceptions: AI making consequential decisions with no bias testing or explainability, high-risk AI with no conformity assessment, no human-oversight/appeal for automated decisions, and unlawful data/IP use.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the legal, ethics, compliance control (from Model registry + lineage)
+    The AI legal/ethics/compliance assessment per AI system (applicable laws — EU AI Act, GDPR automated-decision, sector rules; ethics — fairness/bias, transparency)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Model registry + lineage, Eval / red-team harness, AI gateway + guardrails, Model + prompt monitoring)
+    per AI system: legal/ethics/compliance assessment (EU AI Act, GDPR Art. 22, sector)
+    bias/fairness assessment + explainability/transparency to affected individuals
+    high-risk AI conformity assessment + disclosure/consent
+    human-oversight + appeal for consequential automated decisions
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

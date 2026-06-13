@@ -2,13 +2,16 @@
 """Read-only MCP server — Artificial Intelligence (AI): "AI system architecture and dev" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the "AI system architecture and dev" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify AI systems are architected + developed securely. PASS: AI systems follow a secure AI-SDLC/MLOps standard with design + threat-model review (covering AI-specific threats: poisoning, evasion, extraction, prompt injection); model development is versioned + reproducible with approved frameworks; and coverage spans AI systems. Exceptions: AI built ad hoc with no secure-SDLC, no AI-specific threat modeling, non-reproducible/unversioned models, and unapproved/unvetted ML frameworks + dependencies.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the ai system architecture and dev control (from Model registry + lineage)
+    The AI system architecture + the secure-development standard for AI (the AI-SDLC, MLOps pipeline, design review)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Model registry + lineage, Eval / red-team harness, AI gateway + guardrails, Model + prompt monitoring)
+    the secure AI-SDLC / MLOps standard + design + threat-model review (AI-specific threats)
+    AI threat modeling (MITRE ATLAS): poisoning, evasion, extraction, prompt injection
+    model versioning + reproducibility + approved frameworks
+    coverage: AI systems built to the standard vs ad hoc
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

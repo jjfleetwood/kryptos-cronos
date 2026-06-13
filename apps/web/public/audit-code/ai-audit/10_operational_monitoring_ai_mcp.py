@@ -2,13 +2,16 @@
 """Read-only MCP server — Artificial Intelligence (AI): "Operational monitoring (AI)" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Artificial Intelligence (AI) policy/standard and flag every item where the "Operational monitoring (AI)" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify deployed AI is monitored in production. PASS: production AI is monitored for model + data drift, performance degradation, output quality, and fairness-over-time; drift/degradation triggers retraining or rollback; LLM output safety (toxicity/hallucination/guardrail-bypass) is monitored; and a human-in-the-loop/feedback mechanism maintains oversight. Exceptions: deployed models with no drift/performance monitoring (silent degradation), no retraining/rollback trigger, no output-safety monitoring for LLMs, and no human oversight of production AI behaviour.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the operational monitoring (ai) control (from Model registry + lineage)
+    The production monitoring of AI systems (model/data drift, performance degradation, output quality, fairness over time)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: Model registry + lineage, Eval / red-team harness, AI gateway + guardrails, Model + prompt monitoring)
+    production monitoring: model/data drift, performance degradation, output quality, fairness over time
+    drift/degradation thresholds → retraining/rollback trigger
+    LLM output-safety monitoring (toxicity, hallucination, guardrail-bypass rate)
+    human-in-the-loop / feedback mechanism for ongoing oversight
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /
