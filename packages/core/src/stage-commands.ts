@@ -25,6 +25,7 @@ const LOADERS: Record<string, Array<() => Promise<unknown>>> = {
   "cisco-advanced": [() => import("./cisco-5")],
   "emerging-tech": [() => import("./emerging-tech")],
   "range-metasploit": [() => import("./cyber-range")],
+  "range-recon": [() => import("./range-recon")],
   "ot-sec": [() => import("./ot-sec")],
   "physics-of-hacking": [() => import("./physics-of-hacking")],
   "quantum-1": [() => import("./quantum-1")],
