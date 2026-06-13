@@ -1,5 +1,7 @@
 # Certification Coverage Audit (resume-safe)
 
+**Last reviewed:** 2026-06-13
+
 Goal: validate that the curriculum comprehensively covers each certification's official exam objectives, and fill gaps. Decisions (from user): tackle **all certs in order (security core → audit → AI), my call**; remediation = **mix** (augment existing epochs with targeted stages; spin up a new epoch only when a whole objective area is missing).
 
 ## Method (per cert)

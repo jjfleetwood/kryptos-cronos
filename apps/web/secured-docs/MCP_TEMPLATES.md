@@ -1,5 +1,7 @@
 # MCP Server Templates — Quick Reference
 
+**Last reviewed:** 2026-06-13
+
 All 24 runnable Python scripts for the AI Audit and Continuous Monitoring epochs.
 Each file is a working Claude tool-use MCP server. Download from `/mcp-templates/<filename>`.
 

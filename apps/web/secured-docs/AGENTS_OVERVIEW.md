@@ -2,6 +2,8 @@
 
 *A single reference for every automated agent on Kryptós CronOS: what each one does, when it runs, and the safety rules they all share. Companion to `AGENT_DEV_PLAN.md` (the original design).*
 
+**Last reviewed:** 2026-06-13
+
 ---
 
 ## The one rule that governs all of them
@@ -83,15 +85,15 @@ Also available on-demand (not scheduled): **epoch-author** — scaffolds a brand
 
 `.github/workflows/nightly-content.yml` + `.claude/agents/content-author.md` — a dedicated Claude subagent that runs **every night at 12:00 UTC (04:00 PST)** to grind through the deep-content backlog **one self-contained unit per run**. Same safety model as §4 (bounded allowlist, PR-only, never merges, dormant without `ANTHROPIC_API_KEY`).
 
-- **Primary work:** author one un-authored **Advanced Audit** domain to the IAM/VPM quality bar — real artifacts, tests, systems, and commands per module — by appending records to `packages/core/scripts/audit-content.mjs`, regenerating, gating on the generator + `tsc`, and opening one branch + PR. Priority order is in the agent definition (network-security → data-privacy → cloud-saas → …).
-- **Secondary work** (once every audit domain is authored): deepen the epoch the Prose Quality agent flags most, into the narrative house standard.
+- **Primary work (audit authoring — COMPLETE 2026-06-12):** all 27 Advanced Audit domains / 321 modules are now deeply authored (real artifacts, tests, systems, commands per module in `packages/core/scripts/audit-content.mjs`; no generic fallback). The grinder's standing job is now the secondary one.
+- **Now-primary work:** deepen the epoch the Prose Quality agent flags most — rewrite terse bulleted overviews into the narrative house standard — one epoch per run via `apps/web/scripts/_dump-ov.mjs` + `_prose-apply.mjs` (the de-bullet toolchain).
 - **Guardrails:** one domain/epoch per run; never edits the hand-authored `aar-01`, `stage-flags`, or auth/payments/crypto/proxy; green gates before any PR. Manual run: Actions → this workflow → optionally name a `target` domain slug.
 
 ## 6. Shared infrastructure
 
-- **`/api/agent/report`** — the single intake. Token-gated (`AGENT_REPORT_TOKEN`) behind the `AGENTS_ENABLED` kill switch. Dedups by finding key, auto-resolves fixed findings, writes a per-agent sweep-summary card, and upserts a cross-agent **📊 Agent digest** card with ▲/▼/= trends every sweep.
+- **`/api/agent/report`** — the single intake. Token-gated (`AGENT_REPORT_TOKEN`) behind the `AGENTS_ENABLED` kill switch. Dedups by finding key (`agent:ref:checkId`) across **all** statuses — one finding ↔ one card forever: **archived ⇒ suppress** (a dismissed finding never re-cards), **done ⇒ re-open** if it's detected again (regressed / the fix didn't take), **open ⇒ update in place**. That idempotence is what keeps the board from ballooning with nightly duplicates. Auto-resolves vanished findings, writes a per-agent sweep-summary card, and upserts a cross-agent **📊 Agent digest** card with ▲/▼/= trends every sweep.
 - **`gen:meta` pre-push hook** (`apps/web/.claude/settings.json`) — blocks a `git push` when `stages-meta.generated.ts` is stale (`check:meta`). Fix: `npm run gen:meta -w @kryptos/core`.
-- **The Development board** — `lib/scrum.ts` (Redis `scrum:items`) + `app/api/admin/scrum` (owner-gated CRUD) + `components/ScrumBoard.tsx`. Columns: Triage → Backlog → To Do → In Progress → Review → Done.
+- **The Development board** — `lib/scrum.ts` (Redis `scrum:items`) + `app/api/admin/scrum` (owner-gated CRUD) + `components/ScrumBoard.tsx`. Columns: Triage → Backlog → To Do → In Progress → Review → Done. A **☑ Bulk move** mode multi-selects cards and moves / retags / archives them in one bulk `PATCH {ids:[…]}` — for sweeping many agent findings at once.
 
 ## Schedules at a glance
 

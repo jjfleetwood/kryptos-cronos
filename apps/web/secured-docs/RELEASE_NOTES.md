@@ -2,6 +2,18 @@
 
 ---
 
+## v1.46.0 — 2026-06-13
+
+**Advanced Audit track fully authored · agent board hardened · scrum bulk-move**
+
+- **Advanced Audit deep content — COMPLETE.** All **27 gated `/audit` domains / 321 modules** now carry real, hand-authored content (artifacts, test + PASS/EXCEPTION criteria, systems of record, data owners, read-only agentic tooling, a representative finding, and standards refs) — **no generic fallback**. The 8 domains finished this release: AI-audit, System Implementation (AI / Enterprise / Functional), IoT, ICS, RPA Governance, IT Governance, and the Application Review remainder. Grounded in NIST AI RMF, ISO 42001/22301/27001/27036/29119, EU AI Act, OWASP ASVS/LLM/API, MITRE ATLAS, NIST 800-82/SSDF, IEC 62443, PMBOK/COBIT/ITIL, PCAOB AS 2201. Generator-driven from `packages/core/scripts/audit-content.mjs`; the track stays off the public catalog/counts.
+- **Agent board made idempotent.** `/api/agent/report` now dedups findings by key across **all** statuses (archived ⇒ suppress, done ⇒ re-open on recurrence, open ⇒ update), so the nightly fleet no longer balloons the board with duplicate cards. The Approved & Planned column had grown to ~207; it's now a single consolidated backlog card. Verified by two live fleet dispatches.
+- **Scrum board bulk-move.** A **☑ Bulk move** mode multi-selects cards and moves / retags / archives them in one bulk `PATCH` — owner-gated, audit-logged.
+- **Audit naming + prose.** Expanded abbreviated audit sub-process names (mgmt/config/vuln/infra → full words; acronyms kept). De-bulleted the overviews of 8 security/tech epochs (cisco-secops/enterprise/advanced, emerging-tech, sec-foundations, computing-foundations, silicon-fab, physics-of-hacking — ~185 paragraphs) into the narrative house standard, facts preserved.
+- **Counts unchanged:** **831 stages · 75 epochs · 16 tracks · 12 cert paths** (the Advanced Audit track is gated and deliberately excluded from public counts). No curriculum epochs added or removed.
+
+---
+
 ## v1.45.0 — 2026-06-09
 
 **New epoch: Root Cause Analysis**

@@ -1,5 +1,7 @@
 # Kryptós CronOS — Cross-Platform / Mobile Roadmap
 
+**Last reviewed:** 2026-06-13
+
 **Status:** Planning
 **Created:** 2026-06-03
 **Goal:** Take Kryptós CronOS from a web app to a real, sellable cross-platform product — Next.js web + Expo (React Native) mobile, sharing one backend, monetized via RevenueCat (mobile IAP) + Stripe (web).

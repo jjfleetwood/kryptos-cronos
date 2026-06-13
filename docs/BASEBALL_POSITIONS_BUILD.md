@@ -1,5 +1,7 @@
 # Baseball Position Epochs — Build Checklist (resume-safe)
 
+**Last reviewed:** 2026-06-13
+
 Goal: one full epoch per position. Merge existing pitcher epochs (5+6+7) into one **Pitcher** epoch; build 8 new full 10-stage position epochs.
 
 ## Architecture notes (verified)

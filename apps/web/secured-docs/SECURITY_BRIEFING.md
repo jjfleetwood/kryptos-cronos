@@ -2,7 +2,7 @@
 **Classification:** Internal  
 **Version:** 5.9  
 **Date:** 2026-06-08  
-**Current version:** v1.43.0
+**Current version:** v1.46.0  ·  **Last reviewed:** 2026-06-13
 
 ---
 
@@ -195,7 +195,7 @@ Closes CTF flag visibility finding. `stages-meta.ts` introduced as client-safe l
 
 ## Executive Summary
 
-Kryptós CronOS is a Next.js 16 / Turborepo application (`apps/web` + `@kryptos/core`) with serverless API routes, Upstash Redis persistence, and dual web (HMAC cookie) / mobile (Supabase bearer JWT) auth. The overall risk rating is **LOW**. A full OWASP Top 10 audit was completed in v4.0; all critical and high findings have been remediated, and every release since (through v1.43.0 / briefing v5.9) has been re-audited for new surface — the content, mobile, monorepo, and perf sprints added none. Remaining items are accepted low-risk trade-offs documented below.
+Kryptós CronOS is a Next.js 16 / Turborepo application (`apps/web` + `@kryptos/core`) with serverless API routes, Upstash Redis persistence, and dual web (HMAC cookie) / mobile (Supabase bearer JWT) auth. The overall risk rating is **LOW**. A full OWASP Top 10 audit was completed in v4.0; all critical and high findings have been remediated, and every release since (through v1.46.0 / briefing v5.9) has been re-audited for new surface — the content, mobile, monorepo, and perf sprints added none. Remaining items are accepted low-risk trade-offs documented below.
 
 One business-config caveat for any reviewer: the platform currently ships with `OPEN_ACCESS = true`, which intentionally disables the paywall/tier gate (everything is free during the growth phase). This is the only deliberate entitlement bypass; all integrity controls (auth, server-side XP/flag validation, admin gating, rate limits, audit log) remain fully active. See the v5.9 posture note.
 

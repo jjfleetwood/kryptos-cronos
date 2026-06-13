@@ -1,5 +1,7 @@
 # Agent Risk Management — How to Audit
 
+**Last reviewed:** 2026-06-13
+
 *A practical field guide for auditing agentic-AI systems. Companion to the Tech Audit track's "Auditing Agentic AI" epochs (`tech-audit-5` baseline + `tech-audit-6` advanced).*
 
 ---
