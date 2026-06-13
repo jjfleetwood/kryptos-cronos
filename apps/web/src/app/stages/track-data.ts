@@ -34,7 +34,7 @@ export const epochGroups: TrackGroup[] = [
   { id: "vehicleSec", labelKey: "stages.tracks.vehicleSec", descKey: "stages.tracks.vehicleSecDesc", epochIds: ["vehicle-sec", "vehicle-sec-2"] },
   { id: "robotics", labelKey: "stages.tracks.robotics", descKey: "stages.tracks.roboticsDesc", epochIds: ["robot-sec", "robot-sec-2"] },
   { id: "operationalTech", labelKey: "stages.tracks.operationalTech", descKey: "stages.tracks.operationalTechDesc", epochIds: ["ot-sec"] },
-  { id: "cyberRange", labelKey: "stages.tracks.cyberRange", descKey: "stages.tracks.cyberRangeDesc", epochIds: ["range-metasploit", "range-recon"] },
+  { id: "cyberRange", labelKey: "stages.tracks.cyberRange", descKey: "stages.tracks.cyberRangeDesc", epochIds: ["range-metasploit", "range-recon", "range-web"] },
 ];
 
 // ── Extended curriculum (the diverse engine — shown on the low-prominence /explore) ──

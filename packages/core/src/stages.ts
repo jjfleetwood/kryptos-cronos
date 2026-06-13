@@ -40,6 +40,7 @@ import { physicsOfHackingEpoch, physicsOfHackingStages } from "./physics-of-hack
 import { emergingTechEpoch, emergingTechStages } from "./emerging-tech";
 import { rangeMetasploitEpoch, rangeMetasploitStages } from "./cyber-range";
 import { rangeReconEpoch, rangeReconStages } from "./range-recon";
+import { rangeWebEpoch, rangeWebStages } from "./range-web";
 import { cisco2Stages } from "./cisco-2";
 import { cisco3Stages } from "./cisco-3";
 import { cisco4Stages } from "./cisco-4";
@@ -167,6 +168,7 @@ export const epochs: EpochConfig[] = [
   emergingTechEpoch,
   rangeMetasploitEpoch,
   rangeReconEpoch,
+  rangeWebEpoch,
   umbrellaEpoch,
   tapestryEpoch,
   nailsEpoch,
@@ -244,6 +246,7 @@ export const stages: StageConfig[] = [
   ...emergingTechStages,
   ...rangeMetasploitStages,
   ...rangeReconStages,
+  ...rangeWebStages,
   ...umbrellaStages,
   ...tapestryStages,
   ...nailsStages,
