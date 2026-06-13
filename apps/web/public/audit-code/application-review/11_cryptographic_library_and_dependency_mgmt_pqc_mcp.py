@@ -2,13 +2,16 @@
 """Read-only MCP server — Application Review: "Cryptographic library and dependency mgmt (+PQC)" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Application Review policy/standard and flag every item where the "Cryptographic library and dependency mgmt (+PQC)" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the app's crypto + dependencies are sound + PQC-aware. PASS: the app uses strong, current, correctly-implemented crypto (no weak/deprecated/homegrown), dependencies are inventoried (SBOM) + vuln-scanned + current, keys are properly managed (vaulted/HSM, rotated, not hardcoded; strong TLS), and there's crypto-agility + a PQC inventory/migration path for long-lived data. Exceptions: weak/deprecated/homegrown crypto, hardcoded keys, vulnerable/abandoned dependencies (no SBOM/scanning), and no crypto-agility or PQC awareness for long-lived sensitive data.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the cryptographic library and dependency mgmt (+pqc) control (from ServiceNow CMDB)
+    The application's cryptography (algorithms + libraries used — strong, current, correctly implemented; no weak/deprecated crypto — MD5/SHA1/DES/ECB or homegrown; proper key management)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: ServiceNow CMDB, Okta / Entra SSO, AWS / Azure cloud plane, App configuration stores)
+    application cryptography (strong, current, correctly implemented; no weak/deprecated/homegrown; key mgmt)
+    dependency/library management (SBOM, vuln-scanned, current; no abandoned/vulnerable deps)
+    cryptographic key management (vaulted/HSM, rotated, not hardcoded; strong TLS)
+    crypto-agility + PQC readiness (updatable crypto; quantum-vulnerable inventory + migration for long-lived data)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

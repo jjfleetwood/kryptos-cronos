@@ -2,13 +2,16 @@
 """Read-only MCP server — Information Technology (IT) Governance: "Exception management" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Information Technology (IT) Governance policy/standard and flag every item where the "Exception management" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify policy exceptions are governed. PASS: exceptions are formally requested, risk-assessed, approved at the right level, and time-bound; a register tracks all active exceptions (owner, justification, compensating controls, expiry); compensating controls are defined; and exceptions are reviewed/closed on expiry. Exceptions: informal/undocumented deviations, no exception register (unknown how many/what), permanent open-ended exceptions, and no compensating controls or expiry review.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the exception management control (from GRC platform)
+    The exception/waiver process (deviations from policy/standards are formally requested, risk-assessed, approved at the right authority, and time-bound — not informal/permanent)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: GRC platform, Policy + standard repository, Risk register, Metrics / KRI dashboard)
+    exception/waiver process (requested, risk-assessed, approved at right authority, time-bound)
+    exception register (owner, justification, compensating controls, expiry)
+    compensating controls for each exception
+    exception review + expiry (revisited; renewed with re-justification or closed)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

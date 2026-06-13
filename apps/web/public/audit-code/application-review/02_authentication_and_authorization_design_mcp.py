@@ -2,13 +2,16 @@
 """Read-only MCP server — Application Review: "Authentication and authorization design" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Application Review policy/standard and flag every item where the "Authentication and authorization design" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the application's authn + authz are sound. PASS: authentication is robust (SSO/MFA, secure session management, proper password handling), authorization is enforced server-side with least privilege + no broken object/function-level access (IDOR), sessions are secured (timeout, invalidation, anti-fixation), and authz is checked consistently on every sensitive action. Exceptions: weak/custom auth or no MFA on sensitive access, authorization enforced only in the UI (IDOR/forced-browsing works), broken function-level access (privilege escalation), and insecure session handling.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the authentication and authorization design control (from ServiceNow CMDB)
+    The application's authentication design (how users authenticate — SSO/federation, MFA, session management, password handling; no weak/custom auth)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: ServiceNow CMDB, Okta / Entra SSO, AWS / Azure cloud plane, App configuration stores)
+    authentication design (SSO/federation, MFA, session mgmt, password handling; no weak/custom auth)
+    authorization model (server-side RBAC/ABAC, least privilege, no broken object/function-level access — IDOR)
+    session security (secure tokens, timeout, invalidation on logout, anti-fixation/hijacking)
+    authz enforced consistently server-side (every sensitive function + object)?
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

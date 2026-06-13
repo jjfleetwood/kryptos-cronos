@@ -2,13 +2,16 @@
 """Read-only MCP server — Application Review: "API security controls" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Application Review policy/standard and flag every item where the "API security controls" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the application's APIs are secured. PASS: every API endpoint enforces authentication + object/function-level authorization, rate limiting + resource controls protect against abuse (OWASP API Top 10 — BOLA/BFLA/resource), inputs are schema-validated (mass-assignment protected), and the API inventory is complete (no shadow/deprecated endpoints). Exceptions: unauthenticated or BOLA/BFLA-vulnerable endpoints, no rate limiting (resource-exhaustion/scraping), mass-assignment/unvalidated inputs, and undocumented shadow/zombie APIs exposed.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the api security controls control (from ServiceNow CMDB)
+    The API security controls (authentication + authorization on every endpoint — object-level + function-level; no unauthenticated/over-permissive endpoints)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: ServiceNow CMDB, Okta / Entra SSO, AWS / Azure cloud plane, App configuration stores)
+    API security: authentication + object-level + function-level authz on every endpoint
+    rate limiting + abuse protection (OWASP API Top 10: resource consumption, BOLA/BFLA)
+    input validation + schema enforcement (mass-assignment protection)
+    API inventory + exposure (no shadow/undocumented/deprecated endpoints)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

@@ -2,13 +2,16 @@
 """Read-only MCP server — Application Review: "IAM including SoD" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Application Review policy/standard and flag every item where the "IAM including SoD" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify application IAM + SoD are controlled. PASS: access is provisioned via request + approval (IAM/JML-integrated), SoD conflicts (e.g. maker/approver, create-vendor/pay-vendor) are prevented or monitored against a ruleset, privileged app access is least-privilege + monitored, and access is periodically recertified. Exceptions: access granted directly with no approval/JML, toxic SoD combinations live (one user does maker + checker), excessive/unmonitored admin rights, and no access recertification (orphaned/accumulated access).
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the iam including sod control (from ServiceNow CMDB)
+    The application's access model + provisioning (how access is granted/changed/removed — request + approval; integrated with IAM/JML; no direct back-end grants)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: ServiceNow CMDB, Okta / Entra SSO, AWS / Azure cloud plane, App configuration stores)
+    app access model + provisioning (request + approval; IAM/JML-integrated; no direct back-end grants)
+    segregation of duties in the app (conflicting functions can't be one user; SoD ruleset enforced/monitored)
+    privileged/admin app access (least privilege; monitored)
+    periodic access recertification (excess/orphaned removed; SoD conflicts reviewed)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

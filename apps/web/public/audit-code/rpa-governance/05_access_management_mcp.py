@@ -2,13 +2,16 @@
 """Read-only MCP server — Robotic Process Automation (RPA) Governance: "Access management" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the "Access management" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify RPA access is controlled. PASS: each bot has its own identity (not a shared human login) with credentials vaulted (not in the script), bot accounts are least-privilege, attended/unattended access + human accountability are controlled, and bot accounts are access-reviewed + deprovisioned. Exceptions: bots running on shared/human credentials, credentials hardcoded in the bot, over-privileged bot accounts, and bot identities never reviewed (orphaned bot accounts with standing access).
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the access management control (from RPA platform (UiPath/Automation Anywhere/Power Automate))
+    Bot identity + credential management (each bot has its own named/service identity — not a shared human account; credentials in a vault, not in the bot script)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: RPA platform (UiPath/Automation Anywhere/Power Automate), Bot credential vault, Bot orchestration + logs, Version control for bots)
+    bot identity + credential management (own service identity; credentials vaulted, not in the script)
+    least privilege for bot accounts (only what the process needs)
+    attended-vs-unattended access controls + human-bot accountability
+    access review of bot accounts (reviewed + deprovisioned like privileged accounts)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

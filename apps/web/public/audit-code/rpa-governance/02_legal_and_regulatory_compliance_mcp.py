@@ -2,13 +2,16 @@
 """Read-only MCP server — Robotic Process Automation (RPA) Governance: "Legal and regulatory compliance" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the "Legal and regulatory compliance" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify RPA maintains legal + regulatory compliance. PASS: bots' actions on regulated processes preserve compliance (SoX controls, privacy, retained audit trails), every bot action is logged for traceability, automation doesn't break SoD or bypass controls, and bot data handling is privacy-compliant. Exceptions: bots performing regulated actions with no audit trail, automation collapsing segregated duties (a bot doing maker + checker), bots moving PII unlawfully, and no compliance assessment of automated processes.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the legal and regulatory compliance control (from RPA platform (UiPath/Automation Anywhere/Power Automate))
+    Compliance assessment of what bots do (do automated actions on regulated processes maintain compliance — SoX controls, data-privacy, audit trails, the records the bot creates)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: RPA platform (UiPath/Automation Anywhere/Power Automate), Bot credential vault, Bot orchestration + logs, Version control for bots)
+    compliance of bot actions on regulated processes (SoX controls, privacy, audit trails, records created)
+    bot audit trail/logging (every action logged for accountability + traceability)
+    SoD + control implications (automation doesn't bypass a segregated/key control)
+    data-privacy compliance of bot data handling (PII processed/moved lawfully)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

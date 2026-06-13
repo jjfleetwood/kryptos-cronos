@@ -2,13 +2,16 @@
 """Read-only MCP server — Robotic Process Automation (RPA) Governance: "Data handling and encryption" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the "Data handling and encryption" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify RPA handles data securely. PASS: sensitive data the bot processes is encrypted in transit + at rest, the bot's logs/screenshots/temp files don't capture credentials or PII in clear, data flows stay within authorised systems, and secrets aren't stored plaintext in bot files. Exceptions: bots writing PII/credentials to logs or screenshots in clear, unencrypted sensitive data in bot working/output files, uncontrolled data flows (a bot emailing data out), and plaintext secrets in bot processes.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the data handling and encryption control (from RPA platform (UiPath/Automation Anywhere/Power Automate))
+    How bots handle data (sensitive data the bot reads/writes/transfers — encrypted in transit + at rest; no sensitive data written to logs/screenshots/temp files)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: RPA platform (UiPath/Automation Anywhere/Power Automate), Bot credential vault, Bot orchestration + logs, Version control for bots)
+    bot data handling (sensitive data encrypted in transit + at rest; not in logs/screenshots/temp)
+    bot logging hygiene (no credentials/PII captured in clear)
+    data-flow control (data stays in authorised systems; output secured; no exfiltration)
+    encryption + secrets handling within bot processes
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

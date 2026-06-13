@@ -2,13 +2,16 @@
 """Read-only MCP server — Information Technology (IT) Governance: "Policy and standard lifecycle" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Information Technology (IT) Governance policy/standard and flag every item where the "Policy and standard lifecycle" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the policy framework is complete + maintained. PASS: a policy/standard hierarchy covers the security domains (mapped to ISO 27001/NIST CSF), each policy is owned, version-controlled, reviewed on cadence + currently approved, communicated + accessible to staff, with no major coverage gaps. Exceptions: missing policies for key domains, stale/expired policies (years past review), no owners or review cadence, and policies staff can't find or aren't aware of.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the policy and standard lifecycle control (from GRC platform)
+    The policy + standard framework (a complete hierarchy — policies, standards, procedures — covering the security domains; mapped to a framework like ISO 27001/NIST CSF)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: GRC platform, Policy + standard repository, Risk register, Metrics / KRI dashboard)
+    policy + standard framework (complete hierarchy mapped to ISO 27001 / NIST CSF)
+    policy lifecycle (owned, version-controlled, reviewed on cadence, approved, current)
+    policy communication + accessibility (staff aware; acknowledgement where required)
+    coverage + gap assessment (no major domain lacks a policy)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

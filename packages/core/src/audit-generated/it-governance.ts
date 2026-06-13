@@ -23,25 +23,24 @@ export const itGovernanceStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Policy and standard lifecycle\" control for Information Technology (IT) Governance is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Information Technology (IT) Governance policy/standard and flag every item where the \"Policy and standard lifecycle\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
-      "approach": "An audit agent calls a read-only MCP server that wraps the Information Technology (IT) Governance systems of record (GRC platform; Policy + standard repository; Risk register) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Policy and standard lifecycle\" control for Information Technology (IT) Governance is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Verify the policy framework is complete + maintained. PASS: a policy/standard hierarchy covers the security domains (mapped to ISO 27001/NIST CSF), each policy is owned, version-controlled, reviewed on cadence + currently approved, communicated + accessible to staff, with no major coverage gaps. Exceptions: missing policies for key domains, stale/expired policies (years past review), no owners or review cadence, and policies staff can't find or aren't aware of.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Information Technology (IT) Governance systems of record (Policy / standard repository; Policy lifecycle / review tracking; Framework mapping (ISO 27001 / NIST CSF)) as tools — e.g. `policy + standard framework (complete hierarchy mapped to ISO 27001 / `, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
-        "In-scope inventory for the policy and standard lifecycle control (from GRC platform)",
-        "Observed configuration/state evidence showing whether the control is applied and operating",
-        "The control policy / standard / threshold the evidence is judged against",
-        "The reconciled exceptions list + coverage report (the working paper)"
+        "The policy + standard framework (a complete hierarchy — policies, standards, procedures — covering the security domains; mapped to a framework like ISO 27001/NIST CSF)",
+        "The policy lifecycle (each policy owned, version-controlled, reviewed on a defined cadence, approved at the right level, and current — not years stale)",
+        "Policy communication + accessibility (staff can find + are aware of applicable policies; acknowledgement where required)",
+        "Coverage + gap assessment (no major domain lacks a policy/standard)"
       ],
       "system": [
-        "GRC platform",
-        "Policy + standard repository",
-        "Risk register",
-        "Metrics / KRI dashboard"
+        "Policy / standard repository",
+        "Policy lifecycle / review tracking",
+        "Framework mapping (ISO 27001 / NIST CSF)",
+        "Acknowledgement records"
       ],
       "dataOwner": [
-        "CISO / IT risk",
-        "Policy owners",
-        "Internal audit",
-        "Executive / board"
+        "CISO / IT risk + policy owners",
+        "Governance",
+        "Internal audit"
       ],
       "scoring": {
         "ease": "EASE 5/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
@@ -61,17 +60,17 @@ export const itGovernanceStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Policy and standard lifecycle\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the policy and standard lifecycle control (from GRC platform)) with read-only agents, run the test against policy, and issue a defensible opinion on the Information Technology (IT) Governance control.",
+      "tagline": "Auditing \"Policy and standard lifecycle\" as a repeatable agentic workflow: pull the real evidence (The policy + standard framework (a complete hierarchy — policies, standards, procedures — covering the security domains; mapped to a framework like ISO 27001/NIST CSF)) with read-only agents, run the test against policy, and issue a defensible opinion on the Information Technology (IT) Governance control.",
       "year": 2025,
       "overview": [
-        "The \"Policy and standard lifecycle\" sub-process is one of the controls an auditor must verify for Information Technology (IT) Governance. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the policy and standard lifecycle control (from GRC platform), for everything in scope.\"",
-        "The evidence lives across systems that were never reconciled — here GRC platform, Policy + standard repository, Risk register — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The test itself is specific. Reconcile the in-scope inventory against the Information Technology (IT) Governance policy/standard and flag every item where the \"Policy and standard lifecycle\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
+        "The \"Policy and standard lifecycle\" sub-process is one of the controls an auditor must verify for Information Technology (IT) Governance. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me the policy + standard framework (a complete hierarchy — policies, standards, procedures — covering the security domains; mapped to a framework like ISO 27001/NIST CSF), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Policy / standard repository, Policy lifecycle / review tracking, Framework mapping (ISO 27001 / NIST CSF) — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. In practice you gather it with calls like `policy + standard framework (complete hierarchy mapped to ISO 27001 / NIST CSF)` — read-only, against the systems of record.",
+        "The test itself is specific. Verify the policy framework is complete + maintained. PASS: a policy/standard hierarchy covers the security domains (mapped to ISO 27001/NIST CSF), each policy is owned, version-controlled, reviewed on cadence + currently approved, communicated + accessible to staff, with no major coverage gaps. Exceptions: missing policies for key domains, stale/expired policies (years past review), no owners or review cadence, and policies staff can't find or aren't aware of. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `01_policy_and_standard_lifecycle_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from GRC platform and Policy + standard repository (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The included `01_policy_and_standard_lifecycle_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Policy / standard repository and Policy lifecycle / review tracking (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
           "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 01_policy_and_standard_lifecycle_mcp.py` to expose it to your agent — or `python 01_policy_and_standard_lifecycle_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
@@ -99,7 +98,7 @@ export const itGovernanceStages: StageConfig[] = [
           },
           {
             "label": "Agent + MCP",
-            "sub": "pull GRC platform · Policy + standard repository",
+            "sub": "pull Policy / standard repository · Policy lifecycle / review tracking",
             "type": "system"
           },
           {
@@ -130,26 +129,27 @@ export const itGovernanceStages: StageConfig[] = [
           "highlight": true
         }
       ],
-      "examples": [],
+      "examples": [
+        {
+          "label": "Pull the evidence — the real commands / API calls",
+          "code": "policy + standard framework (complete hierarchy mapped to ISO 27001 / NIST CSF)\npolicy lifecycle (owned, version-controlled, reviewed on cadence, approved, current)\npolicy communication + accessibility (staff aware; acknowledgement where required)\ncoverage + gap assessment (no major domain lacks a policy)"
+        }
+      ],
       "keyTakeaways": [
-        "The artifact to pull: In-scope inventory for the policy and standard lifecycle control (from GRC platform).",
-        "The test: Reconcile the in-scope inventory against the Information Technology (IT) Governance policy/standard and flag every item where the \"Policy and standard lifecycle\" control is missing, mis-scoped, or not operating.",
-        "Reconcile the systems of record (GRC platform, Policy + standard repository, Risk register) — anything the control never reached is the highest-value finding.",
+        "The artifact to pull: The policy + standard framework (a complete hierarchy — policies, standards, procedures — covering the security domains; mapped to a framework like ISO 27001/NIST CSF).",
+        "The test: Verify the policy framework is complete + maintained.",
+        "Reconcile the systems of record (Policy / standard repository, Policy lifecycle / review tracking, Framework mapping (ISO 27001 / NIST CSF)) — anything the control never reached is the highest-value finding.",
         "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the policy and standard lifecycle control is not applied, mis-scoped, or has drifted from the approved baseline"
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. Half the security policies are years past their review date with no owner, several key domains have no policy at all, and staff have no accessible, current policy library — the framework exists on paper but isn't maintained or known."
       ],
       "references": [
         {
-          "title": "NIST Cybersecurity Framework 2.0 — Govern",
-          "url": "https://www.nist.gov/cyberframework"
-        },
-        {
-          "title": "COBIT 2019",
-          "url": "https://www.isaca.org/resources/cobit"
-        },
-        {
           "title": "ISO/IEC 27001 — ISMS",
           "url": "https://www.iso.org/standard/27001"
+        },
+        {
+          "title": "NIST CSF 2.0 — Govern",
+          "url": "https://www.nist.gov/cyberframework"
         },
         {
           "title": "Model Context Protocol — specification",
@@ -160,20 +160,20 @@ export const itGovernanceStages: StageConfig[] = [
         {
           "name": "01_policy_and_standard_lifecycle_mcp.py",
           "url": "/audit-code/it-governance/01_policy_and_standard_lifecycle_mcp.py",
-          "description": "Runnable read-only MCP server: gathers the Information Technology (IT) Governance evidence for \"Policy and standard lifecycle\" (in-scope inventory for the policy and standard lifecycle control (from grc platform)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Information Technology (IT) Governance evidence for \"Policy and standard lifecycle\" (the policy + standard framework (a complete hierarchy — policies, standards, procedures — covering the security domains; mapped to a framework like iso 27001/nist csf)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Policy and standard lifecycle\" control for Information Technology (IT) Governance at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Information Technology (IT) Governance policy/standard and flag every item where the \"Policy and standard lifecycle\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the policy and standard lifecycle control (from GRC platform) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live GRC platform APIs; here the same sources are exported to files.)",
-      "hint": "Read every file in /evidence. GRC platform gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
+      "scenario": "You're the auditor testing the \"Policy and standard lifecycle\" control for Information Technology (IT) Governance at AcmeCorp. THE TEST: Verify the policy framework is complete + maintained. PASS: a policy/standard hierarchy covers the security domains (mapped to ISO 27001/NIST CSF), each policy is owned, version-controlled, reviewed on cadence + currently approved, communicated + accessible to staff, with no major coverage gaps. Exceptions: missing policies for key domains, stale/expired policies (years past review), no owners or review cadence, and policies staff can't find or aren't aware of. The evidence — The policy + standard framework (a complete hierarchy — policies, standards, procedures — covering the security domains; mapped to a framework like ISO 27001/NIST CSF) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Policy / standard repository APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Policy / standard repository gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. The inventory comes from GRC platform; the state file shows what is actually configured/running.",
+        "cat each file in /evidence. The inventory comes from Policy / standard repository; the state file shows what is actually configured/running.",
         "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Information Technology (IT) Governance: \"Policy and standard lifecycle\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Information Technology (IT) Governance policy/standard and flag every item where the \"Policy and standard lifecycle\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- it-governance_inventory.json   (in-scope items — In-scope inventory for the policy and standard lifecycle control (from GRC platform))\n- it-governance_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Information Technology (IT) Governance: \"Policy and standard lifecycle\" Audit Evidence\n\nThe test:\nVerify the policy framework is complete + maintained. PASS: a policy/standard hierarchy covers the security domains (mapped to ISO 27001/NIST CSF), each policy is owned, version-controlled, reviewed on cadence + currently approved, communicated + accessible to staff, with no major coverage gaps. Exceptions: missing policies for key domains, stale/expired policies (years past review), no owners or review cadence, and policies staff can't find or aren't aware of.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- it-governance_inventory.json   (in-scope items — The policy + standard framework (a complete hierarchy — policies, standards, procedures — covering the security domains; mapped to a framework like ISO 27001/NIST CSF))\n- it-governance_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Policy and standard lifecycle\",\n  \"domain\": \"Information Technology (IT) Governance\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{gov_",
         "/evidence/it-governance_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"CISO / IT risk\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Policy and standard lifecycle\" control must cover\n# fragment: policy_standard_lifecycle_",
         "/evidence/it-governance_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -269,7 +269,7 @@ export const itGovernanceStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Policy and standard lifecycle\" control?",
           "options": [
             "A point-in-time screenshot of one system's policy and standard lifecycle settings, captured during the walkthrough",
-            "The In-scope inventory for the policy and standard lifecycle control (from GRC platform), reconciled against policy, plus the resulting findings working paper",
+            "The The policy + standard framework (a complete hierarchy — policies, standards, procedures — covering the security domains; mapped to a framework like ISO 27001/NIST CSF), reconciled against policy, plus the resulting findings working paper",
             "A signed management attestation that the policy and standard lifecycle control is in place, with no underlying data attached",
             "A vendor datasheet describing the product's policy and standard lifecycle capabilities and its recommended configuration"
           ],
@@ -282,13 +282,13 @@ export const itGovernanceStages: StageConfig[] = [
           "challenge": "Source of truth",
           "text": "Where should an auditor pull the evidence for \"Policy and standard lifecycle\"?",
           "options": [
-            "From GRC platform and the other systems of record for this domain, accessed read-only",
+            "From Policy / standard repository and the other systems of record for this domain, accessed read-only",
             "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
             "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
             "From an informal summary the team posted to the internal wiki describing how policy and standard lifecycle works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence must come from the authoritative systems (e.g. GRC platform) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Policy / standard repository) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "gov-01-q5",
@@ -299,10 +299,10 @@ export const itGovernanceStages: StageConfig[] = [
             "The external audit firm, since it is the party examining the policy and standard lifecycle control this period",
             "Whoever most recently changed the configuration, regardless of their role or formal accountability",
             "No single function — the policy and standard lifecycle data is shared, so the accountability sits with no one in particular",
-            "CISO / IT risk, with the related functions attesting to the part each of them owns"
+            "CISO / IT risk + policy owners, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "CISO / IT risk owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
+          "explanation": "CISO / IT risk + policy owners owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "gov-01-q6",
@@ -338,13 +338,13 @@ export const itGovernanceStages: StageConfig[] = [
           "challenge": "Typical finding",
           "text": "For \"Policy and standard lifecycle\", which of these is a realistic reportable finding?",
           "options": [
-            "In-scope items where the policy and standard lifecycle control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "Half the security policies are years past their review date with no owner, several key domains have no policy at all, and staff have no accessible, current policy library — the framework exists on paper but isn't maintained or known.",
             "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
             "The team has adopted a leading commercial platform that is widely used to support this control area",
             "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the policy and standard lifecycle control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. Half the security policies are years past their review date with no owner, several key domains have no policy at all, and staff have no accessible, current policy library — the framework exists on paper but isn't maintained or known. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "gov-01-q9",
@@ -389,24 +389,23 @@ export const itGovernanceStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Risk assessment and tracking\" control for Information Technology (IT) Governance is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Information Technology (IT) Governance policy/standard and flag every item where the \"Risk assessment and tracking\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
-      "approach": "An audit agent calls a read-only MCP server that wraps the Information Technology (IT) Governance systems of record (GRC platform; Policy + standard repository; Risk register) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Risk assessment and tracking\" control for Information Technology (IT) Governance is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Verify risk is assessed + actively tracked. PASS: a risk process maintains a live register (risks assessed for likelihood/impact, owned, with treatment + target dates), treatments are tracked to closure with documented time-bound risk acceptances re-approved on expiry, risk drives control priorities, and risk is reported to governance. Exceptions: no risk register or a stale one, risks with no owner/treatment/date, open-ended risk acceptances never revisited, and a register that doesn't drive decisions.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Information Technology (IT) Governance systems of record (Risk register / GRC; Risk treatment tracking; Risk-acceptance records) as tools — e.g. `risk management process + live risk register (assessed likelihood/impa`, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
-        "In-scope inventory for the risk assessment and tracking control (from GRC platform)",
-        "Observed configuration/state evidence showing whether the control is applied and operating",
-        "The control policy / standard / threshold the evidence is judged against",
-        "The reconciled exceptions list + coverage report (the working paper)"
+        "The risk management process + a live risk register (risks identified, assessed — likelihood/impact, owned, with treatment decisions and target dates)",
+        "Risk treatment + tracking (each risk has an owner + a decision — mitigate/accept/transfer — and is tracked to its target; risk acceptances are documented + time-bound + re-approved)",
+        "The link from risk to control + to the program (risks drive priorities; risk reduction is measurable)",
+        "Risk reporting to governance/leadership (the register feeds decisions, not a static document)"
       ],
       "system": [
-        "GRC platform",
-        "Policy + standard repository",
-        "Risk register",
-        "Metrics / KRI dashboard"
+        "Risk register / GRC",
+        "Risk treatment tracking",
+        "Risk-acceptance records",
+        "Risk reporting / dashboard"
       ],
       "dataOwner": [
         "CISO / IT risk",
-        "Policy owners",
-        "Internal audit",
+        "Risk owners (business)",
         "Executive / board"
       ],
       "scoring": {
@@ -427,17 +426,17 @@ export const itGovernanceStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Risk assessment and tracking\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the risk assessment and tracking control (from GRC platform)) with read-only agents, run the test against policy, and issue a defensible opinion on the Information Technology (IT) Governance control.",
+      "tagline": "Auditing \"Risk assessment and tracking\" as a repeatable agentic workflow: pull the real evidence (The risk management process + a live risk register (risks identified, assessed — likelihood/impact, owned, with treatment decisions and target dates)) with read-only agents, run the test against policy, and issue a defensible opinion on the Information Technology (IT) Governance control.",
       "year": 2025,
       "overview": [
-        "The \"Risk assessment and tracking\" sub-process is one of the controls an auditor must verify for Information Technology (IT) Governance. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the risk assessment and tracking control (from GRC platform), for everything in scope.\"",
-        "The evidence lives across systems that were never reconciled — here GRC platform, Policy + standard repository, Risk register — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The test itself is specific. Reconcile the in-scope inventory against the Information Technology (IT) Governance policy/standard and flag every item where the \"Risk assessment and tracking\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
+        "The \"Risk assessment and tracking\" sub-process is one of the controls an auditor must verify for Information Technology (IT) Governance. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me the risk management process + a live risk register (risks identified, assessed — likelihood/impact, owned, with treatment decisions and target dates), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Risk register / GRC, Risk treatment tracking, Risk-acceptance records — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. In practice you gather it with calls like `risk management process + live risk register (assessed likelihood/impact, owned,` — read-only, against the systems of record.",
+        "The test itself is specific. Verify risk is assessed + actively tracked. PASS: a risk process maintains a live register (risks assessed for likelihood/impact, owned, with treatment + target dates), treatments are tracked to closure with documented time-bound risk acceptances re-approved on expiry, risk drives control priorities, and risk is reported to governance. Exceptions: no risk register or a stale one, risks with no owner/treatment/date, open-ended risk acceptances never revisited, and a register that doesn't drive decisions. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `02_risk_assessment_and_tracking_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from GRC platform and Policy + standard repository (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The included `02_risk_assessment_and_tracking_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Risk register / GRC and Risk treatment tracking (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
           "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 02_risk_assessment_and_tracking_mcp.py` to expose it to your agent — or `python 02_risk_assessment_and_tracking_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
@@ -465,7 +464,7 @@ export const itGovernanceStages: StageConfig[] = [
           },
           {
             "label": "Agent + MCP",
-            "sub": "pull GRC platform · Policy + standard repository",
+            "sub": "pull Risk register / GRC · Risk treatment tracking",
             "type": "system"
           },
           {
@@ -496,26 +495,27 @@ export const itGovernanceStages: StageConfig[] = [
           "highlight": true
         }
       ],
-      "examples": [],
+      "examples": [
+        {
+          "label": "Pull the evidence — the real commands / API calls",
+          "code": "risk management process + live risk register (assessed likelihood/impact, owned, treatment + target dates)\nrisk treatment + tracking (owner + decision, tracked to target; acceptances documented, time-bound, re-approved)\nlink risk → control → program (risk drives priorities; measurable reduction)\nrisk reporting to governance/leadership"
+        }
+      ],
       "keyTakeaways": [
-        "The artifact to pull: In-scope inventory for the risk assessment and tracking control (from GRC platform).",
-        "The test: Reconcile the in-scope inventory against the Information Technology (IT) Governance policy/standard and flag every item where the \"Risk assessment and tracking\" control is missing, mis-scoped, or not operating.",
-        "Reconcile the systems of record (GRC platform, Policy + standard repository, Risk register) — anything the control never reached is the highest-value finding.",
+        "The artifact to pull: The risk management process + a live risk register (risks identified, assessed — likelihood/impact, owned, with treatment decisions and target dates).",
+        "The test: Verify risk is assessed + actively tracked.",
+        "Reconcile the systems of record (Risk register / GRC, Risk treatment tracking, Risk-acceptance records) — anything the control never reached is the highest-value finding.",
         "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the risk assessment and tracking control is not applied, mis-scoped, or has drifted from the approved baseline"
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. The risk register hasn't been updated in over a year, half its risks have no owner or treatment date, and several 'accepted' risks were accepted once with no expiry or re-approval — risk is documented but not actually managed or tracked."
       ],
       "references": [
         {
-          "title": "NIST Cybersecurity Framework 2.0 — Govern",
-          "url": "https://www.nist.gov/cyberframework"
+          "title": "ISO/IEC 27005 — Risk Mgmt",
+          "url": "https://www.iso.org/standard/80585.html"
         },
         {
-          "title": "COBIT 2019",
-          "url": "https://www.isaca.org/resources/cobit"
-        },
-        {
-          "title": "ISO/IEC 27001 — ISMS",
-          "url": "https://www.iso.org/standard/27001"
+          "title": "NIST RMF (SP 800-37)",
+          "url": "https://csrc.nist.gov/projects/risk-management"
         },
         {
           "title": "Model Context Protocol — specification",
@@ -526,20 +526,20 @@ export const itGovernanceStages: StageConfig[] = [
         {
           "name": "02_risk_assessment_and_tracking_mcp.py",
           "url": "/audit-code/it-governance/02_risk_assessment_and_tracking_mcp.py",
-          "description": "Runnable read-only MCP server: gathers the Information Technology (IT) Governance evidence for \"Risk assessment and tracking\" (in-scope inventory for the risk assessment and tracking control (from grc platform)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Information Technology (IT) Governance evidence for \"Risk assessment and tracking\" (the risk management process + a live risk register (risks identified, assessed — likelihood/impact, owned, with treatment decisions and target dates)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Risk assessment and tracking\" control for Information Technology (IT) Governance at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Information Technology (IT) Governance policy/standard and flag every item where the \"Risk assessment and tracking\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the risk assessment and tracking control (from GRC platform) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live GRC platform APIs; here the same sources are exported to files.)",
-      "hint": "Read every file in /evidence. GRC platform gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
+      "scenario": "You're the auditor testing the \"Risk assessment and tracking\" control for Information Technology (IT) Governance at AcmeCorp. THE TEST: Verify risk is assessed + actively tracked. PASS: a risk process maintains a live register (risks assessed for likelihood/impact, owned, with treatment + target dates), treatments are tracked to closure with documented time-bound risk acceptances re-approved on expiry, risk drives control priorities, and risk is reported to governance. Exceptions: no risk register or a stale one, risks with no owner/treatment/date, open-ended risk acceptances never revisited, and a register that doesn't drive decisions. The evidence — The risk management process + a live risk register (risks identified, assessed — likelihood/impact, owned, with treatment decisions and target dates) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Risk register / GRC APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Risk register / GRC gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. The inventory comes from GRC platform; the state file shows what is actually configured/running.",
+        "cat each file in /evidence. The inventory comes from Risk register / GRC; the state file shows what is actually configured/running.",
         "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Information Technology (IT) Governance: \"Risk assessment and tracking\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Information Technology (IT) Governance policy/standard and flag every item where the \"Risk assessment and tracking\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- it-governance_inventory.json   (in-scope items — In-scope inventory for the risk assessment and tracking control (from GRC platform))\n- it-governance_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Information Technology (IT) Governance: \"Risk assessment and tracking\" Audit Evidence\n\nThe test:\nVerify risk is assessed + actively tracked. PASS: a risk process maintains a live register (risks assessed for likelihood/impact, owned, with treatment + target dates), treatments are tracked to closure with documented time-bound risk acceptances re-approved on expiry, risk drives control priorities, and risk is reported to governance. Exceptions: no risk register or a stale one, risks with no owner/treatment/date, open-ended risk acceptances never revisited, and a register that doesn't drive decisions.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- it-governance_inventory.json   (in-scope items — The risk management process + a live risk register (risks identified, assessed — likelihood/impact, owned, with treatment decisions and target dates))\n- it-governance_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Risk assessment and tracking\",\n  \"domain\": \"Information Technology (IT) Governance\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{gov_",
         "/evidence/it-governance_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"CISO / IT risk\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Risk assessment and tracking\" control must cover\n# fragment: risk_assessment_tracking_",
         "/evidence/it-governance_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -635,7 +635,7 @@ export const itGovernanceStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Risk assessment and tracking\" control?",
           "options": [
             "A point-in-time screenshot of one system's risk assessment and tracking settings, captured during the walkthrough",
-            "The In-scope inventory for the risk assessment and tracking control (from GRC platform), reconciled against policy, plus the resulting findings working paper",
+            "The The risk management process + a live risk register (risks identified, assessed — likelihood/impact, owned, with treatment decisions and target dates), reconciled against policy, plus the resulting findings working paper",
             "A signed management attestation that the risk assessment and tracking control is in place, with no underlying data attached",
             "A vendor datasheet describing the product's risk assessment and tracking capabilities and its recommended configuration"
           ],
@@ -648,13 +648,13 @@ export const itGovernanceStages: StageConfig[] = [
           "challenge": "Source of truth",
           "text": "Where should an auditor pull the evidence for \"Risk assessment and tracking\"?",
           "options": [
-            "From GRC platform and the other systems of record for this domain, accessed read-only",
+            "From Risk register / GRC and the other systems of record for this domain, accessed read-only",
             "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
             "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
             "From an informal summary the team posted to the internal wiki describing how risk assessment and tracking works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence must come from the authoritative systems (e.g. GRC platform) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Risk register / GRC) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "gov-02-q5",
@@ -704,13 +704,13 @@ export const itGovernanceStages: StageConfig[] = [
           "challenge": "Typical finding",
           "text": "For \"Risk assessment and tracking\", which of these is a realistic reportable finding?",
           "options": [
-            "In-scope items where the risk assessment and tracking control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "The risk register hasn't been updated in over a year, half its risks have no owner or treatment date, and several 'accepted' risks were accepted once with no expiry or re-approval — risk is documented but not actually managed or tracked.",
             "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
             "The team has adopted a leading commercial platform that is widely used to support this control area",
             "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the risk assessment and tracking control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. The risk register hasn't been updated in over a year, half its risks have no owner or treatment date, and several 'accepted' risks were accepted once with no expiry or re-approval — risk is documented but not actually managed or tracked. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "gov-02-q9",
@@ -755,24 +755,23 @@ export const itGovernanceStages: StageConfig[] = [
     "valueScore": 6,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Security metrics and reporting\" control for Information Technology (IT) Governance is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Information Technology (IT) Governance policy/standard and flag every item where the \"Security metrics and reporting\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
-      "approach": "An audit agent calls a read-only MCP server that wraps the Information Technology (IT) Governance systems of record (GRC platform; Policy + standard repository; Risk register) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Security metrics and reporting\" control for Information Technology (IT) Governance is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Verify security is measured + reported meaningfully. PASS: a metrics/KPI/KRI program tracks decision-driving measures (patch SLA, phishing rate, MTTR, control coverage) with accurate sourcing, regular trend-and-risk reporting to leadership/board, and metrics that drive action when out of threshold. Exceptions: no security metrics or only vanity/activity counts, no leadership/board reporting, inaccurate/unsourced metrics, and metrics produced but never acted on.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Information Technology (IT) Governance systems of record (Metrics / KRI dashboard; Board / leadership reporting; Metric data sources) as tools — e.g. `security metrics/KPIs + KRIs (decision-driving: patch SLA, phishing ra`, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
-        "In-scope inventory for the security metrics and reporting control (from GRC platform)",
-        "Observed configuration/state evidence showing whether the control is applied and operating",
-        "The control policy / standard / threshold the evidence is judged against",
-        "The reconciled exceptions list + coverage report (the working paper)"
+        "The security metrics/KPIs + KRIs program (meaningful, decision-driving metrics — patch SLA attainment, phishing-failure rate, incident MTTR, control-coverage — not just activity counts)",
+        "Reporting to leadership/board (regular security reporting that informs decisions + investment, with trends + risk context)",
+        "Metric quality (metrics are accurate, sourced from real data, and tied to objectives/risk — not vanity numbers)",
+        "Action from metrics (metrics outside threshold drive remediation; they're used, not just produced)"
       ],
       "system": [
-        "GRC platform",
-        "Policy + standard repository",
-        "Risk register",
-        "Metrics / KRI dashboard"
+        "Metrics / KRI dashboard",
+        "Board / leadership reporting",
+        "Metric data sources",
+        "Threshold / action tracking"
       ],
       "dataOwner": [
-        "CISO / IT risk",
-        "Policy owners",
-        "Internal audit",
+        "CISO + security leadership",
+        "Metric owners",
         "Executive / board"
       ],
       "scoring": {
@@ -793,17 +792,17 @@ export const itGovernanceStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Security metrics and reporting\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the security metrics and reporting control (from GRC platform)) with read-only agents, run the test against policy, and issue a defensible opinion on the Information Technology (IT) Governance control.",
+      "tagline": "Auditing \"Security metrics and reporting\" as a repeatable agentic workflow: pull the real evidence (The security metrics/KPIs + KRIs program (meaningful, decision-driving metrics — patch SLA attainment, phishing-failure rate, incident MTTR, control-coverage — not just activity counts)) with read-only agents, run the test against policy, and issue a defensible opinion on the Information Technology (IT) Governance control.",
       "year": 2025,
       "overview": [
-        "The \"Security metrics and reporting\" sub-process is one of the controls an auditor must verify for Information Technology (IT) Governance. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the security metrics and reporting control (from GRC platform), for everything in scope.\"",
-        "The evidence lives across systems that were never reconciled — here GRC platform, Policy + standard repository, Risk register — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The test itself is specific. Reconcile the in-scope inventory against the Information Technology (IT) Governance policy/standard and flag every item where the \"Security metrics and reporting\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
+        "The \"Security metrics and reporting\" sub-process is one of the controls an auditor must verify for Information Technology (IT) Governance. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me the security metrics/KPIs + KRIs program (meaningful, decision-driving metrics — patch SLA attainment, phishing-failure rate, incident MTTR, control-coverage — not just activity counts), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Metrics / KRI dashboard, Board / leadership reporting, Metric data sources — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. In practice you gather it with calls like `security metrics/KPIs + KRIs (decision-driving: patch SLA, phishing rate, MTTR, ` — read-only, against the systems of record.",
+        "The test itself is specific. Verify security is measured + reported meaningfully. PASS: a metrics/KPI/KRI program tracks decision-driving measures (patch SLA, phishing rate, MTTR, control coverage) with accurate sourcing, regular trend-and-risk reporting to leadership/board, and metrics that drive action when out of threshold. Exceptions: no security metrics or only vanity/activity counts, no leadership/board reporting, inaccurate/unsourced metrics, and metrics produced but never acted on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `03_security_metrics_and_reporting_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from GRC platform and Policy + standard repository (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The included `03_security_metrics_and_reporting_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Metrics / KRI dashboard and Board / leadership reporting (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
           "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 03_security_metrics_and_reporting_mcp.py` to expose it to your agent — or `python 03_security_metrics_and_reporting_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
@@ -831,7 +830,7 @@ export const itGovernanceStages: StageConfig[] = [
           },
           {
             "label": "Agent + MCP",
-            "sub": "pull GRC platform · Policy + standard repository",
+            "sub": "pull Metrics / KRI dashboard · Board / leadership reporting",
             "type": "system"
           },
           {
@@ -862,26 +861,27 @@ export const itGovernanceStages: StageConfig[] = [
           "highlight": true
         }
       ],
-      "examples": [],
+      "examples": [
+        {
+          "label": "Pull the evidence — the real commands / API calls",
+          "code": "security metrics/KPIs + KRIs (decision-driving: patch SLA, phishing rate, MTTR, control coverage)\nreporting to leadership/board (regular, trends + risk context, informs investment)\nmetric quality (accurate, real-data-sourced, tied to objectives/risk)\naction from metrics (out-of-threshold drives remediation)"
+        }
+      ],
       "keyTakeaways": [
-        "The artifact to pull: In-scope inventory for the security metrics and reporting control (from GRC platform).",
-        "The test: Reconcile the in-scope inventory against the Information Technology (IT) Governance policy/standard and flag every item where the \"Security metrics and reporting\" control is missing, mis-scoped, or not operating.",
-        "Reconcile the systems of record (GRC platform, Policy + standard repository, Risk register) — anything the control never reached is the highest-value finding.",
+        "The artifact to pull: The security metrics/KPIs + KRIs program (meaningful, decision-driving metrics — patch SLA attainment, phishing-failure rate, incident MTTR, control-coverage — not just activity counts).",
+        "The test: Verify security is measured + reported meaningfully.",
+        "Reconcile the systems of record (Metrics / KRI dashboard, Board / leadership reporting, Metric data sources) — anything the control never reached is the highest-value finding.",
         "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the security metrics and reporting control is not applied, mis-scoped, or has drifted from the approved baseline"
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. Security 'reporting' is a count of blocked emails and tickets closed — no patch-SLA, MTTR, or control-coverage metrics, nothing reaches the board, and the numbers that exist are vanity figures that never drive a decision or remediation."
       ],
       "references": [
         {
-          "title": "NIST Cybersecurity Framework 2.0 — Govern",
+          "title": "NIST CSF 2.0",
           "url": "https://www.nist.gov/cyberframework"
         },
         {
-          "title": "COBIT 2019",
-          "url": "https://www.isaca.org/resources/cobit"
-        },
-        {
-          "title": "ISO/IEC 27001 — ISMS",
-          "url": "https://www.iso.org/standard/27001"
+          "title": "ISO/IEC 27004 — Measurement",
+          "url": "https://www.iso.org/standard/64120.html"
         },
         {
           "title": "Model Context Protocol — specification",
@@ -892,20 +892,20 @@ export const itGovernanceStages: StageConfig[] = [
         {
           "name": "03_security_metrics_and_reporting_mcp.py",
           "url": "/audit-code/it-governance/03_security_metrics_and_reporting_mcp.py",
-          "description": "Runnable read-only MCP server: gathers the Information Technology (IT) Governance evidence for \"Security metrics and reporting\" (in-scope inventory for the security metrics and reporting control (from grc platform)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Information Technology (IT) Governance evidence for \"Security metrics and reporting\" (the security metrics/kpis + kris program (meaningful, decision-driving metrics — patch sla attainment, phishing-failure rate, incident mttr, control-coverage — not just activity counts)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Security metrics and reporting\" control for Information Technology (IT) Governance at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Information Technology (IT) Governance policy/standard and flag every item where the \"Security metrics and reporting\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the security metrics and reporting control (from GRC platform) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live GRC platform APIs; here the same sources are exported to files.)",
-      "hint": "Read every file in /evidence. GRC platform gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
+      "scenario": "You're the auditor testing the \"Security metrics and reporting\" control for Information Technology (IT) Governance at AcmeCorp. THE TEST: Verify security is measured + reported meaningfully. PASS: a metrics/KPI/KRI program tracks decision-driving measures (patch SLA, phishing rate, MTTR, control coverage) with accurate sourcing, regular trend-and-risk reporting to leadership/board, and metrics that drive action when out of threshold. Exceptions: no security metrics or only vanity/activity counts, no leadership/board reporting, inaccurate/unsourced metrics, and metrics produced but never acted on. The evidence — The security metrics/KPIs + KRIs program (meaningful, decision-driving metrics — patch SLA attainment, phishing-failure rate, incident MTTR, control-coverage — not just activity counts) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Metrics / KRI dashboard APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Metrics / KRI dashboard gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. The inventory comes from GRC platform; the state file shows what is actually configured/running.",
+        "cat each file in /evidence. The inventory comes from Metrics / KRI dashboard; the state file shows what is actually configured/running.",
         "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Information Technology (IT) Governance: \"Security metrics and reporting\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Information Technology (IT) Governance policy/standard and flag every item where the \"Security metrics and reporting\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- it-governance_inventory.json   (in-scope items — In-scope inventory for the security metrics and reporting control (from GRC platform))\n- it-governance_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Information Technology (IT) Governance: \"Security metrics and reporting\" Audit Evidence\n\nThe test:\nVerify security is measured + reported meaningfully. PASS: a metrics/KPI/KRI program tracks decision-driving measures (patch SLA, phishing rate, MTTR, control coverage) with accurate sourcing, regular trend-and-risk reporting to leadership/board, and metrics that drive action when out of threshold. Exceptions: no security metrics or only vanity/activity counts, no leadership/board reporting, inaccurate/unsourced metrics, and metrics produced but never acted on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- it-governance_inventory.json   (in-scope items — The security metrics/KPIs + KRIs program (meaningful, decision-driving metrics — patch SLA attainment, phishing-failure rate, incident MTTR, control-coverage — not just activity counts))\n- it-governance_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Security metrics and reporting\",\n  \"domain\": \"Information Technology (IT) Governance\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{gov_",
         "/evidence/it-governance_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"CISO / IT risk\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Security metrics and reporting\" control must cover\n# fragment: security_metrics_reporting_",
         "/evidence/it-governance_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -1001,7 +1001,7 @@ export const itGovernanceStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Security metrics and reporting\" control?",
           "options": [
             "A point-in-time screenshot of one system's security metrics and reporting settings, captured during the walkthrough",
-            "The In-scope inventory for the security metrics and reporting control (from GRC platform), reconciled against policy, plus the resulting findings working paper",
+            "The The security metrics/KPIs + KRIs program (meaningful, decision-driving metrics — patch SLA attainment, phishing-failure rate, incident MTTR, control-coverage — not just activity counts), reconciled against policy, plus the resulting findings working paper",
             "A signed management attestation that the security metrics and reporting control is in place, with no underlying data attached",
             "A vendor datasheet describing the product's security metrics and reporting capabilities and its recommended configuration"
           ],
@@ -1014,13 +1014,13 @@ export const itGovernanceStages: StageConfig[] = [
           "challenge": "Source of truth",
           "text": "Where should an auditor pull the evidence for \"Security metrics and reporting\"?",
           "options": [
-            "From GRC platform and the other systems of record for this domain, accessed read-only",
+            "From Metrics / KRI dashboard and the other systems of record for this domain, accessed read-only",
             "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
             "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
             "From an informal summary the team posted to the internal wiki describing how security metrics and reporting works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence must come from the authoritative systems (e.g. GRC platform) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Metrics / KRI dashboard) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "gov-03-q5",
@@ -1031,10 +1031,10 @@ export const itGovernanceStages: StageConfig[] = [
             "The external audit firm, since it is the party examining the security metrics and reporting control this period",
             "Whoever most recently changed the configuration, regardless of their role or formal accountability",
             "No single function — the security metrics and reporting data is shared, so the accountability sits with no one in particular",
-            "CISO / IT risk, with the related functions attesting to the part each of them owns"
+            "CISO + security leadership, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "CISO / IT risk owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
+          "explanation": "CISO + security leadership owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "gov-03-q6",
@@ -1070,13 +1070,13 @@ export const itGovernanceStages: StageConfig[] = [
           "challenge": "Typical finding",
           "text": "For \"Security metrics and reporting\", which of these is a realistic reportable finding?",
           "options": [
-            "In-scope items where the security metrics and reporting control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "Security 'reporting' is a count of blocked emails and tickets closed — no patch-SLA, MTTR, or control-coverage metrics, nothing reaches the board, and the numbers that exist are vanity figures that never drive a decision or remediation.",
             "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
             "The team has adopted a leading commercial platform that is widely used to support this control area",
             "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the security metrics and reporting control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. Security 'reporting' is a count of blocked emails and tickets closed — no patch-SLA, MTTR, or control-coverage metrics, nothing reaches the board, and the numbers that exist are vanity figures that never drive a decision or remediation. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "gov-03-q9",
@@ -1121,25 +1121,24 @@ export const itGovernanceStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Exception management\" control for Information Technology (IT) Governance is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Information Technology (IT) Governance policy/standard and flag every item where the \"Exception management\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
-      "approach": "An audit agent calls a read-only MCP server that wraps the Information Technology (IT) Governance systems of record (GRC platform; Policy + standard repository; Risk register) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Exception management\" control for Information Technology (IT) Governance is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Verify policy exceptions are governed. PASS: exceptions are formally requested, risk-assessed, approved at the right level, and time-bound; a register tracks all active exceptions (owner, justification, compensating controls, expiry); compensating controls are defined; and exceptions are reviewed/closed on expiry. Exceptions: informal/undocumented deviations, no exception register (unknown how many/what), permanent open-ended exceptions, and no compensating controls or expiry review.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Information Technology (IT) Governance systems of record (Exception / waiver workflow; Exception register; Compensating-control records) as tools — e.g. `exception/waiver process (requested, risk-assessed, approved at right `, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
-        "In-scope inventory for the exception management control (from GRC platform)",
-        "Observed configuration/state evidence showing whether the control is applied and operating",
-        "The control policy / standard / threshold the evidence is judged against",
-        "The reconciled exceptions list + coverage report (the working paper)"
+        "The exception/waiver process (deviations from policy/standards are formally requested, risk-assessed, approved at the right authority, and time-bound — not informal/permanent)",
+        "The exception register (all active exceptions tracked with owner, justification, compensating controls, and expiry)",
+        "Compensating controls for exceptions (a granted exception has documented compensating controls reducing the risk)",
+        "Exception review + expiry (exceptions are revisited on expiry — renewed with re-justification or closed; not accumulating forever)"
       ],
       "system": [
-        "GRC platform",
-        "Policy + standard repository",
-        "Risk register",
-        "Metrics / KRI dashboard"
+        "Exception / waiver workflow",
+        "Exception register",
+        "Compensating-control records",
+        "Expiry / review tracking"
       ],
       "dataOwner": [
         "CISO / IT risk",
-        "Policy owners",
-        "Internal audit",
-        "Executive / board"
+        "Exception owners",
+        "Risk approvers"
       ],
       "scoring": {
         "ease": "EASE 5/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
@@ -1159,17 +1158,17 @@ export const itGovernanceStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Exception management\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the exception management control (from GRC platform)) with read-only agents, run the test against policy, and issue a defensible opinion on the Information Technology (IT) Governance control.",
+      "tagline": "Auditing \"Exception management\" as a repeatable agentic workflow: pull the real evidence (The exception/waiver process (deviations from policy/standards are formally requested, risk-assessed, approved at the right authority, and time-bound — not informal/permanent)) with read-only agents, run the test against policy, and issue a defensible opinion on the Information Technology (IT) Governance control.",
       "year": 2025,
       "overview": [
-        "The \"Exception management\" sub-process is one of the controls an auditor must verify for Information Technology (IT) Governance. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the exception management control (from GRC platform), for everything in scope.\"",
-        "The evidence lives across systems that were never reconciled — here GRC platform, Policy + standard repository, Risk register — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The test itself is specific. Reconcile the in-scope inventory against the Information Technology (IT) Governance policy/standard and flag every item where the \"Exception management\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
+        "The \"Exception management\" sub-process is one of the controls an auditor must verify for Information Technology (IT) Governance. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me the exception/waiver process (deviations from policy/standards are formally requested, risk-assessed, approved at the right authority, and time-bound — not informal/permanent), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here Exception / waiver workflow, Exception register, Compensating-control records — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. In practice you gather it with calls like `exception/waiver process (requested, risk-assessed, approved at right authority,` — read-only, against the systems of record.",
+        "The test itself is specific. Verify policy exceptions are governed. PASS: exceptions are formally requested, risk-assessed, approved at the right level, and time-bound; a register tracks all active exceptions (owner, justification, compensating controls, expiry); compensating controls are defined; and exceptions are reviewed/closed on expiry. Exceptions: informal/undocumented deviations, no exception register (unknown how many/what), permanent open-ended exceptions, and no compensating controls or expiry review. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `04_exception_management_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from GRC platform and Policy + standard repository (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The included `04_exception_management_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from Exception / waiver workflow and Exception register (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
           "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 04_exception_management_mcp.py` to expose it to your agent — or `python 04_exception_management_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
@@ -1197,7 +1196,7 @@ export const itGovernanceStages: StageConfig[] = [
           },
           {
             "label": "Agent + MCP",
-            "sub": "pull GRC platform · Policy + standard repository",
+            "sub": "pull Exception / waiver workflow · Exception register",
             "type": "system"
           },
           {
@@ -1228,26 +1227,27 @@ export const itGovernanceStages: StageConfig[] = [
           "highlight": true
         }
       ],
-      "examples": [],
+      "examples": [
+        {
+          "label": "Pull the evidence — the real commands / API calls",
+          "code": "exception/waiver process (requested, risk-assessed, approved at right authority, time-bound)\nexception register (owner, justification, compensating controls, expiry)\ncompensating controls for each exception\nexception review + expiry (revisited; renewed with re-justification or closed)"
+        }
+      ],
       "keyTakeaways": [
-        "The artifact to pull: In-scope inventory for the exception management control (from GRC platform).",
-        "The test: Reconcile the in-scope inventory against the Information Technology (IT) Governance policy/standard and flag every item where the \"Exception management\" control is missing, mis-scoped, or not operating.",
-        "Reconcile the systems of record (GRC platform, Policy + standard repository, Risk register) — anything the control never reached is the highest-value finding.",
+        "The artifact to pull: The exception/waiver process (deviations from policy/standards are formally requested, risk-assessed, approved at the right authority, and time-bound — not informal/permanent).",
+        "The test: Verify policy exceptions are governed.",
+        "Reconcile the systems of record (Exception / waiver workflow, Exception register, Compensating-control records) — anything the control never reached is the highest-value finding.",
         "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the exception management control is not applied, mis-scoped, or has drifted from the approved baseline"
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. Policy exceptions are granted informally over email with no register, no compensating controls, and no expiry — so dozens of unknown, permanent deviations have accumulated, each a quietly accepted risk no one tracks or revisits."
       ],
       "references": [
         {
-          "title": "NIST Cybersecurity Framework 2.0 — Govern",
-          "url": "https://www.nist.gov/cyberframework"
-        },
-        {
-          "title": "COBIT 2019",
-          "url": "https://www.isaca.org/resources/cobit"
-        },
-        {
           "title": "ISO/IEC 27001 — ISMS",
           "url": "https://www.iso.org/standard/27001"
+        },
+        {
+          "title": "NIST RMF (SP 800-37)",
+          "url": "https://csrc.nist.gov/projects/risk-management"
         },
         {
           "title": "Model Context Protocol — specification",
@@ -1258,20 +1258,20 @@ export const itGovernanceStages: StageConfig[] = [
         {
           "name": "04_exception_management_mcp.py",
           "url": "/audit-code/it-governance/04_exception_management_mcp.py",
-          "description": "Runnable read-only MCP server: gathers the Information Technology (IT) Governance evidence for \"Exception management\" (in-scope inventory for the exception management control (from grc platform)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Information Technology (IT) Governance evidence for \"Exception management\" (the exception/waiver process (deviations from policy/standards are formally requested, risk-assessed, approved at the right authority, and time-bound — not informal/permanent)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Exception management\" control for Information Technology (IT) Governance at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Information Technology (IT) Governance policy/standard and flag every item where the \"Exception management\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the exception management control (from GRC platform) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live GRC platform APIs; here the same sources are exported to files.)",
-      "hint": "Read every file in /evidence. GRC platform gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
+      "scenario": "You're the auditor testing the \"Exception management\" control for Information Technology (IT) Governance at AcmeCorp. THE TEST: Verify policy exceptions are governed. PASS: exceptions are formally requested, risk-assessed, approved at the right level, and time-bound; a register tracks all active exceptions (owner, justification, compensating controls, expiry); compensating controls are defined; and exceptions are reviewed/closed on expiry. Exceptions: informal/undocumented deviations, no exception register (unknown how many/what), permanent open-ended exceptions, and no compensating controls or expiry review. The evidence — The exception/waiver process (deviations from policy/standards are formally requested, risk-assessed, approved at the right authority, and time-bound — not informal/permanent) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live Exception / waiver workflow APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. Exception / waiver workflow gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. The inventory comes from GRC platform; the state file shows what is actually configured/running.",
+        "cat each file in /evidence. The inventory comes from Exception / waiver workflow; the state file shows what is actually configured/running.",
         "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Information Technology (IT) Governance: \"Exception management\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Information Technology (IT) Governance policy/standard and flag every item where the \"Exception management\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- it-governance_inventory.json   (in-scope items — In-scope inventory for the exception management control (from GRC platform))\n- it-governance_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Information Technology (IT) Governance: \"Exception management\" Audit Evidence\n\nThe test:\nVerify policy exceptions are governed. PASS: exceptions are formally requested, risk-assessed, approved at the right level, and time-bound; a register tracks all active exceptions (owner, justification, compensating controls, expiry); compensating controls are defined; and exceptions are reviewed/closed on expiry. Exceptions: informal/undocumented deviations, no exception register (unknown how many/what), permanent open-ended exceptions, and no compensating controls or expiry review.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- it-governance_inventory.json   (in-scope items — The exception/waiver process (deviations from policy/standards are formally requested, risk-assessed, approved at the right authority, and time-bound — not informal/permanent))\n- it-governance_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Exception management\",\n  \"domain\": \"Information Technology (IT) Governance\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{gov_",
         "/evidence/it-governance_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"CISO / IT risk\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Exception management\" control must cover\n# fragment: exception_management_",
         "/evidence/it-governance_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -1367,7 +1367,7 @@ export const itGovernanceStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Exception management\" control?",
           "options": [
             "A point-in-time screenshot of one system's exception management settings, captured during the walkthrough",
-            "The In-scope inventory for the exception management control (from GRC platform), reconciled against policy, plus the resulting findings working paper",
+            "The The exception/waiver process (deviations from policy/standards are formally requested, risk-assessed, approved at the right authority, and time-bound — not informal/permanent), reconciled against policy, plus the resulting findings working paper",
             "A signed management attestation that the exception management control is in place, with no underlying data attached",
             "A vendor datasheet describing the product's exception management capabilities and its recommended configuration"
           ],
@@ -1380,13 +1380,13 @@ export const itGovernanceStages: StageConfig[] = [
           "challenge": "Source of truth",
           "text": "Where should an auditor pull the evidence for \"Exception management\"?",
           "options": [
-            "From GRC platform and the other systems of record for this domain, accessed read-only",
+            "From Exception / waiver workflow and the other systems of record for this domain, accessed read-only",
             "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
             "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
             "From an informal summary the team posted to the internal wiki describing how exception management works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence must come from the authoritative systems (e.g. GRC platform) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
+          "explanation": "Evidence must come from the authoritative systems (e.g. Exception / waiver workflow) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "gov-04-q5",
@@ -1436,13 +1436,13 @@ export const itGovernanceStages: StageConfig[] = [
           "challenge": "Typical finding",
           "text": "For \"Exception management\", which of these is a realistic reportable finding?",
           "options": [
-            "In-scope items where the exception management control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "Policy exceptions are granted informally over email with no register, no compensating controls, and no expiry — so dozens of unknown, permanent deviations have accumulated, each a quietly accepted risk no one tracks or revisits.",
             "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
             "The team has adopted a leading commercial platform that is widely used to support this control area",
             "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the exception management control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. Policy exceptions are granted informally over email with no register, no compensating controls, and no expiry — so dozens of unknown, permanent deviations have accumulated, each a quietly accepted risk no one tracks or revisits. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "gov-04-q9",
@@ -1487,25 +1487,24 @@ export const itGovernanceStages: StageConfig[] = [
     "valueScore": 7,
     "rank": 0,
     "auditMeta": {
-      "objective": "Prove the \"Security awareness program\" control for Information Technology (IT) Governance is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Reconcile the in-scope inventory against the Information Technology (IT) Governance policy/standard and flag every item where the \"Security awareness program\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.",
-      "approach": "An audit agent calls a read-only MCP server that wraps the Information Technology (IT) Governance systems of record (GRC platform; Policy + standard repository; Risk register) as tools, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
+      "objective": "Prove the \"Security awareness program\" control for Information Technology (IT) Governance is designed and operating effectively for every in-scope item, and quantify the gap where it is not. The test: Verify security awareness builds real resilience. PASS: a cadenced awareness/training program (new-hire + annual, completion-tracked) includes phishing simulation with metrics + follow-up, role-specific training (devs, admins, finance), and effectiveness is measured by behaviour (phishing-rate trend, reporting rate). Exceptions: no/ad-hoc awareness training, no phishing simulation or behaviour program, only generic training (no role-specific), and success measured only by completion %, not behaviour change.",
+      "approach": "An audit agent calls a read-only MCP server that wraps the Information Technology (IT) Governance systems of record (LMS / awareness platform; Phishing simulation tooling; Role-based training) as tools — e.g. `awareness + training program (role-based + general, cadenced, completi`, pulls the inventory and observed state, runs the test, and returns the named exceptions; the auditor sets thresholds, reviews, and signs. (Sources → gather → evaluate → findings.)",
       "artifacts": [
-        "In-scope inventory for the security awareness program control (from GRC platform)",
-        "Observed configuration/state evidence showing whether the control is applied and operating",
-        "The control policy / standard / threshold the evidence is judged against",
-        "The reconciled exceptions list + coverage report (the working paper)"
+        "The security awareness + training program (role-based + general training, delivered on a cadence, completion tracked; new-hire + annual)",
+        "Phishing simulation + behaviour-change program (simulated phishing with metrics + targeted follow-up training; trending failure rate)",
+        "Role-specific training (developers — secure coding; privileged/admin; finance — BEC/fraud) beyond generic awareness",
+        "Effectiveness measurement (does the program change behaviour — phishing-rate trend, reporting rate — not just completion %)"
       ],
       "system": [
-        "GRC platform",
-        "Policy + standard repository",
-        "Risk register",
-        "Metrics / KRI dashboard"
+        "LMS / awareness platform",
+        "Phishing simulation tooling",
+        "Role-based training",
+        "Effectiveness metrics"
       ],
       "dataOwner": [
-        "CISO / IT risk",
-        "Policy owners",
-        "Internal audit",
-        "Executive / board"
+        "Security awareness / CISO",
+        "HR / L&D",
+        "People managers"
       ],
       "scoring": {
         "ease": "EASE 6/10 — driven by how well the source systems expose read-only evidence and how stable the policy is; lower when evidence is manual, fragmented, or the standard is subjective.",
@@ -1525,17 +1524,17 @@ export const itGovernanceStages: StageConfig[] = [
     },
     "challengeType": "ctf",
     "info": {
-      "tagline": "Auditing \"Security awareness program\" as a repeatable agentic workflow: pull the real evidence (In-scope inventory for the security awareness program control (from GRC platform)) with read-only agents, run the test against policy, and issue a defensible opinion on the Information Technology (IT) Governance control.",
+      "tagline": "Auditing \"Security awareness program\" as a repeatable agentic workflow: pull the real evidence (The security awareness + training program (role-based + general training, delivered on a cadence, completion tracked; new-hire + annual)) with read-only agents, run the test against policy, and issue a defensible opinion on the Information Technology (IT) Governance control.",
       "year": 2025,
       "overview": [
-        "The \"Security awareness program\" sub-process is one of the controls an auditor must verify for Information Technology (IT) Governance. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me in-scope inventory for the security awareness program control (from GRC platform), for everything in scope.\"",
-        "The evidence lives across systems that were never reconciled — here GRC platform, Policy + standard repository, Risk register — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. A manual review is weeks of exports and owner-chasing; the result is often stale before it is finished.",
-        "The test itself is specific. Reconcile the in-scope inventory against the Information Technology (IT) Governance policy/standard and flag every item where the \"Security awareness program\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
+        "The \"Security awareness program\" sub-process is one of the controls an auditor must verify for Information Technology (IT) Governance. The objective is not to run the control but to obtain objective, reproducible evidence that it is designed correctly and operating effectively for every in-scope item — and to quantify the gap precisely where it is not. The opening question is concrete: \"show me the security awareness + training program (role-based + general training, delivered on a cadence, completion tracked; new-hire + annual), for everything in scope.\"",
+        "The evidence lives across systems that were never reconciled — here LMS / awareness platform, Phishing simulation tooling, Role-based training — each authoritative for part of the picture and blind to the rest. The gaps between them are where the risk hides: items the control was never applied to, exceptions that were never closed, and configurations that drifted from the approved baseline. In practice you gather it with calls like `awareness + training program (role-based + general, cadenced, completion-tracked` — read-only, against the systems of record.",
+        "The test itself is specific. Verify security awareness builds real resilience. PASS: a cadenced awareness/training program (new-hire + annual, completion-tracked) includes phishing simulation with metrics + follow-up, role-specific training (devs, admins, finance), and effectiveness is measured by behaviour (phishing-rate trend, reporting rate). Exceptions: no/ad-hoc awareness training, no phishing simulation or behaviour program, only generic training (no role-specific), and success measured only by completion %, not behaviour change. The agentic approach automates the gathering and the reconciliation, not the judgement: a read-only MCP server pulls the evidence and runs the test, and the human sets the thresholds, reviews the exceptions, and signs the opinion."
       ],
       "technical": {
         "title": "The agentic workflow — automate the evidence, not the judgement",
         "body": [
-          "The included `05_security_awareness_program_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from GRC platform and Policy + standard repository (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. ",
+          "The included `05_security_awareness_program_mcp.py` implements exactly this test as read-only MCP tools: one gathers the raw evidence from LMS / awareness platform and Phishing simulation tooling (and the other sources), one evaluates each in-scope item against the policy and surfaces the exceptions, and `coverage_report()` produces the working-paper deliverable — totals, the named exception list, and the PASS / EXCEPTIONS / MATERIAL-GAP opinion. The exact queries it wraps are listed in the examples below, so you can run them by hand first.",
           "The server is deliberately read-only — it can list and report, never change — which is the first thing a reviewer should verify before trusting any audit tool. Wire it to your tenant with read-only credentials and it produces the same evidence and opinion against your real estate; point it at the bundled fixtures and it reproduces the worked example offline.",
           "To run it: `pip install \"mcp[cli]\"`, wire the source credentials read-only, then `mcp run 05_security_awareness_program_mcp.py` to expose it to your agent — or `python 05_security_awareness_program_mcp.py --selftest` to reproduce the findings against the built-in fixtures offline, with no access to a live environment required."
         ],
@@ -1563,7 +1562,7 @@ export const itGovernanceStages: StageConfig[] = [
           },
           {
             "label": "Agent + MCP",
-            "sub": "pull GRC platform · Policy + standard repository",
+            "sub": "pull LMS / awareness platform · Phishing simulation tooling",
             "type": "system"
           },
           {
@@ -1594,22 +1593,23 @@ export const itGovernanceStages: StageConfig[] = [
           "highlight": true
         }
       ],
-      "examples": [],
+      "examples": [
+        {
+          "label": "Pull the evidence — the real commands / API calls",
+          "code": "awareness + training program (role-based + general, cadenced, completion-tracked, new-hire + annual)\nphishing simulation + behaviour-change (metrics + targeted follow-up; trending failure rate)\nrole-specific training (devs/secure coding, privileged/admin, finance/BEC)\neffectiveness measurement (behaviour change: phishing-rate + reporting trend, not just completion %)"
+        }
+      ],
       "keyTakeaways": [
-        "The artifact to pull: In-scope inventory for the security awareness program control (from GRC platform).",
-        "The test: Reconcile the in-scope inventory against the Information Technology (IT) Governance policy/standard and flag every item where the \"Security awareness program\" control is missing, mis-scoped, or not operating.",
-        "Reconcile the systems of record (GRC platform, Policy + standard repository, Risk register) — anything the control never reached is the highest-value finding.",
+        "The artifact to pull: The security awareness + training program (role-based + general training, delivered on a cadence, completion tracked; new-hire + annual).",
+        "The test: Verify security awareness builds real resilience.",
+        "Reconcile the systems of record (LMS / awareness platform, Phishing simulation tooling, Role-based training) — anything the control never reached is the highest-value finding.",
         "The agent gathers and correlates read-only; the human sets policy, reviews exceptions, and signs the opinion.",
-        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. in-scope items where the security awareness program control is not applied, mis-scoped, or has drifted from the approved baseline"
+        "The deliverable is a PASS / EXCEPTIONS / MATERIAL-GAP opinion with named exceptions and a CAPA path — e.g. Awareness is a once-a-year generic slideshow measured only by completion percentage; there's no phishing simulation, no role-specific training for developers or finance, and no measurement of whether anyone's behaviour — the actual goal — has changed."
       ],
       "references": [
         {
-          "title": "NIST Cybersecurity Framework 2.0 — Govern",
-          "url": "https://www.nist.gov/cyberframework"
-        },
-        {
-          "title": "COBIT 2019",
-          "url": "https://www.isaca.org/resources/cobit"
+          "title": "NIST SP 800-50 — Awareness & Training",
+          "url": "https://csrc.nist.gov/pubs/sp/800/50/final"
         },
         {
           "title": "ISO/IEC 27001 — ISMS",
@@ -1624,20 +1624,20 @@ export const itGovernanceStages: StageConfig[] = [
         {
           "name": "05_security_awareness_program_mcp.py",
           "url": "/audit-code/it-governance/05_security_awareness_program_mcp.py",
-          "description": "Runnable read-only MCP server: gathers the Information Technology (IT) Governance evidence for \"Security awareness program\" (in-scope inventory for the security awareness program control (from grc platform)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
+          "description": "Runnable read-only MCP server: gathers the Information Technology (IT) Governance evidence for \"Security awareness program\" (the security awareness + training program (role-based + general training, delivered on a cadence, completion tracked; new-hire + annual)), runs the test, and reports exceptions + opinion. pip install \"mcp[cli]\"."
         }
       ]
     },
     "ctf": {
-      "scenario": "You're the auditor testing the \"Security awareness program\" control for Information Technology (IT) Governance at AcmeCorp. THE TEST: Reconcile the in-scope inventory against the Information Technology (IT) Governance policy/standard and flag every item where the \"Security awareness program\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on. The evidence — In-scope inventory for the security awareness program control (from GRC platform) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live GRC platform APIs; here the same sources are exported to files.)",
-      "hint": "Read every file in /evidence. GRC platform gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
+      "scenario": "You're the auditor testing the \"Security awareness program\" control for Information Technology (IT) Governance at AcmeCorp. THE TEST: Verify security awareness builds real resilience. PASS: a cadenced awareness/training program (new-hire + annual, completion-tracked) includes phishing simulation with metrics + follow-up, role-specific training (devs, admins, finance), and effectiveness is measured by behaviour (phishing-rate trend, reporting rate). Exceptions: no/ad-hoc awareness training, no phishing simulation or behaviour program, only generic training (no role-specific), and success measured only by completion %, not behaviour change. The evidence — The security awareness + training program (role-based + general training, delivered on a cadence, completion tracked; new-hire + annual) — plus the observed state has been exported into /evidence. Reconcile it against policy, identify the exceptions, and assemble the finding flag. (In a real engagement you'd run the module's read-only MCP server against the live LMS / awareness platform APIs; here the same sources are exported to files.)",
+      "hint": "Read every file in /evidence. LMS / awareness platform gives the in-scope items; the observed-state file shows which actually have the control. The gap between them is the finding.",
       "hints": [
-        "cat each file in /evidence. The inventory comes from GRC platform; the state file shows what is actually configured/running.",
+        "cat each file in /evidence. The inventory comes from LMS / awareness platform; the state file shows what is actually configured/running.",
         "An in-scope item present in the inventory but failing the control in the state file is an exception — that is your finding.",
         "Read coverage_report.json last — it confirms the exceptions and carries the final fragment (the audit opinion)."
       ],
       "files": {
-        "/evidence/README.md": "# AcmeCorp — Information Technology (IT) Governance: \"Security awareness program\" Audit Evidence\n\nThe test:\nReconcile the in-scope inventory against the Information Technology (IT) Governance policy/standard and flag every item where the \"Security awareness program\" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- it-governance_inventory.json   (in-scope items — In-scope inventory for the security awareness program control (from GRC platform))\n- it-governance_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
+        "/evidence/README.md": "# AcmeCorp — Information Technology (IT) Governance: \"Security awareness program\" Audit Evidence\n\nThe test:\nVerify security awareness builds real resilience. PASS: a cadenced awareness/training program (new-hire + annual, completion-tracked) includes phishing simulation with metrics + follow-up, role-specific training (devs, admins, finance), and effectiveness is measured by behaviour (phishing-rate trend, reporting rate). Exceptions: no/ad-hoc awareness training, no phishing simulation or behaviour program, only generic training (no role-specific), and success measured only by completion %, not behaviour change.\n\nSystems of record exported for this audit:\n- policy.json            (the control standard / threshold)\n- it-governance_inventory.json   (in-scope items — The security awareness + training program (role-based + general training, delivered on a cadence, completion tracked; new-hire + annual))\n- it-governance_state.json       (observed configuration/state)\n- coverage_report.json   (the computed opinion)\n\nTask: reconcile inventory + state against policy, find the failing items,\nthen read coverage_report.json. `cat` every file to collect the finding.",
         "/evidence/policy.json": "{\n  \"control\": \"Security awareness program\",\n  \"domain\": \"Information Technology (IT) Governance\",\n  \"requirement\": \"every in-scope item must have the control applied and operating\",\n  \"exception_threshold\": 3\n}\n# fragment: FLAG{gov_",
         "/evidence/it-governance_inventory.json": "[\n  {\"id\":\"item-001\",\"in_scope\":true,\"owner\":\"CISO / IT risk\"},\n  {\"id\":\"item-002\",\"in_scope\":true},\n  {\"id\":\"item-003\",\"in_scope\":true},\n  {\"id\":\"item-004\",\"in_scope\":true}\n]\n# 4 in-scope items the \"Security awareness program\" control must cover\n# fragment: security_awareness_program_",
         "/evidence/it-governance_state.json": "[\n  {\"id\":\"item-001\",\"control_applied\":true},\n  {\"id\":\"item-002\",\"control_applied\":false},   // exception: not covered\n  {\"id\":\"item-003\",\"control_applied\":false},   // exception: drifted from baseline\n  {\"id\":\"item-004\",\"control_applied\":true}\n]\n# 2 of 4 items fail the control\n# fragment: gap_",
@@ -1733,7 +1733,7 @@ export const itGovernanceStages: StageConfig[] = [
           "text": "Which artifact best evidences the \"Security awareness program\" control?",
           "options": [
             "A point-in-time screenshot of one system's security awareness program settings, captured during the walkthrough",
-            "The In-scope inventory for the security awareness program control (from GRC platform), reconciled against policy, plus the resulting findings working paper",
+            "The The security awareness + training program (role-based + general training, delivered on a cadence, completion tracked; new-hire + annual), reconciled against policy, plus the resulting findings working paper",
             "A signed management attestation that the security awareness program control is in place, with no underlying data attached",
             "A vendor datasheet describing the product's security awareness program capabilities and its recommended configuration"
           ],
@@ -1746,13 +1746,13 @@ export const itGovernanceStages: StageConfig[] = [
           "challenge": "Source of truth",
           "text": "Where should an auditor pull the evidence for \"Security awareness program\"?",
           "options": [
-            "From GRC platform and the other systems of record for this domain, accessed read-only",
+            "From LMS / awareness platform and the other systems of record for this domain, accessed read-only",
             "From a spreadsheet the control owner maintains by hand and emails to the audit team on request",
             "From the auditor's notes on last year's engagement, carried forward without re-testing this period",
             "From an informal summary the team posted to the internal wiki describing how security awareness program works"
           ],
           "correctIndex": 0,
-          "explanation": "Evidence must come from the authoritative systems (e.g. GRC platform) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
+          "explanation": "Evidence must come from the authoritative systems (e.g. LMS / awareness platform) read-only — not hand-maintained spreadsheets, stale notes, or wiki summaries."
         },
         {
           "id": "gov-05-q5",
@@ -1763,10 +1763,10 @@ export const itGovernanceStages: StageConfig[] = [
             "The external audit firm, since it is the party examining the security awareness program control this period",
             "Whoever most recently changed the configuration, regardless of their role or formal accountability",
             "No single function — the security awareness program data is shared, so the accountability sits with no one in particular",
-            "CISO / IT risk, with the related functions attesting to the part each of them owns"
+            "Security awareness / CISO, with the related functions attesting to the part each of them owns"
           ],
           "correctIndex": 3,
-          "explanation": "CISO / IT risk owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
+          "explanation": "Security awareness / CISO owns the control data; the auditor independently verifies it but never owns it, and accountability is never ownerless."
         },
         {
           "id": "gov-05-q6",
@@ -1802,13 +1802,13 @@ export const itGovernanceStages: StageConfig[] = [
           "challenge": "Typical finding",
           "text": "For \"Security awareness program\", which of these is a realistic reportable finding?",
           "options": [
-            "In-scope items where the security awareness program control is not applied, mis-scoped, or has drifted from the approved baseline",
+            "Awareness is a once-a-year generic slideshow measured only by completion percentage; there's no phishing simulation, no role-specific training for developers or finance, and no measurement of whether anyone's behaviour — the actual goal — has changed.",
             "Evidence shows the control is designed and operating effectively across every in-scope item, with no exceptions",
             "The team has adopted a leading commercial platform that is widely used to support this control area",
             "A planned enhancement to the control was delivered on time and within budget during the audit period"
           ],
           "correctIndex": 0,
-          "explanation": "A finding is a concrete, named gap against the standard — e.g. in-scope items where the security awareness program control is not applied, mis-scoped, or has drifted from the approved baseline A clean result, a good tool choice, or an on-time project is not a finding."
+          "explanation": "A finding is a concrete, named gap against the standard — e.g. Awareness is a once-a-year generic slideshow measured only by completion percentage; there's no phishing simulation, no role-specific training for developers or finance, and no measurement of whether anyone's behaviour — the actual goal — has changed. A clean result, a good tool choice, or an on-time project is not a finding."
         },
         {
           "id": "gov-05-q9",

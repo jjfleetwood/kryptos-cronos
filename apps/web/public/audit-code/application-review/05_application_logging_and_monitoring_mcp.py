@@ -2,13 +2,16 @@
 """Read-only MCP server — Application Review: "Application logging and monitoring" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Application Review policy/standard and flag every item where the "Application logging and monitoring" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the app logs + is monitored. PASS: security-relevant events (auth, authz failures, privileged/sensitive actions, validation failures) are logged with detail, forwarded to the SIEM with app-attack detections, logs are integrity-protected + free of clear credentials/PII, and business-significant actions have an audit trail. Exceptions: no security logging (attacks + abuse invisible), logs not reaching the SOC/no app-level detection, sensitive data written to logs, and no audit trail of significant actions.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the application logging and monitoring control (from ServiceNow CMDB)
+    Application security logging (authentication events, authorization failures, privileged/sensitive actions, input-validation failures logged with enough detail for investigation)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: ServiceNow CMDB, Okta / Entra SSO, AWS / Azure cloud plane, App configuration stores)
+    application security logging (auth events, authz failures, privileged/sensitive actions, validation failures)
+    log forwarding to SIEM + monitoring/alerting on app attacks (credential stuffing, injection, privilege abuse)
+    log integrity + no sensitive data in logs (tamper-protected; no clear credentials/PII)
+    audit trail of business-significant actions (accountability/non-repudiation)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

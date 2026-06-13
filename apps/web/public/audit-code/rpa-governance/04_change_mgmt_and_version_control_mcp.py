@@ -2,13 +2,16 @@
 """Read-only MCP server — Robotic Process Automation (RPA) Governance: "Change mgmt and version control" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the "Change mgmt and version control" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify bot changes are controlled + versioned. PASS: bot changes follow approval + testing, bot code/config is version-controlled with rollback, application/UI changes trigger bot impact review + retest, and emergency changes + rollback are handled. Exceptions: bot logic changed directly in production with no approval/testing, no version control (can't roll back a bad bot), application changes breaking bots with no impact process, and no rollback capability.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the change mgmt and version control control (from RPA platform (UiPath/Automation Anywhere/Power Automate))
+    Change management for bots (changes to bot logic go through approval + testing; the impact of UI/application changes on bots is assessed)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: RPA platform (UiPath/Automation Anywhere/Power Automate), Bot credential vault, Bot orchestration + logs, Version control for bots)
+    change management for bots (approval + testing; assess impact of app/UI changes on bots)
+    version control of bot code/configuration (versioned, rollback)
+    link app changes → bot impact (bots retested when driven systems change)
+    emergency-change + rollback handling for bots
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

@@ -2,13 +2,16 @@
 """Read-only MCP server — Information Technology (IT) Governance: "Risk assessment and tracking" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Information Technology (IT) Governance policy/standard and flag every item where the "Risk assessment and tracking" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify risk is assessed + actively tracked. PASS: a risk process maintains a live register (risks assessed for likelihood/impact, owned, with treatment + target dates), treatments are tracked to closure with documented time-bound risk acceptances re-approved on expiry, risk drives control priorities, and risk is reported to governance. Exceptions: no risk register or a stale one, risks with no owner/treatment/date, open-ended risk acceptances never revisited, and a register that doesn't drive decisions.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the risk assessment and tracking control (from GRC platform)
+    The risk management process + a live risk register (risks identified, assessed — likelihood/impact, owned, with treatment decisions and target dates)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: GRC platform, Policy + standard repository, Risk register, Metrics / KRI dashboard)
+    risk management process + live risk register (assessed likelihood/impact, owned, treatment + target dates)
+    risk treatment + tracking (owner + decision, tracked to target; acceptances documented, time-bound, re-approved)
+    link risk → control → program (risk drives priorities; measurable reduction)
+    risk reporting to governance/leadership
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

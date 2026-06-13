@@ -2,13 +2,16 @@
 """Read-only MCP server — Information Technology (IT) Governance: "Security metrics and reporting" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Information Technology (IT) Governance policy/standard and flag every item where the "Security metrics and reporting" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify security is measured + reported meaningfully. PASS: a metrics/KPI/KRI program tracks decision-driving measures (patch SLA, phishing rate, MTTR, control coverage) with accurate sourcing, regular trend-and-risk reporting to leadership/board, and metrics that drive action when out of threshold. Exceptions: no security metrics or only vanity/activity counts, no leadership/board reporting, inaccurate/unsourced metrics, and metrics produced but never acted on.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the security metrics and reporting control (from GRC platform)
+    The security metrics/KPIs + KRIs program (meaningful, decision-driving metrics — patch SLA attainment, phishing-failure rate, incident MTTR, control-coverage — not just activity counts)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: GRC platform, Policy + standard repository, Risk register, Metrics / KRI dashboard)
+    security metrics/KPIs + KRIs (decision-driving: patch SLA, phishing rate, MTTR, control coverage)
+    reporting to leadership/board (regular, trends + risk context, informs investment)
+    metric quality (accurate, real-data-sourced, tied to objectives/risk)
+    action from metrics (out-of-threshold drives remediation)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

@@ -2,13 +2,16 @@
 """Read-only MCP server — Application Review: "Application threat modeling" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Application Review policy/standard and flag every item where the "Application threat modeling" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the application is threat-modeled. PASS: a structured threat model (STRIDE/data-flow) covers the app's trust boundaries, entry points, assets, and threats — done at design + updated on change — with each significant threat mapped to a mitigating control, app-specific abuse cases, and the model driving security requirements + testing. Exceptions: no threat model, a stale one not updated as the app changed, threats identified but not mapped to controls, and a model that doesn't feed requirements/testing.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the application threat modeling control (from ServiceNow CMDB)
+    The application threat model (a structured model — STRIDE/data-flow — of the app's trust boundaries, entry points, assets, and threats; done at design + updated on change)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: ServiceNow CMDB, Okta / Entra SSO, AWS / Azure cloud plane, App configuration stores)
+    application threat model (STRIDE/data-flow: trust boundaries, entry points, assets, threats; at design + updated on change)
+    threats mapped to mitigating controls (gaps flagged as risk)
+    abuse/misuse cases specific to the app's function
+    threat model driving security requirements + testing
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

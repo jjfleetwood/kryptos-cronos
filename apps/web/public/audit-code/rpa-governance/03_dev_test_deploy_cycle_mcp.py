@@ -2,13 +2,16 @@
 """Read-only MCP server — Robotic Process Automation (RPA) Governance: "Dev, test, deploy cycle" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the "Dev, test, deploy cycle" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify bots follow a controlled dev/test/deploy cycle. PASS: an RPA SDLC (process-definition, design, dev standards, non-prod testing, controlled promotion) is followed, bots are tested incl. exception handling + validated, environments are separated, and the business owner signs off before production. Exceptions: bots built + tested directly in production, no exception/error-handling testing (bots fail unpredictably), no environment separation, and no business sign-off before go-live.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the dev, test, deploy cycle control (from RPA platform (UiPath/Automation Anywhere/Power Automate))
+    The RPA SDLC (requirements/process-definition document, bot design, development standards, testing in a non-prod environment, controlled promotion to prod)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: RPA platform (UiPath/Automation Anywhere/Power Automate), Bot credential vault, Bot orchestration + logs, Version control for bots)
+    RPA SDLC (process-definition document, design, dev standards, non-prod testing, controlled promotion)
+    bot testing (functional + exception/error handling + validated vs the process)
+    environment separation (dev/test/prod; not built/tested in prod)
+    business process-owner sign-off/UAT before go-live
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

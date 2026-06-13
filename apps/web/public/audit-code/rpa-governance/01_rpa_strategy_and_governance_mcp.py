@@ -2,13 +2,16 @@
 """Read-only MCP server — Robotic Process Automation (RPA) Governance: "RPA strategy and governance" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the "RPA strategy and governance" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify RPA is governed. PASS: an RPA governance/operating model (CoE, roles) exists, every bot is in an inventory with a named owner + purpose + criticality, new automations are approved/risk-assessed before production, and citizen-developer/shadow RPA is governed. Exceptions: no bot inventory or ownership (unknown automations running), bots deployed with no approval/risk assessment, ungoverned citizen-developer proliferation, and no RPA operating model.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the rpa strategy and governance control (from RPA platform (UiPath/Automation Anywhere/Power Automate))
+    The RPA governance framework + operating model (the CoE, bot inventory/register, intake + prioritisation, role definitions — bot owner/developer/controller)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: RPA platform (UiPath/Automation Anywhere/Power Automate), Bot credential vault, Bot orchestration + logs, Version control for bots)
+    RPA governance/operating model (CoE, bot register, intake/prioritisation, roles)
+    bot inventory + ownership (owner, purpose, systems/data, criticality per bot)
+    approval/gating for new automations (business case + risk assessment before prod)
+    governance over bot proliferation + citizen-developer/shadow RPA
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

@@ -2,13 +2,16 @@
 """Read-only MCP server — Robotic Process Automation (RPA) Governance: "Third-party / OSS contribution" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the "Third-party / OSS contribution" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify third-party/OSS in RPA is governed. PASS: marketplace/third-party bot components are vetted before use, external dependencies in bot code are vulnerability-scanned + provenance-checked, third-party integrations bots call are controlled (incl. data shared), and shared/community reusable components are reviewed. Exceptions: unvetted marketplace/OSS components in production bots, unscanned vulnerable dependencies, uncontrolled bot integrations with external services (data leaving), and blindly-trusted shared components.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the third-party / oss contribution control (from RPA platform (UiPath/Automation Anywhere/Power Automate))
+    Governance of third-party/marketplace components used in bots (reusable components, connectors, packages from the RPA marketplace or open source — vetted before use)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: RPA platform (UiPath/Automation Anywhere/Power Automate), Bot credential vault, Bot orchestration + logs, Version control for bots)
+    governance of third-party/marketplace components (vetted before use)
+    security of external dependencies in bot code (vuln-scanned, provenance-checked)
+    control over bot integrations (third-party APIs/services called; data shared)
+    review of citizen-developer/shared reusable components
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

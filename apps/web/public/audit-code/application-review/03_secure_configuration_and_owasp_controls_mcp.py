@@ -2,13 +2,16 @@
 """Read-only MCP server — Application Review: "Secure configuration and OWASP controls" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Application Review policy/standard and flag every item where the "Secure configuration and OWASP controls" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the app is securely configured + OWASP-hardened. PASS: hardened framework config (security headers, safe error handling, no debug/defaults), OWASP Top 10 controls are present (parameterised queries, output encoding, SSRF/deserialization protections), server-side input validation + context-aware encoding, confirmed by SAST/DAST/pen test. Exceptions: misconfiguration (missing security headers, verbose errors, debug enabled, default creds), injection/XSS vulnerabilities (no parameterisation/encoding), and no security testing of the app.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the secure configuration and owasp controls control (from ServiceNow CMDB)
+    The application's security configuration (hardened framework config, security headers — CSP/HSTS, error handling that doesn't leak, disabled debug/default features, no default credentials)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: ServiceNow CMDB, Okta / Entra SSO, AWS / Azure cloud plane, App configuration stores)
+    security configuration (hardened framework, security headers CSP/HSTS, safe error handling, no debug/defaults)
+    OWASP Top 10 controls (injection — parameterised; XSS — encoding; SSRF; deserialization; misconfig)
+    input validation + output encoding (server-side; context-aware)
+    testing evidence (SAST/DAST/pen test) the controls hold
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

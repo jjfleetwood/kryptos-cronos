@@ -2,13 +2,16 @@
 """Read-only MCP server — Robotic Process Automation (RPA) Governance: "Business Continuity (RPA)" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Robotic Process Automation (RPA) Governance policy/standard and flag every item where the "Business Continuity (RPA)" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify RPA continuity is assured. PASS: critical automations have a manual fallback for bot/platform failure, the RPA platform is backed up + recoverable (DR), bot dependency/concentration risk is assessed, and bot failures are monitored + alerted. Exceptions: a critical process fully dependent on a bot with no manual fallback, no platform backup/DR, unassessed concentration risk, and silent bot failures (work undone, undetected).
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the business continuity (rpa) control (from RPA platform (UiPath/Automation Anywhere/Power Automate))
+    BC/resilience for critical automations (what happens if a bot or the RPA platform fails — the manual fallback/process for a critical automated process)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: RPA platform (UiPath/Automation Anywhere/Power Automate), Bot credential vault, Bot orchestration + logs, Version control for bots)
+    BC for critical automations (manual fallback/process if a bot or the platform fails)
+    RPA platform resilience + recovery (Orchestrator/bots backed up, DR)
+    dependency + concentration risk (process reliance on bots; single-failure impact)
+    monitoring + alerting on bot failures (failed/stalled bot detected)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

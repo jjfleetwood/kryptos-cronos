@@ -2,13 +2,16 @@
 """Read-only MCP server — Application Review: "Reports and data extracts" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Application Review policy/standard and flag every item where the "Reports and data extracts" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify application reports + extracts are controlled + accurate. PASS: reports relied on for decisions/financials/regulatory use are validated for completeness + accuracy, data extracts/exports are access-controlled + logged (bulk-export risk managed), sensitive reports are access-restricted, and key/regulatory reports are accuracy-tested. Exceptions: unvalidated reports feeding decisions/financials (report-logic errors), uncontrolled/unlogged bulk data exports (data-loss/privacy risk), over-broad report access to sensitive data, and untested regulatory reports.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the reports and data extracts control (from ServiceNow CMDB)
+    The integrity + accuracy of application reports (reports — especially those relied on for decisions/financials/regulatory — are complete + accurate; the report logic is validated)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: ServiceNow CMDB, Okta / Entra SSO, AWS / Azure cloud plane, App configuration stores)
+    report integrity + accuracy (decision/financial/regulatory reports validated; report logic correct)
+    control over data extracts (who can export; bulk-extract controls; logged)
+    report access control (sensitive reports restricted)
+    validation of key/regulatory reports (accuracy-tested; report-integrity/EUC risk)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

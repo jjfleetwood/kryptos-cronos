@@ -2,13 +2,16 @@
 """Read-only MCP server — Information Technology (IT) Governance: "Security awareness program" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Information Technology (IT) Governance policy/standard and flag every item where the "Security awareness program" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify security awareness builds real resilience. PASS: a cadenced awareness/training program (new-hire + annual, completion-tracked) includes phishing simulation with metrics + follow-up, role-specific training (devs, admins, finance), and effectiveness is measured by behaviour (phishing-rate trend, reporting rate). Exceptions: no/ad-hoc awareness training, no phishing simulation or behaviour program, only generic training (no role-specific), and success measured only by completion %, not behaviour change.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the security awareness program control (from GRC platform)
+    The security awareness + training program (role-based + general training, delivered on a cadence, completion tracked; new-hire + annual)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: GRC platform, Policy + standard repository, Risk register, Metrics / KRI dashboard)
+    awareness + training program (role-based + general, cadenced, completion-tracked, new-hire + annual)
+    phishing simulation + behaviour-change (metrics + targeted follow-up; trending failure rate)
+    role-specific training (devs/secure coding, privileged/admin, finance/BEC)
+    effectiveness measurement (behaviour change: phishing-rate + reporting trend, not just completion %)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /

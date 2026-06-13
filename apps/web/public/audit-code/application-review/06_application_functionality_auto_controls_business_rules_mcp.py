@@ -2,13 +2,16 @@
 """Read-only MCP server — Application Review: "Application functionality (auto controls, business rules)" audit evidence.
 
 THE TEST
-Reconcile the in-scope inventory against the Application Review policy/standard and flag every item where the "Application functionality (auto controls, business rules)" control is missing, mis-scoped, or not operating. PASS when every in-scope item complies; EXCEPTIONS for a small, listed set of gaps; MATERIAL GAP when the control cannot be relied on.
+Verify the app's automated controls + business rules are effective. PASS: the configured automated controls (validations, limits, approvals, matching, calculations) are tested + correctly enforce the business rules, the business logic can't be bypassed/manipulated, and changes to control configuration are approved + logged. Exceptions: automated controls misconfigured or not enforcing the rule (a tolerance/approval threshold that doesn't fire), business-logic bypass (skipping approvals, manipulating values), and ungoverned changes to control parameters.
 
 ARTIFACT (what _gather() pulls)
-    In-scope inventory for the application functionality (auto controls, business rules) control (from ServiceNow CMDB)
+    The application's automated/business-logic controls (the configured controls enforcing business rules — validations, limits, approvals, calculations, tolerances — that the process relies on)
 
 REAL SOURCES / COMMANDS to wire in place of the fixtures (read-only):
-    (wire read-only API calls to: ServiceNow CMDB, Okta / Entra SSO, AWS / Azure cloud plane, App configuration stores)
+    automated/business-logic controls (validations, limits, approvals, calculations, tolerances)
+    control configuration testing (the control is configured + actually enforces the rule — 3-way match, credit limit, approval threshold)
+    business-logic abuse protection (workflow can't be bypassed; no value manipulation)
+    change control over business-rule configuration (who can change; approved + logged)
 
 This server gathers the in-scope inventory and the observed control state, evaluates
 each item against policy, and reports the exceptions with a PASS / EXCEPTIONS /
