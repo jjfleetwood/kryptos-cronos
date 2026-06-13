@@ -137,8 +137,9 @@ export default function ScrumBoard() {
           <input type="checkbox" checked={showArchived} onChange={(e) => setShowArchived(e.target.checked)} /> archived
         </label>
         <button onClick={() => (selectMode ? exitSelect() : setSelectMode(true))}
-          className={`text-xs font-semibold px-3 py-1.5 rounded-lg border transition-colors ${selectMode ? "bg-amber-500/20 border-amber-500/50 text-amber-200" : "bg-white/5 border-white/10 text-gray-300 hover:border-amber-500/40"}`}>
-          {selectMode ? "✕ Done selecting" : "☑ Select"}
+          title="Select multiple cards and move/retag them all at once"
+          className={`text-xs font-semibold px-3 py-1.5 rounded-lg border transition-colors ${selectMode ? "bg-amber-500/20 border-amber-500/50 text-amber-200" : "bg-amber-500/10 border-amber-500/40 text-amber-200 hover:bg-amber-500/20"}`}>
+          {selectMode ? "✕ Done" : "☑ Bulk move"}
         </button>
         <button onClick={load} className="text-xs text-gray-500 hover:text-cyan-400 ml-auto transition-colors">↻ refresh</button>
       </div>
@@ -146,7 +147,9 @@ export default function ScrumBoard() {
       {/* Bulk action bar — appears in select mode */}
       {selectMode && (
         <div className="mb-3 flex flex-wrap items-center gap-2 rounded-lg border border-amber-500/30 bg-amber-500/8 px-3 py-2">
-          <span className="text-xs font-semibold text-amber-200">{selectedIds.size} selected</span>
+          {selectedIds.size === 0
+            ? <span className="text-xs text-amber-200/90">👉 Click cards to check them, then pick <strong>Move to…</strong> — or</span>
+            : <span className="text-xs font-semibold text-amber-200">{selectedIds.size} selected</span>}
           <button onClick={() => setSelectedIds(new Set(filtered.map((i) => i.id)))} className="text-[11px] text-gray-300 hover:text-amber-200 underline">select all ({filtered.length})</button>
           {selectedIds.size > 0 && <button onClick={() => setSelectedIds(new Set())} className="text-[11px] text-gray-500 hover:text-gray-300 underline">clear</button>}
           <span className="text-gray-700 mx-1">|</span>

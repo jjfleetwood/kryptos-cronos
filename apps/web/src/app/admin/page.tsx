@@ -916,7 +916,7 @@ export default function AdminPage() {
             <span className="text-[10px] font-mono uppercase tracking-widest text-cyan-500/70 border border-cyan-500/30 rounded px-1.5 py-0.5">scrum</span>
           </div>
           <p className="text-xs text-gray-500 mb-4">
-            Interactive board for prioritizing work. Submitted feedback &amp; survey responses auto-arrive in <span className="text-gray-300">Triage</span> for your build / reject decision. Drag cards between columns; click a card to edit, set priority, and add notes.
+            Interactive board for prioritizing work. Submitted feedback &amp; survey responses auto-arrive in <span className="text-gray-300">Triage</span> for your build / reject decision. Drag cards between columns; click a card to edit, set priority, and add notes. To move many at once, hit <span className="text-amber-300">☑ Bulk move</span>, check the cards, then choose <span className="text-amber-300">Move to…</span>.
           </p>
           <ScrumBoard />
         </div>
