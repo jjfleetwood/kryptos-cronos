@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   description: "A gamified cybersecurity training platform. Break ciphers, exploit real vulnerabilities, and defend through the ages.",
   openGraph: {
     title: "Kryptós CronOS — Defend Through Time",
-    description: "867 CTF & quiz stages. 84 epochs. Real CVEs. Gamified cybersecurity and AI training.",
+    description: "871 CTF & quiz stages. 85 epochs. Real CVEs. Gamified cybersecurity and AI training.",
     url: "https://kryptoscronos.com",
     siteName: "Kryptós CronOS",
     type: "website",
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Kryptós CronOS — Defend Through Time",
-    description: "867 CTF & quiz stages. 84 epochs. Real CVEs. Gamified cybersecurity and AI training.",
+    description: "871 CTF & quiz stages. 85 epochs. Real CVEs. Gamified cybersecurity and AI training.",
   },
 };
 
