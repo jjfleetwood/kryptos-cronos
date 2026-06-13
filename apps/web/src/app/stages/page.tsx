@@ -134,6 +134,20 @@ export default function StagesPage() {
           <span className="text-indigo-600 group-hover:text-indigo-400 text-sm flex-shrink-0 transition-colors">→</span>
         </Link>
 
+        {/* Cyber Range hub banner */}
+        <Link
+          href="/range"
+          className="flex items-center gap-3 rounded-xl px-4 py-3 mb-6 border border-violet-500/25 hover:border-violet-400/50 transition-colors group"
+          style={{ background: "linear-gradient(90deg, rgba(168,85,247,0.08), rgba(34,211,238,0.06))" }}
+        >
+          <span className="text-xl flex-shrink-0">🎯</span>
+          <div className="flex-1 min-w-0">
+            <p className="text-violet-300 font-semibold text-sm">Cyber Range — Hands-On Labs</p>
+            <p className="text-gray-500 text-xs">Browse every offensive lab in one place: Metasploit, BloodHound, Wireshark, aircrack-ng, Ghidra & more →</p>
+          </div>
+          <span className="text-violet-600 group-hover:text-violet-400 text-sm flex-shrink-0 transition-colors">→</span>
+        </Link>
+
         {/* ── Security track groups ───────────────────────────────────────────── */}
         <div className="flex items-center gap-3 mb-4">
           <span className="text-[11px] font-mono font-bold text-cyan-500 uppercase tracking-widest whitespace-nowrap">
