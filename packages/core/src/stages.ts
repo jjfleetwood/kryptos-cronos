@@ -46,6 +46,7 @@ import { rangePrivescEpoch, rangePrivescStages } from "./range-privesc";
 import { rangeCapstoneEpoch, rangeCapstoneStages } from "./range-capstone";
 import { rangeTrafficEpoch, rangeTrafficStages } from "./range-traffic";
 import { rangeAdEpoch, rangeAdStages } from "./range-ad";
+import { rangeWirelessEpoch, rangeWirelessStages } from "./range-wireless";
 import { cisco2Stages } from "./cisco-2";
 import { cisco3Stages } from "./cisco-3";
 import { cisco4Stages } from "./cisco-4";
@@ -179,6 +180,7 @@ export const epochs: EpochConfig[] = [
   rangeCapstoneEpoch,
   rangeTrafficEpoch,
   rangeAdEpoch,
+  rangeWirelessEpoch,
   umbrellaEpoch,
   tapestryEpoch,
   nailsEpoch,
@@ -262,6 +264,7 @@ export const stages: StageConfig[] = [
   ...rangeCapstoneStages,
   ...rangeTrafficStages,
   ...rangeAdStages,
+  ...rangeWirelessStages,
   ...umbrellaStages,
   ...tapestryStages,
   ...nailsStages,

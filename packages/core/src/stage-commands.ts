@@ -32,6 +32,7 @@ const LOADERS: Record<string, Array<() => Promise<unknown>>> = {
   "range-capstone": [() => import("./range-capstone")],
   "range-traffic": [() => import("./range-traffic")],
   "range-ad": [() => import("./range-ad")],
+  "range-wireless": [() => import("./range-wireless")],
   "ot-sec": [() => import("./ot-sec")],
   "physics-of-hacking": [() => import("./physics-of-hacking")],
   "quantum-1": [() => import("./quantum-1")],
