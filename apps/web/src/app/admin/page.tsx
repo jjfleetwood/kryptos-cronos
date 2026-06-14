@@ -876,6 +876,12 @@ export default function AdminPage() {
             </div>
             <div className="flex items-center gap-2">
               <Link
+                href="/studio"
+                className="flex items-center gap-2 px-4 py-2 border border-amber-500/30 hover:border-amber-400 text-amber-300 rounded-lg text-sm transition-colors"
+              >
+                🎬 Studio
+              </Link>
+              <Link
                 href="/decks"
                 className="flex items-center gap-2 px-4 py-2 border border-violet-500/30 hover:border-violet-400 text-violet-300 rounded-lg text-sm transition-colors"
               >
