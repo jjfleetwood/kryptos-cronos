@@ -16,7 +16,6 @@ import { epochGroups, extendedGroups, TRACK_STYLE, DEFAULT_STYLE } from "../stag
 
 const RANGE_GROUP = epochGroups.find((g) => g.id === "cyberRange");
 const RANGE_EPOCH_IDS: string[] = RANGE_GROUP ? RANGE_GROUP.epochIds : [];
-const RANGE_EPOCH_SET = new Set(RANGE_EPOCH_IDS);
 
 // epoch color name (EpochConfig.color, e.g. "Cyan") → accent hex for chips/bars.
 const COLOR_HEX: Record<string, string> = {
