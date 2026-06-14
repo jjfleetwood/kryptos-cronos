@@ -33,6 +33,7 @@ const DOCS: DocEntry[] = [
   { id: "agent-dev-plan", label: "Agent Dev Plan", file: "AGENT_DEV_PLAN.md", icon: "🤖", color: "text-cyan-300", group: "general" },
   { id: "agents-overview", label: "Agent Fleet Overview", file: "AGENTS_OVERVIEW.md", icon: "🛰️", color: "text-emerald-300", group: "general" },
   { id: "agent-risk-audit", label: "Agent Risk Audit Guide", file: "AGENT_RISK_AUDIT_GUIDE.md", icon: "🛡️", color: "text-violet-400", group: "general" },
+  { id: "audit-2026-06-14", label: "Audit · 2026-06-14", file: "AUDIT-2026-06-14.md", icon: "🔎", color: "text-rose-300", group: "general" },
   // Architecture suite
   {
     id: "data-diagram", label: "Data Diagram", file: "DATA_DIAGRAM.md", icon: "🗄️", color: "text-cyan-400", group: "architecture",
