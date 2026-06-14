@@ -17,6 +17,7 @@ const SECTIONS = [
   { id: "structure", label: "Structure" },
   { id: "prologue", label: "Prologue" },
   { id: "act-one", label: "Act I — sample" },
+  { id: "act-two", label: "Act II — sample" },
   { id: "notes", label: "Notes & to-do" },
 ];
 
@@ -159,8 +160,8 @@ export default function StudioPage() {
                 <li><strong className="text-white">DON AURELIO SOTO</strong> — the abuelo. Last patriarch of a rancho that no longer exists. Keeper of the Mexican past, the family&rsquo;s memory and conscience; our prologue narrator. Walks Frank past fenced land that used to be theirs.</li>
                 <li><strong className="text-white">ESTEBAN SOTO</strong> — Frank&rsquo;s father. A hide-trimmer at Kron&rsquo;s tannery. Wants his son safe and small; has seen what the world does to Mexicans who reach. Love expressed as fear.</li>
                 <li><strong className="text-white">DOLORES SOTO</strong> — Frank&rsquo;s mother. The rosary, the language, the kitchen that holds the family together. Quietly the strongest person in the film.</li>
-                <li><strong className="text-white">CLARA WHITFIELD</strong> — Anglo, ~17, summering with her family at the new resort. Bright, bored of her set, drawn to the one boy on the beach who won&rsquo;t perform for her. The forbidden door.</li>
-                <li><strong className="text-white">CHESTER &ldquo;CHET&rdquo; ASHBY III</strong> — old San Francisco money, Clara&rsquo;s intended. Casually cruel to &ldquo;the help.&rdquo; Our antagonist — and the embodiment of the class that inherited the family&rsquo;s land.</li>
+                <li><strong className="text-white">CLARA WHITFIELD</strong> — Anglo, wealthy; meets Frank at the beach (~17), then goes up to <strong>Stanford</strong> — which puts her in the grandstand the day Chet&rsquo;s Stanford nine faces Frank&rsquo;s Santa Clara. Bright, restless, drawn to the one boy who won&rsquo;t perform for her. The woman who crosses every line she was raised inside — and marries him.</li>
+                <li><strong className="text-white">CHESTER &ldquo;CHET&rdquo; ASHBY III</strong> — old San Francisco money, Clara&rsquo;s intended. Casually cruel to &ldquo;the help.&rdquo; Plays for <strong>Stanford</strong>, and meets Frank again across the diamond. Our antagonist — and the embodiment of the class that inherited the family&rsquo;s land.</li>
                 <li><strong className="text-white">LUIS &amp; ABEL SOTO</strong> — Frank&rsquo;s older brothers; the meat market, the sandlot, the Santa Cruz Beachcombers. The road not taken.</li>
                 <li><strong className="text-white">&ldquo;UNCLE&rdquo; — the manager</strong> — the gruff Brooklyn skipper who finally bets on Frank in Act III. <span className="text-gray-500">(Period-real option: Wilbert &ldquo;Uncle Robbie&rdquo; Robinson, Brooklyn 1914–31.)</span></li>
               </ul>
@@ -175,9 +176,9 @@ export default function StudioPage() {
 
               <p><strong className="text-amber-300">ACT I — &ldquo;The Boardwalk&rdquo; (Santa Cruz, ~1900–1903).</strong> Frank, eighteen, works the brand-new pleasure pier — hauling, running a ball-toss booth — labor in the leisure economy built on the land his family lost. The Whitfields summer at the beach. Clara and Frank collide; sparks, then danger. Chet humiliates him; Frank answers the only way the Anglo world can&rsquo;t argue with — his arm — striking out the visiting college boys in a beach exhibition. The attraction to Clara becomes perilous for a Mexican worker. The abuelo blesses the climb; the father dreads it. A scout (or a Santa Clara man) sees the arm. Frank leaves the beach — and Clara — carrying her token and the family&rsquo;s buried hope of rising again.</p>
 
-              <p><strong className="text-amber-300">ACT II — &ldquo;The Climb&rdquo; (~1903–1916) — to be developed.</strong> College of Santa Clara as a class threshold; the grubby minor-league apprenticeship; the loneliness of being everyone&rsquo;s exotic &ldquo;Spanish&rdquo; star; mastering the spitball; the signing with Brooklyn. Clara&rsquo;s shadow over it all — possibly reappearing, now bound to Chet&rsquo;s world back east. The long middle of a man becoming great while never quite being let belong. <span className="text-gray-500">(This is the act we still need to break together.)</span></p>
+              <p><strong className="text-amber-300">ACT II — &ldquo;The Rematch &amp; The Long Wait&rdquo; (~1901–1916).</strong> College of Santa Clara as a class threshold — a tannery worker&rsquo;s son among the sons of the men who took his family&rsquo;s land. The act&rsquo;s hinge is the <strong>Stanford–Santa Clara game</strong>: Clara, now a Stanford woman, in the grandstand; <strong>Chet at the plate for Stanford</strong>; Frank on the mound. The boardwalk is paid back — Frank strikes him out (&ldquo;costs a nickel&rdquo;) — and Clara chooses, against everything she was raised inside. Then the cruelty of the long middle: a decade of being passed over, the exotic &ldquo;Spanish&rdquo; spitballer who can&rsquo;t get his call to the bigs while lesser, paler men do. <em>Always second.</em> Clara waits, or doesn&rsquo;t, or comes back. The act ends ~1917 with the call finally coming — and Frank and Clara marrying in the teeth of both their worlds.</p>
 
-              <p><strong className="text-amber-300">ACT III — &ldquo;Siempre Primero&rdquo; (1917–1918).</strong> The bigs at last. A rookie sensation — Rookie of the Year — who pitches the team to the pennant and then the World Series championship, and is named MVP. For one season the man who was always second is <em>first</em>. Then the influenza. Burning with fever, he pitches the deciding game and is carried off the field a champion — and is dead within days. Final image: the worn glove on the dirt; the land that outlives him; the abuelo&rsquo;s voice closing the circle. <span className="text-gray-500">(Anachronism note: ROY/WS-MVP/&ldquo;Dodgers&rdquo; are post-1918; keep as fiction, or swap to Brooklyn Robins + the real Chalmers Award.)</span></p>
+              <p><strong className="text-amber-300">ACT III — &ldquo;Siempre Primero&rdquo; (1917–1918).</strong> The bigs at last — at <strong>thirty-six</strong>, the oldest rookie anyone&rsquo;s seen. On <strong>January 1, 1918</strong>, a son is born: first child of the new year, the bloodline continuing, a mixed-heritage child who is both Californias at once. Then the season of his life — a rookie sensation who pitches the team to the pennant and the World Series championship; <strong>Rookie of the Year</strong> and <strong>MVP</strong>. For one autumn the man who was always second is <em>first</em>. Then the influenza. Burning with fever, he pitches the deciding game, is carried off the field a champion — and is dead within days, his boy not yet a year old. Final image: the worn glove laid in the cradle, or in Clara&rsquo;s hands; the land that outlives him; the abuelo&rsquo;s voice closing the circle. <span className="text-gray-500">(Anachronism note: ROY/WS-MVP/&ldquo;Dodgers&rdquo; are post-1918; keep as fiction, or swap to Brooklyn Robins + the real Chalmers Award.)</span></p>
             </Prose>
           </section>
 
@@ -441,6 +442,67 @@ Then here's a nickel.`}</Screenplay>
             </Prose>
           </section>
 
+          {/* ACT II SAMPLE */}
+          <section className="mb-14">
+            <H id="act-two" kicker="Written — Act II hinge" title="The Rematch (1903)" />
+
+            <p className="text-sm text-gray-500 mb-4 italic">Screenplay — Stanford at Santa Clara.</p>
+            <Screenplay>{`EXT. SANTA CLARA COLLEGE -- BALL GROUND -- DAY (1903)
+
+A college crowd, straw hats and parasols. A hand-painted score
+board: STANFORD vs. SANTA CLARA. The Stanford side is louder,
+richer, sure of itself.
+
+In the grandstand, among the cardinal red: CLARA WHITFIELD,
+older now, a Stanford woman. She did not expect to know anyone
+on the field. She is wrong.
+
+ON THE MOUND: FRANK SOTO, 21, Santa Clara flannels gone gray
+with dust. He toes the rubber. He has not seen her yet.
+
+AT THE PLATE: CHET ASHBY III, cardinal "S" on his chest,
+tapping the corners like he owns them. He owns most things.
+
+CHET
+(grinning down the line)
+Well. The bottle boy.
+
+The recognition moves across Frank's face and is gone. He
+says nothing. He has always said nothing.
+
+Frank looks in. And THERE -- the red of the grandstand, and
+Clara, half-risen from her seat, a glove of kid leather
+forgotten in her lap. Their eyes meet across four years.
+
+CHET (CONT'D)
+(to his bench, loud)
+Three balls a nickel, fellas!
+
+Laughter from the Stanford side. Frank sets. Winds. The first
+pitch is past Chet before the laugh is finished. STRIKE ONE.
+
+The second buckles his knees. STRIKE TWO. The Stanford bench
+goes quiet.
+
+Frank holds the ball a moment -- the stitched leather, an old
+friend -- and looks once more at Clara. Then he throws the
+best thing he owns.
+
+STRIKE THREE. Chet swings at air and nearly screws himself
+into the dirt.
+
+The Santa Clara side erupts. Chet stares at the empty plate.
+And Clara is on her feet, alone in a sea of red, clapping --
+for the wrong team, for the wrong boy, in front of everyone
+she knows.
+
+She doesn't care. That is the whole story of her, right there.
+
+FRANK
+(under his breath, to no one)
+Costs a nickel.`}</Screenplay>
+          </section>
+
           {/* NOTES */}
           <section className="mb-14">
             <H id="notes" kicker="Working notes" title="Notes & to-do" />
@@ -448,7 +510,8 @@ Then here's a nickel.`}</Screenplay>
               <ul className="list-disc pl-6 space-y-2 marker:text-amber-500/60">
                 <li><strong>Decide the name.</strong> &ldquo;Frank Soto&rdquo; is a placeholder surname; confirm or swap (keeping &ldquo;Frank&rdquo;).</li>
                 <li><strong>Anachronism call (Act III).</strong> Keep ROY / World Series MVP / &ldquo;Dodgers&rdquo; as full fiction, or swap to the period-real Brooklyn Robins + Chalmers Award? Changes a few lines, not the emotion.</li>
-                <li><strong>Break Act II together.</strong> Santa Clara → minors → Brooklyn; whether (and how) Clara returns; how the Chet rivalry pays off in the bigs.</li>
+                <li><strong>Act II now has its hinge</strong> (the Stanford rematch + Clara&rsquo;s choice). Still to break: the decade of being passed over, how Clara &amp; Frank stay tethered through it, and whether/how Chet resurfaces in the bigs in Act III.</li>
+                <li><strong>Timeline locked to the emotion:</strong> son born <strong>Jan 1, 1918</strong> → Frank&rsquo;s one great season is 1918 → makes him a <strong>36-year-old rookie</strong>. We keep that on purpose — the lateness is the tragedy. (Loosely-based license; the real Arellanes debuted at 26.)</li>
                 <li><strong>The leather match-cut</strong> (hide → newborn → baseball → final glove) is the visual spine — plant and pay off in every act.</li>
                 <li><strong>Verify before leaning on it:</strong> the 1863–64 California drought details and the reported 1812 Mission Santa Cruz uprising.</li>
                 <li><strong>Optional COVID bracket</strong> — a brief 2020 bookend if we want the pandemic echo made explicit.</li>
