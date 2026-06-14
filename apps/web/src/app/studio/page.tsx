@@ -115,11 +115,26 @@ export default function StudioPage() {
 
           {/* THEMES */}
           <section className="mb-14">
-            <H id="themes" kicker="Spine" title="Themes & the leather thread" />
+            <H id="themes" kicker="The key" title="Siempre Segundo — the thesis" />
+            <div className="mb-6 rounded-xl border border-amber-500/40 bg-gradient-to-r from-amber-600/15 to-transparent p-5">
+              <p className="text-[15px] leading-7 text-amber-100">
+                <strong className="text-amber-300">This is what the picture is about.</strong> It is an argument for the
+                dignity of the runner-up — that a life is measured not by the trophy you lift but by how you keep
+                working when you are <em>always second</em>: second-class, second-looked-at, second-chosen, the second
+                of your blood ever to reach the top. Frank spends thirty-five years second and a single autumn first,
+                and then he dies — proof that the trophy was never the point. The worth was in the striving through all
+                the years no one was watching. <span className="text-amber-200/80">Keep working. Especially when you&rsquo;re second. Siempre.</span>
+              </p>
+            </div>
+            <p className="text-[15px] leading-7 text-gray-300 mb-3">Two things make that thesis land hard:</p>
+            <ul className="list-disc pl-6 space-y-2 marker:text-amber-500/60 text-[15px] leading-7 text-gray-300 mb-7">
+              <li><strong className="text-white">The Brooklyn club is the perfect vessel.</strong> Baseball&rsquo;s eternal also-rans — &ldquo;Wait Till Next Year,&rdquo; the lovable losers who lose the Series and show up again anyway. The team&rsquo;s whole identity <em>is</em> the theme; Frank&rsquo;s one season makes the second-place team first, and it costs him everything.</li>
+              <li><strong className="text-white">It is the wound of the Mexican-American.</strong> A people who had their world taken and were told to keep their heads down and keep working — made second-class on the very land that was first theirs. <em>Siempre segundo</em> is at once a virtue to live by and an injustice to rage against, and the film holds both without resolving them.</li>
+            </ul>
             <Prose>
               <p>
-                <strong className="text-amber-300">Leather is the through-line of the whole picture</strong> — the
-                single object the camera (and the prose) returns to across three centuries:
+                <strong className="text-amber-300">Leather is the visual through-line</strong> — the
+                single object the camera (and the prose) returns to across three centuries, the way we keep the thesis in frame:
               </p>
               <ul className="list-disc pl-6 space-y-2 marker:text-amber-500/60">
                 <li>
@@ -178,7 +193,7 @@ export default function StudioPage() {
 
               <p><strong className="text-amber-300">ACT II — &ldquo;The Rematch &amp; The Long Wait&rdquo; (~1901–1916).</strong> College of Santa Clara as a class threshold — a tannery worker&rsquo;s son among the sons of the men who took his family&rsquo;s land. The act&rsquo;s hinge is the <strong>Stanford–Santa Clara game</strong>: Clara, now a Stanford woman, in the grandstand; <strong>Chet at the plate for Stanford</strong>; Frank on the mound. The boardwalk is paid back — Frank strikes him out (&ldquo;costs a nickel&rdquo;) — and Clara chooses, against everything she was raised inside. Then the cruelty of the long middle: a decade of being passed over, the exotic &ldquo;Spanish&rdquo; spitballer who can&rsquo;t get his call to the bigs while lesser, paler men do. <em>Always second.</em> Clara waits, or doesn&rsquo;t, or comes back. The act ends ~1917 with the call finally coming — and Frank and Clara marrying in the teeth of both their worlds.</p>
 
-              <p><strong className="text-amber-300">ACT III — &ldquo;Siempre Primero&rdquo; (1917–1918).</strong> The bigs at last — at <strong>thirty-six</strong>, the oldest rookie anyone&rsquo;s seen. On <strong>January 1, 1918</strong>, a son is born: first child of the new year, the bloodline continuing, a mixed-heritage child who is both Californias at once. Then the season of his life — a rookie sensation who pitches the team to the pennant and the World Series championship; <strong>Rookie of the Year</strong> and <strong>MVP</strong>. For one autumn the man who was always second is <em>first</em>. Then the influenza. Burning with fever, he pitches the deciding game, is carried off the field a champion — and is dead within days, his boy not yet a year old. Final image: the worn glove laid in the cradle, or in Clara&rsquo;s hands; the land that outlives him; the abuelo&rsquo;s voice closing the circle. <span className="text-gray-500">(Anachronism note: ROY/WS-MVP/&ldquo;Dodgers&rdquo; are post-1918; keep as fiction, or swap to Brooklyn Robins + the real Chalmers Award.)</span></p>
+              <p><strong className="text-amber-300">ACT III — &ldquo;Siempre Primero&rdquo; (1917–1918).</strong> The bigs at last — at <strong>thirty-six</strong>, the oldest rookie anyone&rsquo;s seen, and with baseball&rsquo;s <strong>eternal second-place club</strong> (the team that always loses the Series and always comes back — which is exactly why it must be them). On <strong>January 1, 1918</strong>, a son is born: first child of the new year, the bloodline continuing, a mixed-heritage child who is both Californias at once. Then the season of his life — a rookie sensation who pitches the team to the pennant and the World Series championship; <strong>Rookie of the Year</strong> and <strong>MVP</strong>. For one autumn the man who was always second is <em>first</em>. Then the influenza. Burning with fever, he pitches the deciding game, is carried off the field a champion — and is dead within days, his boy not yet a year old. Final image: the worn glove laid in the cradle, or in Clara&rsquo;s hands; the land that outlives him; the abuelo&rsquo;s voice closing the circle. <span className="text-gray-500">(Anachronism note: ROY/WS-MVP/&ldquo;Dodgers&rdquo; are post-1918; keep as fiction, or swap to Brooklyn Robins + the real Chalmers Award.)</span></p>
             </Prose>
           </section>
 
