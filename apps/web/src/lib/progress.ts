@@ -20,14 +20,26 @@ export async function fetchProgress(): Promise<UserProgress | null> {
   }
 }
 
-/** Posts a stage completion to the server. Used by the extraCommands path in CtfChallenge. */
-export function awardStage(stageId: string, _xp: number, badge?: string): void {
-  if (!getSession()) return;
-  fetch("/api/progress", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ stageId, badgeId: badge }),
-  }).catch(() => {});
+/** Posts a stage completion to the server. Used by the extraCommands path in CtfChallenge.
+ *  Resolves with the first-blood signal (null if unauthenticated or on error). */
+export async function awardStage(
+  stageId: string,
+  _xp: number,
+  badge?: string,
+): Promise<{ firstBlood?: boolean; clears?: number } | null> {
+  if (!getSession()) return null;
+  try {
+    const res = await fetch("/api/progress", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ stageId, badgeId: badge }),
+    });
+    if (!res.ok) return null;
+    const data = await res.json() as { progress?: { firstBlood?: boolean; clears?: number } };
+    return data.progress ?? null;
+  } catch {
+    return null;
+  }
 }
 
 /** Posts an audit quiz completion to the server. */

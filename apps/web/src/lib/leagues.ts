@@ -8,6 +8,72 @@ import {
 } from "@kryptos/core/leagues";
 
 const STAGE_TITLE = new Map(stagesMeta.map((s) => [s.id, s.title]));
+const STAGE_TITLE_LIST = stagesMeta.map((s) => s.title);
+
+// ── Cohort seeding (cold-start) ───────────────────────────────────────────────
+// A brand-new cohort can legitimately contain just one real player, which makes
+// the weekly league feel dead ("just me"). To keep the race motivating we pad
+// thin cohorts with deterministic pace-setters: stable for the whole week, seeded
+// purely from the cohort key, and entirely COSMETIC — they are never written to
+// the real cohort zset, so promotion/relegation and the leaderboard still run on
+// genuine human XP only. Padding self-disables once a cohort has enough real
+// players (real ≥ target), so it disappears as the platform grows.
+const PACE_HANDLES = [
+  "n0ctua", "r00tcause", "ByteReaper", "ghostpkt", "nullsector", "h3xwitch",
+  "kr4ken", "daemon9", "ph4ntomR", "ICEbreaker", "segfault", "m4lwareMike",
+  "sn0wcrash", "TheMorrigan", "b1tflip", "cipherpunk", "v0idwalker", "sh3llby",
+  "neonRaccoon", "t0rvald", "qubitQueen", "redqueen7", "p4cketRat", "lockpik",
+  "gr3pwolf", "base64kid", "x0rcist", "sudoNova", "fuzzbucket", "c4ffeine",
+  "traceroot", "hashslinger", "p1votPete", "kerbster", "blu3team", "0xFelicia",
+  "smolPwn", "dr4ku1a", "wireh4ck", "z3roday",
+];
+
+function hashStr(s: string): number {
+  let h = 2166136261;
+  for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); }
+  return h >>> 0;
+}
+
+/** Deterministic per-cohort display target (14–24) so the ladder feels organic
+ *  rather than suspiciously round. Stable for a given cohort key (and thus week). */
+function cohortFill(cohort: string): number {
+  return 14 + (hashStr(`fill:${cohort}`) % 11);
+}
+
+/** Cosmetic pace-setters to pad a thin cohort up to `count` rows. Deterministic
+ *  from the cohort key — same opponents and scores all week, never persisted. */
+function seedPaceStandings(cohort: string, count: number, exclude: Set<string>): Standing[] {
+  const out: Standing[] = [];
+  const used = new Set<number>();
+  const base = hashStr(cohort);
+  for (let i = 0; out.length < count && i < PACE_HANDLES.length * 2; i++) {
+    let idx = (base + i * 0x9e3779b1) % PACE_HANDLES.length;
+    while (used.has(idx)) idx = (idx + 1) % PACE_HANDLES.length;
+    used.add(idx);
+    const handle = PACE_HANDLES[idx];
+    if (exclude.has(handle.toLowerCase())) continue;
+    const r = hashStr(`${cohort}:${handle}`);
+    const weeklyXp = 40 + (r % 560);                       // 40..599 — a beatable spread
+    const xp = 400 + ((r >> 5) % 7200);                    // plausible lifetime XP
+    const lastStageClears = 1 + ((r >> 9) % 36);
+    const lastStageTitle = STAGE_TITLE_LIST.length
+      ? STAGE_TITLE_LIST[(r >> 13) % STAGE_TITLE_LIST.length]
+      : null;
+    out.push({ username: handle, weeklyXp, xp, lastStageTitle, lastStageClears, pioneerCount: 0 });
+  }
+  return out;
+}
+
+/** Pad real standings with cosmetic pace-setters up to the cohort's display
+ *  target, then rank the combined field by weekly XP. Real players always appear
+ *  and rank truthfully among themselves; padding only ever adds rows. */
+function padStandings(cohort: string, real: Standing[]): Standing[] {
+  const target = cohortFill(cohort);
+  if (real.length >= target) return real;
+  const exclude = new Set(real.map((r) => r.username.toLowerCase()));
+  const bots = seedPaceStandings(cohort, target - real.length, exclude);
+  return [...real, ...bots].sort((a, b) => b.weeklyXp - a.weeklyXp);
+}
 
 /**
  * Weekly Leagues engine (Phase 2). Cohorts are week-namespaced, so a new week
@@ -110,7 +176,7 @@ export async function getCohortStandings(cohort: string): Promise<Standing[]> {
     pipe2.scard(`pioneer:${rows[i].username.toLowerCase()}`);
   }
   const fr = (await pipe2.exec()) as unknown[];
-  return rows.map((r, i) => ({
+  const standings = rows.map((r, i) => ({
     username: r.username,
     weeklyXp: r.weeklyXp,
     xp: deriveEconomy(progs?.[i] ?? null).xp,
@@ -118,6 +184,9 @@ export async function getCohortStandings(cohort: string): Promise<Standing[]> {
     lastStageClears: Number(fr?.[i * 2] ?? 0),
     pioneerCount: Number(fr?.[i * 2 + 1] ?? 0),
   }));
+  // Cold-start: pad a thin cohort with cosmetic pace-setters so the race isn't
+  // "just me". No-op once the cohort has enough real players.
+  return padStandings(cohort, standings);
 }
 
 export type DivisionSummary = { division: string; members: number; top: Standing[] };
@@ -132,7 +201,14 @@ export async function getDivisionLadder(week = weekMondayKey(), topN = 5): Promi
     const maxSeq = Number((await redis.get(fillKey(week, div))) ?? 0);
     let members = 0;
     for (let seq = 1; seq <= maxSeq; seq++) members += await redis.zcard(cohortKey(`${week}:${div}:${seq}`));
-    const top = maxSeq >= 1 ? (await getCohortStandings(`${week}:${div}:1`)).slice(0, topN) : [];
+    let top: Standing[] = [];
+    if (maxSeq >= 1) {
+      const headline = `${week}:${div}:1`;
+      top = (await getCohortStandings(headline)).slice(0, topN); // padded when thin
+      // Reflect the cosmetic pace-setters in the headline cohort so the "N
+      // players" header agrees with the padded rows shown beneath it.
+      members = Math.max(members, cohortFill(headline));
+    }
     out.push({ division: div, members, top });
   }
   return out;

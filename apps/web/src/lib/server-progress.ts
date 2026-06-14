@@ -184,7 +184,7 @@ export async function awardStageInRedis(
   badgeId?: string,
   timePenaltyXp = 0,
   bonusXp = 0
-): Promise<UserProgress> {
+): Promise<UserProgress & { firstBlood: boolean; clears: number }> {
   const key = `progress:${username.toLowerCase()}`;
   const streakKey = `streak:${username.toLowerCase()}`;
 
@@ -291,6 +291,11 @@ export async function awardStageInRedis(
   // All-time leaderboard — ranked by lifetime XP.
   await redis.zadd("leaderboard", { score: newXp, member: username.toLowerCase() });
 
+  // First Blood / Pioneer signal surfaced back to the caller (the client shows a
+  // special celebration when you're the very first human to clear a stage).
+  let firstBlood = false;
+  let clearCount = 0;
+
   // Daily and weekly leaderboards + leagues + quests — only on new completions
   if (isNew) {
     if (baseDelta > 0) {
@@ -310,11 +315,12 @@ export async function awardStageInRedis(
     // The clear counter only counts real award-path completions (bots don't
     // touch it), so being the FIRST to clear a stage is a genuine human feat.
     const lower = username.toLowerCase();
-    const clears = Number(await redis.incr(`stage:clears:${stageId}`));
-    if (clears === 1) {
+    clearCount = Number(await redis.incr(`stage:clears:${stageId}`));
+    if (clearCount === 1) {
       // First Blood — claim the stage. Pioneer is permanent (set-once).
       const claimed = await redis.set(`stage:pioneer:${stageId}`, lower, { nx: true });
       if (claimed) {
+        firstBlood = true;
         await redis.sadd(`pioneer:${lower}`, stageId); // this user's pioneered stages
         await redis.lpush("frontier:feed", JSON.stringify({ stageId, username: lower, ts: Date.now() }));
         await redis.ltrim("frontier:feed", 0, 49); // keep the last 50 first-bloods
@@ -353,7 +359,7 @@ export async function awardStageInRedis(
     }
   }
 
-  return { xp: newXp, completedStages, badges, streak: current };
+  return { xp: newXp, completedStages, badges, streak: current, firstBlood, clears: clearCount };
 }
 
 /**

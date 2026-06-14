@@ -84,7 +84,30 @@ const LENS_IMPL: Record<string, Lens> = {
 };
 
 const DARK = "0D1117", PANEL = "161B22", LIGHT = "C9D1D9", MUTED = "6E7681";
-const W = 13.33, BASE = "https://www.kryptoscronos.com";
+const W = 13.33, H = 7.5, BASE = "https://www.kryptoscronos.com";
+
+/** A deterministic "generated cover" visual built from shapes — used wherever a
+ *  stage/epoch has no hero photo so no slide is ever a bare wall of text. A tinted
+ *  panel, an accent top bar, and the badge emoji blown up as artwork. */
+function addCover(
+  slide: PptxGenJS.Slide,
+  x: number, y: number, w: number, h: number,
+  emoji: string, accent: string,
+) {
+  slide.addShape("rect", { x, y, w, h, fill: { color: PANEL }, line: { color: accent, width: 1, transparency: 35 } });
+  slide.addShape("rect", { x, y, w, h, fill: { color: accent, transparency: 86 } });
+  slide.addShape("rect", { x, y, w, h: 0.12, fill: { color: accent } });
+  slide.addText(emoji || "🛡️", { x, y, w, h, fontSize: Math.min(80, Math.round(h * 26)), align: "center", valign: "middle" });
+}
+
+/** A small rounded "pill" tag (badge name, CVE id, CVSS …). Returns its width so
+ *  callers can lay several out left-to-right. */
+function chip(slide: PptxGenJS.Slide, x: number, y: number, label: string, fg: string, bg: string): number {
+  const w = Math.max(0.7, label.length * 0.105 + 0.34);
+  slide.addShape("roundRect", { x, y, w, h: 0.34, fill: { color: bg }, line: { color: fg, width: 0.75, transparency: 55 }, rectRadius: 0.06 });
+  slide.addText(label, { x, y, w, h: 0.34, fontSize: 10, color: fg, align: "center", valign: "middle", bold: true });
+  return w;
+}
 
 /** Best-effort: fetch a public /img asset and inline it as a data URI (so we don't
  *  bundle the whole image dir into the function). Returns null on any failure. */
@@ -125,60 +148,99 @@ export async function buildDeck(epoch: EpochConfig, stages: StageConfig[], lensI
   pptx.company = "Kryptós CronOS";
   pptx.title = `${epoch.name} — ${lens.name}`;
 
-  const footer = (slide: PptxGenJS.Slide) =>
-    slide.addText(`${epoch.name}  ·  ${lens.name}`, { x: 0.7, y: 7.05, w: W - 1.4, h: 0.3, fontSize: 9, color: MUTED });
+  // Representative artwork for the deck: the first stage that has a hero photo,
+  // otherwise the epoch's badge emoji becomes a generated cover.
+  const epochEmoji = stages.find((s) => s.badge?.emoji)?.badge?.emoji ?? "🛡️";
+  const heroImg = stages.map((s) => imgMap.get(s.id)).find(Boolean) ?? null;
 
-  // ── Title slide ──
+  const footer = (slide: PptxGenJS.Slide) => {
+    slide.addShape("rect", { x: 0.7, y: 7.12, w: 0.14, h: 0.14, fill: { color: ACCENT } });
+    slide.addText(`Kryptós CronOS  ·  ${epoch.name}  ·  ${lens.name}`, { x: 0.95, y: 7.03, w: W - 2.8, h: 0.3, fontSize: 9, color: MUTED });
+    slide.slideNumber = { x: W - 1.1, y: 7.03, w: 0.6, h: 0.3, color: MUTED, fontSize: 9, align: "right" };
+  };
+
+  // ── Title slide — left-framed title with a full-height hero on the right ──
   const title = pptx.addSlide();
   title.background = { color: DARK };
-  title.addShape("rect", { x: 0, y: 3.05, w: W, h: 0.06, fill: { color: ACCENT } });
-  title.addText(epoch.name, { x: 0.7, y: 1.9, w: W - 1.4, h: 1.1, fontSize: 40, bold: true, color: "FFFFFF" });
-  title.addText(lens.subtitle, { x: 0.7, y: 3.2, w: W - 1.4, h: 0.6, fontSize: 20, color: ACCENT, bold: true });
-  if (epoch.subtitle) title.addText(epoch.subtitle, { x: 0.7, y: 3.9, w: W - 1.4, h: 0.8, fontSize: 14, color: LIGHT });
-  title.addText("Kryptós CronOS", { x: 0.7, y: 6.7, w: 6, h: 0.4, fontSize: 12, color: MUTED });
+  const bannerX = 8.7, bannerW = W - bannerX;
+  if (heroImg) {
+    title.addImage({ data: heroImg, x: bannerX, y: 0, w: bannerW, h: H, sizing: { type: "cover", w: bannerW, h: H } });
+    title.addShape("rect", { x: bannerX, y: 0, w: bannerW, h: H, fill: { color: DARK, transparency: 55 } });
+  } else {
+    addCover(title, bannerX, 0, bannerW, H, epochEmoji, ACCENT);
+  }
+  title.addShape("rect", { x: bannerX, y: 0, w: 0.06, h: H, fill: { color: ACCENT } });
+  title.addShape("rect", { x: 0.7, y: 1.55, w: 0.55, h: 0.14, fill: { color: ACCENT } });
+  title.addText("CURRICULUM DECK", { x: 0.7, y: 1.7, w: bannerX - 1.0, h: 0.35, fontSize: 12, bold: true, color: ACCENT, charSpacing: 2 });
+  title.addText(epoch.name, { x: 0.7, y: 2.15, w: bannerX - 1.0, h: 1.5, fontSize: 38, bold: true, color: "FFFFFF", valign: "top" });
+  title.addShape("rect", { x: 0.7, y: 3.85, w: bannerX - 1.0, h: 0.04, fill: { color: ACCENT } });
+  title.addText(lens.subtitle, { x: 0.7, y: 3.98, w: bannerX - 1.0, h: 0.5, fontSize: 18, color: ACCENT, bold: true });
+  if (epoch.subtitle) title.addText(epoch.subtitle, { x: 0.7, y: 4.55, w: bannerX - 1.0, h: 1.2, fontSize: 13, color: LIGHT, valign: "top" });
+  title.addText(`${stages.length} modules  ·  Kryptós CronOS`, { x: 0.7, y: 6.7, w: bannerX - 1.0, h: 0.4, fontSize: 12, color: MUTED });
 
-  // ── Scope slide ──
+  // ── Scope slide — header band + stat + two-column module index ──
   const scope = pptx.addSlide();
   scope.background = { color: DARK };
-  scope.addText("Scope", { x: 0.7, y: 0.45, w: W - 1.4, h: 0.7, fontSize: 28, bold: true, color: ACCENT });
-  scope.addText(`${stages.length} modules covered by this assessment.`, { x: 0.7, y: 1.15, w: W - 1.4, h: 0.4, fontSize: 13, color: MUTED });
-  scope.addText(
-    stages.map((s) => ({ text: s.title, options: { bullet: true, color: LIGHT, fontSize: 14, paraSpaceAfter: 6 } })),
-    { x: 0.8, y: 1.7, w: W - 1.6, h: 5.1, valign: "top" },
-  );
+  scope.addShape("rect", { x: 0, y: 0, w: W, h: 1.15, fill: { color: PANEL } });
+  scope.addShape("rect", { x: 0, y: 1.15, w: W, h: 0.04, fill: { color: ACCENT } });
+  scope.addText("Scope", { x: 0.7, y: 0.32, w: 6, h: 0.7, fontSize: 28, bold: true, color: "FFFFFF" });
+  scope.addText(String(stages.length), { x: W - 3.2, y: 0.18, w: 1.3, h: 0.9, fontSize: 40, bold: true, color: ACCENT, align: "right", valign: "middle" });
+  scope.addText("modules\nin scope", { x: W - 1.85, y: 0.28, w: 1.3, h: 0.8, fontSize: 11, color: MUTED, valign: "middle" });
+  const mid = Math.ceil(stages.length / 2);
+  const colW = (W - 1.8) / 2;
+  const moduleCol = (arr: StageConfig[], x: number) =>
+    scope.addText(
+      arr.map((s) => ({ text: `${s.badge?.emoji ?? "▸"}  ${s.title}`, options: { color: LIGHT, fontSize: 12, paraSpaceAfter: 7 } })),
+      { x, y: 1.55, w: colW, h: 5.3, valign: "top" },
+    );
+  moduleCol(stages.slice(0, mid), 0.8);
+  if (stages.length > mid) moduleCol(stages.slice(mid), 0.8 + colW + 0.2);
   footer(scope);
 
   // ── Per-module slides (overflow → continuation slides) ──
   function newStageSlide(headline: string, year?: number): PptxGenJS.Slide {
     const slide = pptx.addSlide();
     slide.background = { color: DARK };
-    slide.addShape("rect", { x: 0, y: 0, w: 0.18, h: 7.5, fill: { color: ACCENT } });
+    slide.addShape("rect", { x: 0, y: 0, w: 0.18, h: H, fill: { color: ACCENT } });
     slide.addText(headline, { x: 0.7, y: 0.4, w: W - 2.2, h: 0.7, fontSize: 23, bold: true, color: "FFFFFF" });
     if (year) slide.addText(String(year), { x: W - 2.0, y: 0.5, w: 1.4, h: 0.4, fontSize: 13, color: MUTED, align: "right" });
     footer(slide);
     return slide;
   }
 
+  const VIS_X = 9.0, VIS_Y = 1.62, VIS_W = 3.65, VIS_H = 2.05, CONTENT_W = 7.8;
   for (const s of stages) {
     if (!s.info) continue;
     const sections = lens.sections(s.info, s).map((sec) => ({ ...sec, bullets: sec.bullets.filter(Boolean) })).filter((sec) => sec.bullets.length);
     const img = imgMap.get(s.id);
     const firstSlide = newStageSlide(s.title, s.info.year);
-    if (img) firstSlide.addImage({ data: img, x: 9.0, y: 1.4, w: 3.7, h: 2.08 });
+
+    // Every module slide carries a visual: the hero photo (framed) or a
+    // generated badge cover — never a bare text wall.
+    firstSlide.addShape("rect", { x: VIS_X - 0.05, y: VIS_Y - 0.05, w: VIS_W + 0.1, h: VIS_H + 0.1, fill: { color: PANEL }, line: { color: ACCENT, width: 1, transparency: 40 } });
+    if (img) firstSlide.addImage({ data: img, x: VIS_X, y: VIS_Y, w: VIS_W, h: VIS_H, sizing: { type: "cover", w: VIS_W, h: VIS_H } });
+    else addCover(firstSlide, VIS_X, VIS_Y, VIS_W, VIS_H, s.badge?.emoji ?? epochEmoji, ACCENT);
+
+    // Tag row: badge, then CVE / CVSS when present.
+    let cx = 0.7;
+    if (s.badge?.name) cx += chip(firstSlide, cx, 1.18, `${s.badge.emoji ?? "🏅"} ${s.badge.name}`, LIGHT, PANEL) + 0.15;
+    if (s.cveId) cx += chip(firstSlide, cx, 1.18, s.cveId, "FCA5A5", "2A1518") + 0.15;
+    if (typeof s.cvssScore === "number") chip(firstSlide, cx, 1.18, `CVSS ${s.cvssScore.toFixed(1)}`, "FCA5A5", "2A1518");
+
     let slide = firstSlide;
     let onFirst = true;
-    let y = 1.4;
+    let y = VIS_Y;
     for (const sec of sections) {
-      const contentW = onFirst && img ? 7.8 : W - 1.7;
-      const estH = 0.42 + bulletsHeight(sec.bullets, contentW) + 0.25;
+      const w = onFirst ? CONTENT_W : W - 1.7;
+      const estH = 0.42 + bulletsHeight(sec.bullets, w) + 0.25;
       if (y + estH > 6.7) { slide = newStageSlide(`${s.title} (cont.)`); onFirst = false; y = 1.4; }
-      const w = onFirst && img ? 7.8 : W - 1.7;
-      slide.addText(sec.label.toUpperCase(), { x: 0.7, y, w, h: 0.35, fontSize: 12, bold: true, color: ACCENT, charSpacing: 1 });
+      const cw = onFirst ? CONTENT_W : W - 1.7;
+      slide.addText(sec.label.toUpperCase(), { x: 0.7, y, w: cw, h: 0.35, fontSize: 12, bold: true, color: ACCENT, charSpacing: 1 });
       y += 0.42;
-      const h = bulletsHeight(sec.bullets, w);
+      const h = bulletsHeight(sec.bullets, cw);
       slide.addText(
         sec.bullets.map((b) => ({ text: b, options: { bullet: true, color: LIGHT, fontSize: 13, paraSpaceAfter: 5 } })),
-        { x: 0.85, y, w: w - 0.15, h, valign: "top" },
+        { x: 0.85, y, w: cw - 0.15, h, valign: "top" },
       );
       y += h + 0.25;
     }
@@ -186,12 +248,38 @@ export async function buildDeck(epoch: EpochConfig, stages: StageConfig[], lensI
     firstSlide.addNotes(`${s.info.tagline ?? ""}\n\n${(s.info.overview ?? []).map((p) => p.replace(/\n-\s?/g, " • ")).join("\n\n")}`.trim());
   }
 
+  // ── Risk landscape — a visual roll-up of the real incidents in this epoch ──
+  const risks = stages.filter((s) => s.info?.incident?.title).slice(0, 8);
+  if (risks.length) {
+    const rk = pptx.addSlide();
+    rk.background = { color: DARK };
+    rk.addShape("rect", { x: 0, y: 0, w: W, h: 1.15, fill: { color: PANEL } });
+    rk.addShape("rect", { x: 0, y: 1.15, w: W, h: 0.04, fill: { color: ACCENT } });
+    rk.addText("Risk landscape", { x: 0.7, y: 0.32, w: W - 1.4, h: 0.7, fontSize: 28, bold: true, color: "FFFFFF" });
+    const rowH = Math.min(0.66, (6.6 - 1.5) / risks.length);
+    risks.forEach((s, i) => {
+      const y = 1.55 + i * rowH;
+      const inc = s.info!.incident!;
+      rk.addShape("ellipse", { x: 0.75, y: y + 0.08, w: 0.16, h: 0.16, fill: { color: ACCENT } });
+      rk.addText(
+        [
+          { text: `${inc.title}`, options: { bold: true, color: "FFFFFF", fontSize: 13 } },
+          ...(inc.impact ? [{ text: `   —  ${lead(inc.impact, 130)}`, options: { color: MUTED, fontSize: 11 } }] : []),
+        ],
+        { x: 1.1, y, w: W - 2.0, h: rowH, valign: "middle" },
+      );
+    });
+    footer(rk);
+  }
+
   // ── Closing slide ──
   const end = pptx.addSlide();
   end.background = { color: PANEL };
-  end.addText("Generated from Kryptós CronOS", { x: 0.7, y: 3.0, w: W - 1.4, h: 0.6, fontSize: 20, bold: true, color: ACCENT });
-  end.addText(`${epoch.name} · ${lens.name} lens · ${stages.length} modules`, { x: 0.7, y: 3.7, w: W - 1.4, h: 0.5, fontSize: 13, color: LIGHT });
-  end.addText("Source content is the Kryptós CronOS curriculum. Review before external use.", { x: 0.7, y: 4.2, w: W - 1.4, h: 0.5, fontSize: 11, color: MUTED });
+  addCover(end, W - 3.6, 2.3, 2.6, 2.6, epochEmoji, ACCENT);
+  end.addShape("rect", { x: 0.7, y: 2.85, w: 0.55, h: 0.14, fill: { color: ACCENT } });
+  end.addText("Generated from Kryptós CronOS", { x: 0.7, y: 3.0, w: W - 5.0, h: 0.6, fontSize: 20, bold: true, color: "FFFFFF" });
+  end.addText(`${epoch.name} · ${lens.name} lens · ${stages.length} modules`, { x: 0.7, y: 3.7, w: W - 5.0, h: 0.5, fontSize: 13, color: ACCENT });
+  end.addText("Source content is the Kryptós CronOS curriculum. Review before external use.", { x: 0.7, y: 4.2, w: W - 5.0, h: 0.5, fontSize: 11, color: MUTED });
 
   return (await pptx.write({ outputType: "nodebuffer" })) as Uint8Array;
 }

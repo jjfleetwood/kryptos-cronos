@@ -13,6 +13,7 @@ type Props = {
   effectiveCoins: number;
   bonusCoins?: number;
   recommendedNext?: { id: string; title: string } | null;
+  firstBlood?: boolean;
   backHref?: string;
 };
 
@@ -27,7 +28,7 @@ function formatTime(ms: number): string {
 // briefing→capture rhythm so the Nth clear feels like an event (UX-agent finding).
 const MILESTONES = [10, 25, 50, 100, 150, 250, 500, 750];
 
-export default function FlagSuccessModal({ stage, flag, timeTakenMs, timePenaltyCoins, effectiveCoins, bonusCoins, recommendedNext, backHref = "/stages" }: Props) {
+export default function FlagSuccessModal({ stage, flag, timeTakenMs, timePenaltyCoins, effectiveCoins, bonusCoins, recommendedNext, firstBlood, backHref = "/stages" }: Props) {
   const { t } = useLocale();
   const [visible, setVisible] = useState(false);
   const [flagVisible, setFlagVisible] = useState(false);
@@ -92,6 +93,15 @@ export default function FlagSuccessModal({ stage, flag, timeTakenMs, timePenalty
             <h2 className="text-2xl font-bold text-white mb-1">{t("flag.missionComplete")}</h2>
             <p className="text-gray-500 text-sm">{stage.title}</p>
           </div>
+
+          {/* First Blood — you were the very first human to clear this stage */}
+          {firstBlood && (
+            <div className="mb-6 rounded-xl border border-red-500/50 bg-gradient-to-r from-red-600/20 via-red-500/10 to-transparent p-3 text-center">
+              <div className="text-2xl mb-0.5">🩸</div>
+              <div className="text-sm font-black tracking-wide text-red-300">FIRST BLOOD</div>
+              <div className="text-[11px] text-red-200/70 mt-0.5">You&rsquo;re the first to capture this flag. The stage is yours.</div>
+            </div>
+          )}
 
           {/* Milestone celebration — the Nth clear is an event */}
           {milestone && (

@@ -404,6 +404,7 @@ export default function CtfChallenge({ stage, backHref = "/stages", isPro = fals
     effectiveCoins: number;
     bonusCoins: number;
     recommendedNext: { id: string; title: string } | null;
+    firstBlood: boolean;
   } | null>(null);
   const [lines, setLines] = useState<Line[]>(() => makeInitialLines(stage, ctf, minFragments));
 
@@ -498,7 +499,6 @@ export default function CtfChallenge({ stage, backHref = "/stages", isPro = fals
   // instead of `submit <flag>`. Award + mark solved AND surface the same success
   // modal the submit path shows, so these stages don't silently complete.
   function completeViaCommand() {
-    awardStage(stage.id, stage.xp, stage.badge.id);
     setSolved(true);
     setSuccessData({
       flag: ctf.fragments?.length ? ctf.fragments.map((f) => f.value).join("") : "ACCESS GRANTED",
@@ -507,6 +507,11 @@ export default function CtfChallenge({ stage, backHref = "/stages", isPro = fals
       effectiveCoins: stage.xp,
       bonusCoins: 0,
       recommendedNext: null,
+      firstBlood: false,
+    });
+    // Award server-side; if this was the first global clear, upgrade the modal.
+    awardStage(stage.id, stage.xp, stage.badge.id).then((res) => {
+      if (res?.firstBlood) setSuccessData((d) => (d ? { ...d, firstBlood: true } : d));
     });
   }
 
@@ -721,14 +726,16 @@ export default function CtfChallenge({ stage, backHref = "/stages", isPro = fals
           if (!progress) {
             awardStage(stage.id, stage.xp, stage.badge.id);
           }
+          const firstBlood = Boolean(progress?.firstBlood);
           push(
             { type: "ok", text: `${t("ctf.terminal.flagAccepted")}: ${flag}` },
             { type: "ok", text: `  ${tr("ctf.terminal.flagTime", { time: formatTimer(timeTakenMs), coins: Math.max(0, effectiveCoins) })} XP` },
             ...(bonusXp > 0 ? [{ type: "ok" as const, text: `  ⚡ Clean solve bonus: +${bonusXp} XP` }] : []),
+            ...(firstBlood ? [{ type: "ok" as const, text: `  🩸 FIRST BLOOD — you're the first to clear this stage!` }] : []),
             { type: "out", text: "" },
           );
           setSolved(true);
-          setSuccessData({ flag, timeTakenMs, timePenaltyCoins: timePenaltyXp, effectiveCoins: Math.max(0, effectiveCoins), bonusCoins: bonusXp, recommendedNext });
+          setSuccessData({ flag, timeTakenMs, timePenaltyCoins: timePenaltyXp, effectiveCoins: Math.max(0, effectiveCoins), bonusCoins: bonusXp, recommendedNext, firstBlood });
         } else {
           push(
             { type: "err", text: t("ctf.terminal.flagIncorrect") },
@@ -814,6 +821,7 @@ export default function CtfChallenge({ stage, backHref = "/stages", isPro = fals
           effectiveCoins={successData.effectiveCoins}
           bonusCoins={successData.bonusCoins}
           recommendedNext={successData.recommendedNext}
+          firstBlood={successData.firstBlood}
           backHref={backHref}
         />
       )}
