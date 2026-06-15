@@ -6,9 +6,17 @@
 // Optional env:
 //   ELEVENLABS_VOICE_ID   (default: Rachel — "21m00Tcm4TlvDq8ikWAM")
 //   ELEVENLABS_MODEL_ID   (default: eleven_multilingual_v2)
+//   ELEVENLABS_FORMAT     (default: mp3_22050_32)
 //
 // MP3 frames concatenate cleanly for playback, so each chunk's audio is appended
 // to one file. previous_text / next_text are passed for prosody continuity.
+//
+// IMPORTANT — file size & hosting: the MP3 lives in secured-docs/ and is served
+// from the git-built deploy, so it MUST stay under GitHub's 100 MB hard limit.
+// At ~42k words ≈ 4.5 hrs: 32 kbps ≈ 65 MB (default, fits), 64 kbps ≈ 130 MB
+// (too big for git — would need Vercel Blob instead), 128 kbps ≈ 250 MB (no).
+// 32 kbps mono is fine for spoken word. Keep the default unless you switch the
+// host off git.
 
 import fs from "fs";
 import path from "path";
@@ -22,6 +30,7 @@ const OUT = path.join(ROOT, "secured-docs", "siempre-segundo.mp3");
 const API_KEY = process.env.ELEVENLABS_API_KEY;
 const VOICE_ID = process.env.ELEVENLABS_VOICE_ID || "21m00Tcm4TlvDq8ikWAM";
 const MODEL_ID = process.env.ELEVENLABS_MODEL_ID || "eleven_multilingual_v2";
+const FORMAT = process.env.ELEVENLABS_FORMAT || "mp3_22050_32"; // ~65 MB, fits git
 
 if (!API_KEY) {
   console.error("ELEVENLABS_API_KEY is not set. Aborting.");
@@ -67,7 +76,7 @@ function chunk(text, max = 2400) {
 }
 
 async function tts(text, prev, next) {
-  const url = `https://api.elevenlabs.io/v1/text-to-speech/${VOICE_ID}?output_format=mp3_44100_128`;
+  const url = `https://api.elevenlabs.io/v1/text-to-speech/${VOICE_ID}?output_format=${FORMAT}`;
   const body = {
     text,
     model_id: MODEL_ID,
