@@ -71,11 +71,11 @@ A living map of the whole picture: ✍️ = drafted in this document, ◻ = fram
 **ACT I — The Boardwalk (~1900–1903)**
 - ✍️ The meeting (the ball-toss booth; Rebecca's laugh) — screenplay + prose
 - ✍️ Home: the tannery household (Esteban's fear vs. the abuelo's defiance; the hands)
-- ◻ The secret courtship (the beach at night; the danger of it)
+- ✍️ The secret courtship (the dark under the pier; the watchman's lamp)
 - ✍️ The exhibition (Cirilo's arm goes public; strikes out the college boys; Chuck flails)
-- ◻ Chuck's first cruelty (what a Mexican drawing a white girl's eye invites in 1900)
+- ✍️ Chuck's first cruelty (the rope-and-a-tree threat; "you can't strike out a county")
 - ✍️ The door opens (Coach Fagan of Santa Clara sees the arm)
-- ◻ Leaving the beach (parting with Rebecca; a token)
+- ✍️ Leaving the beach (the depot; her kid-leather glove as a token)
 
 **ACT II — The Rematch & The Long Wait (1903–1917)**
 - Seq 1 — ✍️ The Rematch (Stanford at Santa Clara; the strikeout; Rebecca stands)
@@ -336,6 +336,94 @@ generations that don't smell of the
 pit. Don't you dare give them back.
 ```
 
+### Screenplay — the dark under the pier
+
+```
+EXT. THE BEACH BELOW THE PIER -- NIGHT (1900)
+
+The boardwalk lights are off; the surf is the only sound.
+CIRILO and REBECCA, half-hidden under the pilings -- in the
+dark that is the only place a brown boy and a white girl can
+stand together in this town without it costing blood.
+
+REBECCA
+My father thinks I'm asleep.
+
+CIRILO
+My father thinks I'm a fool.
+(beat)
+They're both right tonight.
+
+She laughs -- the surprised one. He has started living for it.
+
+REBECCA
+Tell me something true. You never do.
+
+CIRILO
+(after a while)
+My family owned this. Not the pier -- the
+land. All of it, the river to the
+redwoods, before there was a Santa Cruz
+to own it.
+(sand runs through his fingers)
+Now I sell nickels on a plank built on
+top of it. And I would rather be here,
+in the dark, with you, than have had any
+of it back.
+
+She takes his hand -- the pitching hand, the unmarked one --
+and holds it like a thing she has decided to keep.
+
+REBECCA
+Then we'll just have to take the rest of
+it back ourselves.
+
+A WHISTLE up on the boardwalk -- a NIGHT WATCHMAN's lamp
+swinging. They freeze. The light sweeps the sand above their
+heads and moves on. They breathe again. And the fear is its
+own answer -- the thing neither of them will say: that this,
+all of it, is borrowed, and the lenders are cruel.
+```
+
+### Screenplay — what it costs
+
+```
+EXT. THE PIER -- DAY (1901)
+
+Cirilo hauls crates. CHUCK ASHBY III and two college FRIENDS
+block the boards, easy and grinning, the way men are when they
+outnumber.
+
+CHUCK
+The bottle boy. We were just talking
+about you. About how you've been seen.
+At night. With a young lady of our
+acquaintance.
+
+CIRILO
+(setting the crate down, slow)
+I don't know what you mean.
+
+CHUCK
+You know exactly what I mean. So I'll be
+a friend and tell you how it goes out
+here. A fellow like you, with a girl like
+that -- there's no court. No judge. No arm
+fast enough. There's a rope, and a tree,
+and a crowd that goes home and sleeps
+fine.
+(close now, pleasant)
+Throw all the strikes you like, Mendez.
+You can't strike out a county.
+
+He pats Cirilo's cheek -- once, lightly, an insult precisely
+measured -- and strolls off laughing.
+
+Cirilo stands very still. Picks the crate back up. His hands --
+the good hands, the unmarked ones -- are shaking, and not from
+the weight.
+```
+
 ### Screenplay — the exhibition
 
 ```
@@ -383,6 +471,46 @@ where it counts?
 
 Off Cirilo: the door of his whole life swinging open on a
 single sentence.
+```
+
+### Screenplay — the leaving
+
+```
+EXT. SANTA CRUZ DEPOT -- DAY (1901)
+
+A small valise. CIRILO in his one good suit, the Santa Clara
+letter in his pocket. REBECCA has come, against every rule, to
+the edge of the platform -- no farther; she cannot be seen.
+
+REBECCA
+Santa Clara's an hour. That's nothing.
+A morning's train.
+
+CIRILO
+It's a hundred years, and we both know
+it. Your people, my people --
+
+REBECCA
+(fierce, low)
+Then go and become a man so loud they
+can't pretend not to hear your name. And
+come back for me when you have.
+
+She presses something into his hand: her KID-LEATHER GLOVE --
+the soft one from the booth, from the day they met.
+
+REBECCA (CONT'D)
+So you remember whose hand you're playing
+for.
+
+The train calls. He closes his fist on the leather -- her
+glove, made of the one thing his family ever truly owned -- and
+boards, and does not look back, because if he looks back he
+will not go.
+
+Through the window the platform slides away. Rebecca stands in
+the wrong place a moment too long, then makes herself turn, and
+walk, into a life that has just become a waiting.
 ```
 
 ---
