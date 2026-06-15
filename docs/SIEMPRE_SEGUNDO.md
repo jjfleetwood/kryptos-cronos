@@ -2,7 +2,7 @@
 
 *"He was born second. He died first."*
 
-A multigenerational saga — feature screenplay + companion novel — loosely inspired by the life of Frank Arellanes, the Californio pitcher from Santa Cruz who died in the 1918 influenza. **Fiction. Names and events invented.** Our hero is **Cirilo Méndez**. A motivational small-town-Chicano-to-hero story, kept **period-real to teach history** — with a tragic twist and a victory deeper than any trophy.
+A multigenerational saga — **screenplay (*Siempre Segundo*, "Always Second") + companion novel (*Siempre Primero*, "Always First")** — loosely inspired by the life of Frank Arellanes, the Californio pitcher from Santa Cruz who died in the 1918 influenza. The two titles are one story told from its two truths: the life the world saw (always second) and the legacy underneath (always first). **Fiction. Names and events invented.** Our hero is **Cirilo Méndez**. A motivational small-town-Chicano-to-hero story, kept **period-real to teach history** — with a tragic twist and a victory deeper than any trophy.
 
 ---
 
@@ -294,6 +294,89 @@ CIRILO
 (under his breath, to no one)
 Costs a nickel.
 ```
+
+### Sequence 3 — The Long Wait: the climb, level by level (1904–1916)
+
+*(Where the picture gets drunk on baseball — the smells, the rungs, the day-in-the-life — and where Don Aurelio, who has watched the game in California since the Gold Rush sandlots, becomes Cirilo's teacher and the audience's. Period-real throughout; the real figures are named.)*
+
+He went out into organized ball the only way a brown kid could in those years — at the very bottom — and he climbed it a rung at a time, and the country let him climb exactly as high as it could stand him, and not one rung higher.
+
+**The bush leagues — Class D, then C.** The floor of the professional game: valley towns baking under a white sky, cinder infields that took the skin off a slide, wooden grandstands leaning in the heat. A few dollars a month, four men to a hotel bed, the milk-run trains that stopped at every water tank between Stockton and nowhere, meal money that did not cover the meal. The *smell* of that life, which he would know in his sleep for the rest of it: wintergreen liniment and cut alfalfa, coal smoke and tobacco spit and the wet-dog reek of flannels that never fully dried. He learned the trade here by failing at it in front of nobody. And he learned the first hard law of the business, the one Don Aurelio made him repeat until it stopped making him angry — that **he did not own his own arm.** Under the **reserve clause**, the club held his contract for exactly as long as it pleased: it could sell him, bury him in Class D until he rotted, or cut him loose into nothing, and there was not one thing he or any other player, in the bushes or the big leagues, could do about it. *You are leather,* the old man told him, not unkindly. *They will buy you and sell you and never once ask.*
+
+**Home — the Beachcombers, Beach Flats.** When the climb let him back to Santa Cruz it was to the real pro club, the **Beachcombers** of the Pacific States League, playing the ground behind the **Leibbrandt bath houses** — so close to the sand that the brine and the boardwalk barkers came over the outfield fence with the gulls (the same pier from Act I, watching him now from the other side of the rail). The **Daubenbiss brothers**, Ed and Charley of the old Soquel family, ran the nine with **Bill "Red Dog" Devereaux** of Oakland; a Sunday crowd came a thousand strong in its best clothes, and a local rhymer crowed after they beat the City: *Who killed the Bushnells? We — the Beachcombers — three-baggers and homers.* Cirilo's brothers Luis and Abel played beside him. And on the bench in street clothes sat **Edward Purse** — good enough to start for any club in the county, kept off the grass and called the team's *mascot*, because the color line would not let a Black man play, his heart breaking by inches in plain view every Sunday. Cirilo watched Purse and understood the thing no one ever said to his face: that there were lines drawn on this country no glove could carry you across, and that he himself stood with one foot on one of them — let onto the field only so long as the papers could keep calling him *Spanish.*
+
+### Screenplay — the lesson behind the backstop
+
+```
+EXT. BEACH FLATS BALLGROUND, SANTA CRUZ -- LATE DAY
+
+Empty after a game, the light going gold off the water. DON
+AURELIO -- old, but the eyes miss nothing -- sits on an
+overturned bucket behind the backstop. CIRILO (early 20s) on
+the mound, sweating.
+
+DON AURELIO
+Before you throw -- read him. The feet
+and the hands tell you everything the
+man won't.
+
+He lifts his chin at an imaginary batter.
+
+DON AURELIO (CONT'D)
+Stands deep in the box, back by the
+catcher? He's buying time -- scared of
+anything that bends. Bust him up high
+with the fastball; he'll never get on
+top of it. Crowds the plate? He can't
+reach his own fists. Go in, tie him up.
+
+CIRILO
+And the hands.
+
+DON AURELIO
+White knuckles -- squeezing sawdust out
+of the bat -- he's afraid, he wants to
+KILL the ball. So don't give him a ball
+to kill. Slow one, off the plate, let
+his own fear swing for him. Loose hands,
+easy grip -- that one's patient, that
+one waits. Him you must throw strikes
+to. Him you out-think.
+
+Cirilo takes it in like scripture.
+
+DON AURELIO (CONT'D)
+And never show his eyes the same height
+twice. High and hard, then slow and low.
+The eyes load for the one -- the other's
+already gone.
+
+The old man stands, takes the ball, spits in his palm, works
+it in with two fingers.
+
+DON AURELIO (CONT'D)
+And this. While they still let you.
+
+He shows the wet grip -- the SPITBALL.
+
+DON AURELIO (CONT'D)
+Drops off the table like it died in the
+air. They'll outlaw it -- a few years,
+they say, and it's gone for good. So
+learn it now and break their hearts with
+it while you can.
+(beat, quieter)
+Everything they give us has a clock on
+it, mijo. Throw fast.
+
+He flips the ball back. Cirilo goes into his motion.
+```
+
+**The lessons the old man carried.** Don Aurelio had watched ball in California since men played it bare-handed on Gold Rush sandlots, and he doled out the game like a second catechism — sequencing, deception, the geometry of a hitter's fear — and he salted it with the real ones he'd seen come up. He'd watched **Hal Chase**, "Prince Hal," the Los Gatos boy, climb out of the Coast League and go east and go *crooked*, and he warned Cirilo that the game devours the ones who sell it. He'd known the Pezzolo family in the City and watched their boy **Ping Bodie** — a *wop* kid, they sneered, the way they'd sneer *greaser* at Cirilo — become the first man to hit thirty over a Coast League fence, in 1910, proof that an immigrant kid's bat could make the country choke its own slurs back down.
+
+**The Coast League — the San Francisco Seals.** The highest rung he could reach and still be told no: the **Pacific Coast League**, graded Class A and then **Double-A from 1909**, the "third major league" — 180-game seasons in the soft coast light, the best ball west of the Mississippi, good enough that men turned down the East to stay in it. He starred there for years. He beat, to their faces, men who got the call he never got. The scouts came and admired and wrote one word in their books that he was never allowed to read, and they signed the paler arm. *Siempre segundo* — the best pitcher in the best league the East refused to call major. The one who got clear and stayed decent was **Harry Hooper**, the Hollister kid who'd played Soquel ball a ridge away, gone to Boston, made himself a star and a gentleman — and who, years on, would be the one to remember the old Coast spitballer and say the sentence that changed everything: *there's an arm out west nobody's using.*
+
+**Brooklyn — the bottom of the top.** The call finally came, late, in his thirties — and it was to **Brooklyn**, Uncle Robbie's Robins, the National League's most dependable heartbreak, a ballclub that knew being second the exact way Cirilo did. The thing he'd chased fifteen years, and it nearly starved him. The reserve clause pinned an old rookie's pay to the floor; Brooklyn rent ate the floor; and with Clara beside him and a child on the way he stood in a major-league uniform and *still* could not make a month meet itself. So he did what his father did before him: in the winters he went home and back through the **tannery gate**, the championship-bound arm trimming another man's hides to cover the Brooklyn rent — leather to leather, the thread his great-grandfather started never once breaking. Thirty-five years old, in the major leagues, and second-class still. He nearly quit. Clara would not let him. And then, in 1917, with the war stripping the rosters bare — *work or fight* — a Boston man bought the old spitballer's contract for almost nothing, the way you'd buy a used glove off a nail, on the word of a Hollister boy who never forgot the ridge he came from. Cirilo packed for the Red Sox not knowing he was packing for the only October that would ever matter. → **Act III.**
 
 ### Screenplay — the wedding (Sequence 4)
 
