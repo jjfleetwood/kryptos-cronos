@@ -6,16 +6,11 @@ import ReactMarkdown, { type Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Studio — home for the screenplay/novel project "Siempre Segundo / Siempre
-// Primero." The manuscript is served as a PUBLIC static asset
-// (apps/web/public/siempre-segundo.md), readable by anyone — not admin-gated.
-// This page is the branded hub that fetches + renders it.
+// Studio — home for the "Siempre Segundo" screenplay + novel. The manuscript is
+// served by /api/studio, gated to Pro users (and admins): the prose never leaves
+// the server for free/anonymous visitors. This page renders what that returns.
 // ─────────────────────────────────────────────────────────────────────────────
 
-const MANUSCRIPT = "/siempre-segundo.md";
-
-// Markdown renderer tuned for the manuscript: serif-ish reading prose, amber
-// accents, fenced code blocks rendered as monospace screenplay panels.
 const components: Components = {
   h1: ({ children }) => <h1 className="text-4xl font-black text-white mt-2 mb-3 tracking-tight">{children}</h1>,
   h2: ({ children }) => <h2 className="text-2xl font-black text-amber-300 mt-12 mb-4 border-b border-amber-500/20 pb-2">{children}</h2>,
@@ -52,13 +47,32 @@ const components: Components = {
   ),
 };
 
+type State = "loading" | "ready" | "signin" | "pro" | "error";
+
+function Gate({ icon, title, body, cta }: { icon: string; title: string; body: string; cta: { href: string; label: string } }) {
+  return (
+    <div className="min-h-screen flex items-center justify-center px-4" style={{ background: "linear-gradient(135deg, #0d1117 0%, #1a1410 50%, #0d0a08 100%)" }}>
+      <div className="text-center max-w-sm">
+        <div className="text-6xl mb-4">{icon}</div>
+        <h2 className="text-2xl font-black text-white mb-2">{title}</h2>
+        <p className="text-gray-400 text-sm mb-6">{body}</p>
+        <Link href={cta.href} className="inline-block px-5 py-2.5 rounded-xl font-bold text-sm text-black" style={{ background: "linear-gradient(90deg,#f59e0b,#fbbf24)" }}>
+          {cta.label}
+        </Link>
+      </div>
+    </div>
+  );
+}
+
 export default function StudioPage() {
-  const [state, setState] = useState<"loading" | "error" | "ready">("loading");
+  const [state, setState] = useState<State>("loading");
   const [md, setMd] = useState("");
 
   useEffect(() => {
-    fetch(MANUSCRIPT)
+    fetch("/api/studio")
       .then((r) => {
+        if (r.status === 401) { setState("signin"); return null; }
+        if (r.status === 403) { setState("pro"); return null; }
         if (!r.ok) { setState("error"); return null; }
         return r.text();
       })
@@ -70,12 +84,22 @@ export default function StudioPage() {
       .catch(() => setState("error"));
   }, []);
 
+  if (state === "signin") {
+    return <Gate icon="🔑" title="Sign in to read" body="The Studio manuscript — Siempre Segundo — is available to Pro members. Sign in to continue." cta={{ href: "/login", label: "Sign in" }} />;
+  }
+  if (state === "pro") {
+    return <Gate icon="⭐" title="A Pro feature" body="Siempre Segundo — the screenplay and the novel — is part of Kryptós CronOS Pro. Upgrade to read the whole manuscript." cta={{ href: "/upgrade", label: "Upgrade to Pro" }} />;
+  }
+  if (state === "error") {
+    return <Gate icon="📕" title="Couldn't load it" body="The manuscript didn't load. Try refreshing." cta={{ href: "/studio", label: "Retry" }} />;
+  }
+
   return (
     <div className="min-h-screen" style={{ background: "linear-gradient(135deg, #0d1117 0%, #1a1410 55%, #0d0a08 100%)" }}>
       <div className="max-w-3xl mx-auto px-4 py-12">
         <div className="flex items-center justify-between mb-8">
           <Link href="/" className="text-gray-500 hover:text-amber-400 text-sm transition-colors">← Home</Link>
-          <span className="text-[11px] font-mono font-bold text-amber-400 uppercase tracking-[0.3em]">Studio · Working Manuscript</span>
+          <span className="text-[11px] font-mono font-bold text-amber-400 uppercase tracking-[0.3em]">Studio · Pro</span>
         </div>
 
         {state === "loading" ? (
@@ -85,8 +109,6 @@ export default function StudioPage() {
             <div className="h-4 bg-white/5 rounded w-5/6" />
             <div className="h-4 bg-white/5 rounded w-3/4" />
           </div>
-        ) : state === "error" ? (
-          <div className="py-24 text-center text-gray-500 text-sm">Couldn&rsquo;t load the manuscript. Try refreshing.</div>
         ) : (
           <article className="min-w-0">
             <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>

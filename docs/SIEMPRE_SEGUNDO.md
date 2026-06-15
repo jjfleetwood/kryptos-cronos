@@ -2,7 +2,7 @@
 
 *"He was born second. He died first."*
 
-A multigenerational saga — **screenplay (*Siempre Segundo*, "Always Second") + companion novel (*Siempre Primero*, "Always First")** — loosely inspired by the life of Frank Arellanes, the Californio pitcher from Santa Cruz who died in the 1918 influenza. The two titles are one story told from its two truths: the life the world saw (always second) and the legacy underneath (always first). **Fiction. Names and events invented.** Our hero is **Cirilo Méndez**. A motivational small-town-Chicano-to-hero story, kept **period-real to teach history** — with a tragic twist and a victory deeper than any trophy.
+A multigenerational saga — **feature screenplay + companion novel, both titled *Siempre Segundo* ("Always Second")** — loosely inspired by the life of Frank Arellanes, the Californio pitcher from Santa Cruz who died in the 1918 influenza. The title is the irony the whole story turns on: a man the world kept calling *second,* who was — as the coda reveals — *siempre primero,* first all along. **Fiction. Names and events invented.** Our hero is **Cirilo Méndez**. A motivational small-town-Chicano-to-hero story, kept **period-real to teach history** — with a tragic twist and a victory deeper than any trophy.
 
 ---
 
@@ -146,7 +146,7 @@ A living map of the whole picture: ✍️ = drafted in this document, ◻ = fram
 - ✍️ The room (the deathbed; the glove to the son)
 - ✍️ The real victory, the curse broken (the coda; "throws like Méndez")
 - ◻ Option: a 2020 COVID bookend (if we ever want the echo explicit)
-- 📖 **The full novel is NOVELIZED** — Prologue + Acts I/II/III rendered as complete prose chapters (*Siempre Primero*, below). Front to back.
+- 📖 **The full novel is NOVELIZED** — Prologue + Acts I/II/III rendered as complete prose chapters (the novel sections below). Front to back.
 - 🌱 **Grow pass complete (first pass):** every movement deepened with the full secondary cast and principal backstories, written through the Steinbeck/Dostoevsky everyman lens — Prologue (Don Joaquín, the Ohlone labor, Capt. Bray, Hollister & Quint), Act I (Nunzio, Pereira, Kron, Toussaint, the family goodbye), Act II (Fagan, Mulqueen, Purse's wall, the Swede, Horace, Aoife Doyle), Act III (Halloran, Eleanor). Further passes can keep growing toward full novel length.
 
 ---
@@ -1325,7 +1325,7 @@ FADE OUT.
 
 ---
 
-## _Siempre Primero_ — Prologue, novelized (full chapters)
+## _Siempre Segundo_ — Prologue, novelized (full chapters)
 
 ### Chapter — The Grant
 
@@ -1405,7 +1405,7 @@ His name was Cirilo. Remember the hands. Everything that matters in this whole l
 
 ---
 
-## _Siempre Primero_ — Act I, novelized (full chapters)
+## _Siempre Segundo_ — Act I, novelized (full chapters)
 
 ### Chapter — The Boardwalk
 
@@ -1539,7 +1539,7 @@ Through the window the platform slid away. Rebecca stood in the wrong place a mo
 
 ---
 
-## _Siempre Primero_ — Act II, novelized (full chapters)
+## _Siempre Segundo_ — Act II, novelized (full chapters)
 
 ### Chapter — The Threshold
 
@@ -1550,6 +1550,14 @@ The college was Jesuit and old — older than the state, older than the conquest
 Father Fagan watched over him, in his fashion, which was a complicated fashion. The Jesuit was proud of him the way a man is proud of a fine tool he has found and sharpened, and fond of him the way a man grows fond of anything he has bet on; and there were nights, walking the cloister, when Fagan examined his conscience on the matter and did not love what he found there — that he had brought a brown boy into a house that would use him for nine innings every spring and never once truly seat him at its table, and that he, Fagan, was the man holding the door. He took the boy's confession on Saturdays. He never quite found the courage to make his own to the boy.
 
 Cirilo did not mind the edge of the table, or told himself he did not, which at nineteen is very nearly the same thing. He had not come for the welcome. He had come because Rebecca Whitfield was an hour up the line at Stanford, close enough that on clear nights he fancied he could feel her there like heat off a wall; and because his abuelo had folded his fingers into a fist on a tannery floor and forbidden him to give the hands back; and because somewhere under the silence he had worn like a second suit his whole life, a thing had finally hardened all the way into a plan, cold and clear and patient as a winter creek. He would make himself so good that they would have no choice but to say his name. And then he would go and get her. He confessed the pride of it to Father Fagan twice, and was absolved twice, and kept it anyway — because some sins a man is not actually sorry for, and both he and the old priest knew it, and that shared knowledge was the nearest thing to friendship the house allowed them.
+
+### Chapter — The Examination
+
+There was a professor at Santa Clara, a layman named Pruett who taught rhetoric and resented having to teach it to the likes of Cirilo, and who found, in the oral examinations, his chance.
+
+The orals were public — that was the cruelty built into them — conducted before the assembled class, a boy standing alone at the front construing Latin and defending propositions while his fellows watched and the professor probed. For most of the gentlemen's sons it was a formality, a genial hazing they had been bred for since the cradle, the Latin half-learned at good schools and the confidence wholly inherited. Pruett ran Cirilo's examination differently. He ran it long, and he ran it hard, doubling back, setting traps in the ablative, putting to the scholarship Mexican the questions he put to no one else, with a thin courteous smile that invited the room to enjoy what was coming — the bottle boy exposed at last as the fraud a man like Pruett needed him to be, because if the tannery's son could construe Cicero as well as the banker's son, then something Pruett had built his whole small life upon was not true, and Pruett would sooner break a boy in front of a class than let that be so.
+
+Cirilo construed the Cicero. He had spent four hundred nights on it, in the silence, by a borrowed lamp, the way he had spent four hundred afternoons on the spitball — because he had understood from the first week that for him there would be no formality, no genial pass, no inherited confidence to coast upon; that he would be examined harder than any gentleman in the room and would therefore have to be *better,* simply to be permitted to be equal. And so he was better. He answered the traps. He found the verb. And when Pruett, furious now beneath the courtesy, abandoned rhetoric altogether for open baiting — asking the boy whether he did not think his talents might be better spent in *manual* work, at which his people had shown such aptitude — the room went still; and Cirilo, who had taken the slap on the pier and not swung, looked at the professor a long moment and answered, in Latin, quietly, with a line of the very Cicero they had been construing: the observation that it is the mark of a small mind to mistake the accident of birth for the measure of a man. Which was not, in fact, anywhere in the passage. Which Cirilo had composed on the spot, in correct Ciceronian Latin, and attributed to Cicero — gambling everything on the wager that Pruett, for all his airs, did not know the text half so well as the boy who had spent four hundred nights inside it. And Pruett, caught, uncertain, not daring to challenge a citation he could not place, went red, and nodded stiffly, and ended the examination; and the gentlemen's sons, who were not bad fellows and who loved a winner the way the young always do, broke into a startled applause the professor could not stop. Father Fagan heard of it within the hour. He laughed until he had to sit down — and then went to the chapel, troubled, and confessed that he had laughed, and admitted to God that he was not, in truth, entirely sorry, which was the same thing he was forever having to confess about that boy, and the same thing God, he suspected, was forever declining to mind.
 
 ### Chapter — An Hour Up the Line
 
@@ -1757,7 +1765,7 @@ And from three thousand miles west, faint, a letter in the old man's hand seemed
 
 ---
 
-## _Siempre Primero_ — Act III, novelized (full chapters)
+## _Siempre Segundo_ — Act III, novelized (full chapters)
 
 *The companion novel renders the screenplay's beats as full prose. These are the Act III chapters, drafted; the earlier acts await the same treatment.*
 
@@ -1798,6 +1806,14 @@ The baby did not sleep, and so Cirilo did not sleep, and he found that he did no
 He held the boy's hands and counted the fingers and turned them in the gray Brooklyn light, the way the old man had turned his, the way he would turn them again at the end. He did the small useless adoring arithmetic that new fathers do — whose nose, whose chin, how big will the hands get — and underneath it, always, the cold thing he would not look at directly: that he was thirty-six, and the door east had finally opened, and a man does not get many springs at thirty-six; that whatever he was going to make them say, he would have to make them say it now, this year, while the arm still answered; that the peace of the two cold rooms was borrowed, like everything the family had ever held, and that the lender was already, faintly, knocking. He thought it was only time that was knocking. It was the flu. It was both. It is always, in this family, both.
 
 On the last morning he held the baby a long while at the window and showed him the gray river and the gray city, and told him, in Spanish, that his father was going away to do a thing, and would come back, and would teach him to throw — *I will teach you the dying ball, mijo, while they still let us throw it; everything they give us has a clock on it; you will have to learn to throw fast* — and then he handed his son to Rebecca, and took up his valise and his father's glove, and went down to the train. He would see the boy exactly once more, in October, for four days, before the end. He did not know that, either. A man never does. He went down to the train thinking only that he was running late, and that the season was waiting, and that *first,* after a whole lifetime of *second,* was finally close enough to reach out and take.
+
+### Chapter — The East
+
+He had never left California until the want and the war drove him east at thirty-six, and so the East, when he finally reached it, struck him the way it strikes everyone born on the far coast: as a foreign country that happened to fly the same flag.
+
+The train came down into Boston through three days of country he had no map for — the dry West, the flat middle, then the crowded green East, older and tighter and grayer than anything in his California: a land worn smooth by people over three hundred years, where his own coast still had the raw new-cut look even in its oldest corners. Boston itself was a stone city, close and vertical and cold in a way the dry cold of a Sierra winter had never prepared him for — a wet cold that got into the old tannery ache in his hands and stayed. And the people were courteous and closed, nothing like the loud democratic carnival of Rec Park; a reserve he mistook at first for hostility and came to understand was only the East being the East, holding everyone at the same arm's length — which was, he decided, its own strange mercy. In Boston he was held at arm's length like everybody else, and there was a cold equality in that he had never once felt at home, where the distance they kept from him had always been a different and more pointed distance.
+
+He found two rooms in a part of the city where the rents were what a rookie's pay could bear, among the Irish and the Italians and the Jews — the great immigrant tide of the East that had come in through Boston and New York the way his own people had simply always *been there,* before the border crossed them — and there was an odd comfort in being, for once, only one more newcomer among newcomers, in a city so crowded with arrivals that no one had the energy to make a project of him. And the first time he walked into Fenway Park — three years old then, a brick bandbox with its strange high wall in left and its odd green angles — he stood a while in the empty stands in the gray morning, before anyone else had come: an old man at the end of a road that had run from a tannery floor in Santa Cruz through the bushes and the fog to *this,* the top, the actual top, the major leagues of the actual United States. He thought of his abuelo, three thousand miles and a few months from death; of the silver dollars shining in the Rec Park dirt; of a girl's laugh on a pier. He did not weep — he had business to attend to, and the weeping could wait — but he let the whole impossible distance of it settle into him a moment, and then he went down to the clubhouse and found his locker, the dead boy's locker, and hung up his glove, and got to work.
 
 ### Chapter — The Oldest Rookie
 
