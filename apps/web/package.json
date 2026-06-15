@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
-    "test:agent": "node scripts/test-agent.mjs"
+    "test:agent": "node scripts/test-agent.mjs",
+    "gen:audiobook": "node --env-file=.env.local scripts/generate-audiobook.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.98.0",
@@ -16,6 +17,7 @@
     "@supabase/ssr": "^0.10.3",
     "@supabase/supabase-js": "^2.106.2",
     "@upstash/redis": "^1.38.0",
+    "@vercel/blob": "^2.4.0",
     "jose": "^6.2.3",
     "mermaid": "^11.15.0",
     "next": "16.2.6",

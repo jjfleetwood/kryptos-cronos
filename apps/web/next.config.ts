@@ -20,7 +20,7 @@ const nextConfig: NextConfig = {
     // Studio (Pro-gated): the manuscript markdown + the generated audiobook MP3
     // must be bundled into these serverless functions (they read from disk).
     "/api/studio": ["./secured-docs/SIEMPRE_SEGUNDO.md"],
-    "/api/studio/audio": ["./secured-docs/*.mp3"],
+    "/api/studio/audio": ["./secured-docs/*.mp3", "./secured-docs/siempre-segundo.audio.txt"],
   },
   // Versioned API namespace for clients that can't be force-updated (the mobile
   // app pins to /api/v1). /api/v1/* serves the same handlers as /api/* today; a

@@ -56,3 +56,6 @@ src/messages/_missing-*.json
 next-env.d.ts
 
 .vercel
+
+# audiobook generation scratch (MP3 is uploaded to Vercel Blob, not committed)
+.audiobook-build/
