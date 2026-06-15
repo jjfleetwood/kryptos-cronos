@@ -96,7 +96,7 @@ A living map of the whole picture: ✍️ = drafted in this document, ◻ = fram
 - ✍️ The room (the deathbed; the glove to the son)
 - ✍️ The real victory, the curse broken (the coda; "throws like Méndez")
 - ◻ Option: a 2020 COVID bookend (if we ever want the echo explicit)
-- 📖 **Act III is NOVELIZED** — eight full prose chapters (see *Siempre Primero* — Act III, below). Acts I & II await the same.
+- 📖 **Acts II & III are NOVELIZED** — full prose chapters (see *Siempre Primero* — Acts II & III, below). Act I & the Prologue await the same.
 
 ---
 
@@ -1271,6 +1271,110 @@ Already big. Already strong.
 ```
 FADE OUT.
 ```
+
+---
+
+## _Siempre Primero_ — Act II, novelized (full chapters)
+
+### Chapter — The Threshold
+
+He went up to the College of Santa Clara on the strength of one sentence from a man in a black coat, and he spent his first month there learning that a door opening is not the same as being welcome on the other side of it.
+
+The college was Jesuit and old — older than the state, older than the conquest, the oldest school in California — and it was full, that autumn, of the sons of the men who had taken his family's land. They were courteous to him in the particular way the secure are courteous to the useful: he was the arm that beat Stanford every spring, and so they let him sit at the edge of the table, and did not, on the whole, let him forget the edge. He wore his one good suit until it shone at the elbows. He learned which fountains and which entrances were, by an arithmetic no one had ever written down but everyone could perform, his.
+
+He did not mind. He had not come for the welcome. He had come because Rebecca Whitfield was an hour up the line at Stanford, and because his abuelo had folded his fingers into a fist on a tannery floor and told him not to dare give the hands back — and because somewhere in him, under the silence he had worn like a second suit his whole life, a thing had begun to harden into a plan. He would become so good that they would have to say his name. And then he would go and get her.
+
+### Chapter — The Rematch
+
+It came, the way these things do, on an ordinary afternoon the body remembers forever.
+
+Stanford came down to Santa Clara in the spring, loud and cardinal-red and certain, and in the grandstand among the red sat a woman Cirilo had not seen in two years and had not stopped seeing for a single day. She had not expected to know anyone on the field. She was wrong.
+
+At the plate, when his turn came, was Chuck Ashby, an S on his chest, tapping the corners as though he had bought them. "The bottle boy," he said down the line, and to his bench, loud enough for the red seats: "Three balls a nickel, fellas!" And the Stanford side laughed, the easy laugh of people who have never once had to wonder whether the laughter was about them.
+
+Cirilo looked in. And there, half-risen from her seat in the sea of red, a kid-leather glove forgotten in her lap, was Rebecca. Their eyes met across two years. He set, and the first pitch was past Ashby before the laugh had finished. Strike one. The second buckled his knees, a wet ball that died in the air. Strike two, and the Stanford bench went quiet. He held the ball a moment — the stitched leather, an old friend — looked once more at the woman in the wrong-colored seats, and threw the best thing he owned.
+
+Strike three. Ashby swung at air and nearly screwed himself into the dirt.
+
+The Santa Clara side came up roaring, but Cirilo did not hear it, because Rebecca was on her feet — alone, in a sea of cardinal red, clapping for the wrong team and the wrong boy in front of every person she had been raised among, and not caring, which was the whole of her in a single gesture. *Costs a nickel,* he said to no one, under his breath. And up in the stands a woman who had everything to lose looked down at a man who had nothing, and chose, in public, out loud, and for good.
+
+### Chapter — The Break
+
+Her father gave her a choice the way men like her father give choices, which is to say he did not give her one at all.
+
+It was a drawing room on Nob Hill, gaslight on good furniture, and Horace Whitfield stood at the mantel and addressed his daughter as though she were a board that had voted unwisely. A summer's foolishness, he said. A beach attendant. He had let it run because these things burn out. It had not burned out, and so now he would be plain: she would not see the Mexican again. Charley — Chuck, waiting by the window with the wounded patience of a man who believes he is owed something — had been a gentleman about all of it. More than she deserved.
+
+"He throws a baseball, Rebecca," Chuck said softly, the knife slid in gently. "That's the whole of him. A strong arm and a borrowed suit."
+
+"And what's the whole of you, Chuck?" she said, almost kindly. "Your father's name, your father's money, your father's chair at the club." A beat. "At least his arm is his."
+
+Her father read her the terms like a sentence: walk out the door to the Mexican and she walked out of the family. No allowance, no name, no coming back when the romance of being poor wore thin — and it would wear thin, faster than she could dream. Rebecca looked around the warm, lit, comfortable cage of the room she had grown up in, and understood that she was being offered everything, and that everything was less than a man with one borrowed suit had already given her on a pier when he looked at her like a person and not an arrangement.
+
+She walked to the door, and turned back once, to Chuck: "Find someone who wants the chair at the club. They're easy to find. They're the only people you've ever met." And she went.
+
+She paid for it in full and on time. The allowance stopped. The name closed over her like water. The friends she had grown up beside learned, all at once, not to see her on the street. And the heiress who had never made a bed or counted a dollar twice went to live in the margins of a country that had decided she no longer existed — and discovered, to the genuine astonishment of everyone who had warned her, that she had never once been happy until she did.
+
+### Chapter — The Bottom of the Ladder
+
+To get to the top you start at the bottom, and the bottom of professional baseball in those years was a circuit of valley towns baking under a white sky. Cirilo Méndez went out into it the only way a brown kid could: at the very floor, a rung at a time, and never one rung faster than the country could stand him.
+
+He learned the trade by failing at it in front of nobody. Class D, and then C — cinder infields that took the skin off a slide, wooden grandstands leaning in the heat, a few dollars a month, four men to a hotel bed, the milk-run trains that stopped at every water tank between Stockton and nowhere. He learned the smell of that life so deeply he would know it in his sleep for the rest of it: wintergreen liniment and cut alfalfa, coal smoke and tobacco spit and the wet-dog reek of flannels that never fully dried. And he learned the first hard law of the business — that he did not own his own arm. Under the reserve clause the club held his contract for as long as it pleased; it could sell him, bury him, or cut him loose into nothing. *You are leather,* the old man told him, not unkindly. *They will buy you and sell you and never once ask.*
+
+When the climb let him home, it was to the Beachcombers, his county's real pro club, playing the ground behind the Leibbrandt bath houses in Beach Flats, so close to the sand that the brine and the boardwalk barkers came over the fence with the gulls. His brothers Luis and Abel played beside him. And on the bench, in street clothes, sat Edward Purse — good enough to start for any nine in the county, kept off the grass and called the team's *mascot* because the color line would not let a Black man play, his heart breaking by inches in plain view every Sunday. Cirilo watched Purse and understood the thing no one ever said to his face: that there were lines on this country no glove could carry a man across, and that he himself stood with one foot on one of them, let onto the field only so long as the papers could keep calling him Spanish.
+
+And through all of it, behind every backstop, on an overturned bucket, sat Don Aurelio, who had watched the game in California since men played it bare-handed on Gold Rush sandlots, and who doled it out like a second catechism. *Read the feet before the swing, mijo. The deep stander is buying time; bust him up and in where his fear can't reach. Watch the hands on the bat — white knuckles is a frightened man, give him the slow one and let his own greed swing for him. Never show his eyes the same height twice.* And this — he would spit in his palm and work the ball — *this, while they still let you. It drops off the table like it died in the air, and they'll outlaw it in a few years, so learn it now and break their hearts with it while you can. Everything they give us has a clock on it, mijo. Throw fast.*
+
+### Chapter — The Best League They Wouldn't Call Major
+
+He climbed until he reached the highest rung a man like him could reach and still be told no, and there he stopped, and stayed, for years.
+
+The Pacific Coast League was the best baseball west of the Mississippi and very nearly the best anywhere — a hundred and eighty games a season in the soft coast light, big crowds at Recreation Park, a brand of ball so good that men turned down the East to stay in it. They graded it Class A, and then Double-A, and called it, when they were generous, the third major league; and the generosity was the whole point, for it was major in everything but permission. Cirilo starred there for years. He beat, to their faces, men who got the call he never got.
+
+He learned why, in the end, though no one ever said it to him, because the day he learned it he happened to be close enough to hear. He had just two-hit the Angels and walked off to a roar, and up in a box a major-league scout in a derby lowered his field glasses to the bird dog beside him and said the best arm he'd seen all year, a spitter that fell off a cliff, a man who read hitters like a cardsharp. And the bird dog licked his pencil and said, so we take him. And the scout — not even unkindly, just certain — said: he's thirty next year, and he's a, you know; the crowds back east won't warm to it, ownership won't spend the ink. Write down the kid in left. The blond one. Half the ballplayer. *But he's the right kind of half.*
+
+Down on the grass, Cirilo tipped his cap to the only crowd that was allowed to love him, and did not know, and would never be told, that a man in a derby had just decided his whole life in a single sentence, for a reason no one would ever put on paper. The years went by like that. He led the league and the league pretended not to notice. He grew older in the one place that wanted him, and the door east stayed shut, and he learned the thing his people had been learning for seventy years on the land they used to own: that you can be the best in the room and still be made to stand second in it, and that the only thing they cannot take from you, if you refuse to hand it over, is the refusal itself.
+
+### Chapter — The Wedding
+
+They married at Holy Cross in 1916, in the teeth of both their worlds, and the church told the whole story without anyone saying a word.
+
+It was half-empty, and the half that was there had a fault line straight down the center aisle. On one side sat the Méndez family — Dolores and Esteban, the brothers, Don Aurelio — in Sunday clothes worn thin, wary rather than joyful, because they had learned that when the world noticed them it was usually to take something. On the other: almost no one, and a single empty pew where the Whitfields would have sat. Rebecca's people had not come. Rebecca's people were, as of a letter some years old now, no longer Rebecca's people.
+
+She walked the aisle alone, in a plain dress — the gowns had belonged to the life she had traded away — because there was no father to give her, and so she gave herself, which she would have told you, had you asked, she had been doing her whole life anyway. The priest spoke in Spanish, and Rebecca, who had been learning it in secret for a decade, answered him in it.
+
+Afterward, on the steps, Don Aurelio took his grandson's arm — quiet, not unkind, afraid. *First the game. Now an Anglo man's daughter. You keep reaching over your head, mijo. Our family was not built to be first; I have watched it cost us for ninety years.* And Cirilo, gentle and certain, said the only thing there was to say to a curse he refused to believe in: *Then I'll be the one it stops costing.*
+
+And behind them, in the thin October light, Rebecca laughed at something one of the brothers had said — the real laugh, the surprised one, the one from the booth, sixteen years old now and still knocking itself loose out of people who had forgotten how.
+
+### Chapter — The Winter Hides
+
+He reached the major leagues at last, in his middle thirties, and it nearly starved him.
+
+The call, when it finally came, came from Brooklyn — Uncle Robbie's Robins, the National League's most dependable heartbreak, a ballclub that knew about being second the exact way Cirilo did. It was the thing he had chased for the better part of two decades, and he stood in a big-league uniform in a cold-water Brooklyn flat and could not make the month meet itself. The reserve clause pinned an old rookie's pay to the floor, and Brooklyn rent ate the floor, and there was no other club he was permitted to ask, because his contract was owned, the way everything about him had always been owned.
+
+So he did what his father had done before him. One winter night Rebecca saw his hands — the pitching hands, the good unmarked ones — come home raw and stained dark at the knuckles, the old tannery stain, and she understood before he said it.
+
+"You went back to the hides," she said.
+
+"A tannery in Newark takes on winter men. No questions. They don't care what a man's name is if his hands know the work." A laugh with nothing in it. "I pitch in the major leagues, Rebecca, and I can't make the rent on it. The club owns my contract and pays me what it pleases, and there's no other club I'm allowed to ask. They call it the reserve clause. My abuelo had a shorter word."
+
+"Leather," she said.
+
+"Bought and sold and never asked. Four generations, and the family business is the same. Only now the hide is mine."
+
+She took his stained hands in her clean ones — the heiress's hands, that had chosen this — and did not let go. "Then we work the winter," she said. "We wait for the spring. We do not quit. Say it." And he said it, the family creed, worn smooth as a river stone: *We do not quit.*
+
+### Chapter — The Call
+
+It was the war that finally opened the door — which is to say it was a hundred thousand graves that finally opened the door — and Cirilo would never quite forgive himself for walking through it grateful.
+
+In the winter of 1917 a telegram came to the cold Brooklyn rooms, and he stood in the doorway stamping snow off his boots with his face doing something it did not have a name for. Boston had bought his contract. The Red Sox. The major leagues wanted a thirty-five-year-old spitballer they could have for the price of the train. Rebecca rose, the joy breaking over her — and he stopped her, gently, because the truth had to come with it. They wanted him because the young arms were in France. Half of Barrow's staff was in a trench or under one. Sixteen years he had waited for the call, and it came at last because the country had run out of white arms to send up.
+
+She took his frozen face in both her hands. "It does not matter why the door opened," she said. "It matters that you walk through it. You have waited your whole life for a door to open at all." And it was Hooper who had put his name in — Harry Hooper, the Hollister boy who had played Soquel ball one ridge from his brothers — so that after everything, the man who finally remembered him was a kid from up the road.
+
+He lifted the worn glove off the table, his father's leather, and turned it once. His abuelo would say it was too high, he told her; he'd say the family was never meant to climb this far. "Then we climb it for this one," Rebecca said, a hand on her belly, where their son was already waiting for the first day of the year. "Let the curse take it up with a baby."
+
+And from three thousand miles west, faint, a letter in the old man's hand seemed to follow them onto the train going east: *Mijo. They call you to the very top now. Be careful up there. The air is thin where they let us stand — and they have never, not once, caught us when we fall.*
 
 ---
 
