@@ -96,6 +96,10 @@ export default function StudioProsePage() {
   const [voiceUri, setVoiceUri] = useState<string>("");
   const supported = typeof window !== "undefined" && "speechSynthesis" in window;
 
+  // Pre-generated MP3 (ElevenLabs) — natural voice, plays screen-off over
+  // Bluetooth. Present only after the audiobook has been generated.
+  const [hasMp3, setHasMp3] = useState(false);
+
   const chunksRef = useRef<string[]>([]);
   const idxRef = useRef(0);
   const stoppedRef = useRef(false);
@@ -121,6 +125,8 @@ export default function StudioProsePage() {
         setState("ready");
       })
       .catch(() => setState("error"));
+    // Detect whether the natural-voice MP3 has been generated.
+    fetch("/api/studio/audio", { method: "HEAD" }).then((r) => setHasMp3(r.ok)).catch(() => {});
   }, []);
 
   // Load voices (async on most browsers).
@@ -206,8 +212,10 @@ export default function StudioProsePage() {
         </div>
 
         {/* Read-aloud control bar */}
-        {state === "ready" && supported && (
+        {state === "ready" && (supported || hasMp3) && (
           <div className="sticky top-0 z-10 -mx-4 px-4 py-3 mb-8 backdrop-blur bg-[#0d0a08]/80 border-b border-amber-500/15">
+            {supported && (
+            <>
             <div className="flex flex-wrap items-center gap-2">
               {speech !== "playing" ? (
                 <button onClick={play} className="px-4 py-2 rounded-lg font-bold text-sm text-black" style={{ background: "linear-gradient(90deg,#f59e0b,#fbbf24)" }}>
@@ -244,6 +252,21 @@ export default function StudioProsePage() {
             <p className="mt-2 text-[11px] text-gray-500 leading-snug">
               ~42k words (≈4.5 hrs). If web playback pauses when your phone locks, use your phone&apos;s OS &ldquo;Speak Screen&rdquo; on this page (iPhone: two-finger swipe down from the top) — it keeps reading screen-off over Bluetooth.
             </p>
+            </>
+            )}
+
+            {hasMp3 && (
+              <div className="mt-3 pt-3 border-t border-white/10">
+                <div className="flex items-center gap-2 mb-1.5">
+                  <span className="text-[11px] font-bold text-amber-300 uppercase tracking-wider">🎙 Narrated MP3</span>
+                  <a href="/api/studio/audio" download="siempre-segundo.mp3" className="text-[11px] text-amber-400 hover:text-amber-300 underline">download</a>
+                </div>
+                <audio controls preload="none" src="/api/studio/audio" className="w-full h-9">
+                  Your browser doesn&apos;t support audio playback.
+                </audio>
+                <p className="mt-1 text-[11px] text-gray-500">Natural voice — plays screen-off over Bluetooth, and scrubbing/resume work.</p>
+              </div>
+            )}
           </div>
         )}
 
