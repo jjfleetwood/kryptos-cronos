@@ -1867,6 +1867,14 @@ George Herman Ruth was, that summer, becoming the thing he would be for the rest
 
 He named it, finally, one night in September. Ruth — who had caught the influenza in the spring and shrugged it off the way he shrugged off everything — had caught it again, the second time hard, sweating and gray in a hotel bed; and Cirilo, who already knew in his own bones what was coming for the city though he had not yet let himself say it, sat with him a while and laid a cool cloth on the great hot forehead, and understood at last the thing he had recognized. Ruth, too, was a man the world had thrown away once — an orphan, a reform-school case, a boy nobody wanted — who had clawed up out of it on nothing but a gift. They had the same story. The only difference between them, the whole difference, the difference that would make one of them immortal and bury the other under a borrowed name, was the single accident of which of them had been born the color the country had decided to forgive. *Get well, Jidge,* Cirilo said, using the clubhouse name; and Ruth grinned up at him gray and said *I always do, pop* — and he did; he got well twice that year and lived to be a god. Cirilo caught it once, in October, off a crowd cheering a name that was not his, and did not. There is no moral in that. Cirilo looked for one the rest of his short life and never found it. Some men the wheel forgives and some it does not, and the forgiving has nothing to do with the man — and that, not the flu and not the conquest and not the curse, is the hardest thing in the whole story to hold in your hand without flinching.
 
+### Chapter — Comiskey
+
+The strangest World Series anyone had ever seen opened in September — September, weeks early, the season guillotined by the war — and not even in the Cubs' own park, but in Comiskey, borrowed across town because it held more bodies, though in the end the bodies did not come. The country was too busy dying in France and in the troop camps to give its whole heart to a ballgame, and the stands at the first Series Cirilo Méndez ever pitched in held perhaps half the roar he had been promised, his whole life, the big time would be.
+
+It opened with Ruth. Of course it opened with Ruth — the boy pitched the first game and threw a shutout, nine innings of the kind of thing that made men who had watched baseball for forty years go quiet — and Cirilo watched from the bench and felt the complicated thing he always felt watching the Babe: the pure clean joy of seeing the game played at the absolute edge of what a body can do, laid over the old buried ache of knowing that the boy doing it would be remembered for a hundred years, and the old man watching would be remembered, if at all, under a name a sportswriter had invented because his own was too much trouble. Both things. He had stopped, by then, expecting the two feelings to resolve. He had a locker and a uniform and a turn in the rotation coming, and that was more than the man in the derby had ever meant him to have, and he meant to use it.
+
+It was a subdued and shadowed Series, played under the shadow of the thing no one would name yet — the players bound for the army, the flag draped over everything. In the seventh-inning stretch of the opener the band struck up a tune, a wartime favorite called "The Star-Spangled Banner," and the crowd, almost without meaning to, rose for it — the first time anyone present could remember a whole ballpark standing for that song; and Cirilo stood on the top step with his cap over his heart and sang the words he had been taught in a schoolroom that did not want him and on a boardwalk that swept him out at season's end, and meant them, in the complicated way he meant everything about this country: meant them as a wish more than a fact, the way the powerless always mean an anthem — singing not the country that was, but the one he had decided, against all the evidence of his life, to keep believing was still somehow possible. Then he put his cap back on, and waited his turn. It was coming. It had been sixteen years coming. And he was, at last, going to take it.
+
 ### Chapter — A Man in a Good Coat
 
 Chuck Ashby came to the Series the way he came to everything: in the best seat money could rent, with a wife on his arm who was poised and handsome and was not Rebecca.
@@ -1903,13 +1911,13 @@ Cirilo shook his head. Once. "I've been second my whole life, skip," he said. "N
 
 Barrow looked at him a long moment — the kind of look a man spends the next forty years trying to forget he gave — and put the ball back in his hand and walked away.
 
-In the box, Rebecca had their son up on her hip, and beside her sat Don Aurelio, ancient now, brought across the whole width of the country to see this, his hat over his heart, not watching the batter at all. Watching his grandson's hands, and afraid of them, because the old man knew the family law better than he knew his prayers: *we are not allowed to be first.*
+In the box, Rebecca had their son up on her hip — alone with the baby, three thousand miles from anyone of Cirilo's blood, for the abuelo was far too frail now to have crossed the country and sat that very hour, Cirilo knew, in his good chair in Santa Cruz, the family law going round in him like a rosary: *we are not allowed to be first.* Had the old man been in these stands he would not have been watching the batter. He would have been watching his grandson's hands, and he would have been afraid of them.
 
 Cirilo looked in. The stitched leather, an old friend. He did not wind up big; he never had. He threw the best thing he owned, and the world went silent the way it only does in memory, and the ball died in the air a foot in front of the plate, and the bat went through the place it had been.
 
 Strike three.
 
-And the park came apart. They reached him at the mound the way the sea reaches a rock and lifted him up — the tannery boy, the bottle boy, the man with the wrong name in the papers — up onto their shoulders and over the whole roaring country, a champion, *first*, for the first time in his life and the first time in his family's stolen century. He found Rebecca in the noise and held the ball up toward the boy like a man showing a coin he had crossed an ocean to earn. And down in the box, alone in a standing crowd, Don Aurelio closed his eyes — because he was the only soul in the park who was afraid, and he had been right to be.
+And the park came apart. They reached him at the mound the way the sea reaches a rock and lifted him up — the tannery boy, the bottle boy, the man with the wrong name in the papers — up onto their shoulders and over the whole roaring country, a champion, *first*, for the first time in his life and the first time in his family's stolen century. He found Rebecca in the noise and held the ball up toward the boy like a man showing a coin he had crossed an ocean to earn. And no one in that roaring park knew — not Rebecca, weeping, holding the baby up to see — that the only soul alive who had foreseen this exact afternoon was an old man in a good chair three thousand miles west, who would have closed his eyes rather than watch it, because he alone understood what being first had always cost this family, and he had been right to.
 
 ### Chapter — What the Crowd Carried
 
@@ -1925,17 +1933,15 @@ He went down four days later. He had survived the bushes and the reserve clause 
 
 The influenza did in four days what sixteen years of *no* had not managed.
 
-The flat was small and clean and full of the wrong quiet. On the sill the championship ball sat beside a guttering candle and the rosary that had come all the way from the beginning of the family, from a chapel on land they no longer owned. Rebecca sat at the edge of the bed, dry-eyed past the far side of crying, their son asleep against her. In the corner Don Aurelio's lips moved over the beads and did not stop.
+The flat was small and clean and full of the wrong quiet. On the sill the championship ball sat beside a guttering candle and the rosary that had come all the way from the beginning of the family, from a chapel on land they no longer owned. Rebecca sat at the edge of the bed, dry-eyed past the far side of crying, their son asleep against her. In the corner Aoife Doyle's lips moved over the beads and did not stop — the old Irish widow keeping the vigil that the family three thousand miles west could not.
 
 Cirilo was a long way off by then, but his hand found the old glove on the blanket — his father's leather, his great-grandfather's tanning, the one thing four generations had carried through every theft — and he turned it once in his fingers, and then he did not give it to Rebecca. He folded the small fingers of his son around it instead.
 
-"Abuelo was right," he said, and they had to lean close to hear it. "There's a price. For us. Being first." The ghost of the old smile. "Worth it. Tell him it was worth it."
+"Abuelo was right," he said, and they had to lean close to hear it. "There's a price. For us. Being first." The ghost of the old smile. "Worth it. Tell him — when you take me home, tell the old man — it was worth it."
 
-"No." The old man's voice broke and came out fierce. "No, mijo. I was wrong. I was wrong my whole life —"
+She would carry that message west, and she would stand at a graveside in Santa Cruz and hear the old man's broken answer to it; but here, now, she did not spend her husband's last clear minutes on a reply he could no longer keep. What she gave him instead was the thing she had carried up out of her grief on purpose, the way she had once carried his name up out of her labor, to give him in time. "You weren't second," she said into the quiet. "Not for one day of your life."
 
-But Cirilo did not hear the end of it. What he heard, the last thing, was Rebecca, who had carried it up out of her grief on purpose, the way she had once carried his name up out of her labor, to give to him in time. "You weren't second," she said into the quiet. "Not for one day of your life."
-
-He heard that. And his hand went still on his son's hand on the glove. And Don Aurelio did not stop praying, but he was looking, through the tears, at a Méndez's hands. Small ones now. Already strong.
+He heard that. And his hand went still on his son's hand on the glove. And Aoife did not stop praying; and Rebecca, through her tears, was looking at a Méndez's hands. Small ones now. Already strong.
 
 ### Chapter — Siempre Primero
 
