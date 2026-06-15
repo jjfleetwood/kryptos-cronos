@@ -100,6 +100,12 @@ export default function StudioProsePage() {
   // Bluetooth. Present only after the audiobook has been generated.
   const [hasMp3, setHasMp3] = useState(false);
 
+  // Secret share-link token (?s=…) lets non-Pro readers (family/friends) in.
+  const [shareParam, setShareParam] = useState("");
+  // Admins get a "Copy share link" control populated from /api/studio/share.
+  const [shareUrl, setShareUrl] = useState("");
+  const [copied, setCopied] = useState(false);
+
   const chunksRef = useRef<string[]>([]);
   const idxRef = useRef(0);
   const stoppedRef = useRef(false);
@@ -111,7 +117,12 @@ export default function StudioProsePage() {
   }, [rate]);
 
   useEffect(() => {
-    fetch("/api/studio?prose=1")
+    const s = new URLSearchParams(window.location.search).get("s") ?? "";
+    setShareParam(s);
+    const q = s ? `&s=${encodeURIComponent(s)}` : "";
+    const aq = s ? `?s=${encodeURIComponent(s)}` : "";
+
+    fetch(`/api/studio?prose=1${q}`)
       .then((r) => {
         if (r.status === 401) { setState("signin"); return null; }
         if (r.status === 403) { setState("pro"); return null; }
@@ -126,8 +137,12 @@ export default function StudioProsePage() {
       })
       .catch(() => setState("error"));
     // Detect whether the natural-voice MP3 has been generated.
-    fetch("/api/studio/audio", { method: "HEAD" }).then((r) => setHasMp3(r.ok)).catch(() => {});
+    fetch(`/api/studio/audio${aq}`, { method: "HEAD" }).then((r) => setHasMp3(r.ok)).catch(() => {});
+    // Admins: fetch the shareable link to copy. (403 for everyone else.)
+    fetch("/api/studio/share").then((r) => (r.ok ? r.json() : null)).then((d) => { if (d?.url) setShareUrl(d.url); }).catch(() => {});
   }, []);
+
+  const audioSuffix = shareParam ? `?s=${encodeURIComponent(shareParam)}` : "";
 
   // Load voices (async on most browsers).
   useEffect(() => {
@@ -208,7 +223,18 @@ export default function StudioProsePage() {
       <div className="max-w-3xl mx-auto px-4 py-12">
         <div className="flex items-center justify-between mb-6">
           <Link href="/studio" className="text-gray-500 hover:text-amber-400 text-sm transition-colors">← Studio</Link>
-          <span className="text-[11px] font-mono font-bold text-amber-400 uppercase tracking-[0.3em]">Prose · Pro</span>
+          <div className="flex items-center gap-3">
+            {shareUrl && (
+              <button
+                onClick={() => { navigator.clipboard?.writeText(shareUrl); setCopied(true); setTimeout(() => setCopied(false), 1800); }}
+                className="text-[11px] font-semibold text-amber-400 hover:text-amber-300 border border-amber-500/30 rounded px-2 py-1 transition-colors"
+                title={shareUrl}
+              >
+                {copied ? "✓ Copied" : "🔗 Copy share link"}
+              </button>
+            )}
+            <span className="text-[11px] font-mono font-bold text-amber-400 uppercase tracking-[0.3em]">Prose · Pro</span>
+          </div>
         </div>
 
         {/* Read-aloud control bar */}
@@ -259,9 +285,9 @@ export default function StudioProsePage() {
               <div className="mt-3 pt-3 border-t border-white/10">
                 <div className="flex items-center gap-2 mb-1.5">
                   <span className="text-[11px] font-bold text-amber-300 uppercase tracking-wider">🎙 Narrated MP3</span>
-                  <a href="/api/studio/audio" download="siempre-segundo.mp3" className="text-[11px] text-amber-400 hover:text-amber-300 underline">download</a>
+                  <a href={`/api/studio/audio${audioSuffix}`} download="siempre-segundo.mp3" className="text-[11px] text-amber-400 hover:text-amber-300 underline">download</a>
                 </div>
-                <audio controls preload="none" src="/api/studio/audio" className="w-full h-9">
+                <audio controls preload="none" src={`/api/studio/audio${audioSuffix}`} className="w-full h-9">
                   Your browser doesn&apos;t support audio playback.
                 </audio>
                 <p className="mt-1 text-[11px] text-gray-500">Natural voice — plays screen-off over Bluetooth, and scrubbing/resume work.</p>

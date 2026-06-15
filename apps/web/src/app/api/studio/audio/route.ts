@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getAuthedUsername } from "@/lib/api-auth";
 import { verifyAdminToken } from "@/lib/admin-token";
 import { getUserTier } from "@/lib/access";
+import { isValidStudioShare } from "@/lib/studio-share";
 import fs from "fs";
 import path from "path";
 import { Readable } from "stream";
@@ -62,6 +63,7 @@ export async function HEAD(req: NextRequest) {
 // Pro/admin gate, shared by GET and HEAD. Returns a NextResponse to short-circuit
 // on failure, or null when access is granted.
 async function guard(req: NextRequest): Promise<NextResponse | null> {
+  if (isValidStudioShare(req.nextUrl.searchParams.get("s"))) return null;
   const admin = verifyAdminToken(req.cookies.get("admin_token")?.value ?? "");
   const username = (await getAuthedUsername(req)) ?? admin;
   if (!username) return NextResponse.json({ error: "signin" }, { status: 401 });
