@@ -96,7 +96,7 @@ A living map of the whole picture: ✍️ = drafted in this document, ◻ = fram
 - ✍️ The room (the deathbed; the glove to the son)
 - ✍️ The real victory, the curse broken (the coda; "throws like Méndez")
 - ◻ Option: a 2020 COVID bookend (if we ever want the echo explicit)
-- 📖 **Acts II & III are NOVELIZED** — full prose chapters (see *Siempre Primero* — Acts II & III, below). Act I & the Prologue await the same.
+- 📖 **Acts I, II & III are NOVELIZED** — full prose chapters (see *Siempre Primero* — Acts I/II/III, below). Only the Prologue awaits the same.
 
 ---
 
@@ -1271,6 +1271,98 @@ Already big. Already strong.
 ```
 FADE OUT.
 ```
+
+---
+
+## _Siempre Primero_ — Act I, novelized (full chapters)
+
+### Chapter — The Boardwalk
+
+The town had a new face that summer, and it wore it down at the water.
+
+Where there had been only sand and the long wharf walking out into the bay, there was now a pleasure pier — fresh-cut planks and white paint and electric bulbs strung against the blue, a casino going up, a carousel coming, the whole bright apparatus of a place that had decided to stop making its money from hides and lime and redwood and start making it from leisure. They built it on the beach, which is to say they built it on the exact ground the Méndez cattle had once come down to drink, which is to say they built it, like everything in that town, on land that had been taken; and they hired the sons of the people they had taken it from to haul the crates and run the booths and sweep the planks when the summer people went home.
+
+Cirilo Méndez was eighteen that summer, and he worked the boards, and he had learned the one essential skill of his position, which was not to look at the summer people. You learned it the way you learned not to touch the lime vats — once, and never again. So he was looking at a pyramid of iron milk-bottles and a worn baseball in his hand, behind a banner that said TEST YOUR ARM, THREE BALLS A NICKEL, when the girl laughed.
+
+It was not the laugh they used on the pier, the bright tin one the young ladies kept in their purses with their handkerchiefs. It came out of her sideways and surprised, as though he had knocked it loose along with the bottles — which he had, all six of them, blown clean off the shelf by a ball thrown without any windup at all, after the young man beside her in the white flannels had missed three times and then accused the game of being rigged and the bottle boy, in the same breath, of being part of the rig.
+
+"Do it again," she said.
+
+"Costs a nickel," said Cirilo, and did not smile, and watched her hold his eyes a beat too long, and watched the young man in the flannels watch her do it.
+
+"Then here's a nickel," she said, and held out a coin in a kid-leather glove so soft it might have been made by his own father in another life, in another century, when leather still belonged to them. He took it. He gave her a ball. And he understood, with the flat cold clarity of a thing already decided, that the silence he had worn his whole life as the only armor they could not use against him had just, for the first time, begun to cost him more than it saved.
+
+### Chapter — The House in the Tannery's Shadow
+
+Home was two rooms and a lean-to under the smoke of Kron's tannery, and at night it held the whole argument of his life around a single lamp.
+
+His mother Dolores worked the pot; her rosary hung by the stove, where it had hung her whole life and, he suspected, the life of every woman the family had had since the bells came down. His father Esteban came in gray with the day, his hands cracked and stained dark to the wrist — a tanner's hands, a thing that does not wash off, that he had watched his own father wear and would watch his sons wear if the world had its way. Luis and Abel argued box scores. And in the only good chair, where he always sat, Don Aurelio watched the boy the way you watch weather coming.
+
+"Kron will take you on in the fall," Esteban said one night, not looking up. "Steady work. A man can feed a family on it."
+
+"I have work, Papá. At the beach."
+
+"You have a season at the beach. Until the summer people go home and the planks belong to the gulls again." And then, quieter, the fear coming up under the words like water under a floor: "I want you somewhere they can't put you out on a whim, mijo. That's all I want."
+
+"You want him where you are," said Don Aurelio from his chair. "Safe. Small. Second."
+
+The table went still. Esteban's jaw worked. "Second is alive, viejo. I have buried men who reached."
+
+The old man did not answer his son. He looked at the boy instead. "Show me the hand," he said; and when Cirilo crossed and held out his right hand he turned it in the lamplight — big, strong, and unmarked by the lime, because this boy alone of all of them had kept his hands for something other than another man's hides. "Your great-grandfather tanned with a hand like this and called himself a king," the old man said. "Your father trims them for wages and calls himself safe. You —" and he folded the boy's fingers slowly into a fist — "you have the first hands in four generations that don't smell of the pit. Don't you dare give them back."
+
+And Esteban, who loved his son in the only language the world had left him — the language of fear — looked at the floor and said nothing, because there is nothing to say to an old man who has decided, against ninety years of evidence, to hope.
+
+### Chapter — The Dark Under the Pier
+
+They could only have each other in the dark, and so the dark became theirs.
+
+When the boardwalk lights went out and the surf was the only sound, they met under the pilings, in the black wedge of shadow beneath the pier — the one place in that town a brown boy and a white girl could stand together without it costing blood. Her father thought she was asleep. His father thought he was a fool. They were both right, those nights, and neither of them cared.
+
+"Tell me something true," she said once. "You never do."
+
+He let the sand run through his fingers a while before he answered. "My family owned this," he said. "Not the pier. The land. All of it, the river to the redwoods, before there was a Santa Cruz to own it. Now I sell nickels on a plank built on top of it." He looked at her. "And I would rather be here, in the dark, with you, than have had any of it back."
+
+She took his hand — the pitching hand, the unmarked one — and held it like a thing she had decided to keep, and said they would simply have to take the rest of it back themselves; and just then a whistle came down from the boardwalk and a watchman's lamp swung out over the rail, and they froze together in the dark while the light swept the sand above their heads and moved on. They breathed again. But the fear was its own answer, the thing neither of them ever said aloud: that all of it — the dark, the nights, the held hand — was borrowed, and the lenders were cruel, and a reckoning was being kept in a ledger they were not allowed to read.
+
+### Chapter — What It Costs
+
+The reckoning came, the first installment of it, on the boards in the daylight.
+
+Cirilo was hauling crates when Chuck Ashby and two of his college friends stepped into his path, easy and grinning, the way men are when they outnumber. They had been talking about him, Chuck said. About how he'd been seen. At night. With a young lady of their acquaintance.
+
+"I don't know what you mean," Cirilo said, and set the crate down, slow.
+
+"You know exactly what I mean." And then Chuck told him, pleasantly, the way a man tells another man the weather, how it went out here for a fellow like him with a girl like that: no court, no judge, no arm fast enough. A rope, and a tree, and a crowd that went home afterward and slept fine. He stepped close. "Throw all the strikes you want, Mendez. You can't strike out a county." And he patted Cirilo's cheek — once, lightly, an insult precisely measured to be too small to answer and too large to forget — and strolled off laughing with his friends.
+
+Cirilo stood very still a moment. Then he picked the crate back up. His hands — the good hands, the unmarked ones, the first in four generations to smell of something other than the lime — were shaking, and not from the weight; and he understood, standing there on the bright borrowed planks, that the old man was only half right. The family was not merely cursed to second. It was that reaching for first — out loud, where they could see you do it — was a thing this country had ways of charging a man for that had nothing whatever to do with baseball.
+
+### Chapter — The Exhibition
+
+He had only one answer to all of it, and one Sunday he gave it in front of the whole town.
+
+It was a challenge game, the local nine against a touring club of college boys down for the weekend — Stanford men in crisp flannels, Chuck Ashby among them, loose and certain — and a holiday crowd came out behind the Leibbrandt baths, parasols and straw hats and the boardwalk organ carrying over the fence. When Cirilo took the ball for the locals the college side laughed: the bottle boy from the pier, in spikes.
+
+Then he threw. The first college man swung at a fastball already in the catcher's mitt. The second got the wet one — the spitball, the dying ball — that dropped off the table and left him foolish in front of his girl. The third was Chuck, who was not laughing now, who ground in and fouled and flailed and finally stalked back to the bench muttering that the ball was doctored, which it was, and which the rules of that year permitted, and which did not help him in the slightest.
+
+In the little grandstand, a man in a dark Jesuit coat stopped writing in his book and simply watched. He had seen a thousand arms. He had not seen this. And after the last out he came down to the fence and asked the bottle boy whether he had given any thought to college.
+
+"We can't pay for college, Father," Cirilo said.
+
+"No," said Coach Fagan, with a small smile. "But Santa Clara can pay for an arm. We play Stanford every spring." He glanced at Chuck, sulking by the bus. "Wouldn't you like to do that again — where it counts?"
+
+And the door of Cirilo Méndez's whole life swung open on a single sentence; and on the other side of it, an hour up the line, was everything he had been told all his life he was not permitted to want.
+
+### Chapter — The Leaving
+
+He left from the little depot in his one good suit, with a college letter in his pocket and a valise that did not need to be large.
+
+Rebecca came — against every rule, to the very edge of the platform and no farther, because she could not be seen — and told him that Santa Clara was only an hour, a morning's train, as though either of them believed the distance was the thing keeping them apart. "It's a hundred years," he said, "and we both know it. Your people, my people —"
+
+"Then go," she said, fierce and low, "and become a man so loud they can't pretend not to hear your name. And come back for me when you have."
+
+She pressed something into his hand: the kid-leather glove, the soft one from the booth, from the day they met. "So you remember whose hand you're playing for." The train called. He closed his fist around the leather — her glove, made of the one thing his family had ever truly owned — and got on, and did not look back, because he knew that if he looked back he would not go.
+
+Through the window the platform slid away. Rebecca stood in the wrong place a moment too long, then made herself turn, and walk, into a life that had just, in the space of a train whistle, become a waiting. And the boy on the train rode north toward the sons of the men who had taken everything, with a white girl's glove in his fist and his abuelo's voice in his ear and a silence in him that had finally, after eighteen years, hardened all the way into a purpose: he would climb, and he would not stop, and he would make them say the name. Whatever it cost — and it would cost everything, in the end, though he could not yet know that — he would not, ever, agree to be second to the men who had decided he was born it.
 
 ---
 
