@@ -81,8 +81,8 @@ A living map of the whole picture: ✍️ = drafted in this document, ◻ = fram
 - Seq 1 — ✍️ The Rematch (Stanford at Santa Clara; the strikeout; Rebecca stands)
 - Seq 2 — ✍️ The Break (the Whitfield ultimatum; Rebecca chooses; Chuck curdles)
 - Seq 3 — ✍️ The climb, level by level (bush leagues → Beachcombers → PCL Seals → Brooklyn) — prose + ✍️ the backstop lesson
-  - ◻ A Brooklyn "can't make rent" scene (the reserve clause; winter tannery work)
-  - ◻ A PCL triumph the bigs ignore (the scout who admires and passes)
+  - ✍️ A Brooklyn "can't make rent" scene (the reserve clause; the winter hides; "we do not quit")
+  - ✍️ A PCL triumph the bigs ignore (the man in the derby; "the right kind of half")
 - Seq 4 — ✍️ The wedding (Holy Cross; two worlds; the curse warning)
 - Seq 5 — ✍️ The Call (traded to Boston; bittersweet; Hooper's word; the war's empty rosters)
 
@@ -738,6 +738,47 @@ He flips the ball back. Cirilo goes into his motion.
 
 **Brooklyn — the bottom of the top.** The call finally came, late, in his thirties — and it was to **Brooklyn**, Uncle Robbie's Robins, the National League's most dependable heartbreak, a ballclub that knew being second the exact way Cirilo did. The thing he'd chased fifteen years, and it nearly starved him. The reserve clause pinned an old rookie's pay to the floor; Brooklyn rent ate the floor; and with Rebecca beside him and a child on the way he stood in a major-league uniform and *still* could not make a month meet itself. So he did what his father did before him: in the winters he went home and back through the **tannery gate**, the championship-bound arm trimming another man's hides to cover the Brooklyn rent — leather to leather, the thread his great-grandfather started never once breaking. Thirty-five years old, in the major leagues, and second-class still. He nearly quit. Rebecca would not let him. And then, in 1917, with the war stripping the rosters bare — *work or fight* — a Boston man bought the old spitballer's contract for almost nothing, the way you'd buy a used glove off a nail, on the word of a Hollister boy who never forgot the ridge he came from. Cirilo packed for the Red Sox not knowing he was packing for the only October that would ever matter. → **Act III.**
 
+### Screenplay — the man in the derby
+
+```
+EXT. RECREATION PARK, SAN FRANCISCO -- DAY (1909)
+
+A big Coast League crowd in the gray light. CIRILO -- a Seals
+jersey, the best pitcher in the best league nobody east will
+call major -- walks off the mound to a roar, having just
+two-hit the Angels.
+
+In a box, a MAJOR-LEAGUE SCOUT in a derby lowers his field
+glasses to the BIRD DOG beside him, notebook open.
+
+SCOUT
+Best arm I've seen all year. Spitter
+falls off a cliff. Reads hitters like a
+cardsharp.
+
+BIRD DOG
+(pencil ready)
+So we take him.
+
+SCOUT
+(a beat -- then, not even unkindly, just
+certain)
+He's thirty next year. And he's a... you
+know. The crowds back east won't warm to
+it. Ownership won't spend the ink.
+(he folds the glasses)
+Write down the kid in left. The blond
+one. Half the ballplayer.
+(beat)
+But he's the right kind of half.
+
+Down on the grass, Cirilo tips his cap to the crowd that loves
+him -- the only crowd that's allowed to -- and does not know,
+and will never be told, that a man in a derby just decided his
+whole life in one sentence, for a reason no one will ever put
+on paper.
+```
+
 ### Screenplay — the wedding (Sequence 4)
 
 ```
@@ -787,6 +828,55 @@ has decided to break a curse he refuses to believe in.
 Behind them REBECCA laughs at something one of the brothers
 said -- the real laugh, the one from the booth, sixteen years
 old now and still surprising people out of themselves.
+```
+
+### Screenplay — the winter hides (Sequence 5)
+
+```
+INT. MÉNDEZ FLAT, BROOKLYN -- NIGHT (WINTER, ~1916)
+
+A major-league uniform hangs on a nail. Below it, on the
+table, the household accounts: a short stack of bills and a
+shorter stack of dollars that will not reach across them.
+CIRILO, in shirtsleeves, his pitching hands raw and stained
+dark at the knuckles. Tanner's stains. REBECCA sees them.
+
+REBECCA
+You went back to the hides.
+
+CIRILO
+(not ashamed -- just tired)
+A tannery in Newark takes on winter men.
+No questions asked. They don't care what
+a man's name is if his hands know the
+work.
+(a laugh with nothing in it)
+I pitch in the major leagues, Rebecca,
+and I can't make the rent on it. The club
+owns my contract and pays me what it
+pleases, and there's no other club I'm
+allowed to ask. They call it the reserve
+clause. My abuelo had a shorter word.
+
+REBECCA
+(quiet)
+Leather.
+
+CIRILO
+Bought and sold and never asked. Four
+generations, and the family business is
+the same. Only now the hide is mine.
+
+Rebecca takes his stained hands in her clean ones -- the
+heiress's hands, that chose this -- and does not let go.
+
+REBECCA
+Then we work the winter. We wait for the
+spring. We do not quit. Say it.
+
+CIRILO
+(the family creed, worn smooth)
+We do not quit.
 ```
 
 ### Screenplay — the call (Sequence 5)
