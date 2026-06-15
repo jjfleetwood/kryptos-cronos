@@ -36,7 +36,9 @@ const MODEL_ID = process.env.ELEVENLABS_MODEL_ID || "eleven_multilingual_v2";
 const FORMAT = process.env.ELEVENLABS_FORMAT || "mp3_44100_64";
 
 if (!API_KEY) { console.error("ELEVENLABS_API_KEY is not set. Aborting."); process.exit(1); }
-if (!BLOB_TOKEN) { console.error("BLOB_READ_WRITE_TOKEN is not set (create a Vercel Blob store, then `vercel env pull`). Aborting."); process.exit(1); }
+// BLOB_READ_WRITE_TOKEN is optional: with it, we upload via the SDK; without it,
+// we just write the local MP3 and print the `vercel blob put` command (which
+// auths via the linked project — no token needed).
 
 // Same slice as /api/studio?prose=1: Prologue → Epilogue, no scaffolding.
 function extractProse(content) {
@@ -105,8 +107,11 @@ async function tts(text, prev, next) {
 
 async function main() {
   const md = fs.readFileSync(SRC, "utf-8");
-  const chunks = chunk(mdToSpeech(extractProse(md)));
-  console.log(`${chunks.length} chunks @ ${FORMAT} → ${LOCAL_MP3}`);
+  const all = chunk(mdToSpeech(extractProse(md)));
+  // AUDIOBOOK_LIMIT=N renders only the first N chunks (cheap pipeline test).
+  const LIMIT = parseInt(process.env.AUDIOBOOK_LIMIT || "0", 10);
+  const chunks = LIMIT > 0 ? all.slice(0, LIMIT) : all;
+  console.log(`${chunks.length}${LIMIT > 0 ? ` of ${all.length} (LIMIT)` : ""} chunks @ ${FORMAT} → ${LOCAL_MP3}`);
 
   fs.mkdirSync(BUILD_DIR, { recursive: true });
   const fd = fs.openSync(LOCAL_MP3, "w");
@@ -121,8 +126,16 @@ async function main() {
   }
 
   const mb = (fs.statSync(LOCAL_MP3).size / 1024 / 1024).toFixed(1);
-  console.log(`\nGenerated ${mb} MB. Uploading to Vercel Blob…`);
+  console.log(`\nGenerated ${mb} MB at ${path.relative(ROOT, LOCAL_MP3)}.`);
 
+  if (!BLOB_TOKEN) {
+    console.log(`\nNo BLOB_READ_WRITE_TOKEN set — upload via the linked-project CLI instead:`);
+    console.log(`  npx vercel blob put "${LOCAL_MP3}" --access public --add-random-suffix --content-type audio/mpeg --pathname studio/siempre-segundo.mp3`);
+    console.log(`Then record the printed URL in secured-docs/siempre-segundo.audio.txt, commit, and push.`);
+    return;
+  }
+
+  console.log(`Uploading to Vercel Blob…`);
   const buf = fs.readFileSync(LOCAL_MP3);
   const blob = await put("studio/siempre-segundo.mp3", buf, {
     access: "public",
