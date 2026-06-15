@@ -38,6 +38,8 @@ const ALLOWED_FILES = new Set([
   "API_REFERENCE.md",
   "ADR.md",
   "HOURS_LOG.md",
+  // Audit reports (Audit Agent, report-only)
+  "AUDIT-2026-06-15.md",
 ]);
 
 export async function GET(
