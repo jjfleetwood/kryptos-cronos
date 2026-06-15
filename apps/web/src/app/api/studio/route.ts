@@ -28,10 +28,25 @@ export async function GET(req: NextRequest) {
   try {
     const filePath = path.join(process.cwd(), "secured-docs", "SIEMPRE_SEGUNDO.md");
     const content = fs.readFileSync(filePath, "utf-8");
-    return new NextResponse(content, {
+    // ?prose=1 → only the novelized chapters (Prologue → Epilogue), stripping the
+    // blurb/thesis/cast/structure/Frame/screenplay scaffolding and the Notes tail.
+    // This is the clean continuous-narration text for read-aloud / car listening.
+    const proseOnly = req.nextUrl.searchParams.get("prose") === "1";
+    const body = proseOnly ? extractProse(content) : content;
+    return new NextResponse(body, {
       headers: { "Content-Type": "text/plain; charset=utf-8", "Cache-Control": "no-store" },
     });
   } catch {
     return NextResponse.json({ error: "not found" }, { status: 404 });
   }
+}
+
+// Slice from the first novelized section heading through the end of the Epilogue
+// (i.e. up to but not including the "## Notes & to-do" tail).
+function extractProse(content: string): string {
+  const start = content.indexOf("## _Siempre Segundo_ — Prologue");
+  if (start === -1) return content;
+  const tail = content.indexOf("## Notes & to-do", start);
+  const slice = tail === -1 ? content.slice(start) : content.slice(start, tail);
+  return slice.trimEnd() + "\n";
 }

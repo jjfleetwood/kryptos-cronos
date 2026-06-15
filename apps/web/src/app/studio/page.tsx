@@ -99,7 +99,10 @@ export default function StudioPage() {
       <div className="max-w-3xl mx-auto px-4 py-12">
         <div className="flex items-center justify-between mb-8">
           <Link href="/" className="text-gray-500 hover:text-amber-400 text-sm transition-colors">← Home</Link>
-          <span className="text-[11px] font-mono font-bold text-amber-400 uppercase tracking-[0.3em]">Studio · Pro</span>
+          <div className="flex items-center gap-3">
+            <Link href="/studio/prose" className="text-amber-400 hover:text-amber-300 text-sm font-semibold transition-colors">🎧 Read aloud →</Link>
+            <span className="text-[11px] font-mono font-bold text-amber-400 uppercase tracking-[0.3em]">Studio · Pro</span>
+          </div>
         </div>
 
         {state === "loading" ? (
