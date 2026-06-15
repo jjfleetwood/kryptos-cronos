@@ -6,16 +6,16 @@ import ReactMarkdown, { type Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Studio — home for the screenplay/novel project "Siempre Segundo." The
-// manuscript itself lives as server-gated markdown (secured-docs/SIEMPRE_SEGUNDO.md,
-// served by /api/docs/[file] behind requireAdmin), so the prose never ships in the
-// public client bundle. This page is the branded hub that fetches + renders it.
+// Studio — home for the screenplay/novel project "Siempre Segundo / Siempre
+// Primero." The manuscript is served as a PUBLIC static asset
+// (apps/web/public/siempre-segundo.md), readable by anyone — not admin-gated.
+// This page is the branded hub that fetches + renders it.
 // ─────────────────────────────────────────────────────────────────────────────
 
-const MANUSCRIPT = "SIEMPRE_SEGUNDO.md";
+const MANUSCRIPT = "/siempre-segundo.md";
 
 // Markdown renderer tuned for the manuscript: serif-ish reading prose, amber
-// accents, and fenced code blocks rendered as monospace screenplay panels.
+// accents, fenced code blocks rendered as monospace screenplay panels.
 const components: Components = {
   h1: ({ children }) => <h1 className="text-4xl font-black text-white mt-2 mb-3 tracking-tight">{children}</h1>,
   h2: ({ children }) => <h2 className="text-2xl font-black text-amber-300 mt-12 mb-4 border-b border-amber-500/20 pb-2">{children}</h2>,
@@ -53,13 +53,13 @@ const components: Components = {
 };
 
 export default function StudioPage() {
-  const [state, setState] = useState<"loading" | "denied" | "ready">("loading");
+  const [state, setState] = useState<"loading" | "error" | "ready">("loading");
   const [md, setMd] = useState("");
 
   useEffect(() => {
-    fetch(`/api/docs/${MANUSCRIPT}`)
+    fetch(MANUSCRIPT)
       .then((r) => {
-        if (!r.ok) { setState("denied"); return null; }
+        if (!r.ok) { setState("error"); return null; }
         return r.text();
       })
       .then((text) => {
@@ -67,27 +67,14 @@ export default function StudioPage() {
         setMd(text);
         setState("ready");
       })
-      .catch(() => setState("denied"));
+      .catch(() => setState("error"));
   }, []);
-
-  if (state === "denied") {
-    return (
-      <div className="min-h-screen flex items-center justify-center px-4" style={{ background: "linear-gradient(135deg, #0d1117 0%, #1a1410 50%, #0d0a08 100%)" }}>
-        <div className="text-center max-w-sm">
-          <div className="text-6xl mb-4">🔒</div>
-          <h2 className="text-2xl font-black text-white mb-2">Admin only</h2>
-          <p className="text-gray-400 text-sm mb-6">The Studio manuscript is internal and admin-gated.</p>
-          <Link href="/admin" className="text-amber-300 hover:text-amber-200 text-sm transition-colors">→ Admin dashboard</Link>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen" style={{ background: "linear-gradient(135deg, #0d1117 0%, #1a1410 55%, #0d0a08 100%)" }}>
       <div className="max-w-3xl mx-auto px-4 py-12">
         <div className="flex items-center justify-between mb-8">
-          <Link href="/admin" className="text-gray-500 hover:text-amber-400 text-sm transition-colors">← Admin dashboard</Link>
+          <Link href="/" className="text-gray-500 hover:text-amber-400 text-sm transition-colors">← Home</Link>
           <span className="text-[11px] font-mono font-bold text-amber-400 uppercase tracking-[0.3em]">Studio · Working Manuscript</span>
         </div>
 
@@ -98,6 +85,8 @@ export default function StudioPage() {
             <div className="h-4 bg-white/5 rounded w-5/6" />
             <div className="h-4 bg-white/5 rounded w-3/4" />
           </div>
+        ) : state === "error" ? (
+          <div className="py-24 text-center text-gray-500 text-sm">Couldn&rsquo;t load the manuscript. Try refreshing.</div>
         ) : (
           <article className="min-w-0">
             <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>

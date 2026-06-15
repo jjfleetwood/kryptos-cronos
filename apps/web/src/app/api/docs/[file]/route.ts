@@ -38,8 +38,6 @@ const ALLOWED_FILES = new Set([
   "API_REFERENCE.md",
   "ADR.md",
   "HOURS_LOG.md",
-  // Studio — creative manuscript (admin-only)
-  "SIEMPRE_SEGUNDO.md",
 ]);
 
 export async function GET(

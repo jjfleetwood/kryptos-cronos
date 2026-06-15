@@ -59,6 +59,46 @@ Underneath the leather: **dispossession & reinvention**, **the rooted treated as
 
 ---
 
+## The Frame — scene-by-scene (working index)
+
+A living map of the whole picture: ✍️ = drafted in this document, ◻ = framed, still to write. The grind fills the ◻'s.
+
+**PROLOGUE — California Banknotes (1833–1882)**
+- ✍️ The remembered sweep (rancho → conquest → tannery → birth) — prose + compressed screenplay
+- ◻ Expansion: the fandango, full scene (the golden age at its peak)
+- ◻ Expansion: the Land Commission hearing, dramatized (the courthouse conquest)
+
+**ACT I — The Boardwalk (~1900–1903)**
+- ✍️ The meeting (the ball-toss booth; Rebecca's laugh) — screenplay + prose
+- ◻ Home: a day in the tannery / the Méndez household (Esteban, Dolores, the curse-keeping abuelo)
+- ◻ The secret courtship (the beach at night; the danger of it)
+- ◻ The exhibition (Cirilo's arm goes public; strikes out the visiting college boys; Chuck watches)
+- ◻ Chuck's first cruelty (what a Mexican drawing a white girl's eye invites in 1900)
+- ◻ The door opens (a Santa Clara man sees the arm)
+- ◻ Leaving the beach (parting with Rebecca; a token)
+
+**ACT II — The Rematch & The Long Wait (1903–1917)**
+- Seq 1 — ✍️ The Rematch (Stanford at Santa Clara; the strikeout; Rebecca stands)
+- Seq 2 — ✍️ The Break (the Whitfield ultimatum; Rebecca chooses; Chuck curdles)
+- Seq 3 — ✍️ The climb, level by level (bush leagues → Beachcombers → PCL Seals → Brooklyn) — prose + ✍️ the backstop lesson
+  - ◻ A Brooklyn "can't make rent" scene (the reserve clause; winter tannery work)
+  - ◻ A PCL triumph the bigs ignore (the scout who admires and passes)
+- Seq 4 — ✍️ The wedding (Holy Cross; two worlds; the curse warning)
+- Seq 5 — ✍️ The Call (traded to Boston; bittersweet; Hooper's word; the war's empty rosters)
+
+**ACT III — Siempre Primero (1918)**
+- ✍️ The name they give him (the El Cid clubhouse; Ruth)
+- ◻ New Year's, 1918 — the son is born (hope at the turn of the year)
+- ◻ The season (leading the league; the press crowns him; a pitching-craft montage drawn from the baseball curriculum)
+- ✍️ Chuck at the Series (the reappearance; everything-and-not-the-thing)
+- ✍️ The fever game (the real 1918 World Series; the strikeout; carried off; first)
+- ✍️ What the crowd carried (the parade; the sick autumn air)
+- ✍️ The room (the deathbed; the glove to the son)
+- ✍️ The real victory, the curse broken (the coda; "throws like Méndez")
+- ◻ Option: a 2020 COVID bookend (if we ever want the echo explicit)
+
+---
+
 ## PROLOGUE — *California Banknotes*
 
 ### Novel prose
@@ -295,6 +335,85 @@ CIRILO
 Costs a nickel.
 ```
 
+### Screenplay — the break (Sequence 2)
+
+```
+INT. THE WHITFIELD HOUSE, NOB HILL -- DRAWING ROOM -- NIGHT
+(1904)
+
+Gaslight on good furniture. HORACE WHITFIELD, Rebecca's
+father, stands at the mantel like a man addressing a board.
+CHUCK ASHBY III waits by the window -- a suitor who has been
+told he is owed something.
+
+REBECCA stands in the center of the rug. Alone, the way she
+is going to get used to standing.
+
+HORACE
+I have been more than patient. A
+summer's foolishness with a -- a beach
+attendant. I let it run, because these
+things burn out.
+(beat)
+It has not burned out. So now I am
+plain. You will not see the Mexican
+again. Charley has been a gentleman
+about all of it. More than you deserve.
+
+CHUCK
+(softly -- the knife)
+He throws a baseball, Rebecca. That's
+the whole of him. A strong arm and a
+borrowed suit.
+
+REBECCA
+(to Chuck, almost gently)
+And what's the whole of you, Chuck? Your
+father's name, your father's money, your
+father's chair at the club.
+(beat)
+At least his arm is his.
+
+HORACE
+If you walk out that door to him, you
+walk out of this family. No allowance.
+No name. No coming back when the romance
+of being poor wears thin -- and it will
+wear thin, faster than you can dream.
+
+A long beat. Rebecca looks at the room she grew up in. The
+good furniture. The warm, lit, comfortable cage of it.
+
+REBECCA
+You've confused two things, Father.
+You think you're offering me everything.
+(she takes nothing; lifts nothing)
+You're offering me less than a man with
+one borrowed suit already gave me on a
+pier. He looked at me like a person.
+You have never once looked at me like
+anything but an arrangement.
+
+She walks to the door. Turns back -- to Chuck this time. A
+small last mercy, and a small last wound.
+
+REBECCA (CONT'D)
+Find someone who wants the chair at the
+club, Chuck. They're easy to find.
+They're the only people you've ever met.
+
+She goes. The door clicks. HORACE stares at it. And in
+CHUCK's face something curdles -- from wounded into the kind
+of thing that waits.
+
+CHUCK
+(quiet, to the closed door)
+We'll see how the person looks at you
+in ten years. On a tannery wage.
+```
+
+She paid for it in full and on time. The allowance stopped; the name closed over her like water; the friends she had grown up beside learned, all at once, not to see her on the street. And Rebecca Whitfield, who had never in her life made a bed or counted a dollar twice, went to live in the margins of a country that had decided she no longer existed — and found, to the genuine astonishment of everyone who had warned her, that she had never once been happy until she did.
+
 ### Sequence 3 — The Long Wait: the climb, level by level (1904–1916)
 
 *(Where the picture gets drunk on baseball — the smells, the rungs, the day-in-the-life — and where Don Aurelio, who has watched the game in California since the Gold Rush sandlots, becomes Cirilo's teacher and the audience's. Period-real throughout; the real figures are named.)*
@@ -429,6 +548,84 @@ said -- the real laugh, the one from the booth, sixteen years
 old now and still surprising people out of themselves.
 ```
 
+### Screenplay — the call (Sequence 5)
+
+```
+INT. MÉNDEZ FLAT, BROOKLYN -- NIGHT (WINTER 1917)
+
+Cold-water rooms. REBECCA, pregnant, mends a sock by a weak
+lamp. CIRILO (35) comes in stamping snow off his boots, a
+TELEGRAM crushed in one fist, his face doing something it
+doesn't have a name for.
+
+REBECCA
+What is it. Cirilo.
+
+CIRILO
+Boston bought my contract.
+(he can hardly make the words real)
+The Red Sox. The major leagues want a
+thirty-five-year-old spitballer they can
+have for the price of the train.
+
+REBECCA
+(rising, joy breaking over her)
+Cirilo --
+
+CIRILO
+(stopping her, gently -- the truth has
+to come with it)
+They want me because the young ones are
+in France. Half of Barrow's staff is in
+a trench or under one. He's down to old
+men and boys.
+(beat)
+Sixteen years I waited for the call.
+And it comes because the country ran
+out of white arms to send up.
+
+Silence. The cruelty and the gift, sitting in the same cold
+room.
+
+REBECCA
+(taking his frozen face in both hands)
+Then listen. It does not matter why the
+door opened. It matters that you walk
+through it. You have waited your whole
+life for a door to open at all.
+
+He looks at her -- the heiress who chose this freezing flat.
+
+CIRILO
+Hooper put my name in. The Hollister
+boy -- played Soquel ball one ridge from
+my brothers. All these years, and the
+man who remembered me is a kid from up
+the road.
+
+He lifts the worn GLOVE off the table -- his father's
+leather, his great-grandfather's tanning. Turns it once.
+
+CIRILO (CONT'D)
+My abuelo will say it's too high. He'll
+say the family was never meant to climb
+this far.
+
+REBECCA
+(a hand on her belly)
+Then we climb it for this one. Let the
+curse take it up with a baby.
+
+Off Cirilo -- almost smiling, plainly terrified, and going.
+
+DON AURELIO (V.O.)
+(a letter, faint, as the room dims)
+Mijo. They call you to the very top now.
+Be careful up there. The air is thin
+where they let us stand -- and they have
+never, not once, caught us when we fall.
+```
+
 ---
 
 ## ACT III — *Siempre Primero* (1918) — THE CLIMAX
@@ -476,6 +673,54 @@ RUTH
 ...Throw the one nobody hits today, Cid.
 
 And Cirilo -- almost -- smiles.
+```
+
+### Screenplay — Chuck at the Series
+
+```
+EXT. THE BALLPARK -- WORLD SERIES -- A PRIVATE BOX -- DAY (1918)
+
+Above the bunting, in the best seats money rents, CHUCK ASHBY
+III -- older, heavier, prosperous. A banker's overcoat, a
+banker's watch chain, and a wife on his arm who is poised and
+handsome and is not Rebecca. He did exactly what he was always
+going to do: he inherited the chair at the club.
+
+Down in the cheap seats he finds them -- REBECCA, in a plain
+coat, a BABY on her hip; and out on the mound, impossibly, the
+beach attendant. The bottle boy. EL CID, the headlines say.
+
+CHUCK'S WIFE
+(following his stare)
+Friends of yours?
+
+CHUCK
+(a beat too long)
+I knew them. A long time ago.
+
+On the field, Cirilo works. The whole park is on its feet.
+Chuck does not rise. He watches the woman who chose the strong
+arm and the borrowed suit watch her husband become the one
+thing Chuck Ashby will never be in a hundred inherited years:
+loved like that. In the open. By someone who had every other
+choice and made this one.
+
+He bought the best seat in the house. From it he is given a
+clear, unobstructed, season-long view of the single thing his
+money was never going to buy -- and he is not permitted, by
+some cruelty of the geometry, to look away.
+
+CHUCK'S WIFE
+You're not cheering.
+
+CHUCK
+(barely)
+No.
+
+And that -- the not-cheering, the having-it-all and knowing,
+for one unbearable afternoon, that it was never the thing --
+is the whole of Chuck Ashby, handed to him in a ballpark he
+will spend the rest of his life telling people he attended.
 ```
 
 ### Screenplay — the fever game (the real 1918 World Series)
