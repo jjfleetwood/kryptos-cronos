@@ -96,6 +96,7 @@ A living map of the whole picture: ✍️ = drafted in this document, ◻ = fram
 - ✍️ The room (the deathbed; the glove to the son)
 - ✍️ The real victory, the curse broken (the coda; "throws like Méndez")
 - ◻ Option: a 2020 COVID bookend (if we ever want the echo explicit)
+- 📖 **Act III is NOVELIZED** — eight full prose chapters (see *Siempre Primero* — Act III, below). Acts I & II await the same.
 
 ---
 
@@ -1270,6 +1271,128 @@ Already big. Already strong.
 ```
 FADE OUT.
 ```
+
+---
+
+## _Siempre Primero_ — Act III, novelized (full chapters)
+
+*The companion novel renders the screenplay's beats as full prose. These are the Act III chapters, drafted; the earlier acts await the same treatment.*
+
+### Chapter — The First Day of the Year
+
+The boy came in the first hour of the first day of the year, which Cirilo would decide later was the only wholly good omen the world ever sent him; and like all good omens, it arrived disguised as terror.
+
+It was so cold in the Brooklyn rooms that the water in the basin had skinned over with ice by the time the midwife wanted it warm, and Cirilo — who had stood sixty feet from men paid to take his head off and never once felt his hands shake — stood in the doorway of his own bedroom and shook like a boy. Rebecca had stopped being quiet hours before. He had not known there were sounds like that in her, the heiress, the girl who laughed sideways, the woman who had walked out of a Nob Hill drawing room and into this; and each one went through him like a thrown strike he could not catch.
+
+And then, near three in the morning, a different sound: thin, furious, alive. The midwife said something he did not hear. Rebecca said something he did, because she had been saving it, had carried it up out of the pain on purpose to give to him. "First baby of the year, she says. Born on the one. Before anybody else's." She found his eyes across the lamplight, exhausted past the far side of exhaustion, and she was smiling. "First, Cirilo. He's first at something already."
+
+He crossed the cold floor and took the small hands in his — both of them folded into one of his, the gesture his abuelo had made over him thirty-six years and three thousand miles ago, on a floor that smelled of lime and hide — and found he could not speak, so he said the only words the family had. "Already big," he managed. "Already strong."
+
+He went to the chair by the window where the old glove always sat, his father's leather and his great-grandfather's tanning, soft now past softness, and carried it back and laid it in the crook of the cradle beside his son, the way another man in another family might have laid down the deed to a thousand acres. "There," he said. "Now you own the only thing we never lost."
+
+Outside, over the black river, a few horns and a few drunk voices were still seeing the new year in. Cirilo Méndez stood in the cold with his wife and his son and his father's glove, a thirty-six-year-old rookie with a tannery stain still under his nails, and for the length of one held breath he was not second to any man alive.
+
+### Chapter — The Oldest Rookie
+
+He reported to Boston in the spring of a year the whole country was trying not to look at directly. The war had been on long enough to have eaten the part of every town that did the dying, and *work or fight* had boiled the rosters down to a thin gruel of old men and boys and the few young stars the army had not yet reached. Ed Barrow, who managed the Red Sox the way a man drives a wagon down a grade with the brake smoking, took one look at the thirty-six-year-old spitballer he had bought for the price of a train ticket, said "God help me, I'm starting graybeards" more to himself than to anyone, and put him in the rotation — because there was no one else, and because the graybeard could still make a baseball die in the air a foot in front of the plate.
+
+The clubhouse was a wonder and a loneliness both. There was a boy in it named Ruth, enormous and loud and twenty-three, eating as though food were about to be rationed — it was — and hitting baseballs distances that made grown sportswriters revise their religion. Ruth liked Cirilo in the careless way the very young like the very old, and drifted down between his own starts to watch the spitball drop, shaking his big head. "They oughta outlaw that," he said once, grinning. "They're going to," Cirilo said, and Ruth laughed like it was a joke and not a clock.
+
+And there was Hooper. Harry Hooper, the gentleman of the outfield, who had grown up one county over from the Beachcombers on Soquel ground, and who had carried Cirilo's name in his pocket for years before he finally said it to the right man. They did not talk much about Santa Cruz. They did not have to. Twice a week, two boys off the same sliver of the same coast looked at each other across a major-league clubhouse three thousand miles from it, and that was conversation enough.
+
+What the city could not do was say his name. The Boston papers tried for about a week and then gave up and made him a new one, the way the country had been making his people new names for seventy years — too foreign to be spoken, so corrected into something the tongue could hold. They called him El Cid: a Spanish conqueror, for a Mexican tanner's son, the joke of it so total that no one in the bleachers ever heard it. On the days he pitched, Fenway Park stood and chanted the name of a man eight centuries dead and a country he had never been let belong to, and Cirilo took the ball and did not correct them, because he had learned the first hard law of his life at the bottom of the bushes and never unlearned it: you do not own your name any more than you own your arm. They will call you what they please. The only answer is the pitch.
+
+### Chapter — The Summer of the Dying Ball
+
+He was, that summer, the best he had ever been — which is a cruel thing to become at thirty-six, in a body that has trimmed hides all winter to make the rent.
+
+He pitched the way the old man had taught him on an overturned bucket behind the Beach Flats backstop a lifetime before, and the lessons came up out of his hands without his having to call them. He read a man's feet before he read his swing: the deep stander buying time, busted up and in where his fear could not follow; the plate-crowder who could not reach his own fists, tied up inside until he came apart. He watched their hands on the bat — the white-knuckle sluggers squeezing the sawdust out of the wood, to whom he fed the slow wet one and let their own greed swing for them; the loose, patient hands he could not fool and so out-thought instead, never showing a pair of eyes the same height twice, high and hard and then slow and low until the eyes loaded for the one and the other was already gone.
+
+And the spitball — the dying ball, the wet one his abuelo had pressed on him with a warning folded inside it — fell off the table that whole last legal summer like a thing that had given up on flight. The American League, which would outlaw the pitch forever in two more years, had no answer for an old man who threw it with a young man's arm and a cardsharp's mind. He led them all. The most wins. The fewest runs to cross the plate behind him. By the early, war-shortened end of the season, the perennial almosts of the country had themselves a pennant, and the man who had been second his entire life stood, for the first time, one short series from first at the only thing the whole bleeding country had stopped to watch.
+
+### Chapter — A Man in a Good Coat
+
+Chuck Ashby came to the Series the way he came to everything: in the best seat money could rent, with a wife on his arm who was poised and handsome and was not Rebecca.
+
+He had done, by 1918, exactly what he had always been going to do. He had inherited the chair at the club and the name on the building and the trick of regarding the world as a thing arranged for his convenience. He had not thought about the bottle boy in years — not really, not in any way that cost him sleep — so it was a peculiar shock to lift his field glasses over the rail of his box and find, on the highest mound in the country, the beach attendant. EL CID, the bunting said. And in the cheaper seats, in a plain coat with a baby on her hip, the only woman who had ever looked at Chuck Ashby and priced him correctly.
+
+His wife asked whether they were friends of his. "I knew them," he said, a beat too long. "A long time ago."
+
+Then he sat, in the most expensive seat in the park, and was given a clear and unobstructed and entirely unwanted view of the one thing his money had never been able to buy: a woman who'd had every other choice in the world, on her feet, weeping, screaming a Mexican's invented name, in love in the open with a dying man who had nothing and would, by Christmas, have less. The whole park was standing. Chuck Ashby did not stand. He had finally caught up to the bottle boy, and it had cost him eighteen years and a fortune to arrive at the precise spot from which he could watch — and not look away from — everything he had won instead of the thing that mattered.
+
+### Chapter — The Fever Game
+
+The fever came up in the third inning of the last game, and he told no one.
+
+He had felt it gathering for a day: the ache behind the eyes, the cold that lived under the skin and would not be warmed. He had looked at the calendar and the standings and the sixteen years behind him and decided, with the flat cold certainty of a man who has waited too long to be careful, that it could wait one more afternoon. The thing already had a name in the camps; it would have one in the city within the week. On the field that day it was only a chill, and a pitcher the color of the ball, and thirty thousand people who did not yet know they were sitting in the middle of the thing that would kill more of them than the war.
+
+By the ninth he could barely feel the seams. Two out, the tying run aboard, a full count — one strike from the first championship of his life and his team's. Barrow came halfway to the mound, read the catcher's face and then Cirilo's, and stopped where he stood, because some things a manager is not permitted to take from a man.
+
+"You're done, Mendez," he said anyway. "You're white as the ball. Let me bring the kid."
+
+Cirilo shook his head. Once. "I've been second my whole life, skip," he said. "Not today."
+
+Barrow looked at him a long moment — the kind of look a man spends the next forty years trying to forget he gave — and put the ball back in his hand and walked away.
+
+In the box, Rebecca had their son up on her hip, and beside her sat Don Aurelio, ancient now, brought across the whole width of the country to see this, his hat over his heart, not watching the batter at all. Watching his grandson's hands, and afraid of them, because the old man knew the family law better than he knew his prayers: *we are not allowed to be first.*
+
+Cirilo looked in. The stitched leather, an old friend. He did not wind up big; he never had. He threw the best thing he owned, and the world went silent the way it only does in memory, and the ball died in the air a foot in front of the plate, and the bat went through the place it had been.
+
+Strike three.
+
+And the park came apart. They reached him at the mound the way the sea reaches a rock and lifted him up — the tannery boy, the bottle boy, the man with the wrong name in the papers — up onto their shoulders and over the whole roaring country, a champion, *first*, for the first time in his life and the first time in his family's stolen century. He found Rebecca in the noise and held the ball up toward the boy like a man showing a coin he had crossed an ocean to earn. And down in the box, alone in a standing crowd, Don Aurelio closed his eyes — because he was the only soul in the park who was afraid, and he had been right to be.
+
+### Chapter — What the Crowd Carried
+
+They carried him through the streets that night, and the streets killed him.
+
+It was the first time the city of Boston had ever opened its arms to a Méndez, and it did the thing wholeheartedly, the way a city does when it has decided you are briefly its own: forty thousand people shoulder to shoulder in the wet autumn dark, breathing the same air, passing the champion overhead hand to hand, his son held up over the crowd in a knit cap. For one night Cirilo Méndez was not second to any man in America, and the whole town loved him out loud, and the whole town was already sick and did not know it.
+
+That was the cruelty the century had saved for him, and it was a tidy one: the embrace was the infection. The same packed, joyful, unmasked crowd that finally lifted the brown man onto its shoulders was the breath that carried the thing through the city in the days that followed — the camps already overflowing, Devens forty miles off counting its dead by the hundred, October closing its hand over the country until it became, before it was through, the deadliest month the nation would ever know. They had spent seventy years refusing to embrace his people, and the one time they did, in the one city, on the one night, it was the embrace that did what the refusal never had.
+
+He went down four days later. He had survived the bushes and the reserve clause and the man in the derby and sixteen years of being told no, and the air of a celebration thrown in his own honor took him in under a week.
+
+### Chapter — The Room
+
+The influenza did in four days what sixteen years of *no* had not managed.
+
+The flat was small and clean and full of the wrong quiet. On the sill the championship ball sat beside a guttering candle and the rosary that had come all the way from the beginning of the family, from a chapel on land they no longer owned. Rebecca sat at the edge of the bed, dry-eyed past the far side of crying, their son asleep against her. In the corner Don Aurelio's lips moved over the beads and did not stop.
+
+Cirilo was a long way off by then, but his hand found the old glove on the blanket — his father's leather, his great-grandfather's tanning, the one thing four generations had carried through every theft — and he turned it once in his fingers, and then he did not give it to Rebecca. He folded the small fingers of his son around it instead.
+
+"Abuelo was right," he said, and they had to lean close to hear it. "There's a price. For us. Being first." The ghost of the old smile. "Worth it. Tell him it was worth it."
+
+"No." The old man's voice broke and came out fierce. "No, mijo. I was wrong. I was wrong my whole life —"
+
+But Cirilo did not hear the end of it. What he heard, the last thing, was Rebecca, who had carried it up out of her grief on purpose, the way she had once carried his name up out of her labor, to give to him in time. "You weren't second," she said into the quiet. "Not for one day of your life."
+
+He heard that. And his hand went still on his son's hand on the glove. And Don Aurelio did not stop praying, but he was looking, through the tears, at a Méndez's hands. Small ones now. Already strong.
+
+### Chapter — Siempre Primero
+
+They took him home to Santa Cruz, because Rebecca understood that a man belongs to the ground that made him even when that ground was stolen, and she carried him across the whole width of the country he had never quite been allowed to belong to and gave him back to it.
+
+And the town came. That was the thing none of them had thought to expect. The tannery shut its gates for the afternoon — the first time in its history it had shut them for a Mexican — and Esteban's old crew stood at the grave with their cracked, stained, leather-colored hands folded in front of them. The fishermen came up from the wharf. The families came down out of the flats and in from the orchards, the people who spoke the language only behind closed doors, and they stood in the open October light and spoke it — because the boy in the box had made it so that for one season the whole country had been forced to learn to say a name like theirs, even the wrong, invented, conqueror's version of it, and to say it with its hat in its hands.
+
+Don Aurelio stood at the edge of land that had once run from the river to the redwoods, all of it theirs and none of it theirs, and understood at last that he had read the family's curse exactly backward for ninety years.
+
+Because a trophy is a cup in a glass case in a city three thousand miles away, and the men who carried Cirilo Méndez on their shoulders would be old men and then no men, and the cup would gather the indifferent dust of strangers. That first had been real, and glorious, and borrowed, and brief — the way being first in their world always is. If it had been the only first the boy ever reached, then the curse was true and it had won, and the old man could have lain down beside his grandson and let the century have the rest of them.
+
+But there is another kind of first, and it does not gather dust. In the summers that came after, the boys of the flats played ball on the flat ground by the river where the rancho's cattle had once come down to drink, and when one of them threw a pitch nobody could touch, the others would go quiet, and then somebody would say it — *throws like Méndez* — and not one of them had ever seen the man pitch. They knew only the story: that one of theirs, a tannery son off this exact dirt, had stood on the highest mound in the country and been *first*, and had kept working when the answer was no for sixteen unbroken years, and that the working had been the man, and not the cup. The town that had spent a century trying to forget the family found, now, that it could not stop saying the name.
+
+They had hung *El Cid* on him as a joke and an erasure — a Mexican made over into a Spanish conqueror because the papers could not bring themselves to let him be a hero as himself — and they had been more right than they could have known. In the old legend the Cid's own body, lashed upright in the saddle, had led one last charge and won a battle after his death. And so, in the only way that ever lasts, did Cirilo Méndez.
+
+The curse, the old man finally saw, had never been that the Méndez could not be first. It was that they had believed they could not. His grandson had walked out into a country that had spent a hundred years telling him to stay second and had simply, stubbornly, *declined* — and the proof of it was sleeping now in a Brooklyn cradle three thousand miles east, a worn glove folded under his small strong hands, the leather his great-great-grandfather had tanned on land they once owned, soft now from a fifth generation of use.
+
+He was the root. He was the legacy. He was the first that lasts.
+
+And that — not the cup, not the autumn, not the borrowed conqueror's name — was the whole of *Siempre Primero,* which means *always first,* and which the family had had backward, like the curse, for a hundred years: that you are not made first by the thing you win at the end. You are made first by the way you keep walking toward it — second, and second, and second, every single day they tell you no.
+
+The last thing is the boy's hands closing around the ball.
+
+Already big.
+
+Already strong.
 
 ---
 
