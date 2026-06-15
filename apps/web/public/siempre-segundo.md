@@ -70,11 +70,11 @@ A living map of the whole picture: ✍️ = drafted in this document, ◻ = fram
 
 **ACT I — The Boardwalk (~1900–1903)**
 - ✍️ The meeting (the ball-toss booth; Rebecca's laugh) — screenplay + prose
-- ◻ Home: a day in the tannery / the Méndez household (Esteban, Dolores, the curse-keeping abuelo)
+- ✍️ Home: the tannery household (Esteban's fear vs. the abuelo's defiance; the hands)
 - ◻ The secret courtship (the beach at night; the danger of it)
-- ◻ The exhibition (Cirilo's arm goes public; strikes out the visiting college boys; Chuck watches)
+- ✍️ The exhibition (Cirilo's arm goes public; strikes out the college boys; Chuck flails)
 - ◻ Chuck's first cruelty (what a Mexican drawing a white girl's eye invites in 1900)
-- ◻ The door opens (a Santa Clara man sees the arm)
+- ✍️ The door opens (Coach Fagan of Santa Clara sees the arm)
 - ◻ Leaving the beach (parting with Rebecca; a token)
 
 **ACT II — The Rematch & The Long Wait (1903–1917)**
@@ -88,8 +88,8 @@ A living map of the whole picture: ✍️ = drafted in this document, ◻ = fram
 
 **ACT III — Siempre Primero (1918)**
 - ✍️ The name they give him (the El Cid clubhouse; Ruth)
-- ◻ New Year's, 1918 — the son is born (hope at the turn of the year)
-- ◻ The season (leading the league; the press crowns him; a pitching-craft montage drawn from the baseball curriculum)
+- ✍️ New Year's, 1918 — the son is born (first baby of the year; the glove in the cradle)
+- ✍️ The season (leading the league; crowned "El Cid"; the pitching-craft montage; Hooper, Ruth, Barrow)
 - ✍️ Chuck at the Series (the reappearance; everything-and-not-the-thing)
 - ✍️ The fever game (the real 1918 World Series; the strikeout; carried off; first)
 - ✍️ What the crowd carried (the parade; the sick autumn air)
@@ -271,6 +271,119 @@ The boy in the white flannels had felt it too, the shift in the air, the way a d
 "Then here's a nickel," she said.
 
 He took it. Her glove was kid leather, soft as a thing his father might have made in another life, when leather still belonged to them. He gave her a ball, and tried not to think about whose hands had tanned the hide of her glove, and failed.
+
+### Screenplay — the house in the tannery's shadow
+
+```
+INT. MÉNDEZ HOUSE, SANTA CRUZ -- NIGHT (1900)
+
+Two rooms and a lean-to under the smoke of Kron's tannery.
+DOLORES works a pot; her rosary hangs by the stove. ESTEBAN
+comes in gray with the day, his hands cracked and stained
+dark to the wrist -- a tanner's hands, a thing that does not
+wash off.
+
+CIRILO (18) eats fast, boardwalk sawdust still on his collar.
+LUIS and ABEL argue box scores. In the only good chair, DON
+AURELIO watches the boy the way you watch weather coming.
+
+ESTEBAN
+(not looking up)
+Kron will take you on in the fall.
+Steady work. A man can feed a family
+on it.
+
+CIRILO
+(careful)
+I have work, Papá. At the beach.
+
+ESTEBAN
+You have a season at the beach. Until
+the summer people go home and the planks
+belong to the gulls again.
+(quieter -- the fear under it)
+I want you somewhere they can't put you
+out on a whim, mijo. That's all.
+
+DON AURELIO
+(from his chair)
+You want him where you are. Safe. Small.
+Second.
+
+The table goes still. Esteban's jaw works.
+
+ESTEBAN
+Second is alive, viejo. I have buried
+men who reached.
+
+DON AURELIO
+(to Cirilo, ignoring his son)
+Show me the hand.
+
+Cirilo crosses, holds out his right hand. The old man turns it
+in the lamplight -- big, strong, and unmarked by the lime,
+because this boy alone of them has kept his hands for
+something else.
+
+DON AURELIO (CONT'D)
+Your great-grandfather tanned hides with
+a hand like this and called himself a
+king. Your father trims them for wages
+and calls himself safe. You --
+(he folds the boy's fingers into a fist)
+-- you have the first hands in four
+generations that don't smell of the
+pit. Don't you dare give them back.
+```
+
+### Screenplay — the exhibition
+
+```
+EXT. BEACH FLATS BALLGROUND -- SUNDAY (1901)
+
+A holiday crowd, parasols and straw hats, the boardwalk organ
+carrying over the fence. A challenge game: the local nine
+against a touring club of COLLEGE BOYS in crisp flannels --
+Stanford men down for the weekend, CHUCK ASHBY III among them,
+loose and certain.
+
+Cirilo takes the ball for the locals. The college side laughs
+-- the bottle boy from the pier, in spikes.
+
+Then he throws.
+
+The first college man swings at a fastball already in the
+catcher's mitt. The second gets the wet one -- the SPITBALL --
+that drops off the table and leaves him foolish in front of
+his girl. The third is Chuck, who is not laughing now, who
+grinds in and fouls and flails and finally stalks off
+muttering that the ball is doctored.
+
+In the little grandstand, a man in a dark Jesuit coat -- COACH
+FAGAN of Santa Clara -- stops writing in his book and simply
+watches. He has seen a thousand arms. He has not seen this.
+
+After the last out he finds Cirilo at the fence.
+
+FAGAN
+Son. Have you given any thought to
+college?
+
+CIRILO
+(plain)
+We can't pay for college, Father.
+
+FAGAN
+(a small smile)
+No. But Santa Clara can pay for an arm.
+We play Stanford every spring.
+(a glance at Chuck, sulking by the bus)
+Wouldn't you like to do that again --
+where it counts?
+
+Off Cirilo: the door of his whole life swinging open on a
+single sentence.
+```
 
 ---
 
@@ -631,6 +744,55 @@ never, not once, caught us when we fall.
 ## ACT III — *Siempre Primero* (1918) — THE CLIMAX
 
 Sixteen years he waited. The boy from the tannery floor — passed over a hundred times, the wrong color for the call that kept going to lesser arms — finally stands in a big-league clubhouse at thirty-six, on **Ed Barrow's Boston Red Sox**, two lockers down from a wild twenty-three-year-old named **Babe Ruth**. On New Year's Day his son was born. And in a season cut to pieces by the war's "Work or Fight" order, the old man who was always second leads the whole league — and the Boston papers, who cannot be bothered to spell *Cirilo Méndez*, crown him anyway, under a name they invent for him.
+
+### Screenplay — New Year's, 1918
+
+```
+INT. MÉNDEZ FLAT, BROOKLYN -- NIGHT (JANUARY 1, 1918)
+
+The thinnest hour of the year. A midwife's basin, a lamp
+turned low against the cold. REBECCA, spent and luminous,
+holds a NEWBORN BOY. CIRILO (35), who has stared down major-
+league bats without a flicker, stands shaking in the doorway.
+
+REBECCA
+(exhausted, shining)
+First baby of the year, the midwife
+says. Born on the one. Before anyone
+else's.
+(she finds his eyes)
+First, Cirilo. Our boy is first at
+something already.
+
+Cirilo crosses and takes the small hands in his -- the very
+gesture his abuelo made over him thirty-six years ago and
+three thousand miles west, on a tannery floor.
+
+CIRILO
+(barely)
+Already big. Already strong.
+
+He lifts the worn GLOVE from the chair where it always sits --
+his father's leather, his great-grandfather's tanning -- and
+lays it in the cradle beside the boy, the way another man
+might lay down a deed to land.
+
+CIRILO (CONT'D)
+There. Now you own the only thing we
+never lost.
+```
+
+### The season (1918) — novel prose
+
+He got his season the way a drowning man gets a plank: because the boat had already gone down. The war had pulled the young arms to France under *work or fight*, and the rosters that came north that spring were old men and boys and Cirilo Méndez — thirty-six, and finally, absurdly, a rookie.
+
+And he was magnificent.
+
+He pitched the way Don Aurelio had taught him behind a backstop in Beach Flats a lifetime before: reading a man's feet before he read his swing; busting the deep-standing hitters up and in where their fear could not reach; feeding the white-knuckle sluggers the slow wet one and letting their own greed swing for them; never showing a pair of eyes the same height twice. The spitball he'd carried up from the Coast League dropped off the table like it had died in the air, and the American League — in the last summer before they would outlaw the pitch forever — had no answer for a thirty-six-year-old who threw a dying ball with a surgeon's mind behind it.
+
+He led them all. Most wins. Fewest runs allowed. The Boston writers, who could not be troubled to spell *Cirilo Méndez*, reached for something grand and handed him **EL CID** — and the bleachers took it up, and for one summer Fenway chanted a conqueror's name at a tanner's son and never once heard the joke folded inside it. **Harry Hooper**, the Hollister boy who'd put his name in, watched from right field and told anyone who would listen that the best arm in the league had been standing out west the whole time, unused, because no one had thought to look at a brown man twice. Even **Ruth** — twenty-three, enormous, already a legend and already, twice that year, knocked flat by the same fever loose in the camps — would drift over between his own starts just to watch the old man throw the thing nobody could hit.
+
+**Barrow** rode him hard, and Cirilo let him, because sixteen years of *no* had taught him exactly what a *yes* was worth. By September the second-place country had itself a first-place team, and the man who had been second his whole life had, for the first time, a clear road to first — at the one thing the whole country had stopped to watch.
 
 ### Screenplay — the name they give him
 
