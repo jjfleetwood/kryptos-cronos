@@ -234,9 +234,17 @@ He took it. Her glove was kid leather, soft as a thing his father might have mad
 
 ---
 
-## ACT II — *The Rematch* (1903)
+## ACT II — *The Rematch & The Long Wait* (1903–1917)
 
-### Screenplay — Stanford at Santa Clara
+### The shape of the act — five sequences
+
+1. **The Rematch (1903).** The Stanford–Santa Clara game below: Cirilo strikes out Chet, and Clara stands and claps in a sea of cardinal red — choosing, in public, the wrong boy.
+2. **The Break (1903–04).** Clara defies the Whitfields. They hand her an ultimatum; she takes the disinheriting. Chet, humiliated twice now (the booth, the mound), turns from careless cruelty to real enmity — the kind that waits.
+3. **The Climb That Stalls (1904–1915).** Cirilo becomes a star of the **Pacific Coast League** (Sacramento, the Seals), masters the **spitball** (legal then), and is, by any honest measure, big-league ready for a decade. The call never comes. Scouts admire and pass; the reasons are never said aloud. *Siempre segundo* — best in his league, second-class in his country. Years compress in a montage of seasons, exotic press names, and Don Aurelio's warnings not to reach.
+4. **The Marriage in the Margins (~1916).** They wed at **Holy Cross**, in the teeth of both worlds (scene below). Clara, the heiress, lives the grind by choice — cheap rooms, barnstorming towns. A low season (an injury; the old temptation to quit). And **Chet resurfaces** — prosperous, respectably married, appearing trackside to twist the knife: *"You could have had everything, Clara."*
+5. **The War Opens the Door (1917).** America enters the war; the **"Work or Fight"** order and the draft strip the young arms off to France. Ed Barrow's depleted **Red Sox**, desperate for pitching, finally call the thirty-five-year-old. The bitter truth under the dream: he gets his shot because the white boys are in the trenches — and he takes it anyway, because you take it anyway. Clara is pregnant; the baby is due on New Year's. The train goes east. → **Act III.**
+
+### Screenplay — Stanford at Santa Clara (Sequence 1)
 
 ```
 EXT. SANTA CLARA COLLEGE -- BALL GROUND -- DAY (1903)
@@ -287,6 +295,57 @@ CIRILO
 Costs a nickel.
 ```
 
+### Screenplay — the wedding (Sequence 4)
+
+```
+INT. HOLY CROSS CHURCH, SANTA CRUZ -- DAY (1916)
+
+Small. Half-empty -- and the half that's here has a fault line
+straight down the center aisle.
+
+On one side: the MÉNDEZ family -- DOLORES, ESTEBAN, the
+brothers, DON AURELIO. Sunday clothes worn thin. Wary, not
+joyous. They have learned that when the world notices them, it
+is usually to take something.
+
+On the other: almost no one. A single empty pew where the
+WHITFIELDS would have sat. Clara's people did not come. Clara's
+people are, as of a letter three weeks ago, no longer Clara's
+people.
+
+CLARA (30s now), in a plain dress -- the gowns belonged to the
+life she traded away -- walks the aisle alone. No father to
+give her. She gives herself.
+
+CIRILO waits at the front, hands too big for a borrowed suit.
+The PRIEST speaks in Spanish, and Clara -- who has been
+learning it in secret for a decade -- answers him in it.
+
+EXT. HOLY CROSS CHURCH -- STEPS -- CONTINUOUS
+
+DON AURELIO takes Cirilo's arm. Quiet. Not unkind. Afraid.
+
+DON AURELIO
+First the game. Now an Anglo man's
+daughter. You keep reaching over your
+head, mijo.
+(beat)
+Our family was not built to be first. I
+have watched it cost us for ninety years.
+
+CIRILO
+(gentle, certain)
+Then I'll be the one it stops costing.
+
+The old man looks at this son who will not learn fear, and
+says nothing -- because there is nothing to say to a man who
+has decided to break a curse he refuses to believe in.
+
+Behind them CLARA laughs at something one of the brothers
+said -- the real laugh, the one from the booth, sixteen years
+old now and still surprising people out of themselves.
+```
+
 ---
 
 ## ACT III — *Siempre Primero* (1918) — THE CLIMAX
@@ -303,8 +362,8 @@ at him, delighted, meaning it as a gift.
 
 REPORTER
 You see what they're calling you? Page
-one. "CY THE SPANIARD DOES IT AGAIN."
-You're a star, Mendez!
+one -- "EL CID CARVES UP THE TIGERS
+AGAIN." You're a star, Mendez!
 
 He drops the paper on the bench. The headline: a name that is
 not Cirilo's, over a face that is.
@@ -317,17 +376,21 @@ They call me names too, pop.
 
 CIRILO
 (evenly)
-They call you the Babe. They gave me a
-new one. There's a difference between a
-nickname and a... correction.
+They call you the Babe -- that's yours.
+Me they made "El Cid." A Spanish
+conqueror. They couldn't let a Mexican
+be the hero, so they made me a Spaniard.
+(beat)
+There's a difference between a nickname
+and a... correction.
 
 Ruth thinks about that longer than you'd expect a man eating a
 whole sandwich to think about anything. Then he nods, once,
 like an umpire.
 
 RUTH
-Throw the curse one today, Cy. The one
-nobody hits.
+(after a beat)
+...Throw the one nobody hits today, Cid.
 
 And Cirilo -- almost -- smiles.
 ```
@@ -488,6 +551,8 @@ But here is what a root is. In the summers after, the boys of the flats played b
 
 *That* was the first that did not gather dust. That was the first the courthouse and the conquest and the fever in the air could never staple a stranger's name to — and it was the one the old man had been too grief-blind, his whole life, to see was even available to them. The curse was never that the Méndez couldn't be first. It was that they kept believing they couldn't.
 
+They had hung the name "El Cid" on him as a joke and an erasure — a Mexican made into a Spanish conqueror because the papers could not let him be a hero as himself. They were more right than they knew. In the old legend the Cid's own body, lashed upright in the saddle, had led one last charge and won a battle after his death — and so, in the only way that ever lasts, did Cirilo Méndez.
+
 The boy grew up on that ground with his father's glove, the leather his great-grandfather tanned, soft now from a third generation of hands. He was the root. He was the legacy. He was the first that lasts.
 
 The last image is his small hands closing around the ball.
@@ -502,7 +567,7 @@ FADE OUT.
 
 ## Notes & to-do
 
-- **Name:** hero is **Cirilo Méndez** (Spanish spelling, one *l*); the whole family is **Méndez**. The Boston press's invented name ("Cy the Spaniard") is a placeholder — swap if you find a better period-real Anglicization.
+- **Name:** hero is **Cirilo Méndez** (Spanish spelling, one *l*); the whole family is **Méndez**. The Boston press brands him **"El Cid"** — a Mexican erased into a Spanish conqueror, and loaded because the real Cid was himself an exile who kept winning for other men's kingdoms (always second) and whose corpse, by legend, won a battle after his death — rhyming with Cirilo's after-death legacy. Easily swapped (e.g., "the Castilian," "Cy") if you prefer.
 - **Period-real lock:** team is the **1918 Boston Red Sox** (Ed Barrow, Babe Ruth, the real World Series begun Sept 5, 1918 under "Work or Fight"). No ROY/MVP — he's "crowned" by leading the league + the press. Death by the Boston flu, October 1918 (Camp Devens; deadliest U.S. month). All real.
 - **The twist:** *the moment he is finally first is the moment he dies* — and the celebration crowd is what carries the flu. Keep that causal link tight.
 - **The curse, reworked:** not the baseball-franchise curse — the **family curse** (Don Aurelio's belief the Méndez are cursed to second since the conquest). Set it up in the prologue, pay it off in the coda: the curse was the *believing*, and the legacy breaks it.
