@@ -37,8 +37,8 @@ Underneath the leather: **dispossession & reinvention**, **the rooted treated as
 - **DON AURELIO MÉNDEZ** — the abuelo. Last patriarch of a rancho that no longer exists. Keeper of the Mexican past, the family's conscience, and the old belief that the Méndez are cursed to second. Our prologue narrator.
 - **ESTEBAN MÉNDEZ** — Cirilo's father. A hide-trimmer at Kron's tannery. Wants his son safe and small; love expressed as fear.
 - **DOLORES MÉNDEZ** — Cirilo's mother. The rosary, the language, the kitchen that holds the family together.
-- **CLARA WHITFIELD** — Anglo, wealthy; meets Cirilo at the beach (~17), then goes up to **Stanford** — which puts her in the grandstand the day Chet's Stanford nine faces Cirilo's Santa Clara. The woman who crosses every line she was raised inside, and marries him.
-- **CHESTER "CHET" ASHBY III** — old San Francisco money, Clara's intended. Plays for **Stanford**. The embodiment of the class that inherited the family's land.
+- **REBECCA WHITFIELD** — Anglo, wealthy; meets Cirilo at the beach (~17), then goes up to **Stanford** — which puts her in the grandstand the day Chuck's Stanford nine faces Cirilo's Santa Clara. The woman who crosses every line she was raised inside, and marries him.
+- **CHARLEY "CHUCK" ASHBY III** — old San Francisco money, Rebecca's intended. Plays for **Stanford**. The embodiment of the class that inherited the family's land.
 - **LUIS & ABEL MÉNDEZ** — Cirilo's older brothers; the meat market, the sandlot, the Santa Cruz Beachcombers.
 - **ED BARROW** *(real)* — manager of the 1918 Red Sox; the man who finally gives the thirty-six-year-old his shot. *(He really managed that club, then went on to build the Yankee dynasty — a quiet irony to play.)*
 - **BABE RUTH** *(real)* — Cirilo's 1918 teammate; pitcher-slugger, force of nature. Caught the flu *twice* in 1918 and lived. Cirilo catches it once and doesn't. The contrast does its own work.
@@ -49,9 +49,9 @@ Underneath the leather: **dispossession & reinvention**, **the rooted treated as
 
 **PROLOGUE — "California Banknotes" (1833–1882).** The Mexican golden age and its theft, told as Don Aurelio's memory: the secularization grant, the rancho at its height (vaqueros, the *matanza*, hides as money, the fandango, Branciforte rowdy across the river), the false promise of Guadalupe Hidalgo, the slow strangulation by the Land Act of 1851 and the drought, the fall into wage labor — ending on a match cut from a wet new hide to a newborn: Cirilo, 1882, born on the tannery floor.
 
-**ACT I — "The Boardwalk" (~1900–1903).** Cirilo, eighteen, works the brand-new pleasure pier — labor in the leisure economy built on the land his family lost. The Whitfields summer at the beach; Clara and Cirilo collide. Chet humiliates him; Cirilo answers with the only thing the Anglo world can't argue with — his arm. The attraction to Clara becomes perilous. A Santa Clara man sees the arm. Cirilo leaves the beach carrying the family's buried hope of rising again.
+**ACT I — "The Boardwalk" (~1900–1903).** Cirilo, eighteen, works the brand-new pleasure pier — labor in the leisure economy built on the land his family lost. The Whitfields summer at the beach; Rebecca and Cirilo collide. Chuck humiliates him; Cirilo answers with the only thing the Anglo world can't argue with — his arm. The attraction to Rebecca becomes perilous. A Santa Clara man sees the arm. Cirilo leaves the beach carrying the family's buried hope of rising again.
 
-**ACT II — "The Rematch & The Long Wait" (~1901–1916).** Santa Clara as a class threshold. The hinge: the **Stanford–Santa Clara game** — Clara in the grandstand, Chet at the plate, Cirilo on the mound; the boardwalk paid back with a strikeout, and Clara chooses. Then the cruelty of the long middle: a decade-plus of being passed over, the exotic "Spanish" spitballer who can't get his call to the bigs while lesser, paler men do. *Always second.* The act ends ~1917 with the call finally coming — and Cirilo and Clara marrying in the teeth of both their worlds.
+**ACT II — "The Rematch & The Long Wait" (~1901–1916).** Santa Clara as a class threshold. The hinge: the **Stanford–Santa Clara game** — Rebecca in the grandstand, Chuck at the plate, Cirilo on the mound; the boardwalk paid back with a strikeout, and Rebecca chooses. Then the cruelty of the long middle: a decade-plus of being passed over, the exotic "Spanish" spitballer who can't get his call to the bigs while lesser, paler men do. *Always second.* The act ends ~1917 with the call finally coming — and Cirilo and Rebecca marrying in the teeth of both their worlds.
 
 **ACT III — "Siempre Primero" (1917–1918).** The bigs at last — at thirty-six, the oldest rookie anyone's seen, on Ed Barrow's **Boston Red Sox**, in a clubhouse with Babe Ruth. On **January 1, 1918**, a son is born. Then the season of his life: in a year cut short by the wartime "Work or Fight" order, he leads the league and the press crowns him the people's ace, and he pitches Boston to the **1918 World Series championship** (begun Sept 5 — the earliest ever). For one autumn the man who was always second is *first*. Then the flu that is already loose in Boston — Camp Devens, the packed victory streets, the deadliest month in American history — takes him within weeks. He dies the moment he is no longer second; the root of life and the legacy he leaves are the only first that lasts.
 
@@ -184,15 +184,15 @@ He does not look at the summer people. He has learned not to.
 A BANNER: "TEST YOUR ARM -- 3 BALLS A NICKEL." Cirilo takes
 his post behind a pyramid of iron milk-bottles.
 
-CHET ASHBY III (20), white flannels, steers CLARA WHITFIELD
+CHUCK ASHBY III (20), white flannels, steers REBECCA WHITFIELD
 (17) to the booth. She is already bored of him.
 
-CHET
+CHUCK
 Watch. I rowed stroke at the club.
 
 He throws three. Misses, misses, clips the pyramid -- it holds.
 
-CHET (CONT'D)
+CHUCK (CONT'D)
 (to Cirilo, not really to him)
 Rigged. They weight the bottom row.
 Aren't they weighted, boy?
@@ -204,18 +204,18 @@ all, throws.
 CRACK. The pyramid does not fall over. It LEAVES, all six
 bottles blown clean off the shelf.
 
-Clara laughs -- a real one, surprised out of her.
+Rebecca laughs -- a real one, surprised out of her.
 
-CLARA
+REBECCA
 Do it again.
 
 CIRILO
 (quiet)
 Costs a nickel.
 
-She holds his eye a beat too long. Chet sees it.
+She holds his eye a beat too long. Chuck sees it.
 
-CLARA
+REBECCA
 (producing a coin)
 Then here's a nickel.
 ```
@@ -238,11 +238,11 @@ He took it. Her glove was kid leather, soft as a thing his father might have mad
 
 ### The shape of the act — five sequences
 
-1. **The Rematch (1903).** The Stanford–Santa Clara game below: Cirilo strikes out Chet, and Clara stands and claps in a sea of cardinal red — choosing, in public, the wrong boy.
-2. **The Break (1903–04).** Clara defies the Whitfields. They hand her an ultimatum; she takes the disinheriting. Chet, humiliated twice now (the booth, the mound), turns from careless cruelty to real enmity — the kind that waits.
+1. **The Rematch (1903).** The Stanford–Santa Clara game below: Cirilo strikes out Chuck, and Rebecca stands and claps in a sea of cardinal red — choosing, in public, the wrong boy.
+2. **The Break (1903–04).** Rebecca defies the Whitfields. They hand her an ultimatum; she takes the disinheriting. Chuck, humiliated twice now (the booth, the mound), turns from careless cruelty to real enmity — the kind that waits.
 3. **The Climb That Stalls (1904–1915).** Cirilo becomes a star of the **Pacific Coast League** (Sacramento, the Seals), masters the **spitball** (legal then), and is, by any honest measure, big-league ready for a decade. The call never comes. Scouts admire and pass; the reasons are never said aloud. *Siempre segundo* — best in his league, second-class in his country. Years compress in a montage of seasons, exotic press names, and Don Aurelio's warnings not to reach.
-4. **The Marriage in the Margins (~1916).** They wed at **Holy Cross**, in the teeth of both worlds (scene below). Clara, the heiress, lives the grind by choice — cheap rooms, barnstorming towns. A low season (an injury; the old temptation to quit). And **Chet resurfaces** — prosperous, respectably married, appearing trackside to twist the knife: *"You could have had everything, Clara."*
-5. **The War Opens the Door (1917).** America enters the war; the **"Work or Fight"** order and the draft strip the young arms off to France. Ed Barrow's depleted **Red Sox**, desperate for pitching, finally call the thirty-five-year-old. The bitter truth under the dream: he gets his shot because the white boys are in the trenches — and he takes it anyway, because you take it anyway. Clara is pregnant; the baby is due on New Year's. The train goes east. → **Act III.**
+4. **The Marriage in the Margins (~1916).** They wed at **Holy Cross**, in the teeth of both worlds (scene below). Rebecca, the heiress, lives the grind by choice — cheap rooms, barnstorming towns. A low season (an injury; the old temptation to quit). And **Chuck resurfaces** — prosperous, respectably married, appearing trackside to twist the knife: *"You could have had everything, Rebecca."*
+5. **The War Opens the Door (1917).** America enters the war; the **"Work or Fight"** order and the draft strip the young arms off to France. Ed Barrow's depleted **Red Sox**, desperate for pitching, finally call the thirty-five-year-old. The bitter truth under the dream: he gets his shot because the white boys are in the trenches — and he takes it anyway, because you take it anyway. Rebecca is pregnant; the baby is due on New Year's. The train goes east. → **Act III.**
 
 ### Screenplay — Stanford at Santa Clara (Sequence 1)
 
@@ -252,40 +252,40 @@ EXT. SANTA CLARA COLLEGE -- BALL GROUND -- DAY (1903)
 A college crowd. A score board: STANFORD vs. SANTA CLARA. The
 Stanford side is louder, richer, sure of itself.
 
-In the grandstand, among the cardinal red: CLARA WHITFIELD, a
+In the grandstand, among the cardinal red: REBECCA WHITFIELD, a
 Stanford woman now. She did not expect to know anyone on the
 field. She is wrong.
 
 ON THE MOUND: CIRILO MÉNDEZ, 21, Santa Clara flannels gone
 gray with dust.
 
-AT THE PLATE: CHET ASHBY III, cardinal "S" on his chest,
+AT THE PLATE: CHUCK ASHBY III, cardinal "S" on his chest,
 tapping the corners like he owns them.
 
-CHET
+CHUCK
 (grinning)
 Well. The bottle boy.
 
 Cirilo says nothing. He has always said nothing. He looks in
--- and THERE, in the red, is Clara, half-risen, a kid-leather
+-- and THERE, in the red, is Rebecca, half-risen, a kid-leather
 glove forgotten in her lap. Their eyes meet across four years.
 
-CHET (CONT'D)
+CHUCK (CONT'D)
 (to his bench, loud)
 Three balls a nickel, fellas!
 
 Laughter from the Stanford side. Cirilo sets. The first pitch
-is past Chet before the laugh is done. STRIKE ONE. The second
+is past Chuck before the laugh is done. STRIKE ONE. The second
 buckles his knees. STRIKE TWO.
 
 Cirilo holds the ball a moment -- the stitched leather, an old
-friend -- looks once at Clara, and throws the best thing he
+friend -- looks once at Rebecca, and throws the best thing he
 owns.
 
-STRIKE THREE. Chet swings at air and nearly screws himself
+STRIKE THREE. Chuck swings at air and nearly screws himself
 into the dirt.
 
-The Santa Clara side erupts. And Clara is on her feet, alone
+The Santa Clara side erupts. And Rebecca is on her feet, alone
 in a sea of red, clapping -- for the wrong team, for the wrong
 boy, in front of everyone she knows. She doesn't care. That is
 the whole story of her, right there.
@@ -376,7 +376,7 @@ He flips the ball back. Cirilo goes into his motion.
 
 **The Coast League — the San Francisco Seals.** The highest rung he could reach and still be told no: the **Pacific Coast League**, graded Class A and then **Double-A from 1909**, the "third major league" — 180-game seasons in the soft coast light, the best ball west of the Mississippi, good enough that men turned down the East to stay in it. He starred there for years. He beat, to their faces, men who got the call he never got. The scouts came and admired and wrote one word in their books that he was never allowed to read, and they signed the paler arm. *Siempre segundo* — the best pitcher in the best league the East refused to call major. The one who got clear and stayed decent was **Harry Hooper**, the Hollister kid who'd played Soquel ball a ridge away, gone to Boston, made himself a star and a gentleman — and who, years on, would be the one to remember the old Coast spitballer and say the sentence that changed everything: *there's an arm out west nobody's using.*
 
-**Brooklyn — the bottom of the top.** The call finally came, late, in his thirties — and it was to **Brooklyn**, Uncle Robbie's Robins, the National League's most dependable heartbreak, a ballclub that knew being second the exact way Cirilo did. The thing he'd chased fifteen years, and it nearly starved him. The reserve clause pinned an old rookie's pay to the floor; Brooklyn rent ate the floor; and with Clara beside him and a child on the way he stood in a major-league uniform and *still* could not make a month meet itself. So he did what his father did before him: in the winters he went home and back through the **tannery gate**, the championship-bound arm trimming another man's hides to cover the Brooklyn rent — leather to leather, the thread his great-grandfather started never once breaking. Thirty-five years old, in the major leagues, and second-class still. He nearly quit. Clara would not let him. And then, in 1917, with the war stripping the rosters bare — *work or fight* — a Boston man bought the old spitballer's contract for almost nothing, the way you'd buy a used glove off a nail, on the word of a Hollister boy who never forgot the ridge he came from. Cirilo packed for the Red Sox not knowing he was packing for the only October that would ever matter. → **Act III.**
+**Brooklyn — the bottom of the top.** The call finally came, late, in his thirties — and it was to **Brooklyn**, Uncle Robbie's Robins, the National League's most dependable heartbreak, a ballclub that knew being second the exact way Cirilo did. The thing he'd chased fifteen years, and it nearly starved him. The reserve clause pinned an old rookie's pay to the floor; Brooklyn rent ate the floor; and with Rebecca beside him and a child on the way he stood in a major-league uniform and *still* could not make a month meet itself. So he did what his father did before him: in the winters he went home and back through the **tannery gate**, the championship-bound arm trimming another man's hides to cover the Brooklyn rent — leather to leather, the thread his great-grandfather started never once breaking. Thirty-five years old, in the major leagues, and second-class still. He nearly quit. Rebecca would not let him. And then, in 1917, with the war stripping the rosters bare — *work or fight* — a Boston man bought the old spitballer's contract for almost nothing, the way you'd buy a used glove off a nail, on the word of a Hollister boy who never forgot the ridge he came from. Cirilo packed for the Red Sox not knowing he was packing for the only October that would ever matter. → **Act III.**
 
 ### Screenplay — the wedding (Sequence 4)
 
@@ -392,16 +392,16 @@ joyous. They have learned that when the world notices them, it
 is usually to take something.
 
 On the other: almost no one. A single empty pew where the
-WHITFIELDS would have sat. Clara's people did not come. Clara's
-people are, as of a letter three weeks ago, no longer Clara's
+WHITFIELDS would have sat. Rebecca's people did not come. Rebecca's
+people are, as of a letter three weeks ago, no longer Rebecca's
 people.
 
-CLARA (30s now), in a plain dress -- the gowns belonged to the
+REBECCA (30s now), in a plain dress -- the gowns belonged to the
 life she traded away -- walks the aisle alone. No father to
 give her. She gives herself.
 
 CIRILO waits at the front, hands too big for a borrowed suit.
-The PRIEST speaks in Spanish, and Clara -- who has been
+The PRIEST speaks in Spanish, and Rebecca -- who has been
 learning it in secret for a decade -- answers him in it.
 
 EXT. HOLY CROSS CHURCH -- STEPS -- CONTINUOUS
@@ -424,7 +424,7 @@ The old man looks at this son who will not learn fear, and
 says nothing -- because there is nothing to say to a man who
 has decided to break a curse he refuses to believe in.
 
-Behind them CLARA laughs at something one of the brothers
+Behind them REBECCA laughs at something one of the brothers
 said -- the real laugh, the one from the booth, sixteen years
 old now and still surprising people out of themselves.
 ```
@@ -516,7 +516,7 @@ Barrow holds his eyes a long moment -- then puts the ball back
 in his hand and walks away, the way a man walks away from
 something he'll think about for forty years.
 
-In the box seats: CLARA, the eight-month-old BOY on her hip in
+In the box seats: REBECCA, the eight-month-old BOY on her hip in
 a knit cap. DON AURELIO beside her, ancient, hat over his
 heart -- not watching the batter. Watching his grandson's
 hands, and afraid of them, because the old man knows the
@@ -538,7 +538,7 @@ up onto their shoulders, above the whole roaring country, a
 CHAMPION. First. For the first time in his life, and the first
 time in his family's century: FIRST.
 
-He finds Clara in the noise and holds the BALL up toward the
+He finds Rebecca in the noise and holds the BALL up toward the
 boy like a man showing a coin.
 
 Down in the box, DON AURELIO does not cheer. He closes his
@@ -583,7 +583,7 @@ guttering candle and the rosary from the prologue. The
 influenza has done in four days what sixteen years of being
 told no could not.
 
-CIRILO in the bed, far away now. CLARA at its edge, dry-eyed
+CIRILO in the bed, far away now. REBECCA at its edge, dry-eyed
 past crying, the BOY asleep against her. DON AURELIO in the
 corner, lips moving over beads.
 
@@ -593,7 +593,7 @@ town, and lived. Cirilo caught it once.)
 
 Cirilo's hand finds the old worn GLOVE on the blanket -- the
 one stitched from leather his own father tanned. He turns it
-once. Then he puts it not in Clara's hands but in the BOY'S --
+once. Then he puts it not in Rebecca's hands but in the BOY'S --
 folds the small fingers around it.
 
 CIRILO
@@ -611,7 +611,7 @@ wrong my whole life.
 But Cirilo doesn't hear the last of it. His hand goes still on
 the boy's hand on the glove.
 
-CLARA
+REBECCA
 (whisper, into the quiet)
 You weren't second. Not for one day of
 your life.
@@ -622,7 +622,7 @@ at a Méndez's hands. Small ones now. Already strong.
 
 ### Novel prose — the real victory, and the curse broken
 
-They buried him in Santa Cruz, because Clara understood that a man belongs to the ground that made him even when that ground was stolen, and she carried him home on the train across the whole width of the country he was never quite allowed to belong to.
+They buried him in Santa Cruz, because Rebecca understood that a man belongs to the ground that made him even when that ground was stolen, and she carried him home on the train across the whole width of the country he was never quite allowed to belong to.
 
 And the town came. That was the thing none of them expected — the town came. The tannery shut its gates for the afternoon, the first time it had ever shut them for a Mexican, and Esteban's old crew stood with their cracked leather hands folded. The fishermen came up from the wharf. The families came down out of the flats and in from the orchards, the people who spoke the language only indoors, and they stood in the open and spoke it, because the boy in the box had made it so that for one season the whole country had to learn to say a name like theirs — even the wrong version of it, even *Cy the Spaniard* — and say it with its hat off.
 
@@ -654,7 +654,7 @@ FADE OUT.
 - **Period-real lock:** team is the **1918 Boston Red Sox** (Ed Barrow, Babe Ruth, the real World Series begun Sept 5, 1918 under "Work or Fight"). No ROY/MVP — he's "crowned" by leading the league + the press. Death by the Boston flu, October 1918 (Camp Devens; deadliest U.S. month). All real.
 - **The twist:** *the moment he is finally first is the moment he dies* — and the celebration crowd is what carries the flu. Keep that causal link tight.
 - **The curse, reworked:** not the baseball-franchise curse — the **family curse** (Don Aurelio's belief the Méndez are cursed to second since the conquest). Set it up in the prologue, pay it off in the coda: the curse was the *believing*, and the legacy breaks it.
-- **Act II long middle** still to break: the decade-plus of being passed over; how Cirilo & Clara stay tethered; whether/how Chet resurfaces in 1918.
+- **Act II long middle** still to break: the decade-plus of being passed over; how Cirilo & Rebecca stay tethered; whether/how Chuck resurfaces in 1918.
 - **The marriage** ("in the teeth of both their worlds") referenced but not yet dramatized.
 - **Leather match-cut** (hide → newborn → baseball → final glove in the son's hands) is the visual spine.
 - **Verify before leaning on it:** the 1863–64 California drought details and the reported 1812 Mission Santa Cruz uprising.
