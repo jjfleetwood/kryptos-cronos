@@ -96,7 +96,7 @@ A living map of the whole picture: ✍️ = drafted in this document, ◻ = fram
 - ✍️ The room (the deathbed; the glove to the son)
 - ✍️ The real victory, the curse broken (the coda; "throws like Méndez")
 - ◻ Option: a 2020 COVID bookend (if we ever want the echo explicit)
-- 📖 **Acts I, II & III are NOVELIZED** — full prose chapters (see *Siempre Primero* — Acts I/II/III, below). Only the Prologue awaits the same.
+- 📖 **The full novel is NOVELIZED** — Prologue + Acts I/II/III rendered as complete prose chapters (*Siempre Primero*, below). Front to back.
 
 ---
 
@@ -1271,6 +1271,54 @@ Already big. Already strong.
 ```
 FADE OUT.
 ```
+
+---
+
+## _Siempre Primero_ — Prologue, novelized (full chapters)
+
+### Chapter — The Grant
+
+Before this was a town for strangers — before the lights on the water and the laughing on the pier — it was ours. All of it.
+
+Don Aurelio would say it the way other men say prayers, which is to say he said it until the words wore smooth and stopped meaning anything to anyone but himself; but it was true, and the truth of it was the whole foundation the family stood on, even after the family had nothing else left to stand on at all.
+
+In 1833, the year Mexico unlocked the missions and gave God's land back to men, a governor's pen made the Méndez family rancheros. The grant ran from the river to the redwood line, hills the color of a lion in August, and on it the family put cattle and a chapel and a low white adobe that held the cool like a cellar. They were *gente de razón* — people of reason, people of name, Mexicans and Catholics and, before and above all of it, owners. The mission's own adobes up on the hill, thirty-five of them, emptied now of their friars and their forced labor, became the seed of a pueblo; the bells still rang the hours over a valley that, for one brief generation, belonged to the people who worked it.
+
+It is a particular thing, to be born into a family that owned the ground beneath its own feet and to watch that ownership taken away across the length of a single life. It teaches you a lesson the secure never have to learn: that everything is a loan, and that the lenders, when they come to collect, do not knock.
+
+### Chapter — California Banknotes
+
+The wealth came on the hoof and left on the hide.
+
+Each spring the vaqueros rode the cattle down out of the hills for the *matanza*, the great killing, and the ground ran red and then the hides went out to dry, staked in their hundreds to the earth like a field of dark windows. The Yankee ships stood off the cove, and the Méndez men rowed the hides out and rowed back with silver and silk and iron — because in those years a cowhide was as good as coin, and better; men called them *California banknotes*, and laughed when they said it, and meant it. And on the rancho, in a shed that smelled of oak bark and lime, the family tanned its own leather, from its own herds, on its own ground. That is the thing to hold on to through everything that comes after: the leather was theirs before it was anyone's. The hands knew the work because the work had been a kind of kingship.
+
+Across the San Lorenzo, the pueblo of Branciforte gambled and brawled and drank — a town the Spanish had stocked, a lifetime before, with the swept-out contents of a Guadalajara jail, men for whom a stretch of California coast had been a ticket out of a sentence — and on feast nights the guitars from the rancho's own fandango carried over the black water to meet the noise of the pueblo, so that the sacred bank of the river and the profane bank of the river sang to each other in the dark, and a boy lying awake in the white adobe could believe that the whole arrangement of the world was permanent, and benevolent, and his.
+
+It seemed it would last forever. Nothing built on land ever does.
+
+### Chapter — The Courthouse
+
+The conquest, when it came, did not come with a sword. It came with a courthouse, which is worse, because a sword at least admits what it is.
+
+The thunder came from the north first — a flag run up at Sonoma, a war, the stars and stripes raised over Monterey where the eagle of Mexico had flown that same morning. And then, in 1848, the paper that was meant to save them: the Treaty of Guadalupe Hidalgo, which swore on the honor of the United States that the old grants would be respected, that what was theirs would remain theirs. Don Aurelio's father believed it. That was his only crime, and it cost him everything he had and everything he had meant to leave behind.
+
+For the new country did not take the land at gunpoint. It took it by process. The Land Act of 1851 required every Californio to prove, in English, before a commission seated in a city three days' ride to the north, that the ground beneath his own chapel was his — and even the families who won bled to death paying the lawyers who won it for them. Squatters fenced the open range; the cattle wandered off and were not returned; and then the sky itself turned against them, the great flood that drowned the valley and after it the long drought of the eighteen-sixties that left the hills white with bone and the cattle economy dead in a single dry year. They sold the rancho the way a man bleeds — not all at once, but a little at a time, a parcel for a lawyer's fee and a parcel for a season's debt — until there was no more to sell.
+
+And somewhere in those years the old man began to believe the thing he would never say aloud: that the family was cursed now, cursed to second, that the conquest had taken not only the land but the right ever again to be first at anything, and that the world would collect, hard and without mercy, from any Méndez who was fool enough to forget it.
+
+### Chapter — The Tannery Floor
+
+By the time Don Aurelio was an old man, the new Santa Cruz had risen entire on the grave of the old: lime kilns smoking on the hill, the long wharf walking out into the bay, strangers' money everywhere and the family's name on nothing at all. The language went indoors. The rosary stayed out.
+
+And on a winter morning in 1882, his son Esteban walked down off the hill and through the gate of Kron's tannery to do, for a Prussian's wages, the one thing the Méndez had always known how to do — turn hide into leather. Only now the hide was another man's, and the leather was another man's, and all that remained to the family was the knowing of it. *They left us our hands,* the old man would say, in the years after, to anyone who would sit still for it. *So we gave them to the leather.*
+
+That same morning, in the back room where the women waited, a child was born — wet and red and roaring, the way a new hide comes off the beam. They wiped him clean, and the old man bent over the basket and took the small hands in his, and turned them in the gray light coming through the tannery window: already big, already strong, and he did not yet know what they would do. He knew only one thing, and he knew it the way he knew the feel of a hide and the words of the Mass, in a place older than thought — that whatever the courthouse and the conquest and the long century had taken, they had not taken this. The family was not finished.
+
+Not while there was a Méndez with hands.
+
+And so the story that follows — the boardwalk and the booth and the girl who laughed; the strikeout and the long climb and the man in the derby; the cold flat in Brooklyn and the great roaring autumn and the fever that came in on the cheering — all of it begins here, on a tannery floor, in the shadow of a stolen rancho, with an old man holding a newborn's hands up to the light and refusing, one more time, against everything the world had taught him, to believe that his family was born to be second.
+
+His name was Cirilo. Remember the hands. Everything that matters in this whole long story, in the end, is in the hands.
 
 ---
 
