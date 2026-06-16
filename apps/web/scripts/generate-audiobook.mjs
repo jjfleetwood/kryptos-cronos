@@ -111,12 +111,18 @@ async function main() {
   // AUDIOBOOK_LIMIT=N renders only the first N chunks (cheap pipeline test).
   const LIMIT = parseInt(process.env.AUDIOBOOK_LIMIT || "0", 10);
   const chunks = LIMIT > 0 ? all.slice(0, LIMIT) : all;
-  console.log(`${chunks.length}${LIMIT > 0 ? ` of ${all.length} (LIMIT)` : ""} chunks @ ${FORMAT} → ${LOCAL_MP3}`);
+  // AUDIOBOOK_RESUME_FROM=N (1-indexed) appends from chunk N onward to the existing
+  // local MP3 — used to finish a run that stopped on an ElevenLabs quota cap without
+  // re-paying for the chunks already generated. (Safe only if the source text is
+  // unchanged, since chunking is deterministic.)
+  const RESUME = parseInt(process.env.AUDIOBOOK_RESUME_FROM || "0", 10);
+  const startIdx = RESUME > 0 ? RESUME - 1 : 0;
+  console.log(`${chunks.length}${LIMIT > 0 ? ` of ${all.length} (LIMIT)` : ""} chunks @ ${FORMAT}${startIdx > 0 ? ` — RESUMING from chunk ${RESUME}` : ""} → ${LOCAL_MP3}`);
 
   fs.mkdirSync(BUILD_DIR, { recursive: true });
-  const fd = fs.openSync(LOCAL_MP3, "w");
+  const fd = fs.openSync(LOCAL_MP3, startIdx > 0 ? "a" : "w");
   try {
-    for (let i = 0; i < chunks.length; i++) {
+    for (let i = startIdx; i < chunks.length; i++) {
       const audio = await tts(chunks[i], chunks[i - 1], chunks[i + 1]);
       fs.writeSync(fd, audio);
       process.stdout.write(`\r  ${i + 1}/${chunks.length} (${(audio.length / 1024).toFixed(0)} KB)   `);
