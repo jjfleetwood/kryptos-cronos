@@ -375,7 +375,7 @@ export const threatFrameworksStages: StageConfig[] = [
       questions: [
         { id: "tf-05-q1", type: "Core Idea", challenge: "The skill.", text: "What is 'ATT&CK in practice'?", options: ["Mapping observed adversary activity to specific tactic/technique IDs", "Buying a product", "Encrypting logs", "Deleting alerts"], correctIndex: 0, explanation: "Mapping turns observations into shareable, actionable terms." },
         { id: "tf-05-q2", type: "Precision", challenge: "How specific.", text: "How specific should a mapping be?", options: ["The most specific sub-technique the evidence supports, no more", "Always the broadest tactic", "Random", "Never specific"], correctIndex: 0, explanation: "Be precise but don't over-claim beyond evidence." },
-        { id: "tf-05-q3", type: "Example", challenge: "Map it.", text: "'mimikatz dumped LSASS' maps to which tactic?", options: ["Credential Access (T1003 LSASS Memory)", "Exfiltration", "Reconnaissance", "Impact"], correctIndex: 0, explanation: "Dumping LSASS is Credential Access." },
+        { id: "tf-05-q3", type: "Example", challenge: "Map it.", text: "'mimikatz dumped LSASS' maps to which tactic?", options: ["Credential Access (T1003.001 LSASS Memory)", "Exfiltration", "Reconnaissance", "Impact"], correctIndex: 0, explanation: "Dumping LSASS is Credential Access." },
         { id: "tf-05-q4", type: "Tool", challenge: "Visualize.", text: "What does the ATT&CK Navigator do?", options: ["Build colored, annotated layers on the matrix to show coverage and gaps", "Run exploits", "Block traffic", "Store passwords"], correctIndex: 0, explanation: "The Navigator visualizes techniques as layers." },
         { id: "tf-05-q5", type: "Gaps", challenge: "Overlay.", text: "What does overlaying a group layer with a coverage layer reveal?", options: ["Techniques a relevant actor uses that you can't detect (gaps)", "The weather", "Your payroll", "Nothing useful"], correctIndex: 0, explanation: "Overlays expose detection gaps to prioritize." },
         { id: "tf-05-q6", type: "Discipline", challenge: "Make it real.", text: "Why is mapping central to threat-informed defense?", options: ["Repeatedly mapping, finding gaps, and closing them measurably improves defense", "Frameworks work without being applied", "It's purely academic", "It replaces detection"], correctIndex: 0, explanation: "Applied mapping drives measurable improvement." },
@@ -860,7 +860,7 @@ const TF_CTF: Record<string, CtfConfig> = {
       "Run 'assemble', then submit the flag.",
     ]],
     ["Read the briefing. Run: cat briefing.txt", "Classify the IOCs. Run: classify-iocs", "Rank by pain. Run: rank-pyramid", "Target the TTPs. Run: target-ttps", "Run 'assemble', then submit the flag"],
-    { "pyramid.txt": "hash=trivial  IP=easy  domain=moderate  tool=annoying  TTP=tough\ninvest detection at the top (TTPs)" },
+    { "pyramid.txt": "hash=trivial  IP=easy  domain=simple  artifact=annoying  tool=challenging  TTP=tough\ninvest detection at the top (TTPs)" },
   ),
   "tf-07": mkDeepCtf(
     "You have an ATT&CK coverage gap: T1003.001 (LSASS Memory) credential dumping. Pick the technique, find its digital artifact, then query MITRE D3FEND for a fitting countermeasure.",
