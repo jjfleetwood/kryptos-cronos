@@ -20,7 +20,9 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import { execFileSync } from "child_process";
 import { put } from "@vercel/blob";
+import ffmpegPath from "ffmpeg-static";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, ".."); // apps/web
@@ -28,6 +30,11 @@ const SRC = path.join(ROOT, "secured-docs", "SIEMPRE_SEGUNDO.md");
 const URL_FILE = path.join(ROOT, "secured-docs", "siempre-segundo.audio.txt");
 const BUILD_DIR = path.join(ROOT, ".audiobook-build");
 const LOCAL_MP3 = path.join(BUILD_DIR, "siempre-segundo.mp3");
+// The raw file is a concatenation of 180+ separate ElevenLabs MP3 responses, which
+// has no single seek/duration header — players can play it straight through but
+// can't pause/resume or scrub. We re-encode it once into ONE clean MP3 (proper
+// Xing header) and upload that. Free (local), no extra ElevenLabs cost.
+const FIXED_MP3 = path.join(BUILD_DIR, "siempre-segundo-seekable.mp3");
 
 const API_KEY = process.env.ELEVENLABS_API_KEY || process.env.ELEVEN_API_KEY;
 const BLOB_TOKEN = process.env.BLOB_READ_WRITE_TOKEN;
@@ -117,32 +124,45 @@ async function main() {
   // unchanged, since chunking is deterministic.)
   const RESUME = parseInt(process.env.AUDIOBOOK_RESUME_FROM || "0", 10);
   const startIdx = RESUME > 0 ? RESUME - 1 : 0;
-  console.log(`${chunks.length}${LIMIT > 0 ? ` of ${all.length} (LIMIT)` : ""} chunks @ ${FORMAT}${startIdx > 0 ? ` — RESUMING from chunk ${RESUME}` : ""} → ${LOCAL_MP3}`);
+  // AUDIOBOOK_UPLOAD_ONLY=1 skips ElevenLabs entirely and just re-encodes + uploads
+  // the existing local MP3 — used to fix/re-publish an already-generated file
+  // (e.g., make it seekable) without spending any credits.
+  const UPLOAD_ONLY = process.env.AUDIOBOOK_UPLOAD_ONLY === "1";
 
   fs.mkdirSync(BUILD_DIR, { recursive: true });
-  const fd = fs.openSync(LOCAL_MP3, startIdx > 0 ? "a" : "w");
-  try {
-    for (let i = startIdx; i < chunks.length; i++) {
-      const audio = await tts(chunks[i], chunks[i - 1], chunks[i + 1]);
-      fs.writeSync(fd, audio);
-      process.stdout.write(`\r  ${i + 1}/${chunks.length} (${(audio.length / 1024).toFixed(0)} KB)   `);
+  if (!UPLOAD_ONLY) {
+    console.log(`${chunks.length}${LIMIT > 0 ? ` of ${all.length} (LIMIT)` : ""} chunks @ ${FORMAT}${startIdx > 0 ? ` — RESUMING from chunk ${RESUME}` : ""} → ${LOCAL_MP3}`);
+    const fd = fs.openSync(LOCAL_MP3, startIdx > 0 ? "a" : "w");
+    try {
+      for (let i = startIdx; i < chunks.length; i++) {
+        const audio = await tts(chunks[i], chunks[i - 1], chunks[i + 1]);
+        fs.writeSync(fd, audio);
+        process.stdout.write(`\r  ${i + 1}/${chunks.length} (${(audio.length / 1024).toFixed(0)} KB)   `);
+      }
+    } finally {
+      fs.closeSync(fd);
     }
-  } finally {
-    fs.closeSync(fd);
+    const mb = (fs.statSync(LOCAL_MP3).size / 1024 / 1024).toFixed(1);
+    console.log(`\nGenerated ${mb} MB at ${path.relative(ROOT, LOCAL_MP3)}.`);
+  } else {
+    console.log(`UPLOAD_ONLY: re-encoding + uploading existing ${path.relative(ROOT, LOCAL_MP3)} (no ElevenLabs calls).`);
   }
 
-  const mb = (fs.statSync(LOCAL_MP3).size / 1024 / 1024).toFixed(1);
-  console.log(`\nGenerated ${mb} MB at ${path.relative(ROOT, LOCAL_MP3)}.`);
+  // Re-encode the concatenation into one clean, seekable MP3.
+  console.log(`Re-encoding to a single seekable MP3 (ffmpeg)…`);
+  execFileSync(ffmpegPath, ["-y", "-i", LOCAL_MP3, "-c:a", "libmp3lame", "-b:a", "64k", "-write_xing", "1", FIXED_MP3], { stdio: "ignore" });
+  const fmb = (fs.statSync(FIXED_MP3).size / 1024 / 1024).toFixed(1);
+  console.log(`Re-encoded → ${fmb} MB, ${path.relative(ROOT, FIXED_MP3)}.`);
 
   if (!BLOB_TOKEN) {
     console.log(`\nNo BLOB_READ_WRITE_TOKEN set — upload via the linked-project CLI instead:`);
-    console.log(`  npx vercel blob put "${LOCAL_MP3}" --access public --add-random-suffix --content-type audio/mpeg --pathname studio/siempre-segundo.mp3`);
+    console.log(`  npx vercel blob put "${FIXED_MP3}" --access public --add-random-suffix --content-type audio/mpeg --pathname studio/siempre-segundo.mp3`);
     console.log(`Then record the printed URL in secured-docs/siempre-segundo.audio.txt, commit, and push.`);
     return;
   }
 
   console.log(`Uploading to Vercel Blob…`);
-  const buf = fs.readFileSync(LOCAL_MP3);
+  const buf = fs.readFileSync(FIXED_MP3);
   const blob = await put("studio/siempre-segundo.mp3", buf, {
     access: "public",
     contentType: "audio/mpeg",
