@@ -30,6 +30,15 @@ export async function GET(req: NextRequest) {
   if (gate) return gate;
 
   const url = blobUrl();
+  // ?meta=1 → return the Blob URL as JSON so the player can point its <audio>
+  // element straight at the (unguessable, public) Blob, instead of streaming
+  // through a 302 redirect — which media elements handle unreliably for large,
+  // range-seeked files, especially on mobile.
+  if (req.nextUrl.searchParams.get("meta") === "1") {
+    if (url) return NextResponse.json({ url });
+    try { fs.statSync(LOCAL_MP3); return NextResponse.json({ url: null, local: true }); }
+    catch { return NextResponse.json({ error: "not-generated" }, { status: 404 }); }
+  }
   if (url) return NextResponse.redirect(url, 302);
 
   // Dev fallback: stream a local MP3 with Range support.
