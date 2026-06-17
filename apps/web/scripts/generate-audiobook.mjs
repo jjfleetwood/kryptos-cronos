@@ -19,6 +19,7 @@
 
 import fs from "fs";
 import path from "path";
+import crypto from "crypto";
 import { fileURLToPath } from "url";
 import { execFileSync } from "child_process";
 import { put, list, del } from "@vercel/blob";
@@ -246,7 +247,102 @@ async function prune() {
   console.log(`Pruned: kept ${kept} chapter blobs, deleted ${deleted}.`);
 }
 
+// Diff-aware regen. AUDIOBOOK_SYNC=<git-ref> (the ref the live audiobook was last
+// generated from) — re-narrates ONLY chapters whose narration text changed vs that
+// ref, reuses the existing Blob MP3s for the rest, and rebuilds the manifest + .m4b.
+// AUDIOBOOK_DRYRUN=1 just lists what changed (no narration, no upload, no spend).
+async function syncFromRef(ref) {
+  const DRY = process.env.AUDIOBOOK_DRYRUN === "1";
+  const oldMd = execFileSync("git", ["show", `${ref}:apps/web/secured-docs/SIEMPRE_SEGUNDO.md`], { encoding: "utf8", maxBuffer: 64 * 1024 * 1024 });
+  const oldChapters = splitChapters(extractProse(oldMd));
+  const curChapters = splitChapters(extractProse(fs.readFileSync(SRC, "utf-8")));
+  const m = readManifest();
+  if (!m.chapters?.length) { console.error("No manifest to sync against. Aborting."); process.exit(1); }
+  if (oldChapters.length !== m.chapters.length) {
+    console.warn(`WARN: split at ${ref} = ${oldChapters.length} but manifest = ${m.chapters.length}; URL reuse maps by position.`);
+  }
+
+  const sha = (s) => crypto.createHash("sha1").update(s).digest("hex");
+  const urlByHash = new Map();
+  oldChapters.forEach((c, i) => { const u = m.chapters[i]?.url; if (u) urlByHash.set(sha(c.speech), u); });
+
+  const changed = curChapters.filter((c) => !urlByHash.has(sha(c.speech)));
+  console.log(`${curChapters.length} chapters now; ${changed.length} changed/new, ${curChapters.length - changed.length} unchanged (reused).`);
+  console.log("Will re-narrate:");
+  changed.forEach((c) => console.log(`  - ${c.title}`));
+  if (DRY) { console.log("\nDRY RUN — nothing narrated, uploaded, or spent."); return; }
+
+  fs.mkdirSync(BUILD_DIR, { recursive: true });
+  const newChapters = [];
+  let narrated = 0, reused = 0, chars = 0;
+  for (let i = 0; i < curChapters.length; i++) {
+    const ch = curChapters[i];
+    const tag = String(i + 1).padStart(3, "0");
+    const seekPath = path.join(BUILD_DIR, `sync-${tag}-seek.mp3`);
+    let url = urlByHash.get(sha(ch.speech));
+    if (url) {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`fetch ${url} -> ${res.status}`);
+      fs.writeFileSync(seekPath, Buffer.from(await res.arrayBuffer()));
+      reused++;
+    } else {
+      const parts = chunk(ch.speech); chars += ch.speech.length;
+      const buffers = [];
+      for (let j = 0; j < parts.length; j++) buffers.push(await tts(parts[j], parts[j - 1], parts[j + 1]));
+      const rawPath = path.join(BUILD_DIR, `sync-${tag}.mp3`);
+      fs.writeFileSync(rawPath, Buffer.concat(buffers));
+      execFileSync(ffmpegPath, ["-y", "-i", rawPath, "-c:a", "libmp3lame", "-b:a", "64k", "-write_xing", "1", seekPath], { stdio: "ignore" });
+      const blob = await put(`studio/chapters/${tag}-${slugify(ch.title)}.mp3`, fs.readFileSync(seekPath), { access: "public", contentType: "audio/mpeg", addRandomSuffix: true, token: BLOB_TOKEN });
+      url = blob.url; narrated++;
+      console.log(`  narrated ${tag} ${ch.title} (${parts.length} call${parts.length > 1 ? "s" : ""})`);
+    }
+    newChapters.push({ i, title: ch.title, url });
+  }
+
+  const out = { generatedAt: new Date().toISOString(), chapters: newChapters };
+  fs.writeFileSync(MANIFEST_FILE, JSON.stringify(out, null, 2) + "\n", "utf-8");
+  console.log(`Narration: ${narrated} re-narrated, ${reused} reused, ~${chars.toLocaleString()} chars billed.`);
+
+  console.log("Rebuilding .m4b with chapter markers…");
+  let meta = ";FFMETADATA1\ntitle=Siempre Segundo\nalbum=Siempre Segundo\nartist=Siempre Segundo\ngenre=Audiobook\n";
+  const listLines = [];
+  let start = 0;
+  for (let i = 0; i < curChapters.length; i++) {
+    const f = path.join(BUILD_DIR, `sync-${String(i + 1).padStart(3, "0")}-seek.mp3`);
+    const dur = durationMs(f);
+    listLines.push(`file '${f.replace(/\\/g, "/")}'`);
+    const end = start + dur;
+    meta += `[CHAPTER]\nTIMEBASE=1/1000\nSTART=${start}\nEND=${end}\ntitle=${(curChapters[i].title || `Chapter ${i + 1}`).replace(/[\r\n=;#]/g, " ").trim()}\n`;
+    start = end;
+  }
+  const listPath = path.join(BUILD_DIR, "sync-m4b-list.txt");
+  const metaPath = path.join(BUILD_DIR, "sync-chapters.ffmeta");
+  fs.writeFileSync(listPath, listLines.join("\n") + "\n", "utf-8");
+  fs.writeFileSync(metaPath, meta, "utf-8");
+  const outPath = path.join(BUILD_DIR, "siempre-segundo.m4b");
+  execFileSync(ffmpegPath, ["-y", "-f", "concat", "-safe", "0", "-i", listPath, "-i", metaPath, "-map", "0:a", "-map_metadata", "1", "-map_chapters", "1", "-c:a", "aac", "-b:a", "64k", outPath], { stdio: "ignore" });
+  const buf = fs.readFileSync(outPath);
+  const blob = await put("studio/siempre-segundo.m4b", buf, { access: "public", contentType: "audio/mp4", addRandomSuffix: true, token: BLOB_TOKEN });
+  out.m4b = { url: blob.url, bytes: buf.length };
+  fs.writeFileSync(MANIFEST_FILE, JSON.stringify(out, null, 2) + "\n", "utf-8");
+  console.log(`.m4b rebuilt + uploaded:\n  ${blob.url}`);
+  console.log(`Manifest updated — commit secured-docs/siempre-segundo.audio.json.`);
+}
+
 async function main() {
+  if (process.env.AUDIOBOOK_LIST === "1") {
+    let cursor, total = 0; const all = [];
+    do {
+      const res = await list({ token: BLOB_TOKEN, cursor, prefix: "studio/" });
+      for (const b of res.blobs) { all.push(b); total += b.size; }
+      cursor = res.cursor;
+    } while (cursor);
+    all.sort((a, b) => b.size - a.size);
+    for (const b of all) console.log(`${(b.size / 1024 / 1024).toFixed(1).padStart(7)} MB  ${b.pathname}`);
+    console.log(`TOTAL: ${(total / 1024 / 1024).toFixed(1)} MB across ${all.length} blobs`);
+    return;
+  }
+  if (process.env.AUDIOBOOK_SYNC) { await syncFromRef(process.env.AUDIOBOOK_SYNC); return; }
   // AUDIOBOOK_DELETE="url1,url2" — delete exactly these named Blob objects (user-
   // authorized cleanup of specific obsolete files). Drops a matching .full pointer.
   if (process.env.AUDIOBOOK_DELETE) {
