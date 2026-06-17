@@ -26,7 +26,7 @@ function blobUrl(): string | null {
   }
 }
 
-type Manifest = { generatedAt: string | null; chapters: { i: number; title: string; url: string }[]; full?: { url: string; bytes?: number } };
+type Manifest = { generatedAt: string | null; chapters: { i: number; title: string; url: string }[]; full?: { url: string; bytes?: number }; m4b?: { url: string; bytes?: number } };
 function manifest(): Manifest | null {
   try {
     const m = JSON.parse(fs.readFileSync(MANIFEST_FILE, "utf-8")) as Manifest;

@@ -68,7 +68,7 @@ export default function StudioProsePage() {
   // Narrated audiobook: per-chapter Blob MP3s (+ a single combined file).
   const [chapters, setChapters] = useState<Chapter[]>([]);
   const [curCh, setCurCh] = useState(0);
-  const [fullUrl, setFullUrl] = useState("");
+  const [m4bUrl, setM4bUrl] = useState("");
   const audioElRef = useRef<HTMLAudioElement | null>(null);
   const startedRef = useRef(false);
 
@@ -99,7 +99,7 @@ export default function StudioProsePage() {
       .then((r) => (r.ok ? r.json() : null))
       .then((d) => {
         if (d?.chapters?.length) setChapters(d.chapters);
-        if (d?.full?.url) setFullUrl(d.full.url);
+        if (d?.m4b?.url) setM4bUrl(d.m4b.url);
       })
       .catch(() => {});
 
@@ -131,7 +131,7 @@ export default function StudioProsePage() {
     return <Gate icon="📕" title="Couldn't load it" body="The manuscript didn't load. Try refreshing." cta={{ href: "/studio/prose", label: "Retry" }} />;
   }
 
-  const hasAudio = chapters.length > 0 || !!fullUrl;
+  const hasAudio = chapters.length > 0 || !!m4bUrl;
 
   return (
     <div className="min-h-screen" style={{ background: "linear-gradient(135deg, #0d1117 0%, #1a1410 55%, #0d0a08 100%)" }}>
@@ -186,19 +186,16 @@ export default function StudioProsePage() {
               </>
             )}
 
-            {fullUrl && (
+            {m4bUrl && (
               <div className={`${chapters.length > 0 ? "mt-3 pt-3 border-t border-white/10" : ""} flex flex-wrap items-center gap-3`}>
                 <a
-                  href={dl(fullUrl)}
+                  href={dl(m4bUrl)}
                   className="px-3 py-2 rounded-lg font-bold text-sm text-black"
                   style={{ background: "linear-gradient(90deg,#f59e0b,#fbbf24)" }}
                 >
-                  ⬇ Download the complete audiobook
+                  ⬇ Download the audiobook (.m4b)
                 </a>
-                <a href={fullUrl} target="_blank" rel="noopener noreferrer" className="text-[12px] text-amber-400 hover:text-amber-300 underline">
-                  or stream it in a new tab
-                </a>
-                <span className="text-[11px] text-gray-500">One MP3 · all chapters · for offline play in any app.</span>
+                <span className="text-[11px] text-gray-500">One file · all 139 chapters · open in Apple Books or any audiobook app — real chapter list &amp; auto-resume.</span>
               </div>
             )}
           </div>

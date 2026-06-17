@@ -21,7 +21,7 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import { execFileSync } from "child_process";
-import { put } from "@vercel/blob";
+import { put, list, del } from "@vercel/blob";
 import ffmpegPath from "ffmpeg-static";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -173,7 +173,91 @@ async function combineFull() {
   console.log(`Manifest updated with .full — commit secured-docs/siempre-segundo.audio.json.`);
 }
 
+// Read a media file's duration (ms) by parsing ffmpeg's stderr (ffmpeg-static
+// ships no ffprobe). `ffmpeg -i FILE` with no output exits non-zero and prints
+// "Duration: HH:MM:SS.ss" to stderr.
+function durationMs(file) {
+  let err = "";
+  try { execFileSync(ffmpegPath, ["-i", file], { stdio: ["ignore", "ignore", "pipe"] }); }
+  catch (e) { err = (e.stderr || e.stdout || "").toString(); }
+  const m = /Duration:\s*(\d+):(\d+):(\d+(?:\.\d+)?)/.exec(err);
+  if (!m) throw new Error(`No duration parsed for ${file}`);
+  return Math.round((parseInt(m[1], 10) * 3600 + parseInt(m[2], 10) * 60 + parseFloat(m[3])) * 1000);
+}
+
+// Build a single .m4b audiobook from the per-chapter MP3s on disk: AAC audio in an
+// MP4 container with real chapter markers + title/album, so Apple Books (and any
+// audiobook app) treats it as a proper audiobook — chapter list, cover, and
+// auto-resume. No ElevenLabs calls. (AUDIOBOOK_M4B=1)
+async function combineM4b() {
+  const m = readManifest();
+  if (!m.chapters?.length) { console.error("No manifest chapters. Run a full generation first."); process.exit(1); }
+  const n = m.chapters.length;
+  fs.mkdirSync(BUILD_DIR, { recursive: true });
+
+  let meta = ";FFMETADATA1\ntitle=Siempre Segundo\nalbum=Siempre Segundo\nartist=Siempre Segundo\ngenre=Audiobook\n";
+  const listLines = [];
+  let start = 0;
+  console.log(`Measuring ${n} chapters…`);
+  for (let i = 1; i <= n; i++) {
+    const f = path.join(BUILD_DIR, `ch-${String(i).padStart(3, "0")}-seek.mp3`);
+    if (!fs.existsSync(f)) { console.error(`Missing local chapter file: ${f}`); process.exit(1); }
+    const dur = durationMs(f);
+    listLines.push(`file '${f.replace(/\\/g, "/")}'`);
+    const end = start + dur;
+    const title = (m.chapters[i - 1]?.title || `Chapter ${i}`).replace(/[\r\n=;#]/g, " ").trim();
+    meta += `[CHAPTER]\nTIMEBASE=1/1000\nSTART=${start}\nEND=${end}\ntitle=${title}\n`;
+    start = end;
+  }
+  const listPath = path.join(BUILD_DIR, "m4b-list.txt");
+  const metaPath = path.join(BUILD_DIR, "chapters.ffmeta");
+  fs.writeFileSync(listPath, listLines.join("\n") + "\n", "utf-8");
+  fs.writeFileSync(metaPath, meta, "utf-8");
+  const outPath = path.join(BUILD_DIR, "siempre-segundo.m4b");
+  console.log(`Encoding .m4b with ${n} chapter markers (ffmpeg → AAC)…`);
+  execFileSync(ffmpegPath, ["-y", "-f", "concat", "-safe", "0", "-i", listPath, "-i", metaPath, "-map", "0:a", "-map_metadata", "1", "-map_chapters", "1", "-c:a", "aac", "-b:a", "64k", outPath], { stdio: "ignore" });
+  const buf = fs.readFileSync(outPath);
+  console.log(`Built ${(buf.length / 1024 / 1024).toFixed(1)} MB .m4b. Uploading…`);
+  const blob = await put("studio/siempre-segundo.m4b", buf, { access: "public", contentType: "audio/mp4", addRandomSuffix: true, token: BLOB_TOKEN });
+  m.m4b = { url: blob.url, bytes: buf.length };
+  fs.writeFileSync(MANIFEST_FILE, JSON.stringify(m, null, 2) + "\n", "utf-8");
+  console.log(`Audiobook (.m4b):\n  ${blob.url}`);
+  console.log(`Manifest updated with .m4b — commit secured-docs/siempre-segundo.audio.json.`);
+}
+
+// Delete every studio/ Blob NOT referenced by the current chapter manifest — the
+// stale single-file MP3, the combined MP3, orphaned smoke-test chapters — to stay
+// under the Blob quota. (AUDIOBOOK_PRUNE=1) Drops the now-dead .full pointer too.
+async function prune() {
+  const m = readManifest();
+  const keep = new Set((m.chapters || []).map((c) => new URL(c.url).pathname.replace(/^\//, "")));
+  let cursor, deleted = 0, kept = 0;
+  do {
+    const res = await list({ token: BLOB_TOKEN, cursor, prefix: "studio/" });
+    for (const b of res.blobs) {
+      if (keep.has(b.pathname)) { kept++; continue; }
+      await del(b.url, { token: BLOB_TOKEN });
+      console.log(`  deleted ${b.pathname} (${(b.size / 1024 / 1024).toFixed(1)} MB)`);
+      deleted++;
+    }
+    cursor = res.cursor;
+  } while (cursor);
+  if (m.full) { delete m.full; fs.writeFileSync(MANIFEST_FILE, JSON.stringify(m, null, 2) + "\n", "utf-8"); }
+  console.log(`Pruned: kept ${kept} chapter blobs, deleted ${deleted}.`);
+}
+
 async function main() {
+  // AUDIOBOOK_DELETE="url1,url2" — delete exactly these named Blob objects (user-
+  // authorized cleanup of specific obsolete files). Drops a matching .full pointer.
+  if (process.env.AUDIOBOOK_DELETE) {
+    const urls = process.env.AUDIOBOOK_DELETE.split(",").map((s) => s.trim()).filter(Boolean);
+    for (const u of urls) { await del(u, { token: BLOB_TOKEN }); console.log(`deleted ${u}`); }
+    const m = readManifest();
+    if (m.full && urls.includes(m.full.url)) { delete m.full; fs.writeFileSync(MANIFEST_FILE, JSON.stringify(m, null, 2) + "\n", "utf-8"); }
+    return;
+  }
+  if (process.env.AUDIOBOOK_PRUNE === "1") { await prune(); return; }
+  if (process.env.AUDIOBOOK_M4B === "1") { await combineM4b(); return; }
   if (process.env.AUDIOBOOK_COMBINE === "1") { await combineFull(); return; }
 
   const md = fs.readFileSync(SRC, "utf-8");
