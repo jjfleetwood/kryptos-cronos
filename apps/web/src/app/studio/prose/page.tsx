@@ -243,6 +243,33 @@ export default function StudioProsePage() {
               </div>
             )}
 
+            {/* Mobile chapter index (the right-hand index is hidden below lg) */}
+            {state === "ready" && toc.length > 0 && (
+              <details className="lg:hidden mb-6 rounded-xl border border-amber-500/20 bg-black/30">
+                <summary className="cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden flex items-center justify-between px-4 py-3 text-[12px] font-bold uppercase tracking-[0.2em] text-amber-400/90">
+                  Chapters
+                  <span className="text-amber-500/60">▾</span>
+                </summary>
+                <ul className="max-h-80 overflow-y-auto px-4 pb-4 space-y-0.5 text-[13px] leading-snug">
+                  {toc.map((t, i) => (
+                    <li key={`m-${i}-${t.slug}`}>
+                      <a
+                        href={`#${t.slug}`}
+                        onClick={(e) => e.currentTarget.closest("details")?.removeAttribute("open")}
+                        className={
+                          t.level === 2
+                            ? "block mt-3 mb-1 text-amber-300 font-bold uppercase tracking-wide text-[11px]"
+                            : "block py-1 pl-3 text-gray-400 active:text-amber-300 border-l border-white/10"
+                        }
+                      >
+                        {t.display}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </details>
+            )}
+
             {state === "loading" ? (
               <div className="space-y-3 animate-pulse pt-8">
                 <div className="h-10 bg-white/5 rounded w-2/3" />
