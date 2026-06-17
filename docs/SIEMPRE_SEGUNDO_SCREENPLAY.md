@@ -946,5 +946,339 @@ SMASH CUT TO BLACK.
 
 END OF ACT II.
 
-[SCREENPLAY CONTINUES → ACT III — Siempre Primero (1918)]
+```
+
+---
+
+## ACT III — *Siempre Primero* (1918)
+
+```
+INT. COLD BROOKLYN FLAT -- NIGHT (NEW YEAR'S, 1918)
+
+Outside, faint, drunk horns seeing the new year in. Inside: a cry --
+a NEWBORN, wet and red. REBECCA, spent and fierce, holds him.
+
+CIRILO crosses the cold floor and takes the small hands -- both
+folded into one of his -- the gesture his abuelo made over him
+thirty-five years and three thousand miles ago, on a floor that
+smelled of lime and hide. He cannot speak. So he says the only words
+the family has.
+
+CIRILO
+(barely)
+Already big. Already strong.
+
+He stands in the cold with his wife, his son, and his father's glove
+on the sill -- a thirty-six-year-old rookie with a tannery stain
+still under his nails -- and for the length of one held breath he is
+not second to any man alive.
+
+EXT. FENWAY PARK -- BOSTON -- A TUESDAY IN JULY (1918)
+
+Heat coming up off the infield in sheets, the war news bad. A spare,
+gray-templed man warms up easy -- and does not look like much. But
+BABE RUTH wanders over to watch (Ruth always wanders over), and HARRY
+HOOPER drifts in off the grass, and by the first hitter there are
+three future Hall of Famers and a dying man on a ball field, and only
+one of them yet knows which is which.
+
+Cirilo reads their feet. Busts the deep stander up and in. Ties the
+plate-crowder in a knot, then floats the dying ball past his swing.
+Gives the white-knuckled slugger nothing -- three pitches that leave
+his hand looking like strikes and die in the last ten feet.
+
+In the seventh, the bench gone quiet, the bleachers begin it -- low,
+then all together, the way a congregation finds a hymn:
+
+CROWD
+EL CID -- EL CID -- EL CID --
+
+Ten thousand Boston throats chanting the name of an eight-hundred-
+years-dead Castilian at a tanner's son from Santa Cruz, not one of
+them hearing the joke folded inside it. Cirilo takes the ball back,
+face giving away nothing. But under the iron of him, a boy who once
+swept these strangers' planks for nickels stands very still:
+
+CIRILO (V.O.)
+It is not my name. But they are on their feet,
+and they are saying a name, and I made them do
+it. It is the closest they will ever come. And
+God forgive me -- after all these years -- I
+will take it.
+
+EXT. FENWAY PARK -- A GRAY AFTERNOON (THE DUEL)
+
+The Red Sox against the Senators -- and the Senators have WALTER
+JOHNSON. The Big Train. The fastest arm the game has produced: he
+beats you with pure speed, the way weather beats you, without
+deception and without apology, because he has never once needed any.
+
+And Barrow gives the ball to Cirilo Méndez. The era's purest power
+against the old man's purest lie.
+
+For nine innings, nothing scores -- and the not-scoring is the most
+thrilling thing those people have seen in years. The crowd comes to
+it slowly and then all at once: the dawning understanding that the
+old brown junk-baller is matching the Big Train pitch for pitch,
+ZERO for ZERO.
+
+It breaks in the eighth -- on craft, not power. Hooper walks, steals
+second clean, takes third on a grounder, scores on a sacrifice fly so
+shallow they nearly catch him at the plate. ONE run. The only run.
+
+Cirilo sets the Senators down in the ninth. And it is over.
+
+He has beaten Walter Johnson. One to nothing.
+
+And the Boston crowd that walked in that afternoon not wanting to
+love him stands, every last one of them, and ROARS.
+
+He does not whoop. He takes the ball back and looks once at the flat
+gray New England sky -- out of a habit older than the East -- scanning
+it for a bird that is not there and never will be. What rises in him
+is not triumph. It is heavier. Vindication -- and under it, grief.
+
+CIRILO (V.O.)
+I was this good the whole time.
+
+INT./EXT. THE WORLD SERIES -- THE STRIKEOUT
+
+The box score will flatten it to one letter: K. What it is: bases
+loaded, two out, the Cubs' FRED MERKLE digging in. SCHANG crouches.
+And the two of them run Merkle through a five-pitch sentence the old
+man has been composing since he dug in.
+
+A fastball IN, under the hands -- felt, not hit. (Ball. Merkle
+doesn't like it.) The change -- same furious arm, nothing behind it --
+and Merkle's whole body commits to a fastball that never comes; his
+swing dies a foot out front. (Strike. The flush of shame up a
+slugger's neck.) A wasted curve; let the anger work. The fastball IN
+again, closer -- Merkle fouls it off his fists, a half-second late,
+the inside pitch confirmed now in his fear --
+
+-- which is the whole trap. A hitter guarding the inside fastball has
+stopped looking down and away.
+
+Pitch five: the dying ball. Fat, waist-high, full of false promise,
+exactly where Merkle's furious guarded eyes want it. He swings from
+his heels --
+
+-- and it falls off the table at the last instant like a thing that
+gave up the ghost. The bat goes through empty air a hand's width
+above it. Schang's mitt takes it at the shin. The umpire's arm goes
+up.
+
+The crowd sees a strikeout. The two men who can read -- Schang, and
+an old man three thousand miles west in his good chair -- see the
+truth: the lying is a kind of genius, and the genius has just, on the
+one fair square, in front of everyone, WON.
+
+EXT. THE STREETS OF BOSTON -- NIGHT (THE CELEBRATION)
+
+And then they carry him through the streets. And the streets kill
+him.
+
+The first time the city of Boston ever opens its arms to a Méndez --
+and it does the thing wholeheartedly: FORTY THOUSAND people shoulder
+to shoulder in the wet autumn dark, breathing the same air, passing
+the champion overhead hand to hand, his SON held up over the crowd in
+a knit cap. For one night Cirilo Méndez is not second to any man in
+America.
+
+And the whole town is already sick, and does not know it.
+
+CIRILO (V.O.)
+They spent seventy years refusing to embrace my
+people. The one time they did -- the one city,
+the one night -- it was the embrace that did
+what the refusal never had.
+
+He goes down four days later.
+
+INT. A SMALL BOSTON FLAT -- THE ROOM -- NIGHT (NOVEMBER 1918)
+
+Small, clean, full of the wrong quiet. On the sill: the championship
+ball, a guttering candle, a rosary from a chapel on land they no
+longer own, and a tight little Ohlone basket. REBECCA sits on the
+edge of the bed, dry-eyed past crying, their son asleep against her.
+In the corner, AOIFE DOYLE's lips move over the beads and do not stop
+-- keeping the vigil the family three thousand miles west cannot.
+
+Cirilo is a long way off. But his hand finds the old glove on the
+blanket -- his father's leather, his great-grandfather's tanning, the
+one thing four generations carried through every theft -- turns it
+once in his fingers, and does not give it to Rebecca.
+
+He folds his son's small fingers around it instead.
+
+CIRILO
+(they have to lean close)
+Abuelo was right. There's a price. For us.
+Being first.
+(the ghost of the old smile)
+Worth it. Tell him -- when you take me home,
+tell the old man -- it was worth it.
+
+She does not spend his last clear minutes on a reply. She gives him
+instead the thing she carried up out of her grief on purpose, to give
+him in time.
+
+REBECCA
+You weren't second.
+(into the quiet)
+Not for one day of your life.
+
+He hears that. His hand goes still on his son's hand on the glove.
+Aoife does not stop praying. And Rebecca, through her tears, is
+looking at a Méndez's hands.
+
+Small ones now.
+
+Already strong.
+
+SMASH TO BLACK.
+```
+
+---
+
+## CODA
+
+```
+EXT. THE SANTA CRUZ FLATS -- DAY (OCTOBER 1918) -- TWO WIRES
+
+The news comes home twice in one October, on the same wire, two weeks
+and one whole world apart.
+
+FIRST it runs through the flats like current: they WON -- the Boston
+club -- and one of ours pitched them to it, all the way at the top of
+the world. Men who cannot read have the box scores read aloud in the
+cantina and weep among the bottles. NUNZIO closes the fruit stand and
+stands among the crates with his face working. For two weeks the
+poorest neighborhood in the county walks an inch taller. Uno de
+nosotros. One of ours. All the way to the top.
+
+And then the SECOND wire comes. And it is the influenza. And he is
+dead.
+
+DOLORES takes it at the stove, standing. Finishes what she is
+cooking, because there are people who have to eat. Then climbs the
+hill in the rain.
+
+EXT. THE HILL ABOVE THE BAY -- DAY (NOVEMBER 1918) -- THE BURIAL
+
+They bring him home across the whole width of the country he was
+never quite allowed to belong to, and give him back to the ground
+that made him.
+
+And the town comes -- the thing none of them expected. The TANNERY
+SHUTS ITS GATES for the afternoon, the first time in its history it
+has shut them for a Mexican, and Esteban's old crew stand at the
+grave with their cracked, leather-colored hands folded. The fishermen
+come up from the wharf. The flats families stand in the open October
+light and speak, out loud, the language they speak only behind closed
+doors -- because the boy in the box made the whole country learn, for
+one season, to say a name like theirs, with its hat in its hands.
+
+DON AURELIO stands at the edge of land that once ran from the river to
+the redwoods -- all of it theirs and none of it theirs -- and
+understands at last that he read the family's curse exactly backward
+for ninety years.
+
+And as they lower the box, a RED-TAILED HAWK comes up off the ravine
+on the wet wind and hangs over the open grave, motionless against the
+gray.
+
+Not one person in that small soaked grieving family takes it for a
+coincidence. They have never once believed the world is the kind of
+place where that would be one.
+
+DOLORES (V.O.)
+(soft; the old knowledge)
+El Halcón. The hawk. They called him every name
+but his -- and now the family takes him back, and
+gives him the right one, in the only church that
+ever held us: the open weather, over the burying
+hill.
+
+The hawk tilts, at last, on a held wing -- and slides off north along
+the ridge, into the cloud, unhurried, having seen what it came to
+see.
+
+EXT. THE LIVING COAST -- THE SAME DAY -- MONTAGE (UNDER THE SUN)
+
+And all around the small black knot of grieving, the coast does the
+one thing it has always done, which is to live:
+
+A lone SEA OTTER -- one of the last of them -- rides the kelp off the
+point, cracks an urchin on a stone over its own heart, eats in the
+rain, warm in its fur. GRAY WHALES track south on the old road in the
+water, ten thousand years older than the hill or the country that dug
+it. Up the canyon the first rains run the river brown and loud and the
+STEELHEAD nose in off the tide to climb. A coyote on a deer trail,
+nose down, indifferent and entirely alive.
+
+The sun comes up over the water the next morning the way it has come
+up over that water always -- and asks the ground that holds Cirilo
+Méndez no question at all about his name, or his skin, or his place in
+any line.
+
+The one homecoming no man and no country could ever bar him from.
+
+EXT. THE SAME GROUND -- TIME RUNNING FORWARD -- TO PRESENT DAY
+
+The hill, the houses, the smoke -- and then time runs forward over all
+of it: the houses thin, a cannery rises and falls, a vacant field, and
+finally the ASPHALT comes back up, the chain-link, the storage yard,
+the lot no one looks at twice.
+
+(We have been here. This is where we began.)
+
+And over it -- still -- the OLD REDWOOD. And on its high limb, the
+RED-TAILED HAWK, the gold eye fixed on the ground below.
+
+EXT. HARVEY WEST PARK -- FIELD 1 -- CONTINUOUS (PRESENT DAY)
+
+And down on the green, the playoff we saw at dawn. The BOY on the
+mound toes the rubber, looks in, and throws a pitch that drops off the
+table like a thing that gave up the ghost -- and the hitter swings a
+hand's width over it.
+
+Behind the backstop, an OLD MAN at the fence watches, and says it to
+nobody -- the way it has been said on that ground for a hundred years,
+by people who never once saw the man pitch:
+
+OLD MAN
+... throws like Méndez.
+
+The boy does not hear it. Does not know the name. He just got somebody
+out, and the morning belongs to him.
+
+The relay, unbroken. The name, still said.
+
+EXT. UP THE SAN LORENZO -- A FOLD OF THE RIDGE -- TIMELESS
+
+A REDWOOD the loggers somehow missed -- a sapling when Rome was still a
+town worth conquering -- stands in its own fog and drinks the sea's
+breath. And to the tree the whole of it (the conqueror and the
+conquered, the rope and the prayer and the box score, every furious
+human sorting of who was first and who was second) is one short wet
+afternoon's weather, passing over roots that were old before the
+question was ever asked.
+
+DON AURELIO (V.O.)
+Not primero. Not segundo.
+(beat)
+Siempre.
+
+The fog combs down through the great tree, and is given to the creek,
+and the creek to the sea, and the sea back up as fog -- world, and
+world, and world.
+
+FADE TO BLACK.
+
+TITLE:   SIEMPRE SEGUNDO
+
+FADE OUT.
+
+THE END.
 ```
