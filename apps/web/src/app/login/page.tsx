@@ -279,7 +279,7 @@ export default function LoginPage() {
         </div>
 
         <p className="text-center text-xs mt-5" style={{ color: skin.textMuted }}>
-          {skin.id === "youth" ? "Your scores are saved! 🎯" : "Credentials stored locally · Progress synced to server"}
+          {skin.id === "youth" ? "Your scores are saved! 🎯" : "Encrypted sign-in · Progress synced to your account"}
         </p>
       </div>
     </div>
