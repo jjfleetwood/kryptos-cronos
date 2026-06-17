@@ -101,7 +101,10 @@ export default function StudioProsePage() {
   // Blob URL directly (fetched, gated, from ?meta=1) rather than streaming through
   // a 302 redirect, which large range-seeked media elements handle unreliably.
   const [hasMp3, setHasMp3] = useState(false);
-  const [audioUrl, setAudioUrl] = useState("");
+  const [chapters, setChapters] = useState<{ i: number; title: string; url: string }[]>([]);
+  const [curCh, setCurCh] = useState(0);
+  const audioElRef = useRef<HTMLAudioElement | null>(null);
+  const startedRef = useRef(false);
 
   // Admins get a "Copy share link" control populated from /api/studio/share.
   const [shareUrl, setShareUrl] = useState("");
@@ -117,10 +120,23 @@ export default function StudioProsePage() {
     rateRef.current = rate;
   }, [rate]);
 
+  // When the listener moves to a new chapter (after the first interaction), load
+  // and play it — so Next/Prev/select and end-of-chapter auto-advance all play.
+  useEffect(() => {
+    if (!startedRef.current) return;
+    const a = audioElRef.current;
+    if (a) { a.load(); a.play().catch(() => {}); }
+  }, [curCh]);
+
+  function goChapter(n: number) {
+    if (n < 0 || n >= chapters.length) return;
+    startedRef.current = true;
+    setCurCh(n);
+  }
+
   useEffect(() => {
     const s = new URLSearchParams(window.location.search).get("s") ?? "";
     const q = s ? `&s=${encodeURIComponent(s)}` : "";
-    const aq = s ? `?s=${encodeURIComponent(s)}` : "";
 
     fetch(`/api/studio?prose=1${q}`)
       .then((r) => {
@@ -136,14 +152,11 @@ export default function StudioProsePage() {
         setState("ready");
       })
       .catch(() => setState("error"));
-    // Detect the audiobook and get its direct (Blob) URL to play.
-    fetch(`/api/studio/audio?meta=1${q}`)
+    // Detect the chaptered audiobook (manifest of per-chapter Blob MP3s).
+    fetch(`/api/studio/audio?manifest=1${q}`)
       .then((r) => (r.ok ? r.json() : null))
       .then((d) => {
-        if (!d) return;
-        setHasMp3(true);
-        // Blob URL → play it directly; local dev fallback → stream via the route.
-        setAudioUrl(d.url ?? `/api/studio/audio${aq}`);
+        if (d?.chapters?.length) { setChapters(d.chapters); setHasMp3(true); }
       })
       .catch(() => {});
     // Admins: fetch the shareable link to copy. (403 for everyone else.)
@@ -287,16 +300,34 @@ export default function StudioProsePage() {
             </>
             )}
 
-            {hasMp3 && (
+            {hasMp3 && chapters.length > 0 && (
               <div className="mt-3 pt-3 border-t border-white/10">
-                <div className="flex items-center gap-2 mb-1.5">
-                  <span className="text-[11px] font-bold text-amber-300 uppercase tracking-wider">🎙 Narrated MP3</span>
-                  {audioUrl && <a href={audioUrl} download="siempre-segundo.mp3" className="text-[11px] text-amber-400 hover:text-amber-300 underline">download</a>}
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-[11px] font-bold text-amber-300 uppercase tracking-wider">🎙 Narrated — chapter {curCh + 1} / {chapters.length}</span>
+                  <a href={chapters[curCh]?.url} download className="text-[11px] text-amber-400 hover:text-amber-300 underline">download</a>
                 </div>
-                <audio controls preload="none" src={audioUrl} className="w-full h-9">
+                <div className="flex items-center gap-2 mb-2">
+                  <button onClick={() => goChapter(curCh - 1)} disabled={curCh === 0} className="px-2.5 py-1.5 rounded-lg text-sm font-semibold text-gray-300 border border-white/15 hover:border-white/30 disabled:opacity-30">‹ Prev</button>
+                  <select
+                    value={curCh}
+                    onChange={(e) => goChapter(Number(e.target.value))}
+                    className="flex-1 min-w-0 bg-black/40 border border-white/15 rounded px-2 py-1.5 text-sm text-gray-200"
+                  >
+                    {chapters.map((c, idx) => <option key={c.i} value={idx}>{idx + 1}. {c.title}</option>)}
+                  </select>
+                  <button onClick={() => goChapter(curCh + 1)} disabled={curCh >= chapters.length - 1} className="px-2.5 py-1.5 rounded-lg text-sm font-semibold text-gray-300 border border-white/15 hover:border-white/30 disabled:opacity-30">Next ›</button>
+                </div>
+                <audio
+                  ref={audioElRef}
+                  controls
+                  preload="none"
+                  src={chapters[curCh]?.url}
+                  onEnded={() => goChapter(curCh + 1)}
+                  className="w-full h-9"
+                >
                   Your browser doesn&apos;t support audio playback.
                 </audio>
-                <p className="mt-1 text-[11px] text-gray-500">Natural voice — plays screen-off over Bluetooth, and scrubbing/resume work.</p>
+                <p className="mt-1 text-[11px] text-gray-500">Natural voice, by chapter — auto-advances to the next, plays screen-off over Bluetooth, scrubbing/resume work.</p>
               </div>
             )}
           </div>

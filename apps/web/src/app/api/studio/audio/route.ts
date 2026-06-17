@@ -14,6 +14,7 @@ import { Readable } from "stream";
 // Dev fallback: if a local secured-docs/siempre-segundo.mp3 exists instead, it's
 // streamed with HTTP Range support. HEAD reports whether audio exists yet.
 const URL_FILE = path.join(process.cwd(), "secured-docs", "siempre-segundo.audio.txt");
+const MANIFEST_FILE = path.join(process.cwd(), "secured-docs", "siempre-segundo.audio.json");
 const LOCAL_MP3 = path.join(process.cwd(), "secured-docs", "siempre-segundo.mp3");
 
 function blobUrl(): string | null {
@@ -25,9 +26,27 @@ function blobUrl(): string | null {
   }
 }
 
+type Manifest = { generatedAt: string | null; chapters: { i: number; title: string; url: string }[] };
+function manifest(): Manifest | null {
+  try {
+    const m = JSON.parse(fs.readFileSync(MANIFEST_FILE, "utf-8")) as Manifest;
+    return Array.isArray(m.chapters) && m.chapters.length ? m : null;
+  } catch {
+    return null;
+  }
+}
+
 export async function GET(req: NextRequest) {
   const gate = await guard(req);
   if (gate) return gate;
+
+  // ?manifest=1 → the chaptered audiobook: a list of {i, title, url} pointing at
+  // per-chapter (unguessable, public) Blob MP3s. The player renders a chapter list
+  // and plays each directly, auto-advancing.
+  if (req.nextUrl.searchParams.get("manifest") === "1") {
+    const m = manifest();
+    return m ? NextResponse.json(m) : NextResponse.json({ error: "not-generated" }, { status: 404 });
+  }
 
   const url = blobUrl();
   // ?meta=1 → return the Blob URL as JSON so the player can point its <audio>
@@ -74,7 +93,7 @@ export async function GET(req: NextRequest) {
 export async function HEAD(req: NextRequest) {
   const gate = await guard(req);
   if (gate) return gate;
-  if (blobUrl()) return new NextResponse(null, { status: 200, headers: { "Content-Type": "audio/mpeg" } });
+  if (manifest() || blobUrl()) return new NextResponse(null, { status: 200, headers: { "Content-Type": "audio/mpeg" } });
   try {
     const size = fs.statSync(LOCAL_MP3).size;
     return new NextResponse(null, { status: 200, headers: { "Accept-Ranges": "bytes", "Content-Length": String(size), "Content-Type": "audio/mpeg" } });

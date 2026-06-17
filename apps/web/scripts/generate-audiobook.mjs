@@ -1,21 +1,21 @@
-// Generate a single MP3 audiobook of the Siempre Segundo novelized prose using
-// ElevenLabs TTS, upload it to Vercel Blob, and record the resulting URL in
-// secured-docs/siempre-segundo.audio.txt (committed; read by /api/studio/audio).
+// Generate a CHAPTERED audiobook of the Siempre Segundo novelized prose using
+// ElevenLabs TTS: one seekable MP3 per chapter, each uploaded to Vercel Blob, with
+// a manifest recorded in secured-docs/siempre-segundo.audio.json (committed; read by
+// /api/studio/audio?manifest=1). The /studio/prose player renders a chapter list and
+// auto-advances.
 //
 //   ELEVENLABS_API_KEY=...  BLOB_READ_WRITE_TOKEN=...  node scripts/generate-audiobook.mjs
 //
-// (Both are read from apps/web/.env.local automatically when run via the npm
-// script: `npm run gen:audiobook -w @kryptos/web`.)
+// (Both are read from apps/web/.env.local automatically via: npm run gen:audiobook -w @kryptos/web)
 //
 // Optional env:
 //   ELEVENLABS_VOICE_ID   (default: Rachel — "21m00Tcm4TlvDq8ikWAM")
 //   ELEVENLABS_MODEL_ID   (default: eleven_multilingual_v2)
-//   ELEVENLABS_FORMAT     (default: mp3_44100_64 — good spoken-word quality)
-//
-// Hosting note: the MP3 goes to Vercel Blob (no 100 MB git limit), so we can use
-// a higher bitrate than the old git-served path. ~42k words ≈ 4.5 hrs; at 64 kbps
-// that's ~130 MB. The Blob URL is unguessable but bearer-style; access is gated
-// at /api/studio/audio (Pro / admin / share-link) which 302-redirects to it.
+//   ELEVENLABS_FORMAT     (default: mp3_44100_64)
+//   AUDIOBOOK_LIMIT=N     render only the first N chapters (cheap pipeline test)
+//   AUDIOBOOK_RESUME_FROM=N  start at chapter index N (1-based), keeping manifest
+//                            entries already recorded — finish a run that stopped on a
+//                            quota cap without re-paying for chapters already done.
 
 import fs from "fs";
 import path from "path";
@@ -27,14 +27,8 @@ import ffmpegPath from "ffmpeg-static";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, ".."); // apps/web
 const SRC = path.join(ROOT, "secured-docs", "SIEMPRE_SEGUNDO.md");
-const URL_FILE = path.join(ROOT, "secured-docs", "siempre-segundo.audio.txt");
+const MANIFEST_FILE = path.join(ROOT, "secured-docs", "siempre-segundo.audio.json");
 const BUILD_DIR = path.join(ROOT, ".audiobook-build");
-const LOCAL_MP3 = path.join(BUILD_DIR, "siempre-segundo.mp3");
-// The raw file is a concatenation of 180+ separate ElevenLabs MP3 responses, which
-// has no single seek/duration header — players can play it straight through but
-// can't pause/resume or scrub. We re-encode it once into ONE clean MP3 (proper
-// Xing header) and upload that. Free (local), no extra ElevenLabs cost.
-const FIXED_MP3 = path.join(BUILD_DIR, "siempre-segundo-seekable.mp3");
 
 const API_KEY = process.env.ELEVENLABS_API_KEY || process.env.ELEVEN_API_KEY;
 const BLOB_TOKEN = process.env.BLOB_READ_WRITE_TOKEN;
@@ -43,9 +37,7 @@ const MODEL_ID = process.env.ELEVENLABS_MODEL_ID || "eleven_multilingual_v2";
 const FORMAT = process.env.ELEVENLABS_FORMAT || "mp3_44100_64";
 
 if (!API_KEY) { console.error("ELEVENLABS_API_KEY is not set. Aborting."); process.exit(1); }
-// BLOB_READ_WRITE_TOKEN is optional: with it, we upload via the SDK; without it,
-// we just write the local MP3 and print the `vercel blob put` command (which
-// auths via the linked project — no token needed).
+if (!BLOB_TOKEN) { console.error("BLOB_READ_WRITE_TOKEN is required for the chaptered uploader. Aborting."); process.exit(1); }
 
 // Same slice as /api/studio?prose=1: Prologue → Epilogue, no scaffolding.
 function extractProse(content) {
@@ -67,8 +59,44 @@ function mdToSpeech(md) {
     .trim();
 }
 
-// Larger chunks than the browser path (fewer API calls); split at paragraph then
-// sentence boundaries, capped ~2400 chars.
+function cleanTitle(h) {
+  let t = h.replace(/[*_`]/g, "").trim();
+  t = t.replace(/^Chapter\s*[—–-]\s*/i, "");
+  t = t.replace(/,?\s*novelized.*$/i, "").trim();
+  t = t.replace(/^Siempre Segundo\s*[—–-]\s*/i, "").trim();
+  return t || h.replace(/[*_`#]/g, "").trim();
+}
+
+// Split the prose into chapters at any level-2 or level-3 heading. Pure-heading
+// dividers (the structural top heading, Act breaks) have no body and are dropped;
+// each real chapter is narrated as a clean spoken title followed by its text.
+function splitChapters(prose) {
+  const lines = prose.split("\n");
+  const segs = [];
+  let cur = null;
+  for (const line of lines) {
+    const m = /^(#{2,3})\s+(.*\S)\s*$/.exec(line);
+    if (m) {
+      if (cur) segs.push(cur);
+      cur = { title: cleanTitle(m[2]), body: "" };
+    } else {
+      if (!cur) cur = { title: "Prologue", body: "" };
+      cur.body += line + "\n";
+    }
+  }
+  if (cur) segs.push(cur);
+  return segs
+    .map((s) => ({ title: s.title, bodySpeech: mdToSpeech(s.body) }))
+    .filter((s) => s.bodySpeech.length > 0)
+    .map((s) => ({ title: s.title, speech: `${s.title}.\n\n${s.bodySpeech}` }));
+}
+
+function slugify(s) {
+  return s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "")
+    .replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 40) || "chapter";
+}
+
+// Split a chapter's narration into ≤2400-char TTS calls at sentence boundaries.
 function chunk(text, max = 2400) {
   const paras = text.split(/\n{2,}/);
   const out = [];
@@ -112,69 +140,62 @@ async function tts(text, prev, next) {
   throw new Error("ElevenLabs: exhausted retries");
 }
 
+function readManifest() {
+  try { return JSON.parse(fs.readFileSync(MANIFEST_FILE, "utf-8")); }
+  catch { return { generatedAt: null, chapters: [] }; }
+}
+
 async function main() {
   const md = fs.readFileSync(SRC, "utf-8");
-  const all = chunk(mdToSpeech(extractProse(md)));
-  // AUDIOBOOK_LIMIT=N renders only the first N chunks (cheap pipeline test).
+  let chapters = splitChapters(extractProse(md));
   const LIMIT = parseInt(process.env.AUDIOBOOK_LIMIT || "0", 10);
-  const chunks = LIMIT > 0 ? all.slice(0, LIMIT) : all;
-  // AUDIOBOOK_RESUME_FROM=N (1-indexed) appends from chunk N onward to the existing
-  // local MP3 — used to finish a run that stopped on an ElevenLabs quota cap without
-  // re-paying for the chunks already generated. (Safe only if the source text is
-  // unchanged, since chunking is deterministic.)
+  if (LIMIT > 0) chapters = chapters.slice(0, LIMIT);
+
   const RESUME = parseInt(process.env.AUDIOBOOK_RESUME_FROM || "0", 10);
   const startIdx = RESUME > 0 ? RESUME - 1 : 0;
-  // AUDIOBOOK_UPLOAD_ONLY=1 skips ElevenLabs entirely and just re-encodes + uploads
-  // the existing local MP3 — used to fix/re-publish an already-generated file
-  // (e.g., make it seekable) without spending any credits.
-  const UPLOAD_ONLY = process.env.AUDIOBOOK_UPLOAD_ONLY === "1";
 
   fs.mkdirSync(BUILD_DIR, { recursive: true });
-  if (!UPLOAD_ONLY) {
-    console.log(`${chunks.length}${LIMIT > 0 ? ` of ${all.length} (LIMIT)` : ""} chunks @ ${FORMAT}${startIdx > 0 ? ` — RESUMING from chunk ${RESUME}` : ""} → ${LOCAL_MP3}`);
-    const fd = fs.openSync(LOCAL_MP3, startIdx > 0 ? "a" : "w");
-    try {
-      for (let i = startIdx; i < chunks.length; i++) {
-        const audio = await tts(chunks[i], chunks[i - 1], chunks[i + 1]);
-        fs.writeSync(fd, audio);
-        process.stdout.write(`\r  ${i + 1}/${chunks.length} (${(audio.length / 1024).toFixed(0)} KB)   `);
-      }
-    } finally {
-      fs.closeSync(fd);
+
+  // Resume keeps prior manifest entries; a fresh run starts the manifest clean.
+  const prior = startIdx > 0 ? readManifest().chapters : [];
+  const byIndex = new Map(prior.map((c) => [c.i, c]));
+
+  console.log(`${chapters.length} chapters @ ${FORMAT}${startIdx > 0 ? ` — RESUMING from chapter ${RESUME}` : ""}`);
+  let totalChars = 0;
+
+  for (let i = startIdx; i < chapters.length; i++) {
+    const ch = chapters[i];
+    const parts = chunk(ch.speech);
+    totalChars += ch.speech.length;
+    const buffers = [];
+    for (let j = 0; j < parts.length; j++) {
+      const audio = await tts(parts[j], parts[j - 1], parts[j + 1]);
+      buffers.push(audio);
     }
-    const mb = (fs.statSync(LOCAL_MP3).size / 1024 / 1024).toFixed(1);
-    console.log(`\nGenerated ${mb} MB at ${path.relative(ROOT, LOCAL_MP3)}.`);
-  } else {
-    console.log(`UPLOAD_ONLY: re-encoding + uploading existing ${path.relative(ROOT, LOCAL_MP3)} (no ElevenLabs calls).`);
+    const tag = String(i + 1).padStart(3, "0");
+    const rawPath = path.join(BUILD_DIR, `ch-${tag}.mp3`);
+    fs.writeFileSync(rawPath, Buffer.concat(buffers));
+    const fixedPath = path.join(BUILD_DIR, `ch-${tag}-seek.mp3`);
+    execFileSync(ffmpegPath, ["-y", "-i", rawPath, "-c:a", "libmp3lame", "-b:a", "64k", "-write_xing", "1", fixedPath], { stdio: "ignore" });
+
+    const buf = fs.readFileSync(fixedPath);
+    const blob = await put(`studio/chapters/${tag}-${slugify(ch.title)}.mp3`, buf, {
+      access: "public",
+      contentType: "audio/mpeg",
+      addRandomSuffix: true,
+      token: BLOB_TOKEN,
+    });
+    byIndex.set(i, { i, title: ch.title, url: blob.url });
+
+    // Write the manifest after every chapter, so a crash never loses progress.
+    const list = [...byIndex.values()].sort((a, b) => a.i - b.i);
+    fs.writeFileSync(MANIFEST_FILE, JSON.stringify({ generatedAt: new Date().toISOString(), chapters: list }, null, 2) + "\n", "utf-8");
+    console.log(`  ${tag}/${String(chapters.length).padStart(3, "0")}  ${ch.title}  (${parts.length} call${parts.length > 1 ? "s" : ""}, ${(buf.length / 1024).toFixed(0)} KB)`);
   }
 
-  // Re-encode the concatenation into one clean, seekable MP3.
-  console.log(`Re-encoding to a single seekable MP3 (ffmpeg)…`);
-  execFileSync(ffmpegPath, ["-y", "-i", LOCAL_MP3, "-c:a", "libmp3lame", "-b:a", "64k", "-write_xing", "1", FIXED_MP3], { stdio: "ignore" });
-  const fmb = (fs.statSync(FIXED_MP3).size / 1024 / 1024).toFixed(1);
-  console.log(`Re-encoded → ${fmb} MB, ${path.relative(ROOT, FIXED_MP3)}.`);
-
-  if (!BLOB_TOKEN) {
-    console.log(`\nNo BLOB_READ_WRITE_TOKEN set — upload via the linked-project CLI instead:`);
-    console.log(`  npx vercel blob put "${FIXED_MP3}" --access public --add-random-suffix --content-type audio/mpeg --pathname studio/siempre-segundo.mp3`);
-    console.log(`Then record the printed URL in secured-docs/siempre-segundo.audio.txt, commit, and push.`);
-    return;
-  }
-
-  console.log(`Uploading to Vercel Blob…`);
-  const buf = fs.readFileSync(FIXED_MP3);
-  const blob = await put("studio/siempre-segundo.mp3", buf, {
-    access: "public",
-    contentType: "audio/mpeg",
-    addRandomSuffix: true, // unguessable URL
-    token: BLOB_TOKEN,
-  });
-
-  fs.writeFileSync(URL_FILE, blob.url + "\n", "utf-8");
-  console.log(`Uploaded. URL recorded in ${path.relative(ROOT, URL_FILE)}:`);
-  console.log(`  ${blob.url}`);
-  console.log(`\nNext: commit secured-docs/siempre-segundo.audio.txt and push — the`);
-  console.log(`/studio/prose 🎙 player will light up automatically.`);
+  console.log(`\nDone. ${byIndex.size} chapters in manifest, ~${totalChars.toLocaleString()} chars narrated this run.`);
+  console.log(`Manifest: ${path.relative(ROOT, MANIFEST_FILE)}`);
+  console.log(`Next: commit secured-docs/siempre-segundo.audio.json and push — the /studio/prose chapter player lights up automatically.`);
 }
 
 main().catch((e) => { console.error("\n", e); process.exit(1); });
