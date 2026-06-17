@@ -16,6 +16,9 @@
 //   AUDIOBOOK_RESUME_FROM=N  start at chapter index N (1-based), keeping manifest
 //                            entries already recorded — finish a run that stopped on a
 //                            quota cap without re-paying for chapters already done.
+//   AUDIOBOOK_REMUX_M4B=1 fix an existing .m4b: relocate moov to the front
+//                            (+faststart) so streaming apps read chapters without
+//                            full buffering. No TTS, no re-encode; repoints manifest.
 
 import fs from "fs";
 import path from "path";
@@ -216,7 +219,7 @@ async function combineM4b() {
   fs.writeFileSync(metaPath, meta, "utf-8");
   const outPath = path.join(BUILD_DIR, "siempre-segundo.m4b");
   console.log(`Encoding .m4b with ${n} chapter markers (ffmpeg → AAC)…`);
-  execFileSync(ffmpegPath, ["-y", "-f", "concat", "-safe", "0", "-i", listPath, "-i", metaPath, "-map", "0:a", "-map_metadata", "1", "-map_chapters", "1", "-c:a", "aac", "-b:a", "64k", outPath], { stdio: "ignore" });
+  execFileSync(ffmpegPath, ["-y", "-f", "concat", "-safe", "0", "-i", listPath, "-i", metaPath, "-map", "0:a", "-map_metadata", "1", "-map_chapters", "1", "-c:a", "aac", "-b:a", "64k", "-movflags", "+faststart", outPath], { stdio: "ignore" });
   const buf = fs.readFileSync(outPath);
   console.log(`Built ${(buf.length / 1024 / 1024).toFixed(1)} MB .m4b. Uploading…`);
   const blob = await put("studio/siempre-segundo.m4b", buf, { access: "public", contentType: "audio/mp4", addRandomSuffix: true, token: BLOB_TOKEN });
@@ -228,6 +231,36 @@ async function combineM4b() {
 
 // Delete every studio/ Blob NOT referenced by the current chapter manifest — the
 // stale single-file MP3, the combined MP3, orphaned smoke-test chapters — to stay
+// Cheap fix for an already-uploaded .m4b: download it, relocate the moov atom to
+// the front (+faststart) so streaming audiobook apps can read the chapter index
+// without buffering the whole file, and re-upload. No TTS, no re-encode (-c copy
+// keeps the AAC audio + chapter text track + markers byte-for-byte). The old Blob
+// is deleted and the manifest is repointed. (AUDIOBOOK_REMUX_M4B=1)
+async function remuxM4b() {
+  const m = readManifest();
+  if (!m.m4b?.url) { console.error("No .m4b in the manifest to remux. Build one first (AUDIOBOOK_M4B=1)."); process.exit(1); }
+  fs.mkdirSync(BUILD_DIR, { recursive: true });
+  const inPath = path.join(BUILD_DIR, "remux-in.m4b");
+  const outPath = path.join(BUILD_DIR, "remux-out.m4b");
+  console.log(`Downloading current .m4b (~${((m.m4b.bytes || 0) / 1024 / 1024).toFixed(1)} MB)…`);
+  const res = await fetch(m.m4b.url);
+  if (!res.ok) { console.error(`Download failed: HTTP ${res.status}`); process.exit(1); }
+  fs.writeFileSync(inPath, Buffer.from(await res.arrayBuffer()));
+  console.log("Remuxing with +faststart (no re-encode)…");
+  // Map only the audio and copy it; ffmpeg regenerates the QuickTime chapter track
+  // from the (preserved) chapter metadata. Mapping the existing text track here
+  // makes the ipod/.m4b muxer reject the copy ("Tag text incompatible…").
+  execFileSync(ffmpegPath, ["-y", "-i", inPath, "-map", "0:a", "-c:a", "copy", "-movflags", "+faststart", outPath], { stdio: "ignore" });
+  const buf = fs.readFileSync(outPath);
+  console.log(`Remuxed ${(buf.length / 1024 / 1024).toFixed(1)} MB. Uploading…`);
+  const oldUrl = m.m4b.url;
+  const blob = await put("studio/siempre-segundo.m4b", buf, { access: "public", contentType: "audio/mp4", addRandomSuffix: true, token: BLOB_TOKEN });
+  m.m4b = { url: blob.url, bytes: buf.length };
+  fs.writeFileSync(MANIFEST_FILE, JSON.stringify(m, null, 2) + "\n", "utf-8");
+  if (oldUrl !== blob.url) { try { await del(oldUrl, { token: BLOB_TOKEN }); console.log(`Deleted old .m4b.`); } catch {} }
+  console.log(`.m4b remuxed + uploaded:\n  ${blob.url}\nCommit secured-docs/siempre-segundo.audio.json to deploy.`);
+}
+
 // under the Blob quota. (AUDIOBOOK_PRUNE=1) Drops the now-dead .full pointer too.
 async function prune() {
   const m = readManifest();
@@ -321,7 +354,7 @@ async function syncFromRef(ref) {
   fs.writeFileSync(listPath, listLines.join("\n") + "\n", "utf-8");
   fs.writeFileSync(metaPath, meta, "utf-8");
   const outPath = path.join(BUILD_DIR, "siempre-segundo.m4b");
-  execFileSync(ffmpegPath, ["-y", "-f", "concat", "-safe", "0", "-i", listPath, "-i", metaPath, "-map", "0:a", "-map_metadata", "1", "-map_chapters", "1", "-c:a", "aac", "-b:a", "64k", outPath], { stdio: "ignore" });
+  execFileSync(ffmpegPath, ["-y", "-f", "concat", "-safe", "0", "-i", listPath, "-i", metaPath, "-map", "0:a", "-map_metadata", "1", "-map_chapters", "1", "-c:a", "aac", "-b:a", "64k", "-movflags", "+faststart", outPath], { stdio: "ignore" });
   const buf = fs.readFileSync(outPath);
   const blob = await put("studio/siempre-segundo.m4b", buf, { access: "public", contentType: "audio/mp4", addRandomSuffix: true, token: BLOB_TOKEN });
   out.m4b = { url: blob.url, bytes: buf.length };
@@ -357,6 +390,7 @@ async function main() {
     return;
   }
   if (process.env.AUDIOBOOK_PRUNE === "1") { await prune(); return; }
+  if (process.env.AUDIOBOOK_REMUX_M4B === "1") { await remuxM4b(); return; }
   if (process.env.AUDIOBOOK_M4B === "1") { await combineM4b(); return; }
   if (process.env.AUDIOBOOK_COMBINE === "1") { await combineFull(); return; }
 
