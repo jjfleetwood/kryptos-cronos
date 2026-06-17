@@ -231,20 +231,21 @@ async function combineM4b() {
 // under the Blob quota. (AUDIOBOOK_PRUNE=1) Drops the now-dead .full pointer too.
 async function prune() {
   const m = readManifest();
-  const keep = new Set((m.chapters || []).map((c) => new URL(c.url).pathname.replace(/^\//, "")));
-  let cursor, deleted = 0, kept = 0;
+  const keep = new Set();
+  for (const c of m.chapters || []) if (c?.url) keep.add(new URL(c.url).pathname.replace(/^\//, ""));
+  for (const ref of [m.m4b, m.full]) if (ref?.url) keep.add(new URL(ref.url).pathname.replace(/^\//, ""));
+  let cursor, deleted = 0, kept = 0, freed = 0;
   do {
     const res = await list({ token: BLOB_TOKEN, cursor, prefix: "studio/" });
     for (const b of res.blobs) {
       if (keep.has(b.pathname)) { kept++; continue; }
       await del(b.url, { token: BLOB_TOKEN });
       console.log(`  deleted ${b.pathname} (${(b.size / 1024 / 1024).toFixed(1)} MB)`);
-      deleted++;
+      deleted++; freed += b.size;
     }
     cursor = res.cursor;
   } while (cursor);
-  if (m.full) { delete m.full; fs.writeFileSync(MANIFEST_FILE, JSON.stringify(m, null, 2) + "\n", "utf-8"); }
-  console.log(`Pruned: kept ${kept} chapter blobs, deleted ${deleted}.`);
+  console.log(`Pruned: kept ${kept} referenced blobs, deleted ${deleted} orphans (${(freed / 1024 / 1024).toFixed(1)} MB freed).`);
 }
 
 // Diff-aware regen. AUDIOBOOK_SYNC=<git-ref> (the ref the live audiobook was last
@@ -326,6 +327,9 @@ async function syncFromRef(ref) {
   out.m4b = { url: blob.url, bytes: buf.length };
   fs.writeFileSync(MANIFEST_FILE, JSON.stringify(out, null, 2) + "\n", "utf-8");
   console.log(`.m4b rebuilt + uploaded:\n  ${blob.url}`);
+
+  console.log("Auto-pruning orphaned blobs (the previous .m4b + superseded chapter versions)…");
+  await prune();
   console.log(`Manifest updated — commit secured-docs/siempre-segundo.audio.json.`);
 }
 
