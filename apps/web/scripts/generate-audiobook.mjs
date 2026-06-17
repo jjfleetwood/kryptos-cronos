@@ -145,7 +145,37 @@ function readManifest() {
   catch { return { generatedAt: null, chapters: [] }; }
 }
 
+// Stitch the per-chapter seekable MP3s already on disk into ONE seekable file,
+// upload it, and record it as manifest.full — a single-file download / offline play.
+// No ElevenLabs calls. (AUDIOBOOK_COMBINE=1)
+async function combineFull() {
+  const m = readManifest();
+  if (!m.chapters?.length) { console.error("No manifest chapters to combine. Run a full generation first."); process.exit(1); }
+  const n = m.chapters.length;
+  fs.mkdirSync(BUILD_DIR, { recursive: true });
+  const lines = [];
+  for (let i = 1; i <= n; i++) {
+    const f = path.join(BUILD_DIR, `ch-${String(i).padStart(3, "0")}-seek.mp3`);
+    if (!fs.existsSync(f)) { console.error(`Missing local chapter file: ${f}`); process.exit(1); }
+    lines.push(`file '${f.replace(/\\/g, "/")}'`);
+  }
+  const listPath = path.join(BUILD_DIR, "concat-list.txt");
+  fs.writeFileSync(listPath, lines.join("\n") + "\n", "utf-8");
+  const fullPath = path.join(BUILD_DIR, "siempre-segundo-full.mp3");
+  console.log(`Concatenating ${n} chapters into one seekable MP3 (ffmpeg)…`);
+  execFileSync(ffmpegPath, ["-y", "-f", "concat", "-safe", "0", "-i", listPath, "-c:a", "libmp3lame", "-b:a", "64k", "-write_xing", "1", fullPath], { stdio: "ignore" });
+  const buf = fs.readFileSync(fullPath);
+  console.log(`Combined ${(buf.length / 1024 / 1024).toFixed(1)} MB. Uploading…`);
+  const blob = await put("studio/siempre-segundo-full.mp3", buf, { access: "public", contentType: "audio/mpeg", addRandomSuffix: true, token: BLOB_TOKEN });
+  m.full = { url: blob.url, bytes: buf.length };
+  fs.writeFileSync(MANIFEST_FILE, JSON.stringify(m, null, 2) + "\n", "utf-8");
+  console.log(`Full audiobook:\n  ${blob.url}`);
+  console.log(`Manifest updated with .full — commit secured-docs/siempre-segundo.audio.json.`);
+}
+
 async function main() {
+  if (process.env.AUDIOBOOK_COMBINE === "1") { await combineFull(); return; }
+
   const md = fs.readFileSync(SRC, "utf-8");
   let chapters = splitChapters(extractProse(md));
   const LIMIT = parseInt(process.env.AUDIOBOOK_LIMIT || "0", 10);

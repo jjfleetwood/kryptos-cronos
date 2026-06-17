@@ -6,11 +6,11 @@ import ReactMarkdown, { type Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Studio · Prose — the novelized chapters only (Prologue → Epilogue), with no
-// planning scaffolding. Served by /api/studio?prose=1, gated to Pro (and admins).
-// Built for car/commute listening: a "Read aloud" button drives the browser's
-// SpeechSynthesis. (On iOS Safari, screen-lock can pause web speech — fall back
-// to the OS "Speak Screen": two-finger swipe down from the top of this page.)
+// Studio · Prose — the novelized chapters (Prologue → Epilogue), Pro-gated.
+// Listening is the ElevenLabs-narrated audiobook only: a per-chapter player that
+// auto-advances, plus a single combined-file download for offline play in any app.
+// (The browser SpeechSynthesis "read aloud" was removed — robotic, and unreliable
+// on a locked phone.)
 // ─────────────────────────────────────────────────────────────────────────────
 
 const components: Components = {
@@ -37,6 +37,7 @@ const components: Components = {
 };
 
 type State = "loading" | "ready" | "signin" | "pro" | "error";
+type Chapter = { i: number; title: string; url: string };
 
 function Gate({ icon, title, body, cta }: { icon: string; title: string; body: string; cta: { href: string; label: string } }) {
   return (
@@ -53,86 +54,27 @@ function Gate({ icon, title, body, cta }: { icon: string; title: string; body: s
   );
 }
 
-// Strip Markdown to plain narration text for the speech engine: headings keep
-// their words (they read as chapter dividers), emphasis/quote/link syntax is
-// removed, and blank lines collapse.
-function mdToSpeech(md: string): string {
-  return md
-    .replace(/```[\s\S]*?```/g, " ")          // drop any fenced blocks
-    .replace(/^#{1,6}\s+/gm, "")               // heading markers → bare text
-    .replace(/^\s*>\s?/gm, "")                 // blockquote markers
-    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")  // links → label
-    .replace(/[*_`]/g, "")                      // emphasis/code marks
-    .replace(/^\s*[-–—]\s*$/gm, " ")           // lone rule/dash lines
-    .replace(/\n{2,}/g, "\n\n")
-    .trim();
-}
-
-// Break text into ~short utterances at sentence boundaries. Small chunks dodge
-// the Chrome long-utterance stall and let us chain reliably via onend.
-function chunkText(text: string): string[] {
-  const pieces = text.split(/\n+/).flatMap((para) => para.match(/[^.!?]+[.!?]*\s*/g) ?? [para]);
-  const chunks: string[] = [];
-  let buf = "";
-  for (const p of pieces) {
-    if ((buf + p).length > 240 && buf) {
-      chunks.push(buf.trim());
-      buf = "";
-    }
-    buf += p;
-  }
-  if (buf.trim()) chunks.push(buf.trim());
-  return chunks.filter((c) => c.length > 0);
+// Vercel Blob serves a forced-download (Content-Disposition: attachment) response
+// when the URL carries ?download=1 — needed because the `download` attribute is
+// ignored for cross-origin URLs.
+function dl(u: string): string {
+  return u.includes("?") ? `${u}&download=1` : `${u}?download=1`;
 }
 
 export default function StudioProsePage() {
   const [state, setState] = useState<State>("loading");
   const [md, setMd] = useState("");
 
-  // Speech state
-  const [speech, setSpeech] = useState<"idle" | "playing" | "paused">("idle");
-  const [rate, setRate] = useState(1);
-  const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
-  const [voiceUri, setVoiceUri] = useState<string>("");
-  const supported = typeof window !== "undefined" && "speechSynthesis" in window;
-
-  // Pre-generated MP3 (ElevenLabs) — natural voice, plays screen-off over
-  // Bluetooth. Present only after the audiobook has been generated. We play the
-  // Blob URL directly (fetched, gated, from ?meta=1) rather than streaming through
-  // a 302 redirect, which large range-seeked media elements handle unreliably.
-  const [hasMp3, setHasMp3] = useState(false);
-  const [chapters, setChapters] = useState<{ i: number; title: string; url: string }[]>([]);
+  // Narrated audiobook: per-chapter Blob MP3s (+ a single combined file).
+  const [chapters, setChapters] = useState<Chapter[]>([]);
   const [curCh, setCurCh] = useState(0);
+  const [fullUrl, setFullUrl] = useState("");
   const audioElRef = useRef<HTMLAudioElement | null>(null);
   const startedRef = useRef(false);
 
   // Admins get a "Copy share link" control populated from /api/studio/share.
   const [shareUrl, setShareUrl] = useState("");
   const [copied, setCopied] = useState(false);
-
-  const chunksRef = useRef<string[]>([]);
-  const idxRef = useRef(0);
-  const stoppedRef = useRef(false);
-  const rateRef = useRef(1);
-  const voiceRef = useRef<SpeechSynthesisVoice | null>(null);
-
-  useEffect(() => {
-    rateRef.current = rate;
-  }, [rate]);
-
-  // When the listener moves to a new chapter (after the first interaction), load
-  // and play it — so Next/Prev/select and end-of-chapter auto-advance all play.
-  useEffect(() => {
-    if (!startedRef.current) return;
-    const a = audioElRef.current;
-    if (a) { a.load(); a.play().catch(() => {}); }
-  }, [curCh]);
-
-  function goChapter(n: number) {
-    if (n < 0 || n >= chapters.length) return;
-    startedRef.current = true;
-    setCurCh(n);
-  }
 
   useEffect(() => {
     const s = new URLSearchParams(window.location.search).get("s") ?? "";
@@ -148,83 +90,35 @@ export default function StudioProsePage() {
       .then((text) => {
         if (text == null) return;
         setMd(text);
-        chunksRef.current = chunkText(mdToSpeech(text));
         setState("ready");
       })
       .catch(() => setState("error"));
-    // Detect the chaptered audiobook (manifest of per-chapter Blob MP3s).
+
+    // The chaptered audiobook (manifest of per-chapter Blob MP3s + combined file).
     fetch(`/api/studio/audio?manifest=1${q}`)
       .then((r) => (r.ok ? r.json() : null))
       .then((d) => {
-        if (d?.chapters?.length) { setChapters(d.chapters); setHasMp3(true); }
+        if (d?.chapters?.length) setChapters(d.chapters);
+        if (d?.full?.url) setFullUrl(d.full.url);
       })
       .catch(() => {});
+
     // Admins: fetch the shareable link to copy. (403 for everyone else.)
     fetch("/api/studio/share").then((r) => (r.ok ? r.json() : null)).then((d) => { if (d?.url) setShareUrl(d.url); }).catch(() => {});
   }, []);
 
-  // Load voices (async on most browsers).
+  // After the first interaction, moving to a new chapter loads and plays it
+  // (Next/Prev/select and end-of-chapter auto-advance).
   useEffect(() => {
-    if (!supported) return;
-    const load = () => {
-      const v = window.speechSynthesis.getVoices();
-      if (v.length) {
-        setVoices(v);
-        if (!voiceRef.current) {
-          const preferred = v.find((x) => /en[-_]US/i.test(x.lang)) ?? v.find((x) => /^en/i.test(x.lang)) ?? v[0];
-          voiceRef.current = preferred;
-          setVoiceUri(preferred?.voiceURI ?? "");
-        }
-      }
-    };
-    load();
-    window.speechSynthesis.onvoiceschanged = load;
-    return () => {
-      window.speechSynthesis.onvoiceschanged = null;
-      window.speechSynthesis.cancel();
-    };
-  }, [supported]);
+    if (!startedRef.current) return;
+    const a = audioElRef.current;
+    if (a) { a.load(); a.play().catch(() => {}); }
+  }, [curCh]);
 
-  function speakFrom(i: number) {
-    const synth = window.speechSynthesis;
-    if (i >= chunksRef.current.length) { setSpeech("idle"); idxRef.current = 0; return; }
-    idxRef.current = i;
-    const u = new SpeechSynthesisUtterance(chunksRef.current[i]);
-    if (voiceRef.current) u.voice = voiceRef.current;
-    u.rate = rateRef.current;
-    u.onend = () => { if (!stoppedRef.current) speakFrom(i + 1); };
-    u.onerror = () => { if (!stoppedRef.current) speakFrom(i + 1); };
-    synth.speak(u);
-  }
-
-  function play() {
-    if (!supported) return;
-    const synth = window.speechSynthesis;
-    if (speech === "paused") { synth.resume(); setSpeech("playing"); return; }
-    stoppedRef.current = false;
-    synth.cancel();
-    setSpeech("playing");
-    speakFrom(idxRef.current);
-  }
-  function pause() {
-    if (!supported) return;
-    window.speechSynthesis.pause();
-    setSpeech("paused");
-  }
-  function stop() {
-    if (!supported) return;
-    stoppedRef.current = true;
-    window.speechSynthesis.cancel();
-    idxRef.current = 0;
-    setSpeech("idle");
-  }
-  function restart() {
-    if (!supported) return;
-    stoppedRef.current = false;
-    window.speechSynthesis.cancel();
-    idxRef.current = 0;
-    setSpeech("playing");
-    speakFrom(0);
+  function goChapter(n: number) {
+    if (n < 0 || n >= chapters.length) return;
+    startedRef.current = true;
+    setCurCh(n);
   }
 
   if (state === "signin") {
@@ -236,6 +130,8 @@ export default function StudioProsePage() {
   if (state === "error") {
     return <Gate icon="📕" title="Couldn't load it" body="The manuscript didn't load. Try refreshing." cta={{ href: "/studio/prose", label: "Retry" }} />;
   }
+
+  const hasAudio = chapters.length > 0 || !!fullUrl;
 
   return (
     <div className="min-h-screen" style={{ background: "linear-gradient(135deg, #0d1117 0%, #1a1410 55%, #0d0a08 100%)" }}>
@@ -256,55 +152,14 @@ export default function StudioProsePage() {
           </div>
         </div>
 
-        {/* Read-aloud control bar */}
-        {state === "ready" && (supported || hasMp3) && (
+        {/* Audiobook control bar */}
+        {state === "ready" && hasAudio && (
           <div className="sticky top-0 z-10 -mx-4 px-4 py-3 mb-8 backdrop-blur bg-[#0d0a08]/80 border-b border-amber-500/15">
-            {supported && (
-            <>
-            <div className="flex flex-wrap items-center gap-2">
-              {speech !== "playing" ? (
-                <button onClick={play} className="px-4 py-2 rounded-lg font-bold text-sm text-black" style={{ background: "linear-gradient(90deg,#f59e0b,#fbbf24)" }}>
-                  ▶ {speech === "paused" ? "Resume" : "Read aloud"}
-                </button>
-              ) : (
-                <button onClick={pause} className="px-4 py-2 rounded-lg font-bold text-sm text-black bg-amber-300">⏸ Pause</button>
-              )}
-              <button onClick={stop} className="px-3 py-2 rounded-lg font-semibold text-sm text-gray-300 border border-white/15 hover:border-white/30">⏹ Stop</button>
-              <button onClick={restart} className="px-3 py-2 rounded-lg font-semibold text-sm text-gray-300 border border-white/15 hover:border-white/30">↺ Start over</button>
-
-              <label className="ml-auto flex items-center gap-2 text-xs text-gray-400">
-                Speed
-                <select value={rate} onChange={(e) => setRate(Number(e.target.value))} className="bg-black/40 border border-white/15 rounded px-2 py-1 text-gray-200">
-                  {[0.8, 0.9, 1, 1.1, 1.25, 1.5].map((r) => <option key={r} value={r}>{r}×</option>)}
-                </select>
-              </label>
-              {voices.length > 0 && (
-                <label className="flex items-center gap-2 text-xs text-gray-400">
-                  Voice
-                  <select
-                    value={voiceUri}
-                    onChange={(e) => {
-                      setVoiceUri(e.target.value);
-                      voiceRef.current = voices.find((v) => v.voiceURI === e.target.value) ?? null;
-                    }}
-                    className="bg-black/40 border border-white/15 rounded px-2 py-1 text-gray-200 max-w-[160px]"
-                  >
-                    {voices.map((v) => <option key={v.voiceURI} value={v.voiceURI}>{v.name}</option>)}
-                  </select>
-                </label>
-              )}
-            </div>
-            <p className="mt-2 text-[11px] text-gray-500 leading-snug">
-              ~42k words (≈4.5 hrs). If web playback pauses when your phone locks, use your phone&apos;s OS &ldquo;Speak Screen&rdquo; on this page (iPhone: two-finger swipe down from the top) — it keeps reading screen-off over Bluetooth.
-            </p>
-            </>
-            )}
-
-            {hasMp3 && chapters.length > 0 && (
-              <div className="mt-3 pt-3 border-t border-white/10">
+            {chapters.length > 0 && (
+              <>
                 <div className="flex items-center gap-2 mb-2">
                   <span className="text-[11px] font-bold text-amber-300 uppercase tracking-wider">🎙 Narrated — chapter {curCh + 1} / {chapters.length}</span>
-                  <a href={chapters[curCh]?.url} download className="text-[11px] text-amber-400 hover:text-amber-300 underline">download</a>
+                  <a href={dl(chapters[curCh]?.url ?? "")} className="text-[11px] text-amber-400 hover:text-amber-300 underline">download this chapter</a>
                 </div>
                 <div className="flex items-center gap-2 mb-2">
                   <button onClick={() => goChapter(curCh - 1)} disabled={curCh === 0} className="px-2.5 py-1.5 rounded-lg text-sm font-semibold text-gray-300 border border-white/15 hover:border-white/30 disabled:opacity-30">‹ Prev</button>
@@ -328,6 +183,22 @@ export default function StudioProsePage() {
                   Your browser doesn&apos;t support audio playback.
                 </audio>
                 <p className="mt-1 text-[11px] text-gray-500">Natural voice, by chapter — auto-advances to the next, plays screen-off over Bluetooth, scrubbing/resume work.</p>
+              </>
+            )}
+
+            {fullUrl && (
+              <div className={`${chapters.length > 0 ? "mt-3 pt-3 border-t border-white/10" : ""} flex flex-wrap items-center gap-3`}>
+                <a
+                  href={dl(fullUrl)}
+                  className="px-3 py-2 rounded-lg font-bold text-sm text-black"
+                  style={{ background: "linear-gradient(90deg,#f59e0b,#fbbf24)" }}
+                >
+                  ⬇ Download the complete audiobook
+                </a>
+                <a href={fullUrl} target="_blank" rel="noopener noreferrer" className="text-[12px] text-amber-400 hover:text-amber-300 underline">
+                  or stream it in a new tab
+                </a>
+                <span className="text-[11px] text-gray-500">One MP3 · all chapters · for offline play in any app.</span>
               </div>
             )}
           </div>

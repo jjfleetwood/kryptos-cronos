@@ -48,6 +48,7 @@ export function proxy(req: NextRequest) {
     `script-src 'self' 'nonce-${nonce}' https://plausible.io`,
     "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data: https:",
+    "media-src 'self' https://*.public.blob.vercel-storage.com",
     "font-src 'self'",
     "connect-src 'self' https://api.resend.com https://plausible.io",
     "frame-ancestors 'none'",
