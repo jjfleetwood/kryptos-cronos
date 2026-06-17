@@ -189,6 +189,21 @@ function durationMs(file) {
   return Math.round((parseInt(m[1], 10) * 3600 + parseInt(m[2], 10) * 60 + parseFloat(m[3])) * 1000);
 }
 
+// Set the MP4 major_brand to "M4B " (audiobook) in place. ffmpeg's ipod muxer
+// writes "M4A " (music), which makes iOS Apple Books — and strict audiobook apps —
+// refuse the file or route it to Music. The brand is 4 bytes at offset 8, right
+// after the leading `ftyp` box, so this is a tiny in-place write (no rewrite of the
+// ~250MB file). The "M4A " compatible-brand stays for fallback players.
+function brandAsAudiobook(file) {
+  const fd = fs.openSync(file, "r+");
+  try {
+    const head = Buffer.alloc(8);
+    fs.readSync(fd, head, 0, 8, 0);
+    if (head.toString("latin1", 4, 8) !== "ftyp") { console.warn("WARN: no leading ftyp box; skipping M4B brand patch."); return; }
+    fs.writeSync(fd, Buffer.from("M4B "), 0, 4, 8);
+  } finally { fs.closeSync(fd); }
+}
+
 // Build a single .m4b audiobook from the per-chapter MP3s on disk: AAC audio in an
 // MP4 container with real chapter markers + title/album, so Apple Books (and any
 // audiobook app) treats it as a proper audiobook — chapter list, cover, and
@@ -220,6 +235,7 @@ async function combineM4b() {
   const outPath = path.join(BUILD_DIR, "siempre-segundo.m4b");
   console.log(`Encoding .m4b with ${n} chapter markers (ffmpeg → AAC)…`);
   execFileSync(ffmpegPath, ["-y", "-f", "concat", "-safe", "0", "-i", listPath, "-i", metaPath, "-map", "0:a", "-map_metadata", "1", "-map_chapters", "1", "-c:a", "aac", "-b:a", "64k", "-movflags", "+faststart", outPath], { stdio: "ignore" });
+  brandAsAudiobook(outPath);
   const buf = fs.readFileSync(outPath);
   console.log(`Built ${(buf.length / 1024 / 1024).toFixed(1)} MB .m4b. Uploading…`);
   const blob = await put("studio/siempre-segundo.m4b", buf, { access: "public", contentType: "audio/mp4", addRandomSuffix: true, token: BLOB_TOKEN });
@@ -251,6 +267,7 @@ async function remuxM4b() {
   // from the (preserved) chapter metadata. Mapping the existing text track here
   // makes the ipod/.m4b muxer reject the copy ("Tag text incompatible…").
   execFileSync(ffmpegPath, ["-y", "-i", inPath, "-map", "0:a", "-c:a", "copy", "-movflags", "+faststart", outPath], { stdio: "ignore" });
+  brandAsAudiobook(outPath);
   const buf = fs.readFileSync(outPath);
   console.log(`Remuxed ${(buf.length / 1024 / 1024).toFixed(1)} MB. Uploading…`);
   const oldUrl = m.m4b.url;
@@ -355,6 +372,7 @@ async function syncFromRef(ref) {
   fs.writeFileSync(metaPath, meta, "utf-8");
   const outPath = path.join(BUILD_DIR, "siempre-segundo.m4b");
   execFileSync(ffmpegPath, ["-y", "-f", "concat", "-safe", "0", "-i", listPath, "-i", metaPath, "-map", "0:a", "-map_metadata", "1", "-map_chapters", "1", "-c:a", "aac", "-b:a", "64k", "-movflags", "+faststart", outPath], { stdio: "ignore" });
+  brandAsAudiobook(outPath);
   const buf = fs.readFileSync(outPath);
   const blob = await put("studio/siempre-segundo.m4b", buf, { access: "public", contentType: "audio/mp4", addRandomSuffix: true, token: BLOB_TOKEN });
   out.m4b = { url: blob.url, bytes: buf.length };
