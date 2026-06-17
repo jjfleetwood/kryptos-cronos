@@ -385,6 +385,29 @@ when leather still belonged to the Mendez.
 He takes the coin. Gives her a ball. Their fingers do not
 touch, and somehow that is worse.
 
+EXT. THE PIER -- THE BOOTH -- DAY (LATER THAT WEEK)
+
+Rebecca drifts back -- a friend in tow, a parasol, a reason. She
+doesn't throw. Doesn't speak past "three for a nickel." But she
+comes, day after day, and lets him see that she comes -- which on
+the boardwalk is the only language two forbidden people are
+allowed.
+
+Paying her nickel, she leaves a folded scrap of paper in his
+palm with the coin, and is gone up the planks before his hand
+closes on it.
+
+He opens it. Four words, in a tutored hand gone unsteady:
+WHEN THE LIGHTS GO OUT.
+
+His brother LUIS -- the charmer -- goes over the bluff fences
+after rich men's daughters for sport, and always comes back
+laughing. Cirilo knows the game secondhand. He also knows that
+for him, this note is the most dangerous thing a man his color
+can hold in this county.
+
+He closes his hand around it. He does not drop it in the bay.
+
 EXT. THE TANNERY FLATS -- THE YARD -- EARLY EVENING
 
 A close, poor cluster of houses under tannery smoke. Across the

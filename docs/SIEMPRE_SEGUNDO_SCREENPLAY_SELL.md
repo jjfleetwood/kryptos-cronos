@@ -220,6 +220,23 @@ Then here's a nickel.
 She hands him a coin in a soft kid-leather glove. He takes it.
 Gives her a ball. Their fingers don't touch.
 
+EXT. THE PIER -- THE BOOTH -- DAY (LATER THAT WEEK)
+
+Rebecca drifts back -- a friend in tow, a reason. Doesn't throw.
+Doesn't speak past "three for a nickel." But she comes, and lets
+him see she comes.
+
+Paying, she leaves a folded scrap of paper in his palm with the
+coin, and is gone before his hand closes.
+
+He opens it. Four words: WHEN THE LIGHTS GO OUT.
+
+His brother LUIS goes over the bluff fences after rich girls for
+sport and comes back laughing. Cirilo knows the game secondhand
+-- and knows that for him, this note could get him killed.
+
+He closes his hand around it. He doesn't drop it in the bay.
+
 EXT. THE TANNERY FLATS -- THE YARD -- DUSK
 
 Poor houses under tannery smoke. Across the dirt, the owner's
