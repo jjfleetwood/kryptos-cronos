@@ -315,8 +315,7 @@ Yeah?
 NUNZIO
 Long as we don't mind being hated for it.
 
-He laughs like it's a joke. Cirilo doesn't. He files it where
-he keeps the true things.
+He laughs like it's a joke. Cirilo doesn't.
 
 EXT. THE PLEASURE PIER -- THE BASEBALL BOOTH -- DAY (MIDSUMMER)
 
@@ -343,7 +342,7 @@ pier and the least content, though no one has ever looked close
 enough to see it.
 
 Cirilo keeps his eyes at the level of their collars. Waits for
-it to pass. The way the poor learn to wait.
+it to pass.
 
 And then -- for one heartbeat -- something he has kept on a
 short chain his whole life slips it.
@@ -385,12 +384,6 @@ when leather still belonged to the Mendez.
 
 He takes the coin. Gives her a ball. Their fingers do not
 touch, and somehow that is worse.
-
-CIRILO (V.O.)
-The silence was the only armor the world
-could not use against me. And I had just
-spent it. On six bottles and a girl I had
-no business looking at.
 
 EXT. THE TANNERY FLATS -- THE YARD -- EARLY EVENING
 
@@ -763,11 +756,6 @@ man with his own long acquaintance with the quick flat verdict --
 feeds all of them, the brown one included, at a back table, for
 cash, without a word and without a flicker.
 
-CIRILO (V.O.)
-The front room would not seat me. The back
-table always would -- and it was always run
-by someone the country had thrown away too.
-
 EXT. RECREATION PARK -- THE COAST LEAGUE -- DAY (MONTAGE, ~1910)
 
 Bigger crowds. Real ball. The PACIFIC COAST LEAGUE -- major in
@@ -801,8 +789,8 @@ Write down the kid in left. The blond one.
 Half the ballplayer. But he's the right kind
 of half.
 
-And he forgets he said it. To him it was nothing -- weather,
-arithmetic. THAT, not malice, is the whole horror of it.
+And already the boy on the grass is gone from his mind --
+weather, noted and moved past.
 
 ANGLE: DOWN ON THE GRASS. Cirilo tips his cap to the only crowd
 allowed to love him -- and never knows, will never be told, that
@@ -1195,10 +1183,8 @@ place where that would be one.
 DOLORES (V.O.)
 (soft; the old knowledge)
 El Halcón. The hawk. They called him every name
-but his -- and now the family takes him back, and
-gives him the right one, in the only church that
-ever held us: the open weather, over the burying
-hill.
+but his. Now the family takes him back -- and gives
+him the right one.
 
 The hawk tilts, at last, on a held wing -- and slides off north along
 the ridge, into the cloud, unhurried, having seen what it came to
