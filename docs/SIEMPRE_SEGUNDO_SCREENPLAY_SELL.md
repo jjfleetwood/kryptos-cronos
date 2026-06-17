@@ -507,6 +507,29 @@ ANGLE -- THE GRASS. Cirilo tips his cap to the only crowd
 allowed to love him. He never knows a man in a derby just
 decided his whole life in a sentence.
 
+EXT. A COAST LEAGUE CLUBHOUSE -- DUSK
+
+DORGAN, a Coast League manager, takes Cirilo aside after a game.
+
+DORGAN
+Best arm in this league and you'll rot in it.
+The bigs would take it tomorrow -- except for
+the one thing. And here's what you don't know,
+son: it's fixable. Be Spanish. Castilian. A
+don's grandson -- which you are. Lose the
+Mexican. Let them make you exotic instead of
+cheap. One vowel. A ticket east.
+
+Cirilo doesn't argue.
+
+CIRILO
+My mother keeps a name on a hill they could
+never take, because she wouldn't let them. I
+won't be the one who hands it over. Not for the
+train. Not for any of it.
+
+Dorgan nods. He's sorry. He never raises it again.
+
 EXT. THE FLATS -- THE LANE -- SATURDAY NIGHT
 
 Home between seasons. Three countries' suppers down one lane.

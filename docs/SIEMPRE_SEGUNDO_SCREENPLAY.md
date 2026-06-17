@@ -820,6 +820,43 @@ allowed to love him -- and never knows, will never be told, that
 a man in a derby just decided his whole life in a sentence, for a
 reason no one would ever put on paper.
 
+EXT. A COAST LEAGUE CLUBHOUSE -- DUSK
+
+DORGAN, a Coast League manager, thirty years in the game, takes
+Cirilo aside after a game -- the way you do to tell a man
+something for his own good.
+
+DORGAN
+Best arm in this league and you're going to
+rot in it. So I'll say the thing nobody else
+will to your face. The bigs would take that
+arm tomorrow -- except for the one thing.
+(a hand at the whole of him)
+And here's what you don't know, son: it's
+fixable. Be Spanish. Castilian. A don's
+grandson -- which you actually are. Lose the
+Mexican. Never mention the tannery. Let them
+make you exotic instead of cheap.
+(gently)
+It isn't even a lie. Nobody's asking you to be
+ashamed of your mother. Just to be sensible.
+One vowel. A ticket east.
+
+Cirilo watches the dark come down over the outfield. Doesn't
+argue.
+
+CIRILO
+I'm obliged to you -- you're the first man in
+this league to tell me the truth to my face.
+(beat)
+But my mother keeps a name on a hill the
+people who took everything else from us could
+never take, because she wouldn't let them. I
+won't be the one who hands it over. Not for
+the train. Not for any of it.
+
+Dorgan nods. He's sorry. He never raises it again.
+
 EXT. THE FLATS -- THE LANE -- NIGHT (SATURDAY)
 
 Home, between seasons. Six days the flats belong to the kilns and
