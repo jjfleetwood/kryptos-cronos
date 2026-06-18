@@ -45,14 +45,9 @@ function Card({ href, icon, title, sub, blurb }: { href: string; icon: string; t
 
 export default function StudioPage() {
   const [state, setState] = useState<State>("loading");
-  const [q, setQ] = useState(""); // share-token query suffix, carried into each reader
 
   useEffect(() => {
-    const s = new URLSearchParams(window.location.search).get("s") ?? "";
-    const suffix = s ? `?s=${encodeURIComponent(s)}` : "";
-    setQ(suffix);
-
-    fetch(`/api/studio?check=1${s ? `&s=${encodeURIComponent(s)}` : ""}`)
+    fetch(`/api/studio?check=1`)
       .then((r) => {
         if (r.status === 401) { setState("signin"); return; }
         if (r.status === 403) { setState("pro"); return; }
@@ -96,9 +91,9 @@ export default function StudioPage() {
           </div>
         ) : (
           <div className="grid gap-5 sm:grid-cols-3">
-            <Card href={`/studio/prose${q}`} icon="📖" sub="Novel" title="The Novel" blurb="139 chapters of full prose — plus the chaptered narrated audiobook with a one-file .m4b download." />
-            <Card href={`/studio/screenplay${q}`} icon="🎬" sub="Screenplay" title="Literary Draft" blurb="The screenplay as a read — full action, voice intact, Cold Open through Coda." />
-            <Card href={`/studio/screenplay-sell${q}`} icon="📄" sub="Sell Draft" title="Spec / Sell" blurb="Lean industry-standard spec — same beats, action stripped to the screen. For agents and contests." />
+            <Card href="/studio/prose" icon="📖" sub="Novel" title="The Novel" blurb="139 chapters of full prose — plus the chaptered narrated audiobook with a one-file .m4b download." />
+            <Card href="/studio/screenplay" icon="🎬" sub="Screenplay" title="Literary Draft" blurb="The screenplay as a read — full action, voice intact, Cold Open through Coda." />
+            <Card href="/studio/screenplay-sell" icon="📄" sub="Sell Draft" title="Spec / Sell" blurb="Lean industry-standard spec — same beats, action stripped to the screen. For agents and contests." />
           </div>
         )}
       </div>

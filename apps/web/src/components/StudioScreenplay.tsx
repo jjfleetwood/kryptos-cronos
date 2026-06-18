@@ -150,9 +150,7 @@ export default function StudioScreenplay({ doc, kind }: { doc: "screenplay" | "s
   const subtitle = kind === "literary" ? "The literary draft — the read." : "Lean industry-standard spec — agents, contests, coverage.";
 
   useEffect(() => {
-    const s = new URLSearchParams(window.location.search).get("s") ?? "";
-    const q = s ? `&s=${encodeURIComponent(s)}` : "";
-    fetch(`/api/studio?doc=${doc}${q}`)
+    fetch(`/api/studio?doc=${doc}`)
       .then((r) => {
         if (r.status === 401) { setState("signin"); return null; }
         if (r.status === 403) { setState("pro"); return null; }
@@ -182,7 +180,7 @@ export default function StudioScreenplay({ doc, kind }: { doc: "screenplay" | "s
       <div className="max-w-6xl mx-auto px-4 py-12">
         <div className="flex items-center justify-between mb-6">
           <Link href="/studio" className="text-gray-500 hover:text-amber-400 text-sm transition-colors">← Studio</Link>
-          <span className="text-[11px] font-mono font-bold text-amber-400 uppercase tracking-[0.3em]">Screenplay · Pro</span>
+          <span className="text-[11px] font-mono font-bold text-amber-400 uppercase tracking-[0.3em]">Screenplay</span>
         </div>
 
         <div className="mb-8">

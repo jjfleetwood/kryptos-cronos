@@ -109,17 +109,10 @@ export default function StudioProsePage() {
   const audioElRef = useRef<HTMLAudioElement | null>(null);
   const startedRef = useRef(false);
 
-  // Admins get a "Copy share link" control populated from /api/studio/share.
-  const [shareUrl, setShareUrl] = useState("");
-  const [copied, setCopied] = useState(false);
-
   const toc = useMemo(() => buildToc(md), [md]);
 
   useEffect(() => {
-    const s = new URLSearchParams(window.location.search).get("s") ?? "";
-    const q = s ? `&s=${encodeURIComponent(s)}` : "";
-
-    fetch(`/api/studio?prose=1${q}`)
+    fetch(`/api/studio?prose=1`)
       .then((r) => {
         if (r.status === 401) { setState("signin"); return null; }
         if (r.status === 403) { setState("pro"); return null; }
@@ -134,16 +127,13 @@ export default function StudioProsePage() {
       .catch(() => setState("error"));
 
     // The chaptered audiobook (manifest of per-chapter Blob MP3s + the .m4b).
-    fetch(`/api/studio/audio?manifest=1${q}`)
+    fetch(`/api/studio/audio?manifest=1`)
       .then((r) => (r.ok ? r.json() : null))
       .then((d) => {
         if (d?.chapters?.length) setChapters(d.chapters);
         if (d?.m4b?.url) setM4bUrl(d.m4b.url);
       })
       .catch(() => {});
-
-    // Admins: fetch the shareable link to copy. (403 for everyone else.)
-    fetch("/api/studio/share").then((r) => (r.ok ? r.json() : null)).then((d) => { if (d?.url) setShareUrl(d.url); }).catch(() => {});
   }, []);
 
   // After the first interaction, moving to a new chapter loads and plays it
@@ -177,18 +167,7 @@ export default function StudioProsePage() {
       <div className="max-w-6xl mx-auto px-4 py-12">
         <div className="flex items-center justify-between mb-6">
           <Link href="/studio" className="text-gray-500 hover:text-amber-400 text-sm transition-colors">← Studio</Link>
-          <div className="flex items-center gap-3">
-            {shareUrl && (
-              <button
-                onClick={() => { navigator.clipboard?.writeText(shareUrl); setCopied(true); setTimeout(() => setCopied(false), 1800); }}
-                className="text-[11px] font-semibold text-amber-400 hover:text-amber-300 border border-amber-500/30 rounded px-2 py-1 transition-colors"
-                title={shareUrl}
-              >
-                {copied ? "✓ Copied" : "🔗 Copy share link"}
-              </button>
-            )}
-            <span className="text-[11px] font-mono font-bold text-amber-400 uppercase tracking-[0.3em]">Prose · Pro</span>
-          </div>
+          <span className="text-[11px] font-mono font-bold text-amber-400 uppercase tracking-[0.3em]">Prose</span>
         </div>
 
         <div className="lg:flex lg:gap-10">
