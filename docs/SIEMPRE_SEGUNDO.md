@@ -2,7 +2,7 @@
 
 *"He was born second. He died first."*
 
-A multigenerational saga — **feature screenplay + companion novel, both titled *Siempre Segundo* ("Always Second")** — loosely inspired by the life of Frank Arellanes, the Californio pitcher from Santa Cruz who died in the 1918 influenza. The title is the irony the whole story turns on: a man the world kept calling *second,* who was — as the coda reveals — *siempre primero,* first all along. **Fiction. Names and events invented.** Our hero is **Cirilo Méndez**. A motivational small-town-Chicano-to-hero story, kept **period-real to teach history** — with a tragic twist and a victory deeper than any trophy.
+A multigenerational saga — **feature screenplay + companion novel, both titled *Siempre Segundo* ("Always Second")** — loosely inspired by the life of Frank Arellanes, the Californio pitcher from Santa Cruz who was among the first Mexican-American men to reach the major leagues — and the first Latino to play for the Boston Red Sox. The title is the irony the whole story turns on: a man the world kept calling *second,* who was — as the coda reveals — *siempre primero,* first all along. **Fiction. Names and events invented.** Our hero is **Cirilo Méndez**. A motivational small-town-Chicano-to-hero story, kept **period-real to teach history** — with a tragic twist and a victory deeper than any trophy.
 
 ---
 
