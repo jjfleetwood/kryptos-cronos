@@ -6,9 +6,9 @@ import Link from "next/link";
 // ─────────────────────────────────────────────────────────────────────────────
 // Studio — landing for the "Siempre Segundo" set: the novel, the literary
 // screenplay, and the lean sell draft. All three are served by /api/studio and
-// gated to Pro users (and admins, or share-link holders); this page gate-checks
-// once (?check=1) and links into each reader. Nothing leaves the server for
-// free/anonymous visitors.
+// are PUBLIC; the route is just unlisted in the nav (reachable by direct link).
+// This page links into each reader. (The signin/pro gate states below are
+// retained for safety but no longer fire — the API returns 200 for everyone.)
 // ─────────────────────────────────────────────────────────────────────────────
 
 type State = "loading" | "ready" | "signin" | "pro" | "error";
@@ -77,7 +77,7 @@ export default function StudioPage() {
       <div className="max-w-4xl mx-auto px-4 py-14">
         <div className="flex items-center justify-between mb-10">
           <Link href="/" className="text-gray-500 hover:text-amber-400 text-sm transition-colors">← Home</Link>
-          <span className="text-[11px] font-mono font-bold text-amber-400 uppercase tracking-[0.3em]">Studio · Pro</span>
+          <span className="text-[11px] font-mono font-bold text-amber-400 uppercase tracking-[0.3em]">Studio</span>
         </div>
 
         <header className="mb-10">

@@ -90,7 +90,8 @@ export default function Nav() {
   const moreItems: NavItem[] = username
     ? [
         { href: "/audit", icon: "🔎", label: t("nav.audit", "Advanced Audit") },
-        { href: "/studio", icon: "🎬", label: t("nav.studio", "Studio") },
+        // /studio (Siempre Segundo) is public but intentionally unlisted —
+        // reachable only by direct link.
         { href: "/journey", icon: "🌍", label: t("nav.journey") },
         { href: "/explore", icon: "🧭", label: t("nav.explore", "Explore") },
         { href: "/account", icon: "⚙️", label: "Account" },

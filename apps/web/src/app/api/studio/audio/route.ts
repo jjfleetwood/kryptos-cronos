@@ -1,16 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getAuthedUsername } from "@/lib/api-auth";
-import { verifyAdminToken } from "@/lib/admin-token";
-import { getUserTier } from "@/lib/access";
-import { isValidStudioShare } from "@/lib/studio-share";
 import fs from "fs";
 import path from "path";
 import { Readable } from "stream";
 
-// GET /api/studio/audio — gives Pro users, admins, or share-link holders the
-// Siempre Segundo audiobook. The MP3 lives in Vercel Blob (recorded in
-// secured-docs/siempre-segundo.audio.txt); this route gates *discovery* of it and
-// 302-redirects to the Blob URL (scales without proxying ~130 MB per listener).
+// GET /api/studio/audio — serves the (public) Siempre Segundo audiobook. The MP3
+// lives in Vercel Blob (recorded in secured-docs/siempre-segundo.audio.txt); this
+// route 302-redirects to the Blob URL (scales without proxying ~130 MB per
+// listener).
 // Dev fallback: if a local secured-docs/siempre-segundo.mp3 exists instead, it's
 // streamed with HTTP Range support. HEAD reports whether audio exists yet.
 const URL_FILE = path.join(process.cwd(), "secured-docs", "siempre-segundo.audio.txt");
@@ -37,9 +33,6 @@ function manifest(): Manifest | null {
 }
 
 export async function GET(req: NextRequest) {
-  const gate = await guard(req);
-  if (gate) return gate;
-
   // ?manifest=1 → the chaptered audiobook: a list of {i, title, url} pointing at
   // per-chapter (unguessable, public) Blob MP3s. The player renders a chapter list
   // and plays each directly, auto-advancing.
@@ -90,9 +83,7 @@ export async function GET(req: NextRequest) {
   return new NextResponse(stream, { status: 200, headers: { ...baseHeaders, "Content-Length": String(size) } });
 }
 
-export async function HEAD(req: NextRequest) {
-  const gate = await guard(req);
-  if (gate) return gate;
+export async function HEAD() {
   if (manifest() || blobUrl()) return new NextResponse(null, { status: 200, headers: { "Content-Type": "audio/mpeg" } });
   try {
     const size = fs.statSync(LOCAL_MP3).size;
@@ -100,18 +91,4 @@ export async function HEAD(req: NextRequest) {
   } catch {
     return new NextResponse(null, { status: 404 });
   }
-}
-
-// Pro/admin/share gate, shared by GET and HEAD. Returns a NextResponse to
-// short-circuit on failure, or null when access is granted.
-async function guard(req: NextRequest): Promise<NextResponse | null> {
-  if (isValidStudioShare(req.nextUrl.searchParams.get("s"))) return null;
-  const admin = verifyAdminToken(req.cookies.get("admin_token")?.value ?? "");
-  const username = (await getAuthedUsername(req)) ?? admin;
-  if (!username) return NextResponse.json({ error: "signin" }, { status: 401 });
-  if (!admin) {
-    const tier = await getUserTier(username);
-    if (tier !== "pro") return NextResponse.json({ error: "pro" }, { status: 403 });
-  }
-  return null;
 }
