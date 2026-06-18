@@ -1331,7 +1331,7 @@ FADE OUT.
 
 *Siempre Segundo*
 
-**Copyright © 2026 Bolotin Enterprises, Inc. All rights reserved.**
+**Copyright © 2026 Jacob J. Bolotin. All rights reserved.**
 
 This is a work of fiction. Although inspired by historical figures and events — including the life of the ballplayer Frank Arellanes — the characters, names, dialogue, incidents, and events are either products of the author's imagination or are used fictitiously. Any resemblance to actual persons, living or dead, or to actual events is the product of dramatic license or is entirely coincidental.
 

@@ -4,7 +4,7 @@
 Santa Cruz's own — among the first Mexican-American men to reach the major leagues,
 and the first Latino to play for the Boston Red Sox.*
 
-**Copyright © 2026 Bolotin Enterprises, Inc. All rights reserved.** This is a work of fiction. Although inspired by historical figures and events — including the life of the ballplayer Frank Arellanes — the characters, names, dialogue, and incidents are either products of the author's imagination or are used fictitiously, and any resemblance to actual persons or events is the product of dramatic license or is coincidental. No part of this screenplay may be reproduced or distributed without the prior written permission of the copyright holder.
+**Copyright © 2026 Jacob J. Bolotin. All rights reserved.** This is a work of fiction. Although inspired by historical figures and events — including the life of the ballplayer Frank Arellanes — the characters, names, dialogue, and incidents are either products of the author's imagination or are used fictitiously, and any resemblance to actual persons or events is the product of dramatic license or is coincidental. No part of this screenplay may be reproduced or distributed without the prior written permission of the copyright holder.
 
 ---
 
