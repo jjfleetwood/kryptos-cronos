@@ -101,6 +101,10 @@ export default function Nav() {
   const isActive = (href: string) => pathname === href || pathname.startsWith(href + "/");
   const moreActive = moreItems.some((m) => isActive(m.href));
 
+  // Studio (Siempre Segundo) is a standalone reading space — render no platform
+  // chrome there, so it isn't tied to the kryptoscronos security/explore site.
+  if (pathname?.startsWith("/studio")) return null;
+
   return (
     <header
       className="fixed top-0 left-0 right-0 z-40 transition-all duration-300"

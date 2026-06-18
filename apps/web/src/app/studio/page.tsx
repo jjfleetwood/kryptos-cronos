@@ -70,8 +70,7 @@ export default function StudioPage() {
   return (
     <div className="min-h-screen" style={{ background: "linear-gradient(135deg, #0d1117 0%, #1a1410 55%, #0d0a08 100%)" }}>
       <div className="max-w-4xl mx-auto px-4 py-14">
-        <div className="flex items-center justify-between mb-10">
-          <Link href="/" className="text-gray-500 hover:text-amber-400 text-sm transition-colors">← Home</Link>
+        <div className="flex items-center justify-end mb-10">
           <span className="text-[11px] font-mono font-bold text-amber-400 uppercase tracking-[0.3em]">Studio</span>
         </div>
 

@@ -111,6 +111,8 @@ export default function FeedbackWidget() {
   }
 
   if (!username) return null;
+  // Studio (Siempre Segundo) is a standalone reading space — no platform chrome.
+  if (pathname?.startsWith("/studio")) return null;
 
   return (
     <div
