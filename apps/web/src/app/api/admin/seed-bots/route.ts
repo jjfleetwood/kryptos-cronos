@@ -5,6 +5,7 @@ import { logAdminAction } from "@/lib/audit";
 import { stagesMeta as stages } from "@kryptos/core/stages-meta";
 import { ECONOMY_VERSION } from "@/lib/economy";
 import { addLeagueXp, weekMondayKey } from "@/lib/leagues";
+import { getDayKey, getWeekKey } from "@/lib/time-keys";
 import { DIVISIONS } from "@kryptos/core/leagues";
 import { checkStageMilestones, checkXpMilestones, checkStreakMilestones } from "@kryptos/core/milestone-badges";
 
@@ -38,16 +39,6 @@ const BOTS: { name: string; xp: number; streak: number }[] = [
   { name: "sudo_sandy", xp: 220, streak: 2 }, { name: "rookie_rae", xp: 150, streak: 1 },
 ];
 
-function getWeekKey(): string {
-  const d = new Date();
-  const day = d.getUTCDay();
-  const diff = d.getUTCDate() - day + (day === 0 ? -6 : 1);
-  const monday = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), diff));
-  return `lb:w:${monday.toISOString().slice(0, 10)}`;
-}
-function getDayKey(): string {
-  return `lb:d:${new Date().toISOString().slice(0, 10)}`;
-}
 
 // Deterministic hash → pick a stage so each bot has a stable "last cleared".
 function hash(s: string): number {

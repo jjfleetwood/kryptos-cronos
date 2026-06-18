@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { redis } from "@/lib/redis";
 import { stagesMeta as stages } from "@kryptos/core/stages-meta";
+import { getDayKey, getWeekKey } from "@/lib/time-keys";
 
 const STAGE_TITLE = new Map(stages.map((s) => [s.id, s.title]));
 
@@ -26,18 +27,6 @@ type PlayerRow = {
   pioneerCount: number;
   recencyFallback?: boolean;
 };
-
-function getDayKey(): string {
-  return `lb:d:${new Date().toISOString().slice(0, 10)}`;
-}
-
-function getWeekKey(): string {
-  const d = new Date();
-  const day = d.getUTCDay();
-  const diff = d.getUTCDate() - day + (day === 0 ? -6 : 1);
-  const monday = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), diff));
-  return `lb:w:${monday.toISOString().slice(0, 10)}`;
-}
 
 function parseStringArray(val: unknown): string[] {
   if (!val) return [];

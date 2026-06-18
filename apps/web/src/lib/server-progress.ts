@@ -5,6 +5,7 @@ import { checkStageMilestones, checkXpMilestones, checkStreakMilestones } from "
 import { deriveEconomy, ECONOMY_VERSION } from "@/lib/economy";
 import { addLeagueXp } from "@/lib/leagues";
 import { bumpQuestCounters } from "@/lib/quests";
+import { getDayKey, getWeekKey, todayUTC, yesterdayUTC } from "@/lib/time-keys";
 import { DAILY_GOAL_XP, streakMultiplier } from "@kryptos/core/streaks";
 import type { UserProgress } from "@/lib/progress";
 
@@ -148,28 +149,6 @@ function stageXp(stageId: string): number {
   // Audit-track modules live in a separate registry (off the main barrel), so fall
   // back to it — otherwise clearing an audit module would award 0 XP.
   return (stages.find((s) => s.id === stageId)?.xp ?? getAuditStage(stageId)?.xp) ?? 0;
-}
-
-function getDayKey(): string {
-  return `lb:d:${new Date().toISOString().slice(0, 10)}`;
-}
-
-function getWeekKey(): string {
-  const d = new Date();
-  const day = d.getUTCDay();
-  const diff = d.getUTCDate() - day + (day === 0 ? -6 : 1);
-  const monday = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), diff));
-  return `lb:w:${monday.toISOString().slice(0, 10)}`;
-}
-
-function todayUTC(): string {
-  return new Date().toISOString().slice(0, 10);
-}
-
-function yesterdayUTC(): string {
-  const d = new Date();
-  d.setUTCDate(d.getUTCDate() - 1);
-  return d.toISOString().slice(0, 10);
 }
 
 /**

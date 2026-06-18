@@ -1,6 +1,7 @@
 import "server-only";
 import { redis } from "@/lib/redis";
 import { weekMondayKey, addLeagueXp } from "@/lib/leagues";
+import { todayUTC } from "@/lib/time-keys";
 import { readEconomy } from "@/lib/economy";
 import { getUserTier } from "@/lib/access";
 import { PRO_DAILY_QUEST_BONUS } from "@kryptos/core/pro-perks";
@@ -15,10 +16,6 @@ import {
  * Counters are bumped from the award path; the XP reward is claimed via the API.
  * Quest selection is derived from the date, not stored.
  */
-
-function todayUTC(): string {
-  return new Date().toISOString().slice(0, 10);
-}
 
 const dKey = (u: string, date: string) => `quests:${u.toLowerCase()}:d:${date}`;
 const wKey = (u: string, week: string) => `quests:${u.toLowerCase()}:w:${week}`;

@@ -1,5 +1,6 @@
 import "server-only";
 import { redis } from "@/lib/redis";
+import { weekMondayKey } from "@/lib/time-keys";
 import { deriveEconomy } from "@/lib/economy";
 import { stagesMeta } from "@kryptos/core/stages-meta";
 import {
@@ -89,13 +90,7 @@ function padStandings(cohort: string, real: Standing[]): Standing[] {
 
 const DIVISION_IDS = DIVISIONS.map((d) => d.id);
 
-/** Monday (UTC) date string YYYY-MM-DD for the week containing `d`. */
-export function weekMondayKey(d = new Date()): string {
-  const day = d.getUTCDay();
-  const diff = d.getUTCDate() - day + (day === 0 ? -6 : 1);
-  const monday = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), diff));
-  return monday.toISOString().slice(0, 10);
-}
+export { weekMondayKey };
 
 /** The Monday key of the week before `d`'s week (the week a Monday cron just closed). */
 export function prevWeekMondayKey(d = new Date()): string {
