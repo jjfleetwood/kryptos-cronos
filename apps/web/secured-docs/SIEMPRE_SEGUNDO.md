@@ -1327,6 +1327,16 @@ FADE OUT.
 
 ## _Siempre Segundo_ — Prologue, novelized (full chapters)
 
+### Copyright
+
+*Siempre Segundo*
+
+**Copyright © 2026 Bolotin Enterprises, Inc. All rights reserved.**
+
+This is a work of fiction. Although inspired by historical figures and events — including the life of the ballplayer Frank Arellanes — the characters, names, dialogue, incidents, and events are either products of the author's imagination or are used fictitiously. Any resemblance to actual persons, living or dead, or to actual events is the product of dramatic license or is entirely coincidental.
+
+No part of this work may be reproduced, distributed, or transmitted in any form or by any means, including photocopying, recording, or other electronic or mechanical methods, without the prior written permission of the copyright holder, except in the case of brief quotations embodied in critical reviews and certain other noncommercial uses permitted by copyright law.
+
 ### Dedication
 
 *For Frank Arellanes — Santa Cruz's own, the real arm behind this invented one, who pitched for the Boston Red Sox and died young, in 1918, at thirty-six. This story is loosely his, and is offered in his honor.*
