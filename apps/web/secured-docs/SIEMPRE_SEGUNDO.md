@@ -1339,7 +1339,7 @@ No part of this work may be reproduced, distributed, or transmitted in any form 
 
 ### Dedication
 
-*For Frank Arellanes — Santa Cruz's own, the real arm behind this invented one, who pitched for the Boston Red Sox and died young, in 1918, at thirty-six. This story is loosely his, and is offered in his honor.*
+*For Frank Arellanes — Santa Cruz's own, the real arm behind this invented one. Born of California's old Californio families, he carried a Spanish surname out of a coast town that had half-forgotten it was once Mexican ground, and pitched his way onto the Boston Red Sox — in 1909 stepping into the great Cy Young's place in the rotation and winning sixteen games. He was among the very first Mexican-American men to play in the major leagues, and the first Latino ever to wear a Boston uniform: proof, a generation before the country cared to notice, that the game had always been ours too. This story is loosely his, and is offered in his honor.*
 
 *And for all the others — the Awaswas and the Ohlone, the Californios and the conquered, the tanners and the kiln-men and the fishermen, the barred and the spent and the unrecorded — every soul across the long history of this coast who paid, in labor or in loss, for the complex beauty Santa Cruz wears so lightly in the sun today. The hands in the dirt were always theirs.*
 
