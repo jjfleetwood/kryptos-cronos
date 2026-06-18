@@ -16,10 +16,12 @@ import path from "path";
 // `doc` is matched against a fixed allowlist — user input never touches the path.
 const DOCS: Record<string, { file: string; from?: string }> = {
   novel: { file: "SIEMPRE_SEGUNDO.md" },
-  // Strip the working-notes scaffolding ("Approach" / sequence map) — serve the
-  // screenplay from the Cold Open through the Coda.
-  screenplay: { file: "SIEMPRE_SEGUNDO_SCREENPLAY.md", from: "## COLD OPEN" },
-  "screenplay-sell": { file: "SIEMPRE_SEGUNDO_SCREENPLAY_SELL.md" },
+  // Serve each screenplay from its Title Page onward — which carries the
+  // copyright — through the Coda. Slicing from "## Title Page" also strips the
+  // working-notes scaffolding (the file H1/synopsis + "Approach"/sequence map)
+  // that sits above it in the literary draft.
+  screenplay: { file: "SIEMPRE_SEGUNDO_SCREENPLAY.md", from: "## Title Page" },
+  "screenplay-sell": { file: "SIEMPRE_SEGUNDO_SCREENPLAY_SELL.md", from: "## Title Page" },
 };
 
 export async function GET(req: NextRequest) {
