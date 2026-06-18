@@ -2,50 +2,14 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import ReactMarkdown, { type Components } from "react-markdown";
-import remarkGfm from "remark-gfm";
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Studio — home for the "Siempre Segundo" screenplay + novel. The manuscript is
-// served by /api/studio, gated to Pro users (and admins): the prose never leaves
-// the server for free/anonymous visitors. This page renders what that returns.
+// Studio — landing for the "Siempre Segundo" set: the novel, the literary
+// screenplay, and the lean sell draft. All three are served by /api/studio and
+// gated to Pro users (and admins, or share-link holders); this page gate-checks
+// once (?check=1) and links into each reader. Nothing leaves the server for
+// free/anonymous visitors.
 // ─────────────────────────────────────────────────────────────────────────────
-
-const components: Components = {
-  h1: ({ children }) => <h1 className="text-4xl font-black text-white mt-2 mb-3 tracking-tight">{children}</h1>,
-  h2: ({ children }) => <h2 className="text-2xl font-black text-amber-300 mt-12 mb-4 border-b border-amber-500/20 pb-2">{children}</h2>,
-  h3: ({ children }) => <h3 className="text-sm font-bold text-amber-400/90 uppercase tracking-[0.15em] mt-8 mb-3">{children}</h3>,
-  p: ({ children }) => <p className="text-[15px] leading-7 text-gray-300 mb-4">{children}</p>,
-  ul: ({ children }) => <ul className="list-disc pl-6 space-y-2 marker:text-amber-500/60 text-[15px] leading-7 text-gray-300 mb-5">{children}</ul>,
-  ol: ({ children }) => <ol className="list-decimal pl-6 space-y-2 text-[15px] leading-7 text-gray-300 mb-5">{children}</ol>,
-  li: ({ children }) => <li className="leading-7">{children}</li>,
-  strong: ({ children }) => <strong className="text-white font-semibold">{children}</strong>,
-  em: ({ children }) => <em className="text-amber-100/90 italic">{children}</em>,
-  hr: () => <hr className="border-white/10 my-10" />,
-  blockquote: ({ children }) => (
-    <blockquote className="my-6 rounded-xl border border-amber-500/40 bg-gradient-to-r from-amber-600/15 to-transparent p-5 [&>p]:mb-0 [&>p]:text-amber-100">
-      {children}
-    </blockquote>
-  ),
-  pre: ({ children }) => (
-    <pre className="whitespace-pre-wrap font-mono text-[13px] leading-relaxed text-gray-300 bg-black/40 border border-white/10 rounded-xl p-5 overflow-x-auto mb-5">
-      {children}
-    </pre>
-  ),
-  code: ({ children, className }) => {
-    const isBlock = className?.startsWith("language-") || String(children).includes("\n");
-    return isBlock ? (
-      <code className="text-gray-300 font-mono text-[13px]">{children}</code>
-    ) : (
-      <code className="bg-white/10 text-amber-200 px-1.5 py-0.5 rounded text-[13px] font-mono">{children}</code>
-    );
-  },
-  a: ({ href, children }) => (
-    <a href={href} target="_blank" rel="noopener noreferrer" className="text-amber-400 hover:text-amber-300 underline transition-colors">
-      {children}
-    </a>
-  ),
-};
 
 type State = "loading" | "ready" | "signin" | "pro" | "error";
 
@@ -64,60 +28,78 @@ function Gate({ icon, title, body, cta }: { icon: string; title: string; body: s
   );
 }
 
+function Card({ href, icon, title, sub, blurb }: { href: string; icon: string; title: string; sub: string; blurb: string }) {
+  return (
+    <Link
+      href={href}
+      className="group block rounded-2xl border border-amber-500/20 bg-gradient-to-b from-white/[0.04] to-transparent p-6 transition-colors hover:border-amber-400/50 hover:from-amber-500/[0.08]"
+    >
+      <div className="text-4xl mb-3">{icon}</div>
+      <div className="text-[11px] font-mono font-bold text-amber-400/70 uppercase tracking-[0.25em] mb-1">{sub}</div>
+      <h3 className="text-xl font-black text-white group-hover:text-amber-200 transition-colors">{title}</h3>
+      <p className="text-[13px] leading-6 text-gray-400 mt-2">{blurb}</p>
+      <span className="inline-block mt-4 text-amber-400 text-sm font-semibold group-hover:translate-x-0.5 transition-transform">Open →</span>
+    </Link>
+  );
+}
+
 export default function StudioPage() {
   const [state, setState] = useState<State>("loading");
-  const [md, setMd] = useState("");
+  const [q, setQ] = useState(""); // share-token query suffix, carried into each reader
 
   useEffect(() => {
-    fetch("/api/studio")
+    const s = new URLSearchParams(window.location.search).get("s") ?? "";
+    const suffix = s ? `?s=${encodeURIComponent(s)}` : "";
+    setQ(suffix);
+
+    fetch(`/api/studio?check=1${s ? `&s=${encodeURIComponent(s)}` : ""}`)
       .then((r) => {
-        if (r.status === 401) { setState("signin"); return null; }
-        if (r.status === 403) { setState("pro"); return null; }
-        if (!r.ok) { setState("error"); return null; }
-        return r.text();
-      })
-      .then((text) => {
-        if (text == null) return;
-        setMd(text);
+        if (r.status === 401) { setState("signin"); return; }
+        if (r.status === 403) { setState("pro"); return; }
+        if (!r.ok) { setState("error"); return; }
         setState("ready");
       })
       .catch(() => setState("error"));
   }, []);
 
   if (state === "signin") {
-    return <Gate icon="🔑" title="Sign in to read" body="The Studio manuscript — Siempre Segundo — is available to Pro members. Sign in to continue." cta={{ href: "/login", label: "Sign in" }} />;
+    return <Gate icon="🔑" title="Sign in to read" body="The Studio — Siempre Segundo — is available to Pro members. Sign in to continue." cta={{ href: "/login", label: "Sign in" }} />;
   }
   if (state === "pro") {
-    return <Gate icon="⭐" title="A Pro feature" body="Siempre Segundo — the screenplay and the novel — is part of Kryptós CronOS Pro. Upgrade to read the whole manuscript." cta={{ href: "/upgrade", label: "Upgrade to Pro" }} />;
+    return <Gate icon="⭐" title="A Pro feature" body="Siempre Segundo — the novel and the screenplays — is part of Kryptós CronOS Pro. Upgrade to read the whole set." cta={{ href: "/upgrade", label: "Upgrade to Pro" }} />;
   }
   if (state === "error") {
-    return <Gate icon="📕" title="Couldn't load it" body="The manuscript didn't load. Try refreshing." cta={{ href: "/studio", label: "Retry" }} />;
+    return <Gate icon="📕" title="Couldn't load it" body="The Studio didn't load. Try refreshing." cta={{ href: "/studio", label: "Retry" }} />;
   }
 
   return (
     <div className="min-h-screen" style={{ background: "linear-gradient(135deg, #0d1117 0%, #1a1410 55%, #0d0a08 100%)" }}>
-      <div className="max-w-3xl mx-auto px-4 py-12">
-        <div className="flex items-center justify-between mb-8">
+      <div className="max-w-4xl mx-auto px-4 py-14">
+        <div className="flex items-center justify-between mb-10">
           <Link href="/" className="text-gray-500 hover:text-amber-400 text-sm transition-colors">← Home</Link>
-          <div className="flex items-center gap-3">
-            <Link href="/studio/prose" className="text-amber-400 hover:text-amber-300 text-sm font-semibold transition-colors">🎧 Read aloud →</Link>
-            <span className="text-[11px] font-mono font-bold text-amber-400 uppercase tracking-[0.3em]">Studio · Pro</span>
-          </div>
+          <span className="text-[11px] font-mono font-bold text-amber-400 uppercase tracking-[0.3em]">Studio · Pro</span>
         </div>
 
+        <header className="mb-10">
+          <h1 className="text-5xl font-black text-white tracking-tight">Siempre Segundo</h1>
+          <p className="text-amber-200/90 italic mt-3 text-lg">&ldquo;Always second.&rdquo;</p>
+          <p className="text-gray-400 text-[15px] leading-7 mt-4 max-w-2xl">
+            A multigenerational California saga — loosely based on Frank Arellanes, the
+            Santa Cruz ballplayer who reached the 1918 Red Sox. Read it as a novel, as the
+            literary screenplay, or as the lean sell draft.
+          </p>
+        </header>
+
         {state === "loading" ? (
-          <div className="space-y-3 animate-pulse pt-8">
-            <div className="h-10 bg-white/5 rounded w-2/3" />
-            <div className="h-4 bg-white/5 rounded w-full" />
-            <div className="h-4 bg-white/5 rounded w-5/6" />
-            <div className="h-4 bg-white/5 rounded w-3/4" />
+          <div className="grid gap-5 sm:grid-cols-3 animate-pulse">
+            {[0, 1, 2].map((i) => <div key={i} className="h-56 rounded-2xl bg-white/5" />)}
           </div>
         ) : (
-          <article className="min-w-0">
-            <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>
-              {md}
-            </ReactMarkdown>
-          </article>
+          <div className="grid gap-5 sm:grid-cols-3">
+            <Card href={`/studio/prose${q}`} icon="📖" sub="Novel" title="The Novel" blurb="139 chapters of full prose — plus the chaptered narrated audiobook with a one-file .m4b download." />
+            <Card href={`/studio/screenplay${q}`} icon="🎬" sub="Screenplay" title="Literary Draft" blurb="The screenplay as a read — full action, voice intact, Cold Open through Coda." />
+            <Card href={`/studio/screenplay-sell${q}`} icon="📄" sub="Sell Draft" title="Spec / Sell" blurb="Lean industry-standard spec — same beats, action stripped to the screen. For agents and contests." />
+          </div>
         )}
       </div>
     </div>

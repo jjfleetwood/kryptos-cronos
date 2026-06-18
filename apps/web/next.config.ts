@@ -17,9 +17,13 @@ const nextConfig: NextConfig = {
     // The public Agent Risk Audit Guide renders the same markdown server-side.
     "/guides/agent-risk-audit": ["./secured-docs/AGENT_RISK_AUDIT_GUIDE.md"],
     "/guides/agent-fleet": ["./secured-docs/AGENTS_OVERVIEW.md"],
-    // Studio (Pro-gated): the manuscript markdown + the generated audiobook MP3
-    // must be bundled into these serverless functions (they read from disk).
-    "/api/studio": ["./secured-docs/SIEMPRE_SEGUNDO.md"],
+    // Studio (Pro-gated): the manuscript + both screenplays + the generated
+    // audiobook MP3 must be bundled into these serverless functions (read from disk).
+    "/api/studio": [
+      "./secured-docs/SIEMPRE_SEGUNDO.md",
+      "./secured-docs/SIEMPRE_SEGUNDO_SCREENPLAY.md",
+      "./secured-docs/SIEMPRE_SEGUNDO_SCREENPLAY_SELL.md",
+    ],
     "/api/studio/audio": ["./secured-docs/*.mp3", "./secured-docs/siempre-segundo.audio.txt", "./secured-docs/siempre-segundo.audio.json"],
   },
   // Versioned API namespace for clients that can't be force-updated (the mobile
