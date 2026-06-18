@@ -58,6 +58,7 @@ function mdToSpeech(md) {
     .replace(/^\s*>\s?/gm, "")
     .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
     .replace(/[*_`]/g, "")
+    .replace(/©/g, "") // the glyph; TTS would read it as the word "copyright"
     .replace(/^\s*[-–—]\s*$/gm, " ")
     .replace(/\n{2,}/g, "\n\n")
     .trim();
