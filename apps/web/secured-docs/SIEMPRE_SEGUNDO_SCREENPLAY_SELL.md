@@ -217,7 +217,8 @@ down. He doesn't look at the summer crowd.
 
 CHUCK ASHBY, 19, white flannels, money, throws three and misses
 three. The bottles don't move. On his arm: REBECCA WHITFIELD,
-18 -- beautiful, bored.
+18 -- beautiful, bored. In the fall she goes up to Stanford,
+where the bluff sends its daughters to be settled for good.
 
 CHUCK
 (for his friends)
@@ -478,9 +479,13 @@ exam. The other students -- startled -- APPLAUD.
 
 EXT. SANTA CLARA BALLFIELD -- DAY (SPRING)
 
-STANFORD, in cardinal red. In the stands, half-risen, a glove
-forgotten in her lap: REBECCA. At the plate, an S on his chest:
-CHUCK ASHBY.
+Orchards in blossom, petals on the infield. STANFORD, in cardinal
+red, down for the oldest rivalry in the state -- come to see the
+Santa Clara ACE, which is what CIRILO has become in two seasons
+up the line. In the stands, half-risen, a glove forgotten in her
+lap: REBECCA -- down from Stanford with her set, to a game she
+never meant to watch, until she knew the motion. At the plate, an
+S on his chest: CHUCK ASHBY.
 
 CHUCK
 (loud, for the red seats)
@@ -500,6 +505,64 @@ I thought beating them on the square would
 open the door. It took me years to learn
 the square was the only place the door was
 ever open at all.
+
+EXT. STANFORD LANDS -- A REDWOOD GROVE -- NIGHT (FORTNIGHTS, 1903--)
+
+A stand the loggers missed. He comes up on the milk train and
+walks the last two miles in the dark; she's told her housemother
+she's at her devotions. Two hours once a fortnight, spent
+TALKING -- the one thing neither was let do: to be known by one
+person in a world that knows them only as types. He tells her the
+rancho, the courthouse, his father's silence; she tells him about
+her mother, and the long conversion into an ornament. HOOVES pass
+close; he covers her mouth with his hand; they breathe each
+other's breath till the riders fade. They both know discovery
+would cost them differently. She climbs to the grove anyway. So
+does he.
+
+EXT. SAN FRANCISCO -- OCEAN BEACH -- DAY (ONCE)
+
+Once, they steal a whole day in the one city big enough to
+swallow them: under the Ferry Building clock, down Market Street
+side by side in open daylight. The Cliff House over the surf;
+chowder they can't afford. The wind takes her hat -- CIRILO runs
+it down the wet sand like an outfielder under a fly and brings it
+back, and she laughs the real one, out loud, with no one to tell
+her not to. The wonder is how ORDINARY it is -- the daylight
+other couples never think about; contraband, to these two.
+
+INT. A NOB HILL DRAWING ROOM -- NIGHT (THE BREAK)
+
+Gaslight, good furniture. HORACE WHITFIELD -- self-made,
+terrified of falling back down -- addresses his daughter like a
+board that voted wrong. By the window: CHUCK.
+
+CHUCK
+He throws a baseball, Rebecca. That's the
+whole of him. An arm and a borrowed suit.
+
+REBECCA
+And what's the whole of you? Your father's
+name, money, and chair at the club.
+(almost kindly)
+At least his arm is his.
+
+HORACE
+Walk out that door and you walk out of this
+family. No allowance. No name. No coming
+back when being poor stops being romantic.
+
+She looks around the warm, lit cage of the room she grew up in --
+and goes, down the wide curving stair, past the long pier glass,
+not checking it, not looking back; out with a single valise and
+nothing of the house's in it.
+
+REBECCA (CONT'D)
+(turning back, to Chuck)
+Find someone who wants the chair at the club.
+They're the only people you've ever met.
+
+It will be fourteen years before she climbs that stair again.
 
 EXT. CLASS-D BALLFIELD -- VALLEY TOWN -- DAY (MONTAGE, 1904--)
 
@@ -539,6 +602,30 @@ EXT. LIM'S CAFE -- BY THE TRACKS -- MIDNIGHT
 The only other light on. LIM, Chinese, feeds them all -- the
 brown one included -- at a back table, for cash, without a word.
 
+EXT. BEACH FLATS -- THE BEACHCOMBERS' GROUND -- A SUNDAY
+
+The climb lets him home. His county's club, behind the bath
+houses, surf for an outfield wall; his brothers behind him; a
+thousand of the flats along the foul ropes. At the end of the
+bench, in street clothes, keeping the score book in a copperplate
+hand finer than any banker's: EDWARD PURSE -- the finest
+ballplayer on the field, the best baseball mind in the county,
+and everyone knows it. He's called the MASCOT and kept off the
+grass, because the one line in American baseball that does not
+bend is drawn clean around a Black man, with no gate in it.
+
+A visiting club comes up short. For ten minutes it's floated that
+Purse fill in -- just once. The field goes quiet. A thousand
+people in their Sunday best decide, without a word, that it will
+not happen. It does not. Purse licks his pencil and enters the
+next batter, his face not changing -- which is the worst of it.
+
+ON CIRILO: he's shown the exact dimensions of his own permission
+-- let onto this grass only so long as the papers keep calling
+him Spanish. He throws a two-hit shutout in a cold fury and
+enjoys none of it. He and Purse ride the trolley home -- the
+let-on and the kept-off -- in a silence, for once, shared.
+
 EXT. RECREATION PARK -- PACIFIC COAST LEAGUE -- DAY (~1910)
 
 Big crowds. Cirilo, graying, two-hits the Angels and walks off
@@ -546,30 +633,37 @@ to a ROAR.
 
 INT. A GRANDSTAND BOX -- CONTINUOUS
 
-A MAJOR-LEAGUE SCOUT in a derby lowers his glasses to the BIRD
-DOG beside him.
+A MAJOR-LEAGUE SCOUT in a derby lowers his glasses to his bird
+dog, VANCE GREEVY -- flask, dog-eared notebook.
 
 SCOUT
 Best arm I've seen all year. Spitter falls
 off a cliff. Reads hitters like a cardsharp.
 
-BIRD DOG
-(licking his pencil)
+GREEVY
+(already knowing)
 So we take him.
 
-SCOUT
-He's thirty next year. And he's a -- you
-know. Crowds back east won't warm to it.
-(raising the glasses)
-Write down the kid in left. The blond one.
-Half the ballplayer -- but the right kind of
-half.
+The scout does the second sum -- not the arm, the gate.
 
-He's already forgotten he said it.
+SCOUT
+He's thirty next year. Junk-baller -- no
+fastball for a poster, no name a marquee will
+carry, a tannery story that's no story.
+Crowds want youth and a man they can chant.
+Ownership won't spend the ink.
+(raising the glasses)
+Write down the kid in left. Younger. Easier
+to sell.
+
+The boy on the grass is already gone from his mind. But GREEVY
+writes three words under the name -- CAN'T USE HIM -- mutters
+"best arm on the field," and underlines it, the way he will
+season after season: a debt the game won't pay.
 
 ANGLE -- THE GRASS. Cirilo tips his cap to the only crowd
-allowed to love him. He never knows a man in a derby just
-decided his whole life in a sentence.
+allowed to love him. He never knows a man in a derby just priced
+his whole life in a sentence.
 
 EXT. A COAST LEAGUE CLUBHOUSE -- DUSK
 
@@ -648,6 +742,32 @@ I'm glad you left the bluff.
 REBECCA
 I know.
 
+INT. HOLY CROSS CHURCH -- SANTA CRUZ -- DAY (1916)
+
+After the years in the margins, they make it law. Half empty, a
+fault line down the center aisle: the MENDEZ family on one side,
+worn Sunday clothes; on the other, an empty pew where the
+Whitfields would have sat. She walks the aisle alone, in a plain
+dress -- no father to give her, so she gives herself. The priest
+speaks Spanish; REBECCA answers in it. DOLORES watches, face
+composed, still waiting for the hook in the gift.
+
+EXT. HOLY CROSS -- THE STEPS -- CONTINUOUS
+
+DON AURELIO takes his grandson's arm. Quiet. Afraid.
+
+DON AURELIO
+First the game. Now an Anglo man's daughter.
+You keep reaching over your head, mijo. Our
+family was not built to be first.
+
+CIRILO
+Then I'll be the one it stops costing.
+
+Behind them, REBECCA laughs the real one -- the one from the
+booth, sixteen years on, still knocking itself loose out of
+people who'd forgotten how.
+
 EXT./INT. THE EAST -- LEAN YEARS -- MONTAGE (1913--1917)
 
 A gray big-league cup of coffee in BROOKLYN -- a midseason
@@ -668,10 +788,11 @@ CIRILO
 Boston bought my contract. The Red Sox.
 (she gasps -- he stops her)
 They want a thirty-five-year-old spitballer
-for the price of the train. Because the
-young arms are in France. Sixteen years I
-waited -- and it came because they ran out of
-white arms to send up.
+for the price of the train. The war took the
+young arms to France, and a cheap old
+foreigner fills the spot. Sixteen years --
+and the door opened because they ran short.
+Not because they wanted me.
 
 She takes his face in both hands.
 
