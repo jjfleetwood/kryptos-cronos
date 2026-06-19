@@ -170,8 +170,8 @@ toes the rubber and looks in for the sign.
 
 For one held instant the whole bright morning belongs to him --
 
--- the way it has belonged, on that exact patch of grass, to a
-hundred years of boys before him.
+-- the way it has belonged, on that exact patch of grass, to half a
+century of boys before him.
 
 The hawk slides over it, and on.
 
