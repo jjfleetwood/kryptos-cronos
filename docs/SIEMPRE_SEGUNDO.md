@@ -2259,7 +2259,7 @@ Cirilo did not argue; he had learned long ago that you do not argue with a man w
 
 ### Chapter — The Wedding
 
-They married at Holy Cross in 1916, in the teeth of both their worlds, and the church told the whole story without anyone saying a word.
+They married at Holy Cross in 1916 — late, and quiet, and years after Rebecca had already given up everything a wedding is supposed to risk — in the teeth of both their worlds; and the church told the whole story without anyone saying a word.
 
 It was half-empty, and the half that was there had a fault line straight down the center aisle. On one side sat the Méndez family — Dolores and Esteban, the brothers, Don Aurelio — in Sunday clothes worn thin, wary rather than joyful, because they had learned that when the world noticed them it was usually to take something. On the other: almost no one, and a single empty pew where the Whitfields would have sat. Rebecca's people had not come. Rebecca's people were, as of a letter some years old now, no longer Rebecca's people.
 
