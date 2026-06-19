@@ -98,10 +98,10 @@ function buildToc(md: string): TocItem[] {
   return items;
 }
 
-// The audiobook (streaming player + downloads) is hidden during the prose
-// rewrite — the narration is stale and being regenerated. Flip back to true
-// after the next audio resync.
-const SHOW_AUDIO = false;
+// The audiobook (streaming player + downloads) is live again: the narration
+// was resynced to the revised novel (race->class reframe + continuity
+// overhaul), re-narrating the 86 changed chapters.
+const SHOW_AUDIO = true;
 
 export default function StudioProsePage() {
   const [state, setState] = useState<State>("loading");
