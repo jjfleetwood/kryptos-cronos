@@ -53,7 +53,7 @@ const components: Components = {
 
 type State = "loading" | "ready" | "signin" | "pro" | "error";
 type Chapter = { i: number; title: string; url: string };
-type TocItem = { slug: string; display: string; level: number };
+type TocItem = { slug: string; display: string; level: number; num?: number };
 
 function Gate({ icon, title, body, cta }: { icon: string; title: string; body: string; cta: { href: string; label: string } }) {
   return (
@@ -82,18 +82,22 @@ function dl(u: string): string {
 // Slugs/strip must match nodeText() of the rendered headings so the anchors resolve.
 function buildToc(md: string): TocItem[] {
   const items: TocItem[] = [];
+  let n = 0;
   for (const line of md.split("\n")) {
     const m = /^(#{2,3})\s+(.*\S)\s*$/.exec(line);
     if (!m) continue;
     const level = m[1].length;
     const text = m[2].replace(/[*_`]/g, "").trim();
     let display = text;
+    let num: number | undefined;
     if (level === 3) {
       display = display.replace(/^Chapter\s*[—–-]\s*/i, "");
+      // Number the story chapters; leave the Copyright/Dedication front matter unnumbered.
+      if (!/^(copyright|dedication)$/i.test(display)) num = ++n;
     } else {
       display = display.replace(/Siempre Segundo\s*[—–-]\s*/i, "").replace(/,?\s*novelized.*$/i, "").trim();
     }
-    items.push({ slug: slugify(text), display, level });
+    items.push({ slug: slugify(text), display, level, num });
   }
   return items;
 }
@@ -194,7 +198,7 @@ export default function StudioProsePage() {
                         onChange={(e) => goChapter(Number(e.target.value))}
                         className="flex-1 min-w-0 bg-black/40 border border-white/15 rounded px-2 py-1.5 text-sm text-gray-200"
                       >
-                        {chapters.map((c, idx) => <option key={c.i} value={idx}>{idx + 1}. {c.title}</option>)}
+                        {(() => { let k = 0; return chapters.map((c, idx) => { const front = /^(copyright|dedication)$/i.test(c.title.trim()); if (!front) k++; return <option key={c.i} value={idx}>{front ? c.title : `${k}. ${c.title}`}</option>; }); })()}
                       </select>
                       <button onClick={() => goChapter(curCh + 1)} disabled={curCh >= chapters.length - 1} className="px-2.5 py-1.5 rounded-lg text-sm font-semibold text-gray-300 border border-white/15 hover:border-white/30 disabled:opacity-30">Next ›</button>
                     </div>
@@ -246,7 +250,7 @@ export default function StudioProsePage() {
                             : "block py-1 pl-3 text-gray-400 active:text-amber-300 border-l border-white/10"
                         }
                       >
-                        {t.display}
+                        {t.num != null && <span className="text-amber-500/40 tabular-nums">{t.num}. </span>}{t.display}
                       </a>
                     </li>
                   ))}
@@ -286,7 +290,7 @@ export default function StudioProsePage() {
                             : "block py-0.5 pl-3 text-gray-400 hover:text-amber-300 border-l border-white/10 hover:border-amber-500/40 transition-colors"
                         }
                       >
-                        {t.display}
+                        {t.num != null && <span className="text-amber-500/40 tabular-nums">{t.num}. </span>}{t.display}
                       </a>
                     </li>
                   ))}
