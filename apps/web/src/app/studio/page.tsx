@@ -79,8 +79,9 @@ export default function StudioPage() {
           <p className="text-amber-200/90 italic mt-3 text-lg">&ldquo;Always second.&rdquo;</p>
           <p className="text-gray-400 text-[15px] leading-7 mt-4 max-w-2xl">
             A multigenerational California saga — loosely based on Frank Arellanes, the
-            Santa Cruz ballplayer who reached the 1918 Red Sox. Read it as a novel, as the
-            literary screenplay, or as the lean sell draft.
+            Santa Cruz ballplayer who became one of the first Mexican-American men in the
+            major leagues, and the first Latino to pitch for the Boston Red Sox. Read it
+            as a novel, as the literary screenplay, or as the lean sell draft.
           </p>
         </header>
 
