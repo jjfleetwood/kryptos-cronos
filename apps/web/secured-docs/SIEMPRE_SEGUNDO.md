@@ -2883,7 +2883,7 @@ But there is another kind of first, and it does not gather dust. In the summers 
 
 They had hung *El Cid* on him as a joke and an erasure — a Mexican made over into a Spanish conqueror because the papers could not bring themselves to let him be a hero as himself — and they had been more right than they could have known. In the old legend the Cid's own body, lashed upright in the saddle, had led one last charge and won a battle after his death. And so, in the only way that ever lasts, did Cirilo Méndez.
 
-The curse, the old man finally saw, had never been that the Méndez could not be first. It was that they had believed they could not. His grandson had walked out into a country that had spent a hundred years telling him to stay second and had simply, stubbornly, *declined* — and the proof of it was sleeping now in a Brooklyn cradle three thousand miles east, a worn glove folded under his small strong hands, the leather his great-great-grandfather had tanned on land they once owned, soft now from a fifth generation of use.
+The curse, the old man finally saw, had never been that the Méndez could not be first. It was that they had believed they could not. His grandson had walked out into a country that had spent a hundred years telling him to stay second and had simply, stubbornly, *declined* — and the proof of it was sleeping now in a cradle in the California flats that had made his father, taken in with his widowed mother by the Méndez who would raise him, a worn glove folded under his small strong hands, the leather his great-great-grandfather had tanned on land they once owned, soft now from a fifth generation of use.
 
 He was the root. He was the legacy. He was the first that lasts.
 
