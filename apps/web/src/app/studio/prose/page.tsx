@@ -98,6 +98,11 @@ function buildToc(md: string): TocItem[] {
   return items;
 }
 
+// Temporarily hidden during the prose rewrite — the audiobook is being
+// regenerated and the current narration is stale. Flip back to true after the
+// next audio resync.
+const SHOW_AUDIO_DOWNLOADS = false;
+
 export default function StudioProsePage() {
   const [state, setState] = useState<State>("loading");
   const [md, setMd] = useState("");
@@ -180,7 +185,7 @@ export default function StudioProsePage() {
                   <>
                     <div className="flex items-center gap-2 mb-2">
                       <span className="text-[11px] font-bold text-amber-300 uppercase tracking-wider">🎙 Narrated — chapter {curCh + 1} / {chapters.length}</span>
-                      <a href={dl(chapters[curCh]?.url ?? "")} className="text-[11px] text-amber-400 hover:text-amber-300 underline">download this chapter</a>
+                      {SHOW_AUDIO_DOWNLOADS && <a href={dl(chapters[curCh]?.url ?? "")} className="text-[11px] text-amber-400 hover:text-amber-300 underline">download this chapter</a>}
                     </div>
                     <div className="flex items-center gap-2 mb-2">
                       <button onClick={() => goChapter(curCh - 1)} disabled={curCh === 0} className="px-2.5 py-1.5 rounded-lg text-sm font-semibold text-gray-300 border border-white/15 hover:border-white/30 disabled:opacity-30">‹ Prev</button>
@@ -207,7 +212,7 @@ export default function StudioProsePage() {
                   </>
                 )}
 
-                {m4bUrl && (
+                {m4bUrl && SHOW_AUDIO_DOWNLOADS && (
                   <div className={`${chapters.length > 0 ? "mt-3 pt-3 border-t border-white/10" : ""} flex flex-wrap items-center gap-3`}>
                     <a
                       href={dl(m4bUrl)}
