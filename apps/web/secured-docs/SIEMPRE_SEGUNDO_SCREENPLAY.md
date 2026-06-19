@@ -359,7 +359,7 @@ He has mastered the one skill the job requires: he does not
 look at the summer people. Eyes down. Stay small.
 
 A knot of money stops at the booth -- bluff kids, City money,
-white flannels. At its center CHUCK ASHBY (21), home from his
+white flannels. At its center CHUCK ASHBY (19), home from his
 first year at Stanford, certain as weather. Beside him: REBECCA
 WHITFIELD (18) -- beautiful, poised, armored -- the most
 looked-at girl on the pier and the least content, though no one
@@ -1303,7 +1303,7 @@ something one of the brothers said -- the real laugh, the
 surprised one, the one from the booth, sixteen years old now and
 still knocking itself loose out of people who'd forgotten how.
 
-EXT./INT. THE EAST -- THE LEAN YEARS -- MONTAGE (1913--1917)
+EXT./INT. THE EAST -- THE LEAN YEARS -- MONTAGE (1916--1917)
 
 The dream, arrived, tastes of ash. A gray big-league cup of
 coffee in BROOKLYN, before a crowd that reads its programs

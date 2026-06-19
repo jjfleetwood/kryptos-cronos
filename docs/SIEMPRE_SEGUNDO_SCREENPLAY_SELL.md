@@ -768,7 +768,7 @@ Behind them, REBECCA laughs the real one -- the one from the
 booth, sixteen years on, still knocking itself loose out of
 people who'd forgotten how.
 
-EXT./INT. THE EAST -- LEAN YEARS -- MONTAGE (1913--1917)
+EXT./INT. THE EAST -- LEAN YEARS -- MONTAGE (1916--1917)
 
 A gray big-league cup of coffee in BROOKLYN -- a midseason
 nobody, an old rookie with a foreign name. Off-season: a NEWARK
