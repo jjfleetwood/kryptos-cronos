@@ -771,7 +771,7 @@ people who'd forgotten how.
 EXT./INT. THE EAST -- LEAN YEARS -- MONTAGE (1916--1917)
 
 A gray big-league cup of coffee in BROOKLYN -- a midseason
-nobody, an old rookie with a foreign name. Off-season: a NEWARK
+nobody, an aging journeyman with a foreign name. Off-season: a NEWARK
 TANNERY bench, a major-leaguer who can't make the rent. His
 Brooklyn landlady, AOIFE DOYLE -- an Irish widow, gold-star flag
 in the window -- lets the rent slide and won't admit it.
@@ -828,8 +828,10 @@ CIRILO
 (barely)
 Already big. Already strong.
 
-A thirty-six-year-old rookie, a tannery stain still under his
-nails, his father's glove on the sill.
+A thirty-six-year-old man with his first real shot at the top in
+front of him at last, a tannery stain still under his nails, the old
+glove his own family made him on the sill. For one held breath he is
+not second to any man alive.
 
 EXT. FENWAY PARK -- A TUESDAY IN JULY (1918)
 

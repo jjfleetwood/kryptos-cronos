@@ -1307,8 +1307,8 @@ EXT./INT. THE EAST -- THE LEAN YEARS -- MONTAGE (1916--1917)
 
 The dream, arrived, tastes of ash. A gray big-league cup of
 coffee in BROOKLYN, before a crowd that reads its programs
-through his warmups -- a midseason nobody, an old rookie with a
-foreign name. And the wage the reserve clause allows an aging
+through his warmups -- a midseason nobody, an aging journeyman with
+a foreign name. And the wage the reserve clause allows an aging
 junk-baller will not cover a cold-water flat AND a winter -- so
 we find him at a NEWARK TANNERY bench in the off-season, a major-
 leaguer who cannot make the rent. His Brooklyn landlady, AOIFE
@@ -1383,9 +1383,10 @@ CIRILO
 (barely)
 Already big. Already strong.
 
-He stands in the cold with his wife, his son, and his father's glove
-on the sill -- a thirty-six-year-old rookie with a tannery stain
-still under his nails -- and for the length of one held breath he is
+He stands in the cold with his wife, his son, and the old glove his
+own family made him on the sill -- a thirty-six-year-old man with a
+tannery stain still under his nails and his first real shot at the top
+finally in front of him -- and for the length of one held breath he is
 not second to any man alive.
 
 EXT. FENWAY PARK -- BOSTON -- A TUESDAY IN JULY (1918)
