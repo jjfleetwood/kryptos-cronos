@@ -147,7 +147,7 @@ A living map of the whole picture: ✍️ = drafted in this document, ◻ = fram
 - ✍️ The real victory, the curse broken (the coda; "throws like Méndez")
 - ◻ Option: a 2020 COVID bookend (if we ever want the echo explicit)
 - 📖 **The full novel is NOVELIZED** — Prologue + Acts I/II/III rendered as complete prose chapters (the novel sections below). Front to back.
-- 🌱 **Grow pass complete (first pass):** every movement deepened with the full secondary cast and principal backstories, written through the Steinbeck/Dostoevsky everyman lens — Prologue (Don Joaquín, the Ohlone labor, Capt. Bray, Hollister & Quint), Act I (Nunzio, Pereira, Volkov, Toussaint, the family goodbye), Act II (Fagan, Mulqueen, Purse's wall, the Swede, Horace, Aoife Doyle), Act III (Halloran, Eleanor). Further passes can keep growing toward full novel length.
+- 🌱 **Grow pass complete (first pass):** every movement deepened with the full secondary cast and principal backstories, written through the Steinbeck/Dostoevsky everyman lens — Prologue (Don Joaquín, the Ohlone labor, Capt. Bray, Hollister & Quint), Act I (Nunzio, Pereira, Volkov, Toussaint, the family goodbye), Act II (Fagan, Mulqueen, Purse, Horace, Aoife Doyle), Act III (Halloran, Eleanor). Further passes can keep growing toward full novel length.
 
 ---
 
