@@ -23,18 +23,6 @@ export const stageFlags: Record<string, string> = {
   "stage-12": "FLAG{M0NG0DB_N0_4UTH_3XP0S3D}",
 
   // ── Cisco CVE Missions (stages.ts) ───────────────────────────────────────
-  "stage-m01": "FLAG{CV3_2023_20198_N0_AUTH_RCE}",
-  "stage-m02": "FLAG{3XTRB4C0N_SNMP_0WN3D}",
-  "stage-m03": "FLAG{SM4RT_1NST4LL_N0_AUTH}",
-  "stage-m04": "FLAG{RV320_C0NF1G_DUMP3D}",
-  "stage-m05": "FLAG{P4TH_TR4V3RS4L_ASA_OWN3D}",
-  "stage-m06": "FLAG{WLC_4UTH_BYPA55_CVE_2022}",
-  "stage-m07": "FLAG{HYP3RFL3X_CMD_1NJ3CT10N}",
-  "stage-m08": "FLAG{BADC4NDY_R00T_IMPL4NT}",
-  "stage-m09": "FLAG{PR1M3_1NFR4_RCE_UPL04D}",
-  "stage-m10": "FLAG{ASA_XSS_S3SS10N_H1JACK}",
-  "stage-m11": "FLAG{3D1NBR0_F1L3_D3L3T3D}",
-  "stage-m12": "FLAG{10S_DHCP_BUFF3R_0V3RFL0W}",
 
   // ── Race Through Space (space-race.ts) — CTF stages only ─────────────────
   "space-02": "FLAG{V14S4T_K4S4T_4C1DR41N}",
@@ -228,8 +216,6 @@ export const stageFlags: Record<string, string> = {
   "tf-10": "FLAG{THR34T_1NF0RM3D_D3F3ND_G4PS}",
 
   // ── Cisco CVE Extended (cisco-2.ts) ──────────────────────────────────────
-  "stage-m13": "FLAG{CVE_2016_1287_IK3_H3AP_0WN3D}",
-  "stage-m14": "FLAG{CVE_2017_3881_CMP_T3LN3T_RCE}",
   "range-msf-01": "FLAG{MSF_M0DUL3S_W0RKFL0W}",
   "range-msf-02": "FLAG{R3C0N_SMB445_MS17_010}",
   "range-msf-03": "FLAG{3T3RNALBLU3_M3T3RPR3T3R_SYST3M}",
@@ -270,34 +256,10 @@ export const stageFlags: Record<string, string> = {
   "bin-02": "FLAG{ST4CK_SM4SH_R3T2W1N}",
   "bin-03": "FLAG{R3T2L1BC_BYP4SS3D_NX}",
   "bin-04": "FLAG{R0P_CH41N_PWN3D_M1T1G4T10NS}",
-  "stage-m15": "FLAG{CVE_2020_3118_CDPWN_L2_RCE}",
-  "stage-m16": "FLAG{CVE_2021_1609_SOHO_RCE_ROOT}",
-  "stage-m17": "FLAG{CVE_2020_3259_M3M_L3AK_VPN}",
-  "stage-m18": "FLAG{CVE_2019_1663_ST4CK_OV3RFLOW_ROOT}",
-  "stage-m19": "FLAG{CVE_2022_20812_PATH_TRAV3RSAL}",
-  "stage-m20": "FLAG{CVE_2024_20399_NXOS_CLI_INJ3CT}",
-  "stage-m21": "FLAG{CVE_2024_20353_ASA_D0S_L0GS_CL34R}",
-  "stage-m22": "FLAG{CVE_2024_20359_L1N3_DANC3R_IMPL4NT}",
-  "stage-m23": "FLAG{CVE_2021_1291_VMANAGE_SQL1_WAN}",
-  "stage-m24": "FLAG{CVE_2023_20109_GDOI_MASS_RCE}",
-  "stage-m25": "FLAG{CVE_2018_0296_ASA_PATH_D0S}",
 
   // ── Cisco SecOps / Advanced (cisco-3/4/5.ts) ─────────────────────────────────
   // These CTF stages assemble their flag from 4 in-terminal fragments; the value
   // here is byte-identical to that assembly (previously unregistered → unsolvable).
-  "stage-m26": "FLAG{ftd_cli_inj_root_c2022}",
-  "stage-m28": "FLAG{saml_xsw_umbrella_admin_9_6}",
-  "stage-m30": "FLAG{imc_rest_inject_root_1896}",
-  "stage-m34": "FLAG{iosxe_http_priv15_10_0}",
-  "stage-m36": "FLAG{arcane_door_line_runner_2024}",
-  "stage-m37": "FLAG{smart_install_rce_9_8}",
-  "stage-m39": "FLAG{fp_frag3_evasion_fixed}",
-  "stage-m41": "FLAG{ftd_ssl_dos_lockout_patched}",
-  "stage-m42": "FLAG{xdr_pivot_lateral_hunt_2024}",
-  "stage-m44": "FLAG{dnac_api_enum_boundary_2024}",
-  "stage-m46": "FLAG{cyberops_killchain_powershell_contained}",
-  "stage-m48": "FLAG{silicon_one_macsec_secured}",
-  "stage-m50": "FLAG{quantum_safe_mlkem_2024}",
 
   // ── Tech Audit: Continuous Monitoring 2.0 (tech-audit-4.ts) ──────────────────
   // Fragment-assembled CTF flags, previously unregistered → unsolvable.
@@ -484,14 +446,4 @@ export const stageFlags: Record<string, string> = {
   "quantum-c10": "FLAG{QUANTUM_SAFE_STACK_COMPLETE}",
 
   // ── Cisco Umbrella — DNS Security (umbrella.ts) ───────────────────────────
-  "umbrella-01": "FLAG{UMBRELLA_DNS_F1RST_L1N3_D3F3NS3}",
-  "umbrella-02": "FLAG{DNS_TUNN3L_D4T4_3XF1L_CAUGHT}",
-  "umbrella-03": "FLAG{DGA_3NTR0PY_C2_D0M41N_D3T3CT3D}",
-  "umbrella-04": "FLAG{F4ST_FL0X_IP_R0T4T10N_BUST3D}",
-  "umbrella-05": "FLAG{DNS_R3B1ND_S4M3_0R1G1N_BYP4SS}",
-  "umbrella-06": "FLAG{L00K4L1K3_D0M41N_PH1SH_BLOCK3D}",
-  "umbrella-07": "FLAG{P0L1CY_BYPA55_RUL3_R3M0V3D}",
-  "umbrella-08": "FLAG{D0H_3V4S10N_H4RDC0D3D_R3S0LV3R}",
-  "umbrella-09": "FLAG{T4L0S_1NT3L_C2_TR4CK3D_4PT}",
-  "umbrella-10": "FLAG{DNS_1R_CONT41NM3NT_CR1T1C4L_GR1D}",
 };
