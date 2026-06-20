@@ -53,6 +53,7 @@ function extractProse(content) {
 
 function mdToSpeech(md) {
   return md
+    .replace(/\r/g, "") // EOL-agnostic: the working tree is CRLF, git blobs are LF; strip CR so the diff hashes match
     .replace(/```[\s\S]*?```/g, " ")
     .replace(/^#{1,6}\s+/gm, "")
     .replace(/^\s*>\s?/gm, "")
