@@ -130,10 +130,6 @@ export function DownloadsAccessPanel({ users }: { users: { username: string }[] 
           <p className="text-xs text-gray-600 mt-0.5">Control who can access the Python MCP template downloads page</p>
         </div>
         <div className="flex items-center gap-2 text-xs">
-          <a href="/downloads" target="_blank" rel="noopener noreferrer"
-            className="text-emerald-500 hover:text-emerald-400 transition-colors font-mono">
-            /downloads ↗
-          </a>
           {msg && <span className="text-green-400">{msg}</span>}
         </div>
       </div>

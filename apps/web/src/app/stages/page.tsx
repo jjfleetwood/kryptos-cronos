@@ -154,12 +154,6 @@ export default function StagesPage() {
             🔒 {t("stages.sectionSecurity")}
           </span>
           <div className="flex-1 h-px bg-cyan-500/20" />
-          <Link
-            href="/downloads"
-            className="text-[10px] font-mono text-emerald-500 hover:text-emerald-400 transition-colors whitespace-nowrap border border-emerald-500/30 px-2.5 py-1 rounded-lg"
-          >
-            ↓ Python Downloads
-          </Link>
         </div>
 
         {/* Agent Risk Audit Guide — field guide companion to the Auditing Agentic AI epochs */}
