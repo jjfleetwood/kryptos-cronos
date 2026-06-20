@@ -1961,7 +1961,7 @@ Cirilo did not mind the edge of the table, or told himself he did not, which at 
 
 ### Chapter — The Mission Nine
 
-And here the book changes hands, the way his life did; for at the College of Santa Clara, an hour up the line and a whole country away from the boardwalk, Cirilo Méndez walked for the first time in his life into a place where the thing he was *known* for was a thing he could *do.*
+And here his fortunes turned, all at once and for good; for at the College of Santa Clara, an hour up the line and a whole country away from the boardwalk, Cirilo Méndez walked for the first time in his life into a place where the thing he was *known* for was a thing he could *do.*
 
 The college played the best ball in the state and had for thirty years — the old mission school, the Jesuits, who had taken up the American game with the same competitive devotion they brought to Latin and to souls, and who fielded a nine that went at Stanford and the University every spring as though salvation rode on the result; and a boy who could throw the way Cirilo threw was, on that one ground, not a problem to be managed but an asset to be prized. The difference nearly undid him those first weeks — the sheer unfamiliar weight of being *wanted.* He had come up out of a world where his gift was a danger to be hidden, and here were grown men in cassocks and flannels who looked at the very same gift and saw a thing to be polished and shown off and beaten Stanford with; and it took him a month to stop flinching at the wanting, the way a beaten dog flinches at a lifted hand even when the hand is holding out food.
 
