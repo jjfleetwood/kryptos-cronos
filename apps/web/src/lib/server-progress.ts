@@ -1,6 +1,5 @@
 import { redis } from "@/lib/redis";
 import { stages, epochs } from "@kryptos/core/stages";
-import { getAuditStage } from "@kryptos/core/audit-registry";
 import { checkStageMilestones, checkXpMilestones, checkStreakMilestones } from "@kryptos/core/milestone-badges";
 import { deriveEconomy, ECONOMY_VERSION } from "@/lib/economy";
 import { addLeagueXp } from "@/lib/leagues";
@@ -147,7 +146,7 @@ async function sendStageCompletionEmail(opts: {
 function stageXp(stageId: string): number {
   // Audit-track modules live in a separate registry (off the main barrel), so fall
   // back to it — otherwise clearing an audit module would award 0 XP.
-  return (stages.find((s) => s.id === stageId)?.xp ?? getAuditStage(stageId)?.xp) ?? 0;
+  return (stages.find((s) => s.id === stageId)?.xp) ?? 0;
 }
 
 function getDayKey(): string {

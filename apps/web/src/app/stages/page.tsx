@@ -182,16 +182,6 @@ export default function StagesPage() {
           </Link>
         </div>
 
-        {/* Advanced Audit — gated agentic technical & privacy audit library (off-catalog). */}
-        <div className="flex justify-end mb-4 -mt-2">
-          <Link
-            href="/audit"
-            className="text-[10px] font-mono text-violet-300 hover:text-violet-200 transition-colors whitespace-nowrap border border-violet-400/40 bg-violet-500/10 px-2.5 py-1 rounded-lg"
-          >
-            🔎 Advanced Audit Library →
-          </Link>
-        </div>
-
         <ContinueStrip />
 
         <TrackCatalog visibleTracks={visibleTracks} completedStages={completedStages} />

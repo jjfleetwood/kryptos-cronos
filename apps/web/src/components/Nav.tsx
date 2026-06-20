@@ -89,7 +89,6 @@ export default function Nav() {
   ];
   const moreItems: NavItem[] = username
     ? [
-        { href: "/audit", icon: "🔎", label: t("nav.audit", "Advanced Audit") },
         // /studio (Siempre Segundo) is public but intentionally unlisted —
         // reachable only by direct link.
         { href: "/journey", icon: "🌍", label: t("nav.journey") },

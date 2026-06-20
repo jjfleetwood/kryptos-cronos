@@ -6,7 +6,6 @@ import { awardStageInRedis, awardQuizStageInRedis } from "@/lib/server-progress"
 import { isRateLimited } from "@/lib/rate-limit";
 import { getClientIp } from "@/lib/client-ip";
 import { getStage } from "@kryptos/core/stages";
-import { getAuditStage } from "@kryptos/core/audit-registry";
 import { canAccessStage } from "@/lib/access";
 import {
   computeStageScore, computeBonusXp, updateSkillLevel,
@@ -47,7 +46,7 @@ export async function POST(req: NextRequest) {
   }
 
   // Look up quiz questions: check hardcoded registry first, then fall back to stages data
-  const stage = getStage(body.stageId) ?? getAuditStage(body.stageId);
+  const stage = getStage(body.stageId);
   const registryQuiz = quizRegistry[body.stageId];
   const quiz = registryQuiz ?? stage?.quiz;
 

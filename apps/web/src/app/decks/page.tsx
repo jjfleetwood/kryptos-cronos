@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { epochs } from "@kryptos/core/stages-meta";
-import { auditEpochsMeta } from "@kryptos/core/audit-epochs.generated";
 
 // Lens roster (mirrors LENSES in lib/pptx-lens.ts).
 const LENSES = [
@@ -15,8 +14,7 @@ const LENSES = [
 
 export default function DecksPage() {
   const sorted = [...epochs].sort((a, b) => a.name.localeCompare(b.name));
-  const auditSorted = [...auditEpochsMeta].sort((a, b) => a.name.localeCompare(b.name));
-  const allIds = new Set([...sorted.map((e) => e.id), ...auditSorted.map((e) => e.id)]);
+  const allIds = new Set(sorted.map((e) => e.id));
   // Preselect an epoch from ?epoch=<id> (e.g. the epoch-page "Generate deck" button).
   const preselect = typeof window !== "undefined" ? new URLSearchParams(window.location.search).get("epoch") : null;
   const [epochId, setEpochId] = useState(
@@ -95,7 +93,7 @@ export default function DecksPage() {
 
         <div className="rounded-2xl border border-white/10 bg-white/2 p-6 space-y-5">
           <label className="block">
-            <span className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Epoch / Audit domain</span>
+            <span className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Epoch</span>
             <select
               value={epochId}
               onChange={(e) => setEpochId(e.target.value)}
@@ -104,11 +102,6 @@ export default function DecksPage() {
               <optgroup label="Curriculum epochs">
                 {sorted.map((e) => (
                   <option key={e.id} value={e.id}>{e.name}</option>
-                ))}
-              </optgroup>
-              <optgroup label="Advanced Audit domains">
-                {auditSorted.map((e) => (
-                  <option key={e.id} value={e.id}>{e.emoji} {e.name}</option>
                 ))}
               </optgroup>
             </select>

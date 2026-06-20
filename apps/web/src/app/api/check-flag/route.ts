@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { timingSafeEqual } from "crypto";
 import { verifyAdminToken } from "@/lib/admin-token";
 import { stages } from "@kryptos/core/stages";
-import { getAuditStage } from "@kryptos/core/audit-registry";
 import { stageFlags } from "@kryptos/core/stage-flags";
 import { getAuthedUsername } from "@/lib/api-auth";
 import { awardStageInRedis } from "@/lib/server-progress";
@@ -33,7 +32,7 @@ export async function POST(req: NextRequest) {
   }
 
   // Audit-track modules live in a separate registry (off the public catalog).
-  const stage = stages.find((s) => s.id === body.stageId) ?? getAuditStage(body.stageId);
+  const stage = stages.find((s) => s.id === body.stageId);
   if (!stage) {
     return NextResponse.json({ correct: false }, { status: 404 });
   }
