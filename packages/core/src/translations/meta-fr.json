@@ -576,46 +576,6 @@
       "t": "La pile sûre contre les quantiques : Synthèse",
       "w": "Sommet de la sécurité quantique"
     },
-    "umbrella-01": {
-      "t": "Le bouclier invisible",
-      "w": "Cisco Umbrella (OpenDNS) HQ"
-    },
-    "umbrella-02": {
-      "t": "Le tuyau creux",
-      "w": "Marina Bay Financial Centre"
-    },
-    "umbrella-03": {
-      "t": "Le générateur de motifs",
-      "w": "NHS Barts Health Trust"
-    },
-    "umbrella-04": {
-      "t": "Les sables mouvants",
-      "w": "NYSE Data Center"
-    },
-    "umbrella-05": {
-      "t": "Le miroir empoisonné",
-      "w": "Laboratoire de sécurité IoT de l'université de Twente"
-    },
-    "umbrella-06": {
-      "t": "Le faux passeport",
-      "w": "Campus contractant du Pentagone"
-    },
-    "umbrella-07": {
-      "t": "Le Mur de la Politique",
-      "w": "Bureau de District des Écoles Publiques de Chicago"
-    },
-    "umbrella-08": {
-      "t": "Le Canal Fantôme",
-      "w": "District Commercial de Shinjuku"
-    },
-    "umbrella-09": {
-      "t": "Le Web de l'Intelligence",
-      "w": "Cisco Talos Intelligence Center"
-    },
-    "umbrella-10": {
-      "t": "Le Réseau Assiégé",
-      "w": "ERCOT Grid Control Center"
-    },
     "tapestry-01": {
       "t": "Les Fils à Travers le Temps",
       "w": "Musée Égyptien"
@@ -1160,54 +1120,6 @@
       "t": "Les plus grands lanceurs des Dodgers — Analyses stratégiques",
       "w": "Dodger Stadium — Hall of Fame Plaques at the Ravine"
     },
-    "stage-m39": {
-      "t": "Escalier de secours",
-      "w": "Cisco Firepower Lab"
-    },
-    "stage-m40": {
-      "t": "Le plan de gestion",
-      "w": "Cisco Advanced Security Lab"
-    },
-    "stage-m41": {
-      "t": "Saison semi-ouverte",
-      "w": "Cisco PSIRT Operations Center"
-    },
-    "stage-m42": {
-      "t": "La chasse au pivot",
-      "w": "Cisco Talos Intelligence HQ"
-    },
-    "stage-m43": {
-      "t": "Le tissu de détection",
-      "w": "Cisco Security Cloud Operations"
-    },
-    "stage-m44": {
-      "t": "Cartographe API",
-      "w": "Cisco DevNet Developer Hub"
-    },
-    "stage-m45": {
-      "t": "Le plan programmable",
-      "w": "Internet Engineering Task Force (IETF)"
-    },
-    "stage-m46": {
-      "t": "De zéro à administrateur de domaine",
-      "w": "Cisco CyberOps Training Center"
-    },
-    "stage-m47": {
-      "t": "Les cinq domaines",
-      "w": "Cisco Networking Academy"
-    },
-    "stage-m48": {
-      "t": "L'ASIC unifié",
-      "w": "Cisco Silicon One Engineering"
-    },
-    "stage-m49": {
-      "t": "Correspondance, action, transfert",
-      "w": "Open Compute Project Networking"
-    },
-    "stage-m50": {
-      "t": "Récolter maintenant, ne jamais déchiffrer",
-      "w": "NIST Computer Security Division"
-    },
     "stage-01": {
       "t": "Les trois chambres sacrées",
       "w": "Grande pyramide de Giza"
@@ -1255,158 +1167,6 @@
     "stage-12": {
       "t": "Le Trésor Non Gardé",
       "w": "Statue de Zeus à Olympie"
-    },
-    "stage-m01": {
-      "t": "La Porte Tombe Sans Clé",
-      "w": "Sainte-Sophie"
-    },
-    "stage-m02": {
-      "t": "EXTRABACON — L'Arme SNMP de la NSA",
-      "w": "Tour de Londres"
-    },
-    "stage-m03": {
-      "t": "La Porte d'Approvisionnement Oubliée",
-      "w": "Angkor Wat"
-    },
-    "stage-m04": {
-      "t": "Le Scriptorium Laissé Déverrouillé",
-      "w": "Cathédrale Notre-Dame"
-    },
-    "stage-m05": {
-      "t": "Le Chemin Caché à Travers le Mur",
-      "w": "Grande Muraille de Chine"
-    },
-    "stage-m06": {
-      "t": "Le Passage Secret des Rois Nasrides",
-      "w": "Palais de l'Alhambra"
-    },
-    "stage-m07": {
-      "t": "De Faux Ordres à la Garnison",
-      "w": "Krak des Chevaliers"
-    },
-    "stage-m08": {
-      "t": "Le Sommet : Root via XSS",
-      "w": "Machu Picchu"
-    },
-    "stage-m09": {
-      "t": "L'Offrande Qui Commande le Temple",
-      "w": "Chichen Itza"
-    },
-    "stage-m10": {
-      "t": "Le Parchemin Maudit dans le Courrier du Monastère",
-      "w": "Mont-Saint-Michel"
-    },
-    "stage-m11": {
-      "t": "Détruire les Archives Royales",
-      "w": "Château d'Édimbourg"
-    },
-    "stage-m12": {
-      "t": "La Poste Impériale Empoisonnée",
-      "w": "Palais de Topkapi"
-    },
-    "stage-m13": {
-      "t": "L'Effondrement du Tunnel",
-      "w": "NSA Headquarters"
-    },
-    "stage-m14": {
-      "t": "Vault 7 : L'Arme Telnet",
-      "w": "CIA Headquarters"
-    },
-    "stage-m15": {
-      "t": "CDPwn : Le Piège du Protocole de Découverte",
-      "w": "Cisco Systems HQ"
-    },
-    "stage-m16": {
-      "t": "Le Siège des Petits Bureaux",
-      "w": "Campus Technologique de la Silicon Valley"
-    },
-    "stage-m17": {
-      "t": "La Fuite Akira",
-      "w": "Akamai NOC"
-    },
-    "stage-m18": {
-      "t": "La Pile Qui S'Est Effondrée",
-      "w": "Centre d'Échange Télécommunications de Tokyo"
-    },
-    "stage-m19": {
-      "t": "La Voie Rapide de la Fuite",
-      "w": "BT Tower"
-    },
-    "stage-m20": {
-      "t": "Velvet Ant dans le Centre de Données",
-      "w": "Infrastructure APT Soutenue par un État"
-    },
-    "stage-m21": {
-      "t": "ArcaneDoor : Le Crash Fantôme",
-      "w": "Centre de la Sécurité des Télécommunications"
-    },
-    "stage-m22": {
-      "t": "ArcaneDoor : Line Dancer",
-      "w": "ANSSI HQ"
-    },
-    "stage-m23": {
-      "t": "L'Injection vManage",
-      "w": "Cisco SDWAN Lab"
-    },
-    "stage-m24": {
-      "t": "L'Empoisonnement de la Clé de Groupe",
-      "w": "Centre de Défense Cyber de l'OTAN"
-    },
-    "stage-m25": {
-      "t": "Le Pare-feu Qui S'Est Oublié",
-      "w": "ASD Cyber Centre"
-    },
-    "stage-m26": {
-      "t": "Forcer le Firewall",
-      "w": "Cisco Systems HQ"
-    },
-    "stage-m27": {
-      "t": "Aveugler le Capteur",
-      "w": "NSA Texas Cryptologic Center"
-    },
-    "stage-m28": {
-      "t": "Déconnexion Unique",
-      "w": "INTERPOL Global Complex"
-    },
-    "stage-m29": {
-      "t": "Détection Étendue, Risque Étendu",
-      "w": "GCHQ Doughnut"
-    },
-    "stage-m30": {
-      "t": "Injection API",
-      "w": "Internet Archive"
-    },
-    "stage-m31": {
-      "t": "Le Maître des Clés API",
-      "w": "DEF CON / Caesar's Forum"
-    },
-    "stage-m32": {
-      "t": "Avalanche d'Alertes",
-      "w": "IBM Security Operations Center"
-    },
-    "stage-m33": {
-      "t": "Chasser ou Être Chassé",
-      "w": "Mandiant (Google Cloud) HQ"
-    },
-    "stage-m34": {
-      "t": "Mode Dieu",
-      "w": "CISA Headquarters"
-    },
-    "stage-m35": {
-      "t": "La Deuxième Clé",
-      "w": "NSA / National Security Operations Center"
-    },
-    "stage-m36": {
-      "t": "ArcaneDoor",
-      "w": "Cyber Security Agency of Singapore"
-    },
-    "stage-m37": {
-      "t": "Brancher et Espérer",
-      "w": "National Counterintelligence and Security Center"
-    },
-    "stage-m38": {
-      "t": "Accès Zero Trust",
-      "w": "Cisco Campus"
     }
   },
   "epochs": {
@@ -1419,26 +1179,6 @@
       "n": "Fondations",
       "s": "Principes de Sécurité Fondamentaux",
       "d": "Maîtrisez les concepts sur lesquels chaque professionnel de la sécurité construit — de la Triade CIA à l'injection SQL, du phishing aux exploits zero-day. Chaque défi est situé dans l'un des grands sites du monde antique."
-    },
-    "cisco-core": {
-      "n": "Cisco: CVEs Fondamentaux",
-      "s": "Exploits NSA et Fondamentaux Réseau",
-      "d": "Attaques d'infrastructure réseau Cisco fondamentales — débordements de tampon IOS, exploits SNMP, et les outils Cisco weaponisés par la NSA divulgués par Shadow Brokers et Vault 7."
-    },
-    "cisco-enterprise": {
-      "n": "Cisco: Attaque Entreprise",
-      "s": "Campagnes État-Nation et CVEs Avancés",
-      "d": "Exploitation avancée du portefeuille entreprise Cisco — ASA, NX-OS, SD-WAN, Expressway, et les campagnes état-nation ArcaneDoor et Velvet Ant."
-    },
-    "cisco-secops": {
-      "n": "Cisco: Opérations de Sécurité",
-      "s": "CyberOps, Threat Hunting et Défense Zero-Day",
-      "d": "Opérations des plateformes de sécurité Cisco et compétences CyberOps Associate — Firepower, Umbrella, ISE, SecureX/XDR, triage SOC, threat hunting, et le zero-day IOS XE CVSS 10.0."
-    },
-    "cisco-advanced": {
-      "n": "Cisco: Défense Avancée",
-      "s": "Firepower, XDR, DevNet, Silicon One et Quantum-Safe",
-      "d": "Sécurité Cisco nouvelle génération — Firepower NGIPS/FTD évasion et CVEs, threat hunting Cisco XDR, sécurité API DevNet et NETCONF/YANG, intégrité du pipeline P4 Silicon One, et IKEv2 post-quantique avec ML-KEM-768."
     },
     "tech-audit-1": {
       "n": "Audit Technique: Fondations",
@@ -1489,11 +1229,6 @@
       "n": "Sécurité quantique",
       "s": "QKD, agilité et migration d'entreprise",
       "d": "Déployez une infrastructure sûre contre les menaces quantiques de bout en bout — protocoles BB84 QKD, réseaux de distribution de clés quantiques, cadres d'agilité cryptographique, VPN et PKI sûrs contre les menaces quantiques, intégration liboqs, conformité FIPS 140-3, et planification complète de migration PQC d'entreprise."
-    },
-    "umbrella": {
-      "n": "Cisco Umbrella",
-      "s": "Sécurité DNS et renseignement sur les menaces",
-      "d": "Maîtrisez la sécurité au niveau DNS avec Cisco Umbrella — la plateforme de sécurité cloud la plus déployée au monde. Du tunneling DNS à la détection DGA, des domaines contrefaits à l'évasion DoH, chaque mission vous place au cœur d'une enquête SOC Umbrella réelle."
     },
     "tapestry": {
       "n": "Le monde tissé",

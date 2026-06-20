@@ -576,46 +576,6 @@
       "t": "Stos odporny na quantum: synteza",
       "w": "Szczyt bezpieczeństwa quantum"
     },
-    "umbrella-01": {
-      "t": "Niewidoczna tarcza",
-      "w": "Cisco Umbrella (OpenDNS) HQ"
-    },
-    "umbrella-02": {
-      "t": "Pusta rura",
-      "w": "Marina Bay Financial Centre"
-    },
-    "umbrella-03": {
-      "t": "Generator wzorców",
-      "w": "NHS Barts Health Trust"
-    },
-    "umbrella-04": {
-      "t": "Zmieniające się piaski",
-      "w": "NYSE Data Center"
-    },
-    "umbrella-05": {
-      "t": "Zatrute lustro",
-      "w": "Laboratorium bezpieczeństwa IoT Uniwersytetu Twente"
-    },
-    "umbrella-06": {
-      "t": "Sfałszowany paszport",
-      "w": "Campus kontrahenta Pentagonu"
-    },
-    "umbrella-07": {
-      "t": "Mur polityki",
-      "w": "Biuro Chicago Public Schools District"
-    },
-    "umbrella-08": {
-      "t": "Kanał-duch",
-      "w": "Dzielnica handlowa Shinjuku"
-    },
-    "umbrella-09": {
-      "t": "Sieć wywiadowcza",
-      "w": "Cisco Talos Intelligence Center"
-    },
-    "umbrella-10": {
-      "t": "Sieć pod oblężeniem",
-      "w": "ERCOT Network Control Center"
-    },
     "tapestry-01": {
       "t": "Nici przez wieki",
       "w": "Muzeum Egipskie"
@@ -1160,54 +1120,6 @@
       "t": "Najlepsi miotacze Dodgers — strategiczne analizy",
       "w": "Dodger Stadium — Hall of Fame Plaques at the Ravine"
     },
-    "stage-m39": {
-      "t": "Fire Escape",
-      "w": "Cisco Firepower Lab"
-    },
-    "stage-m40": {
-      "t": "The Management Plane",
-      "w": "Cisco Advanced Security Lab"
-    },
-    "stage-m41": {
-      "t": "Half-Open Season",
-      "w": "Cisco PSIRT Operations Center"
-    },
-    "stage-m42": {
-      "t": "The Pivot Hunt",
-      "w": "Cisco Talos Intelligence HQ"
-    },
-    "stage-m43": {
-      "t": "Sieć wykrywania",
-      "w": "Cisco Security Cloud Operations"
-    },
-    "stage-m44": {
-      "t": "Kartograf API",
-      "w": "Cisco DevNet Developer Hub"
-    },
-    "stage-m45": {
-      "t": "Programowalna płaszczyzna",
-      "w": "Internet Engineering Task Force (IETF)"
-    },
-    "stage-m46": {
-      "t": "Od zera do administratora domeny",
-      "w": "Cisco CyberOps Training Center"
-    },
-    "stage-m47": {
-      "t": "Pięć domen",
-      "w": "Cisco Networking Academy"
-    },
-    "stage-m48": {
-      "t": "Zunifikowany ASIC",
-      "w": "Cisco Silicon One Engineering"
-    },
-    "stage-m49": {
-      "t": "Dopasuj, działaj, przekaż dalej",
-      "w": "Open Compute Project Networking"
-    },
-    "stage-m50": {
-      "t": "Zbieraj teraz, nigdy nie odszyfruj",
-      "w": "NIST Computer Security Division"
-    },
     "stage-01": {
       "t": "Trzy Święte Komnaty",
       "w": "Wielka Piramida w Gizie"
@@ -1255,158 +1167,6 @@
     "stage-12": {
       "t": "Niestrzeżony skarb",
       "w": "Posąg Zeusa w Olimpii"
-    },
-    "stage-m01": {
-      "t": "Brama pada bez klucza",
-      "w": "Hagia Sophia"
-    },
-    "stage-m02": {
-      "t": "EXTRABACON — broń SNMP NSA",
-      "w": "Tower of London"
-    },
-    "stage-m03": {
-      "t": "Zapomniana brama zaopatrzenia",
-      "w": "Angkor Wat"
-    },
-    "stage-m04": {
-      "t": "Skryptorium pozostawione otwarte",
-      "w": "Katedra Notre-Dame"
-    },
-    "stage-m05": {
-      "t": "Ukryta ścieżka przez mur",
-      "w": "Wielki Mur Chiński"
-    },
-    "stage-m06": {
-      "t": "Tajne przejście Nasrydów",
-      "w": "Pałac Alhambra"
-    },
-    "stage-m07": {
-      "t": "Fałszywe rozkazy do garnizonu",
-      "w": "Krak des Chevaliers"
-    },
-    "stage-m08": {
-      "t": "Szczyt: root przez XSS",
-      "w": "Machu Picchu"
-    },
-    "stage-m09": {
-      "t": "Ofiara, która rozkazuje świątyni",
-      "w": "Chichen Itza"
-    },
-    "stage-m10": {
-      "t": "Przeklęty pergamin w poczcie klasztornej",
-      "w": "Mont-Saint-Michel"
-    },
-    "stage-m11": {
-      "t": "Zniszczenie królewskich rejestrów",
-      "w": "Zamek w Edynburgu"
-    },
-    "stage-m12": {
-      "t": "Zatruta poczta cesarska",
-      "w": "Pałac Topkapi"
-    },
-    "stage-m13": {
-      "t": "Tunel się zapada",
-      "w": "Siedziba NSA"
-    },
-    "stage-m14": {
-      "t": "Vault 7: broń Telnet",
-      "w": "Siedziba CIA"
-    },
-    "stage-m15": {
-      "t": "CDPwn: pułapka protokołu odkrywania",
-      "w": "Siedziba Cisco Systems"
-    },
-    "stage-m16": {
-      "t": "Oblężenie małego biura",
-      "w": "Campus technologiczny Silicon Valley"
-    },
-    "stage-m17": {
-      "t": "Ucieczka Akiry",
-      "w": "Centrum Operacji Sieciowych Akamai"
-    },
-    "stage-m18": {
-      "t": "Stos, który upadł",
-      "w": "Centrum wymiany telekomunikacyjnej Tokio"
-    },
-    "stage-m19": {
-      "t": "Wyjście autostradą",
-      "w": "BT Tower"
-    },
-    "stage-m20": {
-      "t": "Velvet Ant w centrum danych",
-      "w": "Infrastruktura APT sponsorowana przez państwo"
-    },
-    "stage-m21": {
-      "t": "ArcaneDoor: Blokada-duch",
-      "w": "Communications Security Establishment"
-    },
-    "stage-m22": {
-      "t": "ArcaneDoor: Line Dancer",
-      "w": "Siedziba ANSSI"
-    },
-    "stage-m23": {
-      "t": "Wstrzyknięcie vManage",
-      "w": "Cisco SDWAN Lab"
-    },
-    "stage-m24": {
-      "t": "Zatrucie klucza grupowego",
-      "w": "NATO Cyber Defence Centre"
-    },
-    "stage-m25": {
-      "t": "Zapora sieciowa, która zapomniała o sobie",
-      "w": "ASD Cyber Centre"
-    },
-    "stage-m26": {
-      "t": "Przebij się przez zaporę sieciową",
-      "w": "Cisco Systems HQ"
-    },
-    "stage-m27": {
-      "t": "Ośleп sensor",
-      "w": "NSA Texas Cryptologic Center"
-    },
-    "stage-m28": {
-      "t": "Wylogowanie jednorazowe",
-      "w": "INTERPOL Global Complex"
-    },
-    "stage-m29": {
-      "t": "Rozszerzone wykrywanie, rozszerzone ryzyko",
-      "w": "GCHQ Doughnut"
-    },
-    "stage-m30": {
-      "t": "Wstrzyknięcie API",
-      "w": "Internet Archive"
-    },
-    "stage-m31": {
-      "t": "Mistrz kluczy API",
-      "w": "DEF CON / Caesar's Forum"
-    },
-    "stage-m32": {
-      "t": "Lawina alertów",
-      "w": "IBM Security Operations Center"
-    },
-    "stage-m33": {
-      "t": "Poluj albo bądź polowany",
-      "w": "Mandiant (Google Cloud) HQ"
-    },
-    "stage-m34": {
-      "t": "Tryb boga",
-      "w": "CISA Headquarters"
-    },
-    "stage-m35": {
-      "t": "Drugi klucz",
-      "w": "NSA / National Security Operations Center"
-    },
-    "stage-m36": {
-      "t": "ArcaneDoor",
-      "w": "Cyber Security Agency of Singapore"
-    },
-    "stage-m37": {
-      "t": "Podłącz i módl się",
-      "w": "National Counterintelligence and Security Center"
-    },
-    "stage-m38": {
-      "t": "Dostęp bez zerowego zaufania",
-      "w": "Cisco Campus"
     }
   },
   "epochs": {
@@ -1419,26 +1179,6 @@
       "n": "Fundamenty",
       "s": "Podstawowe zasady bezpieczeństwa",
       "d": "Opanuj koncepcje, na których opiera się każdy specjalista ds. bezpieczeństwa — od triady CIA po SQL injection, od phishingu po exploity zero-day. Każde wyzwanie rozgrywa się w jednym z wielkich miejsc starożytnego świata."
-    },
-    "cisco-core": {
-      "n": "Cisco: Fundamentalne CVE",
-      "s": "Exploity NSA i podstawy sieci",
-      "d": "Fundamentalne ataki na infrastrukturę sieciową Cisco — przepełnienia bufora w IOS, exploity SNMP oraz zmilitaryzowane narzędzia Cisco NSA ujawnione przez Shadow Brokers i Vault 7."
-    },
-    "cisco-enterprise": {
-      "n": "Cisco: Atak korporacyjny",
-      "s": "Kampanie państw narodowych i zaawansowane CVE",
-      "d": "Zaawansowane exploitowanie całego portfolio korporacyjnego Cisco — ASA, NX-OS, SD-WAN, Expressway oraz kampanie państw narodowych ArcaneDoor i Velvet Ant."
-    },
-    "cisco-secops": {
-      "n": "Cisco: Operacje bezpieczeństwa",
-      "s": "CyberOps, threat hunting i obrona przed zero-day",
-      "d": "Operacje na platformach bezpieczeństwa Cisco i umiejętności CyberOps Associate — Firepower, Umbrella, ISE, SecureX/XDR, triage SOC, threat hunting oraz zero-day CVSS 10.0 w IOS XE."
-    },
-    "cisco-advanced": {
-      "n": "Cisco: Zaawansowana obrona",
-      "s": "Firepower, XDR, DevNet, Silicon One i quantum-safe",
-      "d": "Bezpieczeństwo Cisco nowej generacji — omijanie Firepower NGIPS/FTD i CVE, threat hunting w Cisco XDR, bezpieczeństwo API DevNet i NETCONF/YANG, integralność potoku P4 Silicon One oraz postkwantowy IKEv2 z ML-KEM-768."
     },
     "tech-audit-1": {
       "n": "Audyt techniczny: Podstawy",
@@ -1489,11 +1229,6 @@
       "n": "Bezpieczeństwo quantum",
       "s": "QKD, zwinność i migracja korporacyjna",
       "d": "Wdróż infrastrukturę bezpieczną przed quantum od końca do końca — protokoły QKD BB84, sieci dystrybucji kluczy quantum, frameworki zwinności kryptograficznej, VPN i PKI bezpieczne przed quantum, integracja liboqs, zgodność FIPS 140-3 oraz pełne planowanie migracji PQC dla przedsiębiorstw."
-    },
-    "umbrella": {
-      "n": "Cisco Umbrella",
-      "s": "Bezpieczeństwo DNS i wywiad o zagrożeniach",
-      "d": "Opanuj bezpieczeństwo warstwy DNS z Cisco Umbrella — najpowszechniej wdrażaną platformą bezpieczeństwa w chmurze na świecie. Od tunelowania DNS po wykrywanie DGA, od podobnych domen po omijanie DoH — każda misja umieszcza cię wewnątrz prawdziwego dochodzenia SOC Umbrella."
     },
     "tapestry": {
       "n": "Utkany świat",
