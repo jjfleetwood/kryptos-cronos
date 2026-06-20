@@ -638,7 +638,7 @@ function PathGuide() {
         <span className="text-gray-700 hidden sm:block">→</span>
         <div className="flex items-center gap-2">
           <span className="text-indigo-400 font-bold">🔐 Security+</span>
-          <span className="text-gray-600">Cisco, MITRE, Quantum epochs</span>
+          <span className="text-gray-600">Enterprise, MITRE, Quantum epochs</span>
         </div>
         <span className="text-gray-700 hidden sm:block">→</span>
         <div className="flex items-center gap-2">
@@ -648,7 +648,6 @@ function PathGuide() {
       </div>
       <p className="text-gray-600 text-xs mt-3">
         This path builds skills progressively. Network+ gives you the foundation; CySA+ is the analyst-level target for most SOC roles.
-        The <Link href="/cyberops" className="text-cyan-500 hover:text-cyan-400 transition-colors">CyberOps Associate</Link> tracker covers the Cisco-specific exam separately.
       </p>
     </div>
   );
@@ -671,7 +670,6 @@ export default function CertsPage() {
   }, []);
 
   const navItems = [
-    { id: "cyberops", label: "Cisco CyberOps", emoji: "🎓" },
     { id: "pqc", label: "PQC Migration", emoji: "🔐" },
     ...CERTS.map((c) => ({ id: c.id, label: c.name, emoji: c.emoji })),
   ];
@@ -696,9 +694,9 @@ export default function CertsPage() {
           </div>
           <h1 className="text-3xl sm:text-4xl font-black text-white mb-2">Certificate Paths</h1>
           <p className="text-gray-400 leading-relaxed max-w-2xl">
-            Track your readiness for twelve industry-recognized certifications. Every stage you complete maps
+            Track your readiness for eleven industry-recognized certifications. Every stage you complete maps
             to real exam domains — see exactly where you stand and which stages to tackle next.
-            Also check the <Link href="/cyberops" className="text-cyan-400 hover:text-cyan-300 transition-colors">CyberOps Associate tracker</Link> for the Cisco-specific path, the <Link href="/pqc" className="text-cyan-400 hover:text-cyan-300 transition-colors">PQC Migration tracker</Link> for quantum-readiness, or build a <Link href="/resume" className="text-cyan-400 hover:text-cyan-300 transition-colors">resume</Link> from your completed stages.
+            Also check the <Link href="/pqc" className="text-cyan-400 hover:text-cyan-300 transition-colors">PQC Migration tracker</Link> for quantum-readiness, or build a <Link href="/resume" className="text-cyan-400 hover:text-cyan-300 transition-colors">resume</Link> from your completed stages.
           </p>
         </div>
 
@@ -730,35 +728,6 @@ export default function CertsPage() {
           {/* Main column */}
           <div className="flex-1 min-w-0">
             <PathGuide />
-
-            {/* CyberOps — featured first */}
-            <div id="cyberops" className="scroll-mt-24 mb-6 rounded-2xl border border-cyan-500/30 bg-cyan-500/5 p-6">
-              <div className="flex items-start justify-between gap-4 flex-wrap">
-                <div className="min-w-0">
-                  <div className="flex items-center gap-2 mb-1 flex-wrap">
-                    <span className="text-2xl">🎓</span>
-                    <h2 className="text-xl font-black text-white">Cisco CyberOps Associate</h2>
-                    <span className="text-xs font-mono px-2 py-0.5 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-300">CBROPS 200-201</span>
-                  </div>
-                  <p className="text-gray-400 text-sm max-w-xl leading-relaxed">
-                    The SOC-analyst entry cert — security monitoring, host and network intrusion analysis,
-                    and incident response. Your Cisco, Umbrella, and threat-framework stages map to its five exam domains.
-                  </p>
-                  <div className="flex flex-wrap items-center gap-2 mt-3 text-xs text-gray-500">
-                    <span>💼 $60k–$95k</span><span className="text-gray-700">·</span>
-                    <span>⏱ 50–70 hrs</span><span className="text-gray-700">·</span>
-                    <span>5 exam domains</span>
-                  </div>
-                </div>
-                <Link
-                  href="/cyberops"
-                  className="flex-shrink-0 px-5 py-2.5 rounded-xl text-sm font-bold text-black transition-all hover:scale-105"
-                  style={{ background: "linear-gradient(90deg, #22d3ee, #818cf8)" }}
-                >
-                  Open the CyberOps tracker →
-                </Link>
-              </div>
-            </div>
 
             {/* PQC Migration — framework tracker */}
             <div id="pqc" className="scroll-mt-24 mb-6 rounded-2xl border border-violet-500/30 bg-violet-500/5 p-6">
