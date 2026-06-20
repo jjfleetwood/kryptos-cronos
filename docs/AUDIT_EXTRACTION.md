@@ -59,10 +59,9 @@ Name-collision reminder still applies: the admin audit LOG (`lib/audit.ts`/`audi
   postcss/vercel.json/next-env, `src/proxy.ts` owner-only gate via shared `admin_token`+`ADMIN_SECRET`
   (+ optional `AUDIT_ALLOWLIST`, unauth→404), `src/app/robots.ts` noindex + `X-Robots-Tag`, layout/
   globals/placeholder page, `src/lib/admin-token.ts`, README). Additive — apps/web untouched.
-- [ ] Move routes (`app/audit/*`) + data (`audit-registry`/`audit-quiz-data`/`audit-generated`) + assets
-  (`public/audit-code`, `public/mcp-templates/audit-*`) into `apps/audit`.
-- [ ] **Untangle audit from apps/web gameplay** (the 6 files above) + remove `/audit` links
-  (`Nav.tsx`, `stages/page.tsx`), `guides/agent-risk-audit` + its next.config tracing, downloads-page
-  audit entries.
-- [ ] Build-verify BOTH apps; grep apps/web for audit refs = none.
-- [ ] Founder infra: new Vercel project (root=apps/audit) + subdomain + env (see README).
+- [x] **Untangle audit library from apps/web — DONE (commits c4d466b, 3e0a1fe; web tsc green throughout):**
+  - Deleted `app/audit/*` routes; removed `getAuditStage` fallback + import from check-answer/check-flag/server-progress; dropped the audit-domain branch from `decks` + `export/pptx`; removed `/audit` links (Nav, stages page). **apps/web imports ZERO audit-registry/generated/epochs.** (tech-audit *curriculum* `audit-quiz-data` correctly stays.)
+  - **EXPOSURE FIXED:** `git mv` `public/audit-code` + `public/mcp-templates` → `apps/audit/public`; deleted `/downloads` page + `/api/downloads`; removed the two `/downloads` links. **apps/web/public is audit-free.**
+- [ ] **Remaining (non-exposure, non-breaking) follow-ups:** rebuild the `/audit` routes + `/downloads` *inside* apps/audit (wire `@kryptos/core/audit-registry` + the moved assets); remove the now-inert admin downloads-access panel + `/api/admin/downloads-access`; move `guides/agent-risk-audit` + its `next.config` `outputFileTracingIncludes` entry + DocsViewer ref.
+- [ ] Build-verify BOTH apps (`npm run build`).
+- [ ] **Founder infra:** new Vercel project (root=apps/audit) + subdomain + env (see `apps/audit/README.md`).
