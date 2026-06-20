@@ -16,7 +16,7 @@ const DOMAINS: { name: string; emoji: string; blurb: string; color: string; tag?
   { name: "Threat Frameworks", emoji: "🎯", blurb: "ATT&CK, Diamond, kill chains, STIX/TAXII", color: "#f87171" },
   { name: "AI & LLM Security", emoji: "🧠", blurb: "Prompt injection, ATLAS, OWASP LLM", color: "#c084fc" },
   { name: "Quantum Era", emoji: "⚛️", blurb: "PQC, QKD, harvest-now-decrypt-later", color: "#22d3ee" },
-  { name: "Defend the Enterprise", emoji: "🌐", blurb: "Cisco CVEs, Umbrella, physics of hacking", color: "#818cf8" },
+  { name: "Defend the Enterprise", emoji: "🌐", blurb: "Enterprise CVEs, DNS security, physics of hacking", color: "#818cf8" },
   { name: "Silicon: Sand to Superchips", emoji: "💠", blurb: "How GPU & quantum chips are made", color: "#38bdf8", isNew: true },
   { name: "Race Through Space", emoji: "🚀", blurb: "Satellite & spacecraft hacking (CTF)", color: "#a78bfa", isNew: true },
   { name: "EV & Vehicle Security", emoji: "🚗", blurb: "CAN bus, keyless, the Jeep hack (CTF)", color: "#a3e635", isNew: true },
@@ -55,13 +55,13 @@ const TRACK_STATIC = [
     id: "quantum", labelKey: "stages.tracks.quantumEra", descKey: "home.trackDesc.quantum",
     stages: "70", icon: "⚛️",
     border: "border-cyan-500/25", textColor: "text-cyan-400", glow: "rgba(34,211,238,0.08)",
-    topics: ["Harvest Now Decrypt Later", "ML-KEM / ML-DSA", "QKD", "PQC Migration", "Cisco Silicon One"],
+    topics: ["Harvest Now Decrypt Later", "ML-KEM / ML-DSA", "QKD", "PQC Migration", "Silicon photonics"],
   },
   {
     id: "cisco", labelKey: "stages.tracks.enterprise", descKey: "home.trackDesc.cisco",
     stages: "70", icon: "🌐",
     border: "border-indigo-500/25", textColor: "text-indigo-400", glow: "rgba(99,102,241,0.08)",
-    topics: ["DNS Tunneling", "DGA Detection", "Fast Flux", "Cisco Umbrella", "VOLT TYPHOON"],
+    topics: ["DNS Tunneling", "DGA Detection", "Fast Flux", "DNS-layer security", "VOLT TYPHOON"],
   },
   {
     id: "space", labelKey: "stages.tracks.spaceRace", descKey: "stages.tracks.spaceRaceDesc",
@@ -113,9 +113,9 @@ const ticker = [
   "🟠  OilRig DNSpionage — DNS Tunneling via iodine/dnscat2",
   "🔴  NOBELIUM — SolarWinds Supply Chain Compromise",
   "🟡  LockBit 3.0 — Wildcard DNS Policy Bypass",
-  "🔴  Scattered Spider — Social Engineering + Cisco Umbrella Evasion",
+  "🔴  Scattered Spider — Social Engineering + DNS-layer Evasion",
   "🔴  HARVEST NOW DECRYPT LATER — Post-Quantum Threat Active",
-  "🟠  CVE-2023-20198 — Cisco IOS XE Privilege Escalation",
+  "🟠  CVE-2023-20198 — IOS XE Privilege Escalation",
   "🔴  Godlua Trojan — DoH Evasion via 1.1.1.1:443",
 ];
 
@@ -702,7 +702,7 @@ export default function Home() {
             </div>
 
             <p className="text-center text-xs mt-8" style={{ color: "rgba(55,65,81,1)" }}>
-              Target sponsors: CrowdStrike · AWS · SentinelOne · CompTIA · ISC² · Cisco
+              Target sponsors: CrowdStrike · AWS · SentinelOne · CompTIA · ISC²
             </p>
           </div>
         </section>
