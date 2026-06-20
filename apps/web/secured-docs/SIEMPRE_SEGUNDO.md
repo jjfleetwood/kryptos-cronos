@@ -2763,14 +2763,6 @@ He had been reading Merkle all afternoon, the way the old man on the bucket had 
 
 He walked off the mound without expression, the way he always did, and only Schang, jogging in beside him, and Don Aurelio, three thousand miles west in his good chair, would have fully understood what had just happened — that they had just watched a man be out-thought, publicly, sixty feet six inches at a time, by someone the country had insisted all his life was the lesser man. The crowd saw a strikeout. The two who could read saw the truth: that the lying was a kind of genius, and that the genius had just, on the one fair square, in front of everyone, won.
 
-### Chapter — The Babe and the Old Man
-
-The young man at the other end of that 1918 clubhouse is worth a word of his own, because his story and Cirilo's began in nearly the same place — and the place is a matter of record, not of invention.
-
-George Herman Ruth was twenty-three that summer and in the middle of becoming the most famous athlete the country would ever produce. He had come up from nothing, and the nothing is documented: a Baltimore waterfront boyhood so far beyond managing that his family handed him over, at seven, to the Xaverian Brothers at St. Mary's Industrial School — a reform school and an orphanage in all but name — where the Brothers raised him and put a baseball in his hands, the first thing he had ever been good at and the only home, he said for the rest of his life, he had ever truly had. A boy nobody wanted, in other words, who clawed his way up on a single gift — which is, stripped of everything else, the same bare sentence a man could write about the tanner's son at the far end of the same bench.
-
-And there the records diverge, and the divergence needs no narrator to sharpen it. Ruth caught the influenza that year — caught it, in fact, as the great second wave came on, and was gravely sick with it, and sweated through it, and recovered, and went on to play seventeen more seasons and to become a figure the country raised statues to. The pandemic he survived was the same one then gathering, unnamed and unhurried, over every crowded city in the land. That is as far as the record will carry us here, and it is far enough; the rest of what that autumn held, the story will reach in its own time, and will not borrow a real young man's sickbed to foretell it.
-
 ### Chapter — The Women in the Stands
 
 Baseball is a thing done by men and paid for by women; and the green diamonds are only the lit half of it, the other half kept in the stands and the kitchens by the women who carried the cost of the men's one bright dream. So, before the Series, the women — watching, the way they always watched: with a double sight the men in the game never had, seeing the beauty and the bill at once.
