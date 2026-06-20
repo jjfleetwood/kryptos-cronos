@@ -43,10 +43,26 @@
 - `apps/audit`: builds; every route 401/404 without an owner token; robots noindex present.
 - Do NOT push either branch until Jacob says (production auto-deploys on master).
 
+## ⚠️ ENTANGLEMENT FINDING (2026-06-20) — bigger than a file move
+The Advanced Audit library is **woven into the gameplay engine**, not just the `/audit` routes.
+`audit-registry` / `audit-quiz-data` / `audit-generated` are imported by:
+`api/check-answer`, `api/check-flag`, `api/export/pptx`, `app/decks/page.tsx`,
+`app/stages/[stageId]/page.tsx`, and `lib/server-progress.ts` — i.e. audit modules are
+registered as **playable stages** (answer-checking, progress awards, deck export all touch them).
+So the strip-from-web step must **untangle these integrations**, not just delete routes. This is a
+real refactor and the risky part (apps/web auto-deploys prod). Do it in a focused, build-verified pass.
+Name-collision reminder still applies: the admin audit LOG (`lib/audit.ts`/`audit:log`) is unrelated.
+
 ## Status
 - [x] Branch `extract-audit-app` created (off master, clean).
-- [ ] Scaffold `apps/audit` (build-verified).
-- [ ] Move routes/data/assets.
-- [ ] Owner-only edge gate + robots noindex.
-- [ ] Strip from `apps/web` + reconcile.
-- [ ] Build-verify both; infra handoff to founder.
+- [x] **Scaffold `apps/audit` — DONE + tsc-green** (12 files: package.json/tsconfig/next.config/
+  postcss/vercel.json/next-env, `src/proxy.ts` owner-only gate via shared `admin_token`+`ADMIN_SECRET`
+  (+ optional `AUDIT_ALLOWLIST`, unauth→404), `src/app/robots.ts` noindex + `X-Robots-Tag`, layout/
+  globals/placeholder page, `src/lib/admin-token.ts`, README). Additive — apps/web untouched.
+- [ ] Move routes (`app/audit/*`) + data (`audit-registry`/`audit-quiz-data`/`audit-generated`) + assets
+  (`public/audit-code`, `public/mcp-templates/audit-*`) into `apps/audit`.
+- [ ] **Untangle audit from apps/web gameplay** (the 6 files above) + remove `/audit` links
+  (`Nav.tsx`, `stages/page.tsx`), `guides/agent-risk-audit` + its next.config tracing, downloads-page
+  audit entries.
+- [ ] Build-verify BOTH apps; grep apps/web for audit refs = none.
+- [ ] Founder infra: new Vercel project (root=apps/audit) + subdomain + env (see README).
