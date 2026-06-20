@@ -105,7 +105,7 @@ export default function TermsPage() {
                 modify, or create derivative works from any platform content without prior written permission.
               </p>
               <p>
-                Third-party frameworks referenced in curriculum content (MITRE ATT&amp;CK, OWASP, NIST, Cisco,
+                Third-party frameworks referenced in curriculum content (MITRE ATT&amp;CK, OWASP, NIST,
                 and others) are the property of their respective owners. See the{" "}
                 <Link href="/attribution" className="text-cyan-400 hover:text-cyan-300 transition-colors">
                   Attributions page

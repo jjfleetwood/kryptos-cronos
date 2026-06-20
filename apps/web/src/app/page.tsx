@@ -554,7 +554,7 @@ export default function Home() {
                 { role: "Cloud Security Engineer", salary: "$110K – $160K", emoji: "☁️",
                   glow: "rgba(74,222,128,0.08)", border: "rgba(74,222,128,0.2)", tag: "rgba(74,222,128,1)",
                   skillKeys: ["home.jobCloudSkill1", "home.jobCloudSkill2", "home.jobCloudSkill3"],
-                  coveredIn: ["SSRF / Capital One", "DNS Tunneling", "Umbrella Policy"] },
+                  coveredIn: ["SSRF / Capital One", "DNS Tunneling", "DNS Filtering"] },
               ].map((job) => (
                 <div
                   key={job.role}

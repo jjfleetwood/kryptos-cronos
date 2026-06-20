@@ -35,7 +35,7 @@ const TRACKS = [
   "Threat Frameworks (MITRE ATT&CK / ATLAS)",
   "AI Security (OWASP LLM Top 10)",
   "Quantum Era (PQC, QKD)",
-  "Cisco / Enterprise Defense",
+  "Enterprise Defense",
   "Travel & Language modules",
   "Sports & Crafts modules",
 ];
@@ -255,7 +255,7 @@ export default function SurveyPage() {
             <div className="space-y-2">
               {[
                 "Certificate of completion (recognized by employers)",
-                "Cisco / CompTIA / ISC² exam prep content",
+                "CompTIA / ISC² exam prep content",
                 "Team/cohort mode for my security team",
                 "Offline access (mobile app)",
                 "Lower price",
