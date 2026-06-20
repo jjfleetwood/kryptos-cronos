@@ -17,10 +17,12 @@
 | cisco-advanced | Cisco: Advanced Defense | Advanced Defense |
 
 ## Checklist
-- [ ] **C1 — Delete `/cyberops` tracker** (source): `apps/web/src/app/cyberops/page.tsx`, `packages/core/src/cyberops-domains.ts`, refs in `certs/page.tsx`, `page.tsx` (homepage), `resume/page.tsx`, `api/resume/generate/route.ts`, `admin/_panels.tsx`, `StageInfo.tsx`, `epoch/[epochId]/page.tsx`. Drop cert count 12→11.
-- [ ] **C2 — Delete `umbrella` epoch** (source): `packages/core/src/umbrella.ts` + `apps/web/scripts/quiz-data/umbrella.json`; de-wire from `stages.ts`, `stage-flags.ts`, `stage-commands.ts`, `content-flags.ts`, `cert-domains.ts`, `track-data.ts`, `epoch-theme.ts`. Drop 10 stages / 1 epoch.
-- [ ] **C3 — De-brand the 4 epochs**: display name + epoch overview/description framing in `cisco-2/3/4/5.ts` and the cisco-core source (in `stages.ts`); homepage card, certs page, i18n track label/desc (`stages.tracks.enterprise*`).
-- [ ] **C4 — Scrub UI Cisco strings**: homepage, certs, resume, admin, terms, attribution, survey, all 7 `messages/*.json` (remove cyberops/umbrella UI keys; de-Cisco visible strings).
+### ⚑ REVISED (2026-06-20): founder chose to DELETE all 4 cisco epochs + umbrella outright (content is wall-to-wall Cisco-product, not incidental). Real counts via gen:meta (docs "831/75" was drifted): now **811 stages / 80 epochs**, cert paths **11**.
+- [x] **C1 — Delete `/cyberops` tracker** (commit 09b10ce; tsc green).
+- [x] **Homepage Cisco strings scrubbed** (commit f2298f8; incl. Cisco removed from target-sponsor list).
+- [x] **C2/C3 — DELETE all 4 cisco epochs + umbrella** (commit ee55dce): deleted cisco-2/3/4/5.ts, umbrella.ts + quiz-data; excised stages.ts (imports/spreads/epoch entries + the inline cisco-core ~6300-line block); removed cisco/umbrella loaders from stage-commands.ts; enterprise track group → physics-of-hacking only; homepage track card repurposed. gen:meta = 811/80; **core + web tsc both green**.
+- [ ] **C4 — Scrub remaining UI Cisco strings**: certs, resume, admin, terms, attribution, survey, all 7 `messages/*.json` (remove cyberops/umbrella UI keys; de-Cisco visible strings incl. `home.trackDesc.cisco` + `stages.tracks.enterprise*`). Homepage done.
+- [ ] **C-orphans — Remove now-dead cisco/umbrella entries** (tsc-safe but still contain Cisco strings/IDs): `cert-domains.ts` (stage-m*/umbrella-* maps), `content-flags.ts` (cisco/umbrella epoch entries + trademark text), `stage-flags.ts` (stage-m*/umbrella-* flags), `epoch-theme.ts` (cisco-*/umbrella accents). None break the build; clean for completeness + legal.
 - [ ] **C5 — Translations (scripted)**: strip umbrella + cyberops + CyberOps-cert keys/entries from `packages/core/src/translations/*` (meta-*, ctf-quiz-*, batches) and de-brand cisco epoch meta. Then `npm run gen:meta -w @kryptos/core`.
 - [ ] **C6 — Reconcile counts**: 831→821 stages, 75→74 epochs, 16 tracks (enterprise track stays), 12→11 cert paths, 292 CTFs→(umbrella CTFs removed) recompute. Update homepage stats, OG/Twitter meta, account/survey/emails + all 7 locales.
 - [ ] **C7 — Verify**: `npx tsc --noEmit -p apps/web/tsconfig.json` + core tsc + `npm run build` + `validate-ctf.mjs` + `check:meta`. Screenshot /stages + an enterprise epoch.
