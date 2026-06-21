@@ -1430,7 +1430,7 @@ beats you with pure speed, the way weather beats you, without
 deception and without apology, because he has never once needed any.
 
 And Barrow gives the ball to Cirilo Méndez. The era's purest power
-against the old man's purest lie.
+against the old man's purest guile.
 
 For nine innings, nothing scores -- and the not-scoring is the most
 thrilling thing those people have seen in years. The crowd comes to
@@ -1504,7 +1504,7 @@ up.
 
 The crowd sees a strikeout. The two who can read -- Schang, and an old
 man three thousand miles west in his good chair -- see the truth: the
-lying is a kind of genius, and the genius has just, on the one fair
+deception is a kind of genius, and the genius has just, on the one fair
 square, in front of everyone, WON.
 
 The park comes apart. They lift him off the mound a champion -- FIRST

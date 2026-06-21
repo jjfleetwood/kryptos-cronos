@@ -862,7 +862,7 @@ EXT. FENWAY PARK -- A GRAY AFTERNOON (THE DUEL)
 
 The Senators have WALTER JOHNSON. The Big Train -- the fastest
 arm in the game, pure speed, no deception. Barrow gives the ball
-to Cirilo. Power against the lie.
+to Cirilo. Power against the craft.
 
 Nine innings, no score. The crowd dawns to it: the old brown
 junk-baller is matching the Big Train pitch for pitch, ZERO for
