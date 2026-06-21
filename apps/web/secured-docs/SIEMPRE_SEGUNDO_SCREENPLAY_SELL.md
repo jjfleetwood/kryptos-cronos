@@ -997,7 +997,7 @@ Then the SECOND wire. The influenza. He's dead.
 DOLORES takes it at the stove. Finishes cooking -- people have to
 eat. Then climbs the hill in the rain.
 
-EXT. THE HILL ABOVE THE BAY -- NOVEMBER 1918 -- THE BURIAL
+EXT. THE HILL ABOVE THE BAY -- LATE OCTOBER 1918 -- THE BURIAL
 
 They bring him home. And the town comes. The TANNERY SHUTS its
 gates -- the first time ever, for a Mexican. Esteban's old crew

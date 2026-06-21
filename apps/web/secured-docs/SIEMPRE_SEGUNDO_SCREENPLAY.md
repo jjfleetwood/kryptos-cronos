@@ -1617,7 +1617,7 @@ DOLORES takes it at the stove, standing. Finishes what she is
 cooking, because there are people who have to eat. Then climbs the
 hill in the rain.
 
-EXT. THE HILL ABOVE THE BAY -- DAY (NOVEMBER 1918) -- THE BURIAL
+EXT. THE HILL ABOVE THE BAY -- DAY (LATE OCTOBER 1918) -- THE BURIAL
 
 They bring him home across the whole width of the country he was
 never quite allowed to belong to, and give him back to the ground
