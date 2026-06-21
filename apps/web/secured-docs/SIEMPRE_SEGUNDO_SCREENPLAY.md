@@ -20,7 +20,7 @@ dispossession prologue, then recedes — the rest plays in scene.
 beats (the Red Sox, the Series, the influenza, the death) detonate fresh in Act III.
 
 ### Sequence map (to build, act by act)
-- **COLD OPEN** — the hawk over modern Santa Cruz → match-dissolve to 1882. *(drafted below)*
+- **COLD OPEN** — the hawk over modern Santa Cruz → match-dissolve to 1881. *(drafted below)*
 - **PROLOGUE — California Banknotes** — rancho → courthouse → tannery → the birth. *(drafted below)*
 - **ACT I — The Boardwalk (1900)** — the booth; Rebecca; Anastasia & Marcella; the pier; the leaving. *(next)*
 - **ACT II — The Rematch & the Long Wait (1903–1917)** — Santa Clara's ace; the Rematch; the grove & the Cliff House; the Break (together from here on); the bushes & Mulqueen; the road & Lim; Beach Flats & Purse; the Coast League & Greevy; Saturday Night; A Rented Room; the wedding; the call.
@@ -200,7 +200,7 @@ And under that gaze, the world begins to thin --
 -- the morning becomes another morning: earlier, harder, and
 still entirely ahead of itself --
 
-EXT. THE TANNERY FLATS -- A SWEPT DIRT YARD -- MORNING (1882)
+EXT. THE TANNERY FLATS -- A SWEPT DIRT YARD -- MORNING (1881)
 
 -- and down in the swept dirt, a CHILD (4) too small for the
 water bucket riding his hip stops dead. Feels a shadow cross
@@ -285,7 +285,7 @@ little at a time. Until there is no more.
 And we learned the family's place.
 Second. Always second.
 
-EXT. VOLKOV'S TANNERY, SANTA CRUZ -- WINTER MORNING (1882)
+EXT. VOLKOV'S TANNERY, SANTA CRUZ -- WINTER MORNING (1881)
 
 Smoke. The long wharf beyond. ESTEBAN MENDEZ (grown now, gray
 coming in) walks through the gate, takes up another man's knife,
@@ -1109,7 +1109,7 @@ sum, the one the clubs run and never print: not the arm. The
 gate.
 
 SCOUT
-He's thirty next year, for a start. Junk-
+He's twenty-seven, for a start. Junk-
 baller -- no fastball for a poster. That
 name's no name a marquee will carry; a
 tannery story's no story at all. Crowds want
@@ -1375,7 +1375,7 @@ a NEWBORN, wet and red. REBECCA, spent and fierce, holds him.
 
 CIRILO crosses the cold floor and takes the small hands -- both
 folded into one of his -- the gesture his abuelo made over him
-thirty-five years and three thousand miles ago, on a floor that
+thirty-six years and three thousand miles ago, on a floor that
 smelled of lime and hide. He cannot speak. So he says the only words
 the family has.
 

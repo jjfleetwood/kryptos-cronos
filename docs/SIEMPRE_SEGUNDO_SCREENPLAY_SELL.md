@@ -97,7 +97,7 @@ CLOSE ON -- THE HAWK'S EYE.
 And the world thins. The asphalt, the fence, the doors fade.
 SMOKE rises over a cluster of poor houses.
 
-EXT. THE TANNERY FLATS -- A DIRT YARD -- MORNING (1882)
+EXT. THE TANNERY FLATS -- A DIRT YARD -- MORNING (1881)
 
 A CHILD, 4, a water bucket on his hip, stops. A shadow crosses
 him. He looks up -- and finds the hawk.
@@ -162,7 +162,7 @@ We sold it the way a man bleeds -- a little
 at a time. And we learned our place.
 Second. Always second.
 
-EXT. VOLKOV'S TANNERY, SANTA CRUZ -- WINTER (1882)
+EXT. VOLKOV'S TANNERY, SANTA CRUZ -- WINTER (1881)
 
 ESTEBAN MENDEZ, grown and graying, walks through the gate and
 takes up another man's knife, another man's hide. At a curtained
@@ -647,7 +647,7 @@ So we take him.
 The scout does the second sum -- not the arm, the gate.
 
 SCOUT
-He's thirty next year. Junk-baller -- no
+He's twenty-seven. Junk-baller -- no
 fastball for a poster, no name a marquee will
 carry, a tannery story that's no story.
 Crowds want youth and a man they can chant.
