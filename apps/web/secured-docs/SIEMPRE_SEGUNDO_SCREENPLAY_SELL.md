@@ -848,14 +848,15 @@ In the seventh, the bleachers find it -- low, then all together:
 CROWD
 EL CID -- EL CID -- EL CID --
 
-Ten thousand Boston throats chanting a dead Castilian's name at
-a tanner's son. Cirilo takes the ball back, face blank.
+Ten thousand Boston throats chanting the grand borrowed name at a
+tanner's son, every one of them on his feet for him. Cirilo takes
+the ball back, face blank.
 
 CIRILO (V.O.)
-It's not my name. But they're on their feet,
-and they're saying a name, and I made them do
-it. It's the closest they'll ever come. And
-God forgive me -- I'll take it.
+They're on their feet. For me. The bottle boy.
+Roaring a name -- and the name means me. I made
+them do it, with the thing the old man put in
+my arm. After all these years -- let it come.
 
 EXT. FENWAY PARK -- A GRAY AFTERNOON (THE DUEL)
 
@@ -880,12 +881,25 @@ doesn't whoop. He looks once at the flat gray sky -- out of an
 old habit -- for a bird that isn't there.
 
 CIRILO (V.O.)
-I was this good the whole time.
+This is the thing the old man gave me, off a
+bucket. I didn't get here alone -- I carried
+all of them up here with me.
 
-INT./EXT. THE WORLD SERIES -- THE STRIKEOUT
+INT./EXT. THE 1918 WORLD SERIES -- TWO STARTS
 
-Bases loaded, two out. The Cubs' FRED MERKLE digs in. SCHANG
-crouches.
+GAME TWO. Cirilo throws the best game of his life and LOSES it -- a
+bad-hop grounder, a run on dirt and luck, 2 to 1, not an earned run
+against him. He sits with the warm-up ball, an old man down a game in
+the only Series the arm may ever give him, certain this is just how it
+ends for a man like him: the right work, the wrong bounce. Second,
+once more.
+
+HOOPER
+(sitting down beside him)
+There's more games, old man.
+
+GAME SIX. THE CLINCHER. Bases loaded, two out, the whole season on the
+next pitch -- and the Cubs' FRED MERKLE digs in. SCHANG crouches.
 
 Pitch one -- fastball IN, under the hands. (Ball.) Pitch two --
 the change, same arm, nothing behind it; Merkle's swing dies out
@@ -900,30 +914,45 @@ wants it. He swings from his heels --
 -- and it drops off the table. The bat goes through empty air.
 Schang's mitt takes it at the shin. The umpire's arm goes up.
 
-The crowd sees a strikeout. Schang sees a man out-thought, sixty
-feet at a time, on the one fair square -- and winning.
+The crowd sees a strikeout. Schang sees a man out-thought, sixty feet
+at a time, on the one fair square -- and winning. The park comes
+apart. They lift him off the mound a champion -- FIRST -- and ten
+thousand throats roar the name they gave him, EL CID, in pure love,
+and the Game Two loss washes clean.
 
-EXT. THE STREETS OF BOSTON -- NIGHT (THE CELEBRATION)
+EXT. THE STREETS OF BOSTON -- NIGHT (THE PARADE)
 
-They carry him through the streets. FORTY THOUSAND people
-shoulder to shoulder in the wet dark, passing the champion
-overhead, his SON held up in a knit cap. For one night Cirilo
-Méndez is not second to any man in America.
+They carry him through the streets. FORTY THOUSAND people in the wet
+dark, passing the champion overhead; REBECCA and the baby up on a
+wagon bed; his SON held high in a knit cap, laughing because his
+father is laughing. For one night Cirilo Méndez is not second to any
+man in America, and he lets the whole grateful city close around him,
+and is -- there's no smaller word -- happy.
 
-And the whole town is already sick.
+EXT. ALONG THE RIVER -- A CLEAR COLD AFTERNOON (DAYS LATER)
 
-CIRILO (V.O.)
-They spent seventy years refusing to embrace
-my people. The one time they did, it was the
-embrace that did what the refusal never had.
+CIRILO carries his son, naming the world for him in Spanish -- agua,
+pájaro, cielo -- REBECCA's arm through his. An ordinary family on an
+ordinary afternoon.
 
-He goes down four days later.
+Then -- between one streetlamp and the next -- his arm goes heavy.
+Sweat on his face in the cold. A hard shiver takes the whole of him.
 
-INT. A SMALL BOSTON FLAT -- THE ROOM -- NIGHT (NOVEMBER 1918)
+CIRILO
+(working to sound light)
+Rebecca. Take him. My hands have gone strange.
+
+She takes the baby. He makes the last blocks home on will alone, the
+fever climbing in him like water up a piling.
+
+INT. THE COLD ROOMS -- NIGHT (OCTOBER 1918)
+
+Four days. That is all it takes the strong, that autumn. On the
+fourth, the fever steps back to leave him a few clear minutes.
 
 The wrong quiet. On the sill: the championship ball, a candle, a
-rosary, a small Ohlone basket. REBECCA on the edge of the bed,
-their son asleep against her. In the corner, AOIFE prays.
+rosary, a small Ohlone basket. REBECCA on the edge of the bed, their
+son awake against her. In the corner, AOIFE prays.
 
 Cirilo's hand finds the old glove on the blanket. He turns it
 once -- and folds his son's small fingers around it.
@@ -983,9 +1012,10 @@ and hangs over the open grave, motionless against the gray. No
 one takes it for a coincidence.
 
 DOLORES (V.O.)
-El Halcón. The hawk. They called him every
-name but his. Now the family takes him back,
-and gives him the right one.
+El Halcón. The hawk. The world loved him by the
+grand name it gave him. The family knew him by
+the truer one. Now we take him back -- and give
+it to him again.
 
 The hawk tilts and slides off north along the ridge.
 
