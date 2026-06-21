@@ -3147,63 +3147,63 @@ He picked the knife back up. There was a hide on the beam and the living still n
 
 ### The Real Ones — A Box Score
 
-*Cirilo Méndez and his family are invented. But he pitched in a real game, in a real year, alongside and against real men — and he was built on the bones of one real man in particular. Here, for the curious, are the people in these pages who actually lived, with a line or two off the back of the card.*
+*Cirilo Méndez and his family are invented. But he pitched in a real year, alongside and against real men, and he was built on the bones of one real man in particular. Here, for the curious, are the people in these pages who actually lived — a line or two off the back of each card.*
 
-**Frank Arellanes** (1882–1918) — The real arm behind the invented one. Born in Santa Cruz on January 28, 1882, the son of a Californio family; pitched for the Boston Red Sox from 1908 to 1910, going 24–22 with a 2.28 earned run average. In 1909 he stepped into the great Cy Young's place in the rotation, won sixteen games at a 2.18 ERA, and led the American League in games finished and saves. Among the very first Mexican-American men to reach the major leagues, and the first Latino ever to wear a Boston uniform. He died at thirty-six, on December 13, 1918, of the Spanish influenza. This whole story is offered in his honor.
+**Frank Arellanes** (1882–1918) — the real arm behind the invented one. A Santa Cruz Californio who pitched for the Boston Red Sox from 1908 to 1910 and, in 1909, stepped into Cy Young's place in the rotation, won sixteen, and led the league in games finished and saves. Among the first Mexican-American men to reach the majors, and the first Latino to wear a Boston uniform. Dead of the influenza at thirty-six. This story is offered in his honor.
 
-**The Boston club, 1918.**
+**The 1918 Red Sox.**
 
-**George Herman "Babe" Ruth** (1895–1948) — A Baltimore waterfront boy handed at seven to the Xaverian Brothers at St. Mary's, who grew into the most famous athlete the country ever produced. In 1918 he was the Red Sox' pitcher-and-slugger; he won the Series opener with a shutout, caught the influenza that year and survived it, and went on to 714 home runs and the building of the Yankee dynasty. Hall of Fame.
+**Babe Ruth** (1895–1948) — the St. Mary's waterfront boy who became the most famous athlete the country ever made. In 1918 he won the Series opener with a shutout and was already turning himself from a pitcher into the man who would hit 714 home runs. Hall of Fame.
 
-**Ed Barrow** (1868–1953) — The hard, shrewd manager of the 1918 Red Sox — the man who decided to play young Ruth every day for his bat — who went on to assemble the great Yankee teams of the twenties. Hall of Fame.
+**Ed Barrow** (1868–1953) — the hard, shrewd manager who decided to play Ruth every day for his bat, and went on to build the Yankee dynasty. Hall of Fame.
 
-**Harry Hooper** (1887–1974) — Born inland near Hollister; a Saint Mary's–trained engineer who became the surest right fielder of his day, the leadoff man and steady hand of four Red Sox champions (1912, 1915, 1916, 1918) and a third of the famed "Golden Outfield" with Tris Speaker and Duffy Lewis. He is the man who talked Ed Barrow into making Babe Ruth an everyday hitter — arguably the most consequential lineup card in baseball history. After he finished — Red Sox through 1920, White Sox through 1925 — he did the thing the invented Cirilo never got to do: he went home to this coast. He settled at Capitola, a few miles down the shore from the flats of this story, where Franklin Roosevelt appointed him postmaster in 1933 and he handed his neighbors their mail for twenty-four years; he grew old in the salt air, was called to Cooperstown in 1971, and died in Santa Cruz in 1974, at eighty-seven. He is the real bridge that, in this telling, carries Cirilo to Boston.
+**Harry Hooper** (1887–1974) — Hollister-born, Saint Mary's–trained, the surest right fielder of his day and the leadoff conscience of four Boston champions; the man who talked Barrow into making Ruth an everyday hitter. He did the thing the invented Cirilo never got to do — he came home to this coast: kept the mail at Capitola for twenty-four years, reached Cooperstown in 1971, and died in Santa Cruz at eighty-seven. The real bridge that, in this telling, carries Cirilo to Boston.
 
 **The men in the agate type.**
 
-**Christy Mathewson** (1880–1925) — The "Christian Gentleman" of the New York Giants; threw three shutouts in the 1905 World Series and won 373 games in all; taught himself the fadeaway. His lungs were scarred in a wartime gas drill in France, and he died of tuberculosis at forty-five. Hall of Fame.
+**Christy Mathewson** (1880–1925) — the Giants' "Christian Gentleman," three shutouts in the 1905 Series; his lungs were ruined in a wartime gas drill, and he died young of it. Hall of Fame.
 
-**Walter Johnson** (1887–1946) — "The Big Train" of the Washington Senators, the fastest arm of the dead-ball age: 417 wins and 110 shutouts, a record that still stands. Hall of Fame.
+**Walter Johnson** (1887–1946) — "The Big Train," the fastest arm of the dead-ball age; 110 shutouts, a record that still stands. Hall of Fame.
 
-**Ty Cobb** (1886–1961) — Detroit; the highest career batting average in history, .366, and a violent man who in 1912 climbed into the stands to beat a heckler, touching off the first players' strike. The first man voted into the Hall of Fame.
+**Ty Cobb** (1886–1961) — the highest career average in history, .366, and a violent man who once climbed into the stands after a heckler and touched off the game's first players' strike. Hall of Fame.
 
-**Mordecai "Three Finger" Brown** (1876–1948) — A poor Indiana farm boy who lost most of a finger to a feed shredder and turned the ruin into a pitch no whole hand could throw, beating Mathewson head to head more often than the saint could stand. Hall of Fame.
+**Mordecai "Three Finger" Brown** (1876–1948) — an Indiana farm boy who lost most of a finger to a feed shredder and turned the ruin into a pitch no whole hand could throw. Hall of Fame.
 
-**Fred Merkle** (1888–1956) — The nineteen-year-old Giant whose failure to touch second base in September 1908 — a thing every player did — cost his club the pennant and hung the name "Bonehead" on him for life. He played thirteen more good years and never once outran it.
+**Fred Merkle** (1888–1956) — the young Giant whose missed base in 1908 hung the name "Bonehead" on him for life; he played thirteen good years more and never once outran it.
 
-**Johnny Evers** (1881–1947) — Cubs second baseman, the middle of "Tinker-to-Evers-to-Chance," who stood on the bag and called for the ball on the Merkle play. Hall of Fame.
+**Johnny Evers** (1881–1947) — the Cubs second baseman who stood on the bag and called for the ball on the Merkle play. Hall of Fame.
 
-**Addie Joss** (1880–1911) — A beloved Cleveland pitcher who threw a perfect game and then died of meningitis at thirty-one; the stars of the league crossed every rivalry to play a benefit for his widow in 1911. Hall of Fame.
+**Addie Joss** (1880–1911) — threw a perfect game, died of meningitis at thirty-one, and was buried after a benefit the whole league crossed its rivalries to play. Hall of Fame.
 
-**Tris Speaker** (1888–1958) — "The Grey Eagle," one of the finest center fielders the game has known, a Red Sox and then Cleveland star who played in the Joss benefit. Hall of Fame.
+**Tris Speaker** (1888–1958) — "The Grey Eagle," among the finest center fielders the game has known. Hall of Fame.
 
 **The Coast, and the color line.**
 
-**Ping Bodie** (Francesco Pezzolo, 1887–1961) — The San Francisco Italian who hit so many home runs the bleachers swallowed the word *wop;* a Pacific Coast League slugger and later a Yankee.
+**Ping Bodie** (Francesco Pezzolo, 1887–1961) — the San Francisco Italian who hit home runs enough to swallow the slur they threw at him; a Coast League slugger and later a Yankee.
 
-**Hal Chase** (1883–1947) — The most graceful first baseman of his day and one of the most crooked; a Coast Leaguer turned major-leaguer who jumped to the Federal League in 1914 and was finally run out of the game for fixing.
+**Hal Chase** (1883–1947) — the most graceful first baseman of his day and one of the most crooked, run out of the game at last for fixing.
 
-**José Méndez** (1887–1928) — "The Black Diamond," the Cuban right-hander good enough to beat big-league clubs in exhibitions and barred from the white majors by the color line; a giant of the Cuban and Negro leagues. Voted into the Hall of Fame, at last, in 2006.
+**José Méndez** (1887–1928) — "The Black Diamond," the Cuban right-hander good enough to beat big-league clubs in exhibitions and barred from the white majors anyway; a giant of Cuban and Negro-league ball. Cooperstown, at last, in 2006.
 
-**The Federal League jumpers (1914–1915).**
+**The Federal League jumpers (1914–15).**
 
-**Joe Tinker** (1880–1948) — The shortstop of "Tinker-to-Evers-to-Chance," and the first big star to jump to the outlaw Federal League, doubling his pay to manage the Chicago Whales — whose ballpark outlived the league and stands today as Wrigley Field. Hall of Fame.
+**Joe Tinker** (1880–1948) — of "Tinker-to-Evers-to-Chance," the first big star to jump to the outlaw Federals, to manage the Chicago Whales in the park that outlived the league and stands today as Wrigley Field. Hall of Fame.
 
-**Eddie Plank** (1875–1926) — The first left-hander to win 300 games, who left the Athletics for the St. Louis Terriers in 1915. Hall of Fame.
+**Eddie Plank** (1875–1926) — the first left-hander to win 300. Hall of Fame.
 
-**Chief Bender** (Charles Albert Bender, 1884–1954) — Ojibwe; the Athletics' big-game ace, who also jumped to the Federals in 1915. Hall of Fame.
+**Chief Bender** (Charles Albert Bender, 1884–1954) — Ojibwe, the Athletics' big-game ace, who jumped too. Hall of Fame.
 
-And the lesser names a valley pitcher knew only as type on a page: **Russ Ford** (1883–1960), the Canadian who won twenty-six as a rookie on a secret emery ball; **Doc Crandall,** one of the game's first true relief specialists; and **Tom Seaton,** a twenty-seven-game winner for the 1913 Phillies, all of whom walked out for the Federal money like the rest.
+— and the lesser names a valley pitcher knew only as type on a page: **Russ Ford,** who won twenty-six as a rookie on a secret emery ball; **Doc Crandall,** one of the first true relief men; and **Tom Seaton,** a twenty-seven-game winner — all gone for the Federal money like the rest.
 
-**And, twenty-nine years too late.**
+**Twenty-nine years too late.**
 
-**Jackie Robinson** (1919–1972) — Who walked onto a major-league field in Brooklyn on April 15, 1947, and broke the color line for good — the door this whole story is reaching toward. Hall of Fame.
+**Jackie Robinson** (1919–1972) — who walked onto a field in Brooklyn on April 15, 1947, and broke the color line for good: the door this whole story is reaching toward. Hall of Fame.
 
 **On the local stage.**
 
-The **Santa Cruz Beachcombers** were a real turn-of-the-century club (later the Sand Crabs), playing on Beach Flats behind the Leibbrandt bath houses, led by the brothers **Ed and Charley Daubenbiss** of the old Soquel pioneer family and **Bill "Red Dog" Devereaux** of Oakland. Frank Arellanes really did come up through them on his way to Boston.
+The **Santa Cruz Beachcombers** were a real turn-of-the-century club (later the Sand Crabs), playing Beach Flats behind the Leibbrandt bath houses, led by the brothers **Ed and Charley Daubenbiss** and **Bill "Red Dog" Devereaux.** Frank Arellanes really did come up through them on his way to Boston.
 
-*Everyone else — Cirilo and Rebecca, the Méndez and the Whitfields, Don Aurelio and Dolores, Lim and Mrs. Tarantino and the rest — is invented, though the worlds they pass through, and the lines drawn through those worlds, were real.*
+*Everyone else — Cirilo and Rebecca, the Méndez and the Whitfields, Don Aurelio and Dolores, Lim and Mrs. Tarantino and the rest — is invented, though the worlds they pass through, and the lines drawn through them, were real.*
 
 ---
 
