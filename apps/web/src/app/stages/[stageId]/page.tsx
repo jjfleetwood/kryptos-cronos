@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import { getStage } from "@kryptos/core/stages";
 import StageContainer from "@/components/StageContainer";
 import type { StageConfig, CtfQuizEntry } from "@kryptos/core/types";
@@ -85,6 +86,9 @@ export default async function StagePage({
 }) {
   const { stageId } = await params;
   const stageBase = getStage(stageId) ?? null;
+  // Unknown / deleted stage ids (e.g. the removed Cisco stages) return a real 404
+  // rather than a soft 200 "Stage not found" body.
+  if (!stageBase) notFound();
   const username = await getSessionFromCookies();
 
   const cookieStore = await cookies();
