@@ -14,7 +14,7 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
-  transpilePackages: ["@kryptos/core"],
+  transpilePackages: ["@kryptos/core", "@kryptos/ui"],
   async headers() {
     return [{ source: "/(.*)", headers: securityHeaders }];
   },

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { auditEpochs, auditStagesForEpoch } from "@kryptos/core/audit-registry";
 
 // Owner-only library browser for the private Agentic Audit deployment. Reaching
@@ -41,9 +42,15 @@ export default function Home() {
               )}
               <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "grid", gap: 6 }}>
                 {modules.map((m) => (
-                  <li key={m.id} style={{ fontSize: 13, color: "#d1d5db", display: "flex", gap: 8 }}>
-                    <span style={{ color: "#6b7280", fontFamily: "monospace", flexShrink: 0 }}>{m.id}</span>
-                    <span>{m.title}</span>
+                  <li key={m.id}>
+                    <Link
+                      href={`/${e.id}/${m.id}`}
+                      style={{ fontSize: 13, color: "#d1d5db", display: "flex", gap: 8, textDecoration: "none", padding: "4px 6px", borderRadius: 6 }}
+                    >
+                      <span style={{ color: "#6b7280", fontFamily: "monospace", flexShrink: 0 }}>{m.id}</span>
+                      <span>{m.title}</span>
+                      <span style={{ color: "#7c3aed", marginLeft: "auto" }}>→</span>
+                    </Link>
                   </li>
                 ))}
               </ul>

@@ -6,7 +6,7 @@ import Link from "next/link";
 import ReactMarkdown, { type Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
 
-const MermaidDiagram = lazy(() => import("./MermaidDiagram"));
+const MermaidDiagram = lazy(() => import("@kryptos/ui/MermaidDiagram"));
 
 type DocGroup = "general" | "architecture" | "business";
 

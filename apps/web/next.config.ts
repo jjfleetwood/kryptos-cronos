@@ -11,7 +11,7 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
-  transpilePackages: ["@kryptos/core"],
+  transpilePackages: ["@kryptos/core", "@kryptos/ui"],
   outputFileTracingIncludes: {
     "/api/docs/(.*)": ["./secured-docs/**"],
     // The public Agent Risk Audit Guide renders the same markdown server-side.

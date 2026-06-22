@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import BackLink from "./BackLink";
+import BackLink from "@kryptos/ui/BackLink";
 import QuizSuccessModal from "./QuizSuccessModal";
 import type { QuizQuestion, StageConfig } from "@kryptos/core/types";
 

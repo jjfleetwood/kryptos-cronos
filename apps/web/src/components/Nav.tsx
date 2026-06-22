@@ -197,7 +197,7 @@ export default function Nav() {
               className="text-xs px-2 py-1.5 rounded-lg transition-colors flex items-center gap-1"
               style={{ border: `1px solid ${skin.cardBorder}`, color: skin.textMuted }}
             >
-              <span>{LOCALE_FLAGS[locale]}</span>
+              <span>{LOCALE_FLAGS[locale as keyof typeof LOCALE_FLAGS]}</span>
               <span className="font-mono uppercase">{locale}</span>
             </button>
             {langOpen && (

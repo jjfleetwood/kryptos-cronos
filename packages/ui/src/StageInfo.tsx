@@ -12,8 +12,8 @@ import type { StageConfig } from "@kryptos/core/types";
 import type { StageTranslation } from "@kryptos/core/translations/types";
 import { stageDownloads } from "@kryptos/core/stage-downloads";
 import { getCertBadgesForStage } from "@kryptos/core/cert-domains";
-import { useLocale } from "@/contexts/LocaleContext";
-import { STAGE_IMAGES, TIMELINE_IMAGES } from "@/lib/stage-images";
+import { useLocale } from "./locale";
+import { STAGE_IMAGES, TIMELINE_IMAGES } from "./stage-images";
 import StageFrontierBanner from "./StageFrontierBanner";
 
 // Local, always-available branded placeholder. External image hosts (Wikimedia)
@@ -274,7 +274,7 @@ export default function StageInfo({
   hideCover = false,
 }: {
   stage: StageConfig;
-  onStart: (mode?: "quiz" | "ctf") => void;
+  onStart?: (mode?: "quiz" | "ctf") => void;
   isDual?: boolean;
   translation?: StageTranslation | null;
   backHref?: string;
@@ -748,7 +748,8 @@ export default function StageInfo({
           </section>
         )}
 
-        {/* ── CTA ───────────────────────────────────────────────────────────── */}
+        {/* ── CTA (only when a challenge can be started; omitted in reference mode) ── */}
+        {onStart && (
         <div className="rounded-2xl overflow-hidden border border-cyan-500/30"
           style={{ background: "linear-gradient(135deg, rgba(6,182,212,0.08) 0%, rgba(99,102,241,0.08) 100%)" }}>
           {isDual ? (
@@ -798,6 +799,7 @@ export default function StageInfo({
             </div>
           )}
         </div>
+        )}
 
       </div>
     </div>

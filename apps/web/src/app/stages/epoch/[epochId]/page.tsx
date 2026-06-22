@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { stagesMeta as allStages, epochs } from "@kryptos/core/stages-meta";
 import { fetchProgress, fetchQuizProgress } from "@/lib/progress";
-import GaugeBar from "@/components/GaugeBar";
+import GaugeBar from "@kryptos/ui/GaugeBar";
 import { getSession, setSession } from "@/lib/auth";
 import { epochAccent, cardBorder, cardEmojiBg } from "@/app/stages/epoch-theme";
 import { getContentFlag } from "@kryptos/core/content-flags";

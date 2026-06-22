@@ -1,7 +1,7 @@
 import "server-only";
 import PptxGenJS from "pptxgenjs";
 import type { StageConfig, EpochConfig, StageInfo } from "@kryptos/core/types";
-import { STAGE_IMAGES } from "@/lib/stage-images";
+import { STAGE_IMAGES } from "@kryptos/ui/stage-images";
 
 // PowerPoint generator — turns an epoch's stage content into a slide deck through
 // a "lens" (an audience framing). Adding a lens is one entry in LENSES + LENS_IMPL;

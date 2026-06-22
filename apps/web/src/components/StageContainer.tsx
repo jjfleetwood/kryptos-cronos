@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import StageInfo from "./StageInfo";
+import StageInfo from "@kryptos/ui/StageInfo";
 import CtfChallenge from "./CtfChallenge";
 import QuizChallenge from "./QuizChallenge";
 import type { StageConfig, CtfQuizEntry, AuditQuizEntry } from "@kryptos/core/types";
