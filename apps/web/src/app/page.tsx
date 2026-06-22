@@ -273,8 +273,8 @@ export default function Home() {
           style={{ background: "rgba(255,255,255,0.015)" }}>
           <Reveal className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
-              { to: 871, decimals: 0, suffix: "",  label: "Stages",    color: "#22d3ee" },
-              { to: 85,  decimals: 0, suffix: "",  label: "Epochs",    color: "#a78bfa" },
+              { to: 811, decimals: 0, suffix: "",  label: "Stages",    color: "#22d3ee" },
+              { to: 80,  decimals: 0, suffix: "",  label: "Epochs",    color: "#a78bfa" },
               { to: 13,  decimals: 0, suffix: "+", label: "Domains",   color: "#f97316" },
               { to: 3.5, decimals: 1, suffix: "M", label: "Open Jobs", color: "#4ade80" },
             ].map((s) => (
