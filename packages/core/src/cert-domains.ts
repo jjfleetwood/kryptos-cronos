@@ -283,74 +283,14 @@ export const CERT_DOMAINS: Record<string, CertDomain[]> = {
   "stage-12": combine(sp("threats-vulns", "security-operations"), cc("security-operations-cc"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-risk-response"), cy("cysa-vuln-mgmt")),
 
   // ── cisco-core (stage-m01 → stage-m12) — network device CVEs ─────────────────
-  "stage-m01": combine(sp("threats-vulns", "security-architecture"), cc("access-controls", "network-security"), np("net-implementations"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment", "crisc-it-security")), // IOS XE Web UI unauth admin (auth bypass)
-  "stage-m02": combine(sp("threats-vulns"), cc("network-security"), np("net-implementations"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment", "crisc-it-security")), // ASA SNMP buffer overflow RCE (EXTRABACON)
-  "stage-m03": combine(sp("threats-vulns"), cc("network-security"), np("net-implementations", "net-operations"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment", "crisc-it-security")), // Smart Install unauth config manipulation
-  "stage-m04": combine(sp("threats-vulns"), cc("access-controls"), np("net-implementations"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment", "crisc-it-security")), // RV320 unauth config/credential disclosure
-  "stage-m05": combine(sp("threats-vulns"), cc("access-controls", "network-security"), np("net-security"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment", "crisc-it-security")), // ASA WebVPN path traversal file read
-  "stage-m06": combine(sp("threats-vulns", "security-architecture"), cc("access-controls"), np("net-implementations"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment", "crisc-it-security")), // WLC authentication bypass (CVSS 10.0)
-  "stage-m07": combine(sp("threats-vulns"), cc("network-security"), np("net-implementations"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment", "crisc-it-security")), // HyperFlex command injection RCE
-  "stage-m08": combine(sp("threats-vulns"), cc("access-controls"), np("net-implementations"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment", "crisc-it-security")), // IOS XE privilege escalation to root
-  "stage-m09": combine(sp("threats-vulns"), cc("network-security"), np("net-operations"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment", "crisc-it-security")), // Prime Infrastructure upload RCE (mgmt platform)
-  "stage-m10": combine(sp("threats-vulns"), cc("network-security"), np("net-security"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment", "crisc-it-security")), // ASA/FTD reflected XSS (web appliance)
-  "stage-m11": combine(sp("threats-vulns", "security-operations"), cc("network-security"), np("net-troubleshooting"), cy("cysa-vuln-mgmt"), cisa("cisa-protection", "cisa-operations"), cism("cism-risk"), crisc("crisc-risk-assessment", "crisc-it-security")), // ASA WebVPN arbitrary file deletion (availability)
-  "stage-m12": combine(sp("threats-vulns"), cc("network-security"), np("net-implementations"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment", "crisc-it-security")), // IOS DHCP remote code execution
 
   // ── cisco-enterprise (stage-m13 → stage-m25) — enterprise attack campaigns ───
-  "stage-m13": combine(sp("security-architecture", "threats-vulns", "general-security"), cc("network-security"), np("net-implementations"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment", "crisc-it-security")), // ASA IKEv1/IKEv2 VPN heap overflow RCE
-  "stage-m14": combine(sp("threats-vulns", "security-architecture"), cc("network-security"), np("net-implementations", "net-troubleshooting"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment", "crisc-it-security")), // IOS CMP Telnet RCE
-  "stage-m15": combine(sp("threats-vulns"), cc("network-security"), np("net-troubleshooting"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment", "crisc-it-security")), // IOS XR CDP format string
-  "stage-m16": combine(sp("threats-vulns", "security-architecture"), cc("network-security"), np("net-security", "net-implementations"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment", "crisc-it-security")), // RV340/RV345 web UI RCE
-  "stage-m17": combine(sp("threats-vulns"), cc("access-controls", "network-security"), np("net-security"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment", "crisc-it-security")), // ASA/FTD WebVPN memory disclosure
-  "stage-m18": combine(sp("threats-vulns", "security-architecture"), cc("network-security"), np("net-implementations"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment", "crisc-it-security")), // RV110W/130W stack overflow RCE
-  "stage-m19": combine(sp("threats-vulns"), cc("access-controls", "network-security"), np("net-security"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment", "crisc-it-security")), // Expressway/TelePresence path traversal
-  "stage-m20": combine(sp("threats-vulns"), cc("access-controls"), np("net-implementations"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment", "crisc-it-security")), // NX-OS CLI command injection (auth'd)
-  "stage-m21": combine(sp("threats-vulns", "security-operations"), cc("network-security"), np("net-troubleshooting"), cisa("cisa-operations", "cisa-protection"), cism("cism-risk", "cism-incident"), crisc("crisc-risk-response", "crisc-it-security")), // ASA/FTD management DoS (availability)
-  "stage-m22": combine(sp("threats-vulns", "security-operations"), cc("network-security"), np("net-troubleshooting"), cisa("cisa-operations", "cisa-protection"), cism("cism-incident", "cism-risk"), crisc("crisc-risk-response", "crisc-it-security")), // ASA/FTD persistent RCE (ArcaneDoor implant)
-  "stage-m23": combine(sp("threats-vulns", "security-architecture"), cc("access-controls", "network-security"), np("net-operations"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment", "crisc-it-security")), // SD-WAN vManage SQL injection
-  "stage-m24": combine(sp("threats-vulns", "general-security"), cc("network-security"), np("net-implementations"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment", "crisc-it-security")), // IOS GET VPN GDOI group-key RCE
-  "stage-m25": combine(sp("threats-vulns", "security-operations"), cc("access-controls", "network-security"), np("net-troubleshooting"), cisa("cisa-protection", "cisa-operations"), cism("cism-risk"), crisc("crisc-risk-assessment", "crisc-it-security")), // ASA web services path traversal + DoS
 
   // ── cisco-secops (stage-m26 → stage-m38) — security operations ───────────────
-  "stage-m26": combine(sp("security-operations", "threats-vulns"), cc("access-controls", "security-operations-cc"), np("net-security"), cy("cysa-vuln-mgmt"), cisa("cisa-operations"), cism("cism-incident"), crisc("crisc-risk-response")), // Firepower FTD CLI command injection
-  "stage-m27": combine(sp("security-operations"), cc("security-operations-cc"), np("net-security", "net-troubleshooting"), cy("cysa-security-ops"), cisa("cisa-operations"), cism("cism-incident"), crisc("crisc-risk-response")), // Firepower Snort TCP reassembly IPS-evasion
-  "stage-m28": combine(sp("security-architecture", "threats-vulns"), cc("access-controls"), np("net-security"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-it-security")), // Umbrella SAML authentication bypass
-  "stage-m29": combine(sp("security-operations"), cc("security-operations-cc"), np("net-operations"), cy("cysa-security-ops", "cysa-ir"), cisa("cisa-operations"), cism("cism-incident", "cism-program"), crisc("crisc-risk-response")), // SecureX & XDR platform integration
-  "stage-m30": combine(sp("security-operations", "threats-vulns"), cc("access-controls"), np("net-security"), cy("cysa-vuln-mgmt"), cisa("cisa-operations", "cisa-protection"), cism("cism-incident"), crisc("crisc-risk-response")), // IMC REST API command injection
-  "stage-m31": combine(sp("security-architecture"), cc("access-controls"), np("net-operations"), cy("cysa-security-ops"), cisa("cisa-acquisition", "cisa-operations"), cism("cism-program"), crisc("crisc-it-security")), // DevNet REST API auth, tokens, automation
-  "stage-m32": combine(sp("security-operations"), cc("security-operations-cc"), np("net-troubleshooting"), cy("cysa-security-ops", "cysa-ir"), cisa("cisa-operations"), cism("cism-incident"), crisc("crisc-risk-response")), // SOC Tier-1 SIEM alert triage
-  "stage-m33": combine(sp("security-operations", "threats-vulns"), cc("security-operations-cc"), np("net-troubleshooting"), cy("cysa-security-ops", "cysa-ir"), cisa("cisa-operations"), cism("cism-incident", "cism-risk"), crisc("crisc-risk-response")), // Threat hunting, IOCs, ATT&CK mapping
-  "stage-m34": combine(sp("security-operations", "threats-vulns"), cc("access-controls"), np("net-security"), cy("cysa-vuln-mgmt"), cisa("cisa-operations", "cisa-protection"), cism("cism-incident"), crisc("crisc-risk-response")), // IOS XE Web UI privilege escalation (CVSS 10.0)
-  "stage-m35": combine(sp("security-operations", "threats-vulns"), cc("access-controls", "security-operations-cc"), np("net-security"), cy("cysa-vuln-mgmt", "cysa-security-ops"), cisa("cisa-operations"), cism("cism-incident"), crisc("crisc-risk-response")), // IOS XE Web UI command injection (chained RCE)
-  "stage-m36": combine(sp("security-operations", "threats-vulns"), cc("security-operations-cc"), np("net-troubleshooting"), cy("cysa-security-ops", "cysa-ir"), cisa("cisa-operations"), cism("cism-incident"), crisc("crisc-risk-response")), // ArcaneDoor nation-state ASA/FTD campaign
-  "stage-m37": combine(sp("security-operations", "threats-vulns"), cc("security-operations-cc"), np("net-security"), cy("cysa-security-ops", "cysa-ir"), cisa("cisa-operations"), cism("cism-incident"), crisc("crisc-risk-response")), // Smart Install RCE (APT28 / GRU)
-  "stage-m38": combine(sp("security-architecture"), cc("access-controls", "network-security"), np("net-security", "net-implementations"), cy("cysa-security-ops"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-it-security")), // ISE 802.1X NAC, posture, RADIUS
 
   // ── cisco-advanced (stage-m39 → stage-m50) — advanced defense ────────────────
-  "stage-m39": combine(sp("security-operations", "threats-vulns"), cc("security-operations-cc"), np("net-troubleshooting", "net-security"), cy("cysa-security-ops"), cisa("cisa-operations"), cism("cism-incident"), crisc("crisc-risk-response")), // NGIPS detection bypass (TCP segmentation/frag evasion)
-  "stage-m40": combine(sp("security-architecture", "security-operations"), cc("security-operations-cc"), np("net-implementations"), cy("cysa-security-ops"), cisa("cisa-protection", "cisa-operations"), cism("cism-program"), crisc("crisc-it-security")), // FTD/FMC architecture, IPS policy tuning
-  "stage-m41": combine(sp("threats-vulns", "security-operations"), cc("network-security"), np("net-troubleshooting"), cy("cysa-vuln-mgmt"), cisa("cisa-operations"), cism("cism-incident"), crisc("crisc-risk-response", "crisc-it-security")), // FTD SSL/TLS VPN DoS (handshake exhaustion)
-  "stage-m42": combine(sp("security-operations", "threats-vulns"), cc("security-operations-cc"), np("net-troubleshooting"), cy("cysa-security-ops", "cysa-ir"), cisa("cisa-operations"), cism("cism-incident"), crisc("crisc-risk-response"), ai("aiplus-security", "aiplus-infrastructure")), // XDR threat hunting (lateral movement)
-  "stage-m43": combine(sp("security-architecture", "security-operations"), cc("security-operations-cc"), np("net-operations"), cy("cysa-security-ops"), cisa("cisa-operations"), cism("cism-program", "cism-incident"), crisc("crisc-risk-response"), ai("aiplus-security", "aiplus-infrastructure")), // XDR architecture, telemetry, SOAR
-  "stage-m44": combine(sp("threats-vulns", "security-architecture"), cc("access-controls"), np("net-operations"), cy("cysa-vuln-mgmt"), cisa("cisa-protection", "cisa-acquisition"), cism("cism-risk"), crisc("crisc-it-security")), // DNA Center REST API enumeration + priv-esc
-  "stage-m45": combine(sp("security-architecture"), cc("access-controls"), np("net-operations"), cy("cysa-security-ops"), cisa("cisa-acquisition", "cisa-operations"), cism("cism-program"), crisc("crisc-it-security")), // NETCONF/YANG/gRPC automation attack surface
-  "stage-m46": combine(sp("security-operations", "threats-vulns"), cc("security-operations-cc"), np("net-troubleshooting"), cy("cysa-security-ops", "cysa-ir"), cisa("cisa-operations"), cism("cism-incident"), crisc("crisc-risk-response")), // SOC phishing→domain-compromise kill chain
-  "stage-m47": combine(sp("security-operations", "security-architecture"), cc("security-operations-cc"), np("net-troubleshooting"), cy("cysa-security-ops"), cisa("cisa-operations"), cism("cism-program", "cism-incident"), crisc("crisc-risk-response")), // CyberOps SOC competencies, monitoring architecture
-  "stage-m48": combine(sp("security-architecture", "general-security"), cc("network-security"), np("net-implementations"), cy("cysa-security-ops"), cisa("cisa-protection", "cisa-acquisition"), cism("cism-program"), crisc("crisc-it-security")), // Silicon One ASIC: P4 integrity, MACsec hw crypto
-  "stage-m49": combine(sp("security-architecture", "threats-vulns"), cc("network-security"), np("net-implementations"), cy("cysa-vuln-mgmt"), cisa("cisa-acquisition", "cisa-protection"), cism("cism-program", "cism-risk"), crisc("crisc-it-security", "crisc-risk-assessment")), // Silicon One P4, supply-chain integrity, control plane
-  "stage-m50": combine(sp("general-security", "security-architecture"), cc("network-security"), np("net-implementations"), cy("cysa-security-ops"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-it-security"), ai("aiplus-security", "aiplus-infrastructure")), // Quantum-safe networking: PQC, QKD, HNDL
 
   // ── umbrella (umbrella-01 → umbrella-10) — Cisco Umbrella/SASE ───────────────
-  "umbrella-01": combine(sp("security-architecture"), cc("network-security"), np("net-security"), cy("cysa-security-ops"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-it-security")),
-  "umbrella-02": combine(sp("security-architecture"), cc("network-security"), np("net-security"), cy("cysa-security-ops"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-it-security")),
-  "umbrella-03": combine(sp("threats-vulns"),          cc("network-security"), np("net-security"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment")),
-  "umbrella-04": combine(sp("threats-vulns"),          cc("network-security"), np("net-security"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment")),
-  "umbrella-05": combine(sp("threats-vulns"),          cc("network-security"), np("net-security"), cy("cysa-vuln-mgmt"), cisa("cisa-protection"), cism("cism-risk"), crisc("crisc-risk-assessment")),
-  "umbrella-06": combine(sp("security-operations"),    cc("security-operations-cc"), np("net-operations"), cy("cysa-security-ops"), cisa("cisa-operations"), cism("cism-incident"), crisc("crisc-risk-response")),
-  "umbrella-07": combine(sp("security-operations"),    cc("security-operations-cc"), np("net-operations"), cy("cysa-security-ops"), cisa("cisa-operations"), cism("cism-incident"), crisc("crisc-risk-response")),
-  "umbrella-08": combine(sp("security-architecture"),  cc("network-security"), np("net-security"), cy("cysa-security-ops"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-it-security")),
-  "umbrella-09": combine(sp("security-architecture"),  cc("network-security"), np("net-security"), cy("cysa-security-ops"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-it-security")),
-  "umbrella-10": combine(sp("security-architecture"),  cc("network-security"), np("net-security"), cy("cysa-security-ops"), cisa("cisa-protection"), cism("cism-program"), crisc("crisc-it-security")),
 
   // ── tech-audit-1 (audit-01 → audit-12) — audit foundations ───────────────────
   // CISA Domain 1 (Audit Process) + Domain 2 (Governance) = core CISA prep
@@ -682,9 +622,6 @@ const AI_PLATFORM_CERT_DOMAINS: Record<string, CertDomain[]> = {
   "audit-cm12": combine(gcpml("gcpml-monitoring")),
 
   // ── Cisco: Advanced Defense — AI-security stages (m42, m43, m50) ──────────────
-  "stage-m42": combine(awsaip("awsaip-security")),
-  "stage-m43": combine(awsaip("awsaip-security")),
-  "stage-m50": combine(awsaip("awsaip-security")),
 
 };
 
@@ -784,9 +721,6 @@ const ISACA_AI_CERT_DOMAINS: Record<string, CertDomain[]> = {
   "audit-cm10": combine(aaia("aaia-operations")),  // XDR
 
   // ── Cisco AI-security stages (m42, m43, m50) → AAISM controls ─────────────────
-  "stage-m42": combine(aaism("aaism-controls")),                          // XDR threat hunting
-  "stage-m43": combine(aaism("aaism-controls", "aaism-governance")),       // XDR architecture
-  "stage-m50": combine(aaism("aaism-controls")),                          // quantum-safe networking
 
 };
 

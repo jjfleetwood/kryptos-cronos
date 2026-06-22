@@ -97,7 +97,7 @@ CLOSE ON -- THE HAWK'S EYE.
 And the world thins. The asphalt, the fence, the doors fade.
 SMOKE rises over a cluster of poor houses.
 
-EXT. THE TANNERY FLATS -- A DIRT YARD -- MORNING (1882)
+EXT. THE TANNERY FLATS -- A DIRT YARD -- MORNING (1881)
 
 A CHILD, 4, a water bucket on his hip, stops. A shadow crosses
 him. He looks up -- and finds the hawk.
@@ -162,7 +162,7 @@ We sold it the way a man bleeds -- a little
 at a time. And we learned our place.
 Second. Always second.
 
-EXT. VOLKOV'S TANNERY, SANTA CRUZ -- WINTER (1882)
+EXT. VOLKOV'S TANNERY, SANTA CRUZ -- WINTER (1881)
 
 ESTEBAN MENDEZ, grown and graying, walks through the gate and
 takes up another man's knife, another man's hide. At a curtained
@@ -265,6 +265,31 @@ sport and comes back laughing. Cirilo knows the game secondhand
 -- and knows that for him, this note could get him killed.
 
 He closes his hand around it. He doesn't drop it in the bay.
+
+EXT. BELOW THE WHARF -- DUSK
+
+Shift over, light gone, the bottle boy still working. An old
+BUSHEL BASKET lashed to a piling at a catcher's height. CIRILO
+throws into it -- THUNK, THUNK -- past the point any sane boy
+quit. DON AURELIO watches from his overturned bucket.
+
+DON AURELIO
+Learn the throw so deep the dark can't reach it.
+Then no crowd, and no fear, ever will.
+
+Fifty in the dead center. He doesn't stop -- moves the basket
+lower, to the strikeout corner, starts over from nothing.
+
+DON AURELIO (CONT'D)
+...One more, then.
+
+CIRILO
+One more, abuelo.
+
+LATER: the same boy reads the BOX SCORES aloud by a kitchen lamp
+to his mother, who can't read -- turning the smallest type in the
+paper into a map of a country he has decided he will walk to. The
+reaching isn't hunger. It's hope with its sleeves rolled up.
 
 EXT. THE TANNERY FLATS -- THE YARD -- DUSK
 
@@ -602,6 +627,26 @@ EXT. LIM'S CAFE -- BY THE TRACKS -- MIDNIGHT
 The only other light on. LIM, Chinese, feeds them all -- the
 brown one included -- at a back table, for cash, without a word.
 
+INT. THE MENDEZ KITCHEN -- NIGHT (YEARS PASSING)
+
+A SOTO NIECE (9) reads a far-off pitcher's letter aloud, turning
+his English into Spanish two old people can hold. DOLORES, hands
+still. DON AURELIO, blind now, eyes shut. They left the bucket
+behind when he climbed; they rebuilt it out of paper and a
+child's eyes.
+
+DON AURELIO
+(dictating back)
+You lost it because you were proud for one pitch.
+Be proud the rest of your life -- humble for one
+pitch -- and you'll be all right.
+
+INTERCUT -- A BACK LOT, A STRANGE TOWN -- NIGHT: the same bushel
+basket, lashed to a fence rail. CIRILO works alone the night of a
+win nobody else has stopped toasting. A win is only data. The
+THUNK in the willow -- the sound the family up the lane fell
+asleep to.
+
 EXT. BEACH FLATS -- THE BEACHCOMBERS' GROUND -- A SUNDAY
 
 The climb lets him home. His county's club, behind the bath
@@ -647,7 +692,7 @@ So we take him.
 The scout does the second sum -- not the arm, the gate.
 
 SCOUT
-He's thirty next year. Junk-baller -- no
+He's twenty-seven. Junk-baller -- no
 fastball for a poster, no name a marquee will
 carry, a tannery story that's no story.
 Crowds want youth and a man they can chant.
@@ -833,6 +878,33 @@ front of him at last, a tannery stain still under his nails, the old
 glove his own family made him on the sill. For one held breath he is
 not second to any man alive.
 
+EXT. THE MAJOR LEAGUES -- A WONDER -- MONTAGE (1918)
+
+The boy who read the leagues in agate now stands inside the
+column. FENWAY's wall. The POLO GROUNDS' tiers. COMISKEY, the
+biggest of all. The PULLMAN cars stitching a continent -- a man
+carried, not made to walk. CIRILO at the window, face unguarded;
+REBECCA watching him, not the country.
+
+CIRILO
+Sixteen clubs. Two leagues, one ladder, one rung
+at the top. The whole season's the shape of my
+life -- first, or nothing. I wish the old man could
+see it.
+
+INTERCUT -- THE KITCHEN: the niece reads his wonder aloud. DON
+AURELIO, dying, weeps -- not from grief, but from the thing the
+curse was built to keep out.
+
+DON AURELIO
+I was wrong about the curse -- or you broke it.
+You went where they said we couldn't. No one --
+not the bank, not the court, not the grave -- can
+take that back. Throw the dying ball. Watch the sky.
+
+DOLORES, dry-eyed, forgets nothing: her son's voice in a child's
+mouth, the key she gave him returned at last.
+
 EXT. FENWAY PARK -- A TUESDAY IN JULY (1918)
 
 Heat off the infield. A spare, gray-templed man warms up easy.
@@ -848,20 +920,21 @@ In the seventh, the bleachers find it -- low, then all together:
 CROWD
 EL CID -- EL CID -- EL CID --
 
-Ten thousand Boston throats chanting a dead Castilian's name at
-a tanner's son. Cirilo takes the ball back, face blank.
+Ten thousand Boston throats chanting the grand borrowed name at a
+tanner's son, every one of them on his feet for him. Cirilo takes
+the ball back, face blank.
 
 CIRILO (V.O.)
-It's not my name. But they're on their feet,
-and they're saying a name, and I made them do
-it. It's the closest they'll ever come. And
-God forgive me -- I'll take it.
+They're on their feet. For me. The bottle boy.
+Roaring a name -- and the name means me. I made
+them do it, with the thing the old man put in
+my arm. After all these years -- let it come.
 
 EXT. FENWAY PARK -- A GRAY AFTERNOON (THE DUEL)
 
 The Senators have WALTER JOHNSON. The Big Train -- the fastest
 arm in the game, pure speed, no deception. Barrow gives the ball
-to Cirilo. Power against the lie.
+to Cirilo. Power against the craft.
 
 Nine innings, no score. The crowd dawns to it: the old brown
 junk-baller is matching the Big Train pitch for pitch, ZERO for
@@ -880,12 +953,25 @@ doesn't whoop. He looks once at the flat gray sky -- out of an
 old habit -- for a bird that isn't there.
 
 CIRILO (V.O.)
-I was this good the whole time.
+This is the thing the old man gave me, off a
+bucket. I didn't get here alone -- I carried
+all of them up here with me.
 
-INT./EXT. THE WORLD SERIES -- THE STRIKEOUT
+INT./EXT. THE 1918 WORLD SERIES -- TWO STARTS
 
-Bases loaded, two out. The Cubs' FRED MERKLE digs in. SCHANG
-crouches.
+GAME TWO. Cirilo throws the best game of his life and LOSES it -- a
+bad-hop grounder, a run on dirt and luck, 2 to 1, not an earned run
+against him. He sits with the warm-up ball, an old man down a game in
+the only Series the arm may ever give him, certain this is just how it
+ends for a man like him: the right work, the wrong bounce. Second,
+once more.
+
+HOOPER
+(sitting down beside him)
+There's more games, old man.
+
+GAME SIX. THE CLINCHER. Bases loaded, two out, the whole season on the
+next pitch -- and the Cubs' FRED MERKLE digs in. SCHANG crouches.
 
 Pitch one -- fastball IN, under the hands. (Ball.) Pitch two --
 the change, same arm, nothing behind it; Merkle's swing dies out
@@ -900,30 +986,45 @@ wants it. He swings from his heels --
 -- and it drops off the table. The bat goes through empty air.
 Schang's mitt takes it at the shin. The umpire's arm goes up.
 
-The crowd sees a strikeout. Schang sees a man out-thought, sixty
-feet at a time, on the one fair square -- and winning.
+The crowd sees a strikeout. Schang sees a man out-thought, sixty feet
+at a time, on the one fair square -- and winning. The park comes
+apart. They lift him off the mound a champion -- FIRST -- and ten
+thousand throats roar the name they gave him, EL CID, in pure love,
+and the Game Two loss washes clean.
 
-EXT. THE STREETS OF BOSTON -- NIGHT (THE CELEBRATION)
+EXT. THE STREETS OF BOSTON -- NIGHT (THE PARADE)
 
-They carry him through the streets. FORTY THOUSAND people
-shoulder to shoulder in the wet dark, passing the champion
-overhead, his SON held up in a knit cap. For one night Cirilo
-Méndez is not second to any man in America.
+They carry him through the streets. FORTY THOUSAND people in the wet
+dark, passing the champion overhead; REBECCA and the baby up on a
+wagon bed; his SON held high in a knit cap, laughing because his
+father is laughing. For one night Cirilo Méndez is not second to any
+man in America, and he lets the whole grateful city close around him,
+and is -- there's no smaller word -- happy.
 
-And the whole town is already sick.
+EXT. ALONG THE RIVER -- A CLEAR COLD AFTERNOON (DAYS LATER)
 
-CIRILO (V.O.)
-They spent seventy years refusing to embrace
-my people. The one time they did, it was the
-embrace that did what the refusal never had.
+CIRILO carries his son, naming the world for him in Spanish -- agua,
+pájaro, cielo -- REBECCA's arm through his. An ordinary family on an
+ordinary afternoon.
 
-He goes down four days later.
+Then -- between one streetlamp and the next -- his arm goes heavy.
+Sweat on his face in the cold. A hard shiver takes the whole of him.
 
-INT. A SMALL BOSTON FLAT -- THE ROOM -- NIGHT (NOVEMBER 1918)
+CIRILO
+(working to sound light)
+Rebecca. Take him. My hands have gone strange.
+
+She takes the baby. He makes the last blocks home on will alone, the
+fever climbing in him like water up a piling.
+
+INT. THE COLD ROOMS -- NIGHT (OCTOBER 1918)
+
+Four days. That is all it takes the strong, that autumn. On the
+fourth, the fever steps back to leave him a few clear minutes.
 
 The wrong quiet. On the sill: the championship ball, a candle, a
-rosary, a small Ohlone basket. REBECCA on the edge of the bed,
-their son asleep against her. In the corner, AOIFE prays.
+rosary, a small Ohlone basket. REBECCA on the edge of the bed, their
+son awake against her. In the corner, AOIFE prays.
 
 Cirilo's hand finds the old glove on the blanket. He turns it
 once -- and folds his son's small fingers around it.
@@ -968,7 +1069,7 @@ Then the SECOND wire. The influenza. He's dead.
 DOLORES takes it at the stove. Finishes cooking -- people have to
 eat. Then climbs the hill in the rain.
 
-EXT. THE HILL ABOVE THE BAY -- NOVEMBER 1918 -- THE BURIAL
+EXT. THE HILL ABOVE THE BAY -- LATE OCTOBER 1918 -- THE BURIAL
 
 They bring him home. And the town comes. The TANNERY SHUTS its
 gates -- the first time ever, for a Mexican. Esteban's old crew
@@ -983,9 +1084,10 @@ and hangs over the open grave, motionless against the gray. No
 one takes it for a coincidence.
 
 DOLORES (V.O.)
-El Halcón. The hawk. They called him every
-name but his. Now the family takes him back,
-and gives him the right one.
+El Halcón. The hawk. The world loved him by the
+grand name it gave him. The family knew him by
+the truer one. Now we take him back -- and give
+it to him again.
 
 The hawk tilts and slides off north along the ridge.
 

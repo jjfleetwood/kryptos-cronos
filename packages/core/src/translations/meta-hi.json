@@ -1,357 +1,1173 @@
 {
   "stages": {
-    "bt-01": { "t": "एथेंस से प्रस्थान", "w": "पिरायस बंदरगाह" },
-    "bt-02": { "t": "हर डिवाइस को पता चाहिए", "w": "एथेंस अंतर्राष्ट्रीय हवाई अड्डा" },
-    "bt-03": { "t": "बैग पैक करना", "w": "JFK हवाई अड्डा, सामान दावा क्षेत्र" },
-    "bt-04": { "t": "हाईवे इंटरचेंज", "w": "I-80 पश्चिम, डेनवर इंटरचेंज" },
-    "bt-05": { "t": "इंटरनेट जीपीएस", "w": "AAA ट्रैवल ऑफिस" },
-    "bt-06": { "t": "आपका हार्डवेयर पासपोर्ट", "w": "अमेरिकी सीमा शुल्क और सीमा सुरक्षा" },
-    "bt-07": { "t": "शहर का नियंत्रण", "w": "शहर की सीमाएं — सांता क्रूज़" },
-    "bt-08": { "t": "बंदरगाह के द्वार", "w": "सांता क्रूज़ बंदरगाह" },
-    "bt-09": { "t": "पड़ोस और जिले", "w": "सांता क्रूज़ का डाउनटाउन" },
-    "bt-10": { "t": "सड़क के नियम", "w": "हाईवे 1, प्रशांत तट" },
-    "bt-11": { "t": "तरंग पूर्वानुमान पढ़ना", "w": "स्टीमर लेन पूर्वानुमान बोर्ड" },
-    "bt-12": { "t": "आपका सर्फबोर्ड", "w": "पैसिफिक एवे. की सर्फ शॉप" },
-    "bt-13": { "t": "सर्फ शॉप और सर्फर", "w": "O'Neill सर्फ स्कूल" },
-    "bt-14": { "t": "सुरक्षा पट्टा", "w": "लाइफगार्ड टॉवर #3, काउवेल बीच" },
-    "bt-15": { "t": "सदस्यता बैंड", "w": "सर्फ क्लब रजिस्ट्रेशन काउंटर" },
-    "bt-16": { "t": "सर्फ लाइन पर कॉल करना", "w": "सर्फ कंडीशन इन्फो लाइन" },
-    "bt-17": { "t": "तरंग का आकार", "w": "प्लेज़र पॉइंट का ब्रेक" },
-    "bt-18": { "t": "लहर का इंतज़ार", "w": "सर्फ फोरकास्ट टर्मिनल, बोर्डवॉक" },
-    "bt-19": { "t": "बदले हुए रिकॉर्ड", "w": "सर्फ कॉम्पिटिशन आर्काइव, बीच फ्लैट्स" },
-    "bt-20": { "t": "भीड़ तितर-बितर करना", "w": "फोर माइल बीच" },
-    "bt-21": { "t": "नकली चारा पहचानना", "w": "फिशरमैन्स वार्फ" },
-    "bt-22": { "t": "दोहरा ताला", "w": "चार्टर बोट डॉक, कोस्ट गार्ड पियर" },
-    "bt-23": { "t": "चारे के लॉकर का कॉम्बिनेशन", "w": "द टैकल शॉप, कैनरी रो" },
-    "bt-24": { "t": "खुली रेडियो फ्रीक्वेंसी", "w": "खुले जल, मॉन्टेरी खाड़ी" },
-    "bt-25": { "t": "मछुआरे की बड़ी-बड़ी बातें", "w": "द डॉक कैंटीना" },
-    "bt-26": { "t": "पोत की मरम्मत", "w": "बोट मेंटेनेंस यार्ड, सांता क्रूज़ हार्बर" },
-    "bt-27": { "t": "जब जाल फटता है", "w": "कैच इंस्पेक्शन स्टेशन, मॉस लैंडिंग" },
-    "bt-28": { "t": "केल्प वन में नौवहन", "w": "केल्प वन, मॉन्टेरी खाड़ी" },
-    "bt-29": { "t": "आप क्या और किसके साथ साझा करते हैं", "w": "हार्बरमास्टर का कार्यालय" },
-    "bt-30": { "t": "आदमी समुद्र में प्रोटोकॉल", "w": "सांता क्रूज़ स्मॉल क्राफ्ट हार्बर — डॉक पर वापसी" },
-    "audit-01": { "t": "शासन ढांचा", "w": "ISACA वैश्विक मुख्यालय" },
-    "audit-02": { "t": "तिजोरी में जोखिम", "w": "फेडरल रिजर्व बोर्ड" },
-    "audit-03": { "t": "ऑपरेशन रूम में सामान्य नियंत्रण", "w": "न्यूयॉर्क स्टॉक एक्सचेंज" },
-    "audit-04": { "t": "जानने की आवश्यकता", "w": "CIA मुख्यालय" },
-    "audit-05": { "t": "कोई अनधिकृत परिवर्तन नहीं", "w": "NASA जॉनसन स्पेस सेंटर" },
-    "audit-06": { "t": "जब सिस्टम विफल होते हैं", "w": "FEMA नेशनल रिस्पॉन्स सेंटर" },
-    "audit-07": { "t": "घटना प्रतिक्रिया तत्परता", "w": "CISA मुख्यालय" },
-    "audit-08": { "t": "आपूर्ति श्रृंखला का खतरा", "w": "पेंटागन" },
-    "audit-09": { "t": "भूले जाने का अधिकार", "w": "यूरोपीय डेटा सुरक्षा बोर्ड" },
-    "audit-10": { "t": "संचालन के नियम", "w": "NIST परिसर" },
-    "audit-11": { "t": "साक्ष्य की श्रृंखला", "w": "SEC मुख्यालय" },
-    "audit-12": { "t": "अंतिम रिपोर्ट", "w": "ISACA शिकागो चैप्टर" },
-    "audit-t01": { "t": "उजागर API", "w": "Stripe इंजीनियरिंग HQ" },
-    "audit-t02": { "t": "रहस्य उजागर", "w": "HashiCorp मुख्यालय" },
-    "audit-t03": { "t": "क्लाउड सुरक्षा बाधाएं", "w": "AWS re:Inforce सम्मेलन" },
-    "audit-t04": { "t": "कौन क्या कर सकता है", "w": "Okta मुख्यालय" },
-    "audit-t05": { "t": "कंटेनर पलायन", "w": "Docker इंजीनियरिंग" },
-    "audit-t06": { "t": "कोड के रूप में बुनियादी ढांचा, डिफ़ॉल्ट रूप से असुरक्षित", "w": "HashiCorp Terraform Cloud" },
-    "audit-t07": { "t": "स्थैतिक और गतिशील विश्लेषण", "w": "Snyk मुख्यालय" },
-    "audit-t08": { "t": "सपाट नेटवर्क", "w": "Palo Alto Networks" },
-    "audit-t09": { "t": "विश्राम में डेटा", "w": "Snowflake मुख्यालय" },
-    "audit-t10": { "t": "मौन उल्लंघन", "w": "Datadog मुख्यालय" },
-    "audit-t11": { "t": "कभी भरोसा मत करो, हमेशा सत्यापित करो", "w": "Google Cloud मुख्यालय" },
-    "audit-t12": { "t": "ऑडिट को स्वचालित करें", "w": "AWS Security Hub" },
-    "audit-a01": { "t": "ऑडिट उपकरण के रूप में टूल्स", "w": "Anthropic HQ" },
-    "audit-a02": { "t": "एंडपॉइंट मैपर", "w": "API Security Lab" },
-    "audit-a03": { "t": "रहस्य शिकारी", "w": "Secrets Scanning Lab" },
-    "audit-a04": { "t": "क्लाउड मैपर", "w": "Cloud Audit Lab" },
-    "audit-a05": { "t": "नीति फुसफुसाने वाला", "w": "IAM Analysis Lab" },
-    "audit-a06": { "t": "प्रोटोकॉल एकीकरणकर्ता", "w": "MCP Integration Lab" },
-    "audit-a07": { "t": "बुनियादी ढांचा ऑडिटर", "w": "IaC Scanning Lab" },
-    "audit-a08": { "t": "साक्ष्य संग्रहकर्ता", "w": "Evidence Collection Lab" },
-    "audit-a09": { "t": "ऑर्केस्ट्रेटर", "w": "Multi-Agent Lab" },
-    "audit-a10": { "t": "रिपोर्ट लेखक", "w": "Report Generation Lab" },
-    "audit-a11": { "t": "प्रहरी", "w": "Continuous Monitoring Lab" },
-    "audit-a12": { "t": "पूर्ण पाइपलाइन", "w": "Agentic Audit Control Center" },
-    "audit-cm01": { "t": "निगरानी आधार रेखा", "w": "NIST मुख्यालय" },
-    "audit-cm02": { "t": "इंटेलिजेंस इंजन", "w": "IBM Security Intelligence Center" },
-    "audit-cm03": { "t": "व्यवहार लेंस", "w": "Securonix UEBA Research Lab" },
-    "audit-cm04": { "t": "नेटवर्क आंख", "w": "Darktrace Global Threat Center" },
-    "audit-cm05": { "t": "क्लाउड पहरेदार", "w": "AWS Security Operations Center" },
-    "audit-cm06": { "t": "इंटेलिजेंस फीड", "w": "FS-ISAC Threat Intelligence Center" },
-    "audit-cm07": { "t": "प्रतिक्रिया स्वचालक", "w": "Palo Alto Networks Cortex XSOAR Lab" },
-    "audit-cm08": { "t": "छल के उस्ताद", "w": "CISA Deception Research Center" },
-    "audit-cm09": { "t": "विश्वास ऑडिटर", "w": "Google BeyondCorp Research Lab" },
-    "audit-cm10": { "t": "एकीकृत रक्षक", "w": "Microsoft Defender XDR Operations Center" },
-    "audit-cm11": { "t": "अनुपालन इंजन", "w": "ISACA Compliance Research Center" },
-    "audit-cm12": { "t": "परिपक्वता मैट्रिक्स", "w": "Gartner Security Research Institute" },
-    "mitre-01": { "t": "खुफिया जानकारी संग्रह", "w": "MITRE Corporation मुख्यालय" },
-    "mitre-02": { "t": "शस्त्रागार निर्माता", "w": "Dark Web बुनियादी ढांचा" },
-    "mitre-03": { "t": "पहली पैठ", "w": "RSA सम्मेलन" },
-    "mitre-04": { "t": "कोड निष्पादक", "w": "NSA" },
-    "mitre-05": { "t": "अधिवासी", "w": "Mandiant मुख्यालय" },
-    "mitre-06": { "t": "मुकुट छीनने वाला", "w": "SolarWinds मुख्यालय" },
-    "mitre-07": { "t": "भूत", "w": "CrowdStrike मुख्यालय" },
-    "mitre-08": { "t": "चाबी चोर", "w": "NotPetya हमला" },
-    "mitre-09": { "t": "प्रसारक", "w": "Colonial Pipeline मुख्यालय" },
-    "mitre-10": { "t": "मानचित्रकार", "w": "APT29 ऑपरेशन" },
-    "mitre-11": { "t": "डेटा तस्कर", "w": "Equifax मुख्यालय" },
-    "mitre-12": { "t": "विस्फोटक", "w": "Kaseya VSA हमला" },
-    "atlas-01": { "t": "मॉडल प्रोफाइलर", "w": "MITRE Corporation मुख्यालय" },
-    "atlas-02": { "t": "प्रॉक्सी मॉडल बिल्डर", "w": "Shadow AI Lab" },
-    "atlas-03": { "t": "आपूर्ति श्रृंखला घुसपैठिया", "w": "HuggingFace मुख्यालय" },
-    "atlas-04": { "t": "ब्लैक बॉक्स शोधकर्ता", "w": "OpenAI मुख्यालय" },
-    "atlas-05": { "t": "विरोधी हमला निर्माता", "w": "MIT CSAIL" },
-    "atlas-06": { "t": "डिटेक्टर से बचने वाला", "w": "CrowdStrike AI Lab" },
-    "atlas-07": { "t": "पाइपलाइन मैपर", "w": "Google DeepMind" },
-    "atlas-08": { "t": "मेमोरी माइनर", "w": "Microsoft Research" },
-    "atlas-09": { "t": "स्थानांतरण एजेंट", "w": "Carnegie Mellon CyLab" },
-    "atlas-10": { "t": "मॉडल चोर", "w": "Scale AI मुख्यालय" },
-    "atlas-11": { "t": "जहर देने वाला", "w": "Microsoft Tay घटना" },
-    "atlas-12": { "t": "AI किल चेन", "w": "NIST AI जोखिम प्रबंधन ढांचा" },
-    "llm-01": { "t": "प्रॉम्प्ट इंजेक्टर", "w": "OpenAI मुख्यालय" },
-    "llm-02": { "t": "मेमोरी लीक", "w": "Samsung Electronics मुख्यालय" },
-    "llm-03": { "t": "जहरीला मॉडल", "w": "HuggingFace मुख्यालय" },
-    "llm-04": { "t": "Tay 2.0", "w": "Microsoft Research Lab" },
-    "llm-05": { "t": "असंसाधित आउटपुट", "w": "GitHub मुख्यालय" },
-    "llm-06": { "t": "भगोड़ा एजेंट", "w": "Salesforce Tower" },
-    "llm-07": { "t": "उजागर सिस्टम प्रॉम्प्ट", "w": "Anthropic मुख्यालय" },
-    "llm-08": { "t": "जहरीला वेक्टर स्टोर", "w": "Pinecone मुख्यालय" },
-    "llm-09": { "t": "हैलुसिनेशन इंजन", "w": "Reuters मुख्यालय" },
-    "llm-10": { "t": "टोकन नाली", "w": "AWS re:Invent" },
-    "llm-11": { "t": "रेड टीम", "w": "Google DeepMind" },
-    "llm-12": { "t": "AI सुरक्षा कार्यक्रम", "w": "NIST AI RMF मुख्यालय" },
-    "quantum-01": { "t": "क्यूबिट जागता है", "w": "IBM Quantum Network Center" },
-    "quantum-02": { "t": "शोर की गिलोटिन", "w": "Bell Labs" },
-    "quantum-03": { "t": "ग्रोवर का भूत", "w": "NIST परिसर गैदर्सबर्ग" },
-    "quantum-04": { "t": "अभी काटो, बाद में डिक्रिप्ट करो", "w": "NSA Data Center Fort Meade" },
-    "quantum-05": { "t": "दूरी पर रहस्यमय क्रिया", "w": "Cisco Quantum Labs" },
-    "quantum-06": { "t": "NISQ युग", "w": "Google Quantum AI परिसर" },
-    "quantum-07": { "t": "त्रुटि सुधार की दीवार", "w": "Caltech IQIM" },
-    "quantum-08": { "t": "क्वांटम खतरा रजिस्टर", "w": "CISA Cybersecurity Division" },
-    "quantum-09": { "t": "सच्ची यादृच्छिकता", "w": "ANU Quantum Optics Lab" },
-    "quantum-10": { "t": "Q-Day उलटी गिनती", "w": "Five Eyes Intelligence Community HQ" },
-    "quantum-b01": { "t": "NIST की PQC दौड़", "w": "NIST Computer Security Division" },
-    "quantum-b02": { "t": "शोरगुल वाला नेटवर्क", "w": "MIT CSAIL" },
-    "quantum-b03": { "t": "Kyber: नया की एक्सचेंज", "w": "IBM Research Zurich" },
-    "quantum-b04": { "t": "Dilithium: क्वांटम हस्ताक्षर", "w": "Qualcomm Security Research" },
-    "quantum-b05": { "t": "हैश ट्री जंगल", "w": "Radboud University Cryptography Lab" },
-    "quantum-b06": { "t": "FALCON: तेज़ हस्ताक्षर", "w": "Thales Cryptographic Research" },
-    "quantum-b07": { "t": "हाइब्रिड पुल", "w": "Mozilla Security Engineering" },
-    "quantum-b08": { "t": "क्वांटम-प्रतिरोधी TLS", "w": "Let's Encrypt / ISRG" },
-    "quantum-b09": { "t": "क्रिप्टोग्राफिक इन्वेंटरी", "w": "CISA PQC Center of Excellence" },
-    "quantum-b10": { "t": "विश्वास से पहले सत्यापित करें", "w": "Trail of Bits Security Research" },
-    "quantum-c01": { "t": "BB84: पहला QKD प्रोटोकॉल", "w": "IBM T.J. Watson Research Center" },
-    "quantum-c02": { "t": "QKD बुनियादी ढांचा: 600km रिकॉर्ड", "w": "Toshiba Research Europe" },
-    "quantum-c03": { "t": "Micius: चीन का क्वांटम उपग्रह", "w": "चीनी विज्ञान अकादमी" },
-    "quantum-c04": { "t": "क्रिप्टोग्राफिक चपलता", "w": "NIST Computer Security Division" },
-    "quantum-c05": { "t": "क्वांटम-प्रतिरोधी VPN सेटअप", "w": "WireGuard / IETF PQUIP कार्य समूह" },
-    "quantum-c06": { "t": "क्वांटम-प्रतिरोधी PKI माइग्रेशन", "w": "DigiCert मुख्यालय" },
-    "quantum-c07": { "t": "liboqs: ओपन क्वांटम सेफ", "w": "University of Waterloo" },
-    "quantum-c08": { "t": "FIPS 140-3 PQC अनुपालन", "w": "NIST Cryptographic Module Validation Program" },
-    "quantum-c09": { "t": "पोस्ट-क्वांटम शासन", "w": "Fortune 500 CISO Office" },
-    "quantum-c10": { "t": "क्वांटम-प्रतिरोधी स्टैक: संश्लेषण", "w": "Quantum Security Summit" },
-    "umbrella-01": { "t": "अदृश्य ढाल", "w": "Cisco Umbrella (OpenDNS) HQ" },
-    "umbrella-02": { "t": "खोखली पाइप", "w": "Marina Bay Financial Centre" },
-    "umbrella-03": { "t": "पैटर्न जनरेटर", "w": "NHS Barts Health Trust" },
-    "umbrella-04": { "t": "बदलती रेत", "w": "NYSE Data Center" },
-    "umbrella-05": { "t": "जहरीला दर्पण", "w": "University of Twente IoT Security Lab" },
-    "umbrella-06": { "t": "जाली पासपोर्ट", "w": "Pentagon Contractor Campus" },
-    "umbrella-07": { "t": "नीति की दीवार", "w": "Chicago Public Schools District Office" },
-    "umbrella-08": { "t": "भूत चैनल", "w": "Shinjuku Commercial District" },
-    "umbrella-09": { "t": "इंटेलिजेंस जाल", "w": "Cisco Talos Intelligence Center" },
-    "umbrella-10": { "t": "घेरे में नेटवर्क", "w": "ERCOT Network Control Center" },
-    "tapestry-01": { "t": "समय के धागे", "w": "मिस्र संग्रहालय" },
-    "tapestry-02": { "t": "फ्लेमिश उस्ताद", "w": "Château d'Angers" },
-    "tapestry-03": { "t": "रेशम और वैभव", "w": "पैलेस संग्रहालय" },
-    "tapestry-04": { "t": "अमेरिका के बुनकर", "w": "National Museum of the American Indian" },
-    "tapestry-05": { "t": "करघे के रंग", "w": "Kelmscott Manor" },
-    "tapestry-06": { "t": "ताना और बाना", "w": "Manufacture des Gobelins" },
-    "tapestry-07": { "t": "आपका पहला करघा", "w": "Bauhaus Archive" },
-    "tapestry-08": { "t": "जोड़, गांठ और बनावट", "w": "American Tapestry Alliance Studio" },
-    "tapestry-09": { "t": "अपना कार्टून बनाना", "w": "Musée de la Tapisserie Contemporaine" },
-    "tapestry-10": { "t": "ऑप्टिकल रंग जादू", "w": "Color Field Studio" },
-    "tapestry-11": { "t": "आज की टेपेस्ट्री", "w": "The Textile Museum" },
-    "tapestry-12": { "t": "अपनी पहली टेपेस्ट्री शुरू करें", "w": "आपका स्टूडियो" },
-    "nails-01": { "t": "अपना कैनवास जानें", "w": "Nail Manufacturers Council Expo" },
-    "nails-02": { "t": "बिना पानी का नियम", "w": "OPI Innovation Lab" },
-    "nails-03": { "t": "निर्जलीकरण और आधार", "w": "CND Science Lab" },
-    "nails-04": { "t": "परफेक्ट ड्राई मैनीक्योर", "w": "Minx Nails Studio" },
-    "nails-05": { "t": "समान रंग की कला", "w": "Essie मुख्यालय" },
-    "nails-06": { "t": "तीन-परत प्रणाली", "w": "China Glaze Lab" },
-    "nails-07": { "t": "जब पॉलिश उठती है", "w": "NAILS Magazine मुख्यालय" },
-    "nails-08": { "t": "जब पॉलिश टूटती है", "w": "Gelish Studio" },
-    "nails-09": { "t": "आपका किशोर नेल बिज़नेस", "w": "Young Nails Academy" },
-    "nails-10": { "t": "अपना नेल सैलून खोलना", "w": "Small Business Administration" },
-    "hair-color-01": { "t": "बालों में रंग कैसे रहता है", "w": "L'Oréal Professional Research Lab" },
-    "hair-color-02": { "t": "स्तर प्रणाली", "w": "Wella Professionals Academy" },
-    "hair-color-03": { "t": "टोन, अंडरटोन और रंग चक्र", "w": "Joico Color Institute" },
-    "hair-color-04": { "t": "डेवलपर और लिफ्ट", "w": "Schwarzkopf Professional Academy" },
-    "hair-color-05": { "t": "स्थायी, अर्ध-स्थायी और डेमी", "w": "Paul Mitchell Schools" },
-    "hair-color-06": { "t": "सुरक्षा पहले — त्वचा परीक्षण और स्ट्रैंड परीक्षण", "w": "American Board of Certified Haircolorists" },
-    "hair-color-07": { "t": "जड़ अनुप्रयोग और पूर्ण रंग", "w": "Redken Academy" },
-    "hair-color-08": { "t": "ब्लीचिंग और सुरक्षित लाइटनिंग", "w": "Pravana Color Lab" },
-    "hair-color-09": { "t": "टोनिंग और सुधारात्मक रंग", "w": "Kenra Professional Studio" },
-    "hair-color-10": { "t": "हेयर कलरिंग बिज़नेस बनाना", "w": "Professional Beauty Association HQ" },
-    "hair-styling-01": { "t": "अपना बाल प्रकार जानें", "w": "Vidal Sassoon Academy" },
-    "hair-styling-02": { "t": "उपकरण और गर्मी सुरक्षा", "w": "Sam Villa Education" },
-    "hair-styling-03": { "t": "परफेक्ट ब्लोआउट", "w": "Drybar" },
-    "hair-styling-04": { "t": "फ्लैट आयरन कौशल", "w": "ghd (Good Hair Day) HQ" },
-    "hair-styling-05": { "t": "कर्लर और वेवर", "w": "Hot Tools International" },
-    "hair-styling-06": { "t": "चोटी के मूल सिद्धांत", "w": "Mielle Organics" },
-    "hair-styling-07": { "t": "अपडो, पोनीटेल और हाफ-अप", "w": "Kevin Murphy Education" },
-    "hair-styling-08": { "t": "घुंघराले बाल तकनीक", "w": "DevaCurl" },
-    "hair-styling-09": { "t": "ग्राहक परामर्श", "w": "Cosmetology Institute of America" },
-    "hair-styling-10": { "t": "अपना हेयर बिज़नेस शुरू करना", "w": "Professional Beauty Association" },
-    "driving-1-01": { "t": "आपके परमिट का रास्ता", "w": "California DMV मुख्यालय" },
-    "driving-1-02": { "t": "लिखित परीक्षा में महारत", "w": "गोल्डन गेट ब्रिज" },
-    "driving-1-03": { "t": "यातायात संकेत भाग 1", "w": "Hollywood Boulevard" },
-    "driving-1-04": { "t": "यातायात संकेत भाग 2", "w": "Pacific Coast Highway" },
-    "driving-1-05": { "t": "गति सीमा और दूरी", "w": "Mulholland Drive" },
-    "driving-1-06": { "t": "रास्ते का अधिकार", "w": "Lombard Street" },
-    "driving-1-07": { "t": "DUI कानून और किशोर प्रतिबंध", "w": "California Highway Patrol Academy" },
-    "driving-1-08": { "t": "व्यावहारिक ड्राइविंग परीक्षा", "w": "DMV परीक्षण केंद्र" },
-    "driving-2-01": { "t": "अपनी कार जानें", "w": "खाली पार्किंग स्थल" },
-    "driving-2-02": { "t": "सहज शुरुआत और रुकावट", "w": "शांत आवासीय सड़क" },
-    "driving-2-03": { "t": "मोड़ और स्टीयरिंग", "w": "सामुदायिक कॉलेज पार्किंग स्थल" },
-    "driving-2-04": { "t": "लेन बदलना और मर्ज करना", "w": "हाईवे 101 एंट्रेंस रैंप" },
-    "driving-2-05": { "t": "पार्किंग कौशल", "w": "डाउनटाउन स्ट्रीट" },
-    "driving-2-06": { "t": "हाईवे ड्राइविंग", "w": "इंटरस्टेट 5" },
-    "driving-2-07": { "t": "रात और खराब मौसम में ड्राइविंग", "w": "Pacific Coast Highway सूर्यास्त पर" },
-    "driving-2-08": { "t": "आपकी पहली एकल यात्रा", "w": "California आवासीय पड़ोस" },
-    "driving-3-01": { "t": "आंखें ऊपर, फोन नीचे", "w": "हाईवे डिजिटल बिलबोर्ड" },
-    "driving-3-02": { "t": "रक्षात्मक ड्राइविंग", "w": "California Highway Patrol Academy" },
-    "driving-3-03": { "t": "शांत रहें", "w": "लॉस एंजिलिस हाईवे सिस्टम" },
-    "driving-3-04": { "t": "सड़क साझा करें", "w": "सैन फ्रांसिस्को बाइक लेन नेटवर्क" },
-    "driving-3-05": { "t": "कार देखभाल की मूल बातें", "w": "ऑटो रिपेयर शॉप गैरेज" },
-    "driving-3-06": { "t": "दुर्घटना के बाद", "w": "डैशकैम वाला California चौराहा" },
-    "driving-3-07": { "t": "खराबी और सड़क सुरक्षा", "w": "हाईवे का कंधा" },
-    "driving-3-08": { "t": "एक अच्छा चालक बनना", "w": "California की खुली सड़क, सूर्योदय पर" },
-    "baseball-1-01": { "t": "मैदान और खेल", "w": "Doubleday Field" },
-    "baseball-1-02": { "t": "हर खिलाड़ी को ये नियम जाने चाहिए", "w": "Little League International Headquarters" },
-    "baseball-1-03": { "t": "बल्लेबाजी की कला", "w": "Fenway Park" },
-    "baseball-1-04": { "t": "पिचिंग के मूल सिद्धांत", "w": "Wrigley Field" },
-    "baseball-1-05": { "t": "रक्षा और थ्रोइंग", "w": "PNC Park" },
-    "baseball-1-06": { "t": "शॉर्टस्टॉप खेल", "w": "Yankee Stadium" },
-    "baseball-1-07": { "t": "आउटफील्ड खेल", "w": "Dodger Stadium" },
-    "baseball-1-08": { "t": "बेस रनिंग", "w": "Camden Yards" },
-    "baseball-1-09": { "t": "कैचिंग — मैदान का जनरल", "w": "Coors Field" },
-    "baseball-1-10": { "t": "खेल भावना और खेल की आत्मा", "w": "Little League World Series Stadium" },
-    "baseball-2-01": { "t": "आसन", "w": "Dodger Stadium" },
-    "baseball-2-02": { "t": "पिचर को पढ़ना", "w": "Dodger Stadium — Home Plate" },
-    "baseball-2-03": { "t": "स्विंग यांत्रिकी", "w": "Dodger Stadium — The Batter's Eye" },
-    "baseball-2-04": { "t": "प्लेट अनुशासन", "w": "Dodger Stadium — The Walk-Up Circle" },
-    "baseball-2-05": { "t": "पावर हिट", "w": "Dodger Stadium — Left Field Pavilion" },
-    "baseball-2-06": { "t": "संपर्क हिट और दो-स्ट्राइक समायोजन", "w": "Ebbets Field — Historical Site" },
-    "baseball-2-07": { "t": "फास्टबॉल हिट करना", "w": "Dodger Stadium — Batting Cage Tunnel" },
-    "baseball-2-08": { "t": "कर्वबॉल हिट करना", "w": "Dodger Stadium — The Mound View" },
-    "baseball-2-09": { "t": "डॉजर बल्लेबाजी किंवदंतियां", "w": "Dodger Stadium — Monument Park" },
-    "baseball-2-10": { "t": "अपनी हिटिंग दिनचर्या बनाना", "w": "Dodger Stadium — Field Level Batting Cage" },
-    "baseball-3-01": { "t": "कूल्हे-कंधे का अलगाव", "w": "Dodger Stadium — Home Plate Circle" },
-    "baseball-3-02": { "t": "हाथ का रास्ता", "w": "Camelback Ranch — Glendale Spring Training" },
-    "baseball-3-03": { "t": "बैरल प्रबंधन", "w": "Petco Park" },
-    "baseball-3-04": { "t": "लोड यांत्रिकी और समय", "w": "Camelback Ranch — Minor League Fields" },
-    "baseball-3-05": { "t": "दो-स्ट्राइक फोकस: महारत", "w": "Oracle Park" },
-    "baseball-3-06": { "t": "स्थितिजन्य हिटिंग", "w": "Fenway Park" },
-    "baseball-3-07": { "t": "पिच अनुक्रमण और भविष्यवाणी", "w": "Dodger Stadium — Video Room" },
-    "baseball-3-08": { "t": "प्रतिकूल परिस्थितियों में हिटिंग", "w": "Dodger Stadium vs. Coors Field vs. Fenway Park" },
-    "baseball-3-09": { "t": "स्लम्प की मानसिक संरचना", "w": "Dodger Stadium — Clubhouse" },
-    "baseball-3-10": { "t": "वीडियो विश्लेषण और जैव यांत्रिकी", "w": "Camelback Ranch — Dodgers Technology Center" },
-    "baseball-4-01": { "t": "Statcast और डेटा क्रांति", "w": "Dodger Stadium — Statcast Tower" },
-    "baseball-4-02": { "t": "स्काउटिंग रिपोर्ट और पिचर की प्रवृत्तियां", "w": "Cooperstown Hall of Fame — Scouting Archives" },
-    "baseball-4-03": { "t": "बल्लेबाजी से पहले के अनुष्ठान और विज़ुअलाइज़ेशन", "w": "Camelback Ranch — Spring Training Facility" },
-    "baseball-4-04": { "t": "महत्वपूर्ण क्षणों में बल्लेबाजी", "w": "Dodger Stadium — Home Plate in October" },
-    "baseball-4-05": { "t": "प्लाटून स्प्लिट और मैचअप हिटिंग", "w": "Dodger Stadium — Dugout and Lineup Card" },
-    "baseball-4-06": { "t": "उन्नत पिच पहचान तकनीक", "w": "Camelback Ranch — Technology Lab" },
-    "baseball-4-07": { "t": "स्थिति-विशिष्ट हिटिंग अपेक्षाएं", "w": "Dodger Stadium — All Positions on the Diamond" },
-    "baseball-4-08": { "t": "स्विंग प्रशिक्षण", "w": "Camelback Ranch — Dodgers Spring Training Batting Cages" },
-    "baseball-4-09": { "t": "सर्वश्रेष्ठ डॉजर बल्लेबाज — तकनीकी विश्लेषण", "w": "Cooperstown Hall of Fame — Dodger Wing" },
-    "baseball-4-10": { "t": "आजीवन हिटिंग अभ्यास बनाना", "w": "Cooperstown Hall of Fame — Library and Research Center" },
-    "baseball-5-01": { "t": "पिचर का माउंड और स्थिति", "w": "Dodger Stadium — The Pitcher's Mound" },
-    "baseball-5-02": { "t": "पकड़", "w": "Camelback Ranch — Dodgers Spring Training" },
-    "baseball-5-03": { "t": "डिलीवरी: विंडअप यांत्रिकी", "w": "Dodger Stadium — The Mound, 1963" },
-    "baseball-5-04": { "t": "डिलीवरी: भुजा क्रिया", "w": "Baseball Hall of Fame" },
-    "baseball-5-05": { "t": "रिलीज़ पॉइंट और नियंत्रण", "w": "Dodger Stadium — प्लेट का काला किनारा" },
-    "baseball-5-06": { "t": "स्ट्रेच और धावक प्रबंधन", "w": "Dodger Stadium — फर्स्ट बेस लाइन" },
-    "baseball-5-07": { "t": "वेग और यह क्यों महत्वपूर्ण है — और क्यों नहीं", "w": "Turner Field — Greg Maddux Classroom" },
-    "baseball-5-08": { "t": "पिच काउंट और भुजा देखभाल", "w": "Little League World Series Volunteer Stadium" },
-    "baseball-5-09": { "t": "अपनी स्थिति की रक्षा करना (PFP)", "w": "Dodger Stadium — इनफील्ड" },
-    "baseball-5-10": { "t": "माउंड पर मानसिक फोकस", "w": "Dodger Stadium — अक्टूबर में माउंड" },
-    "baseball-6-01": { "t": "फोर-सीम फास्टबॉल", "w": "Dodger Stadium — माउंड" },
-    "baseball-6-02": { "t": "टू-सीम फास्टबॉल और सिंकर", "w": "Camelback Ranch — Dodgers Spring Training" },
-    "baseball-6-03": { "t": "चेंजअप", "w": "Dodger Stadium — Bullpen Mound" },
-    "baseball-6-04": { "t": "कर्वबॉल", "w": "Dodger Stadium — माउंड (Kershaw का कार्यालय)" },
-    "baseball-6-05": { "t": "स्लाइडर", "w": "Dodger Stadium — Bullpen at Game Speed" },
-    "baseball-6-06": { "t": "कटर", "w": "Yankee Stadium (Rivera का कैथेड्रल)" },
-    "baseball-6-07": { "t": "स्प्लिटर और फॉर्कबॉल", "w": "Dodger Stadium — 1995 Season (Nomo's Debut)" },
-    "baseball-6-08": { "t": "स्पिन रेट, स्पिन एक्सिस और Rapsodo", "w": "Camelback Ranch — Rapsodo Lab" },
-    "baseball-6-09": { "t": "पिच टनलिंग और धोखा", "w": "Dodger Stadium — पिचर के माउंड से प्लेट तक" },
-    "baseball-6-10": { "t": "उम्र के हिसाब से अपना शस्त्रागार बनाना", "w": "Camelback Ranch — Minor League Fields" },
-    "baseball-7-01": { "t": "बल्लेबाज को पढ़ना", "w": "Dodger Stadium" },
-    "baseball-7-02": { "t": "काउंट पर काम करना", "w": "Camelback Ranch — Glendale, Arizona" },
-    "baseball-7-03": { "t": "पिच अनुक्रमण", "w": "Dodger Stadium — The Pitcher's Mound" },
-    "baseball-7-04": { "t": "पहली बार बनाम तीसरी बार ऑर्डर से गुज़रना", "w": "Dodger Stadium — Bullpen" },
-    "baseball-7-05": { "t": "धावकों के साथ स्ट्रेच से पिचिंग", "w": "Dodger Stadium — First Base Line" },
-    "baseball-7-06": { "t": "उच्च-दबाव स्थितियां", "w": "Dodger Stadium — Ninth Inning" },
-    "baseball-7-07": { "t": "प्लाटून मैचअप और हाथदारी", "w": "Camelback Ranch — Spring Training Bullpen" },
-    "baseball-7-08": { "t": "वीडियो और डेटा से बल्लेबाजों का अध्ययन", "w": "Camelback Ranch — Video Room" },
-    "baseball-7-09": { "t": "थकान प्रबंधन और रुकने का समय जानना", "w": "Camelback Ranch — Training Facility" },
-    "baseball-7-10": { "t": "सर्वश्रेष्ठ डॉजर पिचर — रणनीतिक विश्लेषण", "w": "Dodger Stadium — Hall of Fame Plaques at the Ravine" },
-    "stage-m39": { "t": "फायर एस्केप", "w": "Cisco Firepower Lab" },
-    "stage-m40": { "t": "प्रबंधन प्लेन", "w": "Cisco Advanced Security Lab" },
-    "stage-m41": { "t": "अर्ध-खुला मौसम", "w": "Cisco PSIRT Operations Center" },
-    "stage-m42": { "t": "पिवट शिकार", "w": "Cisco Talos Intelligence HQ" },
-    "stage-m43": { "t": "डिटेक्शन जाल", "w": "Cisco Security Cloud Operations" },
-    "stage-m44": { "t": "API मैपर", "w": "Cisco DevNet Developer Hub" },
-    "stage-m45": { "t": "प्रोग्रामेबल प्लेन", "w": "Internet Engineering Task Force (IETF)" },
-    "stage-m46": { "t": "शून्य से डोमेन एडमिन", "w": "Cisco CyberOps Training Center" },
-    "stage-m47": { "t": "पांच डोमेन", "w": "Cisco Networking Academy" },
-    "stage-m48": { "t": "यूनिफाइड ASIC", "w": "Cisco Silicon One Engineering" },
-    "stage-m49": { "t": "मिलाएं, कार्य करें, अग्रेषित करें", "w": "Open Compute Project Networking" },
-    "stage-m50": { "t": "अभी काटो, कभी डिक्रिप्ट मत करो", "w": "NIST Computer Security Division" },
-    "stage-01": { "t": "तीन पवित्र कक्ष", "w": "गीज़ा का महान पिरामिड" },
-    "stage-02": { "t": "भ्रष्ट ओरेकल", "w": "डेल्फी का ओरेकल" },
-    "stage-03": { "t": "जहरीला संग्रह", "w": "अलेक्जेंड्रिया का पुस्तकालय" },
-    "stage-04": { "t": "ट्रोजन स्क्रॉल", "w": "एथेंस का एक्रोपोलिस" },
-    "stage-05": { "t": "रक्तस्रावी बीकन", "w": "अलेक्जेंड्रिया का प्रकाशस्तंभ" },
-    "stage-06": { "t": "चुराया हुआ पोर्ट पास", "w": "रोड्स का कोलोसस" },
-    "stage-07": { "t": "जाली राजकीय मुहर", "w": "बाबुल के झूलते बाग" },
-    "stage-08": { "t": "शापित आह्वान", "w": "इफिसस में आर्टेमिस का मंदिर" },
-    "stage-09": { "t": "पत्थर नेटवर्क प्लेग", "w": "स्टोनहेंज" },
-    "stage-10": { "t": "सम्राट की गुप्त तिजोरी", "w": "रोम का कोलोसियम" },
-    "stage-11": { "t": "सोए हुए रक्षक", "w": "हैलिकार्नासस का मकबरा" },
-    "stage-12": { "t": "अनदेखा खजाना", "w": "ओलंपिया में ज़ियस की मूर्ति" },
-    "stage-m01": { "t": "चाबी के बिना द्वार गिरता है", "w": "हागिया सोफिया" },
-    "stage-m02": { "t": "EXTRABACON — NSA का SNMP हथियार", "w": "लंदन टॉवर" },
-    "stage-m03": { "t": "भूला हुआ आपूर्ति द्वार", "w": "अंगकोर वाट" },
-    "stage-m04": { "t": "अनलॉक छोड़ा गया स्क्रिप्टोरियम", "w": "नोट्रे-डेम कैथेड्रल" },
-    "stage-m05": { "t": "दीवार से होकर छुपा हुआ रास्ता", "w": "चीन की महान दीवार" },
-    "stage-m06": { "t": "नसरी राजाओं का गुप्त मार्ग", "w": "अल्हम्ब्रा महल" },
-    "stage-m07": { "t": "गैरिसन को झूठे आदेश", "w": "Krak des Chevaliers" },
-    "stage-m08": { "t": "शिखर: XSS के ज़रिए रूट", "w": "माचू पिच्चू" },
-    "stage-m09": { "t": "मंदिर को आज्ञा देने वाली भेंट", "w": "चिचेन इत्ज़ा" },
-    "stage-m10": { "t": "मठ के मेल में शापित स्क्रॉल", "w": "मोंट-सेंट-मिशेल" },
-    "stage-m11": { "t": "शाही रिकॉर्ड नष्ट करें", "w": "एडिनबर्ग महल" },
-    "stage-m12": { "t": "जहरीला शाही मेल", "w": "टोपकापी महल" },
-    "stage-m13": { "t": "सुरंग धंसती है", "w": "NSA मुख्यालय" },
-    "stage-m14": { "t": "Vault 7: Telnet हथियार", "w": "CIA मुख्यालय" },
-    "stage-m15": { "t": "CDPwn: डिस्कवरी प्रोटोकॉल जाल", "w": "Cisco Systems मुख्यालय" },
-    "stage-m16": { "t": "छोटे दफ्तर की घेराबंदी", "w": "Silicon Valley Tech Campus" },
-    "stage-m17": { "t": "अकीरा का पलायन", "w": "Akamai Network Operations Center" },
-    "stage-m18": { "t": "जो स्टैक गिरा", "w": "Tokyo Telecom Exchange Center" },
-    "stage-m19": { "t": "हाईवे निकास", "w": "BT Tower" },
-    "stage-m20": { "t": "डेटा सेंटर में वेलवेट एंट", "w": "State-Sponsored APT Infrastructure" },
-    "stage-m21": { "t": "ArcaneDoor: भूत ताला", "w": "Communications Security Center" },
-    "stage-m22": { "t": "ArcaneDoor: Line Dancer", "w": "ANSSI मुख्यालय" },
-    "stage-m23": { "t": "vManage इंजेक्शन", "w": "Cisco SDWAN Lab" },
-    "stage-m24": { "t": "ग्रुप की पॉइज़निंग", "w": "NATO Cyber Defence Centre" },
-    "stage-m25": { "t": "वह फायरवॉल जो खुद को भूल गया", "w": "ASD Cyber Centre" },
-    "stage-m26": { "t": "फायरवॉल से होकर विस्फोट", "w": "Cisco Systems HQ" },
-    "stage-m27": { "t": "सेंसर को अंधा करें", "w": "NSA Texas Cryptologic Center" },
-    "stage-m28": { "t": "सिंगल साइन-आउट", "w": "INTERPOL Global Complex" },
-    "stage-m29": { "t": "विस्तारित पहचान, विस्तारित जोखिम", "w": "GCHQ Doughnut" },
-    "stage-m30": { "t": "API इंजेक्शन", "w": "Internet Archive" },
-    "stage-m31": { "t": "API की मास्टर", "w": "DEF CON / Caesar's Forum" },
-    "stage-m32": { "t": "अलर्ट हिमस्खलन", "w": "IBM Security Operations Center" },
-    "stage-m33": { "t": "शिकार करो या शिकार बनो", "w": "Mandiant (Google Cloud) HQ" },
-    "stage-m34": { "t": "गॉड मोड", "w": "CISA मुख्यालय" },
-    "stage-m35": { "t": "दूसरी चाबी", "w": "NSA / National Security Operations Center" },
-    "stage-m36": { "t": "ArcaneDoor", "w": "Cyber Security Agency of Singapore" },
-    "stage-m37": { "t": "प्लग एंड प्रे", "w": "National Counterintelligence and Security Center" },
-    "stage-m38": { "t": "ज़ीरो ट्रस्ट एक्सेस", "w": "Cisco Campus" }
+    "bt-01": {
+      "t": "एथेंस से प्रस्थान",
+      "w": "पिरायस बंदरगाह"
+    },
+    "bt-02": {
+      "t": "हर डिवाइस को पता चाहिए",
+      "w": "एथेंस अंतर्राष्ट्रीय हवाई अड्डा"
+    },
+    "bt-03": {
+      "t": "बैग पैक करना",
+      "w": "JFK हवाई अड्डा, सामान दावा क्षेत्र"
+    },
+    "bt-04": {
+      "t": "हाईवे इंटरचेंज",
+      "w": "I-80 पश्चिम, डेनवर इंटरचेंज"
+    },
+    "bt-05": {
+      "t": "इंटरनेट जीपीएस",
+      "w": "AAA ट्रैवल ऑफिस"
+    },
+    "bt-06": {
+      "t": "आपका हार्डवेयर पासपोर्ट",
+      "w": "अमेरिकी सीमा शुल्क और सीमा सुरक्षा"
+    },
+    "bt-07": {
+      "t": "शहर का नियंत्रण",
+      "w": "शहर की सीमाएं — सांता क्रूज़"
+    },
+    "bt-08": {
+      "t": "बंदरगाह के द्वार",
+      "w": "सांता क्रूज़ बंदरगाह"
+    },
+    "bt-09": {
+      "t": "पड़ोस और जिले",
+      "w": "सांता क्रूज़ का डाउनटाउन"
+    },
+    "bt-10": {
+      "t": "सड़क के नियम",
+      "w": "हाईवे 1, प्रशांत तट"
+    },
+    "bt-11": {
+      "t": "तरंग पूर्वानुमान पढ़ना",
+      "w": "स्टीमर लेन पूर्वानुमान बोर्ड"
+    },
+    "bt-12": {
+      "t": "आपका सर्फबोर्ड",
+      "w": "पैसिफिक एवे. की सर्फ शॉप"
+    },
+    "bt-13": {
+      "t": "सर्फ शॉप और सर्फर",
+      "w": "O'Neill सर्फ स्कूल"
+    },
+    "bt-14": {
+      "t": "सुरक्षा पट्टा",
+      "w": "लाइफगार्ड टॉवर #3, काउवेल बीच"
+    },
+    "bt-15": {
+      "t": "सदस्यता बैंड",
+      "w": "सर्फ क्लब रजिस्ट्रेशन काउंटर"
+    },
+    "bt-16": {
+      "t": "सर्फ लाइन पर कॉल करना",
+      "w": "सर्फ कंडीशन इन्फो लाइन"
+    },
+    "bt-17": {
+      "t": "तरंग का आकार",
+      "w": "प्लेज़र पॉइंट का ब्रेक"
+    },
+    "bt-18": {
+      "t": "लहर का इंतज़ार",
+      "w": "सर्फ फोरकास्ट टर्मिनल, बोर्डवॉक"
+    },
+    "bt-19": {
+      "t": "बदले हुए रिकॉर्ड",
+      "w": "सर्फ कॉम्पिटिशन आर्काइव, बीच फ्लैट्स"
+    },
+    "bt-20": {
+      "t": "भीड़ तितर-बितर करना",
+      "w": "फोर माइल बीच"
+    },
+    "bt-21": {
+      "t": "नकली चारा पहचानना",
+      "w": "फिशरमैन्स वार्फ"
+    },
+    "bt-22": {
+      "t": "दोहरा ताला",
+      "w": "चार्टर बोट डॉक, कोस्ट गार्ड पियर"
+    },
+    "bt-23": {
+      "t": "चारे के लॉकर का कॉम्बिनेशन",
+      "w": "द टैकल शॉप, कैनरी रो"
+    },
+    "bt-24": {
+      "t": "खुली रेडियो फ्रीक्वेंसी",
+      "w": "खुले जल, मॉन्टेरी खाड़ी"
+    },
+    "bt-25": {
+      "t": "मछुआरे की बड़ी-बड़ी बातें",
+      "w": "द डॉक कैंटीना"
+    },
+    "bt-26": {
+      "t": "पोत की मरम्मत",
+      "w": "बोट मेंटेनेंस यार्ड, सांता क्रूज़ हार्बर"
+    },
+    "bt-27": {
+      "t": "जब जाल फटता है",
+      "w": "कैच इंस्पेक्शन स्टेशन, मॉस लैंडिंग"
+    },
+    "bt-28": {
+      "t": "केल्प वन में नौवहन",
+      "w": "केल्प वन, मॉन्टेरी खाड़ी"
+    },
+    "bt-29": {
+      "t": "आप क्या और किसके साथ साझा करते हैं",
+      "w": "हार्बरमास्टर का कार्यालय"
+    },
+    "bt-30": {
+      "t": "आदमी समुद्र में प्रोटोकॉल",
+      "w": "सांता क्रूज़ स्मॉल क्राफ्ट हार्बर — डॉक पर वापसी"
+    },
+    "audit-01": {
+      "t": "शासन ढांचा",
+      "w": "ISACA वैश्विक मुख्यालय"
+    },
+    "audit-02": {
+      "t": "तिजोरी में जोखिम",
+      "w": "फेडरल रिजर्व बोर्ड"
+    },
+    "audit-03": {
+      "t": "ऑपरेशन रूम में सामान्य नियंत्रण",
+      "w": "न्यूयॉर्क स्टॉक एक्सचेंज"
+    },
+    "audit-04": {
+      "t": "जानने की आवश्यकता",
+      "w": "CIA मुख्यालय"
+    },
+    "audit-05": {
+      "t": "कोई अनधिकृत परिवर्तन नहीं",
+      "w": "NASA जॉनसन स्पेस सेंटर"
+    },
+    "audit-06": {
+      "t": "जब सिस्टम विफल होते हैं",
+      "w": "FEMA नेशनल रिस्पॉन्स सेंटर"
+    },
+    "audit-07": {
+      "t": "घटना प्रतिक्रिया तत्परता",
+      "w": "CISA मुख्यालय"
+    },
+    "audit-08": {
+      "t": "आपूर्ति श्रृंखला का खतरा",
+      "w": "पेंटागन"
+    },
+    "audit-09": {
+      "t": "भूले जाने का अधिकार",
+      "w": "यूरोपीय डेटा सुरक्षा बोर्ड"
+    },
+    "audit-10": {
+      "t": "संचालन के नियम",
+      "w": "NIST परिसर"
+    },
+    "audit-11": {
+      "t": "साक्ष्य की श्रृंखला",
+      "w": "SEC मुख्यालय"
+    },
+    "audit-12": {
+      "t": "अंतिम रिपोर्ट",
+      "w": "ISACA शिकागो चैप्टर"
+    },
+    "audit-t01": {
+      "t": "उजागर API",
+      "w": "Stripe इंजीनियरिंग HQ"
+    },
+    "audit-t02": {
+      "t": "रहस्य उजागर",
+      "w": "HashiCorp मुख्यालय"
+    },
+    "audit-t03": {
+      "t": "क्लाउड सुरक्षा बाधाएं",
+      "w": "AWS re:Inforce सम्मेलन"
+    },
+    "audit-t04": {
+      "t": "कौन क्या कर सकता है",
+      "w": "Okta मुख्यालय"
+    },
+    "audit-t05": {
+      "t": "कंटेनर पलायन",
+      "w": "Docker इंजीनियरिंग"
+    },
+    "audit-t06": {
+      "t": "कोड के रूप में बुनियादी ढांचा, डिफ़ॉल्ट रूप से असुरक्षित",
+      "w": "HashiCorp Terraform Cloud"
+    },
+    "audit-t07": {
+      "t": "स्थैतिक और गतिशील विश्लेषण",
+      "w": "Snyk मुख्यालय"
+    },
+    "audit-t08": {
+      "t": "सपाट नेटवर्क",
+      "w": "Palo Alto Networks"
+    },
+    "audit-t09": {
+      "t": "विश्राम में डेटा",
+      "w": "Snowflake मुख्यालय"
+    },
+    "audit-t10": {
+      "t": "मौन उल्लंघन",
+      "w": "Datadog मुख्यालय"
+    },
+    "audit-t11": {
+      "t": "कभी भरोसा मत करो, हमेशा सत्यापित करो",
+      "w": "Google Cloud मुख्यालय"
+    },
+    "audit-t12": {
+      "t": "ऑडिट को स्वचालित करें",
+      "w": "AWS Security Hub"
+    },
+    "audit-a01": {
+      "t": "ऑडिट उपकरण के रूप में टूल्स",
+      "w": "Anthropic HQ"
+    },
+    "audit-a02": {
+      "t": "एंडपॉइंट मैपर",
+      "w": "API Security Lab"
+    },
+    "audit-a03": {
+      "t": "रहस्य शिकारी",
+      "w": "Secrets Scanning Lab"
+    },
+    "audit-a04": {
+      "t": "क्लाउड मैपर",
+      "w": "Cloud Audit Lab"
+    },
+    "audit-a05": {
+      "t": "नीति फुसफुसाने वाला",
+      "w": "IAM Analysis Lab"
+    },
+    "audit-a06": {
+      "t": "प्रोटोकॉल एकीकरणकर्ता",
+      "w": "MCP Integration Lab"
+    },
+    "audit-a07": {
+      "t": "बुनियादी ढांचा ऑडिटर",
+      "w": "IaC Scanning Lab"
+    },
+    "audit-a08": {
+      "t": "साक्ष्य संग्रहकर्ता",
+      "w": "Evidence Collection Lab"
+    },
+    "audit-a09": {
+      "t": "ऑर्केस्ट्रेटर",
+      "w": "Multi-Agent Lab"
+    },
+    "audit-a10": {
+      "t": "रिपोर्ट लेखक",
+      "w": "Report Generation Lab"
+    },
+    "audit-a11": {
+      "t": "प्रहरी",
+      "w": "Continuous Monitoring Lab"
+    },
+    "audit-a12": {
+      "t": "पूर्ण पाइपलाइन",
+      "w": "Agentic Audit Control Center"
+    },
+    "audit-cm01": {
+      "t": "निगरानी आधार रेखा",
+      "w": "NIST मुख्यालय"
+    },
+    "audit-cm02": {
+      "t": "इंटेलिजेंस इंजन",
+      "w": "IBM Security Intelligence Center"
+    },
+    "audit-cm03": {
+      "t": "व्यवहार लेंस",
+      "w": "Securonix UEBA Research Lab"
+    },
+    "audit-cm04": {
+      "t": "नेटवर्क आंख",
+      "w": "Darktrace Global Threat Center"
+    },
+    "audit-cm05": {
+      "t": "क्लाउड पहरेदार",
+      "w": "AWS Security Operations Center"
+    },
+    "audit-cm06": {
+      "t": "इंटेलिजेंस फीड",
+      "w": "FS-ISAC Threat Intelligence Center"
+    },
+    "audit-cm07": {
+      "t": "प्रतिक्रिया स्वचालक",
+      "w": "Palo Alto Networks Cortex XSOAR Lab"
+    },
+    "audit-cm08": {
+      "t": "छल के उस्ताद",
+      "w": "CISA Deception Research Center"
+    },
+    "audit-cm09": {
+      "t": "विश्वास ऑडिटर",
+      "w": "Google BeyondCorp Research Lab"
+    },
+    "audit-cm10": {
+      "t": "एकीकृत रक्षक",
+      "w": "Microsoft Defender XDR Operations Center"
+    },
+    "audit-cm11": {
+      "t": "अनुपालन इंजन",
+      "w": "ISACA Compliance Research Center"
+    },
+    "audit-cm12": {
+      "t": "परिपक्वता मैट्रिक्स",
+      "w": "Gartner Security Research Institute"
+    },
+    "mitre-01": {
+      "t": "खुफिया जानकारी संग्रह",
+      "w": "MITRE Corporation मुख्यालय"
+    },
+    "mitre-02": {
+      "t": "शस्त्रागार निर्माता",
+      "w": "Dark Web बुनियादी ढांचा"
+    },
+    "mitre-03": {
+      "t": "पहली पैठ",
+      "w": "RSA सम्मेलन"
+    },
+    "mitre-04": {
+      "t": "कोड निष्पादक",
+      "w": "NSA"
+    },
+    "mitre-05": {
+      "t": "अधिवासी",
+      "w": "Mandiant मुख्यालय"
+    },
+    "mitre-06": {
+      "t": "मुकुट छीनने वाला",
+      "w": "SolarWinds मुख्यालय"
+    },
+    "mitre-07": {
+      "t": "भूत",
+      "w": "CrowdStrike मुख्यालय"
+    },
+    "mitre-08": {
+      "t": "चाबी चोर",
+      "w": "NotPetya हमला"
+    },
+    "mitre-09": {
+      "t": "प्रसारक",
+      "w": "Colonial Pipeline मुख्यालय"
+    },
+    "mitre-10": {
+      "t": "मानचित्रकार",
+      "w": "APT29 ऑपरेशन"
+    },
+    "mitre-11": {
+      "t": "डेटा तस्कर",
+      "w": "Equifax मुख्यालय"
+    },
+    "mitre-12": {
+      "t": "विस्फोटक",
+      "w": "Kaseya VSA हमला"
+    },
+    "atlas-01": {
+      "t": "मॉडल प्रोफाइलर",
+      "w": "MITRE Corporation मुख्यालय"
+    },
+    "atlas-02": {
+      "t": "प्रॉक्सी मॉडल बिल्डर",
+      "w": "Shadow AI Lab"
+    },
+    "atlas-03": {
+      "t": "आपूर्ति श्रृंखला घुसपैठिया",
+      "w": "HuggingFace मुख्यालय"
+    },
+    "atlas-04": {
+      "t": "ब्लैक बॉक्स शोधकर्ता",
+      "w": "OpenAI मुख्यालय"
+    },
+    "atlas-05": {
+      "t": "विरोधी हमला निर्माता",
+      "w": "MIT CSAIL"
+    },
+    "atlas-06": {
+      "t": "डिटेक्टर से बचने वाला",
+      "w": "CrowdStrike AI Lab"
+    },
+    "atlas-07": {
+      "t": "पाइपलाइन मैपर",
+      "w": "Google DeepMind"
+    },
+    "atlas-08": {
+      "t": "मेमोरी माइनर",
+      "w": "Microsoft Research"
+    },
+    "atlas-09": {
+      "t": "स्थानांतरण एजेंट",
+      "w": "Carnegie Mellon CyLab"
+    },
+    "atlas-10": {
+      "t": "मॉडल चोर",
+      "w": "Scale AI मुख्यालय"
+    },
+    "atlas-11": {
+      "t": "जहर देने वाला",
+      "w": "Microsoft Tay घटना"
+    },
+    "atlas-12": {
+      "t": "AI किल चेन",
+      "w": "NIST AI जोखिम प्रबंधन ढांचा"
+    },
+    "llm-01": {
+      "t": "प्रॉम्प्ट इंजेक्टर",
+      "w": "OpenAI मुख्यालय"
+    },
+    "llm-02": {
+      "t": "मेमोरी लीक",
+      "w": "Samsung Electronics मुख्यालय"
+    },
+    "llm-03": {
+      "t": "जहरीला मॉडल",
+      "w": "HuggingFace मुख्यालय"
+    },
+    "llm-04": {
+      "t": "Tay 2.0",
+      "w": "Microsoft Research Lab"
+    },
+    "llm-05": {
+      "t": "असंसाधित आउटपुट",
+      "w": "GitHub मुख्यालय"
+    },
+    "llm-06": {
+      "t": "भगोड़ा एजेंट",
+      "w": "Salesforce Tower"
+    },
+    "llm-07": {
+      "t": "उजागर सिस्टम प्रॉम्प्ट",
+      "w": "Anthropic मुख्यालय"
+    },
+    "llm-08": {
+      "t": "जहरीला वेक्टर स्टोर",
+      "w": "Pinecone मुख्यालय"
+    },
+    "llm-09": {
+      "t": "हैलुसिनेशन इंजन",
+      "w": "Reuters मुख्यालय"
+    },
+    "llm-10": {
+      "t": "टोकन नाली",
+      "w": "AWS re:Invent"
+    },
+    "llm-11": {
+      "t": "रेड टीम",
+      "w": "Google DeepMind"
+    },
+    "llm-12": {
+      "t": "AI सुरक्षा कार्यक्रम",
+      "w": "NIST AI RMF मुख्यालय"
+    },
+    "quantum-01": {
+      "t": "क्यूबिट जागता है",
+      "w": "IBM Quantum Network Center"
+    },
+    "quantum-02": {
+      "t": "शोर की गिलोटिन",
+      "w": "Bell Labs"
+    },
+    "quantum-03": {
+      "t": "ग्रोवर का भूत",
+      "w": "NIST परिसर गैदर्सबर्ग"
+    },
+    "quantum-04": {
+      "t": "अभी काटो, बाद में डिक्रिप्ट करो",
+      "w": "NSA Data Center Fort Meade"
+    },
+    "quantum-05": {
+      "t": "दूरी पर रहस्यमय क्रिया",
+      "w": "Cisco Quantum Labs"
+    },
+    "quantum-06": {
+      "t": "NISQ युग",
+      "w": "Google Quantum AI परिसर"
+    },
+    "quantum-07": {
+      "t": "त्रुटि सुधार की दीवार",
+      "w": "Caltech IQIM"
+    },
+    "quantum-08": {
+      "t": "क्वांटम खतरा रजिस्टर",
+      "w": "CISA Cybersecurity Division"
+    },
+    "quantum-09": {
+      "t": "सच्ची यादृच्छिकता",
+      "w": "ANU Quantum Optics Lab"
+    },
+    "quantum-10": {
+      "t": "Q-Day उलटी गिनती",
+      "w": "Five Eyes Intelligence Community HQ"
+    },
+    "quantum-b01": {
+      "t": "NIST की PQC दौड़",
+      "w": "NIST Computer Security Division"
+    },
+    "quantum-b02": {
+      "t": "शोरगुल वाला नेटवर्क",
+      "w": "MIT CSAIL"
+    },
+    "quantum-b03": {
+      "t": "Kyber: नया की एक्सचेंज",
+      "w": "IBM Research Zurich"
+    },
+    "quantum-b04": {
+      "t": "Dilithium: क्वांटम हस्ताक्षर",
+      "w": "Qualcomm Security Research"
+    },
+    "quantum-b05": {
+      "t": "हैश ट्री जंगल",
+      "w": "Radboud University Cryptography Lab"
+    },
+    "quantum-b06": {
+      "t": "FALCON: तेज़ हस्ताक्षर",
+      "w": "Thales Cryptographic Research"
+    },
+    "quantum-b07": {
+      "t": "हाइब्रिड पुल",
+      "w": "Mozilla Security Engineering"
+    },
+    "quantum-b08": {
+      "t": "क्वांटम-प्रतिरोधी TLS",
+      "w": "Let's Encrypt / ISRG"
+    },
+    "quantum-b09": {
+      "t": "क्रिप्टोग्राफिक इन्वेंटरी",
+      "w": "CISA PQC Center of Excellence"
+    },
+    "quantum-b10": {
+      "t": "विश्वास से पहले सत्यापित करें",
+      "w": "Trail of Bits Security Research"
+    },
+    "quantum-c01": {
+      "t": "BB84: पहला QKD प्रोटोकॉल",
+      "w": "IBM T.J. Watson Research Center"
+    },
+    "quantum-c02": {
+      "t": "QKD बुनियादी ढांचा: 600km रिकॉर्ड",
+      "w": "Toshiba Research Europe"
+    },
+    "quantum-c03": {
+      "t": "Micius: चीन का क्वांटम उपग्रह",
+      "w": "चीनी विज्ञान अकादमी"
+    },
+    "quantum-c04": {
+      "t": "क्रिप्टोग्राफिक चपलता",
+      "w": "NIST Computer Security Division"
+    },
+    "quantum-c05": {
+      "t": "क्वांटम-प्रतिरोधी VPN सेटअप",
+      "w": "WireGuard / IETF PQUIP कार्य समूह"
+    },
+    "quantum-c06": {
+      "t": "क्वांटम-प्रतिरोधी PKI माइग्रेशन",
+      "w": "DigiCert मुख्यालय"
+    },
+    "quantum-c07": {
+      "t": "liboqs: ओपन क्वांटम सेफ",
+      "w": "University of Waterloo"
+    },
+    "quantum-c08": {
+      "t": "FIPS 140-3 PQC अनुपालन",
+      "w": "NIST Cryptographic Module Validation Program"
+    },
+    "quantum-c09": {
+      "t": "पोस्ट-क्वांटम शासन",
+      "w": "Fortune 500 CISO Office"
+    },
+    "quantum-c10": {
+      "t": "क्वांटम-प्रतिरोधी स्टैक: संश्लेषण",
+      "w": "Quantum Security Summit"
+    },
+    "tapestry-01": {
+      "t": "समय के धागे",
+      "w": "मिस्र संग्रहालय"
+    },
+    "tapestry-02": {
+      "t": "फ्लेमिश उस्ताद",
+      "w": "Château d'Angers"
+    },
+    "tapestry-03": {
+      "t": "रेशम और वैभव",
+      "w": "पैलेस संग्रहालय"
+    },
+    "tapestry-04": {
+      "t": "अमेरिका के बुनकर",
+      "w": "National Museum of the American Indian"
+    },
+    "tapestry-05": {
+      "t": "करघे के रंग",
+      "w": "Kelmscott Manor"
+    },
+    "tapestry-06": {
+      "t": "ताना और बाना",
+      "w": "Manufacture des Gobelins"
+    },
+    "tapestry-07": {
+      "t": "आपका पहला करघा",
+      "w": "Bauhaus Archive"
+    },
+    "tapestry-08": {
+      "t": "जोड़, गांठ और बनावट",
+      "w": "American Tapestry Alliance Studio"
+    },
+    "tapestry-09": {
+      "t": "अपना कार्टून बनाना",
+      "w": "Musée de la Tapisserie Contemporaine"
+    },
+    "tapestry-10": {
+      "t": "ऑप्टिकल रंग जादू",
+      "w": "Color Field Studio"
+    },
+    "tapestry-11": {
+      "t": "आज की टेपेस्ट्री",
+      "w": "The Textile Museum"
+    },
+    "tapestry-12": {
+      "t": "अपनी पहली टेपेस्ट्री शुरू करें",
+      "w": "आपका स्टूडियो"
+    },
+    "nails-01": {
+      "t": "अपना कैनवास जानें",
+      "w": "Nail Manufacturers Council Expo"
+    },
+    "nails-02": {
+      "t": "बिना पानी का नियम",
+      "w": "OPI Innovation Lab"
+    },
+    "nails-03": {
+      "t": "निर्जलीकरण और आधार",
+      "w": "CND Science Lab"
+    },
+    "nails-04": {
+      "t": "परफेक्ट ड्राई मैनीक्योर",
+      "w": "Minx Nails Studio"
+    },
+    "nails-05": {
+      "t": "समान रंग की कला",
+      "w": "Essie मुख्यालय"
+    },
+    "nails-06": {
+      "t": "तीन-परत प्रणाली",
+      "w": "China Glaze Lab"
+    },
+    "nails-07": {
+      "t": "जब पॉलिश उठती है",
+      "w": "NAILS Magazine मुख्यालय"
+    },
+    "nails-08": {
+      "t": "जब पॉलिश टूटती है",
+      "w": "Gelish Studio"
+    },
+    "nails-09": {
+      "t": "आपका किशोर नेल बिज़नेस",
+      "w": "Young Nails Academy"
+    },
+    "nails-10": {
+      "t": "अपना नेल सैलून खोलना",
+      "w": "Small Business Administration"
+    },
+    "hair-color-01": {
+      "t": "बालों में रंग कैसे रहता है",
+      "w": "L'Oréal Professional Research Lab"
+    },
+    "hair-color-02": {
+      "t": "स्तर प्रणाली",
+      "w": "Wella Professionals Academy"
+    },
+    "hair-color-03": {
+      "t": "टोन, अंडरटोन और रंग चक्र",
+      "w": "Joico Color Institute"
+    },
+    "hair-color-04": {
+      "t": "डेवलपर और लिफ्ट",
+      "w": "Schwarzkopf Professional Academy"
+    },
+    "hair-color-05": {
+      "t": "स्थायी, अर्ध-स्थायी और डेमी",
+      "w": "Paul Mitchell Schools"
+    },
+    "hair-color-06": {
+      "t": "सुरक्षा पहले — त्वचा परीक्षण और स्ट्रैंड परीक्षण",
+      "w": "American Board of Certified Haircolorists"
+    },
+    "hair-color-07": {
+      "t": "जड़ अनुप्रयोग और पूर्ण रंग",
+      "w": "Redken Academy"
+    },
+    "hair-color-08": {
+      "t": "ब्लीचिंग और सुरक्षित लाइटनिंग",
+      "w": "Pravana Color Lab"
+    },
+    "hair-color-09": {
+      "t": "टोनिंग और सुधारात्मक रंग",
+      "w": "Kenra Professional Studio"
+    },
+    "hair-color-10": {
+      "t": "हेयर कलरिंग बिज़नेस बनाना",
+      "w": "Professional Beauty Association HQ"
+    },
+    "hair-styling-01": {
+      "t": "अपना बाल प्रकार जानें",
+      "w": "Vidal Sassoon Academy"
+    },
+    "hair-styling-02": {
+      "t": "उपकरण और गर्मी सुरक्षा",
+      "w": "Sam Villa Education"
+    },
+    "hair-styling-03": {
+      "t": "परफेक्ट ब्लोआउट",
+      "w": "Drybar"
+    },
+    "hair-styling-04": {
+      "t": "फ्लैट आयरन कौशल",
+      "w": "ghd (Good Hair Day) HQ"
+    },
+    "hair-styling-05": {
+      "t": "कर्लर और वेवर",
+      "w": "Hot Tools International"
+    },
+    "hair-styling-06": {
+      "t": "चोटी के मूल सिद्धांत",
+      "w": "Mielle Organics"
+    },
+    "hair-styling-07": {
+      "t": "अपडो, पोनीटेल और हाफ-अप",
+      "w": "Kevin Murphy Education"
+    },
+    "hair-styling-08": {
+      "t": "घुंघराले बाल तकनीक",
+      "w": "DevaCurl"
+    },
+    "hair-styling-09": {
+      "t": "ग्राहक परामर्श",
+      "w": "Cosmetology Institute of America"
+    },
+    "hair-styling-10": {
+      "t": "अपना हेयर बिज़नेस शुरू करना",
+      "w": "Professional Beauty Association"
+    },
+    "driving-1-01": {
+      "t": "आपके परमिट का रास्ता",
+      "w": "California DMV मुख्यालय"
+    },
+    "driving-1-02": {
+      "t": "लिखित परीक्षा में महारत",
+      "w": "गोल्डन गेट ब्रिज"
+    },
+    "driving-1-03": {
+      "t": "यातायात संकेत भाग 1",
+      "w": "Hollywood Boulevard"
+    },
+    "driving-1-04": {
+      "t": "यातायात संकेत भाग 2",
+      "w": "Pacific Coast Highway"
+    },
+    "driving-1-05": {
+      "t": "गति सीमा और दूरी",
+      "w": "Mulholland Drive"
+    },
+    "driving-1-06": {
+      "t": "रास्ते का अधिकार",
+      "w": "Lombard Street"
+    },
+    "driving-1-07": {
+      "t": "DUI कानून और किशोर प्रतिबंध",
+      "w": "California Highway Patrol Academy"
+    },
+    "driving-1-08": {
+      "t": "व्यावहारिक ड्राइविंग परीक्षा",
+      "w": "DMV परीक्षण केंद्र"
+    },
+    "driving-2-01": {
+      "t": "अपनी कार जानें",
+      "w": "खाली पार्किंग स्थल"
+    },
+    "driving-2-02": {
+      "t": "सहज शुरुआत और रुकावट",
+      "w": "शांत आवासीय सड़क"
+    },
+    "driving-2-03": {
+      "t": "मोड़ और स्टीयरिंग",
+      "w": "सामुदायिक कॉलेज पार्किंग स्थल"
+    },
+    "driving-2-04": {
+      "t": "लेन बदलना और मर्ज करना",
+      "w": "हाईवे 101 एंट्रेंस रैंप"
+    },
+    "driving-2-05": {
+      "t": "पार्किंग कौशल",
+      "w": "डाउनटाउन स्ट्रीट"
+    },
+    "driving-2-06": {
+      "t": "हाईवे ड्राइविंग",
+      "w": "इंटरस्टेट 5"
+    },
+    "driving-2-07": {
+      "t": "रात और खराब मौसम में ड्राइविंग",
+      "w": "Pacific Coast Highway सूर्यास्त पर"
+    },
+    "driving-2-08": {
+      "t": "आपकी पहली एकल यात्रा",
+      "w": "California आवासीय पड़ोस"
+    },
+    "driving-3-01": {
+      "t": "आंखें ऊपर, फोन नीचे",
+      "w": "हाईवे डिजिटल बिलबोर्ड"
+    },
+    "driving-3-02": {
+      "t": "रक्षात्मक ड्राइविंग",
+      "w": "California Highway Patrol Academy"
+    },
+    "driving-3-03": {
+      "t": "शांत रहें",
+      "w": "लॉस एंजिलिस हाईवे सिस्टम"
+    },
+    "driving-3-04": {
+      "t": "सड़क साझा करें",
+      "w": "सैन फ्रांसिस्को बाइक लेन नेटवर्क"
+    },
+    "driving-3-05": {
+      "t": "कार देखभाल की मूल बातें",
+      "w": "ऑटो रिपेयर शॉप गैरेज"
+    },
+    "driving-3-06": {
+      "t": "दुर्घटना के बाद",
+      "w": "डैशकैम वाला California चौराहा"
+    },
+    "driving-3-07": {
+      "t": "खराबी और सड़क सुरक्षा",
+      "w": "हाईवे का कंधा"
+    },
+    "driving-3-08": {
+      "t": "एक अच्छा चालक बनना",
+      "w": "California की खुली सड़क, सूर्योदय पर"
+    },
+    "baseball-1-01": {
+      "t": "मैदान और खेल",
+      "w": "Doubleday Field"
+    },
+    "baseball-1-02": {
+      "t": "हर खिलाड़ी को ये नियम जाने चाहिए",
+      "w": "Little League International Headquarters"
+    },
+    "baseball-1-03": {
+      "t": "बल्लेबाजी की कला",
+      "w": "Fenway Park"
+    },
+    "baseball-1-04": {
+      "t": "पिचिंग के मूल सिद्धांत",
+      "w": "Wrigley Field"
+    },
+    "baseball-1-05": {
+      "t": "रक्षा और थ्रोइंग",
+      "w": "PNC Park"
+    },
+    "baseball-1-06": {
+      "t": "शॉर्टस्टॉप खेल",
+      "w": "Yankee Stadium"
+    },
+    "baseball-1-07": {
+      "t": "आउटफील्ड खेल",
+      "w": "Dodger Stadium"
+    },
+    "baseball-1-08": {
+      "t": "बेस रनिंग",
+      "w": "Camden Yards"
+    },
+    "baseball-1-09": {
+      "t": "कैचिंग — मैदान का जनरल",
+      "w": "Coors Field"
+    },
+    "baseball-1-10": {
+      "t": "खेल भावना और खेल की आत्मा",
+      "w": "Little League World Series Stadium"
+    },
+    "baseball-2-01": {
+      "t": "आसन",
+      "w": "Dodger Stadium"
+    },
+    "baseball-2-02": {
+      "t": "पिचर को पढ़ना",
+      "w": "Dodger Stadium — Home Plate"
+    },
+    "baseball-2-03": {
+      "t": "स्विंग यांत्रिकी",
+      "w": "Dodger Stadium — The Batter's Eye"
+    },
+    "baseball-2-04": {
+      "t": "प्लेट अनुशासन",
+      "w": "Dodger Stadium — The Walk-Up Circle"
+    },
+    "baseball-2-05": {
+      "t": "पावर हिट",
+      "w": "Dodger Stadium — Left Field Pavilion"
+    },
+    "baseball-2-06": {
+      "t": "संपर्क हिट और दो-स्ट्राइक समायोजन",
+      "w": "Ebbets Field — Historical Site"
+    },
+    "baseball-2-07": {
+      "t": "फास्टबॉल हिट करना",
+      "w": "Dodger Stadium — Batting Cage Tunnel"
+    },
+    "baseball-2-08": {
+      "t": "कर्वबॉल हिट करना",
+      "w": "Dodger Stadium — The Mound View"
+    },
+    "baseball-2-09": {
+      "t": "डॉजर बल्लेबाजी किंवदंतियां",
+      "w": "Dodger Stadium — Monument Park"
+    },
+    "baseball-2-10": {
+      "t": "अपनी हिटिंग दिनचर्या बनाना",
+      "w": "Dodger Stadium — Field Level Batting Cage"
+    },
+    "baseball-3-01": {
+      "t": "कूल्हे-कंधे का अलगाव",
+      "w": "Dodger Stadium — Home Plate Circle"
+    },
+    "baseball-3-02": {
+      "t": "हाथ का रास्ता",
+      "w": "Camelback Ranch — Glendale Spring Training"
+    },
+    "baseball-3-03": {
+      "t": "बैरल प्रबंधन",
+      "w": "Petco Park"
+    },
+    "baseball-3-04": {
+      "t": "लोड यांत्रिकी और समय",
+      "w": "Camelback Ranch — Minor League Fields"
+    },
+    "baseball-3-05": {
+      "t": "दो-स्ट्राइक फोकस: महारत",
+      "w": "Oracle Park"
+    },
+    "baseball-3-06": {
+      "t": "स्थितिजन्य हिटिंग",
+      "w": "Fenway Park"
+    },
+    "baseball-3-07": {
+      "t": "पिच अनुक्रमण और भविष्यवाणी",
+      "w": "Dodger Stadium — Video Room"
+    },
+    "baseball-3-08": {
+      "t": "प्रतिकूल परिस्थितियों में हिटिंग",
+      "w": "Dodger Stadium vs. Coors Field vs. Fenway Park"
+    },
+    "baseball-3-09": {
+      "t": "स्लम्प की मानसिक संरचना",
+      "w": "Dodger Stadium — Clubhouse"
+    },
+    "baseball-3-10": {
+      "t": "वीडियो विश्लेषण और जैव यांत्रिकी",
+      "w": "Camelback Ranch — Dodgers Technology Center"
+    },
+    "baseball-4-01": {
+      "t": "Statcast और डेटा क्रांति",
+      "w": "Dodger Stadium — Statcast Tower"
+    },
+    "baseball-4-02": {
+      "t": "स्काउटिंग रिपोर्ट और पिचर की प्रवृत्तियां",
+      "w": "Cooperstown Hall of Fame — Scouting Archives"
+    },
+    "baseball-4-03": {
+      "t": "बल्लेबाजी से पहले के अनुष्ठान और विज़ुअलाइज़ेशन",
+      "w": "Camelback Ranch — Spring Training Facility"
+    },
+    "baseball-4-04": {
+      "t": "महत्वपूर्ण क्षणों में बल्लेबाजी",
+      "w": "Dodger Stadium — Home Plate in October"
+    },
+    "baseball-4-05": {
+      "t": "प्लाटून स्प्लिट और मैचअप हिटिंग",
+      "w": "Dodger Stadium — Dugout and Lineup Card"
+    },
+    "baseball-4-06": {
+      "t": "उन्नत पिच पहचान तकनीक",
+      "w": "Camelback Ranch — Technology Lab"
+    },
+    "baseball-4-07": {
+      "t": "स्थिति-विशिष्ट हिटिंग अपेक्षाएं",
+      "w": "Dodger Stadium — All Positions on the Diamond"
+    },
+    "baseball-4-08": {
+      "t": "स्विंग प्रशिक्षण",
+      "w": "Camelback Ranch — Dodgers Spring Training Batting Cages"
+    },
+    "baseball-4-09": {
+      "t": "सर्वश्रेष्ठ डॉजर बल्लेबाज — तकनीकी विश्लेषण",
+      "w": "Cooperstown Hall of Fame — Dodger Wing"
+    },
+    "baseball-4-10": {
+      "t": "आजीवन हिटिंग अभ्यास बनाना",
+      "w": "Cooperstown Hall of Fame — Library and Research Center"
+    },
+    "baseball-5-01": {
+      "t": "पिचर का माउंड और स्थिति",
+      "w": "Dodger Stadium — The Pitcher's Mound"
+    },
+    "baseball-5-02": {
+      "t": "पकड़",
+      "w": "Camelback Ranch — Dodgers Spring Training"
+    },
+    "baseball-5-03": {
+      "t": "डिलीवरी: विंडअप यांत्रिकी",
+      "w": "Dodger Stadium — The Mound, 1963"
+    },
+    "baseball-5-04": {
+      "t": "डिलीवरी: भुजा क्रिया",
+      "w": "Baseball Hall of Fame"
+    },
+    "baseball-5-05": {
+      "t": "रिलीज़ पॉइंट और नियंत्रण",
+      "w": "Dodger Stadium — प्लेट का काला किनारा"
+    },
+    "baseball-5-06": {
+      "t": "स्ट्रेच और धावक प्रबंधन",
+      "w": "Dodger Stadium — फर्स्ट बेस लाइन"
+    },
+    "baseball-5-07": {
+      "t": "वेग और यह क्यों महत्वपूर्ण है — और क्यों नहीं",
+      "w": "Turner Field — Greg Maddux Classroom"
+    },
+    "baseball-5-08": {
+      "t": "पिच काउंट और भुजा देखभाल",
+      "w": "Little League World Series Volunteer Stadium"
+    },
+    "baseball-5-09": {
+      "t": "अपनी स्थिति की रक्षा करना (PFP)",
+      "w": "Dodger Stadium — इनफील्ड"
+    },
+    "baseball-5-10": {
+      "t": "माउंड पर मानसिक फोकस",
+      "w": "Dodger Stadium — अक्टूबर में माउंड"
+    },
+    "baseball-6-01": {
+      "t": "फोर-सीम फास्टबॉल",
+      "w": "Dodger Stadium — माउंड"
+    },
+    "baseball-6-02": {
+      "t": "टू-सीम फास्टबॉल और सिंकर",
+      "w": "Camelback Ranch — Dodgers Spring Training"
+    },
+    "baseball-6-03": {
+      "t": "चेंजअप",
+      "w": "Dodger Stadium — Bullpen Mound"
+    },
+    "baseball-6-04": {
+      "t": "कर्वबॉल",
+      "w": "Dodger Stadium — माउंड (Kershaw का कार्यालय)"
+    },
+    "baseball-6-05": {
+      "t": "स्लाइडर",
+      "w": "Dodger Stadium — Bullpen at Game Speed"
+    },
+    "baseball-6-06": {
+      "t": "कटर",
+      "w": "Yankee Stadium (Rivera का कैथेड्रल)"
+    },
+    "baseball-6-07": {
+      "t": "स्प्लिटर और फॉर्कबॉल",
+      "w": "Dodger Stadium — 1995 Season (Nomo's Debut)"
+    },
+    "baseball-6-08": {
+      "t": "स्पिन रेट, स्पिन एक्सिस और Rapsodo",
+      "w": "Camelback Ranch — Rapsodo Lab"
+    },
+    "baseball-6-09": {
+      "t": "पिच टनलिंग और धोखा",
+      "w": "Dodger Stadium — पिचर के माउंड से प्लेट तक"
+    },
+    "baseball-6-10": {
+      "t": "उम्र के हिसाब से अपना शस्त्रागार बनाना",
+      "w": "Camelback Ranch — Minor League Fields"
+    },
+    "baseball-7-01": {
+      "t": "बल्लेबाज को पढ़ना",
+      "w": "Dodger Stadium"
+    },
+    "baseball-7-02": {
+      "t": "काउंट पर काम करना",
+      "w": "Camelback Ranch — Glendale, Arizona"
+    },
+    "baseball-7-03": {
+      "t": "पिच अनुक्रमण",
+      "w": "Dodger Stadium — The Pitcher's Mound"
+    },
+    "baseball-7-04": {
+      "t": "पहली बार बनाम तीसरी बार ऑर्डर से गुज़रना",
+      "w": "Dodger Stadium — Bullpen"
+    },
+    "baseball-7-05": {
+      "t": "धावकों के साथ स्ट्रेच से पिचिंग",
+      "w": "Dodger Stadium — First Base Line"
+    },
+    "baseball-7-06": {
+      "t": "उच्च-दबाव स्थितियां",
+      "w": "Dodger Stadium — Ninth Inning"
+    },
+    "baseball-7-07": {
+      "t": "प्लाटून मैचअप और हाथदारी",
+      "w": "Camelback Ranch — Spring Training Bullpen"
+    },
+    "baseball-7-08": {
+      "t": "वीडियो और डेटा से बल्लेबाजों का अध्ययन",
+      "w": "Camelback Ranch — Video Room"
+    },
+    "baseball-7-09": {
+      "t": "थकान प्रबंधन और रुकने का समय जानना",
+      "w": "Camelback Ranch — Training Facility"
+    },
+    "baseball-7-10": {
+      "t": "सर्वश्रेष्ठ डॉजर पिचर — रणनीतिक विश्लेषण",
+      "w": "Dodger Stadium — Hall of Fame Plaques at the Ravine"
+    },
+    "stage-01": {
+      "t": "तीन पवित्र कक्ष",
+      "w": "गीज़ा का महान पिरामिड"
+    },
+    "stage-02": {
+      "t": "भ्रष्ट ओरेकल",
+      "w": "डेल्फी का ओरेकल"
+    },
+    "stage-03": {
+      "t": "जहरीला संग्रह",
+      "w": "अलेक्जेंड्रिया का पुस्तकालय"
+    },
+    "stage-04": {
+      "t": "ट्रोजन स्क्रॉल",
+      "w": "एथेंस का एक्रोपोलिस"
+    },
+    "stage-05": {
+      "t": "रक्तस्रावी बीकन",
+      "w": "अलेक्जेंड्रिया का प्रकाशस्तंभ"
+    },
+    "stage-06": {
+      "t": "चुराया हुआ पोर्ट पास",
+      "w": "रोड्स का कोलोसस"
+    },
+    "stage-07": {
+      "t": "जाली राजकीय मुहर",
+      "w": "बाबुल के झूलते बाग"
+    },
+    "stage-08": {
+      "t": "शापित आह्वान",
+      "w": "इफिसस में आर्टेमिस का मंदिर"
+    },
+    "stage-09": {
+      "t": "पत्थर नेटवर्क प्लेग",
+      "w": "स्टोनहेंज"
+    },
+    "stage-10": {
+      "t": "सम्राट की गुप्त तिजोरी",
+      "w": "रोम का कोलोसियम"
+    },
+    "stage-11": {
+      "t": "सोए हुए रक्षक",
+      "w": "हैलिकार्नासस का मकबरा"
+    },
+    "stage-12": {
+      "t": "अनदेखा खजाना",
+      "w": "ओलंपिया में ज़ियस की मूर्ति"
+    }
   },
   "epochs": {
     "first-journey": {
@@ -363,26 +1179,6 @@
       "n": "मूल सिद्धांत",
       "s": "सुरक्षा के बुनियादी सिद्धांत",
       "d": "उन अवधारणाओं में महारत हासिल करें जिन पर हर सुरक्षा पेशेवर निर्भर करता है — CIA त्रिकोण से लेकर SQL इंजेक्शन तक, फ़िशिंग से लेकर ज़ीरो-डे एक्सप्लॉइट्स तक। प्रत्येक चुनौती प्राचीन दुनिया के महान स्थलों में से एक के भीतर प्रकट होती है।"
-    },
-    "cisco-core": {
-      "n": "Cisco: मूल CVEs",
-      "s": "NSA एक्सप्लॉइट और नेटवर्क मूल बातें",
-      "d": "Cisco नेटवर्क बुनियादी ढांचे पर मूलभूत हमले — IOS में बफर ओवरफ्लो, SNMP एक्सप्लॉइट, और Shadow Brokers और Vault 7 द्वारा लीक किए गए NSA के हथियारबंद Cisco टूल।"
-    },
-    "cisco-enterprise": {
-      "n": "Cisco: एंटरप्राइज़ अटैक",
-      "s": "राष्ट्र-राज्य अभियान और उन्नत CVEs",
-      "d": "Cisco के पूरे एंटरप्राइज़ पोर्टफोलियो में उन्नत शोषण — ASA, NX-OS, SD-WAN, Expressway, और ArcaneDoor और Velvet Ant राष्ट्र-राज्य अभियान।"
-    },
-    "cisco-secops": {
-      "n": "Cisco: सुरक्षा संचालन",
-      "s": "CyberOps, थ्रेट हंटिंग और ज़ीरो-डे रक्षा",
-      "d": "Cisco सुरक्षा प्लेटफ़ॉर्म संचालन और CyberOps Associate कौशल — Firepower, Umbrella, ISE, SecureX/XDR, SOC ट्राइएज, थ्रेट हंटिंग, और IOS XE CVSS 10.0 ज़ीरो-डे।"
-    },
-    "cisco-advanced": {
-      "n": "Cisco: उन्नत रक्षा",
-      "s": "Firepower, XDR, DevNet, Silicon One और Quantum-Safe",
-      "d": "अगली पीढ़ी की Cisco सुरक्षा — Firepower NGIPS/FTD चोरी और CVEs, Cisco XDR में थ्रेट हंटिंग, DevNet API और NETCONF/YANG सुरक्षा, Silicon One P4 पाइपलाइन अखंडता, और ML-KEM-768 के साथ पोस्ट-क्वांटम IKEv2।"
     },
     "tech-audit-1": {
       "n": "तकनीकी ऑडिट: मूल बातें",
@@ -433,11 +1229,6 @@
       "n": "क्वांटम सुरक्षा",
       "s": "QKD, चपलता और एंटरप्राइज़ माइग्रेशन",
       "d": "एंड-टू-एंड क्वांटम-सुरक्षित बुनियादी ढांचा तैनात करें — QKD BB84 प्रोटोकॉल, क्वांटम की-वितरण नेटवर्क, क्रिप्टोग्राफिक चपलता ढांचे, क्वांटम-प्रतिरोधी VPN और PKI, liboqs एकीकरण, FIPS 140-3 अनुपालन, और पूर्ण एंटरप्राइज़ PQC माइग्रेशन योजना।"
-    },
-    "umbrella": {
-      "n": "Cisco Umbrella",
-      "s": "DNS सुरक्षा और थ्रेट इंटेलिजेंस",
-      "d": "Cisco Umbrella के साथ DNS-परत सुरक्षा में महारत — दुनिया का सबसे अधिक तैनात क्लाउड सुरक्षा प्लेटफ़ॉर्म। DNS टनलिंग से DGA पहचान तक, lookalike डोमेन से DoH चोरी तक, प्रत्येक मिशन आपको Umbrella SOC जांच के अंदर रखता है।"
     },
     "tapestry": {
       "n": "बुना हुआ संसार",

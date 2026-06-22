@@ -22,7 +22,6 @@ const EPOCH_SKILLS: Record<string, string> = {
   "quantum-1": "Quantum Threat Landscape",
   "quantum-2": "Post-Quantum Cryptography (PQC)",
   "quantum-3": "Quantum Key Distribution (QKD)",
-  "umbrella": "SASE & Cisco Umbrella",
   "cisco-advanced": "Advanced Network Defense",
 };
 

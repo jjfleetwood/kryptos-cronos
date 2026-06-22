@@ -9,9 +9,9 @@ import type { CtfCommand } from "./types";
 //
 // Keyed by epochId (the caller passes stage.epochId, so we need neither the
 // stages barrel nor stages-meta here). Each loader pulls a single ~150 KB epoch
-// chunk. NOTE: `ancient` + `cisco-core` stages still live inline in the heavy
-// stages.ts barrel, so those two lazily load it — still off the page first-load.
-// TODO: extract ancient/cisco-core into their own epoch files to drop that too.
+// chunk. NOTE: `ancient` stages still live inline in the heavy stages.ts barrel,
+// so that epoch lazily loads it — still off the page first-load.
+// TODO: extract ancient into its own epoch file to drop that too.
 const LOADERS: Record<string, Array<() => Promise<unknown>>> = {
   "ai-ml-foundations": [() => import("./ai-ml-foundations")],
   "sec-foundations": [() => import("./sec-foundations")],
@@ -20,9 +20,6 @@ const LOADERS: Record<string, Array<() => Promise<unknown>>> = {
   "quantum-intro": [() => import("./quantum-intro")],
   "quantum-deep": [() => import("./quantum-deep")],
   "first-journey": [() => import("./first-journey"), () => import("./first-journey-2"), () => import("./first-journey-3")],
-  "cisco-enterprise": [() => import("./cisco-2")],
-  "cisco-secops": [() => import("./cisco-3"), () => import("./cisco-4")],
-  "cisco-advanced": [() => import("./cisco-5")],
   "emerging-tech": [() => import("./emerging-tech")],
   "range-metasploit": [() => import("./cyber-range")],
   "range-recon": [() => import("./range-recon")],
@@ -47,11 +44,9 @@ const LOADERS: Record<string, Array<() => Promise<unknown>>> = {
   "space-race-2": [() => import("./space-race-2")],
   "tech-audit-2": [() => import("./tech-audit-2")],
   "threat-frameworks": [() => import("./threat-frameworks")],
-  "umbrella": [() => import("./umbrella")],
   "vehicle-sec": [() => import("./vehicle-sec")],
   "vehicle-sec-2": [() => import("./vehicle-sec-2")],
   "ancient": [() => import("./stages")],
-  "cisco-core": [() => import("./stages")],
 };
 
 type WithCtf = { id?: string; ctf?: { extraCommands?: Record<string, CtfCommand> } };

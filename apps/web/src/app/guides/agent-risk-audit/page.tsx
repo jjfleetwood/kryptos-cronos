@@ -4,6 +4,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import ReactMarkdown, { type Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
+import GuideDeckButton from "@/components/GuideDeckButton";
 
 export const metadata: Metadata = {
   title: "Agent Risk Audit Guide — Kryptós CronOS",
@@ -87,10 +88,11 @@ export default function AgentRiskAuditGuidePage() {
 
         <div className="mt-6 mb-8 flex items-center gap-3">
           <span className="text-3xl flex-shrink-0">🛡️</span>
-          <div>
+          <div className="flex-1">
             <p className="text-[11px] font-mono font-bold text-violet-400 uppercase tracking-widest">Field Guide</p>
             <p className="text-gray-500 text-sm">How to audit agentic-AI systems · companion to the Auditing Agentic AI epochs</p>
           </div>
+          <GuideDeckButton guide="agent-risk-audit" />
         </div>
 
         <article className="rounded-2xl border border-white/10 bg-white/2 p-6 sm:p-8">

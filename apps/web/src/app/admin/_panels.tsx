@@ -475,14 +475,12 @@ export function ContentAudit() {
 
 const EPOCH_NAMES: Record<string, string> = {
   "first-journey": "Our First Journey", "ancient": "Foundations",
-  "cisco-core": "Cisco: Core CVEs", "cisco-enterprise": "Cisco: Enterprise",
-  "cisco-secops": "Cisco: SecOps", "cisco-advanced": "Cisco: Adv Defense",
   "tech-audit-1": "Audit: Foundations", "tech-audit-2": "Audit: Technical",
   "tech-audit-3": "Audit: Agentic", "tech-audit-4": "Cont. Monitoring",
   "mitre": "MITRE ATT&CK", "mitre-atlas": "MITRE ATLAS",
   "owasp-llm": "OWASP LLM Top 10", "quantum-1": "Quantum: Threats",
   "quantum-2": "Quantum: PQC", "quantum-3": "Quantum: QKD",
-  "umbrella": "Cisco Umbrella", "tapestry": "Tapestry",
+  "tapestry": "Tapestry",
   "nails": "Nail Arts", "hair-color": "Hair Coloring", "hair-styling": "Hair Styling",
   "driving-1": "Road to License", "driving-2": "First Miles", "driving-3": "Rules of Road",
   "baseball-1": "Play Ball!", "baseball-2": "Art of Hitting",

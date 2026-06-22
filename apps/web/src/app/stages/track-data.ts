@@ -29,7 +29,7 @@ export const epochGroups: TrackGroup[] = [
   { id: "threatFrameworks", labelKey: "stages.tracks.threatFrameworks", descKey: "stages.tracks.threatFrameworksDesc", epochIds: ["mitre", "threat-frameworks"] },
   { id: "aiSecurity", labelKey: "stages.tracks.aiSecurity", descKey: "stages.tracks.aiSecurityDesc", epochIds: ["mitre-atlas", "owasp-llm", "emerging-tech", "ai-ml-foundations"] },
   { id: "quantumEra", labelKey: "stages.tracks.quantumEra", descKey: "stages.tracks.quantumEraDesc", epochIds: ["quantum-intro", "quantum-deep", "quantum-1", "quantum-2", "quantum-3", "quantum-4", "quantum-5"] },
-  { id: "enterprise", labelKey: "stages.tracks.enterprise", descKey: "stages.tracks.enterpriseDesc", epochIds: ["cisco-core", "cisco-enterprise", "cisco-secops", "cisco-advanced", "umbrella", "physics-of-hacking"] },
+  { id: "enterprise", labelKey: "stages.tracks.enterprise", descKey: "stages.tracks.enterpriseDesc", epochIds: ["physics-of-hacking"] },
   { id: "spaceRace", labelKey: "stages.tracks.spaceRace", descKey: "stages.tracks.spaceRaceDesc", epochIds: ["space-race", "space-race-2"] },
   { id: "vehicleSec", labelKey: "stages.tracks.vehicleSec", descKey: "stages.tracks.vehicleSecDesc", epochIds: ["vehicle-sec", "vehicle-sec-2"] },
   { id: "robotics", labelKey: "stages.tracks.robotics", descKey: "stages.tracks.roboticsDesc", epochIds: ["robot-sec", "robot-sec-2"] },

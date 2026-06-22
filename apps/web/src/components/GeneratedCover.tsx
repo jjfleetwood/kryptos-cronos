@@ -1,5 +1,5 @@
 // A deterministic, on-brand "neon circuit" cover rendered for any stage that has
-// no self-hosted/real image. Replaces the blank gap so every one of the 831
+// no self-hosted/real image. Replaces the blank gap so every one of the 811
 // stages shows a hero visual. Pure presentational — no client APIs, no network,
 // no motion — so it is SSR-safe, responsive, and reduced-motion-safe.
 //

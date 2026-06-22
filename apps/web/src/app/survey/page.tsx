@@ -35,7 +35,7 @@ const TRACKS = [
   "Threat Frameworks (MITRE ATT&CK / ATLAS)",
   "AI Security (OWASP LLM Top 10)",
   "Quantum Era (PQC, QKD)",
-  "Cisco / Enterprise Defense",
+  "Enterprise Defense",
   "Travel & Language modules",
   "Sports & Crafts modules",
 ];
@@ -91,7 +91,7 @@ export default function SurveyPage() {
             <>
               <div className="rounded-2xl border border-cyan-500/30 bg-cyan-500/8 px-6 py-5 mb-6">
                 <p className="text-cyan-300 font-bold text-lg mb-1">{reward.durationDays} days of Pro access</p>
-                <p className="text-gray-400 text-sm">All 871 stages · Unlimited ARIA hints · Certificate paths</p>
+                <p className="text-gray-400 text-sm">All 811 stages · Unlimited ARIA hints · Certificate paths</p>
               </div>
               <p className="text-gray-500 text-sm mb-8">Thanks for your feedback — it directly shapes what we build next.</p>
             </>
@@ -255,7 +255,7 @@ export default function SurveyPage() {
             <div className="space-y-2">
               {[
                 "Certificate of completion (recognized by employers)",
-                "Cisco / CompTIA / ISC² exam prep content",
+                "CompTIA / ISC² exam prep content",
                 "Team/cohort mode for my security team",
                 "Offline access (mobile app)",
                 "Lower price",

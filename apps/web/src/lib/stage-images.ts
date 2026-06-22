@@ -42,30 +42,9 @@ export const STAGE_IMAGES: Record<string, string> = {
   "bt-27": "/img/bt-27.jpg",
   "bt-28": "/img/bt-28.jpg",
   "bt-29": "/img/bt-29.jpg",
-  // Cisco Core CVEs — real hardware photos of the device in each CVE
   // (Wikimedia Commons, free licenses; credited on /attribution).
-  "stage-m01": "/img/stage-m01.jpg",
-  "stage-m02": "/img/stage-m02.jpg",
-  "stage-m03": "/img/stage-m03.jpg",
-  "stage-m04": "/img/stage-m04.jpg",
-  "stage-m05": "/img/stage-m05.jpg",
-  "stage-m06": "/img/stage-m06.jpg",
-  "stage-m07": "/img/stage-m07.jpg",
-  "stage-m08": "/img/stage-m08.jpg",
-  "stage-m09": "/img/stage-m09.jpg",
-  "stage-m10": "/img/stage-m10.jpg",
-  "stage-m11": "/img/stage-m11.jpg",
-  "stage-m12": "/img/stage-m12.jpg",
-  // Cisco Enterprise/SecOps/Advanced — real landmarks tied to each story (agency
-  // HQs + Cisco gear; Commons, credited on /attribution). Abstract software/process
+  // landmark imagery; Commons, credited on /attribution). Abstract software/process
   // stages keep the generated cover.
-  "stage-m13": "/img/stage-m13.jpg",
-  "stage-m14": "/img/stage-m14.jpg",
-  "stage-m15": "/img/stage-m15.jpg",
-  "stage-m19": "/img/stage-m19.jpg",
-  "stage-m29": "/img/stage-m29.jpg",
-  "stage-m30": "/img/stage-m30.jpg",
-  "stage-m37": "/img/stage-m37.jpg",
   // Foundations (ancient) — the wonders of the ancient world (Commons photos +
   // public-domain engravings for the destroyed wonders); credited on /attribution.
   "stage-01": "/img/stage-01.jpg",

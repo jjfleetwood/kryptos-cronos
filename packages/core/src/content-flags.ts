@@ -49,42 +49,6 @@ export const CONTENT_FLAGS: ContentFlag[] = [
     reviewedAt: "2026-05-20",
   },
   {
-    epochId: "cisco-core",
-    risk: "fair-use",
-    source: "Cisco CVE Database / NVD",
-    license: "Public CVE data (NVD)",
-    attributionUrl: "https://nvd.nist.gov/",
-    attributionText:
-      "CVE identifiers and vulnerability descriptions reference the National Vulnerability Database (NVD) and publicly disclosed Cisco advisories. CVE® is a registered trademark of The MITRE Corporation.",
-    adminNote:
-      "cisco-core stages (m01-m12) reference real Cisco CVEs. Educational use of public CVE data is fair use. NVD citation recommended.",
-    reviewedAt: "2026-05-21",
-  },
-  {
-    epochId: "cisco-enterprise",
-    risk: "fair-use",
-    source: "Cisco CVE Database / NVD / Cisco Talos",
-    license: "Public CVE data (NVD)",
-    attributionUrl: "https://nvd.nist.gov/",
-    attributionText:
-      "CVE identifiers and vulnerability descriptions reference the National Vulnerability Database (NVD) and publicly disclosed Cisco advisories. CVE® is a registered trademark of The MITRE Corporation.",
-    adminNote:
-      "cisco-enterprise stages (m13-m25) reference real Cisco CVEs including ArcaneDoor and Velvet Ant campaign data. Educational fair use.",
-    reviewedAt: "2026-05-21",
-  },
-  {
-    epochId: "cisco-secops",
-    risk: "fair-use",
-    source: "Cisco CVE Database / NVD / Cisco Talos / CISA",
-    license: "Public CVE data (NVD)",
-    attributionUrl: "https://nvd.nist.gov/",
-    attributionText:
-      "CVE identifiers and vulnerability descriptions reference the National Vulnerability Database (NVD) and publicly disclosed Cisco advisories. CVE® is a registered trademark of The MITRE Corporation.",
-    adminNote:
-      "cisco-secops stages (m26-m38) reference Cisco security platform CVEs, CyberOps Associate curriculum topics, and public Talos/CISA threat reports. Educational fair use.",
-    reviewedAt: "2026-05-21",
-  },
-  {
     epochId: "first-journey",
     risk: "fair-use",
     source: "MITRE ATT&CK® (indirect reference)",
@@ -204,20 +168,8 @@ export const CONTENT_FLAGS: ContentFlag[] = [
     attributionText:
       "This module references MITRE ATLAS™ (The MITRE Corporation, CC BY 4.0) and the OWASP Top 10 for Large Language Model Applications (OWASP Foundation, CC BY-SA 4.0) as educational references. MITRE ATLAS™ is a trademark of The MITRE Corporation. OWASP® is a registered trademark of the OWASP Foundation. Additional references include NIST AI RMF 1.0 (public domain), EU AI Act (public EU regulation), C2PA (open standard), and published academic research cited by title and author.",
     adminNote:
-      "emerging-tech.ts cites MITRE ATLAS (CC BY 4.0) in stages emerging-01 and emerging-08, and OWASP LLM Top 10 (CC BY-SA 4.0) in emerging-08. Content cites these frameworks as external authorities without reproducing structured technique listings (those are covered by the dedicated mitre-atlas and owasp-llm epochs). Risk is fair-use, not verified-safe. MITRE ATLAS is NOT public domain — it is CC BY 4.0, same license as MITRE ATT&CK. All other sources (NIST AI RMF, EU AI Act, academic papers, news incidents) are public domain or factual citation. Company logos (Keras, Hugging Face, Google, OpenAI, NVIDIA, Anthropic, WEF) are nominative trademark fair use consistent with umbrella and Cisco epoch practice.",
+      "emerging-tech.ts cites MITRE ATLAS (CC BY 4.0) in stages emerging-01 and emerging-08, and OWASP LLM Top 10 (CC BY-SA 4.0) in emerging-08. Content cites these frameworks as external authorities without reproducing structured technique listings (those are covered by the dedicated mitre-atlas and owasp-llm epochs). Risk is fair-use, not verified-safe. MITRE ATLAS is NOT public domain — it is CC BY 4.0, same license as MITRE ATT&CK. All other sources (NIST AI RMF, EU AI Act, academic papers, news incidents) are public domain or factual citation. Company logos (Keras, Hugging Face, Google, OpenAI, NVIDIA, Anthropic, WEF) are nominative trademark fair use consistent with standard nominative-use practice.",
     reviewedAt: "2026-05-29",
-  },
-  {
-    epochId: "umbrella",
-    risk: "fair-use",
-    source: "Cisco Umbrella® / Cisco Talos® / OpenDNS / NVD CVE data",
-    license: "Commercial product — educational reference",
-    attributionUrl: "https://umbrella.cisco.com/",
-    attributionText:
-      "This module references Cisco Umbrella® and Cisco Talos® threat intelligence, which are products and services of Cisco Systems, Inc. Cisco®, Cisco Umbrella®, and Cisco Talos® are registered trademarks of Cisco Systems, Inc. Content is used for educational purposes only and is not affiliated with or endorsed by Cisco.",
-    adminNote:
-      "umbrella.ts stages teach DNS-layer security concepts using Cisco Umbrella as the reference platform. Cisco and Talos are referenced descriptively as real-world tools, not reproduced verbatim. CVE references are public NVD data. No proprietary Cisco documentation copied. Educational fair use.",
-    reviewedAt: "2026-05-22",
   },
   // ── Arts epochs ───────────────────────────────────────────────────────────
   {
@@ -361,19 +313,6 @@ export const CONTENT_FLAGS: ContentFlag[] = [
     reviewedAt: "2026-05-21",
   },
 
-  // ── Cisco Advanced ────────────────────────────────────────────────────────
-  {
-    epochId: "cisco-advanced",
-    risk: "fair-use",
-    source: "Cisco CVE Database / NVD / Cisco Talos / CISA KEV",
-    license: "Public CVE data (NVD)",
-    attributionUrl: "https://nvd.nist.gov/",
-    attributionText:
-      "CVE identifiers and vulnerability descriptions reference the National Vulnerability Database (NVD) and publicly disclosed Cisco advisories. CVE® is a registered trademark of The MITRE Corporation.",
-    adminNote:
-      "cisco-advanced stages (m39–m50) reference real Cisco CVEs including advanced persistent threat campaign data from Talos and CISA KEV. Educational fair use of public vulnerability data.",
-    reviewedAt: "2026-05-28",
-  },
 
   // ── Travel epochs ─────────────────────────────────────────────────────────
   {
