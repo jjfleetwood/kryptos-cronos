@@ -474,6 +474,47 @@ can hold in this county.
 
 He closes his hand around it. He does not drop it in the bay.
 
+EXT. BELOW THE WHARF -- THE BUSHEL BASKET -- DUSK
+
+The boardwalk lights come on above. Below, on the wet sand, the
+bottle boy is still working -- long after his shift, long after
+any reasonable boy has gone in. An old BUSHEL BASKET, the bottom
+half gone, is lashed to a piling at the height a crouching catcher
+holds a mitt.
+
+CIRILO throws into it. And again. And again -- the small dull
+THUNK of leather into willow, over and over, until the tide comes
+up toward his bare feet and he has to move back.
+
+On an overturned bucket sits DON AURELIO (ancient), who has
+carried that bucket to every backstop of the boy's life.
+
+DON AURELIO
+Any fool can hit what he can see, mijo. Learn the
+throw so deep the dark can't reach it -- and then
+no crowd, and no fear, ever will either.
+
+Cirilo puts fifty straight into the dead center. Does not stop.
+Frowns -- and moves the basket lower, to the knees, to the black
+corner where the strikeout lives. Starts again from nothing.
+
+DON AURELIO (CONT'D)
+(love and dread in one breath)
+Enough, now -- you'll tear the --
+(but he can't say it)
+...One more, then.
+
+CIRILO
+One more, abuelo.
+
+LATER -- the same boy at a kitchen lamp, reading the BOX SCORES
+aloud to his mother DOLORES, who can't read and isn't listening
+to the scores at all -- only to the gladness in his voice. He
+turns the smallest type in the paper into a map of a country he
+has decided, against every fact of his life, he is going to walk
+to. The reaching is not hunger. It is hope, with its sleeves
+rolled up.
+
 EXT. THE TANNERY FLATS -- THE YARD -- EARLY EVENING
 
 A close, poor cluster of houses under tannery smoke. Across the
@@ -1036,6 +1077,41 @@ man with his own long acquaintance with the quick flat verdict --
 feeds all of them, the brown one included, at a back table, for
 cash, without a word and without a flicker.
 
+INT. THE MENDEZ KITCHEN -- SANTA CRUZ -- NIGHT (YEARS PASSING)
+
+The lamp. The same table. A SOTO NIECE (9), solemn, reads aloud
+from a letter in a careful, stumbling voice -- turning a far-off
+pitcher's English into the Spanish two old people can hold.
+
+At the table: DOLORES, hands still in her lap, forgetting nothing.
+And DON AURELIO, blind now, eyes shut, listening to his grandson's
+voice come three thousand miles in a child's mouth. They left the
+bucket behind when he climbed; they have rebuilt it out of paper
+and a three-cent stamp and a little girl's eyes.
+
+NIECE
+(reading)
+"...lost the game on a three-and-two I should have
+wasted. Tell abuelo I know it."
+
+Don Aurelio lifts a hand. Dictates back; the niece writes it down
+in a round school hand.
+
+DON AURELIO
+You lost it because you were proud for one pitch.
+Be proud the rest of your life -- and humble for
+the length of one pitch -- and you'll be all right.
+Your abuelo. Who is watching. Though they tell him
+he can't see.
+
+INTERCUT -- A BUSH-LEAGUE BACK LOT -- NIGHT
+
+The same bushel basket, lashed to a fence rail in a strange town.
+CIRILO, alone in the dark the night of a win nobody else has
+stopped celebrating, works the one pitch that hung on him. A win
+is only data -- the most dangerous kind. The THUNK in the willow:
+the same sound the family up the lane once fell asleep to.
+
 EXT. BEACH FLATS -- THE BEACHCOMBERS' GROUND -- DAY (A SUNDAY)
 
 The climb lets him home. His county's own pro club, on a scrappy
@@ -1388,6 +1464,49 @@ own family made him on the sill -- a thirty-six-year-old man with a
 tannery stain still under his nails and his first real shot at the top
 finally in front of him -- and for the length of one held breath he is
 not second to any man alive.
+
+EXT. THE MAJOR LEAGUES -- A WONDER -- MONTAGE (SUMMER 1918)
+
+For a boy who read the big leagues in the smallest type the paper
+owned, the size of the real thing is almost unbearable.
+
+The cathedrals: FENWAY's looming wall in left. The POLO GROUNDS
+rising in horseshoe tiers, bigger than any building he has stood
+inside. COMISKEY, the biggest of all. Each one greener than seemed
+possible. And the PULLMAN cars stitching them together across a
+whole country -- hot meals, clean sheets, a man carried instead of
+made to walk.
+
+CIRILO at the train window, not guarding his face for once -- the
+bottle boy still in there, amazed. REBECCA watches him, not the
+country, and loves him for it past speaking.
+
+CIRILO
+Sixteen clubs, Rebecca. Two leagues, one ladder,
+one rung at the top -- the whole season built in
+the shape of my whole life. First, or nothing.
+(quietly)
+I wish the old man could see it.
+
+INTERCUT -- THE MENDEZ KITCHEN -- NIGHT
+
+The niece reads his wonder aloud. DON AURELIO -- dying now --
+weeps. Not from grief. From the thing the curse was built to keep
+out.
+
+DON AURELIO
+(dictating; his last full letter)
+I was wrong about the curse -- or you've broken it
+-- and I'm too old to tell the difference and too
+happy to care. You went up where they told us we
+could not go. And no one -- not the bank, not the
+court, not the grave -- can take that back out of
+the world. Throw the dying ball. Keep your eyes on
+the sky.
+
+DOLORES sits dry-eyed across from him, taking it in, forgetting
+nothing -- her son's voice in a child's mouth, the key she handed
+him returned to her at last.
 
 EXT. FENWAY PARK -- BOSTON -- A TUESDAY IN JULY (1918)
 

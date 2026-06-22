@@ -266,6 +266,31 @@ sport and comes back laughing. Cirilo knows the game secondhand
 
 He closes his hand around it. He doesn't drop it in the bay.
 
+EXT. BELOW THE WHARF -- DUSK
+
+Shift over, light gone, the bottle boy still working. An old
+BUSHEL BASKET lashed to a piling at a catcher's height. CIRILO
+throws into it -- THUNK, THUNK -- past the point any sane boy
+quit. DON AURELIO watches from his overturned bucket.
+
+DON AURELIO
+Learn the throw so deep the dark can't reach it.
+Then no crowd, and no fear, ever will.
+
+Fifty in the dead center. He doesn't stop -- moves the basket
+lower, to the strikeout corner, starts over from nothing.
+
+DON AURELIO (CONT'D)
+...One more, then.
+
+CIRILO
+One more, abuelo.
+
+LATER: the same boy reads the BOX SCORES aloud by a kitchen lamp
+to his mother, who can't read -- turning the smallest type in the
+paper into a map of a country he has decided he will walk to. The
+reaching isn't hunger. It's hope with its sleeves rolled up.
+
 EXT. THE TANNERY FLATS -- THE YARD -- DUSK
 
 Poor houses under tannery smoke. Across the dirt, the owner's
@@ -602,6 +627,26 @@ EXT. LIM'S CAFE -- BY THE TRACKS -- MIDNIGHT
 The only other light on. LIM, Chinese, feeds them all -- the
 brown one included -- at a back table, for cash, without a word.
 
+INT. THE MENDEZ KITCHEN -- NIGHT (YEARS PASSING)
+
+A SOTO NIECE (9) reads a far-off pitcher's letter aloud, turning
+his English into Spanish two old people can hold. DOLORES, hands
+still. DON AURELIO, blind now, eyes shut. They left the bucket
+behind when he climbed; they rebuilt it out of paper and a
+child's eyes.
+
+DON AURELIO
+(dictating back)
+You lost it because you were proud for one pitch.
+Be proud the rest of your life -- humble for one
+pitch -- and you'll be all right.
+
+INTERCUT -- A BACK LOT, A STRANGE TOWN -- NIGHT: the same bushel
+basket, lashed to a fence rail. CIRILO works alone the night of a
+win nobody else has stopped toasting. A win is only data. The
+THUNK in the willow -- the sound the family up the lane fell
+asleep to.
+
 EXT. BEACH FLATS -- THE BEACHCOMBERS' GROUND -- A SUNDAY
 
 The climb lets him home. His county's club, behind the bath
@@ -832,6 +877,33 @@ A thirty-six-year-old man with his first real shot at the top in
 front of him at last, a tannery stain still under his nails, the old
 glove his own family made him on the sill. For one held breath he is
 not second to any man alive.
+
+EXT. THE MAJOR LEAGUES -- A WONDER -- MONTAGE (1918)
+
+The boy who read the leagues in agate now stands inside the
+column. FENWAY's wall. The POLO GROUNDS' tiers. COMISKEY, the
+biggest of all. The PULLMAN cars stitching a continent -- a man
+carried, not made to walk. CIRILO at the window, face unguarded;
+REBECCA watching him, not the country.
+
+CIRILO
+Sixteen clubs. Two leagues, one ladder, one rung
+at the top. The whole season's the shape of my
+life -- first, or nothing. I wish the old man could
+see it.
+
+INTERCUT -- THE KITCHEN: the niece reads his wonder aloud. DON
+AURELIO, dying, weeps -- not from grief, but from the thing the
+curse was built to keep out.
+
+DON AURELIO
+I was wrong about the curse -- or you broke it.
+You went where they said we couldn't. No one --
+not the bank, not the court, not the grave -- can
+take that back. Throw the dying ball. Watch the sky.
+
+DOLORES, dry-eyed, forgets nothing: her son's voice in a child's
+mouth, the key she gave him returned at last.
 
 EXT. FENWAY PARK -- A TUESDAY IN JULY (1918)
 
