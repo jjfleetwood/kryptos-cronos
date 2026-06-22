@@ -156,15 +156,6 @@ export default function StagesPage() {
           <div className="flex-1 h-px bg-cyan-500/20" />
         </div>
 
-        {/* Agent Risk Audit Guide — field guide companion to the Auditing Agentic AI epochs */}
-        <div className="flex justify-end mb-4 -mt-2">
-          <Link
-            href="/guides/agent-risk-audit"
-            className="text-[10px] font-mono text-violet-400 hover:text-violet-300 transition-colors whitespace-nowrap border border-violet-500/30 px-2.5 py-1 rounded-lg"
-          >
-            🛡️ Agent Risk Audit Guide
-          </Link>
-        </div>
 
         {/* Agent Fleet Overview — a look behind the scenes at the automation. */}
         <div className="flex justify-end mb-4 -mt-2">

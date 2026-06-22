@@ -15,6 +15,11 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   transpilePackages: ["@kryptos/core", "@kryptos/ui"],
+  // Bundle the field-guide markdown with the routes that read it at runtime.
+  outputFileTracingIncludes: {
+    "/guide": ["./content/AGENT_RISK_AUDIT_GUIDE.md"],
+    "/api/guide-deck": ["./content/AGENT_RISK_AUDIT_GUIDE.md"],
+  },
   async headers() {
     return [{ source: "/(.*)", headers: securityHeaders }];
   },

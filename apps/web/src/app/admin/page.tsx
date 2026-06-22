@@ -8,7 +8,7 @@ import { getSession, setSession } from "@/lib/auth";
 import { stagesMeta as stages } from "@kryptos/core/stages-meta";
 import { USER_GROUPS, GROUP_ICONS, GROUP_LABELS, type UserGroup } from "@/lib/groups";
 import type { UserRow } from "./_shared";
-import { FlagCaptureLog, DownloadsAccessPanel, PipelineTestPanel, ContentAudit, MetricsPanel } from "./_panels";
+import { FlagCaptureLog, PipelineTestPanel, ContentAudit, MetricsPanel } from "./_panels";
 
 type SortKey = "xp" | "stages" | "streak" | "lastActive" | "createdAt";
 type SortDir = "desc" | "asc";
@@ -34,7 +34,6 @@ const NAV_ITEMS = [
   { id: "admin-cms",      label: "CMS" },
   { id: "admin-pipeline", label: "Pipeline" },
   { id: "admin-vouchers", label: "Vouchers" },
-  { id: "admin-downloads",label: "Downloads" },
   { id: "admin-ip",       label: "IP Audit" },
   { id: "admin-catalog",  label: "Catalog" },
 ];
@@ -633,8 +632,6 @@ function VouchersPanel() {
   );
 }
 
-// ── Downloads Access Panel ───────────────────────────────────────────────────
-
 export default function AdminPage() {
   const router = useRouter();
   const [users, setUsers] = useState<UserRow[]>([]);
@@ -1175,10 +1172,6 @@ export default function AdminPage() {
         {/* Vouchers */}
         <DashSection id="admin-vouchers"><VouchersPanel /></DashSection>
 
-        {/* Downloads Access */}
-        <DashSection id="admin-downloads">
-          <DownloadsAccessPanel users={users.map((u) => ({ username: u.username }))} />
-        </DashSection>
 
         {/* Content IP Audit */}
         <DashSection id="admin-ip"><ContentAudit /></DashSection>

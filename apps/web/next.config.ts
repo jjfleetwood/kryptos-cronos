@@ -14,8 +14,6 @@ const nextConfig: NextConfig = {
   transpilePackages: ["@kryptos/core", "@kryptos/ui"],
   outputFileTracingIncludes: {
     "/api/docs/(.*)": ["./secured-docs/**"],
-    // The public Agent Risk Audit Guide renders the same markdown server-side.
-    "/guides/agent-risk-audit": ["./secured-docs/AGENT_RISK_AUDIT_GUIDE.md"],
     "/guides/agent-fleet": ["./secured-docs/AGENTS_OVERVIEW.md"],
     // Studio (Pro-gated): the manuscript + both screenplays + the generated
     // audiobook MP3 must be bundled into these serverless functions (read from disk).

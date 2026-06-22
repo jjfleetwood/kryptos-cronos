@@ -7,17 +7,14 @@ import remarkGfm from "remark-gfm";
 import GuideDeckButton from "@/components/GuideDeckButton";
 
 export const metadata: Metadata = {
-  title: "Agent Risk Audit Guide — Kryptós CronOS",
-  description:
-    "A practical field guide for auditing agentic-AI systems: the G-I-A risk framework, scoping, the evidence trail, per-layer tests, framework mapping, and CAPA reporting.",
+  title: "Agent Risk Audit Guide",
+  description: "Field guide for auditing agentic-AI systems.",
+  robots: { index: false, follow: false },
 };
 
-// The canonical guide lives in secured-docs (also surfaced in the admin docs
-// viewer); this public page renders the same markdown for everyone. The route is
-// traced to the file in next.config.ts.
 function loadGuide(): string {
   try {
-    return fs.readFileSync(path.join(process.cwd(), "secured-docs", "AGENT_RISK_AUDIT_GUIDE.md"), "utf-8");
+    return fs.readFileSync(path.join(process.cwd(), "content", "AGENT_RISK_AUDIT_GUIDE.md"), "utf-8");
   } catch {
     return "# Agent Risk Audit Guide\n\nThe guide is temporarily unavailable.";
   }
@@ -82,17 +79,17 @@ export default function AgentRiskAuditGuidePage() {
   return (
     <div className="min-h-screen px-4 py-16" style={{ background: "linear-gradient(135deg, #0d1117 0%, #0f2027 50%, #1a1a2e 100%)" }}>
       <div className="max-w-3xl mx-auto">
-        <Link href="/stages" className="text-gray-500 hover:text-cyan-400 text-sm transition-colors">
-          ← Back to stages
+        <Link href="/" className="text-gray-500 hover:text-cyan-400 text-sm transition-colors">
+          ← Library
         </Link>
 
         <div className="mt-6 mb-8 flex items-center gap-3">
           <span className="text-3xl flex-shrink-0">🛡️</span>
           <div className="flex-1">
             <p className="text-[11px] font-mono font-bold text-violet-400 uppercase tracking-widest">Field Guide</p>
-            <p className="text-gray-500 text-sm">How to audit agentic-AI systems · companion to the Auditing Agentic AI epochs</p>
+            <p className="text-gray-500 text-sm">How to audit agentic-AI systems</p>
           </div>
-          <GuideDeckButton guide="agent-risk-audit" />
+          <GuideDeckButton />
         </div>
 
         <article className="rounded-2xl border border-white/10 bg-white/2 p-6 sm:p-8">
@@ -100,26 +97,6 @@ export default function AgentRiskAuditGuidePage() {
             {markdown}
           </ReactMarkdown>
         </article>
-
-        {/* Run the epochs — the deep, worked-example version */}
-        <div className="mt-8 grid sm:grid-cols-2 gap-4">
-          <Link
-            href="/stages/audit-ag01"
-            className="group rounded-xl border border-cyan-500/30 bg-gradient-to-br from-cyan-500/10 to-transparent p-5 hover:border-cyan-400/60 transition-colors"
-          >
-            <p className="text-[11px] font-mono font-bold text-cyan-400 uppercase tracking-widest mb-1">Baseline · tech-audit-5</p>
-            <p className="text-white font-bold text-sm mb-1 group-hover:text-cyan-200 transition-colors">Auditing Agentic AI →</p>
-            <p className="text-gray-500 text-xs">The agentic loop, the lifecycle, the G-I-A layers, the evidence trail, and a baseline engagement — 10 stages.</p>
-          </Link>
-          <Link
-            href="/stages/audit-ag11"
-            className="group rounded-xl border border-violet-500/30 bg-gradient-to-br from-violet-500/10 to-transparent p-5 hover:border-violet-400/60 transition-colors"
-          >
-            <p className="text-[11px] font-mono font-bold text-violet-400 uppercase tracking-widest mb-1">Advanced · tech-audit-6</p>
-            <p className="text-white font-bold text-sm mb-1 group-hover:text-violet-200 transition-colors">Auditing Agentic AI: Advanced →</p>
-            <p className="text-gray-500 text-xs">Eval engineering, the MCP/NHI ecosystem, multi-agent chaos, trace integrity, continuous monitoring, and incident forensics — 10 stages.</p>
-          </Link>
-        </div>
       </div>
     </div>
   );

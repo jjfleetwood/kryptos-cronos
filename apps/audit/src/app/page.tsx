@@ -13,9 +13,21 @@ export default function Home() {
         Private · owner-only
       </p>
       <h1 style={{ fontSize: 32, fontWeight: 800, margin: "8px 0 6px" }}>Agentic Audit Library</h1>
-      <p style={{ color: "#9ca3af", marginBottom: 32 }}>
+      <p style={{ color: "#9ca3af", marginBottom: 16 }}>
         {auditEpochs.length} domains · personal agentic-audit working reference. Not part of the Kryptós product.
       </p>
+
+      <Link
+        href="/guide"
+        style={{
+          display: "inline-flex", alignItems: "center", gap: 8, marginBottom: 32,
+          fontSize: 13, color: "#ddd6fe", textDecoration: "none",
+          border: "1px solid rgba(167,139,250,0.4)", background: "rgba(124,58,237,0.12)",
+          padding: "8px 14px", borderRadius: 10,
+        }}
+      >
+        🛡️ Agent Risk Audit — Field Guide →
+      </Link>
 
       <div style={{ display: "grid", gap: 20 }}>
         {auditEpochs.map((e) => {
