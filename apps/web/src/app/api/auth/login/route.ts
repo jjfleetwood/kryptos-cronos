@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { timingSafeEqual } from "crypto";
 import { redis } from "@/lib/redis";
 import { hashPassword, PBKDF2_ITERATIONS } from "@/lib/crypto-utils";
-import { signSessionToken, sessionCookieOptions } from "@/lib/server-session";
+import { signSessionToken, sessionCookieOptions, getSessionEpoch } from "@/lib/server-session";
 import { signAdminToken } from "@/lib/admin-token";
 import { supabaseAdmin, createSupabaseServerClient } from "@/lib/supabase";
 import { getClientIp } from "@/lib/client-ip";
@@ -110,7 +110,7 @@ export async function POST(req: NextRequest) {
   clearAccountLockout(username).catch(() => {});
 
   // ── Issue HMAC session cookie (keeps all existing API routes working) ──────
-  const token = signSessionToken(username);
+  const token = signSessionToken(username, await getSessionEpoch(username));
   const res = NextResponse.json({ ok: true, username, email });
   res.cookies.set("session_token", token, sessionCookieOptions());
 

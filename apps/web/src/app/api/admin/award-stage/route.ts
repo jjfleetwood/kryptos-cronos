@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "stageId required" }, { status: 400 });
   }
 
-  const sessionUser = getServerSession(req);
+  const sessionUser = await getServerSession(req);
   const username = (body.username ?? sessionUser ?? "").trim().toLowerCase();
   if (!username) {
     return NextResponse.json({ error: "username required — pass in body or be logged in" }, { status: 400 });

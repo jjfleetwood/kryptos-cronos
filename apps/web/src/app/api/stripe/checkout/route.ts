@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
     yearly: process.env.STRIPE_PRO_YEARLY_PRICE_ID,
   };
 
-  const username = getServerSession(req);
+  const username = await getServerSession(req);
   if (!username) {
     return NextResponse.json({ error: "Not authenticated." }, { status: 401 });
   }

@@ -13,7 +13,7 @@ import { redis } from "@/lib/redis";
 // the admin cookie on real authentication, so this route is a safe no-op for
 // non-admins.)
 export async function POST(req: NextRequest) {
-  const sessionUser = getServerSession(req);
+  const sessionUser = await getServerSession(req);
   if (!sessionUser) {
     return NextResponse.json({ isAdmin: false }, { status: 401 });
   }

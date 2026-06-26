@@ -1,38 +1,8 @@
-import { NextRequest, NextResponse } from "next/server";
-import { timingSafeEqual } from "crypto";
-import { redis } from "@/lib/redis";
-import { signSessionToken, sessionCookieOptions } from "@/lib/server-session";
+import { NextResponse } from "next/server";
 
-function safeCompare(a: string, b: string): boolean {
-  try {
-    const ab = Buffer.from(a);
-    const bb = Buffer.from(b);
-    if (ab.length !== bb.length) return false;
-    return timingSafeEqual(ab, bb);
-  } catch {
-    return false;
-  }
-}
-
-export async function POST(req: NextRequest) {
-  const body = await req.json().catch(() => null);
-  if (!body?.username || !body?.passwordHash) {
-    return NextResponse.json({ error: "invalid" }, { status: 400 });
-  }
-
-  const username = body.username.toLowerCase().trim();
-  const data = await redis.hgetall<{ passwordHash: string }>(`user:${username}`);
-
-  if (!data?.passwordHash || !safeCompare(data.passwordHash, body.passwordHash)) {
-    return NextResponse.json({ error: "unauthorized" }, { status: 401 });
-  }
-
-  const token = signSessionToken(username);
-  const res = NextResponse.json({ ok: true });
-  res.cookies.set("session_token", token, sessionCookieOptions());
-  return res;
-}
-
+// Logout only. (A former POST handler minted a session from a client-supplied
+// password *hash* — a pass-the-hash hole (CWE-836) with no caller — and was
+// removed. Sessions are issued solely by register / login / reset-password.)
 export async function DELETE() {
   // Sign out from Supabase (clears JWT cookies)
   try {

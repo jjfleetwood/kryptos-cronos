@@ -9,7 +9,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Billing not configured." }, { status: 503 });
   }
 
-  const username = getServerSession(req);
+  const username = await getServerSession(req);
   if (!username) {
     return NextResponse.json({ error: "Not authenticated." }, { status: 401 });
   }

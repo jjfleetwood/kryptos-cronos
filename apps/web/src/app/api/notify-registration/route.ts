@@ -15,7 +15,7 @@ async function isRateLimited(ip: string): Promise<boolean> {
 
 export async function POST(req: NextRequest) {
   // Verify a real session exists — prevents unauthenticated spam to admin inbox
-  const sessionUser = getServerSession(req);
+  const sessionUser = await getServerSession(req);
   if (!sessionUser) return NextResponse.json({ ok: true });
 
   const ip = req.headers.get("x-real-ip") ?? req.headers.get("x-forwarded-for")?.split(",")[0].trim() ?? "unknown";

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { redis } from "@/lib/redis";
 import { hashPassword, generateSalt, PBKDF2_ITERATIONS } from "@/lib/crypto-utils";
-import { signSessionToken, sessionCookieOptions } from "@/lib/server-session";
+import { signSessionToken, sessionCookieOptions, bumpSessionEpoch } from "@/lib/server-session";
 import { supabaseAdmin } from "@/lib/supabase";
 import { passwordError } from "@/lib/password-policy";
 
@@ -53,7 +53,11 @@ export async function POST(req: NextRequest) {
     }).catch(() => {});
   }).catch(() => {});
 
-  const sessionToken = signSessionToken(username);
+  // Invalidate every prior session for this user (a reset means the old password
+  // — and any session opened with it — is no longer trusted), then issue a fresh
+  // session bound to the new epoch.
+  const newEpoch = await bumpSessionEpoch(username);
+  const sessionToken = signSessionToken(username, newEpoch);
   const res = NextResponse.json({ username });
   res.cookies.set("session_token", sessionToken, sessionCookieOptions());
   return res;
