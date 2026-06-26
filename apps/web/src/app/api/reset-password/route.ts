@@ -4,6 +4,7 @@ import { hashPassword, generateSalt, PBKDF2_ITERATIONS } from "@/lib/crypto-util
 import { signSessionToken, sessionCookieOptions, bumpSessionEpoch } from "@/lib/server-session";
 import { supabaseAdmin } from "@/lib/supabase";
 import { passwordError } from "@/lib/password-policy";
+import { isPwnedPassword } from "@/lib/pwned";
 
 async function isRateLimited(ip: string): Promise<boolean> {
   const key = `rate:resetpw:${ip}`;
@@ -29,6 +30,9 @@ export async function POST(req: NextRequest) {
   const pwError = passwordError(body.password);
   if (pwError) {
     return NextResponse.json({ error: pwError }, { status: 400 });
+  }
+  if (await isPwnedPassword(body.password)) {
+    return NextResponse.json({ error: "That password has appeared in a known data breach. Please choose a different one." }, { status: 400 });
   }
 
   const username = await redis.get<string>(`reset:${body.token}`);
