@@ -12,7 +12,7 @@
 
 ## Why this architecture (and not the cheaper options)
 
-The good news: ~80% already exists. The backend (Next.js API routes + Upstash Redis + Supabase Auth + Anthropic + Stripe) is effectively a REST backend a mobile client can consume, and the 871 stages are structured TypeScript data that's reusable as-is.
+The good news: ~80% already exists. The backend (Next.js API routes + Upstash Redis + Supabase Auth + Anthropic + Stripe) is effectively a REST backend a mobile client can consume, and the 811 stages are structured TypeScript data that's reusable as-is.
 
 - **PWA / Capacitor are stopgaps, not endgames.** PWA = no store presence, weak iOS. Capacitor (thin web wrapper) ages badly and risks Apple "thin wrapper" rejection; the CTF terminal's keyboard UX fights touch. Fine to *test* with, wrong to *build a company on*.
 - **Retention is native.** A learning app lives on push-driven re-engagement (streak nudges, daily challenge). The gamification layer (XP, streaks, trophies) only pays off with native push — a website can't pull that lever well.

@@ -1,6 +1,6 @@
 # Kryptós CronOS — Full Visual Makeover Plan (resume-safe)
 
-**Last reviewed:** 2026-06-13 — *working plan; the current-state figures below were measured 2026-06-05. Live counts are now 871 stages / 85 epochs.*
+**Last reviewed:** 2026-06-13 — *working plan; the current-state figures below were measured 2026-06-05. Live counts are now 811 stages / 80 epochs.*
 
 Goal: take the site from "polished product dashboard" to **award-quality** — benchmarked against this year's most decorated sites (Awwwards Site of the Day/Year, CSS Design Awards, FWA, Webby, Lusion/Active Theory/Locomotive-tier studio work). Two concrete user asks anchor it: **(1) add pictures where there are large blocks of text**, and **(2) break lists out into bullets**. Everything else is the broader beautification pass.
 
@@ -36,7 +36,7 @@ Recurring traits across the top 50 this year:
 | Texture | gradients + grid overlays present; **no grain/noise** | Low–Medium |
 | Color | strong cyan/indigo/violet system already | Low (keep, tighten) |
 | Reduced-motion | not handled | Medium (a11y) |
-| Metadata | OG still says "871 stages / 85 epochs" (stale) | Low |
+| Metadata | OG still says "811 stages / 80 epochs" (stale) | Low |
 
 ---
 

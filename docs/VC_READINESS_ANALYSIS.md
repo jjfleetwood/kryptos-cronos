@@ -14,7 +14,7 @@
 
 **Not fundable today — for two founder-controlled reasons: zero users, and a paywall you've deliberately turned off. The positioning problem that haunted prior versions is now solved.**
 
-The product is exceptional and deep: 871 stages, 85 epochs, 16 tracks, 12 certification paths, 292 hands-on CTFs, an in-production AI tutor, a code-complete native mobile app, and a security posture that survives a real review. The monetization rails are built and tested across web (Stripe) and mobile (RevenueCat). The entity is clean. The unit economics — on paper — are strong.
+The product is exceptional and deep: 811 stages, 80 epochs, 16 tracks, 12 certification paths, 292 hands-on CTFs, an in-production AI tutor, a code-complete native mobile app, and a security posture that survives a real review. The monetization rails are built and tested across web (Stripe) and mobile (RevenueCat). The entity is clean. The unit economics — on paper — are strong.
 
 The one thing that previously made the story *messy* — roughly half the curriculum being non-cybersecurity — is resolved by a deliberate **two-product split** (detailed in Part 2.5). The cyber company a VC underwrites is now clean. What remains is the part no document can fix for you: **traction**. Until people use this, return, and pay, a VC cannot price the risk — and right now `OPEN_ACCESS = true` means even the users you get can't generate conversion data until you re-gate. Two jobs before pitching: manufacture traction, and create the conditions under which conversion can be measured.
 
@@ -29,7 +29,7 @@ The one thing that previously made the story *messy* — roughly half the curric
 | 83(b) election filed | ✅ Complete (mailed ~2026-05-30, tracking …40418197). Keep the stamped copy for the data room. |
 | Pricing correct | ✅ $13.99/mo · $99/yr B2C; $8/seat/mo B2B. Defensible. |
 | Security review-ready | ✅ Hardened further: per-request nonce CSP, v2 admin token w/ expiry + revocation, multi-source entitlement, server-only flag store. Briefing at v5.9. |
-| Content depth | ✅ 582→**871 stages**, 50→**85 epochs**, +292 CTFs, +5 deep-tech/analyst epochs (OT/ICS, SDV II, Robotics II, Space II, Threat Frameworks). |
+| Content depth | ✅ 582→**811 stages**, 50→**80 epochs**, +292 CTFs, +5 deep-tech/analyst epochs (OT/ICS, SDV II, Robotics II, Space II, Threat Frameworks). |
 | **Positioning / non-security dilution** | ✅ **Resolved by the two-product split (Part 2.5)** — the cyber brand carves to security tracks only; diverse content moves to a separate consumer/licensing brand. |
 | Engineering maturity | ✅ Bundle-architecture pass (play route 10 MB → 0.9 MB) + 2-step account-deletion/retention flow. Ships, doesn't just accumulate. |
 | **New — Advanced Audit track + deck generator** | ✅ A gated `/audit` Pro/Enterprise track: a structured, agentic **technical + privacy audit** library (per sub-process: a real artifact, a runnable test, the source systems, a downloadable read-only MCP evidence-gathering server), ranked by ease × value with a Top-20 "prioritized opportunities" view. The admin **deck generator** turns *any* curriculum epoch **or** audit domain into an audience-framed PowerPoint. Together they open a **service-delivery** angle (Part 2.6) the original SaaS thesis didn't have. |
@@ -46,7 +46,7 @@ A VC will spend 20 minutes in the product before meeting you. What they'll notic
 
 | Observation | Why It Matters |
 |---|---|
-| 871 stages / 85 epochs / 16 tracks, all loading cleanly | 12+ months of content effort; hard to replicate fast |
+| 811 stages / 80 epochs / 16 tracks, all loading cleanly | 12+ months of content effort; hard to replicate fast |
 | 292 hands-on CTFs with server-side flag validation | The real moat vs. video courseware — interactivity at scale |
 | 12 certification paths (Security+, ISC² CC, Network+, CySA+, CyberOps, AI+, ISACA CISA/CISM/CRISC + AAIA/AAISM, AWS AIP, GCP PMLE) | Turns entertainment into career utility; differentiating |
 | Cross-platform — live web + code-complete native iOS/Android sharing one typed backend | Monorepo + `@kryptos/core`; expands TAM + retention (push streak nudges) |
@@ -73,7 +73,7 @@ A VC will catch this the moment you describe the model. Every user is "Pro," so 
 
 **3. The non-security content question — now answered (see Part 2.5).**
 
-Previously the open wound: ~half of 85 epochs aren't cybersecurity (debate ×8, baseball ×15, flag-football ×3, driving ×3, travel/language ×4, crafts). A partner taking this to an LP committee couldn't explain a cosmetology curriculum inside a security company. **The answer is no longer a hedge — it's a decision:** the public cyber product (Kryptós CronOS) shows security tracks only; the diverse content becomes a separate consumer/licensing brand on the same engine. The cyber VC never has to see a baseball epoch. Execution detail in Part 2.5 and the Tier-1 action list.
+Previously the open wound: ~half of 80 epochs aren't cybersecurity (debate ×8, baseball ×15, flag-football ×3, driving ×3, travel/language ×4, crafts). A partner taking this to an LP committee couldn't explain a cosmetology curriculum inside a security company. **The answer is no longer a hedge — it's a decision:** the public cyber product (Kryptós CronOS) shows security tracks only; the diverse content becomes a separate consumer/licensing brand on the same engine. The cyber VC never has to see a baseball epoch. Execution detail in Part 2.5 and the Tier-1 action list.
 
 **4. Single founder. No team. No advisors.**
 
@@ -329,7 +329,7 @@ Both are within your control. Positioning — once the third blocker — is now 
 **v4.0:** Two linked blockers — zero users + paywall off — plus an unresolved positioning hedge.  
 **v4.1:** Two founder-controlled blockers (zero users + paywall off). **Positioning resolved** via the two-product carve. ~60–90 days of disciplined launch + one re-gating decision.
 
-The platform is now: 871 stages / 85 epochs / 16 tracks / 12 cert paths / 292 CTFs ✅ · Stripe + RevenueCat live ✅ · incorporated, 83(b) filed ✅ · pricing set ($13.99 / $99 / $8-seat) ✅ · strong on-paper unit economics ✅ · production-grade security (briefing v5.9) ✅ · cross-platform code-complete ✅ · cert paths + resume + adaptive engine ✅ · admin audit log + voucher system ✅ · **clean single-focus positioning via the cyber carve ✅**.
+The platform is now: 811 stages / 80 epochs / 16 tracks / 12 cert paths / 292 CTFs ✅ · Stripe + RevenueCat live ✅ · incorporated, 83(b) filed ✅ · pricing set ($13.99 / $99 / $8-seat) ✅ · strong on-paper unit economics ✅ · production-grade security (briefing v5.9) ✅ · cross-platform code-complete ✅ · cert paths + resume + adaptive engine ✅ · admin audit log + voucher system ✅ · **clean single-focus positioning via the cyber carve ✅**.
 
 The product is genuinely excellent and now cleanly positioned. It needs users, and it needs the paywall turned back on so those users can prove the model. That's the whole story.
 

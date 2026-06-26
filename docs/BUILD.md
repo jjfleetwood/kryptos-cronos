@@ -111,7 +111,7 @@ kryptos-cronos/                ← repo root (npm workspaces + turbo.json)
 │   │   └── next.config.ts     ← headers + transpilePackages + /api/v1 rewrite
 │   └── mobile/                ← Expo / React Native app (auth, quiz, ARIA, push, IAP)
 ├── packages/
-│   ├── core/                  ← @kryptos/core — all stage data (85 epochs) + types
+│   ├── core/                  ← @kryptos/core — all stage data (80 epochs) + types
 │   └── api-client/            ← @kryptos/api-client — typed cross-platform client
 ├── docs/                      ← this documentation suite
 ├── package.json · turbo.json · package-lock.json

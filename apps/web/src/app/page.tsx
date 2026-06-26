@@ -340,7 +340,7 @@ export default function Home() {
             </div>
             <div className="text-center mt-8">
               <Link href="/stages" className="text-sm text-cyan-400 hover:text-cyan-300 transition-colors">
-                Browse all 85 epochs →
+                Browse all 80 epochs →
               </Link>
             </div>
           </div>

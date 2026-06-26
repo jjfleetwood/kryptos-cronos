@@ -54,9 +54,9 @@ Kryptós CronOS delivers training through **stage-based missions** that simulate
 
 4. **ARIA AI Tutor** — A live, stage-aware AI assistant (powered by Claude Haiku) that uses Socratic coaching: it answers questions and guides thinking without giving away the flag. Available throughout every challenge.
 
-### Curriculum — 871 Stages across 85 Epochs and 16 Tracks (v1.46.0)
+### Curriculum — 811 Stages across 80 Epochs and 16 Tracks (v1.46.0)
 
-The platform ships with 871 fully built stages organized into 85 curriculum epochs and 16 learning tracks:
+The platform ships with 811 fully built stages organized into 80 curriculum epochs and 16 learning tracks:
 
 | Track | Stages | Focus |
 |---|---|---|
@@ -228,13 +228,13 @@ The 3.5 million unfilled cybersecurity jobs are usually framed as a hiring probl
 | KnowBe4 | Phishing simulation only | No technical depth |
 | **Kryptós CronOS** | **Gamified + AI + CTF + curriculum** | **Early stage** |
 
-Our differentiation: the only platform combining structured multi-track curriculum (871 stages across 85 epochs), real-exploit CTF challenges, adaptive AI difficulty, a live AI Socratic tutor, certification path alignment (CompTIA Security+, ISC² CC, Cisco CyberOps), daily engagement mechanics, and a competitive leaderboard in a single production-grade product.
+Our differentiation: the only platform combining structured multi-track curriculum (811 stages across 80 epochs), real-exploit CTF challenges, adaptive AI difficulty, a live AI Socratic tutor, certification path alignment (CompTIA Security+, ISC² CC, Cisco CyberOps), daily engagement mechanics, and a competitive leaderboard in a single production-grade product.
 
 ---
 
 ## Traction & Validation
 
-- **Product:** Fully functional platform — 871 stages across 85 epochs and 16 curriculum tracks
+- **Product:** Fully functional platform — 811 stages across 80 epochs and 16 curriculum tracks
 - **AI tutor:** ARIA live in production — Claude Haiku, Socratic coaching, stage-aware
 - **Certification paths:** CompTIA Security+ and ISC² CC path alignment live at /certs; CyberOps Associate exam readiness tracker live at /cyberops
 - **Gamification:** Streaks, milestone badges, 51-trophy collection, and real-time leaderboard all live
@@ -282,7 +282,7 @@ Our differentiation: the only platform combining structured multi-track curricul
 
 ## Team
 
-Kryptós CronOS is built by Jacob Bolotin, founder and CEO, with domain expertise in cybersecurity, AI, and enterprise software. The technical foundation — 871-stage curriculum, AI tutor, leaderboard, auth system, certification paths, and CI/CD pipeline — was built and deployed to production in an accelerated build sprint.
+Kryptós CronOS is built by Jacob Bolotin, founder and CEO, with domain expertise in cybersecurity, AI, and enterprise software. The technical foundation — 811-stage curriculum, AI tutor, leaderboard, auth system, certification paths, and CI/CD pipeline — was built and deployed to production in an accelerated build sprint.
 
 **Legal entity:** Bolotin Enterprises, Inc. — Delaware C-Corp incorporated May 23, 2026.  
 **Business email:** hello@kryptoscronos.com  

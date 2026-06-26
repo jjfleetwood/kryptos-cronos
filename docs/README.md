@@ -9,7 +9,7 @@
 
 ## What is Kryptós CronOS?
 
-A gamified cybersecurity + AI training platform — learners progress through staged missions that simulate real attacks and defenses, choosing a multiple-choice **Quiz** or a hands-on **CTF** on every stage. **871 stages across 85 epochs and 16 tracks**, a live leaderboard, the **ARIA** AI hint chatbot, daily streaks, milestone badges, certification-readiness tracking for 12 industry certs, a resume builder, and admin tooling.
+A gamified cybersecurity + AI training platform — learners progress through staged missions that simulate real attacks and defenses, choosing a multiple-choice **Quiz** or a hands-on **CTF** on every stage. **811 stages across 80 epochs and 16 tracks**, a live leaderboard, the **ARIA** AI hint chatbot, daily streaks, milestone badges, certification-readiness tracking for 12 industry certs, a resume builder, and admin tooling.
 
 > **Positioning — two products, one engine.** Kryptós CronOS is the **cybersecurity career product**: the public experience is security-only — *Learn → Certify → Prove → Get hired*. The same `@kryptos/core` engine also drives a diverse set of non-security learning tracks (debate, sports, languages, driving, crafts), which demonstrate that the engine generalizes to any structured skill. **For now these stay in the same app** on a separate, low-prominence route (`/explore`) rather than a second deployment, and are framed as a separate consumer/licensing brand. Cyber investors see the focused cyber product; the diverse catalog is optionality, not the pitch. See `VC_READINESS_ANALYSIS.md` Part 2.5.
 
@@ -34,7 +34,7 @@ Stack: Next.js 16 · React 19 · TypeScript · Tailwind 4 · Upstash Redis · Su
 | [OPS.md](OPS.md) | Operations runbook: env vars, services, monitoring |
 | [PARTNERS.md](PARTNERS.md) | Companies, services, and APIs supporting the build |
 | [API_REFERENCE.md](API_REFERENCE.md) | API route specifications |
-| [CURRICULUM.md](CURRICULUM.md) | Full stage catalog across all 85 epochs |
+| [CURRICULUM.md](CURRICULUM.md) | Full stage catalog across all 80 epochs |
 | [SECURITY_BRIEFING.md](SECURITY_BRIEFING.md) | Security posture, findings, remediation status |
 | [RELEASE_NOTES.md](RELEASE_NOTES.md) | Version history and changelog |
 | [BUSINESS_PROPOSAL_PRO.md](BUSINESS_PROPOSAL_PRO.md) · [BUSINESS_PROPOSAL_CASUAL.md](BUSINESS_PROPOSAL_CASUAL.md) | Investor pitch (formal / plain-language) |
@@ -47,7 +47,7 @@ Stack: Next.js 16 · React 19 · TypeScript · Tailwind 4 · Upstash Redis · Su
 
 ## Quick Status
 
-- **Curriculum:** 871 stages · 85 epochs · 16 tracks. Every CTF stage is dual-mode (Quiz + CTF). 12 cert paths on `/certs` (Security+, CySA+, Network+, ISC² CC, CompTIA AI+, ISACA CISA/CISM/CRISC, ISACA AAIA/AAISM, AWS AI Practitioner, Google Cloud PMLE) + CyberOps Associate & PQC-migration trackers.
+- **Curriculum:** 811 stages · 80 epochs · 16 tracks. Every CTF stage is dual-mode (Quiz + CTF). 12 cert paths on `/certs` (Security+, CySA+, Network+, ISC² CC, CompTIA AI+, ISACA CISA/CISM/CRISC, ISACA AAIA/AAISM, AWS AI Practitioner, Google Cloud PMLE) + CyberOps Associate & PQC-migration trackers.
 - **Auth:** Web — PBKDF2-SHA-256 (600k) + HMAC-signed HttpOnly cookies; account lockout. Mobile — Supabase JWT sent as `Authorization: Bearer`, verified locally via JWKS (jose) with `getUser()` fallback; identity resolved from the verified email claim. `getAuthedUsername()` accepts either.
 - **Access / monetization:** 7-day trial → Pro ($13.99/mo or $99/yr). **Stripe** (web checkout) + **RevenueCat** (mobile IAP), unified server-side entitlement (multi-source: Stripe / RevenueCat / voucher). Voucher redemption supported.
 - **Mobile (in dev):** Expo SDK 56 + Expo Router; auth-gated tabs (Stages / Leaderboard / Profile), interactive quiz, ARIA chat, push notifications (streak nudges via Expo Push + Vercel cron), RevenueCat paywall. Needs device build (`eas build`) before store submission.
