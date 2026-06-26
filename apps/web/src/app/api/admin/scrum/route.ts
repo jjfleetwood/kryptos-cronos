@@ -14,12 +14,15 @@ const PRIORITIES = ["p0", "p1", "p2", "p3"];
 // any admin. requireAdmin already proves a valid, non-revoked admin token; this
 // narrows it to the board owner (jjb). The board-ops / auto-agent scripts forge a
 // token for this same account, so they continue to pass.
-const BOARD_OWNER = (process.env.ADMIN_USERNAME || "jjb").toLowerCase();
+// Fail closed: if ADMIN_USERNAME is unset there is no board owner, so every
+// request is rejected (no hardcoded 'jjb' fallback that could grant access in a
+// misconfigured environment).
+const BOARD_OWNER = process.env.ADMIN_USERNAME?.toLowerCase() || null;
 
 // GET — seed the standing plan card, ingest new feedback/survey, return the board.
 export async function GET(req: NextRequest) {
   const admin = await requireAdmin(req);
-  if (admin !== BOARD_OWNER) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!BOARD_OWNER || admin !== BOARD_OWNER) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   await ensureSeedPlan();
   let ingested = 0;
@@ -31,7 +34,7 @@ export async function GET(req: NextRequest) {
 // POST — create a new item manually.
 export async function POST(req: NextRequest) {
   const admin = await requireAdmin(req);
-  if (admin !== BOARD_OWNER) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!BOARD_OWNER || admin !== BOARD_OWNER) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const b = (await req.json()) as Partial<ScrumItem>;
   if (!b.title || typeof b.title !== "string" || !b.title.trim()) {
@@ -53,7 +56,7 @@ export async function POST(req: NextRequest) {
 // PATCH — update an item (status/priority/order/type/title/description/pinned/votes) or add a note.
 export async function PATCH(req: NextRequest) {
   const admin = await requireAdmin(req);
-  if (admin !== BOARD_OWNER) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!BOARD_OWNER || admin !== BOARD_OWNER) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const b = (await req.json()) as Partial<ScrumItem> & { id?: string; ids?: string[]; note?: string };
 
@@ -101,7 +104,7 @@ export async function PATCH(req: NextRequest) {
 // DELETE — remove an item (?id=).
 export async function DELETE(req: NextRequest) {
   const admin = await requireAdmin(req);
-  if (admin !== BOARD_OWNER) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!BOARD_OWNER || admin !== BOARD_OWNER) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   const id = new URL(req.url).searchParams.get("id");
   if (!id) return NextResponse.json({ error: "id required" }, { status: 400 });
   await deleteItem(id);
