@@ -34,9 +34,7 @@ export default function Home() {
     >
       <div className="max-w-5xl mx-auto">
         <div className="mb-2 inline-flex items-center gap-2 rounded-full border border-violet-500/40 bg-violet-500/10 px-3 py-1 text-xs font-semibold text-violet-200">
-          <span>PRIVATE · OWNER-ONLY</span>
-          <span className="text-violet-400/60">·</span>
-          <span>Agentic Audit</span>
+          <span>AGENTIC AUDIT</span>
         </div>
 
         <h1 className="text-4xl font-black tracking-tight text-white">The Agentic Audit Library</h1>
@@ -179,7 +177,7 @@ export default function Home() {
         </div>
 
         <p className="mt-12 text-xs text-gray-500">
-          Owner-only working reference. Intentionally kept off the public Kryptós catalog and counts.
+          A working reference library for technical and privacy auditors.
         </p>
       </div>
     </div>

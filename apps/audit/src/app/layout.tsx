@@ -5,7 +5,7 @@ import en from "../messages/en.json";
 
 export const metadata: Metadata = {
   title: "Agentic Audit Library",
-  description: "Private agentic-audit working library.",
+  description: "Agentic audit reference library for technical and privacy auditors.",
   robots: { index: false, follow: false },
 };
 
