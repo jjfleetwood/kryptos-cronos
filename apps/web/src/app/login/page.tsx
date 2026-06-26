@@ -7,6 +7,8 @@ import { useRouter } from "next/navigation";
 import { login, register } from "@/lib/auth";
 import { useSkin } from "@/contexts/SkinContext";
 import { useLocale } from "@/contexts/LocaleContext";
+import { isStrongPassword } from "@/lib/password-policy";
+import PasswordChecklist from "@/components/PasswordChecklist";
 
 type Tab = "login" | "signup";
 
@@ -224,7 +226,7 @@ export default function LoginPage() {
                 {[
                   { label: tr("auth.username"), type: "text", placeholder: "agent_name (min. 3 chars)", value: signupUsername, set: setSignupUsername, auto: "username" },
                   { label: tr("auth.email"), type: "email", placeholder: "agent@example.com", value: signupEmail, set: setSignupEmail, auto: "email" },
-                  { label: tr("auth.password"), type: "password", placeholder: "min. 8 characters", value: signupPassword, set: setSignupPassword, auto: "new-password" },
+                  { label: tr("auth.password"), type: "password", placeholder: "min. 12 characters", value: signupPassword, set: setSignupPassword, auto: "new-password" },
                   { label: tr("auth.confirmPassword"), type: "password", placeholder: "••••••••", value: signupConfirm, set: setSignupConfirm, auto: "new-password" },
                 ].map((field) => (
                   <div key={field.label}>
@@ -249,6 +251,8 @@ export default function LoginPage() {
                   </div>
                 ))}
 
+                <PasswordChecklist password={signupPassword} username={signupUsername} email={signupEmail} />
+
                 {signupError && (
                   <div className="flex items-center gap-2 text-red-400 text-xs bg-red-500/10 border border-red-500/20 rounded-lg px-3 py-2.5">
                     <span>⚠</span> {signupError}
@@ -257,7 +261,7 @@ export default function LoginPage() {
 
                 <button
                   type="submit"
-                  disabled={signupLoading}
+                  disabled={signupLoading || !isStrongPassword(signupPassword)}
                   className="w-full py-3 font-bold rounded-xl text-sm mt-1 transition-all disabled:opacity-50"
                   style={{
                     background: signupLoading ? skin.accent + "80" : skin.btnPrimary,

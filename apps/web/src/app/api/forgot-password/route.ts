@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { randomBytes } from "crypto";
 import { redis } from "@/lib/redis";
-import { supabaseAdmin } from "@/lib/supabase";
 
 const RESET_TTL = 3600;
 
@@ -38,10 +37,9 @@ export async function POST(req: NextRequest) {
   const apiKey = process.env.RESEND_API_KEY;
   const baseUrl = process.env.APP_URL ?? "https://kryptoscronos.com";
 
-  // Also trigger Supabase password reset email (fire-and-forget)
-  supabaseAdmin.auth.resetPasswordForEmail(email, {
-    redirectTo: `${baseUrl}/reset-password`,
-  }).catch(() => {});
+  // NOTE: we intentionally do NOT trigger Supabase's own reset email here — that
+  // sent a duplicate. The Kryptós reset link below is the single source of truth;
+  // /api/reset-password syncs the new password back to Supabase on completion.
 
   if (!apiKey) return ok;
   const resetUrl = `${baseUrl}/reset-password?token=${token}`;

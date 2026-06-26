@@ -5,6 +5,7 @@ import { signSessionToken, sessionCookieOptions } from "@/lib/server-session";
 import { signAdminToken } from "@/lib/admin-token";
 import { supabaseAdmin } from "@/lib/supabase";
 import { getClientIp } from "@/lib/client-ip";
+import { passwordError } from "@/lib/password-policy";
 
 function escapeHtml(s: string): string {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -33,7 +34,8 @@ export async function POST(req: NextRequest) {
   const password = body?.password ?? "";
 
   if (username.length < 3) return NextResponse.json({ error: "Username must be at least 3 characters." }, { status: 400 });
-  if (password.length < 8) return NextResponse.json({ error: "Password must be at least 8 characters." }, { status: 400 });
+  const pwError = passwordError(password, { username, email });
+  if (pwError) return NextResponse.json({ error: pwError }, { status: 400 });
   if (!email.includes("@") || !email.includes(".")) return NextResponse.json({ error: "Please enter a valid email address." }, { status: 400 });
 
   const lower = username.toLowerCase();

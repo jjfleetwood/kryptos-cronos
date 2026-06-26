@@ -3,6 +3,7 @@ import { redis } from "@/lib/redis";
 import { hashPassword, generateSalt, PBKDF2_ITERATIONS } from "@/lib/crypto-utils";
 import { signSessionToken, sessionCookieOptions } from "@/lib/server-session";
 import { supabaseAdmin } from "@/lib/supabase";
+import { passwordError } from "@/lib/password-policy";
 
 async function isRateLimited(ip: string): Promise<boolean> {
   const key = `rate:resetpw:${ip}`;
@@ -25,8 +26,9 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "invalid payload" }, { status: 400 });
   }
 
-  if (body.password.length < 8) {
-    return NextResponse.json({ error: "Password must be at least 8 characters." }, { status: 400 });
+  const pwError = passwordError(body.password);
+  if (pwError) {
+    return NextResponse.json({ error: pwError }, { status: 400 });
   }
 
   const username = await redis.get<string>(`reset:${body.token}`);

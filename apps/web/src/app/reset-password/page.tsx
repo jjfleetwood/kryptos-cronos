@@ -5,6 +5,8 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { setSession } from "@/lib/auth";
 import { useLocale } from "@/contexts/LocaleContext";
+import { checkPassword, isStrongPassword } from "@/lib/password-policy";
+import PasswordChecklist from "@/components/PasswordChecklist";
 
 function ResetPasswordForm() {
   const { t } = useLocale();
@@ -125,6 +127,8 @@ function ResetPasswordForm() {
                 </div>
               ))}
 
+              <PasswordChecklist password={password} />
+
               {error && (
                 <div className="flex items-center gap-2 text-red-400 text-xs bg-red-500/10 border border-red-500/20 rounded-lg px-3 py-2.5">
                   <span>⚠</span> {error}
@@ -133,7 +137,7 @@ function ResetPasswordForm() {
 
               <button
                 type="submit"
-                disabled={loading || !token}
+                disabled={loading || !token || !isStrongPassword(password)}
                 className="w-full py-3 font-bold rounded-lg text-sm mt-1 transition-all text-black disabled:opacity-50"
                 style={{ background: loading ? "#155e75" : "linear-gradient(90deg, #22d3ee, #818cf8)" }}
               >
