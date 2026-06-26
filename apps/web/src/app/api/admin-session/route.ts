@@ -38,6 +38,9 @@ export async function POST(req: NextRequest) {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "lax",
+    // Share across *.kryptoscronos.com so the owner-only audit subdomain
+    // (apps/audit) can read the same admin_token. Host-only in dev.
+    domain: process.env.NODE_ENV === "production" ? ".kryptoscronos.com" : undefined,
     path: "/",
     maxAge: 60 * 60 * 8, // 8h admin elevation; re-login to refresh
   });
@@ -46,6 +49,11 @@ export async function POST(req: NextRequest) {
 
 export async function DELETE() {
   const res = NextResponse.json({ ok: true });
-  res.cookies.delete("admin_token");
+  // Match the set() domain so logout actually clears the subdomain-scoped cookie.
+  res.cookies.delete({
+    name: "admin_token",
+    domain: process.env.NODE_ENV === "production" ? ".kryptoscronos.com" : undefined,
+    path: "/",
+  });
   return res;
 }

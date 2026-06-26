@@ -122,6 +122,8 @@ export async function POST(req: NextRequest) {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "lax",
+      // Share across *.kryptoscronos.com so the owner-only audit subdomain can read it.
+      domain: process.env.NODE_ENV === "production" ? ".kryptoscronos.com" : undefined,
       path: "/",
       maxAge: 60 * 60 * 8, // 8h admin elevation; re-login to refresh
     });
