@@ -35,7 +35,9 @@ export async function POST(req: NextRequest) {
   await redis.set(`reset:${token}`, username, { ex: RESET_TTL });
 
   const apiKey = process.env.RESEND_API_KEY;
-  const baseUrl = process.env.APP_URL ?? "https://kryptoscronos.com";
+  // || (not ??) so an empty-string APP_URL also falls back — otherwise the reset
+  // link becomes a domain-less relative URL and is dead in the email.
+  const baseUrl = process.env.APP_URL || "https://www.kryptoscronos.com";
 
   // NOTE: we intentionally do NOT trigger Supabase's own reset email here — that
   // sent a duplicate. The Kryptós reset link below is the single source of truth;

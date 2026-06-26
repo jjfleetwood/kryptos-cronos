@@ -27,7 +27,7 @@ async function sendStageCompletionEmail(opts: {
   nextStageName?: string;
 }): Promise<void> {
   const apiKey = process.env.RESEND_API_KEY;
-  const appUrl = process.env.APP_URL ?? "https://app-jjfleetwood.vercel.app";
+  const appUrl = process.env.APP_URL || "https://www.kryptoscronos.com";
   if (!apiKey) return;
 
   const {
