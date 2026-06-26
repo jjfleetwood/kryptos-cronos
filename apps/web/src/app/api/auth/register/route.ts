@@ -51,6 +51,10 @@ export async function POST(req: NextRequest) {
     hashIterations: PBKDF2_ITERATIONS,
     email: escapeHtml(email),
     createdAt: Date.now(),
+    // All new users get Pro automatically. With no payment-source stamp, the tier
+    // logic (lib/access.ts) treats this as a permanent admin-style grant, so it
+    // persists even after OPEN_ACCESS is flipped off at launch.
+    tier: "pro",
   });
 
   // Reverse lookup for forgot-password

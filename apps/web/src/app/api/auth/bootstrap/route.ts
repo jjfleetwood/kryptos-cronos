@@ -73,6 +73,9 @@ export async function POST(req: NextRequest) {
     email: escapeHtml(email),
     createdAt: Date.now(),
     authProvider: "supabase",
+    // All new users get Pro automatically (see lib/access.ts — a pro tier with no
+    // payment-source stamp is a permanent grant that survives OPEN_ACCESS=false).
+    tier: "pro",
   });
 
   return NextResponse.json({ ok: true, username: desired, email, provisioned: true });
