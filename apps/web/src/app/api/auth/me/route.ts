@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { redis } from "@/lib/redis";
 import { getAuthedUsername } from "@/lib/api-auth";
 import { verifyAdminToken } from "@/lib/admin-token";
+import { isVerified } from "@/lib/email-verify";
 
 export async function GET(req: NextRequest) {
   let username = await getAuthedUsername(req);
@@ -15,7 +16,7 @@ export async function GET(req: NextRequest) {
 
   if (!username) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  const data = await redis.hgetall<{ email: string; tier: string; createdAt: string; voucherExpiry: string }>(`user:${username}`);
+  const data = await redis.hgetall<{ email: string; tier: string; createdAt: string; voucherExpiry: string; emailVerified: string }>(`user:${username}`);
   if (!data && !isAdmin) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const superAdmin = process.env.ADMIN_USERNAME?.toLowerCase();
@@ -41,5 +42,6 @@ export async function GET(req: NextRequest) {
   }
 
   const voucherExpiry = rawTier === "pro" && data?.voucherExpiry ? Number(data.voucherExpiry) : null;
-  return NextResponse.json({ username, email: data?.email ?? "", isAdmin, isSuperAdmin, tier, trialDaysLeft, voucherExpiry });
+  const emailVerified = isAdmin || isVerified(data?.emailVerified, createdAt);
+  return NextResponse.json({ username, email: data?.email ?? "", isAdmin, isSuperAdmin, tier, trialDaysLeft, voucherExpiry, emailVerified });
 }

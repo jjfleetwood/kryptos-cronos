@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useSkin } from "@/contexts/SkinContext";
 import { clearSession } from "@/lib/auth";
+import VerifyEmailBanner from "@/components/VerifyEmailBanner";
 
 type MeData = {
   username: string;
@@ -36,6 +37,19 @@ export default function AccountPage() {
   const [deleteStep, setDeleteStep] = useState(0);
   const [deleteLoading, setDeleteLoading] = useState(false);
   const [deleteInput, setDeleteInput] = useState("");
+  const [logoutOthers, setLogoutOthers] = useState<"idle" | "loading" | "done">("idle");
+
+  async function handleLogoutOthers() {
+    setLogoutOthers("loading");
+    try {
+      const res = await fetch("/api/auth/logout-others", { method: "POST" });
+      if (res.ok) setLogoutOthers("done");
+      else { setLogoutOthers("idle"); alert("Could not log out other devices."); }
+    } catch {
+      setLogoutOthers("idle");
+      alert("Something went wrong.");
+    }
+  }
 
   useEffect(() => {
     fetch("/api/auth/me")
@@ -96,6 +110,33 @@ export default function AccountPage() {
   return (
     <main className="min-h-screen pt-24 pb-16 px-4" style={{ background: skin.pageBg }}>
       <div className="max-w-xl mx-auto space-y-5">
+
+        <VerifyEmailBanner />
+
+        {/* Active sessions — log out everywhere else */}
+        <div
+          className="rounded-2xl p-4 flex items-center justify-between gap-3"
+          style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${skin.cardBorder}` }}
+        >
+          <div>
+            <p className="text-sm font-semibold" style={{ color: skin.textPrimary }}>Active sessions</p>
+            <p className="text-xs" style={{ color: skin.textMuted }}>
+              Sign out of every other device. You stay logged in here.
+            </p>
+          </div>
+          {logoutOthers === "done" ? (
+            <span className="text-xs font-semibold text-emerald-400 shrink-0">Done ✓</span>
+          ) : (
+            <button
+              onClick={handleLogoutOthers}
+              disabled={logoutOthers === "loading"}
+              className="shrink-0 px-3 py-2 rounded-lg text-xs font-bold transition-colors disabled:opacity-50"
+              style={{ background: "rgba(34,211,238,0.12)", border: "1px solid rgba(34,211,238,0.4)", color: "#22d3ee" }}
+            >
+              {logoutOthers === "loading" ? "…" : "Log out other devices"}
+            </button>
+          )}
+        </div>
 
         {/* Header */}
         <div className="mb-8">

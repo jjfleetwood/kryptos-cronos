@@ -7,6 +7,7 @@ import { supabaseAdmin } from "@/lib/supabase";
 import { getClientIp } from "@/lib/client-ip";
 import { passwordError } from "@/lib/password-policy";
 import { isPwnedPassword } from "@/lib/pwned";
+import { sendVerificationEmail } from "@/lib/email-verify";
 
 function escapeHtml(s: string): string {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -61,7 +62,12 @@ export async function POST(req: NextRequest) {
     // logic (lib/access.ts) treats this as a permanent admin-style grant, so it
     // persists even after OPEN_ACCESS is flipped off at launch.
     tier: "pro",
+    // Soft email verification — unverified just shows a banner, blocks nothing.
+    emailVerified: "false",
   });
+
+  // Fire-and-forget verification email (never blocks registration).
+  sendVerificationEmail(lower, email).catch(() => {});
 
   // Reverse lookup for forgot-password
   await redis.set(`email:${email}`, lower);
