@@ -58,7 +58,7 @@ This isn't a pitch deck with a mockup. It's a working product:
 - **24 downloadable MCP server templates** — Python MCP server templates at `/downloads`
 - **Investor Metrics panel** — WAU, 7-day return rate, funnel (registered→started→engaged→retained→power), per-epoch completion rates — live in admin
 - **Admin dashboard** — user management, NDA signatories, CMS stage editor
-- **Auth system** — PBKDF2-SHA-256, HMAC-signed HttpOnly cookies, nonce-based CSP, rate limiting
+- **Auth system** — PBKDF2-SHA-256 (600k), HMAC-signed HttpOnly cookies, nonce-based CSP, rate limiting; **strong + breach-checked passwords and revocable sessions** — we practice the security we teach
 - **CI pipeline** — automated lint + type check + build + security audit on every commit — 0 ESLint errors
 - **Deployed and running:** kryptoscronos.com · hello@kryptoscronos.com
 - **GitHub:** github.com/jjfleetwood/kryptos-cronos

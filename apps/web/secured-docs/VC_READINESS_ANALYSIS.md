@@ -14,7 +14,7 @@
 
 **Not fundable today — for two founder-controlled reasons: zero users, and a paywall you've deliberately turned off. The positioning problem that haunted prior versions is now solved.**
 
-The product is exceptional and deep: 811 stages, 80 epochs, 16 tracks, 12 certification paths, 292 hands-on CTFs, an in-production AI tutor, a code-complete native mobile app, and a security posture that survives a real review. The monetization rails are built and tested across web (Stripe) and mobile (RevenueCat). The entity is clean. The unit economics — on paper — are strong.
+The product is exceptional and deep: 811 stages, 80 epochs, 16 tracks, 12 certification paths, 292 hands-on CTFs, an in-production AI tutor, a code-complete native mobile app, and a security posture that survives a real review (strong + breach-checked passwords, revocable sessions, soft email verification — briefing v6.0). The monetization rails are built and tested across web (Stripe) and mobile (RevenueCat). The entity is clean. The unit economics — on paper — are strong.
 
 The one thing that previously made the story *messy* — roughly half the curriculum being non-cybersecurity — is resolved by a deliberate **two-product split** (detailed in Part 2.5). The cyber company a VC underwrites is now clean. What remains is the part no document can fix for you: **traction**. Until people use this, return, and pay, a VC cannot price the risk — and right now `OPEN_ACCESS = true` means even the users you get can't generate conversion data until you re-gate. Two jobs before pitching: manufacture traction, and create the conditions under which conversion can be measured.
 
@@ -329,7 +329,7 @@ Both are within your control. Positioning — once the third blocker — is now 
 **v4.0:** Two linked blockers — zero users + paywall off — plus an unresolved positioning hedge.  
 **v4.1:** Two founder-controlled blockers (zero users + paywall off). **Positioning resolved** via the two-product carve. ~60–90 days of disciplined launch + one re-gating decision.
 
-The platform is now: 811 stages / 80 epochs / 16 tracks / 12 cert paths / 292 CTFs ✅ · Stripe + RevenueCat live ✅ · incorporated, 83(b) filed ✅ · pricing set ($13.99 / $99 / $8-seat) ✅ · strong on-paper unit economics ✅ · production-grade security (briefing v5.9) ✅ · cross-platform code-complete ✅ · cert paths + resume + adaptive engine ✅ · admin audit log + voucher system ✅ · **clean single-focus positioning via the cyber carve ✅**.
+The platform is now: 811 stages / 80 epochs / 16 tracks / 12 cert paths / 292 CTFs ✅ · Stripe + RevenueCat live ✅ · incorporated, 83(b) filed ✅ · pricing set ($13.99 / $99 / $8-seat) ✅ · strong on-paper unit economics ✅ · production-grade security (briefing v6.0 — breach-checked passwords + revocable sessions) ✅ · cross-platform code-complete ✅ · cert paths + resume + adaptive engine ✅ · admin audit log + voucher system ✅ · **clean single-focus positioning via the cyber carve ✅**.
 
 The product is genuinely excellent and now cleanly positioned. It needs users, and it needs the paywall turned back on so those users can prove the model. That's the whole story.
 

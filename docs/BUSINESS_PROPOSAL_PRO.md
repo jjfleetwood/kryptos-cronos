@@ -111,7 +111,7 @@ The platform ships with 811 fully built stages organized into 80 curriculum epoc
 - **Investor Metrics Panel** — WAU, 7-day return rate, avg stages/user, user funnel (registered→started→engaged→retained→power), per-epoch completion rates — live in admin dashboard
 - **Admin Dashboard** — User management, NDA signatories panel, streak monitoring, CMS stage editor
 - **CI Pipeline** — GitHub Actions: lint + tsc + build + security audit on every push — 0 ESLint errors
-- **Server-side Auth** — PBKDF2-SHA-256, HMAC-signed HttpOnly cookies, no localStorage credentials
+- **Server-side Auth** — PBKDF2-SHA-256 (600k), HMAC-signed HttpOnly cookies, no localStorage credentials; **strong + HaveIBeenPwned-breach-checked passwords, revocable sessions, soft email verification** — a security company whose own product passes a security review
 - **Nonce-based CSP** — Per-request nonce in middleware eliminates `unsafe-inline` from script-src
 
 ### Progression & Gamification
