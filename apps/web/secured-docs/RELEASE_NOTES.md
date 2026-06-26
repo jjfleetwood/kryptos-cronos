@@ -2,6 +2,21 @@
 
 ---
 
+## Auth hardening sprint — 2026-06-26 (Security Briefing v6.0)
+
+Account-security pass (no version bump; security/infra, not curriculum). All live on `master`.
+
+- **Strong password policy** (12–128 chars · 3-of-4 character classes · common/username/email blocklist) enforced server-side on register + reset, with a live requirements checklist in the UI.
+- **Breached-password check** via HaveIBeenPwned k-anonymity (only the 5-char SHA-1 prefix leaves the server; fails open on outage).
+- **Revocable sessions** — `session_token` carries a per-user epoch; password reset invalidates all prior sessions, and **"log out other devices"** (`/account`) is available.
+- **Removed dead `POST /api/auth/session`** (pass-the-hash, CWE-836); logout `DELETE` retained.
+- **Single password-reset email** (the duplicate Supabase reset email was removed) + **APP_URL fix** so reset/notification email links are no longer domain-less/dead.
+- **Soft email verification** — verify email on signup, `VerifyEmailBanner` nudge, resend endpoint; existing users + admins grandfathered; nothing blocked.
+- **Fail-closed scrum-board owner** (no hardcoded `jjb` default).
+- **2FA intentionally deferred** — admin-only TOTP is the documented future trigger (enterprise-sales requirement or becoming a targeted target).
+
+---
+
 ## v1.46.0 — 2026-06-13
 
 **Advanced Audit track fully authored · agent board hardened · scrum bulk-move**

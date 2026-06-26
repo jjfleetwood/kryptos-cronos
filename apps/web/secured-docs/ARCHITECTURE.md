@@ -178,8 +178,11 @@ apps/web/                             # Next.js app + API (Vercel root dir)
 │   │   │   └── baseball-7.ts         # Epoch 32: Pitching Strategy
 │   │   └── lib/
 │   │       ├── auth.ts               # Client-side auth helpers (sessionStorage UI cache)
-│   │       ├── crypto-utils.ts       # PBKDF2 hashing (310k iterations), PBKDF2_ITERATIONS export
-│   │       ├── server-session.ts     # HMAC session token sign/verify (uses SESSION_SECRET)
+│   │       ├── crypto-utils.ts       # PBKDF2 hashing (600k iterations), PBKDF2_ITERATIONS export
+│   │       ├── password-policy.ts    # Strong-password rules (12+, 3-of-4 classes, blocklist)
+│   │       ├── pwned.ts              # HaveIBeenPwned k-anonymity breach check
+│   │       ├── server-session.ts     # HMAC session token sign/verify + per-user epoch (revocable)
+│   │       ├── email-verify.ts       # Soft email verification (send/verify, grandfather cutoff)
 │   │       ├── progress.ts           # XP/progress persistence
 │   │       └── redis.ts              # Upstash Redis client
 │   ├── secured-docs/                 # Admin-only documents (not in public/)
@@ -229,10 +232,13 @@ All authentication is server-side. No credentials or user data are stored in loc
 ```
 Client sends: { username, email, password } over HTTPS
     → POST /api/auth/register
+    → Validate password: strong policy (12+, 3-of-4 classes, common/username blocklist)
+        + HaveIBeenPwned k-anonymity breach check → 400 if weak or breached
     → Server: generateSalt() → PBKDF2-SHA-256, 600,000 iterations (OWASP 2024)
-    → Store { email, passwordHash, salt, hashIterations: 600000, createdAt } in Redis user:{username}
+    → Store { email, passwordHash, salt, hashIterations: 600000, createdAt, emailVerified: false } in Redis user:{username}
     → Create a parallel Supabase Auth account (identity source for the mobile client)
-    → Issue HMAC-signed session_token cookie (SESSION_SECRET, HttpOnly, 30 days)
+    → Send soft email-verification link (banner-only; nothing blocked)
+    → Issue HMAC-signed session_token cookie (SESSION_SECRET, HttpOnly, 30 days, per-user epoch → revocable)
     → If username matches ADMIN_USERNAME: also issue kryptos_admin cookie (ADMIN_SECRET, 24h)
     → POST /api/notify-registration (rate-limited email alert to admin)
 ```
@@ -253,6 +259,8 @@ Client sends: { username, password } over HTTPS
 ```
 
 Transparent migration: legacy accounts (100k/310k iterations) are silently upgraded to 600k on next successful login with no user-visible change. **Account lockout:** 5 failed attempts → 15-min lock per username.
+
+**Revocable sessions.** The `session_token` carries a per-user epoch (`u:{user}:{epoch}:{hmac}`); session resolution rejects a token whose epoch ≠ the user's stored `sessionEpoch`. A password reset bumps the epoch (invalidating every prior session), and `POST /api/auth/logout-others` ("log out other devices") bumps it then re-issues the current device's session. Legacy epoch-less tokens are treated as epoch 0, so nobody is logged out until a reset. The dead `POST /api/auth/session` (pass-the-hash) endpoint was removed; only `DELETE` (logout) remains.
 
 ### 4.3 Session Resolution (dual-client)
 

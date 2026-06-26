@@ -27,7 +27,7 @@ Create a new user account.
 {
   "username": "string (required, unique)",
   "email": "string (required, valid email)",
-  "password": "string (required, min 8 chars)"
+  "password": "string (required — 12-128 chars, 3-of-4 character classes, not common/breached)"
 }
 ```
 
@@ -35,7 +35,9 @@ Create a new user account.
 ```json
 { "ok": true }
 ```
-Hashes the password with **PBKDF2-SHA256, 600k iterations**, creates a **parallel Supabase Auth account**, and sets the `session_token` cookie (HttpOnly, Secure, 30 days).
+Enforces the **strong-password policy** (`lib/password-policy`) + a **HaveIBeenPwned breach check** (`lib/pwned`), hashes with **PBKDF2-SHA256, 600k iterations**, creates a **parallel Supabase Auth account**, sets `emailVerified=false` and sends a verification email, and sets the `session_token` cookie (HttpOnly, Secure, 30 days, per-user epoch).
+
+**Password errors:** `400 { "error": "…" }` — too short / too few character classes / common or breached.
 
 **Error responses:**
 - `400 { "error": "Missing fields" }` — any required field absent
@@ -91,6 +93,20 @@ Log out — clear all auth cookies.
 { "ok": true }
 ```
 
+> The former `POST /api/auth/session` (minted a session from a client-supplied password **hash** — pass-the-hash, CWE-836) was **removed** in briefing v6.0. Only `DELETE` (logout) remains.
+
+---
+
+### POST /api/auth/logout-others
+
+"Log out other devices" — invalidate every other session, keep this one.
+
+**Auth:** Session cookie required
+
+Bumps the user's session epoch (invalidating all existing tokens) then re-issues a fresh `session_token` for the calling device.
+
+**Response 200:** `{ "ok": true }` · **Error:** `401`
+
 ---
 
 ### GET /api/auth/me
@@ -105,7 +121,8 @@ Return the current user's identity.
   "username": "string",
   "email": "string",
   "isAdmin": false,
-  "tier": "free"
+  "tier": "free",
+  "emailVerified": true
 }
 ```
 
@@ -115,7 +132,7 @@ Return the current user's identity.
 
 ### POST /api/forgot-password
 
-Send a password reset email.
+Send a password reset email (single Resend email — the duplicate Supabase reset email was removed in v6.0).
 
 **Auth:** None  
 **Rate limit:** 3 requests/IP/15min
@@ -126,6 +143,34 @@ Send a password reset email.
 ```
 
 **Response 200:** `{ "ok": true }` (always, to prevent email enumeration)
+
+---
+
+### POST /api/reset-password
+
+Set a new password from a reset token.
+
+**Auth:** None (reset token)  ·  **Rate limit:** 5/IP/hour
+
+**Request:** `{ "token": "string", "password": "string" }`
+
+Enforces the strong-password policy + breach check, then **bumps the session epoch** (logging out all prior sessions), and issues a fresh session for this device.
+
+**Errors:** `400` (invalid/expired token, or weak/breached password), `429`.
+
+---
+
+### GET /api/verify-email?token=…
+
+Email-verification click target. Marks `emailVerified=true` and redirects to `/account?verify=success` (or `?verify=invalid`).
+
+---
+
+### POST /api/resend-verification
+
+Re-send the verification email to the logged-in user.
+
+**Auth:** Session cookie required  ·  **Rate limit:** 3/10min/user  ·  **Response:** `{ "ok": true }`
 
 ---
 

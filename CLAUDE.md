@@ -285,14 +285,18 @@ Local dev: `.env.local` in `app/` (gitignored).
 
 | Route | Purpose |
 |---|---|
-| `POST /api/auth/register` | Server-side PBKDF2 registration; sets session + admin cookies; parallel Supabase account |
+| `POST /api/auth/register` | PBKDF2 registration; enforces strong-password policy + HIBP breach check; sets `emailVerified=false` + sends verify email; session + admin cookies; parallel Supabase account |
 | `POST /api/auth/bootstrap` | Provisions a Redis user record for Supabase-only (mobile) accounts; keyed to verified email; idempotent, `SET NX` username claim; rate-limited 30/min/IP |
-| `POST /api/auth/login` | PBKDF2 login with 5-attempt lockout (15 min); auto-rehash to 600k iterations; Supabase parallel |
-| `DELETE /api/auth/session` | Clear session cookie (logout); Supabase signOut |
-| `GET /api/auth/me` | Returns `{ username, email, isAdmin }` from session cookie |
+| `POST /api/auth/login` | PBKDF2 login with 5-attempt lockout (15 min); auto-rehash to 600k iterations; session token carries current epoch; Supabase parallel |
+| `DELETE /api/auth/session` | Clear session cookie (logout); Supabase signOut. (The former pass-the-hash `POST` was removed in briefing v6.0) |
+| `POST /api/auth/logout-others` | "Log out other devices" — bumps the user's session epoch then re-issues the current device's session |
+| `GET /api/auth/me` | Returns `{ username, email, isAdmin, emailVerified, … }` from session cookie |
 | `POST /api/admin-session` | Issue admin HMAC cookie |
 | `GET /api/docs/[file]` | Serve secured-docs (admin only) |
-| `POST /api/forgot-password` | Send reset email (rate: 3/IP/15min) |
+| `POST /api/forgot-password` | Send reset email (rate: 3/IP/15min); single Resend email (Supabase reset email removed) |
+| `POST /api/reset-password` | Set new password (strong policy + breach check); bumps session epoch (invalidates old sessions) |
+| `GET /api/verify-email` | Email-verification click target → marks `emailVerified=true` |
+| `POST /api/resend-verification` | Re-send the verification email (auth required, rate-limited) |
 | `GET/POST /api/progress` | Fetch/update Redis progress |
 | `GET /api/progress/certificate` | Server-rendered PDF via @react-pdf/renderer |
 | `GET /api/leaderboard` | Top XP rankings (daily/weekly/alltime); rate limited 30 req/min/IP |
@@ -329,10 +333,15 @@ Local dev: `.env.local` in `app/` (gitignored).
 
 ---
 
-## Security Posture (v1.17.0+)
+## Security Posture (v1.17.0+; auth-hardening sprint v6.0 briefing / 2026-06-26)
 
 - Passwords: PBKDF2-SHA256, **600k iterations** (OWASP 2024); auto-rehash on login upgrades legacy users
-- Sessions: HMAC-signed HttpOnly cookies (session_token 30d, admin_token 24h)
+- **Strong password policy** (`lib/password-policy.ts`): 12–128 chars, ≥3 of 4 classes, common/username/email blocklist — enforced server-side on register + reset (live checklist in UI)
+- **Breached-password check** (`lib/pwned.ts`): HaveIBeenPwned k-anonymity (only the 5-char SHA-1 prefix leaves the server); fails open on HIBP outage
+- Sessions: HMAC-signed HttpOnly cookies (session_token 30d, admin_token 24h). **Revocable** via a per-user epoch in the token (`u:{user}:{epoch}:{hmac}`) — password reset bumps it (kills all prior sessions); `POST /api/auth/logout-others` = "log out other devices"
+- **Dead `POST /api/auth/session` (pass-the-hash, CWE-836) removed**; logout `DELETE` retained
+- **Soft email verification** — verify email on signup, `emailVerified` flag, `VerifyEmailBanner` nudge; grandfathers pre-cutoff users + admins; blocks nothing
+- **2FA: intentionally deferred** — admin-only TOTP is the documented future trigger (enterprise-sales requirement or becoming a targeted target). Founder mitigation now: unique password-manager-generated admin password. See SECURITY_BRIEFING v6.0.
 - **Account lockout:** 5 failed login attempts → 15-min lock per username (`lockout:user:{username}`)
 - No credentials in localStorage — eliminated entirely
 - All flag/answer/XP validation server-side

@@ -1,8 +1,28 @@
 # Kryptós CronOS — Security Briefing
 **Classification:** Internal  
-**Version:** 5.9  
-**Date:** 2026-06-08  
-**Current version:** v1.46.0  ·  **Last reviewed:** 2026-06-13
+**Version:** 6.0  
+**Date:** 2026-06-26  
+**Current version:** v1.46.0  ·  **Last reviewed:** 2026-06-26
+
+---
+
+## Changelog — v6.0 (2026-06-26) — Auth hardening sprint (passwords, sessions, account)
+
+Focused account-security pass; all shipped to master + deployed. Net posture materially improved; no new findings introduced.
+
+- **Strong password policy (server-enforced).** New `apps/web/src/lib/password-policy.ts` requires 12–128 chars, ≥3 of {lower, UPPER, digit, symbol}, and rejects common/guessable passwords or ones containing the username/email. Enforced in `register` + `reset-password` (was length ≥ 8 only). Live requirements checklist on the signup + reset forms.
+- **Breached-password check (HaveIBeenPwned).** `lib/pwned.ts` rejects passwords in the HIBP Pwned-Passwords corpus via k-anonymity — SHA-1, only the 5-char prefix leaves the server, 35-char suffix matched locally, `Add-Padding` on. Fails open on HIBP timeout/error so an outage can't block signups.
+- **Revocable sessions.** `session_token` now carries a per-user epoch (`u:{user}:{epoch}:{hmac}`); `getServerSession`/`getSessionFromCookies` verify the token epoch == the user's stored `sessionEpoch`. Password reset bumps the epoch → **all prior sessions are invalidated** (other devices logged out). New `POST /api/auth/logout-others` ("log out other devices", on `/account`) bumps the epoch then re-issues the current device's session. Legacy epoch-less tokens parse as epoch 0 (no mass logout). The `apps/audit` session verifier accepts both formats.
+- **Removed dead pass-the-hash endpoint.** `POST /api/auth/session` accepted a client-supplied password *hash* and minted a 30-day session with no rate-limit and no caller (CWE-836 / OWASP A07). Deleted; logout (`DELETE`) retained.
+- **Single password-reset email.** `forgot-password` no longer also triggers Supabase's own reset email (users were getting two); the Kryptós/Resend link is the single source of truth and the new password still syncs to Supabase on reset.
+- **APP_URL email-link fix.** Prod `APP_URL` was an empty string and the code used `?? fallback` (which doesn't catch `""`), so reset/notification email links rendered domain-less and dead. Switched to `|| "https://www.kryptoscronos.com"` (catches empty) and set `APP_URL` in the prod env.
+- **Soft email verification.** Registration sends a verify email + sets `emailVerified=false`; `GET /api/verify-email` marks verified; `POST /api/resend-verification` (rate-limited) re-sends; `/api/auth/me` returns `emailVerified`. Accounts before the cutoff + admins are grandfathered. Banner-only nudge (`VerifyEmailBanner`) — **nothing is blocked**.
+- **Fail-closed board owner.** The scrum-board route no longer defaults `BOARD_OWNER` to `'jjb'` when `ADMIN_USERNAME` is unset — it fails closed (agent finding A5, CWE-1188).
+- **Dependency-audit CI gate confirmed active** (`npm audit --audit-level=high` in `.github/workflows/ci.yml`).
+
+### Decision — 2FA deferred (not a gap at this stage)
+
+Two-factor auth (TOTP) was scoped and **intentionally deferred**. The password + session controls above defeat the realistic account-takeover vectors (reuse/credential-stuffing, guessing, offline cracking). 2FA's marginal value concentrates in the **admin/founder account** (targeted phishing, device malware, cookie/secret theft), best met now by the founder using a **unique, password-manager-generated admin password** (defeats reuse/stuffing/cracking; manager domain-autofill adds passive phishing resistance); the admin token already expires (8h) and is revocable. **Future trigger:** build **admin-only TOTP** when (a) enterprise/B2B sales requires 2FA/SSO, or (b) the platform becomes a targeted target. Full opt-in user 2FA is a later nice-to-have, not a security necessity.
 
 ---
 
@@ -195,7 +215,7 @@ Closes CTF flag visibility finding. `stages-meta.ts` introduced as client-safe l
 
 ## Executive Summary
 
-Kryptós CronOS is a Next.js 16 / Turborepo application (`apps/web` + `@kryptos/core`) with serverless API routes, Upstash Redis persistence, and dual web (HMAC cookie) / mobile (Supabase bearer JWT) auth. The overall risk rating is **LOW**. A full OWASP Top 10 audit was completed in v4.0; all critical and high findings have been remediated, and every release since (through v1.46.0 / briefing v5.9) has been re-audited for new surface — the content, mobile, monorepo, and perf sprints added none. Remaining items are accepted low-risk trade-offs documented below.
+Kryptós CronOS is a Next.js 16 / Turborepo application (`apps/web` + `@kryptos/core`) with serverless API routes, Upstash Redis persistence, and dual web (HMAC cookie) / mobile (Supabase bearer JWT) auth. The overall risk rating is **LOW**. A full OWASP Top 10 audit was completed in v4.0; all critical and high findings have been remediated, and every release since (through v1.46.0 / briefing **v6.0**) has been re-audited for new surface. The v6.0 auth-hardening sprint materially improved account security — strong + breach-checked passwords, revocable sessions, removal of a dead pass-the-hash endpoint, and soft email verification (see the v6.0 changelog). Two-factor auth is intentionally deferred (admin-only TOTP is the documented future trigger). Remaining items are accepted low-risk trade-offs documented below.
 
 One business-config caveat for any reviewer: the platform currently ships with `OPEN_ACCESS = true`, which intentionally disables the paywall/tier gate (everything is free during the growth phase). This is the only deliberate entitlement bypass; all integrity controls (auth, server-side XP/flag validation, admin gating, rate limits, audit log) remain fully active. See the v5.9 posture note.
 

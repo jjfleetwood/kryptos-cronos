@@ -48,12 +48,13 @@ Stack: Next.js 16 · React 19 · TypeScript · Tailwind 4 · Upstash Redis · Su
 ## Quick Status
 
 - **Curriculum:** 811 stages · 80 epochs · 16 tracks. Every CTF stage is dual-mode (Quiz + CTF). 12 cert paths on `/certs` (Security+, CySA+, Network+, ISC² CC, CompTIA AI+, ISACA CISA/CISM/CRISC, ISACA AAIA/AAISM, AWS AI Practitioner, Google Cloud PMLE) + CyberOps Associate & PQC-migration trackers.
-- **Auth:** Web — PBKDF2-SHA-256 (600k) + HMAC-signed HttpOnly cookies; account lockout. Mobile — Supabase JWT sent as `Authorization: Bearer`, verified locally via JWKS (jose) with `getUser()` fallback; identity resolved from the verified email claim. `getAuthedUsername()` accepts either.
+- **Auth:** Web — PBKDF2-SHA-256 (600k) + HMAC-signed HttpOnly cookies with a **per-user epoch (revocable sessions)**; account lockout. Mobile — Supabase JWT sent as `Authorization: Bearer`, verified locally via JWKS (jose) with `getUser()` fallback; identity resolved from the verified email claim. `getAuthedUsername()` accepts either.
+- **Passwords:** strong policy (12+, 3-of-4 character classes, common/username blocklist) + **HaveIBeenPwned breach check**, enforced on register + reset. A password reset invalidates all prior sessions; "log out other devices" available. Soft email verification (banner-only).
 - **Access / monetization:** 7-day trial → Pro ($13.99/mo or $99/yr). **Stripe** (web checkout) + **RevenueCat** (mobile IAP), unified server-side entitlement (multi-source: Stripe / RevenueCat / voucher). Voucher redemption supported.
 - **Mobile (in dev):** Expo SDK 56 + Expo Router; auth-gated tabs (Stages / Leaderboard / Profile), interactive quiz, ARIA chat, push notifications (streak nudges via Expo Push + Vercel cron), RevenueCat paywall. Needs device build (`eas build`) before store submission.
 - **ARIA:** Claude Haiku, Socratic, stage-aware, rate-limited; adaptive cooldown for Pro.
 - **API:** versioned `/api/v1/*` (rewrite → `/api/*`) for the mobile client; web calls `/api/*` directly.
 - **Analytics:** Plausible (privacy-friendly). **Email:** Resend.
-- **Security:** HSTS + nonce CSP (`proxy.ts`), CORS for `/api`, rate limiting, server-side XP + flag validation, admin HMAC cookie + audit log, secured-docs gated.
+- **Security:** HSTS + nonce CSP (`proxy.ts`), CORS for `/api`, rate limiting, server-side XP + flag validation, admin HMAC cookie + audit log, secured-docs gated. (2FA deferred — admin-only TOTP is the documented future trigger; see SECURITY_BRIEFING v6.0.)
 - **CI/CD:** GitHub Actions (lint + tsc + build + audit) on `master`; Vercel auto-deploys `master` to production (Root Directory `apps/web`).
 - **Deployment:** `git push origin master` (auto-deploy) or `npx vercel --prod --project kryptos-cronos` from `apps/web`.
