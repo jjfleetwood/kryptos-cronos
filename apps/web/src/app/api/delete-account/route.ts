@@ -43,7 +43,11 @@ export async function DELETE(req: NextRequest) {
   if (email) await deleteSupabaseUserByEmail(email);
 
   const response = NextResponse.json({ ok: true });
-  response.cookies.set("session_token", "", { maxAge: 0, path: "/" });
+  response.cookies.set("session_token", "", {
+    maxAge: 0,
+    path: "/",
+    domain: process.env.NODE_ENV === "production" ? ".kryptoscronos.com" : undefined,
+  });
   // Domain must match how admin_token is set, or the subdomain-scoped cookie won't clear.
   response.cookies.set("admin_token", "", {
     maxAge: 0,

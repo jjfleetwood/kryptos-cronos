@@ -42,6 +42,11 @@ export async function DELETE() {
   } catch { /* best effort */ }
 
   const res = NextResponse.json({ ok: true });
-  res.cookies.delete("session_token");
+  // Domain must match sessionCookieOptions() or the subdomain-scoped cookie won't clear.
+  res.cookies.delete({
+    name: "session_token",
+    domain: process.env.NODE_ENV === "production" ? ".kryptoscronos.com" : undefined,
+    path: "/",
+  });
   return res;
 }

@@ -34,6 +34,7 @@ const NAV_ITEMS = [
   { id: "admin-cms",      label: "CMS" },
   { id: "admin-pipeline", label: "Pipeline" },
   { id: "admin-vouchers", label: "Vouchers" },
+  { id: "admin-audit",    label: "Audit Access" },
   { id: "admin-ip",       label: "IP Audit" },
   { id: "admin-catalog",  label: "Catalog" },
 ];
@@ -450,6 +451,127 @@ type VoucherRow = {
   createdAt: number;
   uses: { username: string; redeemedAt: number }[];
 };
+
+function AuditAccessPanel({ users }: { users: UserRow[] }) {
+  const [enabled, setEnabled] = useState(false);
+  const [allow, setAllow] = useState<string[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [busy, setBusy] = useState<string | null>(null);
+  const [search, setSearch] = useState("");
+
+  useEffect(() => {
+    fetch("/api/admin/audit-access")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => { if (d) { setEnabled(!!d.enabled); setAllow(d.allow ?? []); } })
+      .catch(() => {})
+      .finally(() => setLoading(false));
+  }, []);
+
+  async function post(body: Record<string, unknown>) {
+    const res = await fetch("/api/admin/audit-access", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+    if (res.ok) { const d = await res.json(); setEnabled(!!d.enabled); setAllow(d.allow ?? []); }
+  }
+
+  async function toggleGlobal() {
+    setBusy("__global__");
+    try { await post({ enabled: !enabled }); } finally { setBusy(null); }
+  }
+  async function toggleUser(username: string, granted: boolean) {
+    setBusy(username);
+    try { await post({ username, grant: !granted }); } finally { setBusy(null); }
+  }
+
+  const allowSet = new Set(allow.map((u) => u.toLowerCase()));
+  const q = search.trim().toLowerCase();
+  const rows = [...users]
+    .sort((a, b) => {
+      const ga = allowSet.has(a.username.toLowerCase()) ? 0 : 1;
+      const gb = allowSet.has(b.username.toLowerCase()) ? 0 : 1;
+      return ga - gb || a.username.localeCompare(b.username);
+    })
+    .filter((u) => !q || u.username.toLowerCase().includes(q) || (u.email ?? "").toLowerCase().includes(q));
+
+  return (
+    <div className="bg-white/2 border border-white/8 rounded-2xl overflow-hidden">
+      <div className="px-6 py-4 border-b border-white/8">
+        <div className="flex items-center justify-between gap-4 flex-wrap">
+          <div>
+            <h2 className="text-white font-bold">Audit Library Access</h2>
+            <p className="text-xs text-gray-600 mt-0.5">
+              Who (besides admins) can reach <span className="text-violet-300">audit.kryptoscronos.com</span>.
+              Admins always have access.
+            </p>
+          </div>
+          <button
+            onClick={toggleGlobal}
+            disabled={busy === "__global__" || loading}
+            title="Global feature switch"
+            className={`text-xs font-mono px-3 py-1.5 rounded-lg border transition-colors disabled:opacity-50 ${
+              enabled
+                ? "bg-emerald-500/15 border-emerald-500/40 text-emerald-300"
+                : "bg-white/5 border-white/10 text-gray-500"
+            }`}
+          >
+            {enabled ? "● ENABLED" : "○ DISABLED"}
+          </button>
+        </div>
+        <p className="text-[11px] text-gray-600 mt-2">
+          {enabled
+            ? "ON — allowlisted users below can open the audit site."
+            : "OFF — no non-admin can open the audit site, regardless of the list below."}
+        </p>
+      </div>
+
+      <div className="px-6 py-3 border-b border-white/8 flex items-center justify-between gap-3">
+        <span className="text-xs text-gray-600">{allowSet.size} granted</span>
+        <input
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="Search user or email…"
+          className="text-xs px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-gray-300 placeholder-gray-700 focus:outline-none focus:border-violet-500/50 w-48"
+        />
+      </div>
+
+      {loading ? (
+        <div className="px-6 py-12 text-center text-gray-600 text-sm">Loading…</div>
+      ) : rows.length === 0 ? (
+        <div className="px-6 py-12 text-center text-gray-600 text-sm">No users.</div>
+      ) : (
+        <div className={enabled ? "" : "opacity-50"}>
+          {rows.map((u) => {
+            const granted = allowSet.has(u.username.toLowerCase());
+            return (
+              <div
+                key={u.username}
+                className="flex items-center justify-between gap-3 px-6 py-3 border-b border-white/5 last:border-0 hover:bg-white/2 transition-colors"
+              >
+                <div className="min-w-0">
+                  <div className="font-semibold text-sm text-white break-all">{u.username}</div>
+                  <div className="text-xs text-gray-700 break-all">{u.email}</div>
+                </div>
+                <button
+                  onClick={() => toggleUser(u.username, granted)}
+                  disabled={busy === u.username}
+                  className={`text-xs font-mono px-3 py-1 rounded border transition-colors disabled:opacity-50 shrink-0 ${
+                    granted
+                      ? "bg-violet-500/15 border-violet-500/40 text-violet-300"
+                      : "bg-white/5 border-white/10 text-gray-600"
+                  }`}
+                >
+                  {granted ? "✓ access" : "grant"}
+                </button>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
 
 function VouchersPanel() {
   const [vouchers, setVouchers] = useState<VoucherRow[]>([]);
@@ -1171,6 +1293,8 @@ export default function AdminPage() {
 
         {/* Vouchers */}
         <DashSection id="admin-vouchers"><VouchersPanel /></DashSection>
+
+        <DashSection id="admin-audit"><AuditAccessPanel users={users} /></DashSection>
 
 
         {/* Content IP Audit */}

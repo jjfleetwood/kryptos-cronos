@@ -51,6 +51,9 @@ export function sessionCookieOptions() {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "lax" as const,
+    // Share across *.kryptoscronos.com so the audit subdomain (apps/audit) can
+    // read a logged-in user's session for the allowlist gate. Host-only in dev.
+    domain: process.env.NODE_ENV === "production" ? ".kryptoscronos.com" : undefined,
     path: "/",
     maxAge: 60 * 60 * 24 * 30, // 30 days
   };
