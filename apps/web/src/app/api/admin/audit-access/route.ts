@@ -22,7 +22,7 @@ export async function GET(req: NextRequest) {
     redis.smembers(ALLOW_KEY),
   ]);
   return NextResponse.json({
-    enabled: enabled === "1",
+    enabled: Number(enabled) === 1,
     allow: (allow ?? []).map((u) => String(u).toLowerCase()),
   });
 }
@@ -61,7 +61,7 @@ export async function POST(req: NextRequest) {
   ]);
   return NextResponse.json({
     ok: true,
-    enabled: enabled === "1",
+    enabled: Number(enabled) === 1,
     allow: (allow ?? []).map((u) => String(u).toLowerCase()),
   });
 }

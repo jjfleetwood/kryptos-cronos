@@ -36,7 +36,8 @@ export async function proxy(req: NextRequest) {
           redis.get<string>("audit:access:on"),
           redis.sismember("audit:allow", sessionUser),
         ]);
-        if (enabled === "1" && member) return NextResponse.next();
+        // @upstash/redis auto-JSON-parses, so a stored "1" reads back as number 1.
+        if (Number(enabled) === 1 && member) return NextResponse.next();
       } catch {
         /* Redis error → deny (fall through to 404) */
       }
