@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { setSession } from "@/lib/auth";
 import { useLocale } from "@/contexts/LocaleContext";
-import { checkPassword, isStrongPassword } from "@/lib/password-policy";
+import { isStrongPassword } from "@/lib/password-policy";
 import PasswordChecklist from "@/components/PasswordChecklist";
 
 function ResetPasswordForm() {

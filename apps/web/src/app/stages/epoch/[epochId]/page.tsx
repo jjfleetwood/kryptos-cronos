@@ -264,7 +264,7 @@ export default function EpochPage() {
             <span className="text-xl flex-shrink-0">⚾</span>
             <div className="flex-1 min-w-0">
               <p className="text-green-300 font-semibold text-sm">Situational Defense by Position</p>
-              <p className="text-gray-500 text-xs">Where's the play? A combined drill of defensive reads across all eight positions →</p>
+              <p className="text-gray-500 text-xs">Where&apos;s the play? A combined drill of defensive reads across all eight positions →</p>
             </div>
             <span className="text-green-600 group-hover:text-green-400 text-sm flex-shrink-0 transition-colors">→</span>
           </Link>

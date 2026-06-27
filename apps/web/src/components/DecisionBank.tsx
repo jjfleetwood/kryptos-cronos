@@ -118,7 +118,7 @@ export default function DecisionBank({ pool, title, subtitle, backHref = "/stage
           <div className="text-6xl mb-6">{great ? "🎯" : "📊"}</div>
           <h2 className="text-3xl font-bold text-white mb-2">{score} / {drill.length} ({pct}%)</h2>
           <p className="text-gray-400 mb-8">
-            {great ? "Sharp reads. " : ""}You drilled {drill.length} decisions from {title}. This is practice — nothing's graded, so run it again for a fresh set from the bank ({pool.length} total).
+            {great ? "Sharp reads. " : ""}You drilled {drill.length} decisions from {title}. This is practice — nothing&apos;s graded, so run it again for a fresh set from the bank ({pool.length} total).
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <button onClick={restart} className="px-6 py-3 border border-gray-600 hover:border-cyan-500 text-gray-300 hover:text-cyan-400 rounded-lg font-semibold transition-colors">

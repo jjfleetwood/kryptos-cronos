@@ -55,7 +55,7 @@ export default function ExplorePage() {
           <span className="text-2xl flex-shrink-0">🎯</span>
           <div className="flex-1 min-w-0">
             <p className="text-cyan-200 font-semibold text-sm">Decision Banks</p>
-            <p className="text-gray-500 text-xs">Drill the "Play the Hand / Play the Spot" decisions from a whole track at once — e.g. all of baseball's situational defense →</p>
+            <p className="text-gray-500 text-xs">Drill the Play-the-Hand / Play-the-Spot decisions from a whole track at once — e.g. all of baseball&apos;s situational defense →</p>
           </div>
           <span className="text-cyan-600 group-hover:text-cyan-400 text-sm flex-shrink-0 transition-colors">→</span>
         </Link>
