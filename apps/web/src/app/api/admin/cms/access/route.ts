@@ -39,7 +39,14 @@ export async function POST(req: NextRequest) {
   const body = (await req.json()) as AccessBody;
   const { action, epochId } = body;
 
-  if (!epochId || !epochs.find((e) => e.id === epochId)) {
+  if (!epochId) {
+    return NextResponse.json({ error: "epochId required" }, { status: 400 });
+  }
+  // restrict/grant must target a real, registered epoch. unrestrict/revoke are
+  // cleanup operations and must also work on orphaned ids (e.g. a deleted epoch
+  // still lingering in the epoch_restricted set), so they skip the registry check.
+  const isCleanup = action === "unrestrict" || action === "revoke";
+  if (!isCleanup && !epochs.find((e) => e.id === epochId)) {
     return NextResponse.json({ error: "Invalid epochId" }, { status: 400 });
   }
 
