@@ -47,7 +47,7 @@ import { hearts1Epoch, hearts1Stages } from "./hearts-1";
 import { spades1Epoch, spades1Stages } from "./spades-1";
 import { euchre1Epoch, euchre1Stages } from "./euchre-1";
 import { bridge1Epoch, bridge1Stages } from "./bridge-1";
-import { CARD_GAME_SCENARIOS } from "./card-scenarios";
+import { ALL_SCENARIOS } from "./all-scenarios";
 import { physicsOfHackingEpoch, physicsOfHackingStages } from "./physics-of-hacking";
 import { emergingTechEpoch, emergingTechStages } from "./emerging-tech";
 import { rangeMetasploitEpoch, rangeMetasploitStages } from "./cyber-range";
@@ -2685,9 +2685,9 @@ mongosh --eval "db.createUser({
   },
 ];
 
-// ── Attach "Decision Trainer" scenarios to card-game stages (the "play the hand"
-// path). Kept in a separate data module so the large stage files stay focused on briefings.
+// ── Attach "Decision Trainer" scenarios to stages (the "play the hand / play the
+// spot" path). Kept in separate data modules so the large stage files stay focused.
 for (const s of stages) {
-  const sc = CARD_GAME_SCENARIOS[s.id];
+  const sc = ALL_SCENARIOS[s.id];
   if (sc) s.scenario = sc;
 }
