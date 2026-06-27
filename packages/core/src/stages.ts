@@ -40,6 +40,9 @@ import { poker1Epoch, poker1Stages } from "./poker-1";
 import { poker2Epoch, poker2Stages } from "./poker-2";
 import { poker3Epoch, poker3Stages } from "./poker-3";
 import { cribbage1Epoch, cribbage1Stages } from "./cribbage-1";
+import { cribbage2Epoch, cribbage2Stages } from "./cribbage-2";
+import { cribbage3Epoch, cribbage3Stages } from "./cribbage-3";
+import { cribbage4Epoch, cribbage4Stages } from "./cribbage-4";
 import { hearts1Epoch, hearts1Stages } from "./hearts-1";
 import { spades1Epoch, spades1Stages } from "./spades-1";
 import { euchre1Epoch, euchre1Stages } from "./euchre-1";
@@ -143,6 +146,9 @@ export const epochs: EpochConfig[] = [
   poker2Epoch,
   poker3Epoch,
   cribbage1Epoch,
+  cribbage2Epoch,
+  cribbage3Epoch,
+  cribbage4Epoch,
   hearts1Epoch,
   spades1Epoch,
   euchre1Epoch,
@@ -235,6 +241,9 @@ export const stages: StageConfig[] = [
   ...poker2Stages,
   ...poker3Stages,
   ...cribbage1Stages,
+  ...cribbage2Stages,
+  ...cribbage3Stages,
+  ...cribbage4Stages,
   ...hearts1Stages,
   ...spades1Stages,
   ...euchre1Stages,

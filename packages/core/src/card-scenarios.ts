@@ -1,6 +1,9 @@
 import type { ScenarioConfig } from "./types";
 import { POKER_SCENARIOS } from "./poker-scenarios";
 import { cribbage1Scenarios } from "./cribbage-1-scenarios";
+import { cribbage2Scenarios } from "./cribbage-2-scenarios";
+import { cribbage3Scenarios } from "./cribbage-3-scenarios";
+import { cribbage4Scenarios } from "./cribbage-4-scenarios";
 import { hearts1Scenarios } from "./hearts-1-scenarios";
 import { spades1Scenarios } from "./spades-1-scenarios";
 import { euchre1Scenarios } from "./euchre-1-scenarios";
@@ -11,6 +14,9 @@ import { bridge1Scenarios } from "./bridge-1-scenarios";
 export const CARD_GAME_SCENARIOS: Record<string, ScenarioConfig> = {
   ...POKER_SCENARIOS,
   ...cribbage1Scenarios,
+  ...cribbage2Scenarios,
+  ...cribbage3Scenarios,
+  ...cribbage4Scenarios,
   ...hearts1Scenarios,
   ...spades1Scenarios,
   ...euchre1Scenarios,
