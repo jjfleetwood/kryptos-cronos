@@ -36,6 +36,9 @@ function build() {
   const meta = stages.map((s) => {
     const o = {};
     for (const k of META_FIELDS) if (s[k] !== undefined) o[k] = s[k];
+    // Flag stages carrying a Decision-Trainer scenario so client listing pages can
+    // surface the "Decision Bank" drill without importing the heavy scenario data.
+    if (s.scenario && Array.isArray(s.scenario.spots) && s.scenario.spots.length) o.hasScenario = true;
     return o;
   });
 

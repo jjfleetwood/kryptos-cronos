@@ -20,6 +20,8 @@ export type StageMeta = {
   easeScore?: number;
   valueScore?: number;
   rank?: number;
+  /** True when the stage has a "Play the Hand/Spot" Decision-Trainer scenario. */
+  hasScenario?: boolean;
 };
 
 export { stagesMeta, epochs } from "./stages-meta.generated";

@@ -58,6 +58,13 @@ export async function POST(req: NextRequest) {
     spot.correctIndex != null ? spot.options[spot.correctIndex] : undefined;
   const correct = correctText != null && body.selectedText === correctText;
 
+  // Decision Bank "practice" mode: aggregated drill across many stages — just
+  // validate the single spot, never track attempts or award a stage (no Redis
+  // writes, no XP). The per-spot answer is still authoritative and server-side.
+  if (body.practice === true) {
+    return NextResponse.json({ correct, explanation: spot.explanation ?? "" });
+  }
+
   if (!correct && username) {
     trackWrongAttempt(username, body.stageId).catch(() => {});
   }

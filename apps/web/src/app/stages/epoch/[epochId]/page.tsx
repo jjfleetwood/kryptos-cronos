@@ -90,6 +90,8 @@ export default function EpochPage() {
     return a.order - b.order;
   });
   const epochStages = filterStagesByGroup(allEpochStages, groups);
+  const hasBank = epochStages.some((s) => (s as { hasScenario?: boolean }).hasScenario);
+  const isBaseball = epochId.startsWith("baseball-");
   const accent = epochAccent[epochId] ?? epochAccent.ancient;
   const contentFlag = getContentFlag(epochId);
   // Quiz half-clears only advance progression in audit epochs, where the quiz is an
@@ -239,6 +241,32 @@ export default function EpochPage() {
               <p className="text-gray-500 text-xs">A timed, randomized knowledge exam drawn from every driving lesson — different every attempt →</p>
             </div>
             <span className="text-yellow-600 group-hover:text-yellow-400 text-sm flex-shrink-0 transition-colors">→</span>
+          </Link>
+        )}
+
+        {/* Decision Bank — drill every Play-the-Hand/Spot decision in this epoch */}
+        {hasBank && (
+          <Link href={`/drill/${epochId}`}
+            className="flex items-center gap-3 bg-cyan-500/6 border border-cyan-500/25 rounded-xl px-4 py-3 mb-3 hover:border-cyan-400/50 hover:bg-cyan-500/10 transition-colors group">
+            <span className="text-xl flex-shrink-0">🎯</span>
+            <div className="flex-1 min-w-0">
+              <p className="text-cyan-300 font-semibold text-sm">Decision Bank</p>
+              <p className="text-gray-500 text-xs">Drill every decision from this epoch in one shuffled set — practice, not graded, fresh each run →</p>
+            </div>
+            <span className="text-cyan-600 group-hover:text-cyan-400 text-sm flex-shrink-0 transition-colors">→</span>
+          </Link>
+        )}
+
+        {/* Baseball: situational defense across all eight positions */}
+        {isBaseball && (
+          <Link href="/drill/baseball-defense"
+            className="flex items-center gap-3 bg-green-500/6 border border-green-500/25 rounded-xl px-4 py-3 mb-6 hover:border-green-400/50 hover:bg-green-500/10 transition-colors group">
+            <span className="text-xl flex-shrink-0">⚾</span>
+            <div className="flex-1 min-w-0">
+              <p className="text-green-300 font-semibold text-sm">Situational Defense by Position</p>
+              <p className="text-gray-500 text-xs">Where's the play? A combined drill of defensive reads across all eight positions →</p>
+            </div>
+            <span className="text-green-600 group-hover:text-green-400 text-sm flex-shrink-0 transition-colors">→</span>
           </Link>
         )}
 

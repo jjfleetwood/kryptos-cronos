@@ -97,6 +97,42 @@ export const TRACK_SUBGROUPS: Record<string, SubGroup[]> = {
   ],
 };
 
+// ── Decision Banks ────────────────────────────────────────────────────────────
+// A "Decision Bank" aggregates the Play-the-Hand/Spot decisions across many stages
+// into one big shuffled drill. A bank id can be a curated bank below, any track
+// group id (epochGroups/extendedGroups), or a single epoch id (resolved by the page).
+export type DecisionBank = { id: string; title: string; subtitle: string; epochIds: string[] };
+export const DECISION_BANKS: DecisionBank[] = [
+  {
+    id: "baseball-defense",
+    title: "Baseball — Situational Defense by Position",
+    subtitle: "Where's the play? Drill defensive reads across all eight positions.",
+    epochIds: ["baseball-8", "baseball-9", "baseball-10", "baseball-11", "baseball-12", "baseball-13", "baseball-14", "baseball-15"],
+  },
+  {
+    id: "baseball-all",
+    title: "Baseball — Every Situation",
+    subtitle: "Hitting, pitching, and defense reads from the whole baseball track.",
+    epochIds: ["baseball-1", "baseball-2", "baseball-3", "baseball-4", "baseball-5", "baseball-6", "baseball-7", "baseball-8", "baseball-9", "baseball-10", "baseball-11", "baseball-12", "baseball-13", "baseball-14", "baseball-15"],
+  },
+  {
+    id: "poker-all",
+    title: "Poker — Every Decision",
+    subtitle: "Hold'em, advanced play, and other variants in one drill.",
+    epochIds: ["poker-1", "poker-2", "poker-3"],
+  },
+];
+
+/** Resolve a bank id to its epoch list — curated bank, then track group. Returns
+ * null when the id is none of those (the page then treats it as a single epoch id). */
+export function resolveBank(id: string): { title?: string; subtitle?: string; labelKey?: string; epochIds: string[] } | null {
+  const curated = DECISION_BANKS.find((b) => b.id === id);
+  if (curated) return { title: curated.title, subtitle: curated.subtitle, epochIds: curated.epochIds };
+  const group = [...epochGroups, ...extendedGroups].find((g) => g.id === id);
+  if (group) return { labelKey: group.labelKey, epochIds: group.epochIds };
+  return null;
+}
+
 // ── Group gating (mirrors lib/access.ts) ──────────────────────────────────────
 export const SECURITY_EPOCHS = new Set<string>(epochGroups.flatMap((g) => g.epochIds));
 export const NON_SECURITY_EPOCHS = new Set<string>(extendedGroups.flatMap((g) => g.epochIds));
