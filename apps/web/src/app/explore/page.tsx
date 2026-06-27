@@ -45,9 +45,20 @@ export default function ExplorePage() {
           </Link>
           <h1 className="text-4xl font-bold text-white mt-4 mb-2">Explore More</h1>
           <p className="text-gray-400">
-            The same engine, beyond cybersecurity — debate, languages, sports, driving, and crafts. Learn anything, gamified.
+            The same engine, beyond cybersecurity — debate, languages, sports, driving, cards, e-bikes, and crafts. Learn anything, gamified.
           </p>
         </div>
+
+        {/* Decision Banks entry point */}
+        <Link href="/drill"
+          className="flex items-center gap-3 bg-cyan-500/6 border border-cyan-500/25 rounded-xl px-4 py-3.5 mb-8 hover:border-cyan-400/50 hover:bg-cyan-500/10 transition-colors group">
+          <span className="text-2xl flex-shrink-0">🎯</span>
+          <div className="flex-1 min-w-0">
+            <p className="text-cyan-200 font-semibold text-sm">Decision Banks</p>
+            <p className="text-gray-500 text-xs">Drill the "Play the Hand / Play the Spot" decisions from a whole track at once — e.g. all of baseball's situational defense →</p>
+          </div>
+          <span className="text-cyan-600 group-hover:text-cyan-400 text-sm flex-shrink-0 transition-colors">→</span>
+        </Link>
 
         <div className="flex items-center gap-3 mb-4">
           <span className="text-[11px] font-mono font-bold text-amber-600 uppercase tracking-widest whitespace-nowrap">

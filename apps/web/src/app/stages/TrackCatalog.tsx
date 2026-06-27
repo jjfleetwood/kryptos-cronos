@@ -92,6 +92,15 @@ export function TrackCatalog({
           .filter(Boolean) as typeof epochs;
         const ts = TRACK_STYLE[trackGroup.id] ?? DEFAULT_STYLE;
         const subGroups = TRACK_SUBGROUPS[trackGroup.id];
+        const groupHasBank = trackGroup.visibleEpochIds.some((eid) =>
+          allStages.some((s) => s.epochId === eid && (s as { hasScenario?: boolean }).hasScenario)
+        );
+        const groupSpots = groupHasBank
+          ? trackGroup.visibleEpochIds.reduce(
+              (n, eid) => n + allStages.filter((s) => s.epochId === eid && (s as { hasScenario?: boolean }).hasScenario).length * 4,
+              0
+            )
+          : 0;
 
         return (
           <div key={trackGroup.id}>
@@ -101,6 +110,15 @@ export function TrackCatalog({
                 <span className="text-lg leading-none">{ts.icon}</span>
                 <span className="text-lg font-bold text-white tracking-tight">{t(trackGroup.labelKey)}</span>
                 <div className="flex-1 h-[2px] rounded-full" style={{ background: `linear-gradient(to right, ${ts.color}80, transparent)` }} />
+                {groupHasBank && (
+                  <Link
+                    href={`/drill/${trackGroup.id}`}
+                    title={`Drill ~${groupSpots} decisions from this track`}
+                    className="flex-shrink-0 text-[11px] font-mono text-cyan-400 hover:text-cyan-300 border border-cyan-500/30 hover:border-cyan-400/60 bg-cyan-500/5 px-2.5 py-1 rounded-lg transition-colors"
+                  >
+                    🎯 Drill
+                  </Link>
+                )}
               </div>
               <p className="text-[11px] text-gray-500 pl-8">{t(trackGroup.descKey)}</p>
             </div>
