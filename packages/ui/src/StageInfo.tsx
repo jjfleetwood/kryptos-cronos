@@ -284,6 +284,11 @@ export default function StageInfo({
 }) {
   const { t } = useLocale();
   const { info } = stage;
+  // A scenario that deals cards (poker, cribbage, …) reads as "Play the Hand";
+  // a card-less one (driving, debate, baseball, …) reads as "Play the Spot".
+  const scenarioUsesCards = !!stage.scenario?.spots?.some(
+    (s) => (s.hand?.length ?? 0) > 0 || (s.board?.length ?? 0) > 0
+  );
   const downloads = info.downloads ?? stageDownloads[stage.id] ?? [];
   const theme: SectionTheme = SECTION_THEMES[stage.category] ?? DEFAULT_THEME;
   const richContext: "security" | "general" = ["cybersecurity", "ai", "owasp"].includes(stage.category) ? "security" : "general";
@@ -786,15 +791,15 @@ export default function StageInfo({
           ) : hasScenario ? (
             <div className="px-6 py-5">
               <p className="text-white font-bold text-lg">{t("stage.readyForChallenge")}</p>
-              <p className="text-gray-400 text-sm mt-0.5 mb-4">Play the hand or take the quiz — either one clears the stage.</p>
+              <p className="text-gray-400 text-sm mt-0.5 mb-4">{scenarioUsesCards ? "Play the hand" : "Play the spot"} or take the quiz — either one clears the stage.</p>
               <div className="grid sm:grid-cols-2 gap-3">
                 <button
                   onClick={() => onStart("scenario")}
                   className="text-left rounded-xl border-2 border-rose-500/40 hover:border-rose-400 bg-rose-500/5 hover:bg-rose-500/10 p-4 transition-all hover:-translate-y-0.5"
                 >
-                  <div className="text-3xl mb-2">🃏</div>
-                  <h3 className="text-white font-bold mb-0.5">Play the Hand</h3>
-                  <p className="text-gray-400 text-xs mb-3">Sit at the table and make the right decisions.</p>
+                  <div className="text-3xl mb-2">{scenarioUsesCards ? "🃏" : "🎯"}</div>
+                  <h3 className="text-white font-bold mb-0.5">{scenarioUsesCards ? "Play the Hand" : "Play the Spot"}</h3>
+                  <p className="text-gray-400 text-xs mb-3">{scenarioUsesCards ? "Sit at the table and make the right decisions." : "Read the situation and make the right call."}</p>
                   <span className="inline-flex items-center gap-1.5 text-xs font-mono text-rose-300 border border-rose-500/30 bg-rose-500/10 rounded-full px-2.5 py-1">
                     ✓ Full clear · +{stage.xp} 🪙
                   </span>

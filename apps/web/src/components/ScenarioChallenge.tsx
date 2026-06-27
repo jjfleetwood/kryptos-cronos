@@ -73,6 +73,11 @@ export default function ScenarioChallenge({ stage, backHref = "/stages" }: { sta
 
   const spot = spots[current];
   const intro = stage.scenario?.intro;
+  // Card games show a felt + cards; non-card scenarios (driving, debate, baseball, …)
+  // render a clean "scenario brief" instead, and use "spot" rather than "hand" wording.
+  const usesCards = spots.some((s) => (s.hand?.length ?? 0) > 0 || (s.board?.length ?? 0) > 0);
+  const spotHasCards = !!spot && (((spot.hand?.length ?? 0) > 0) || ((spot.board?.length ?? 0) > 0));
+  const noun = usesCards ? "hand" : "spot";
 
   function restart() {
     setSpots(buildAttempt(stage));
@@ -158,17 +163,17 @@ export default function ScenarioChallenge({ stage, backHref = "/stages" }: { sta
         style={{ background: "linear-gradient(135deg, #0d1117 0%, #0f2027 50%, #1a1a2e 100%)" }}
       >
         <div className="max-w-lg w-full text-center">
-          <div className="text-6xl mb-6">🃏</div>
-          <h2 className="text-3xl font-bold text-white mb-2">Tough table!</h2>
+          <div className="text-6xl mb-6">{usesCards ? "🃏" : "🎯"}</div>
+          <h2 className="text-3xl font-bold text-white mb-2">{usesCards ? "Tough table!" : "So close!"}</h2>
           <p className="text-gray-400 mb-8">
-            You played {score} of {spots.length} spots correctly — you need at least 70% to take down the stage. Re-deal and run it back.
+            You played {score} of {spots.length} spots correctly — you need at least 70% to clear the stage. {usesCards ? "Re-deal and run it back." : "Reset and try again."}
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <button
               onClick={restart}
               className="px-6 py-3 border border-gray-600 hover:border-rose-500 text-gray-300 hover:text-rose-400 rounded-lg font-semibold transition-colors"
             >
-              Re-deal
+              {usesCards ? "Re-deal" : "Try again"}
             </button>
             <Link
               href={backHref}
@@ -194,11 +199,11 @@ export default function ScenarioChallenge({ stage, backHref = "/stages" }: { sta
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-white font-bold text-xl">{stage.title}</h1>
-              <p className="text-gray-500 text-sm">Play the hand · {stage.subtitle}</p>
+              <p className="text-gray-500 text-sm">Play the {noun} · {stage.subtitle}</p>
             </div>
             <div className="text-right">
               <div className="text-rose-400 font-mono text-sm">{current + 1} / {spots.length}</div>
-              <div className="text-gray-600 text-xs">🃏 decision trainer</div>
+              <div className="text-gray-600 text-xs">{usesCards ? "🃏" : "🎯"} decision trainer</div>
             </div>
           </div>
           <div className="mt-4 bg-white/5 rounded-full h-1.5">
@@ -215,26 +220,35 @@ export default function ScenarioChallenge({ stage, backHref = "/stages" }: { sta
           </div>
         )}
 
-        {/* The felt */}
-        <div
-          className="rounded-2xl border border-emerald-700/40 p-5 mb-4 shadow-inner"
-          style={{ background: "radial-gradient(ellipse at center, #0b6b4f 0%, #064235 70%, #052b23 100%)" }}
-        >
-          <div className="flex items-center justify-between mb-4">
-            <span className="text-xs px-3 py-1 rounded-full border border-emerald-300/30 bg-emerald-900/40 text-emerald-200 font-semibold">
-              {spot.label}
-            </span>
-            <div className="flex gap-3 text-emerald-100/90 text-xs font-mono">
-              {spot.pot && <span>POT <b className="text-emerald-300">{spot.pot}</b></span>}
-              {spot.toCall && <span>TO CALL <b className="text-amber-300">{spot.toCall}</b></span>}
+        {/* Card games get a felt + cards; other tracks get a clean label bar. */}
+        {spotHasCards ? (
+          <div
+            className="rounded-2xl border border-emerald-700/40 p-5 mb-4 shadow-inner"
+            style={{ background: "radial-gradient(ellipse at center, #0b6b4f 0%, #064235 70%, #052b23 100%)" }}
+          >
+            <div className="flex items-center justify-between mb-4">
+              <span className="text-xs px-3 py-1 rounded-full border border-emerald-300/30 bg-emerald-900/40 text-emerald-200 font-semibold">
+                {spot.label}
+              </span>
+              <div className="flex gap-3 text-emerald-100/90 text-xs font-mono">
+                {spot.pot && <span>POT <b className="text-emerald-300">{spot.pot}</b></span>}
+                {spot.toCall && <span>TO CALL <b className="text-amber-300">{spot.toCall}</b></span>}
+              </div>
+            </div>
+
+            <div className="flex flex-col items-center gap-4 py-2">
+              <CardRow cards={spot.board} label="Board" />
+              <CardRow cards={spot.hand} label="Your hand" />
             </div>
           </div>
-
-          <div className="flex flex-col items-center gap-4 py-2">
-            <CardRow cards={spot.board} label="Board" />
-            <CardRow cards={spot.hand} label="Your hand" />
+        ) : (
+          <div className="flex items-center gap-2 mb-3">
+            <span className="text-xs px-3 py-1 rounded-full border border-rose-500/30 bg-rose-500/10 text-rose-300 font-semibold">
+              {spot.label}
+            </span>
+            <span className="text-gray-600 text-xs font-mono">Spot {current + 1}</span>
           </div>
-        </div>
+        )}
 
         {/* Situation + prompt */}
         <div className="bg-white/5 border border-white/10 rounded-xl p-6 mb-4">
