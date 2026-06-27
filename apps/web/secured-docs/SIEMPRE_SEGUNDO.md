@@ -2,7 +2,7 @@
 
 *"He was born second. He died first."*
 
-A multigenerational saga — **feature screenplay + companion novel, both titled *Siempre Segundo* ("Always Second")** — loosely inspired by the life of Frank Arellanes, the Californio pitcher from Santa Cruz who was among the first Mexican-American men to reach the major leagues. The title is the irony the whole story turns on: a man the world kept calling *second,* who was — as the coda reveals — *siempre primero,* first all along. **Fiction. Names and events invented.** Our hero is **Cirilo Méndez**. A motivational small-town-Chicano-to-hero story, kept **period-real to teach history** — with a tragic twist and a victory deeper than any trophy.
+A multigenerational saga — **feature screenplay + companion novel, both titled *Siempre Segundo* ("Always Second")** — loosely inspired by the life of Frank Arellanes, the Californio pitcher from Santa Cruz who was among the first Mexican-American men to reach the major leagues. The title is the irony the whole story turns on: a man the world kept calling *second,* who was — as the coda reveals — *siempre primero,* first all along. **Fiction. Names and events invented.** Our hero is **Cirilo Méndez**. A motivational small-town-Mexican-American-to-hero story, kept **period-real to teach history** — with a tragic twist and a victory deeper than any trophy.
 
 ---
 
@@ -1341,7 +1341,7 @@ No part of this work may be reproduced, distributed, or transmitted in any form 
 
 ### Dedication
 
-*For Frank Arellanes — Santa Cruz's own, the real arm behind this invented one. The son of a Californio family, he pitched his way out of the Central Coast and onto the Boston Red Sox, where in 1909 he stepped into the great Cy Young's place in the rotation and won sixteen games. He was among the very first Mexican-American (Chicano) men to play in the major leagues. This story is inspired by him, and offered in his honor.*
+*For Frank Arellanes — Santa Cruz's own, the real arm behind this invented one. The son of a Californio family, he pitched his way out of the Central Coast and onto the Boston Red Sox, where in 1909 he stepped into the great Cy Young's place in the rotation and won sixteen games. He was among the very first Mexican-American men to play in the major leagues. This story is inspired by him, and offered in his honor.*
 
 *And for all the others — the Awaswas and the Ohlone, the Californios and the conquered, the tanners and the kiln-men and the fishermen, the barred and the spent and the unrecorded — every soul across the long history of this coast who paid, in labor or in loss, for the complex beauty Santa Cruz wears so lightly in the sun today. The hands in the dirt were always theirs.*
 
