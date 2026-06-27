@@ -4,6 +4,7 @@ import { useState } from "react";
 import StageInfo from "@kryptos/ui/StageInfo";
 import CtfChallenge from "./CtfChallenge";
 import QuizChallenge from "./QuizChallenge";
+import ScenarioChallenge from "./ScenarioChallenge";
 import type { StageConfig, CtfQuizEntry, AuditQuizEntry } from "@kryptos/core/types";
 import type { StageTranslation } from "@kryptos/core/translations/types";
 import { useLocale } from "@/contexts/LocaleContext";
@@ -22,7 +23,7 @@ export default function StageContainer({ stage, isPro = false, translation = nul
 }) {
   const { t } = useLocale();
   const [phase, setPhase] = useState<"info" | "challenge">("info");
-  const [mode, setMode] = useState<"quiz" | "ctf" | null>(null);
+  const [mode, setMode] = useState<"quiz" | "ctf" | "scenario" | null>(null);
 
   if (!stage) {
     return (
@@ -37,6 +38,9 @@ export default function StageContainer({ stage, isPro = false, translation = nul
   // A dual-mode stage offers both a CTF and a full quiz on the same topic.
   const hasQuiz = (stage.quiz?.questions?.length ?? 0) > 0;
   const isDual = stage.challengeType === "ctf" && !!stage.ctf && hasQuiz;
+  // A scenario ("play the hand") stage offers a Decision Trainer as a full-clear
+  // path alongside its quiz — both award the stage.
+  const hasScenario = (stage.scenario?.spots?.length ?? 0) > 0;
 
   if (phase === "info") {
     // For a dual-mode stage the learner picks the quiz (half) or CTF (full) right in
@@ -45,6 +49,7 @@ export default function StageContainer({ stage, isPro = false, translation = nul
       <StageInfo
         stage={stage}
         isDual={isDual}
+        hasScenario={hasScenario}
         onStart={(chosen) => {
           if (chosen) setMode(chosen);
           setPhase("challenge");
@@ -54,6 +59,10 @@ export default function StageContainer({ stage, isPro = false, translation = nul
         hideCover={hideCover}
       />
     );
+  }
+
+  if (mode === "scenario" && hasScenario) {
+    return <ScenarioChallenge stage={stage} backHref={backHref} />;
   }
 
   if (stage.challengeType === "ctf" && stage.ctf && mode !== "quiz") {

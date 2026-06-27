@@ -172,6 +172,15 @@ export default async function StagePage({
       },
     };
   }
+  if (safeStage?.scenario) {
+    safeStage = {
+      ...safeStage,
+      scenario: {
+        ...safeStage.scenario,
+        spots: safeStage.scenario.spots.map(({ correctIndex: _ci, explanation: _ex, ...s }) => s),
+      },
+    };
+  }
 
   // Apply translated stage title and wonder name from meta file
   if (safeStage && locale !== "en") {

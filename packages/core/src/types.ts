@@ -54,6 +54,29 @@ export type QuizConfig = {
   questions: QuizQuestion[];
 };
 
+// A "Decision Trainer" challenge: the learner plays a short sequence of real
+// hand/decision spots (poker hands, a cribbage count, a bridge bid, …) and clears
+// the stage by making the correct skill-based choices — deterministic, not luck.
+// correctIndex/explanation are server-only and stripped before reaching the client.
+export type ScenarioSpot = {
+  id: string;
+  label: string;          // short tag, e.g. "Preflop" / "Flop"
+  situation: string;      // the setup: position, stacks, action so far
+  hand?: string[];        // your cards, e.g. ["A♠","K♠"]
+  board?: string[];       // community cards on the table
+  pot?: string;           // e.g. "$120"
+  toCall?: string;        // e.g. "$40"
+  prompt: string;         // the decision question
+  options: string[];      // the available actions
+  correctIndex?: number;  // server-only, stripped before client
+  explanation?: string;   // server-only, stripped before client
+};
+
+export type ScenarioConfig = {
+  intro?: string;         // table-setting blurb shown before the first spot
+  spots: ScenarioSpot[];
+};
+
 export type CtfQuizQuestion = {
   q: string;
   options: [string, string];
@@ -166,4 +189,5 @@ export type StageConfig = {
   info: StageInfo;
   ctf?: CtfConfig;
   quiz?: QuizConfig;
+  scenario?: ScenarioConfig;
 };

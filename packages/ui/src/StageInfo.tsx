@@ -269,13 +269,15 @@ export default function StageInfo({
   stage,
   onStart,
   isDual = false,
+  hasScenario = false,
   translation = null,
   backHref,
   hideCover = false,
 }: {
   stage: StageConfig;
-  onStart?: (mode?: "quiz" | "ctf") => void;
+  onStart?: (mode?: "quiz" | "ctf" | "scenario") => void;
   isDual?: boolean;
+  hasScenario?: boolean;
   translation?: StageTranslation | null;
   backHref?: string;
   hideCover?: boolean;
@@ -777,6 +779,35 @@ export default function StageInfo({
                   <p className="text-gray-400 text-xs mb-3">5 quick questions to test what you know.</p>
                   <span className="inline-flex items-center gap-1.5 text-xs font-mono text-amber-400 border border-amber-500/30 bg-amber-500/10 rounded-full px-2.5 py-1">
                     ◗ Half clear
+                  </span>
+                </button>
+              </div>
+            </div>
+          ) : hasScenario ? (
+            <div className="px-6 py-5">
+              <p className="text-white font-bold text-lg">{t("stage.readyForChallenge")}</p>
+              <p className="text-gray-400 text-sm mt-0.5 mb-4">Play the hand or take the quiz — either one clears the stage.</p>
+              <div className="grid sm:grid-cols-2 gap-3">
+                <button
+                  onClick={() => onStart("scenario")}
+                  className="text-left rounded-xl border-2 border-rose-500/40 hover:border-rose-400 bg-rose-500/5 hover:bg-rose-500/10 p-4 transition-all hover:-translate-y-0.5"
+                >
+                  <div className="text-3xl mb-2">🃏</div>
+                  <h3 className="text-white font-bold mb-0.5">Play the Hand</h3>
+                  <p className="text-gray-400 text-xs mb-3">Sit at the table and make the right decisions.</p>
+                  <span className="inline-flex items-center gap-1.5 text-xs font-mono text-rose-300 border border-rose-500/30 bg-rose-500/10 rounded-full px-2.5 py-1">
+                    ✓ Full clear · +{stage.xp} 🪙
+                  </span>
+                </button>
+                <button
+                  onClick={() => onStart("quiz")}
+                  className="text-left rounded-xl border-2 border-amber-500/40 hover:border-amber-400 bg-amber-500/5 hover:bg-amber-500/10 p-4 transition-all hover:-translate-y-0.5"
+                >
+                  <div className="text-3xl mb-2">📝</div>
+                  <h3 className="text-white font-bold mb-0.5">Take the Quiz</h3>
+                  <p className="text-gray-400 text-xs mb-3">Quick questions to test what you know.</p>
+                  <span className="inline-flex items-center gap-1.5 text-xs font-mono text-amber-400 border border-amber-500/30 bg-amber-500/10 rounded-full px-2.5 py-1">
+                    ✓ Full clear · +{stage.xp} 🪙
                   </span>
                 </button>
               </div>

@@ -45,6 +45,7 @@ export const extendedGroups: TrackGroup[] = [
   { id: "travel", labelKey: "stages.tracks.travel", descKey: "stages.tracks.travelDesc", epochIds: ["paris-july", "milan-july", "french-basics", "italian-basics"] },
   { id: "debate", labelKey: "stages.tracks.debate", descKey: "stages.tracks.debateDesc", epochIds: ["debate-1", "debate-2", "debate-3", "debate-4", "debate-5", "debate-6", "debate-7", "debate-8"] },
   { id: "flagFootball", labelKey: "stages.tracks.flagFootball", descKey: "stages.tracks.flagFootballDesc", epochIds: ["flag-football-1", "flag-football-2", "flag-football-3"] },
+  { id: "cardGames", labelKey: "stages.tracks.cardGames", descKey: "stages.tracks.cardGamesDesc", epochIds: ["poker-1", "poker-2", "poker-3", "cribbage-1", "hearts-1", "spades-1", "euchre-1", "bridge-1"] },
 ];
 
 // ── Per-track visual style ────────────────────────────────────────────────────
@@ -65,6 +66,7 @@ export const TRACK_STYLE: Record<string, { icon: string; color: string }> = {
   travel:           { icon: "✈️", color: "#14b8a6" },
   debate:           { icon: "🗣️", color: "#a78bfa" },
   flagFootball:     { icon: "🏈", color: "#34d399" },
+  cardGames:        { icon: "🃏", color: "#f43f5e" },
 };
 export const DEFAULT_STYLE = { icon: "📦", color: "#9ca3af" };
 
@@ -85,6 +87,11 @@ export const TRACK_SUBGROUPS: Record<string, SubGroup[]> = {
     { label: "Formats & Research", ids: ["debate-3", "debate-4"] },
     { label: "Clash & Delivery", ids: ["debate-5", "debate-6"] },
     { label: "Mastery", ids: ["debate-7", "debate-8"] },
+  ],
+  cardGames: [
+    { label: "Poker", ids: ["poker-1", "poker-2", "poker-3"] },
+    { label: "Cribbage", ids: ["cribbage-1"] },
+    { label: "Trick-Taking", ids: ["hearts-1", "spades-1", "euchre-1", "bridge-1"] },
   ],
 };
 

@@ -36,6 +36,15 @@ import { robotSec2Epoch, robotSec2Stages } from "./robot-sec-2";
 import { spaceRace2Epoch, spaceRace2Stages } from "./space-race-2";
 import { threatFrameworksEpoch, threatFrameworksStages } from "./threat-frameworks";
 import { flagFootball1Epoch, flagFootball1Stages, flagFootball2Epoch, flagFootball2Stages, flagFootball3Epoch, flagFootball3Stages } from "./flag-football";
+import { poker1Epoch, poker1Stages } from "./poker-1";
+import { poker2Epoch, poker2Stages } from "./poker-2";
+import { poker3Epoch, poker3Stages } from "./poker-3";
+import { cribbage1Epoch, cribbage1Stages } from "./cribbage-1";
+import { hearts1Epoch, hearts1Stages } from "./hearts-1";
+import { spades1Epoch, spades1Stages } from "./spades-1";
+import { euchre1Epoch, euchre1Stages } from "./euchre-1";
+import { bridge1Epoch, bridge1Stages } from "./bridge-1";
+import { POKER_SCENARIOS } from "./poker-scenarios";
 import { physicsOfHackingEpoch, physicsOfHackingStages } from "./physics-of-hacking";
 import { emergingTechEpoch, emergingTechStages } from "./emerging-tech";
 import { rangeMetasploitEpoch, rangeMetasploitStages } from "./cyber-range";
@@ -130,6 +139,14 @@ export const epochs: EpochConfig[] = [
   flagFootball1Epoch,
   flagFootball2Epoch,
   flagFootball3Epoch,
+  poker1Epoch,
+  poker2Epoch,
+  poker3Epoch,
+  cribbage1Epoch,
+  hearts1Epoch,
+  spades1Epoch,
+  euchre1Epoch,
+  bridge1Epoch,
   physicsOfHackingEpoch,
   emergingTechEpoch,
   rangeMetasploitEpoch,
@@ -214,6 +231,14 @@ export const stages: StageConfig[] = [
   ...flagFootball1Stages,
   ...flagFootball2Stages,
   ...flagFootball3Stages,
+  ...poker1Stages,
+  ...poker2Stages,
+  ...poker3Stages,
+  ...cribbage1Stages,
+  ...hearts1Stages,
+  ...spades1Stages,
+  ...euchre1Stages,
+  ...bridge1Stages,
   ...physicsOfHackingStages,
   ...emergingTechStages,
   ...rangeMetasploitStages,
@@ -2650,3 +2675,10 @@ mongosh --eval "db.createUser({
     },
   },
 ];
+
+// ── Attach "Decision Trainer" scenarios to poker stages (the "play the hand" path).
+// Kept in a separate data module so the large stage files stay focused on briefings.
+for (const s of stages) {
+  const sc = POKER_SCENARIOS[s.id];
+  if (sc) s.scenario = sc;
+}
