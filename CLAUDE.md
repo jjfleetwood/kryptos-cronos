@@ -8,7 +8,7 @@ Gamified cybersecurity + AI training platform. 75 curriculum epochs, 831 CTF/qui
 
 **Live:** kryptoscronos.com  
 **Repo:** github.com/jjfleetwood/kryptos-cronos  
-**Current version:** v1.45.0 (as of 2026-06-09)
+**Current version:** v1.47.0 (as of 2026-06-26)
 
 ---
 
@@ -190,7 +190,7 @@ Back navigation: `BackLink` uses `backHref` prop (passed from `StageContainer`) 
 | 51 | `debate-8` | The Psychology of Debate | 10 | debate-8-01 → debate-8-10 | Purple |
 
 **Track groups (stages page — public):** Core Security (+ computing-foundations) · Tech Audit · Threat Frameworks · AI Security · Quantum Era (quantum-intro + quantum-deep + quantum-1/2/3/4/5) · Defend the Enterprise (+ physics-of-hacking)  
-**Extended curriculum (curious group only):** Crafts · Driving · Baseball · Travel · Debate & Speech (debate-1…7)  
+**Extended curriculum (curious group only):** Crafts · Driving · Baseball · Travel · Debate & Speech (debate-1…8) · **Card Games** (poker-1/2/3 · cribbage-1/2/3/4 · hearts-1 · spades-1 · euchre-1 · bridge-1)  
 **Hidden from public nav (accessible via direct URL):** all extended tracks
 
 ---
@@ -379,6 +379,14 @@ Local dev: `.env.local` in `app/` (gitignored).
 - **Target sponsors:** CrowdStrike, AWS, SentinelOne, CompTIA, ISC²
 
 ---
+
+## What's Shipped (v1.47.0)
+
+- ✅ **New "Card Games" extended track** on `/explore` (Poker / Cribbage / Trick-Taking; off the public cyber count). 11 new content epochs / 110 quiz stages: `poker-1/2/3` (Hold'em → advanced → Omaha/Stud/Razz/mixed), the 4-rung `cribbage-1..4` ladder, and `hearts-1`/`spades-1`/`euchre-1`/`bridge-1`.
+- ✅ **Decision Trainer — a new deterministic challenge type** ("Play the Hand"/"Play the Spot"). `ScenarioConfig`/`ScenarioSpot` (`scenario?` on `StageConfig`, answers stripped server-side), `ScenarioChallenge.tsx` (felt-table for card games, scenario brief otherwise), `/api/check-scenario` (validates by option text, full clear at ≥70%, XP server-side), and a Play-vs-Quiz choice on the stage page. Data lives in per-epoch `<epoch>-scenarios.ts` → merged in `card-scenarios.ts`/`all-scenarios.ts` (`ALL_SCENARIOS`) → attached by a load loop in `stages.ts`. **To extend to a new track: write the scenario file + add it to `all-scenarios.ts`; nothing else (attaches by stage id).**
+- ✅ **Rolled out to 43 epochs / 474 trainer stages / 1,896 spots**: all card games + Flag Football, Driving, Debate, Baseball (all positions), and Travel/Language. Crafts skipped (procedural, not decisions).
+- ✅ **Adversarial per-game correctness audit on every scenario file** — independent agents re-derive each spot from the rules; caught/fixed ~20 real bugs (poker hand reads, a wOBA weight, a baseball cutoff, a CA permit law, Louvre hours, a Métro line, etc.).
+- ✅ **Counts:** registered totals **921 stages / 91 epochs** (extended Card Games content; public homepage cyber count unchanged by design).
 
 ## What's Shipped (v1.45.0)
 

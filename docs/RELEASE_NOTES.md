@@ -2,6 +2,18 @@
 
 ---
 
+## v1.47.0 — 2026-06-26
+
+**New "Card Games" track + the Decision Trainer ("Play the Hand" / "Play the Spot")**
+
+- **New extended track — Card Games** (on the low-prominence `/explore` catalog; excluded from the public cyber count by design). 11 new content epochs / 110 quiz stages, grouped Poker / Cribbage / Trick-Taking: `poker-1` Texas Hold'em, `poker-2` Advanced Hold'em, `poker-3` Beyond Hold'em (Omaha/PLO, Stud, Razz, mixed); a 4-rung cribbage ladder `cribbage-1..4` (rules → discarding/crib → pegging → expert counting); and `hearts-1`, `spades-1`, `euchre-1`, `bridge-1`.
+- **Decision Trainer — a new deterministic, skill-based challenge type.** Instead of (or alongside) a quiz, a stage can offer a "play the hand / play the spot" trainer: a short sequence of real decision spots where clearing requires the correct, rules-/+EV-based choices — never luck. New `ScenarioConfig`/`ScenarioSpot` types (`scenario?` on `StageConfig`, answers stripped server-side like quizzes), `ScenarioChallenge.tsx` (a felt-table UI for card games, a clean scenario brief for everything else), `/api/check-scenario` (validates by option text, awards a full clear at ≥70%, XP server-computed), and a "Play the Hand/Spot vs Take the Quiz" choice on the stage page.
+- **Rolled out to 43 epochs / 474 trainer stages / 1,896 decision spots**: all card games, plus the existing Flag Football (×3), Driving (×3), Debate (×8), Baseball (×15, all positions), and Travel/Language (`french-basics`, `italian-basics`, `paris-july`, `milan-july`).
+- **Every scenario file passed an adversarial per-game correctness audit** (a fresh agent independently re-derives every spot from the rules). This caught and fixed ~20 real bugs across the rollout — e.g. a poker hand shown as K-Q but answered "quad Kings", a wOBA home-run weight, a left-field cutoff assignment, a CA learner-permit supervision rule, the Louvre's late-night day, and the Métro line to Ledru-Rollin.
+- **Counts:** card-game content takes the registered totals to **921 stages / 91 epochs** (extended tracks stay off the public homepage cyber count). CTF/quiz security content unchanged.
+
+---
+
 ## Auth hardening sprint — 2026-06-26 (Security Briefing v6.0)
 
 Account-security pass (no version bump; security/infra, not curriculum). All live on `master`.
