@@ -46,6 +46,7 @@ export const extendedGroups: TrackGroup[] = [
   { id: "debate", labelKey: "stages.tracks.debate", descKey: "stages.tracks.debateDesc", epochIds: ["debate-1", "debate-2", "debate-3", "debate-4", "debate-5", "debate-6", "debate-7", "debate-8"] },
   { id: "flagFootball", labelKey: "stages.tracks.flagFootball", descKey: "stages.tracks.flagFootballDesc", epochIds: ["flag-football-1", "flag-football-2", "flag-football-3"] },
   { id: "cardGames", labelKey: "stages.tracks.cardGames", descKey: "stages.tracks.cardGamesDesc", epochIds: ["poker-1", "poker-2", "poker-3", "cribbage-1", "cribbage-2", "cribbage-3", "cribbage-4", "hearts-1", "spades-1", "euchre-1", "bridge-1"] },
+  { id: "cycling", labelKey: "stages.tracks.cycling", descKey: "stages.tracks.cyclingDesc", epochIds: ["ebikes-1"] },
 ];
 
 // ── Per-track visual style ────────────────────────────────────────────────────
@@ -67,6 +68,7 @@ export const TRACK_STYLE: Record<string, { icon: string; color: string }> = {
   debate:           { icon: "🗣️", color: "#a78bfa" },
   flagFootball:     { icon: "🏈", color: "#34d399" },
   cardGames:        { icon: "🃏", color: "#f43f5e" },
+  cycling:          { icon: "🚴", color: "#84cc16" },
 };
 export const DEFAULT_STYLE = { icon: "📦", color: "#9ca3af" };
 

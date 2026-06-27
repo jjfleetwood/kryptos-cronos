@@ -47,6 +47,7 @@ import { hearts1Epoch, hearts1Stages } from "./hearts-1";
 import { spades1Epoch, spades1Stages } from "./spades-1";
 import { euchre1Epoch, euchre1Stages } from "./euchre-1";
 import { bridge1Epoch, bridge1Stages } from "./bridge-1";
+import { ebikes1Epoch, ebikes1Stages } from "./ebikes-1";
 import { ALL_SCENARIOS } from "./all-scenarios";
 import { physicsOfHackingEpoch, physicsOfHackingStages } from "./physics-of-hacking";
 import { emergingTechEpoch, emergingTechStages } from "./emerging-tech";
@@ -153,6 +154,7 @@ export const epochs: EpochConfig[] = [
   spades1Epoch,
   euchre1Epoch,
   bridge1Epoch,
+  ebikes1Epoch,
   physicsOfHackingEpoch,
   emergingTechEpoch,
   rangeMetasploitEpoch,
@@ -248,6 +250,7 @@ export const stages: StageConfig[] = [
   ...spades1Stages,
   ...euchre1Stages,
   ...bridge1Stages,
+  ...ebikes1Stages,
   ...physicsOfHackingStages,
   ...emergingTechStages,
   ...rangeMetasploitStages,

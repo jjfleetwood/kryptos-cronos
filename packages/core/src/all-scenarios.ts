@@ -33,6 +33,7 @@ import { frenchBasicsScenarios } from "./french-basics-scenarios";
 import { italianBasicsScenarios } from "./italian-basics-scenarios";
 import { parisScenarios } from "./paris-scenarios";
 import { milanScenarios } from "./milan-scenarios";
+import { ebikes1Scenarios } from "./ebikes-1-scenarios";
 
 // Every "play the hand / play the spot" Decision-Trainer scenario across the whole
 // platform (card games + sports + driving + …), attached to stages by the load
@@ -72,4 +73,5 @@ export const ALL_SCENARIOS: Record<string, ScenarioConfig> = {
   ...italianBasicsScenarios,
   ...parisScenarios,
   ...milanScenarios,
+  ...ebikes1Scenarios,
 };
