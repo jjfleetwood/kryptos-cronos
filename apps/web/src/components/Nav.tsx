@@ -93,6 +93,7 @@ export default function Nav() {
         // reachable only by direct link.
         { href: "/journey", icon: "🌍", label: t("nav.journey") },
         { href: "/explore", icon: "🧭", label: t("nav.explore", "Explore") },
+        { href: "/drill", icon: "🎯", label: t("nav.drills", "Drills") },
         { href: "/account", icon: "⚙️", label: "Account" },
       ]
     : [];
