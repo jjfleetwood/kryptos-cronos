@@ -41,7 +41,7 @@ export const epochGroups: TrackGroup[] = [
 export const extendedGroups: TrackGroup[] = [
   { id: "crafts", labelKey: "stages.tracks.crafts", descKey: "stages.tracks.craftsDesc", epochIds: ["tapestry", "nails", "hair-color", "hair-styling"] },
   { id: "driving", labelKey: "stages.tracks.driving", descKey: "stages.tracks.drivingDesc", epochIds: ["driving-1", "driving-2", "driving-3"] },
-  { id: "sports", labelKey: "stages.tracks.sports", descKey: "stages.tracks.sportsDesc", epochIds: ["baseball-1", "baseball-2", "baseball-3", "baseball-4", "baseball-5", "baseball-6", "baseball-7", "baseball-8", "baseball-9", "baseball-10", "baseball-11", "baseball-12", "baseball-13", "baseball-14", "baseball-15"] },
+  { id: "sports", labelKey: "stages.tracks.sports", descKey: "stages.tracks.sportsDesc", epochIds: ["baseball-1", "baseball-2", "baseball-3", "baseball-4", "baseball-5", "baseball-6", "baseball-7", "baseball-8", "baseball-9", "baseball-10", "baseball-11", "baseball-12", "baseball-13", "baseball-14", "baseball-15", "baseball-16"] },
   { id: "travel", labelKey: "stages.tracks.travel", descKey: "stages.tracks.travelDesc", epochIds: ["paris-july", "milan-july", "french-basics", "italian-basics"] },
   { id: "debate", labelKey: "stages.tracks.debate", descKey: "stages.tracks.debateDesc", epochIds: ["debate-1", "debate-2", "debate-3", "debate-4", "debate-5", "debate-6", "debate-7", "debate-8"] },
   { id: "flagFootball", labelKey: "stages.tracks.flagFootball", descKey: "stages.tracks.flagFootballDesc", epochIds: ["flag-football-1", "flag-football-2", "flag-football-3"] },
@@ -83,6 +83,7 @@ export const TRACK_SUBGROUPS: Record<string, SubGroup[]> = {
     { label: "Hitting", ids: ["baseball-2", "baseball-3", "baseball-4"] },
     { label: "Pitching", ids: ["baseball-5", "baseball-6", "baseball-7"] },
     { label: "Positions", ids: ["baseball-8", "baseball-9", "baseball-10", "baseball-11", "baseball-12", "baseball-13", "baseball-14", "baseball-15"] },
+    { label: "Team Defense", ids: ["baseball-16"] },
   ],
   debate: [
     { label: "Foundations", ids: ["debate-1", "debate-2"] },
@@ -105,15 +106,57 @@ export type DecisionBank = { id: string; title: string; subtitle: string; epochI
 export const DECISION_BANKS: DecisionBank[] = [
   {
     id: "baseball-defense",
-    title: "Baseball — Situational Defense by Position",
-    subtitle: "Where's the play? Drill defensive reads across all eight positions.",
-    epochIds: ["baseball-8", "baseball-9", "baseball-10", "baseball-11", "baseball-12", "baseball-13", "baseball-14", "baseball-15"],
+    title: "Baseball — Situational Defense",
+    subtitle: "Where's the play? All eight positions plus team-defense game situations.",
+    epochIds: ["baseball-8", "baseball-9", "baseball-10", "baseball-11", "baseball-12", "baseball-13", "baseball-14", "baseball-15", "baseball-16"],
+  },
+  {
+    id: "baseball-team-defense",
+    title: "Baseball — Team Defense Situations",
+    subtitle: "Cutoffs & relays, bunt D, first-and-third, rundowns, DP depth, in/back, shifts.",
+    epochIds: ["baseball-16"],
+  },
+  {
+    id: "baseball-infield",
+    title: "Baseball — Infield Defense",
+    subtitle: "First, second, short, and third — reads, feeds, and the double play.",
+    epochIds: ["baseball-9", "baseball-10", "baseball-11", "baseball-12", "baseball-16"],
+  },
+  {
+    id: "baseball-outfield",
+    title: "Baseball — Outfield Defense",
+    subtitle: "Left, center, right — which base, hit the cutoff, backups and caroms.",
+    epochIds: ["baseball-13", "baseball-14", "baseball-15"],
+  },
+  {
+    id: "baseball-up-the-middle",
+    title: "Baseball — Up the Middle",
+    subtitle: "The spine of the defense: catcher, second, short, and center.",
+    epochIds: ["baseball-8", "baseball-10", "baseball-12", "baseball-14"],
+  },
+  {
+    id: "baseball-battery",
+    title: "Baseball — The Battery",
+    subtitle: "Pitching and catching: pitch selection, sequencing, and game-calling.",
+    epochIds: ["baseball-5", "baseball-6", "baseball-7", "baseball-8"],
+  },
+  {
+    id: "baseball-hitting",
+    title: "Baseball — Hitting",
+    subtitle: "Approach, count, and situational hitting from the three hitting epochs.",
+    epochIds: ["baseball-2", "baseball-3", "baseball-4"],
+  },
+  {
+    id: "baseball-pitching",
+    title: "Baseball — Pitching",
+    subtitle: "Pitch selection, the arsenal, and sequencing a lineup.",
+    epochIds: ["baseball-5", "baseball-6", "baseball-7"],
   },
   {
     id: "baseball-all",
     title: "Baseball — Every Situation",
     subtitle: "Hitting, pitching, and defense reads from the whole baseball track.",
-    epochIds: ["baseball-1", "baseball-2", "baseball-3", "baseball-4", "baseball-5", "baseball-6", "baseball-7", "baseball-8", "baseball-9", "baseball-10", "baseball-11", "baseball-12", "baseball-13", "baseball-14", "baseball-15"],
+    epochIds: ["baseball-1", "baseball-2", "baseball-3", "baseball-4", "baseball-5", "baseball-6", "baseball-7", "baseball-8", "baseball-9", "baseball-10", "baseball-11", "baseball-12", "baseball-13", "baseball-14", "baseball-15", "baseball-16"],
   },
   {
     id: "poker-all",

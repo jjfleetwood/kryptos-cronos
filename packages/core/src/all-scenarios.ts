@@ -29,6 +29,7 @@ import { baseball12Scenarios } from "./baseball-12-scenarios";
 import { baseball13Scenarios } from "./baseball-13-scenarios";
 import { baseball14Scenarios } from "./baseball-14-scenarios";
 import { baseball15Scenarios } from "./baseball-15-scenarios";
+import { baseball16Scenarios } from "./baseball-16-scenarios";
 import { frenchBasicsScenarios } from "./french-basics-scenarios";
 import { italianBasicsScenarios } from "./italian-basics-scenarios";
 import { parisScenarios } from "./paris-scenarios";
@@ -69,6 +70,7 @@ export const ALL_SCENARIOS: Record<string, ScenarioConfig> = {
   ...baseball13Scenarios,
   ...baseball14Scenarios,
   ...baseball15Scenarios,
+  ...baseball16Scenarios,
   ...frenchBasicsScenarios,
   ...italianBasicsScenarios,
   ...parisScenarios,

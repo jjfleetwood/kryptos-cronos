@@ -83,6 +83,7 @@ import { baseball12Epoch, baseball12Stages } from "./baseball-12";
 import { baseball13Epoch, baseball13Stages } from "./baseball-13";
 import { baseball14Epoch, baseball14Stages } from "./baseball-14";
 import { baseball15Epoch, baseball15Stages } from "./baseball-15";
+import { baseball16Epoch, baseball16Stages } from "./baseball-16";
 import { debate1Epoch, debate1Stages } from "./debate-1";
 import { debate2Epoch, debate2Stages } from "./debate-2";
 import { debate3Epoch, debate3Stages } from "./debate-3";
@@ -189,6 +190,7 @@ export const epochs: EpochConfig[] = [
   baseball13Epoch,
   baseball14Epoch,
   baseball15Epoch,
+  baseball16Epoch,
   debate1Epoch,
   debate2Epoch,
   debate3Epoch,
@@ -285,6 +287,7 @@ export const stages: StageConfig[] = [
   ...baseball13Stages,
   ...baseball14Stages,
   ...baseball15Stages,
+  ...baseball16Stages,
   ...debate1Stages,
   ...debate2Stages,
   ...debate3Stages,
