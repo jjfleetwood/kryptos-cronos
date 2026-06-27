@@ -1,8 +1,7 @@
 # SIEMPRE SEGUNDO — Screenplay
 
 *A feature adaptation of the novel. Loosely based on the life of Frank Arellanes,
-Santa Cruz's own — among the first Mexican-American men to reach the major leagues,
-and the first Latino to play for the Boston Red Sox.*
+Santa Cruz's own — among the first Mexican-American men to reach the major leagues.*
 
 **Copyright © 2026 Jacob J. Bolotin. All rights reserved.** This is a work of fiction. Although inspired by historical figures and events — including the life of the ballplayer Frank Arellanes — the characters, names, dialogue, and incidents are either products of the author's imagination or are used fictitiously, and any resemblance to actual persons or events is the product of dramatic license or is coincidental. No part of this screenplay may be reproduced or distributed without the prior written permission of the copyright holder.
 
@@ -364,7 +363,7 @@ first year at Stanford, certain as weather. Beside him: REBECCA
 WHITFIELD (18) -- beautiful, poised, armored -- the most
 looked-at girl on the pier and the least content, though no one
 has ever looked close enough to see it. In the fall she goes up
-to Stanford -- an hour up the line, where the bluff sends its
+to Stanford -- about an hour up the line, where the bluff sends its
 daughters to be finished within reach of the right young men, and
 settled for good.
 
@@ -1392,6 +1391,31 @@ DOYLE -- an Irish widow with a gold-star flag in the window --
 lets the rent slide the hard months and would die before
 admitting it.
 
+INT. THE COLD BROOKLYN ROOMS -- NIGHT
+
+The one thing they ever fight about. REBECCA, thirty-five, the
+clock audible under everything she says.
+
+REBECCA
+I want a child, Cirilo. I've wanted one for
+years -- and you keep saying not yet. Not in
+this. The door you're waiting on may never
+open. And mine closes whether yours does or
+not.
+
+CIRILO
+(the culvert opening in him)
+I will not hand a baby a tannery and a culvert
+and a lowered voice and call it a life. Not
+until I can give it more than I was given -- a
+door with our name on it. Then. Not before. I
+would rather want one my whole life than watch
+the world do to mine what it did to me.
+
+She has no answer, because he is right; and he has none either,
+because so is she. It is the fear in his father's coat -- and
+they both know it, and it sits in the cold room between them.
+
 INT. COLD BROOKLYN ROOMS -- DAY (WINTER 1917)
 
 Snow. Cirilo, gray, in the doorway stamping his boots, his face
@@ -1430,6 +1454,22 @@ road.
 
 He looks at the telegram. At Rebecca. At the snow that is not his
 snow, in a country that has no hawks.
+
+And REBECCA takes his frozen hand and lays it flat against her
+belly -- where, against his every vow, against all the years he
+held the line, their first child is already on the way: the child
+he refused himself until he could afford to give it a door. The
+door has just opened. He can afford it now.
+
+REBECCA
+(quiet)
+We stopped waiting, you and I -- and the door
+came open in time after all. Let the curse take
+it up with a baby.
+
+The terror he has carried every month she's been carrying turns,
+in one breath, into the one grace the world ever handed this
+family unbidden.
 
 He is going east.
 

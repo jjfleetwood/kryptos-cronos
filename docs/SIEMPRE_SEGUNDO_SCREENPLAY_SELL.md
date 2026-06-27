@@ -4,8 +4,7 @@
 (`SIEMPRE_SEGUNDO_SCREENPLAY.md`). Same scenes, beats, and dialogue; action lines
 stripped to what's on screen — for agents, contests, and coverage. The literary
 draft remains the "read." Loosely based on Frank Arellanes, Santa Cruz's own —
-among the first Mexican-American men to reach the major leagues, and the first
-Latino to play for the Boston Red Sox.*
+among the first Mexican-American men to reach the major leagues.*
 
 ## Title Page
 
@@ -821,6 +820,24 @@ TANNERY bench, a major-leaguer who can't make the rent. His
 Brooklyn landlady, AOIFE DOYLE -- an Irish widow, gold-star flag
 in the window -- lets the rent slide and won't admit it.
 
+INT. COLD BROOKLYN ROOMS -- NIGHT
+
+The one thing they ever fight about. REBECCA, thirty-five, the
+clock in her voice.
+
+REBECCA
+I want a child, Cirilo. For years now. And you
+keep saying not yet -- not in this. My door
+closes whether yours ever opens or not.
+
+CIRILO
+I won't hand a baby a tannery and a culvert and
+a lowered voice and call it a life. Not until I
+can give it a door of its own. Then. Not before.
+
+No answer on either side: he's right, and so is she. The fear in
+his father's coat, in the cold room between them.
+
 INT. COLD BROOKLYN ROOMS -- DAY (WINTER 1917)
 
 Snow. Cirilo, gray, stamps his boots in the doorway. A TELEGRAM
@@ -850,6 +867,16 @@ Hooper put my name in. A kid from Hollister,
 one ridge over from my brothers. After
 everything -- the man who finally remembered
 me was a boy from up the road.
+
+REBECCA takes his hand to her belly -- their first child already on
+the way, against his every vow: the one he refused himself until he
+could afford to give it a door. The door's open now.
+
+REBECCA
+(quiet)
+We stopped waiting, you and I -- and it came
+open in time after all. Let the curse take it
+up with a baby.
 
 He's going east.
 
