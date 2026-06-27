@@ -75,9 +75,9 @@ export const poker1Scenarios: Record<string, ScenarioConfig> = {
       },
       {
         id: "p1-02-s2", label: "Read Your Hand",
-        situation: "The board is paired and you hold two more of the same rank.",
+        situation: "Two Kings are on the board, and you hold the other two Kings.",
         board: ["K♠", "K♦", "7♣", "7♥", "2♦"],
-        hand: ["K♣", "Q♠"],
+        hand: ["K♣", "K♥"],
         prompt: "What is your best five-card hand?",
         options: [
           "Four of a kind (quad Kings)",
@@ -86,7 +86,7 @@ export const poker1Scenarios: Record<string, ScenarioConfig> = {
           "Three of a kind",
         ],
         correctIndex: 0,
-        explanation: "Your two Kings plus the two on the board make four Kings — quads.",
+        explanation: "Your two Kings plus the two on the board make all four Kings — quads.",
       },
       {
         id: "p1-02-s3", label: "Full House?",
@@ -253,7 +253,7 @@ export const poker1Scenarios: Record<string, ScenarioConfig> = {
         board: ["K♠", "8♠", "2♦"],
         hand: ["A♠", "J♠"],
         pot: "$120", toCall: "$20",
-        prompt: "Your 36% flush draw vs roughly 17% needed to call — what's the play?",
+        prompt: "Your 36% flush draw vs roughly 14% needed to call — what's the play?",
         options: [
           "Call — your equity (36%) beats the price (17%)",
           "Fold — draws never pay",
@@ -261,13 +261,13 @@ export const poker1Scenarios: Record<string, ScenarioConfig> = {
           "It doesn't matter",
         ],
         correctIndex: 0,
-        explanation: "Getting ~5-to-1, you need ~17% to break even; at 36% the call is clearly +EV.",
+        explanation: "Getting 6-to-1 ($120 to win for a $20 call), you need only ~14% to break even; at 36% the call is clearly +EV.",
       },
       {
         id: "p1-05-s4", label: "Don't Chase",
-        situation: "You have a weak gutshot (4 outs, ~16% by the river) and face a huge bet that gives you only ~3-to-1.",
+        situation: "You have a weak gutshot — only a Ten completes your straight (4 outs, ~16% by the river) — and face a huge bet that gives you only ~3-to-1.",
         board: ["Q♥", "9♣", "4♠"],
-        hand: ["J♦", "T♦"],
+        hand: ["J♦", "8♦"],
         pot: "$200", toCall: "$70",
         prompt: "The price demands ~25% and you have ~16%. What's correct?",
         options: [

@@ -168,7 +168,7 @@ export const poker2Scenarios: Record<string, ScenarioConfig> = {
         id: "p2-03-s3", label: "Double Barrel",
         situation: "You c-bet a flush draw on the flop and got called. The turn is a great card to keep applying pressure.",
         hand: ["K♠", "Q♠"],
-        board: ["J♠", "7♦", "3♣", "A♠"],
+        board: ["J♠", "7♠", "3♣", "A♠"],
         pot: "$120",
         prompt: "The turn Ace completes your nut flush draw into the nut flush — what's the play?",
         options: [
@@ -216,9 +216,9 @@ export const poker2Scenarios: Record<string, ScenarioConfig> = {
       },
       {
         id: "p2-04-s2", label: "Blocker to Bluff",
-        situation: "The board is four to a flush on the river and you're deciding whether to bluff-jam.",
+        situation: "The board is three to a flush on the river and you're deciding whether to bluff-jam.",
         hand: ["A♠", "7♦"],
-        board: ["K♠", "9♠", "4♠", "2♥", "Q♠"],
+        board: ["K♠", "9♠", "4♠", "2♥", "Q♦"],
         pot: "$200",
         prompt: "Why does holding the A♠ make this a great spot to bluff?",
         options: [
