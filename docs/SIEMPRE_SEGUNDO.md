@@ -2787,6 +2787,8 @@ She took his frozen face in both her hands. "It does not matter why the door ope
 
 He lifted the worn glove off the table, his father's leather, and turned it once. His abuelo would say it was too high, he told her; he'd say the family was never meant to climb this far. "Then we climb it for this one," Rebecca said, a hand on her belly, where their first child was already on the way, due with the new year. "Let the curse take it up with a baby."
 
+And Cirilo understood, standing in the snowmelt with the telegram crushed in his fist, the thing that undid him where neither the want nor the war nor the sixteen years had managed to: that the child he had refused himself for fourteen years — the child he had let himself begin at last in pure surrender and then lain awake a year repenting in terror — was going to be born, after all, to a father in the major leagues, with a real contract and a real wage and, at last, a door with their name on the road to it. He had broken his great vow in despair. And the world, for once, for the first and only time in the whole long history of the family, had answered the breaking not with a punishment but with a door. He sat down on the cold stairs and put his face in his hands — not because he was grieving but because he was not, and a man who has braced his whole life for the blow does not always know, when the blessing arrives in its place, what to do with his own body.
+
 And from three thousand miles west, faint, a letter in the old man's hand seemed to follow them onto the train going east: *Mijo. They call you to the very top now. Be careful up there. The air is thin where they let us stand — and they have never, not once, caught us when we fall.*
 
 ---
