@@ -57,15 +57,14 @@ pretending not to.
 
 EXT. THE WHARF -- CONTINUOUS
 
-Sea lions bellow on the pilings. On the wet sand, a FATHER and
-his SMALL BOY throw a ball back and forth. The glove is too big
-for the boy's hand. The soft THOCK of the catch.
+Sea lions bellow on the pilings. First tourists, first coffees.
 
 EXT. THE BOARDWALK -- CONTINUOUS
 
 A hundred-year-old wooden boardwalk. The GIANT DIPPER hauls its
 first cars up the lift, breasts the summit, and PLUNGES. The
-scream goes up. A girl grabs a boy's arm.
+scream goes up. A girl grabs the arm of the boy she's spent all
+summer pretending not to like.
 
 EXT. THE MIDWAY -- CONTINUOUS
 
@@ -383,6 +382,10 @@ Don't go. Stay, be the bottle boy, let me
 pay my nickel all summer. I was raised on
 those men -- the higher you climb, the harder
 they hold the line. Not softer.
+(then, hearing herself)
+No -- forget that. I won't ask you to be
+less so I can keep you. That's their sin,
+not mine. Go. Just come back.
 
 CIRILO
 I'm going up so that one day I can stand

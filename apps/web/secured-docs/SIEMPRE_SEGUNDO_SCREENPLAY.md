@@ -92,41 +92,24 @@ not to.
 He will remember this wave when he is an old man. He doesn't
 know that yet. That is the one mercy of being him this morning.
 
-EXT. THE WHARF / THE WET SAND -- CONTINUOUS
+EXT. THE WHARF -- CONTINUOUS
 
 Sea lions stacked and bellowing on the pilings. First tourists
-nursing coffees. And down on the wet sand -- a FATHER and his
-SMALL BOY, throwing a ball back and forth in the early light.
-The glove is still too big for the boy's hand.
-
-The soft THOCK of the catch carries up, thin, to the hawk.
+nursing coffees.
 
 EXT. THE BOARDWALK -- CONTINUOUS
 
 A hundred-year-old wooden boardwalk at the river's mouth. The
 GIANT DIPPER hauls its first cars up the long, clattering lift.
-A car breasts the summit -- a knot of kids, a BOY and a GIRL
-shoulder to shoulder in the front seat -- tips, and PLUNGES.
+A car breasts the summit -- a knot of kids, and in the front
+seat a BOY and a GIRL who've run this boardwalk together all
+summer, shoulder to shoulder -- tips, and PLUNGES.
 
-The scream goes up off the whole train at once. The girl seizes
+The scream goes up off the whole train at once. The girl keeps
 the boy's arm, in earnest now. Neither will admit, after, that
-this was the moment.
+this was the moment the easy thing tipped into the other.
 
-It was. It always is.
-
-EXT. THE BOARDWALK -- ALONG THE RAIL -- CONTINUOUS
-
-The ones the hawk does not see the way they see themselves:
-
-A MOTHER who worked doubles all spring for these three days,
-watching her daughter shriek down the Dipper -- and thinking,
-plainly, on her face: THAT. That is what it was all for.
-
-A FATHER priced half out of the town he was raised in, holding a
-corn dog he can't quite afford, watching his kids be happy --
-and, for one afternoon, given the thing he wanted.
-
-The boardwalk runs on that. It always has.
+It was.
 
 EXT. THE BOARDWALK -- THE MIDWAY -- CONTINUOUS
 
@@ -665,6 +648,12 @@ Stay. Be the bottle boy. Let me pay my
 nickel all summer and let it be this. I was
 raised on those men -- the higher you climb,
 the harder they hold the line. Not softer.
+(then she hears it, and stops)
+No. Listen to me -- asking you to stay small
+so I can be sure of you. That's their sin.
+My father's. Chuck's. I won't make it mine.
+(barely)
+But God help me, for a second I wanted to.
 
 CIRILO
 Look at where we have to do this. I'm not
